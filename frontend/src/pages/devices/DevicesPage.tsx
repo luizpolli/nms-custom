@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Eye, Trash2 } from 'lucide-react';
+import { Plus, Eye, Trash2, Upload } from 'lucide-react';
 import { api } from '../../lib/api';
 import {
   PageHeader,
@@ -16,6 +16,7 @@ import { DeviceStatusBadge } from './components/DeviceStatusBadge';
 import { DeviceTagList } from './components/DeviceTagList';
 import { PollButton } from './components/PollButton';
 import { DeviceFormModal } from './DeviceFormModal';
+import { ImportCSVModal } from './ImportCSVModal';
 
 interface Device {
   id: string;
@@ -60,6 +61,7 @@ export function DevicesPage() {
   const [offset, setOffset] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [editDevice, setEditDevice] = useState<Device | null>(null);
+  const [importOpen, setImportOpen] = useState(false);
 
   const queryKey = ['devices', { search, status, vendor, tag, offset }];
 
@@ -147,9 +149,14 @@ export function DevicesPage() {
         title="Devices"
         subtitle={`${total} registered devices`}
         actions={
-          <Button onClick={openCreate}>
-            <Plus className="w-4 h-4 mr-1" /> Add Device
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="ghost" onClick={() => setImportOpen(true)}>
+              <Upload className="w-4 h-4 mr-1" /> Import CSV
+            </Button>
+            <Button onClick={openCreate}>
+              <Plus className="w-4 h-4 mr-1" /> Add Device
+            </Button>
+          </div>
         }
       />
 
@@ -206,6 +213,8 @@ export function DevicesPage() {
         onClose={() => setModalOpen(false)}
         device={editDevice}
       />
+
+      <ImportCSVModal open={importOpen} onClose={() => setImportOpen(false)} />
     </div>
   );
 }

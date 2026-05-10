@@ -10,8 +10,11 @@ from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from pydantic import BaseModel, Field
+
 from app.config import Settings
 from app.database import get_db
+from app.models.credential import Credential
 from app.models.device import Device
 from app.models.inventory import Inventory
 from app.schemas.device import DeviceCreate, DeviceRead, DeviceUpdate
@@ -80,6 +83,88 @@ async def create_device(
     await db.flush()
     await db.refresh(device)
     return DeviceRead.model_validate(device)
+
+
+class BulkDeviceRow(BaseModel):
+    name: str = Field(..., max_length=255)
+    host: str = Field(..., max_length=45)
+    vendor: str = Field(..., max_length=100)
+    user: str = Field(..., max_length=255)
+    password: str = Field(..., min_length=1)
+    model: Optional[str] = Field(None, max_length=255)
+    site: Optional[str] = Field(None, max_length=255)
+    tags: list[str] = Field(default_factory=list)
+
+
+class BulkImportRequest(BaseModel):
+    rows: list[BulkDeviceRow]
+
+
+class BulkImportFailure(BaseModel):
+    row: int
+    name: str
+    error: str
+
+
+class BulkImportResponse(BaseModel):
+    created: int
+    failed: list[BulkImportFailure]
+
+
+@router.post("/bulk", response_model=BulkImportResponse, status_code=status.HTTP_201_CREATED)
+async def bulk_import_devices(
+    body: BulkImportRequest,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> BulkImportResponse:
+    """Import devices from a parsed CSV payload.
+
+    Each row creates a Credential (SNMP v2c) and a Device linked to it.
+    Failures are isolated per-row; successful rows commit even if others fail.
+    """
+    vault = CredentialVault.from_settings(settings)
+    created = 0
+    failed: list[BulkImportFailure] = []
+
+    for idx, row in enumerate(body.rows):
+        sp = await db.begin_nested()
+        try:
+            existing = await db.execute(select(Device).where(Device.ip_address == row.host))
+            if existing.scalar_one_or_none() is not None:
+                raise ValueError(f"device with IP {row.host} already exists")
+
+            cred = Credential(
+                name=f"{row.name}-cred",
+                hostname=row.host,
+                username=row.user,
+                auth_key="",
+                protocol="snmp",
+                snmp_version="v2c",
+                port=161,
+            )
+            db.add(cred)
+            await db.flush()
+            cred.auth_key = vault.encrypt(row.password, cred.id.bytes)
+
+            device = Device(
+                name=row.name,
+                ip_address=row.host,
+                device_type="router",
+                vendor=row.vendor,
+                model=row.model,
+                location=row.site,
+                tags=row.tags,
+                credential_id=cred.id,
+            )
+            db.add(device)
+            await db.flush()
+            await sp.commit()
+            created += 1
+        except Exception as exc:
+            await sp.rollback()
+            logger.warning("bulk import row {} failed: {}", idx, exc)
+            failed.append(BulkImportFailure(row=idx, name=row.name, error=str(exc)))
+
+    return BulkImportResponse(created=created, failed=failed)
 
 
 @router.get("/{id}", response_model=DeviceRead)
