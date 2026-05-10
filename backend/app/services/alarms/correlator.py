@@ -1,0 +1,214 @@
+"""Alarm correlator — classifies SNMP traps and manages alarm lifecycle.
+
+Handles deduplication (occurrence_count), clearing (linkUp clears linkDown),
+and acknowledgement.  All DB access is async through the session factory.
+"""
+
+from __future__ import annotations
+
+import uuid
+from datetime import datetime, timezone
+from typing import Callable
+
+from loguru import logger
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.models.alarm import Alarm
+from app.services.snmp.trap_receiver import TrapEvent
+
+# Well-known trap OIDs (no leading dot)
+_LINK_DOWN = "1.3.6.1.6.3.1.1.5.3"
+_LINK_UP = "1.3.6.1.6.3.1.1.5.4"
+_COLD_START = "1.3.6.1.6.3.1.1.5.1"
+_WARM_START = "1.3.6.1.6.3.1.1.5.2"
+_AUTH_FAILURE = "1.3.6.1.6.3.1.1.5.5"
+
+# ifIndex OID prefix (ifIndex column, table 2.2.1.1)
+_IF_INDEX_PREFIX = "1.3.6.1.2.1.2.2.1.1."
+
+SessionFactory = Callable[[], AsyncSession]
+
+
+def _extract_if_index(varbinds: dict[str, str]) -> str:
+    """Return ifIndex extracted from a varbind OID suffix, or 'unknown'."""
+    for oid in varbinds:
+        if oid.startswith(_IF_INDEX_PREFIX):
+            return oid[len(_IF_INDEX_PREFIX):]
+    return "unknown"
+
+
+class AlarmCorrelator:
+    """Classify SNMP traps and maintain the alarm table with correlation logic."""
+
+    def __init__(self, session_factory: SessionFactory) -> None:
+        self._sf = session_factory
+
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
+    def classify(self, event: TrapEvent) -> dict:
+        """Pure classification — no DB.  Returns classification dict."""
+        oid = (event.trap_oid or "").strip()
+        host = event.source_host
+
+        if oid == _LINK_DOWN:
+            idx = _extract_if_index(event.varbinds)
+            return {
+                "severity": "major",
+                "category": "link",
+                "event_type": "linkDown",
+                "message": f"Link down on {host} interface {idx}",
+                "correlation_key": f"link:{host}:{idx}",
+            }
+
+        if oid == _LINK_UP:
+            idx = _extract_if_index(event.varbinds)
+            return {
+                "severity": "clear",
+                "category": "link",
+                "event_type": "linkUp",
+                "message": f"Link restored on {host} interface {idx}",
+                "correlation_key": f"link:{host}:{idx}",
+            }
+
+        if oid == _COLD_START:
+            return {
+                "severity": "major",
+                "category": "device",
+                "event_type": "coldStart",
+                "message": f"Cold start (reboot) detected on {host}",
+                "correlation_key": f"device:{host}:reboot",
+            }
+
+        if oid == _WARM_START:
+            return {
+                "severity": "warning",
+                "category": "device",
+                "event_type": "warmStart",
+                "message": f"Warm start detected on {host}",
+                "correlation_key": f"device:{host}:reboot",
+            }
+
+        if oid == _AUTH_FAILURE:
+            return {
+                "severity": "warning",
+                "category": "auth",
+                "event_type": "authenticationFailure",
+                "message": f"SNMP authentication failure from {host}",
+                "correlation_key": f"auth:{host}",
+            }
+
+        return {
+            "severity": "info",
+            "category": "other",
+            "event_type": oid or "unknown",
+            "message": f"Unknown trap {oid!r} from {host}",
+            "correlation_key": f"other:{host}:{oid}",
+        }
+
+    async def handle_trap(self, event: TrapEvent) -> Alarm | None:
+        """Classify trap, then create / update / clear the matching alarm row."""
+        cls = self.classify(event)
+        now = datetime.now(timezone.utc)
+
+        async with self._sf() as session:
+            if cls["severity"] == "clear":
+                return await self._apply_clear(session, cls["correlation_key"], now)
+
+            alarm = await self._find_active(session, cls["correlation_key"])
+            if alarm is not None:
+                alarm.occurrence_count += 1
+                alarm.last_seen = now
+                alarm.raw_varbinds = event.varbinds
+                await session.commit()
+                logger.debug("Alarm deduped: {} ({}x)", cls["correlation_key"], alarm.occurrence_count)
+                return alarm
+
+            alarm = Alarm(
+                id=uuid.uuid4(),
+                source_host=event.source_host,
+                severity=cls["severity"],
+                category=cls["category"],
+                event_type=cls["event_type"],
+                message=cls["message"],
+                trap_oid=event.trap_oid,
+                raw_varbinds=event.varbinds,
+                correlation_key=cls["correlation_key"],
+                state="active",
+                first_seen=now,
+                last_seen=now,
+                created_at=now,
+            )
+            session.add(alarm)
+            await session.commit()
+            logger.info("Alarm created: {} sev={}", cls["correlation_key"], cls["severity"])
+            return alarm
+
+    async def ack(self, alarm_id: uuid.UUID, by_user: str) -> Alarm:
+        """Acknowledge an alarm."""
+        async with self._sf() as session:
+            alarm = await session.get(Alarm, alarm_id)
+            if alarm is None:
+                raise ValueError(f"Alarm {alarm_id} not found")
+            alarm.state = "acknowledged"
+            alarm.ack_by = by_user
+            alarm.last_seen = datetime.now(timezone.utc)
+            await session.commit()
+            return alarm
+
+    async def clear(self, alarm_id: uuid.UUID) -> Alarm:
+        """Manually clear an alarm by id."""
+        async with self._sf() as session:
+            alarm = await session.get(Alarm, alarm_id)
+            if alarm is None:
+                raise ValueError(f"Alarm {alarm_id} not found")
+            now = datetime.now(timezone.utc)
+            alarm.state = "cleared"
+            alarm.cleared_at = now
+            alarm.last_seen = now
+            await session.commit()
+            return alarm
+
+    async def list_active(
+        self,
+        device_id: uuid.UUID | None = None,
+        severity: str | None = None,
+    ) -> list[Alarm]:
+        """Return active alarms, optionally filtered."""
+        async with self._sf() as session:
+            stmt = select(Alarm).where(Alarm.state == "active")
+            if device_id is not None:
+                stmt = stmt.where(Alarm.device_id == device_id)
+            if severity is not None:
+                stmt = stmt.where(Alarm.severity == severity)
+            result = await session.execute(stmt)
+            return list(result.scalars().all())
+
+    # ------------------------------------------------------------------
+    # Internals
+    # ------------------------------------------------------------------
+
+    async def _find_active(self, session: AsyncSession, correlation_key: str) -> Alarm | None:
+        stmt = (
+            select(Alarm)
+            .where(Alarm.correlation_key == correlation_key, Alarm.state == "active")
+            .limit(1)
+        )
+        result = await session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def _apply_clear(
+        self, session: AsyncSession, correlation_key: str, now: datetime
+    ) -> Alarm | None:
+        alarm = await self._find_active(session, correlation_key)
+        if alarm is None:
+            logger.debug("Clear event for {} — no active alarm found", correlation_key)
+            return None
+        alarm.state = "cleared"
+        alarm.cleared_at = now
+        alarm.last_seen = now
+        await session.commit()
+        logger.info("Alarm cleared: {}", correlation_key)
+        return alarm

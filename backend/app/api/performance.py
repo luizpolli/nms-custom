@@ -1,0 +1,113 @@
+"""Performance / KPI API routes."""
+
+from __future__ import annotations
+
+import uuid
+from datetime import datetime
+from typing import Annotated, Optional
+
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy import select, func, text
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_db
+from app.models.device import Device
+from app.models.kpi import KPI
+from app.schemas.kpi import KPIAggregate, KPIRead
+from app.services.kpi.engine import KPIEngine
+
+router = APIRouter()
+
+
+def _kpi_to_read(kpi: KPI) -> KPIRead:
+    # FIXME: rename KPI.metadata column — collides with SQLAlchemy Base.metadata
+    meta = getattr(kpi, "metadata", None)
+    return KPIRead(
+        id=kpi.id,
+        device_id=kpi.device_id,
+        kpi_type=kpi.kpi_type,
+        technology=kpi.technology,
+        value=kpi.value,
+        unit=kpi.unit,
+        kpi_area=kpi.kpi_area,
+        metadata=meta,
+        timestamp=kpi.timestamp,
+    )
+
+
+@router.get("/devices/{id}/kpis", response_model=list[KPIRead])
+async def list_kpis(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    kpi_type: Optional[str] = None,
+    since: Optional[datetime] = None,
+    until: Optional[datetime] = None,
+    limit: int = Query(1000, ge=1, le=10000),
+) -> list[KPIRead]:
+    stmt = select(KPI).where(KPI.device_id == id)
+    if kpi_type:
+        stmt = stmt.where(KPI.kpi_type == kpi_type)
+    if since:
+        stmt = stmt.where(KPI.timestamp >= since)
+    if until:
+        stmt = stmt.where(KPI.timestamp <= until)
+    stmt = stmt.order_by(KPI.timestamp.desc()).limit(limit)
+    result = await db.execute(stmt)
+    return [_kpi_to_read(k) for k in result.scalars().all()]
+
+
+@router.get("/devices/{id}/kpis/aggregate", response_model=KPIAggregate)
+async def aggregate_kpis(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    kpi_type: str = Query(...),
+    since: datetime = Query(...),
+    until: datetime = Query(...),
+    bucket: str = Query("5m"),
+) -> KPIAggregate:
+    engine = KPIEngine(db)
+    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket)
+
+
+@router.get("/summary")
+async def performance_summary(
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> dict:
+    # Compute avg CPU and mem across last sample per device
+    cpu_stmt = (
+        select(func.avg(KPI.value))
+        .where(KPI.kpi_type == "cpu_5min")
+    )
+    mem_stmt = (
+        select(func.avg(KPI.value))
+        .where(KPI.kpi_type == "mem_used_pct")
+    )
+    cpu_result = await db.execute(cpu_stmt)
+    mem_result = await db.execute(mem_stmt)
+    cpu_avg = cpu_result.scalar_one_or_none() or 0.0
+    mem_avg = mem_result.scalar_one_or_none() or 0.0
+
+    # Top 10 devices by cpu_5min
+    top_stmt = (
+        select(KPI.device_id, func.max(KPI.value).label("cpu_5min"))
+        .where(KPI.kpi_type == "cpu_5min")
+        .group_by(KPI.device_id)
+        .order_by(func.max(KPI.value).desc())
+        .limit(10)
+    )
+    top_result = await db.execute(top_stmt)
+    top_rows = top_result.all()
+
+    # Fetch device names
+    device_ids = [r.device_id for r in top_rows]
+    names: dict[uuid.UUID, str] = {}
+    if device_ids:
+        dev_result = await db.execute(select(Device).where(Device.id.in_(device_ids)))
+        for d in dev_result.scalars().all():
+            names[d.id] = d.name
+
+    top_devices = [
+        {"device_id": str(r.device_id), "name": names.get(r.device_id, ""), "cpu_5min": r.cpu_5min}
+        for r in top_rows
+    ]
+    return {"cpu_avg": cpu_avg, "mem_avg": mem_avg, "top_devices": top_devices}
