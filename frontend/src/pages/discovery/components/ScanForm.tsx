@@ -21,7 +21,7 @@ export function ScanForm({ onSubmit, isLoading }: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!CIDR_REGEX.test(cidr)) {
-      setCidrError('Formato CIDR inválido (ej. 192.168.1.0/24)');
+      setCidrError('Invalid CIDR format (e.g. 192.168.1.0/24)');
       return;
     }
     setCidrError('');
@@ -34,12 +34,12 @@ export function ScanForm({ onSubmit, isLoading }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-      <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Parámetros de escaneo</h2>
+      <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Scan parameters</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Red CIDR <span className="text-red-500">*</span>
+            CIDR network <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -56,7 +56,7 @@ export function ScanForm({ onSubmit, isLoading }: Props) {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Comunidades SNMP
+            SNMP communities
           </label>
           <input
             type="text"
@@ -65,7 +65,7 @@ export function ScanForm({ onSubmit, isLoading }: Props) {
             placeholder="public, private"
             className="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Separadas por coma</p>
+          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Comma-separated</p>
         </div>
       </div>
 
@@ -78,10 +78,10 @@ export function ScanForm({ onSubmit, isLoading }: Props) {
           {isLoading ? (
             <>
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-              Escaneando...
+              Scanning...
             </>
           ) : (
-            'Iniciar escaneo'
+            'Start scan'
           )}
         </button>
       </div>

@@ -38,7 +38,7 @@ const SEVERITY_BADGE_MAP: Record<string, 'danger' | 'warning' | 'default' | 'suc
 const SEVERITY_ORDER: Record<string, number> = { critical: 0, major: 1, minor: 2, warning: 3, info: 4 };
 
 function fmt(ts: string) {
-  return new Date(ts).toLocaleString('es-MX', { dateStyle: 'short', timeStyle: 'short' });
+  return new Date(ts).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
 }
 
 export function AlarmTable({ alarms, onView, onAck, onClear }: AlarmTableProps) {
@@ -77,21 +77,21 @@ export function AlarmTable({ alarms, onView, onAck, onClear }: AlarmTableProps) 
       <table className="min-w-full text-sm">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
-            <SortTh label="Severidad" col="severity" />
-            <SortTh label="Estado" col="state" />
-            <SortTh label="Dispositivo" col="source_host" />
-            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Tipo</th>
-            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Mensaje</th>
-            <SortTh label="Primera vez" col="first_seen" />
-            <SortTh label="Última vez" col="last_seen" />
-            <SortTh label="Conteo" col="occurrence_count" />
-            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Acciones</th>
+            <SortTh label="Severity" col="severity" />
+            <SortTh label="State" col="state" />
+            <SortTh label="Device" col="source_host" />
+            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Type</th>
+            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Message</th>
+            <SortTh label="First seen" col="first_seen" />
+            <SortTh label="Last seen" col="last_seen" />
+            <SortTh label="Count" col="occurrence_count" />
+            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Actions</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
           {sorted.length === 0 && (
             <tr>
-              <td colSpan={9} className="text-center text-gray-400 py-8 text-sm">Sin alarmas.</td>
+              <td colSpan={9} className="text-center text-gray-400 py-8 text-sm">No alarms.</td>
             </tr>
           )}
           {sorted.map((alarm) => (
@@ -116,11 +116,11 @@ export function AlarmTable({ alarms, onView, onAck, onClear }: AlarmTableProps) 
               <td className="px-3 py-2 text-center text-xs font-mono">{alarm.occurrence_count}</td>
               <td className="px-3 py-2 whitespace-nowrap">
                 <div className="flex gap-1">
-                  <Button size="xs" variant="ghost" onClick={() => onView(alarm)}>Ver</Button>
+                  <Button size="xs" variant="ghost" onClick={() => onView(alarm)}>View</Button>
                   {alarm.state !== 'acknowledged' && (
-                    <Button size="xs" variant="outline" onClick={() => onAck(alarm.id)}>Reconocer</Button>
+                    <Button size="xs" variant="outline" onClick={() => onAck(alarm.id)}>Acknowledge</Button>
                   )}
-                  <Button size="xs" variant="danger" onClick={() => onClear(alarm.id)}>Limpiar</Button>
+                  <Button size="xs" variant="danger" onClick={() => onClear(alarm.id)}>Clear</Button>
                 </div>
               </td>
             </tr>

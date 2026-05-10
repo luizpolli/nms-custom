@@ -36,7 +36,7 @@ export function CredentialsPage() {
     },
     onError: (_err, _id, ctx) => {
       queryClient.setQueryData(['credentials'], ctx?.prev);
-      alert('Error al eliminar la credencial');
+      alert('Failed to delete credential');
     },
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['credentials'] }),
   });
@@ -49,19 +49,19 @@ export function CredentialsPage() {
   return (
     <div className="p-6 space-y-6">
       <PageHeader
-        title="Credenciales"
-        subtitle={`${credentials.length} credenciales`}
+        title="Credentials"
+        subtitle={`${credentials.length} credential profiles`}
         actions={
           <Button onClick={openCreate}>
-            <Plus className="w-4 h-4 mr-1" /> Crear credencial
+            <Plus className="w-4 h-4 mr-1" /> Add Credential Profile
           </Button>
         }
       />
 
       {isLoading && <Spinner />}
-      {isError && <p className="text-red-500">Error al cargar credenciales.</p>}
+      {isError && <p className="text-red-500">Failed to load credentials.</p>}
       {!isLoading && credentials.length === 0 && (
-        <EmptyState title="Sin credenciales" description="Crea la primera credencial con el botón superior." />
+        <EmptyState title="No credentials" description="Create the first credential using the button above." />
       )}
 
       {credentials.length > 0 && (
@@ -69,7 +69,7 @@ export function CredentialsPage() {
           <table className="min-w-full text-sm divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                {['Nombre', 'Hostname', 'Usuario', 'Protocolo', 'SNMP', 'Puerto', 'Secret', 'Acciones'].map((h) => (
+                {['Name', 'Hostname', 'Username', 'Protocol', 'SNMP', 'Port', 'Secret', 'Actions'].map((h) => (
                   <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{h}</th>
                 ))}
               </tr>
@@ -87,17 +87,17 @@ export function CredentialsPage() {
                   <td className="px-4 py-2">{cred.port}</td>
                   <td className="px-4 py-2">
                     <Badge variant={cred.has_secret ? 'success' : 'warning'}>
-                      {cred.has_secret ? 'Sí' : 'No'}
+                      {cred.has_secret ? 'Yes' : 'No'}
                     </Badge>
                   </td>
                   <td className="px-4 py-2">
                     <div className="flex gap-1">
-                      <Button variant="ghost" size="sm" onClick={() => openEdit(cred)}>Editar</Button>
+                      <Button variant="ghost" size="sm" onClick={() => openEdit(cred)}>Edit</Button>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => {
-                          if (window.confirm(`¿Eliminar credencial "${cred.name}"?`)) {
+                          if (window.confirm(`Delete credential "${cred.name}"?`)) {
                             deleteMutation.mutate(cred.id);
                           }
                         }}

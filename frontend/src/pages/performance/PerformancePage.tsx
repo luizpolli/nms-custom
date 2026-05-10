@@ -32,9 +32,9 @@ interface AggregatePoint {
 const KPI_OPTIONS = [
   { value: 'cpu_5min', label: 'CPU 5 min' },
   { value: 'cpu_1min', label: 'CPU 1 min' },
-  { value: 'mem_used_pct', label: 'Memoria (%)' },
-  { value: 'if_in_octets_rate', label: 'Tráfico entrada' },
-  { value: 'if_out_octets_rate', label: 'Tráfico salida' },
+  { value: 'mem_used_pct', label: 'Memory (%)' },
+  { value: 'if_in_octets_rate', label: 'Inbound traffic' },
+  { value: 'if_out_octets_rate', label: 'Outbound traffic' },
 ];
 
 function defaultRange(): TimeRange {
@@ -88,19 +88,19 @@ export function PerformancePage() {
 
   const summary = summaryQuery.data;
   const statItems = [
-    { label: 'CPU promedio (%)', value: summary ? summary.cpu_avg.toFixed(1) : '—', unit: '%' },
-    { label: 'Memoria promedio (%)', value: summary ? summary.mem_avg.toFixed(1) : '—', unit: '%' },
-    { label: 'Estado de polling', value: summaryQuery.isLoading ? 'Consultando…' : 'Activo', trend: 'neutral' as const },
+    { label: 'Average CPU (%)', value: summary ? summary.cpu_avg.toFixed(1) : '—', unit: '%' },
+    { label: 'Average memory (%)', value: summary ? summary.mem_avg.toFixed(1) : '—', unit: '%' },
+    { label: 'Polling status', value: summaryQuery.isLoading ? 'Polling…' : 'Active', trend: 'neutral' as const },
   ];
 
   return (
     <div className="space-y-6 p-6">
       <PageHeader
-        title="Rendimiento"
-        subtitle="KPIs de red — Cisco NMS"
+        title="Performance"
+        subtitle="Network KPIs — Cisco NMS"
         actions={
           <Button variant="outline" size="sm" onClick={handleRefresh} leftIcon={<RefreshCw size={14} />}>
-            Actualizar
+            Refresh
           </Button>
         }
       />
@@ -110,7 +110,7 @@ export function PerformancePage() {
       {summary && summary.top_devices.length > 0 && (
         <Card>
           <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-            Top dispositivos por CPU
+            Top devices by CPU
           </p>
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
@@ -128,11 +128,11 @@ export function PerformancePage() {
       <Card>
         <div className="flex flex-wrap gap-4 items-end mb-4">
           <div className="flex-1 min-w-48">
-            <label className="block text-xs text-gray-500 mb-1">Dispositivo</label>
+            <label className="block text-xs text-gray-500 mb-1">Device</label>
             <DevicePicker value={deviceId} onChange={setDeviceId} />
           </div>
           <div className="flex-1 min-w-48">
-            <label className="block text-xs text-gray-500 mb-1">Tipo de KPI</label>
+            <label className="block text-xs text-gray-500 mb-1">KPI type</label>
             <Select
               value={kpiType}
               onChange={(e) => setKpiType(e.target.value)}
@@ -141,22 +141,22 @@ export function PerformancePage() {
           </div>
         </div>
         <div className="mb-4">
-          <label className="block text-xs text-gray-500 mb-1">Rango de tiempo</label>
+          <label className="block text-xs text-gray-500 mb-1">Time range</label>
           <TimeRangePicker value={range} onChange={setRange} />
         </div>
 
         {!deviceId && (
           <p className="text-sm text-gray-400 text-center py-8">
-            Selecciona un dispositivo para ver los KPIs.
+            Select a device to view KPIs.
           </p>
         )}
 
         {deviceId && aggregateQuery.isLoading && (
-          <p className="text-sm text-gray-400 text-center py-8">Cargando datos…</p>
+          <p className="text-sm text-gray-400 text-center py-8">Loading data…</p>
         )}
 
         {deviceId && aggregateQuery.isError && (
-          <p className="text-sm text-red-500 text-center py-8">Error al cargar los datos.</p>
+          <p className="text-sm text-red-500 text-center py-8">Failed to load data.</p>
         )}
 
         {deviceId && aggregateQuery.data && (

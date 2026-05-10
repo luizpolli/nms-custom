@@ -3,7 +3,7 @@ import type { AlarmSeverity } from './types';
 // ─── Date / Time ─────────────────────────────────────────────────────────────
 
 export function formatDate(iso: string): string {
-  return new Date(iso).toLocaleString('es-MX', {
+  return new Date(iso).toLocaleString('en-US', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -13,7 +13,7 @@ export function formatDate(iso: string): string {
 }
 
 export function formatDateShort(iso: string): string {
-  return new Date(iso).toLocaleDateString('es-MX', {
+  return new Date(iso).toLocaleDateString('en-US', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -66,12 +66,12 @@ export function severityBgClass(severity: AlarmSeverity): string {
 
 export function severityLabel(severity: AlarmSeverity): string {
   const labels: Record<AlarmSeverity, string> = {
-    critical: 'Crítico',
-    major: 'Mayor',
-    minor: 'Menor',
-    warning: 'Advertencia',
-    info: 'Informativo',
-    clear: 'Despejado',
+    critical: 'Critical',
+    major: 'Major',
+    minor: 'Minor',
+    warning: 'Warning',
+    info: 'Info',
+    clear: 'Clear',
   };
   return labels[severity] ?? severity;
 }

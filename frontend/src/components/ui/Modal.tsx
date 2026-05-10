@@ -7,7 +7,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 }
 
 const sizeClasses = {
@@ -15,6 +15,8 @@ const sizeClasses = {
   md: 'max-w-md',
   lg: 'max-w-lg',
   xl: 'max-w-2xl',
+  '2xl': 'max-w-4xl',
+  '3xl': 'max-w-5xl',
 };
 
 export function Modal({ open, onClose, title, children, size = 'md' }: ModalProps) {
@@ -46,7 +48,7 @@ export function Modal({ open, onClose, title, children, size = 'md' }: ModalProp
           <h2 id="modal-title" className="text-base font-semibold text-gray-900 dark:text-gray-100">
             {title}
           </h2>
-          <Button variant="ghost" size="sm" onClick={onClose} aria-label="Cerrar">
+          <Button variant="ghost" size="sm" onClick={onClose} aria-label="Close">
             <X className="h-4 w-4" />
           </Button>
         </div>

@@ -27,18 +27,18 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { to: '/', label: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" /> },
-  { to: '/devices', label: 'Dispositivos', icon: <Server className="h-5 w-5" /> },
-  { to: '/inventory', label: 'Inventario', icon: <Package className="h-5 w-5" /> },
-  { to: '/credentials', label: 'Credenciales', icon: <KeyRound className="h-5 w-5" /> },
-  { to: '/performance', label: 'Rendimiento', icon: <Activity className="h-5 w-5" /> },
-  { to: '/alarms', label: 'Alarmas', icon: <Bell className="h-5 w-5" /> },
-  { to: '/topology', label: 'Topología', icon: <Network className="h-5 w-5" /> },
-  { to: '/discovery', label: 'Descubrimiento', icon: <Radar className="h-5 w-5" /> },
+  { to: '/devices', label: 'Devices', icon: <Server className="h-5 w-5" /> },
+  { to: '/inventory', label: 'Inventory', icon: <Package className="h-5 w-5" /> },
+  { to: '/credentials', label: 'Credentials', icon: <KeyRound className="h-5 w-5" /> },
+  { to: '/performance', label: 'Performance', icon: <Activity className="h-5 w-5" /> },
+  { to: '/alarms', label: 'Alarms', icon: <Bell className="h-5 w-5" /> },
+  { to: '/topology', label: 'Topology', icon: <Network className="h-5 w-5" /> },
+  { to: '/discovery', label: 'Discovery', icon: <Radar className="h-5 w-5" /> },
   { to: '/mibs', label: 'MIBs', icon: <BookOpen className="h-5 w-5" /> },
-  { to: '/commands', label: 'Comandos', icon: <Terminal className="h-5 w-5" /> },
-  { to: '/ios', label: 'Versiones IOS', icon: <Layers className="h-5 w-5" /> },
-  { to: '/reports', label: 'Reportes', icon: <FileText className="h-5 w-5" /> },
-  { to: '/settings', label: 'Configuración', icon: <Settings className="h-5 w-5" /> },
+  { to: '/commands', label: 'Commands', icon: <Terminal className="h-5 w-5" /> },
+  { to: '/ios', label: 'IOS Versions', icon: <Layers className="h-5 w-5" /> },
+  { to: '/reports', label: 'Reports', icon: <FileText className="h-5 w-5" /> },
+  { to: '/settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> },
 ];
 
 interface SidebarProps {
@@ -64,7 +64,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <button
           onClick={onToggle}
           className="ml-auto text-white/70 hover:text-white"
-          aria-label={collapsed ? 'Expandir menú' : 'Colapsar menú'}
+          aria-label={collapsed ? 'Expand menu' : 'Collapse menu'}
         >
           {collapsed ? <ChevronRight className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
         </button>

@@ -21,7 +21,7 @@ export function ScanResultsTable({ devices, onAddDevice }: Props) {
   if (devices.length === 0) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 text-center">
-        <p className="text-gray-500 dark:text-gray-400">No se encontraron dispositivos</p>
+        <p className="text-gray-500 dark:text-gray-400">No devices found</p>
       </div>
     );
   }
@@ -30,14 +30,14 @@ export function ScanResultsTable({ devices, onAddDevice }: Props) {
     <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-          Resultados — {devices.length} dispositivo{devices.length !== 1 ? 's' : ''} encontrado{devices.length !== 1 ? 's' : ''}
+          Results — {devices.length} device{devices.length !== 1 ? 's' : ''} found
         </h3>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <thead className="bg-gray-50 dark:bg-gray-700">
             <tr>
-              {['IP', 'Nombre', 'Descripción', 'Vendor', 'OS', 'Acción'].map((h) => (
+              {['IP', 'Name', 'Description', 'Vendor', 'OS', 'Action'].map((h) => (
                 <th
                   key={h}
                   className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
@@ -62,7 +62,7 @@ export function ScanResultsTable({ devices, onAddDevice }: Props) {
                     onClick={() => onAddDevice(dev)}
                     className="text-xs text-blue-600 dark:text-blue-400 hover:underline font-medium"
                   >
-                    Agregar como dispositivo
+                    Add as device
                   </button>
                 </td>
               </tr>

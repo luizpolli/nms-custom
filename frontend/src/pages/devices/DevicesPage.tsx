@@ -38,16 +38,16 @@ interface DevicesResponse {
 
 const LIMIT = 20;
 const VENDOR_OPTIONS = [
-  { value: '', label: 'Todos los fabricantes' },
+  { value: '', label: 'All vendors' },
   { value: 'Cisco', label: 'Cisco' },
   { value: 'Juniper', label: 'Juniper' },
   { value: 'Huawei', label: 'Huawei' },
 ];
 const STATUS_OPTIONS = [
-  { value: '', label: 'Todos los estados' },
-  { value: 'reachable', label: 'Alcanzable' },
-  { value: 'unreachable', label: 'No alcanzable' },
-  { value: 'unknown', label: 'Desconocido' },
+  { value: '', label: 'All statuses' },
+  { value: 'reachable', label: 'Reachable' },
+  { value: 'unreachable', label: 'Unreachable' },
+  { value: 'unknown', label: 'Unknown' },
 ];
 
 export function DevicesPage() {
@@ -78,12 +78,12 @@ export function DevicesPage() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['devices'] }),
     onError: (err) => {
       console.error('Delete failed', err);
-      alert('Error al eliminar el dispositivo');
+      alert('Failed to delete device');
     },
   });
 
   const handleDelete = (device: Device) => {
-    if (!window.confirm(`¿Eliminar dispositivo "${device.name}"?`)) return;
+    if (!window.confirm(`Delete device "${device.name}"?`)) return;
     deleteMutation.mutate(device.id);
   };
 
@@ -103,37 +103,37 @@ export function DevicesPage() {
   const currentPage = Math.floor(offset / LIMIT) + 1;
 
   const columns = [
-    { key: 'name', header: 'Nombre' },
+    { key: 'name', header: 'Name' },
     { key: 'ip_address', header: 'IP' },
     {
       key: 'vendor_model',
-      header: 'Fabricante / Modelo',
+      header: 'Vendor / Model',
       render: (_: unknown, row: Device) => `${row.vendor || '—'} / ${row.model || '—'}`,
     },
     { key: 'os_type', header: 'OS' },
     {
       key: 'status',
-      header: 'Estado',
+      header: 'Status',
       render: (_: unknown, row: Device) => <DeviceStatusBadge status={row.status} />,
     },
     {
       key: 'tags',
-      header: 'Etiquetas',
+      header: 'Tags',
       render: (_: unknown, row: Device) => <DeviceTagList tags={row.tags} />,
     },
     {
       key: 'actions',
-      header: 'Acciones',
+      header: 'Actions',
       render: (_: unknown, row: Device) => (
         <div className="flex gap-1">
-          <Button variant="ghost" size="sm" onClick={() => navigate(`/devices/${row.id}`)} title="Ver">
+          <Button variant="ghost" size="sm" onClick={() => navigate(`/devices/${row.id}`)} title="View">
             <Eye className="w-4 h-4" />
           </Button>
           <PollButton deviceId={row.id} onSuccess={() => queryClient.invalidateQueries({ queryKey: ['devices'] })} />
-          <Button variant="ghost" size="sm" onClick={() => openEdit(row)} title="Editar">
-            Editar
+          <Button variant="ghost" size="sm" onClick={() => openEdit(row)} title="Edit">
+            Edit
           </Button>
-          <Button variant="ghost" size="sm" onClick={() => handleDelete(row)} title="Eliminar">
+          <Button variant="ghost" size="sm" onClick={() => handleDelete(row)} title="Delete">
             <Trash2 className="w-4 h-4 text-red-500" />
           </Button>
         </div>
@@ -144,11 +144,11 @@ export function DevicesPage() {
   return (
     <div className="p-6 space-y-6">
       <PageHeader
-        title="Dispositivos"
-        subtitle={`${total} dispositivos registrados`}
+        title="Devices"
+        subtitle={`${total} registered devices`}
         actions={
           <Button onClick={openCreate}>
-            <Plus className="w-4 h-4 mr-1" /> Crear dispositivo
+            <Plus className="w-4 h-4 mr-1" /> Add Device
           </Button>
         }
       />
@@ -156,7 +156,7 @@ export function DevicesPage() {
       {/* Filter bar */}
       <div className="flex flex-wrap gap-3">
         <Input
-          placeholder="Buscar por nombre o IP..."
+          placeholder="Search by name or IP..."
           value={search}
           onChange={(e) => { setSearch(e.target.value); setOffset(0); }}
           className="w-64"
@@ -172,7 +172,7 @@ export function DevicesPage() {
           options={VENDOR_OPTIONS}
         />
         <Input
-          placeholder="Filtrar por etiqueta..."
+          placeholder="Filter by tag..."
           value={tag}
           onChange={(e) => { setTag(e.target.value); setOffset(0); }}
           className="w-44"
@@ -180,9 +180,9 @@ export function DevicesPage() {
       </div>
 
       {isLoading && <Spinner />}
-      {isError && <p className="text-red-500">Error al cargar dispositivos.</p>}
+      {isError && <p className="text-red-500">Failed to load devices.</p>}
       {!isLoading && !isError && devices.length === 0 && (
-        <EmptyState title="Sin dispositivos" description="Crea el primer dispositivo con el botón superior." />
+        <EmptyState title="No devices" description="Create the first device using the button above." />
       )}
       {!isLoading && devices.length > 0 && <Table columns={columns} data={devices} />}
 
@@ -190,13 +190,13 @@ export function DevicesPage() {
       {pages > 1 && (
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" disabled={offset === 0} onClick={() => setOffset((p) => Math.max(0, p - LIMIT))}>
-            Anterior
+            Previous
           </Button>
           <span className="text-sm text-gray-600">
-            Página {currentPage} de {pages}
+            Page {currentPage} of {pages}
           </span>
           <Button variant="ghost" size="sm" disabled={offset + LIMIT >= total} onClick={() => setOffset((p) => p + LIMIT)}>
-            Siguiente
+            Next
           </Button>
         </div>
       )}

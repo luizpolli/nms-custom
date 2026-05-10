@@ -10,9 +10,9 @@ interface TopbarProps {
 }
 
 const THEME_OPTIONS: Array<{ value: Theme; icon: React.ReactNode; label: string }> = [
-  { value: 'light', icon: <Sun className="h-4 w-4" />, label: 'Claro' },
-  { value: 'dark', icon: <Moon className="h-4 w-4" />, label: 'Oscuro' },
-  { value: 'system', icon: <Monitor className="h-4 w-4" />, label: 'Sistema' },
+  { value: 'light', icon: <Sun className="h-4 w-4" />, label: 'Light' },
+  { value: 'dark', icon: <Moon className="h-4 w-4" />, label: 'Dark' },
+  { value: 'system', icon: <Monitor className="h-4 w-4" />, label: 'System' },
 ];
 
 export function Topbar({ onMenuToggle }: TopbarProps) {
@@ -34,13 +34,13 @@ export function Topbar({ onMenuToggle }: TopbarProps) {
         <button
           onClick={onMenuToggle}
           className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 sm:hidden"
-          aria-label="Abrir menú"
+          aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </button>
         <input
           type="search"
-          placeholder="Buscar dispositivos, alarmas..."
+          placeholder="Search devices, alarms..."
           className="hidden w-64 rounded-md border border-gray-300 bg-gray-50 px-3 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cisco-blue dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 sm:block"
         />
       </div>
@@ -49,14 +49,14 @@ export function Topbar({ onMenuToggle }: TopbarProps) {
       <div className="flex items-center gap-2">
         {/* WS indicator */}
         <span
-          title={connected ? 'WebSocket conectado' : 'WebSocket desconectado'}
+          title={connected ? 'WebSocket connected' : 'WebSocket disconnected'}
           className={clsx('h-2 w-2 rounded-full', connected ? 'bg-severity-clear' : 'bg-gray-400')}
         />
 
         {/* Alarm bell */}
         <button
           className="relative p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-          aria-label="Alarmas"
+          aria-label="Alarms"
           onClick={() => setUnread(0)}
         >
           <Bell className="h-5 w-5" />
@@ -100,7 +100,7 @@ export function Topbar({ onMenuToggle }: TopbarProps) {
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
               >
                 <LogOut className="h-4 w-4" />
-                Cerrar sesión
+                Log out
               </button>
             </div>
           )}

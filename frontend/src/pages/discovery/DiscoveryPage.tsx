@@ -32,7 +32,7 @@ export default function DiscoveryPage() {
       setResults(res.data.devices);
       setSummary({ discovered: res.data.discovered, persisted: res.data.persisted });
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Error al escanear la red';
+      const msg = err instanceof Error ? err.message : 'Network scan failed';
       setError(msg);
     } finally {
       setIsScanning(false);
@@ -40,7 +40,7 @@ export default function DiscoveryPage() {
   };
 
   const handleAddDevice = (device: DiscoveredDevice) => {
-    setToast(`Dispositivo ${device.ip} agregado (integración pendiente con DeviceFormModal)`);
+    setToast(`Device ${device.ip} added (DeviceFormModal integration pending)`);
     setTimeout(() => setToast(null), 3500);
   };
 
@@ -53,9 +53,9 @@ export default function DiscoveryPage() {
       )}
 
       <div>
-        <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Descubrimiento de red</h1>
+        <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Network Discovery</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-          Escanea un rango CIDR para descubrir dispositivos vía SNMP
+          Scan a CIDR range to discover devices via SNMP
         </p>
       </div>
 
@@ -70,18 +70,18 @@ export default function DiscoveryPage() {
       {isScanning && (
         <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
           <span className="h-5 w-5 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-          Escaneando la red, esto puede tomar varios segundos...
+          Scanning the network, this may take several seconds...
         </div>
       )}
 
       {summary && !isScanning && (
         <div className="flex gap-4">
           <div className="rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-3">
-            <p className="text-xs text-gray-500 dark:text-gray-400">Descubiertos</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Discovered</p>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">{summary.discovered}</p>
           </div>
           <div className="rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 py-3">
-            <p className="text-xs text-gray-500 dark:text-gray-400">Persistidos</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Persisted</p>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">{summary.persisted}</p>
           </div>
         </div>

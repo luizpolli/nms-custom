@@ -103,7 +103,7 @@ export function AlarmsPage() {
 
   return (
     <div className="space-y-6 p-6">
-      <PageHeader title="Alarmas" subtitle="Monitoreo en tiempo real — Cisco NMS" />
+      <PageHeader title="Alarms" subtitle="Real-time monitoring — Cisco NMS" />
 
       {summary && (
         <Card>
@@ -114,35 +114,35 @@ export function AlarmsPage() {
       <Card>
         <div className="flex flex-wrap gap-3 items-end mb-4">
           <div className="flex-1 min-w-36">
-            <label className="block text-xs text-gray-500 mb-1">Severidad</label>
+            <label className="block text-xs text-gray-500 mb-1">Severity</label>
             <Select
               value={filters.severity}
               onChange={(e) => setFilter('severity', e.target.value)}
               options={[
-                { value: '', label: 'Todas' },
-                { value: 'critical', label: 'Crítico' },
-                { value: 'major', label: 'Mayor' },
-                { value: 'minor', label: 'Menor' },
-                { value: 'warning', label: 'Advertencia' },
+                { value: '', label: 'All' },
+                { value: 'critical', label: 'Critical' },
+                { value: 'major', label: 'Major' },
+                { value: 'minor', label: 'Minor' },
+                { value: 'warning', label: 'Warning' },
                 { value: 'info', label: 'Info' },
               ]}
             />
           </div>
           <div className="flex-1 min-w-36">
-            <label className="block text-xs text-gray-500 mb-1">Estado</label>
+            <label className="block text-xs text-gray-500 mb-1">State</label>
             <Select
               value={filters.state}
               onChange={(e) => setFilter('state', e.target.value)}
               options={[
-                { value: '', label: 'Todos' },
-                { value: 'active', label: 'Activas' },
-                { value: 'acknowledged', label: 'Reconocidas' },
-                { value: 'cleared', label: 'Limpias' },
+                { value: '', label: 'All' },
+                { value: 'active', label: 'Active' },
+                { value: 'acknowledged', label: 'Acknowledged' },
+                { value: 'cleared', label: 'Cleared' },
               ]}
             />
           </div>
           <div className="flex-1 min-w-36">
-            <label className="block text-xs text-gray-500 mb-1">Desde</label>
+            <label className="block text-xs text-gray-500 mb-1">From</label>
             <input
               type="datetime-local"
               value={filters.since}
@@ -151,7 +151,7 @@ export function AlarmsPage() {
             />
           </div>
           <div className="flex-1 min-w-36">
-            <label className="block text-xs text-gray-500 mb-1">Hasta</label>
+            <label className="block text-xs text-gray-500 mb-1">To</label>
             <input
               type="datetime-local"
               value={filters.until}
@@ -164,15 +164,15 @@ export function AlarmsPage() {
             variant="outline"
             onClick={() => setFilters(DEFAULT_FILTERS)}
           >
-            Limpiar filtros
+            Clear filters
           </Button>
         </div>
 
         {alarmsQuery.isLoading && (
-          <p className="text-sm text-gray-400 text-center py-8">Cargando alarmas…</p>
+          <p className="text-sm text-gray-400 text-center py-8">Loading alarms…</p>
         )}
         {alarmsQuery.isError && (
-          <p className="text-sm text-red-500 text-center py-8">Error al cargar alarmas.</p>
+          <p className="text-sm text-red-500 text-center py-8">Failed to load alarms.</p>
         )}
         {!alarmsQuery.isLoading && !alarmsQuery.isError && (
           <AlarmTable

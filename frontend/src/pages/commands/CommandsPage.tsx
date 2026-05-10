@@ -53,7 +53,7 @@ export function CommandsPage() {
     },
     onError: (_err, _id, ctx) => {
       queryClient.setQueryData(['commands'], ctx?.prev);
-      alert('Error al eliminar el comando');
+      alert('Failed to delete command');
     },
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['commands'] }),
   });
@@ -62,11 +62,11 @@ export function CommandsPage() {
     mutationFn: (id: string) => api.post<RunResult>(`/commands/${id}/run`).then((r) => r.data),
     onSuccess: (data, id) => {
       const cmd = commands.find((c) => c.id === id);
-      setOutputModal({ title: cmd?.name ?? 'Salida', output: data.output });
+      setOutputModal({ title: cmd?.name ?? 'Output', output: data.output });
     },
     onError: (err) => {
       console.error('Run failed', err);
-      alert('Error al ejecutar el comando');
+      alert('Failed to run command');
     },
   });
 
@@ -78,7 +78,7 @@ export function CommandsPage() {
     },
     onError: (err) => {
       console.error('Ad-hoc run failed', err);
-      alert('Error al ejecutar el comando ad-hoc');
+      alert('Failed to run ad-hoc command');
     },
   });
 
@@ -87,19 +87,19 @@ export function CommandsPage() {
   return (
     <div className="p-6 space-y-6">
       <PageHeader
-        title="Comandos"
-        subtitle={`${commands.length} comandos guardados`}
+        title="Commands"
+        subtitle={`${commands.length} saved commands`}
         actions={
           <Button onClick={() => { setEditCommand(null); setModalOpen(true); }}>
-            <Plus className="w-4 h-4 mr-1" /> Crear comando
+            <Plus className="w-4 h-4 mr-1" /> Add Command
           </Button>
         }
       />
 
       {isLoading && <Spinner />}
-      {isError && <p className="text-red-500">Error al cargar comandos.</p>}
+      {isError && <p className="text-red-500">Failed to load commands.</p>}
       {!isLoading && commands.length === 0 && (
-        <EmptyState title="Sin comandos" description="Crea el primer comando con el botón superior." />
+        <EmptyState title="No commands" description="Create the first command using the button above." />
       )}
 
       {commands.length > 0 && (
@@ -107,7 +107,7 @@ export function CommandsPage() {
           <table className="min-w-full text-sm divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                {['Nombre', 'Comando CLI', 'Ruta de salida', 'Acciones'].map((h) => (
+                {['Name', 'CLI command', 'Output path', 'Actions'].map((h) => (
                   <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{h}</th>
                 ))}
               </tr>
@@ -125,18 +125,18 @@ export function CommandsPage() {
                         size="sm"
                         onClick={() => runMutation.mutate(cmd.id)}
                         disabled={runMutation.isPending}
-                        title="Ejecutar"
+                        title="Run"
                       >
                         <Play className="w-4 h-4 text-green-600" />
                       </Button>
                       <Button variant="ghost" size="sm" onClick={() => { setEditCommand(cmd); setModalOpen(true); }}>
-                        Editar
+                        Edit
                       </Button>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => {
-                          if (window.confirm(`¿Eliminar comando "${cmd.name}"?`)) deleteMutation.mutate(cmd.id);
+                          if (window.confirm(`Delete command "${cmd.name}"?`)) deleteMutation.mutate(cmd.id);
                         }}
                       >
                         <Trash2 className="w-4 h-4 text-red-500" />
@@ -152,20 +152,20 @@ export function CommandsPage() {
 
       {/* Ad-hoc panel */}
       <div className="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50">
-        <h3 className="font-semibold text-gray-700">Ejecutar comando ad-hoc</h3>
+        <h3 className="font-semibold text-gray-700">Run ad-hoc command</h3>
         <div className="flex flex-wrap gap-3 items-end">
           <Select
-            label="Dispositivo"
+            label="Device"
             value={adHocDeviceId}
             onChange={(e) => setAdHocDeviceId(e.target.value)}
             options={[
-              { value: '', label: '— Selecciona dispositivo —' },
+              { value: '', label: '— Select device —' },
               ...devices.map((d) => ({ value: d.id, label: d.name })),
             ]}
             className="w-64"
           />
           <Input
-            label="Comando CLI"
+            label="CLI command"
             value={adHocCli}
             onChange={(e) => setAdHocCli(e.target.value)}
             placeholder="show version"
@@ -176,7 +176,7 @@ export function CommandsPage() {
             disabled={!adHocDeviceId || !adHocCli || adHocMutation.isPending}
           >
             <Play className="w-4 h-4 mr-1" />
-            {adHocMutation.isPending ? 'Ejecutando...' : 'Ejecutar'}
+            {adHocMutation.isPending ? 'Running...' : 'Run'}
           </Button>
         </div>
       </div>
@@ -185,10 +185,10 @@ export function CommandsPage() {
       {outputModal && (
         <Modal open={Boolean(outputModal)} onClose={() => setOutputModal(null)} title={outputModal.title}>
           <pre className="bg-gray-900 text-green-400 p-4 rounded text-xs overflow-auto max-h-96 whitespace-pre-wrap font-mono">
-            {outputModal.output || '(sin salida)'}
+            {outputModal.output || '(no output)'}
           </pre>
           <div className="flex justify-end mt-4">
-            <Button variant="ghost" onClick={() => setOutputModal(null)}>Cerrar</Button>
+            <Button variant="ghost" onClick={() => setOutputModal(null)}>Close</Button>
           </div>
         </Modal>
       )}

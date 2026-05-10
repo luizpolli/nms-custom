@@ -25,14 +25,14 @@ interface KPIChartProps {
 const KPI_LABEL_MAP: Record<string, string> = {
   cpu_5min: 'CPU 5 min (%)',
   cpu_1min: 'CPU 1 min (%)',
-  mem_used_pct: 'Memoria (%)',
-  if_in_octets_rate: 'Tráfico entrada (bps)',
-  if_out_octets_rate: 'Tráfico salida (bps)',
+  mem_used_pct: 'Memory (%)',
+  if_in_octets_rate: 'Inbound traffic (bps)',
+  if_out_octets_rate: 'Outbound traffic (bps)',
 };
 
 function formatTs(ts: string): string {
   try {
-    return new Date(ts).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+    return new Date(ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   } catch {
     return ts;
   }
@@ -62,14 +62,14 @@ export function KPIChart({ data, kpiType, unit }: KPIChartProps) {
           />
           <Tooltip
             formatter={(value: number, name: string) => [`${value}${yUnit}`, name]}
-            labelFormatter={(l: string) => `Hora: ${l}`}
+            labelFormatter={(l: string) => `Time: ${l}`}
           />
           <Area
             dataKey="band"
             fill="#3b82f6"
             fillOpacity={0.15}
             stroke="none"
-            name="Rango min-max"
+            name="Min-max range"
           />
           <Line
             type="monotone"
@@ -77,7 +77,7 @@ export function KPIChart({ data, kpiType, unit }: KPIChartProps) {
             stroke="#3b82f6"
             strokeWidth={2}
             dot={false}
-            name="Promedio"
+            name="Average"
           />
         </ComposedChart>
       </ResponsiveContainer>

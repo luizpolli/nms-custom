@@ -19,10 +19,10 @@ const SEVERITY_STYLES: Record<keyof AlarmSummary, string> = {
 };
 
 const SEVERITY_LABELS: Record<keyof AlarmSummary, string> = {
-  critical: 'Crítico',
-  major: 'Mayor',
-  minor: 'Menor',
-  warning: 'Advertencia',
+  critical: 'Critical',
+  major: 'Major',
+  minor: 'Minor',
+  warning: 'Warning',
   info: 'Info',
 };
 

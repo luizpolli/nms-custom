@@ -13,7 +13,7 @@ api.interceptors.response.use(
       error.response?.data?.detail ??
       error.response?.data?.message ??
       error.message ??
-      'Error desconocido';
+      'Unknown error';
 
     // Dispatch a custom event so Toast can pick it up without coupling
     window.dispatchEvent(new CustomEvent('api-error', { detail: message }));

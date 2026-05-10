@@ -21,7 +21,7 @@ export function RebuildButton({ deviceId, onSuccess, onError }: Props) {
       onSuccess?.();
     },
     onError: (err: Error) => {
-      onError?.(err.message ?? 'Error al reconstruir topología');
+      onError?.(err.message ?? 'Failed to rebuild topology');
     },
   });
 
@@ -31,7 +31,7 @@ export function RebuildButton({ deviceId, onSuccess, onError }: Props) {
       disabled={isPending}
       className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60 transition-colors"
     >
-      {isPending ? 'Reconstruyendo...' : deviceId ? 'Reconstruir dispositivo' : 'Reconstruir todo'}
+      {isPending ? 'Rebuilding...' : deviceId ? 'Rebuild device' : 'Rebuild all'}
     </button>
   );
 }
