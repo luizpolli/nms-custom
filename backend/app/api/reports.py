@@ -17,6 +17,7 @@ _registry = ReportRegistry(async_session_factory)
 
 class ReportInfo(BaseModel):
     name: str
+    format: str = "xlsx"
     description: str | None = None
 
 
