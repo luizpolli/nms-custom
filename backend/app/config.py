@@ -33,6 +33,18 @@ class Settings(BaseSettings):
     # API authentication (enable in deployed environments)
     api_auth_enabled: bool = False
     api_keys: str | list[str] = ""
+    root_web_login_enabled: bool = False
+    max_parallel_sessions: int = 5
+    idle_timeout_minutes: int = 30
+
+    # HTTPS / TLS
+    https_enabled: bool = False
+    https_redirect_enabled: bool = True
+    tls_min_version: str = "TLSv1.3"
+    tls_cert_file: str = ""
+    tls_key_file: str = ""
+    tls_ca_file: str = ""
+    require_signed_html_certificate: bool = True
 
     # Discovery
     discovery_chunk_size: int = 256

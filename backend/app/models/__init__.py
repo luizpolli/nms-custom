@@ -9,6 +9,7 @@ from app.models.ios_version import IOSVersion
 from app.models.kpi import KPI
 from app.models.mib import MIB
 from app.models.topology import TopologyLink, TopologyNode
+from app.models.system import AppUser, SystemSetting
 
 __all__ = [
     "Alarm",
@@ -21,4 +22,6 @@ __all__ = [
     "MIB",
     "TopologyLink",
     "TopologyNode",
+    "AppUser",
+    "SystemSetting",
 ]
