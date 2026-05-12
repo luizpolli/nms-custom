@@ -41,14 +41,60 @@ PERMISSION_CATALOG: dict[str, list[dict[str, str]]] = {
     "Administration": [
         {"key": "credentials.manage", "label": "Manage credentials"},
         {"key": "users.manage", "label": "Manage users and roles"},
-        {"key": "settings.manage", "label": "Manage system/TLS settings"},
+        {"key": "settings.manage", "label": "System Settings"},
         {"key": "audit.view", "label": "View audit trail"},
+    ],
+    "Notification Policies": [
+        {"key": "notification_policies.read", "label": "Notification Policies Read Access"},
+        {"key": "notification_policies.write", "label": "Notification Policies Read-Write Access"},
+    ],
+    "Network Topology": [
+        {"key": "network_topology", "label": "Network Topology"},
+        {"key": "circuit_vc.monitor", "label": "Circuit or VC Monitoring and Troubleshooting"},
+    ],
+    "Performance": [
+        {"key": "performance_dashboard", "label": "Performance Dashboard"},
     ],
     "NBI": [
         {"key": "nbi.read", "label": "NBI read access"},
         {"key": "nbi.write", "label": "NBI write access"},
     ],
 }
+
+SYSTEM_SETTINGS_SUBMENU_PERMISSIONS: list[dict[str, str]] = [
+    {"task_group": "General", "task_name": "Account Settings", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "Data Retention", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "Job Approval", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "Login Disclaimer", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "Report", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "Server", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "Software Update", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "General", "task_name": "User Defined Fields", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Mail & Notification", "task_name": "Change Audit Notification", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Mail & Notification", "task_name": "Mail Server Configuration", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Mail & Notification", "task_name": "Notification Destination", "additional_permission": "Notification Policies Read Access or Notification Policies Read-Write Access", "permission_key": "notification_policies.read"},
+    {"task_group": "Network and Device", "task_name": "SNMP", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Inventory", "task_name": "Configuration", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Inventory", "task_name": "Configuration Archive", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Inventory", "task_name": "Network Discovery", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Inventory", "task_name": "Software Image Management", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Inventory", "task_name": "Inventory", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Inventory", "task_name": "SRRG Pool Types", "additional_permission": "Network Topology", "permission_key": "network_topology"},
+    {"task_group": "Inventory", "task_name": "SRRG Pool", "additional_permission": "Network Topology", "permission_key": "network_topology"},
+    {"task_group": "Inventory", "task_name": "Sync Offline Devices", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Maps", "task_name": "Network Topology", "additional_permission": "Network Topology", "permission_key": "network_topology"},
+    {"task_group": "Maps", "task_name": "Bandwidth Utilization", "additional_permission": "Network Topology", "permission_key": "network_topology"},
+    {"task_group": "Circuit VCs", "task_name": "Discovery settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
+    {"task_group": "Circuit VCs", "task_name": "Circuits VCs Display", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
+    {"task_group": "Circuit VCs", "task_name": "Archive Settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
+    {"task_group": "Circuit VCs", "task_name": "Deployment Settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
+    {"task_group": "Circuit VCs", "task_name": "WAE Server Settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
+    {"task_group": "Alarm and Events", "task_name": "Alarm and Events", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Alarm and Events", "task_name": "Alarm Severity and autoclear", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Alarm and Events", "task_name": "System Event Configuration", "additional_permission": "System Settings", "permission_key": "settings.manage"},
+    {"task_group": "Alarm and Events", "task_name": "Alarm Notification Policies", "additional_permission": "Notification Policies Read Access or Notification Policies Read-Write Access", "permission_key": "notification_policies.read"},
+    {"task_group": "Performance", "task_name": "PTP/SyncE", "additional_permission": "Performance Dashboard", "permission_key": "performance_dashboard"},
+]
 
 
 BUILT_IN_ROLES: dict[str, dict] = {
@@ -237,6 +283,12 @@ async def list_users(db: Annotated[AsyncSession, Depends(get_db)]) -> list[UserR
 @router.get("/permissions")
 async def list_permission_catalog() -> dict[str, list[dict[str, str]]]:
     return PERMISSION_CATALOG
+
+
+@router.get("/permissions/system-settings")
+async def list_system_settings_permissions() -> list[dict[str, str]]:
+    """Table 2: Additional Permissions for System Settings Submenus (EPNM 4.0)."""
+    return SYSTEM_SETTINGS_SUBMENU_PERMISSIONS
 
 
 @router.get("/roles", response_model=list[RoleRead])

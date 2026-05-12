@@ -179,23 +179,69 @@ interface AppRole {
 
 type PermissionCatalog = Record<string, { key: string; label: string }[]>;
 
+interface SystemSettingsPermission {
+  task_group: string;
+  task_name: string;
+  additional_permission: string;
+  permission_key: string;
+}
+
+const DEFAULT_VIRTUAL_DOMAINS = [
+  'ROOT-DOMAIN',
+  'PANDO',
+  'LA_PAZ',
+  'COCHABAMBA',
+  'SANTA_CRUZ',
+  'TARIJA',
+  'ORURO',
+  'POTOSI',
+  'BENI',
+  'CHUQUISACA',
+];
+
+const EMPTY_USER_FORM = {
+  username: '',
+  display_name: '',
+  first_name: '',
+  last_name: '',
+  description: '',
+  email: '',
+  password: '',
+  confirm_password: '',
+  role: 'viewer',
+  user_type: 'web',
+  virtual_domains: ['ROOT-DOMAIN'] as string[],
+  custom_permissions: {} as Record<string, boolean>,
+};
+
 function ClientsUsersPanel() {
   const [security, setSecurity] = useState<SecuritySettings | null>(null);
   const [users, setUsers] = useState<AppUser[]>([]);
   const [roles, setRoles] = useState<AppRole[]>([]);
   const [catalog, setCatalog] = useState<PermissionCatalog>({});
-  const [newUser, setNewUser] = useState({ username: '', password: '', role: 'viewer', user_type: 'web', virtual_domain: '', custom_permissions: {} as Record<string, boolean> });
+  const [systemSettingsPerms, setSystemSettingsPerms] = useState<SystemSettingsPermission[]>([]);
+  const [newUser, setNewUser] = useState({ ...EMPTY_USER_FORM });
   const [newRole, setNewRole] = useState({ name: '', description: '', user_type: 'web', permissions: {} as Record<string, boolean> });
   const [saving, setSaving] = useState(false);
+  const [tab, setTab] = useState<'users' | 'roles' | 'sessions'>('users');
+  const [showNewUser, setShowNewUser] = useState(false);
+  const [selectedRoleId, setSelectedRoleId] = useState<string | null>(null);
+  const [roleSubTab, setRoleSubTab] = useState<'tasks' | 'members'>('tasks');
+  const [roleFilter, setRoleFilter] = useState('');
 
   useEffect(() => {
     void Promise.all([
       api.get('/settings/security').then((r) => setSecurity(r.data)),
       api.get('/settings/users').then((r) => setUsers(r.data)),
-      api.get('/settings/roles').then((r) => setRoles(r.data)),
+      api.get('/settings/roles').then((r) => setRoles(r.data)).then(() => {}),
       api.get('/settings/permissions').then((r) => setCatalog(r.data)),
+      api.get('/settings/permissions/system-settings').then((r) => setSystemSettingsPerms(r.data)).catch(() => setSystemSettingsPerms([])),
     ]);
   }, []);
+
+  useEffect(() => {
+    if (!selectedRoleId && roles.length) setSelectedRoleId(roles[0].id);
+  }, [roles, selectedRoleId]);
 
   const updateSecurity = <K extends keyof SecuritySettings>(key: K, value: SecuritySettings[K]) => {
     setSecurity((prev) => prev ? { ...prev, [key]: value } : prev);
@@ -214,9 +260,32 @@ function ClientsUsersPanel() {
 
   const createUser = async () => {
     if (!newUser.username || !newUser.password) return;
-    const response = await api.post('/settings/users', newUser);
+    if (newUser.password !== newUser.confirm_password) {
+      alert('Passwords do not match');
+      return;
+    }
+    const payload = {
+      username: newUser.username,
+      password: newUser.password,
+      role: newUser.role,
+      user_type: newUser.user_type,
+      virtual_domain: newUser.virtual_domains.join(','),
+      display_name: newUser.display_name || `${newUser.first_name} ${newUser.last_name}`.trim() || newUser.username,
+      custom_permissions: newUser.custom_permissions,
+    };
+    const response = await api.post('/settings/users', payload);
     setUsers((prev) => [...prev, response.data]);
-    setNewUser({ username: '', password: '', role: 'viewer', user_type: 'web', virtual_domain: '', custom_permissions: {} });
+    setNewUser({ ...EMPTY_USER_FORM });
+    setShowNewUser(false);
+  };
+
+  const toggleVirtualDomain = (domain: string) => {
+    setNewUser((prev) => ({
+      ...prev,
+      virtual_domains: prev.virtual_domains.includes(domain)
+        ? prev.virtual_domains.filter((d) => d !== domain)
+        : [...prev.virtual_domains, domain],
+    }));
   };
 
   const createRole = async () => {
@@ -226,8 +295,12 @@ function ClientsUsersPanel() {
     setNewRole({ name: '', description: '', user_type: 'web', permissions: {} });
   };
 
-  const toggleRolePermission = (key: string) => {
-    setNewRole((prev) => ({ ...prev, permissions: { ...prev.permissions, [key]: !prev.permissions[key] } }));
+  const toggleSelectedRolePermission = async (roleId: string, key: string) => {
+    const role = roles.find((r) => r.id === roleId);
+    if (!role || role.built_in) return;
+    const nextPerms = { ...role.permissions, [key]: !role.permissions[key] };
+    const response = await api.patch(`/settings/roles/${roleId}`, { permissions: nextPerms });
+    setRoles((prev) => prev.map((r) => (r.id === roleId ? response.data : r)));
   };
 
   const toggleUserPermission = (key: string) => {
@@ -301,104 +374,301 @@ function ClientsUsersPanel() {
           </div>
         )}
 
-        <div className="p-4">
-          <h4 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">Custom Roles and Task Permissions</h4>
-          <div className="mb-4 grid grid-cols-1 gap-2 md:grid-cols-4">
-            <Input placeholder="role name" value={newRole.name} onChange={(e) => setNewRole((p) => ({ ...p, name: e.target.value }))} />
-            <Input placeholder="description" value={newRole.description} onChange={(e) => setNewRole((p) => ({ ...p, description: e.target.value }))} />
-            <Select value={newRole.user_type} onChange={(e) => setNewRole((p) => ({ ...p, user_type: e.target.value }))}>
-              <option value="web">Web GUI</option>
-              <option value="nbi">NBI REST API</option>
-            </Select>
-            <Button onClick={createRole}>Add Custom Role</Button>
-          </div>
-          <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {Object.entries(catalog).map(([group, permissions]) => (
-              <div key={group} className="rounded-lg border border-gray-200 p-3 dark:border-gray-700">
-                <div className="mb-2 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">{group}</div>
-                <div className="space-y-2">
-                  {permissions.map((permission) => (
-                    <label key={permission.key} className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
-                      <input type="checkbox" checked={!!newRole.permissions[permission.key]} onChange={() => toggleRolePermission(permission.key)} />
-                      <span>{permission.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+        <div className="p-0">
+          <div className="flex border-b border-gray-200 dark:border-gray-700">
+            {([
+              ['users', 'Users'],
+              ['roles', 'Roles'],
+              ['sessions', 'Active Sessions'],
+            ] as const).map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setTab(key)}
+                className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+                  tab === key
+                    ? 'border-cisco-blue text-cisco-blue'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                {label}
+              </button>
             ))}
           </div>
-          <div className="mb-6 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
-            <table className="min-w-full text-sm text-gray-700 dark:text-gray-200">
-              <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr>
-                  {['Role', 'Type', 'Scope', 'Permissions'].map((h) => <th key={h} className="px-4 py-2 text-left text-xs uppercase text-gray-500 dark:text-gray-400">{h}</th>)}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                {roles.map((role) => (
-                  <tr key={role.id}>
-                    <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{role.name}</td>
-                    <td className="px-4 py-2">{role.user_type === 'nbi' ? 'NBI REST API' : 'Web GUI'}</td>
-                    <td className="px-4 py-2"><Badge variant={role.built_in ? 'default' : 'success'}>{role.built_in ? 'Built-in' : 'Custom'}</Badge></td>
-                    <td className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">{role.permissions['*'] ? 'All tasks' : Object.values(role.permissions).filter(Boolean).length}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
 
-          <h4 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">Local Web GUI / NBI Users</h4>
-          <div className="mb-4 grid grid-cols-1 gap-2 md:grid-cols-6">
-            <Input placeholder="username" value={newUser.username} onChange={(e) => setNewUser((p) => ({ ...p, username: e.target.value }))} />
-            <Input type="password" placeholder="password (min 12 chars)" value={newUser.password} onChange={(e) => setNewUser((p) => ({ ...p, password: e.target.value }))} />
-            <Select value={newUser.role} onChange={(e) => setNewUser((p) => ({ ...p, role: e.target.value }))}>
-              {roles.map((role) => <option key={role.id} value={role.name}>{role.name}</option>)}
-            </Select>
-            <Select value={newUser.user_type} onChange={(e) => setNewUser((p) => ({ ...p, user_type: e.target.value }))}>
-              <option value="web">Web GUI</option>
-              <option value="nbi">NBI REST API</option>
-            </Select>
-            <Input placeholder="virtual domain / device scope" value={newUser.virtual_domain} onChange={(e) => setNewUser((p) => ({ ...p, virtual_domain: e.target.value }))} />
-            <Button onClick={createUser}>Add User</Button>
-          </div>
-          <details className="mb-4 rounded-lg border border-gray-200 p-3 text-sm dark:border-gray-700">
-            <summary className="cursor-pointer font-medium text-gray-900 dark:text-gray-100">Optional per-user privilege overrides</summary>
-            <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {Object.entries(catalog).map(([group, permissions]) => (
-                <div key={group}>
-                  <div className="mb-1 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">{group}</div>
-                  {permissions.map((permission) => (
-                    <label key={permission.key} className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
-                      <input type="checkbox" checked={!!newUser.custom_permissions[permission.key]} onChange={() => toggleUserPermission(permission.key)} />
-                      <span>{permission.label}</span>
-                    </label>
-                  ))}
+          {tab === 'users' && (
+            <div className="p-4">
+              {!showNewUser ? (
+                <div className="mb-4 flex items-center justify-between">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Local Web GUI / NBI Users</h4>
+                  <Button onClick={() => setShowNewUser(true)}>+ Create New User</Button>
                 </div>
-              ))}
+              ) : (
+                <div className="mb-4">
+                  <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Create New User</h3>
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div className="space-y-3 text-sm">
+                      <label className="block">
+                        <span className="mb-1 block font-medium">User Name <span className="text-red-500">*</span></span>
+                        <Input value={newUser.username} onChange={(e) => setNewUser((p) => ({ ...p, username: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">First Name <span className="text-red-500">*</span></span>
+                        <Input value={newUser.first_name} onChange={(e) => setNewUser((p) => ({ ...p, first_name: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Last Name <span className="text-red-500">*</span></span>
+                        <Input value={newUser.last_name} onChange={(e) => setNewUser((p) => ({ ...p, last_name: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Description</span>
+                        <Input value={newUser.description} onChange={(e) => setNewUser((p) => ({ ...p, description: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Email Address <span className="text-red-500">*</span></span>
+                        <Input type="email" value={newUser.email} onChange={(e) => setNewUser((p) => ({ ...p, email: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Role <span className="text-red-500">*</span></span>
+                        <Select value={newUser.role} onChange={(e) => setNewUser((p) => ({ ...p, role: e.target.value }))}>
+                          {roles.map((role) => <option key={role.id} value={role.name}>{role.name}</option>)}
+                        </Select>
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">User Type</span>
+                        <Select value={newUser.user_type} onChange={(e) => setNewUser((p) => ({ ...p, user_type: e.target.value }))}>
+                          <option value="web">Web GUI</option>
+                          <option value="nbi">NBI REST API</option>
+                        </Select>
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Password <span className="text-red-500">*</span></span>
+                        <Input type="password" value={newUser.password} onChange={(e) => setNewUser((p) => ({ ...p, password: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Confirm Password <span className="text-red-500">*</span></span>
+                        <Input type="password" value={newUser.confirm_password} onChange={(e) => setNewUser((p) => ({ ...p, confirm_password: e.target.value }))} />
+                      </label>
+                      <div className="flex gap-2 pt-2">
+                        <Button onClick={createUser}>Save</Button>
+                        <Button variant="secondary" onClick={() => { setShowNewUser(false); setNewUser({ ...EMPTY_USER_FORM }); }}>Cancel</Button>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="mb-2 text-sm font-semibold">Virtual Domains <span className="text-red-500">*</span></h4>
+                      <p className="mb-2 text-xs text-gray-500">Select/Deselect the desired virtual domains.</p>
+                      <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                        <table className="min-w-full text-sm">
+                          <thead className="bg-gray-50 dark:bg-gray-800">
+                            <tr>
+                              <th className="w-10 px-2 py-2"></th>
+                              <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">EPNM Virtual Domains</th>
+                              <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Description</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                            {DEFAULT_VIRTUAL_DOMAINS.map((vd) => (
+                              <tr key={vd}>
+                                <td className="px-2 py-2 text-center">
+                                  <input type="checkbox" checked={newUser.virtual_domains.includes(vd)} onChange={() => toggleVirtualDomain(vd)} />
+                                </td>
+                                <td className="px-3 py-2 font-medium">{vd}</td>
+                                <td className="px-3 py-2 text-gray-500">{vd}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="mt-2 text-xs text-gray-500">Note: On selecting parent Virtual Domain will automatically include child Domains.</p>
+
+                      <details className="mt-4 rounded-lg border border-gray-200 p-3 text-sm dark:border-gray-700">
+                        <summary className="cursor-pointer font-medium">Optional per-user privilege overrides</summary>
+                        <div className="mt-3 space-y-3">
+                          {Object.entries(catalog).map(([group, permissions]) => (
+                            <div key={group}>
+                              <div className="mb-1 text-xs font-semibold uppercase text-gray-500">{group}</div>
+                              {permissions.map((permission) => (
+                                <label key={permission.key} className="flex items-start gap-2 text-xs">
+                                  <input type="checkbox" checked={!!newUser.custom_permissions[permission.key]} onChange={() => toggleUserPermission(permission.key)} />
+                                  <span>{permission.label}</span>
+                                </label>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                <table className="min-w-full text-sm text-gray-700 dark:text-gray-200">
+                  <thead className="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                      {['Username', 'Type', 'Role', 'Virtual Domain', 'Overrides', 'Status'].map((h) => <th key={h} className="px-4 py-2 text-left text-xs uppercase text-gray-500 dark:text-gray-400">{h}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{user.username}</td>
+                        <td className="px-4 py-2">{user.user_type === 'nbi' ? 'NBI REST API' : 'Web GUI'}</td>
+                        <td className="px-4 py-2">{user.role}</td>
+                        <td className="px-4 py-2">{user.virtual_domain || 'All devices'}</td>
+                        <td className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">{Object.values(user.custom_permissions || {}).filter(Boolean).length}</td>
+                        <td className="px-4 py-2"><Badge variant={user.enabled ? 'success' : 'neutral'}>{user.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
+                      </tr>
+                    ))}
+                    {users.length === 0 && <tr><td className="px-4 py-4 text-gray-500" colSpan={6}>No local users configured.</td></tr>}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </details>
-          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
-            <table className="min-w-full text-sm text-gray-700 dark:text-gray-200">
-              <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr>
-                  {['Username', 'Type', 'Role', 'Virtual Domain', 'Overrides', 'Status'].map((h) => <th key={h} className="px-4 py-2 text-left text-xs uppercase text-gray-500 dark:text-gray-400">{h}</th>)}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{user.username}</td>
-                    <td className="px-4 py-2">{user.user_type === 'nbi' ? 'NBI REST API' : 'Web GUI'}</td>
-                    <td className="px-4 py-2">{user.role}</td>
-                    <td className="px-4 py-2">{user.virtual_domain || 'All devices'}</td>
-                    <td className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">{Object.values(user.custom_permissions || {}).filter(Boolean).length}</td>
-                    <td className="px-4 py-2"><Badge variant={user.enabled ? 'success' : 'neutral'}>{user.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
-                  </tr>
-                ))}
-                {users.length === 0 && <tr><td className="px-4 py-4 text-gray-500" colSpan={6}>No local users configured.</td></tr>}
-              </tbody>
-            </table>
-          </div>
+          )}
+
+          {tab === 'roles' && (
+            <div className="grid grid-cols-12 gap-0">
+              <aside className="col-span-12 border-r border-gray-200 dark:border-gray-700 md:col-span-3">
+                <div className="p-3">
+                  <h4 className="mb-2 text-sm font-semibold">Roles</h4>
+                  <div className="max-h-[420px] overflow-y-auto">
+                    {roles.map((role) => (
+                      <button
+                        key={role.id}
+                        onClick={() => setSelectedRoleId(role.id)}
+                        className={`block w-full truncate rounded px-3 py-2 text-left text-sm ${
+                          selectedRoleId === role.id ? 'bg-cisco-blue/10 font-semibold text-cisco-blue' : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }`}
+                      >
+                        {role.name}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="mt-3 space-y-2 border-t border-gray-200 pt-3 dark:border-gray-700">
+                    <Input placeholder="new role name" value={newRole.name} onChange={(e) => setNewRole((p) => ({ ...p, name: e.target.value }))} />
+                    <Input placeholder="description" value={newRole.description} onChange={(e) => setNewRole((p) => ({ ...p, description: e.target.value }))} />
+                    <Button onClick={createRole} className="w-full">+ Add Custom Role</Button>
+                  </div>
+                </div>
+              </aside>
+              <section className="col-span-12 md:col-span-9">
+                {selectedRoleId && (() => {
+                  const role = roles.find((r) => r.id === selectedRoleId);
+                  if (!role) return null;
+                  return (
+                    <div>
+                      <div className="border-b border-gray-200 p-3 dark:border-gray-700">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-base font-semibold">Role Permissions ({role.name})</h4>
+                          <Badge variant={role.built_in ? 'default' : 'success'}>{role.built_in ? 'Built-in' : 'Custom'}</Badge>
+                        </div>
+                      </div>
+                      <div className="flex border-b border-gray-200 dark:border-gray-700">
+                        {([
+                          ['tasks', 'Task Permissions'],
+                          ['members', 'Members'],
+                        ] as const).map(([key, label]) => (
+                          <button
+                            key={key}
+                            onClick={() => setRoleSubTab(key)}
+                            className={`px-4 py-2 text-sm font-medium border-b-2 ${
+                              roleSubTab === key ? 'border-cisco-blue text-cisco-blue' : 'border-transparent text-gray-500'
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                      {roleSubTab === 'tasks' && (
+                        <div className="p-3">
+                          <Input
+                            placeholder="Filter permissions..."
+                            value={roleFilter}
+                            onChange={(e) => setRoleFilter(e.target.value)}
+                            className="mb-3 max-w-md"
+                          />
+                          <div className="max-h-[500px] overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                            <table className="min-w-full text-sm">
+                              <thead className="sticky top-0 bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                  <th className="w-10 px-2 py-2"></th>
+                                  <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Permissions</th>
+                                  <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Category</th>
+                                  <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Additional Permission</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                                {Object.entries(catalog).flatMap(([group, perms]) =>
+                                  perms.map((p) => ({ group, ...p, additional: '' }))
+                                ).concat(
+                                  systemSettingsPerms.map((p) => ({
+                                    group: p.task_group,
+                                    key: p.permission_key,
+                                    label: p.task_name,
+                                    additional: p.additional_permission,
+                                  }))
+                                )
+                                  .filter((row) => !roleFilter || row.label.toLowerCase().includes(roleFilter.toLowerCase()) || row.group.toLowerCase().includes(roleFilter.toLowerCase()))
+                                  .map((row, idx) => {
+                                    const checked = role.permissions['*'] || !!role.permissions[row.key];
+                                    return (
+                                      <tr key={`${row.key}-${idx}`} className={idx % 2 ? 'bg-gray-50/50 dark:bg-gray-900/40' : ''}>
+                                        <td className="px-2 py-2 text-center">
+                                          <input
+                                            type="checkbox"
+                                            checked={checked}
+                                            disabled={role.built_in}
+                                            onChange={() => toggleSelectedRolePermission(role.id, row.key)}
+                                          />
+                                        </td>
+                                        <td className="px-3 py-2">{row.label}</td>
+                                        <td className="px-3 py-2 text-gray-500">{row.group}</td>
+                                        <td className="px-3 py-2 text-xs text-gray-500">{row.additional || '—'}</td>
+                                      </tr>
+                                    );
+                                  })}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+                      {roleSubTab === 'members' && (
+                        <div className="p-3">
+                          <table className="min-w-full text-sm">
+                            <thead className="bg-gray-50 dark:bg-gray-800">
+                              <tr>
+                                <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Username</th>
+                                <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Type</th>
+                                <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                              {users.filter((u) => u.role === role.name).map((u) => (
+                                <tr key={u.id}>
+                                  <td className="px-3 py-2 font-medium">{u.username}</td>
+                                  <td className="px-3 py-2">{u.user_type === 'nbi' ? 'NBI' : 'Web GUI'}</td>
+                                  <td className="px-3 py-2"><Badge variant={u.enabled ? 'success' : 'neutral'}>{u.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
+                                </tr>
+                              ))}
+                              {users.filter((u) => u.role === role.name).length === 0 && (
+                                <tr><td className="px-3 py-3 text-gray-500" colSpan={3}>No members assigned to this role.</td></tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+              </section>
+            </div>
+          )}
+
+          {tab === 'sessions' && (
+            <div className="p-4 text-sm text-gray-500">
+              Active session tracking coming soon. Session timeout and concurrent session limits are configured above.
+            </div>
+          )}
         </div>
       </Card>
     </div>
