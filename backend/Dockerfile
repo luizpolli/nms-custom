@@ -5,6 +5,7 @@ WORKDIR /app
 # Install system deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    openssl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python deps
@@ -16,6 +17,8 @@ COPY . .
 
 # Run as non-root
 RUN useradd --create-home --shell /usr/sbin/nologin appuser \
+    && mkdir -p /certs \
+    && chown -R appuser:appuser /certs \
     && chown -R appuser:appuser /app
 USER appuser
 

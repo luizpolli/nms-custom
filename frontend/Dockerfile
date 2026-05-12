@@ -2,6 +2,8 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache openssl && mkdir -p /certs && chown -R node:node /certs
+
 COPY package.json package-lock.json* ./
 
 RUN npm install
