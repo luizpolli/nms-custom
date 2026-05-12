@@ -65,26 +65,26 @@ export function CredentialsPage() {
       )}
 
       {credentials.length > 0 && (
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-full text-sm divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+          <table className="min-w-full text-sm divide-y divide-gray-200 text-gray-700 dark:divide-gray-700 dark:text-gray-200">
+            <thead className="bg-gray-50 dark:bg-gray-800">
               <tr>
                 {['Name', 'Hostname', 'Username', 'Protocol', 'SNMP', 'Port', 'Secret', 'Actions'].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{h}</th>
+                  <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 bg-white">
+            <tbody className="divide-y divide-gray-100 bg-white dark:divide-gray-800 dark:bg-gray-900">
               {credentials.map((cred) => (
-                <tr key={cred.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 font-medium">{cred.name}</td>
-                  <td className="px-4 py-2">{cred.hostname || '—'}</td>
-                  <td className="px-4 py-2">{cred.username || '—'}</td>
+                <tr key={cred.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/70">
+                  <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{cred.name}</td>
+                  <td className="px-4 py-2 text-gray-700 dark:text-gray-300">{cred.hostname || '—'}</td>
+                  <td className="px-4 py-2 text-gray-700 dark:text-gray-300">{cred.username || '—'}</td>
                   <td className="px-4 py-2">
                     <Badge variant="default">{cred.protocol.toUpperCase()}</Badge>
                   </td>
-                  <td className="px-4 py-2">{cred.snmp_version || '—'}</td>
-                  <td className="px-4 py-2">{cred.port}</td>
+                  <td className="px-4 py-2 text-gray-700 dark:text-gray-300">{cred.snmp_version || '—'}</td>
+                  <td className="px-4 py-2 text-gray-700 dark:text-gray-300">{cred.port}</td>
                   <td className="px-4 py-2">
                     <Badge variant={cred.has_secret ? 'success' : 'warning'}>
                       {cred.has_secret ? 'Yes' : 'No'}
