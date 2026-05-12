@@ -93,11 +93,11 @@ function Dashboard() {
           <CardHeader title="Alarms by severity" />
           {alarms.data ? (
             <div className="space-y-2 p-4">
-              <SeverityRow label="Critical" count={alarms.data.critical} variant="critical" />
-              <SeverityRow label="Major" count={alarms.data.major} variant="major" />
-              <SeverityRow label="Minor" count={alarms.data.minor} variant="minor" />
-              <SeverityRow label="Warning" count={alarms.data.warning} variant="warning" />
-              <SeverityRow label="Info" count={alarms.data.info} variant="info" />
+              <SeverityRow label="Critical" count={alarms.data.critical ?? alarms.data.by_severity?.critical ?? 0} variant="critical" />
+              <SeverityRow label="Major" count={alarms.data.major ?? alarms.data.by_severity?.major ?? 0} variant="major" />
+              <SeverityRow label="Minor" count={alarms.data.minor ?? alarms.data.by_severity?.minor ?? 0} variant="minor" />
+              <SeverityRow label="Warning" count={alarms.data.warning ?? alarms.data.by_severity?.warning ?? 0} variant="warning" />
+              <SeverityRow label="Info" count={alarms.data.info ?? alarms.data.by_severity?.info ?? 0} variant="info" />
             </div>
           ) : (
             <EmptyState message="No alarm data" />
@@ -130,11 +130,11 @@ function Dashboard() {
           <div className="space-y-1 p-4 text-sm">
             <div>
               <Badge variant={ws.lastAlarm.severity as never}>{ws.lastAlarm.severity}</Badge>{' '}
-              <span className="font-medium">{ws.lastAlarm.event_type}</span>
+              <span className="font-medium">{ws.lastAlarm.event_type ?? 'Alarm'}</span>
             </div>
             <div className="text-gray-600 dark:text-gray-400">{ws.lastAlarm.message}</div>
             <div className="text-xs text-gray-500">
-              {ws.lastAlarm.source_host} · {new Date(ws.lastAlarm.last_seen).toLocaleString()}
+              {ws.lastAlarm.source_host ?? ws.lastAlarm.source ?? 'unknown source'} · {new Date(ws.lastAlarm.last_seen ?? ws.lastAlarm.raised_at).toLocaleString()}
             </div>
           </div>
         </Card>

@@ -16,7 +16,7 @@ class KPIBase(BaseModel):
     value: float
     unit: Optional[str] = Field(None, max_length=20)
     kpi_area: Optional[str] = Field(None, max_length=50)
-    # FIXME: 'metadata' collides with SQLAlchemy Base.metadata — use getattr() when reading from ORM
+    # API field remains `metadata`; ORM maps DB column to KPI.meta to avoid Base.metadata collision.
     kpi_metadata: Optional[Dict[str, Any]] = Field(None, alias="metadata")
     timestamp: datetime
 
@@ -42,7 +42,7 @@ class KPIRead(BaseModel):
     value: float
     unit: Optional[str] = None
     kpi_area: Optional[str] = None
-    # FIXME: 'metadata' collides with SQLAlchemy Base.metadata — use getattr() when reading from ORM
+    # API field remains `metadata`; ORM maps DB column to KPI.meta to avoid Base.metadata collision.
     kpi_metadata: Optional[Dict[str, Any]] = Field(None, alias="metadata")
     timestamp: datetime
 

@@ -1,16 +1,42 @@
 import { type ReactNode, type TdHTMLAttributes, type ThHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface TableProps {
-  children: ReactNode;
-  className?: string;
+interface ColumnDef<T = any> {
+  key: string;
+  header: ReactNode;
+  render?: (value: unknown, row: T) => ReactNode;
 }
 
-export function Table({ children, className }: TableProps) {
+interface TableProps<T = any> {
+  children?: ReactNode;
+  className?: string;
+  columns?: ColumnDef<T>[];
+  data?: T[];
+}
+
+export function Table<T = any>({ children, className, columns, data }: TableProps<T>) {
+  const content = columns && data ? (
+    <>
+      <Thead>
+        <Tr>
+          {columns.map((col) => <Th key={col.key}>{col.header}</Th>)}
+        </Tr>
+      </Thead>
+      <Tbody>
+        {data.map((row, idx) => (
+          <Tr key={String((row as any).id ?? idx)}>
+            {columns.map((col) => (
+              <Td key={col.key}>{col.render ? col.render((row as any)[col.key], row) : ((row as any)[col.key] as ReactNode)}</Td>
+            ))}
+          </Tr>
+        ))}
+      </Tbody>
+    </>
+  ) : children;
   return (
     <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
       <table className={twMerge('min-w-full divide-y divide-gray-200 dark:divide-gray-700', className)}>
-        {children}
+        {content}
       </table>
     </div>
   );

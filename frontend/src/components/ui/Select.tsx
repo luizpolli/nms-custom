@@ -1,14 +1,20 @@
 import { type SelectHTMLAttributes, type ReactNode, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
+interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children'> {
   label?: string;
   error?: string;
-  children: ReactNode;
+  options?: SelectOption[];
+  children?: ReactNode;
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, error, children, className, id, ...rest }, ref) => {
+  ({ label, error, options, children, className, id, ...rest }, ref) => {
     const selectId = id ?? label?.toLowerCase().replace(/\s+/g, '-');
     return (
       <div className="flex flex-col gap-1">
@@ -30,7 +36,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           )}
           {...rest}
         >
-          {children}
+          {options
+            ? options.map((opt) => (
+                <option key={opt.value} value={opt.value} className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+                  {opt.label}
+                </option>
+              ))
+            : children}
         </select>
         {error && <p className="text-xs text-severity-critical">{error}</p>}
       </div>

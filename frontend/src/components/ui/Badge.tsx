@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { clsx } from 'clsx';
 import type { AlarmSeverity } from '../../lib/types';
 
-export type BadgeVariant = AlarmSeverity | 'default' | 'success' | 'neutral';
+export type BadgeVariant = AlarmSeverity | 'default' | 'success' | 'neutral' | 'danger';
 
 const variantClasses: Record<BadgeVariant, string> = {
   critical: 'bg-red-100 text-severity-critical dark:bg-red-900/30',
@@ -14,6 +14,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   clear: 'bg-green-100 text-severity-clear dark:bg-green-900/30',
   default: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
   success: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+  danger: 'bg-red-100 text-severity-critical dark:bg-red-900/30',
   neutral: 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-400',
 };
 

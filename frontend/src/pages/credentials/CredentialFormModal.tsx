@@ -16,6 +16,10 @@ interface Credential {
   metadata?: Partial<CredentialFormData>;
 }
 
+type SnmpV3Mode = 'AuthPriv' | 'AuthNoPriv' | 'NoAuthNoPriv';
+type SnmpV3AuthType = 'none' | 'HMAC-MD5' | 'HMAC-SHA';
+type SnmpV3PrivType = 'CBC-DES' | 'CFB-AES-128' | 'CFB-AES-196' | 'CFB-AES-256';
+
 interface CredentialFormData {
   // General
   profile_name: string;
@@ -29,6 +33,13 @@ interface CredentialFormData {
   confirm_read_community: string;
   write_community: string;
   confirm_write_community: string;
+  // SNMP v3
+  snmp_v3_username: string;
+  snmp_v3_mode: SnmpV3Mode;
+  snmp_v3_auth_type: SnmpV3AuthType;
+  snmp_v3_auth_password: string;
+  snmp_v3_priv_type: SnmpV3PrivType;
+  snmp_v3_priv_password: string;
   // Telnet/SSH
   telnet_protocol: 'telnet' | 'ssh2' | 'netconf-ssh2';
   telnet_port: number;
@@ -74,6 +85,12 @@ const EMPTY_FORM: CredentialFormData = {
   confirm_read_community: '',
   write_community: '',
   confirm_write_community: '',
+  snmp_v3_username: '',
+  snmp_v3_mode: 'AuthPriv',
+  snmp_v3_auth_type: 'HMAC-SHA',
+  snmp_v3_auth_password: '',
+  snmp_v3_priv_type: 'CFB-AES-128',
+  snmp_v3_priv_password: '',
   telnet_protocol: 'telnet',
   telnet_port: 23,
   telnet_timeout: 60,
@@ -147,17 +164,23 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
 
   const mutation = useMutation({
     mutationFn: (data: CredentialFormData) => {
-      const hasSnmp = !!data.read_community;
+      const isV3 = data.snmp_version === 'v3';
+      const hasSnmp = isV3 ? !!data.snmp_v3_username : !!data.read_community;
       const hasSsh = !!data.telnet_password;
       const hasHttp = !!data.http_password;
       if (!hasSnmp && !hasSsh && !hasHttp) {
-        return Promise.reject(new Error('Provide at least one credential set: SNMP Read Community, Telnet/SSH Password, or HTTP Password.'));
+        return Promise.reject(new Error('Provide at least one credential set: SNMP credentials, Telnet/SSH Password, or HTTP Password.'));
       }
+      const snmpSecret = isV3
+        ? data.snmp_v3_auth_password || data.snmp_v3_priv_password || data.snmp_v3_username
+        : data.read_community;
       const payload = {
         name: data.profile_name,
         hostname: '',
-        username: data.telnet_username || data.http_username || data.tl1_username,
-        secret: data.telnet_password || data.http_password || data.read_community,
+        username: isV3
+          ? data.snmp_v3_username
+          : data.telnet_username || data.http_username || data.tl1_username,
+        secret: data.telnet_password || data.http_password || snmpSecret,
         protocol: hasSsh ? 'ssh' : 'snmp',
         snmp_version: data.snmp_version,
         port: hasSsh ? data.telnet_port : data.snmp_port,
@@ -228,18 +251,81 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="SNMP Port" required>
             <Input type="number" value={form.snmp_port} onChange={(e) => set('snmp_port', Number(e.target.value))} />
           </Field>
-          <Field label="Read Community" required>
-            <Input type="password" value={form.read_community} onChange={(e) => set('read_community', e.target.value)} />
-          </Field>
-          <Field label="Confirm Read Community" required>
-            <Input type="password" value={form.confirm_read_community} onChange={(e) => set('confirm_read_community', e.target.value)} />
-          </Field>
-          <Field label="Write Community">
-            <Input type="password" value={form.write_community} onChange={(e) => set('write_community', e.target.value)} />
-          </Field>
-          <Field label="Confirm Write Community">
-            <Input type="password" value={form.confirm_write_community} onChange={(e) => set('confirm_write_community', e.target.value)} />
-          </Field>
+          {form.snmp_version !== 'v3' && (
+            <>
+              <Field label="Read Community" required>
+                <Input type="password" value={form.read_community} onChange={(e) => set('read_community', e.target.value)} />
+              </Field>
+              <Field label="Confirm Read Community" required>
+                <Input type="password" value={form.confirm_read_community} onChange={(e) => set('confirm_read_community', e.target.value)} />
+              </Field>
+              <Field label="Write Community">
+                <Input type="password" value={form.write_community} onChange={(e) => set('write_community', e.target.value)} />
+              </Field>
+              <Field label="Confirm Write Community">
+                <Input type="password" value={form.confirm_write_community} onChange={(e) => set('confirm_write_community', e.target.value)} />
+              </Field>
+            </>
+          )}
+          {form.snmp_version === 'v3' && (
+            <>
+              <Field label="Username" required>
+                <Input value={form.snmp_v3_username} onChange={(e) => set('snmp_v3_username', e.target.value)} />
+              </Field>
+              <Field label="Mode" required>
+                <Select
+                  value={form.snmp_v3_mode}
+                  onChange={(e) => set('snmp_v3_mode', e.target.value as SnmpV3Mode)}
+                  options={[
+                    { value: 'AuthPriv', label: 'AuthPriv' },
+                    { value: 'AuthNoPriv', label: 'AuthNoPriv' },
+                    { value: 'NoAuthNoPriv', label: 'NoAuthNoPriv' },
+                  ]}
+                />
+              </Field>
+              <Field label="Auth. Type">
+                <Select
+                  value={form.snmp_v3_auth_type}
+                  onChange={(e) => set('snmp_v3_auth_type', e.target.value as SnmpV3AuthType)}
+                  options={[
+                    { value: 'none', label: 'none' },
+                    { value: 'HMAC-MD5', label: 'HMAC-MD5' },
+                    { value: 'HMAC-SHA', label: 'HMAC-SHA' },
+                  ]}
+                  disabled={form.snmp_v3_mode === 'NoAuthNoPriv'}
+                />
+              </Field>
+              <Field label="Auth. Password">
+                <Input
+                  type="password"
+                  value={form.snmp_v3_auth_password}
+                  onChange={(e) => set('snmp_v3_auth_password', e.target.value)}
+                  disabled={form.snmp_v3_mode === 'NoAuthNoPriv' || form.snmp_v3_auth_type === 'none'}
+                />
+              </Field>
+              <Field label="Privacy Type">
+                <Select
+                  value={form.snmp_v3_priv_type}
+                  onChange={(e) => set('snmp_v3_priv_type', e.target.value as SnmpV3PrivType)}
+                  options={[
+                    { value: 'CBC-DES', label: 'CBC-DES' },
+                    { value: 'CFB-AES-128', label: 'CFB-AES-128' },
+                    { value: 'CFB-AES-196', label: 'CFB-AES-196' },
+                    { value: 'CFB-AES-256', label: 'CFB-AES-256' },
+                  ]}
+                  disabled={form.snmp_v3_mode !== 'AuthPriv'}
+                />
+              </Field>
+              <Field label="Privacy Password">
+                <Input
+                  type="password"
+                  value={form.snmp_v3_priv_password}
+                  onChange={(e) => set('snmp_v3_priv_password', e.target.value)}
+                  disabled={form.snmp_v3_mode !== 'AuthPriv'}
+                />
+              </Field>
+            </>
+          )}
         </Section>
 
         <Section title="Telnet/SSH Parameters" defaultOpen={false}>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { ScanForm, type ScanFormValues } from './components/ScanForm';
 import { ScanResultsTable, type DiscoveredDevice } from './components/ScanResultsTable';
+import { DeviceFormModal } from '../devices/DeviceFormModal';
 
 interface ScanResponse {
   discovered: number;
@@ -20,6 +21,8 @@ export default function DiscoveryPage() {
   const [summary, setSummary] = useState<ScanSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [deviceModalOpen, setDeviceModalOpen] = useState(false);
+  const [deviceInitialValues, setDeviceInitialValues] = useState<Record<string, unknown> | null>(null);
 
   const handleScan = async (values: ScanFormValues) => {
     setIsScanning(true);
@@ -40,8 +43,17 @@ export default function DiscoveryPage() {
   };
 
   const handleAddDevice = (device: DiscoveredDevice) => {
-    setToast(`Device ${device.ip} added (DeviceFormModal integration pending)`);
-    setTimeout(() => setToast(null), 3500);
+    setDeviceInitialValues({
+      identification: 'ip',
+      ip_address: device.ip,
+      name: device.sys_name || device.ip,
+      vendor: device.vendor || '',
+      os_type: device.os_type || 'ios-xr',
+      model: '',
+      device_type: 'router',
+      tags: ['discovered'],
+    });
+    setDeviceModalOpen(true);
   };
 
   return (
@@ -90,6 +102,16 @@ export default function DiscoveryPage() {
       {results !== null && !isScanning && (
         <ScanResultsTable devices={results} onAddDevice={handleAddDevice} />
       )}
+
+      <DeviceFormModal
+        open={deviceModalOpen}
+        onClose={() => {
+          setDeviceModalOpen(false);
+          setToast('Discovery device form closed');
+          setTimeout(() => setToast(null), 2500);
+        }}
+        initialValues={deviceInitialValues as never}
+      />
     </div>
   );
 }

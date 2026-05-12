@@ -120,7 +120,7 @@ class KPIEngine:
         ]
 
     async def _persist(self, records: list[KPIRecord]) -> list[KPI]:
-        """Bulk-insert KPIRecords. Uses getattr for 'metadata' to dodge SQLAlchemy name clash."""
+        """Bulk-insert KPIRecords."""
         if not records:
             return []
         kpi_rows = [_record_to_model(r) for r in records]
@@ -136,25 +136,17 @@ class KPIEngine:
 # ---------------------------------------------------------------------------
 
 def _record_to_model(r: KPIRecord) -> KPI:
-    """Convert a KPIRecord dataclass to a KPI ORM instance.
-
-    FIXME: KPI.metadata collides with SQLAlchemy DeclarativeBase.metadata.
-    We work around this by using object.__setattr__ after construction.
-    """
-    kpi = KPI(
+    """Convert a KPIRecord dataclass to a KPI ORM instance."""
+    return KPI(
         device_id=r.device_id,
         kpi_type=r.kpi_type,
         technology=r.technology,
         value=r.value,
         unit=r.unit,
         kpi_area=r.kpi_area,
+        meta=r.metadata,
         timestamp=r.timestamp,
     )
-    # FIXME: 'metadata' is a reserved SQLAlchemy attribute on DeclarativeBase.
-    # Direct assignment kpi.metadata = ... may shadow the class-level descriptor.
-    # Using object.__setattr__ to bypass any descriptor interference.
-    object.__setattr__(kpi, "metadata", r.metadata)
-    return kpi
 
 
 def _build_credential(device: Device, cfg: Settings) -> SNMPCredential:

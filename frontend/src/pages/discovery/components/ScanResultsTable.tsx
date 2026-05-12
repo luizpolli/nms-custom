@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface DiscoveredDevice {
   ip: string;
   sys_name: string;

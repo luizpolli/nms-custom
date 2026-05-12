@@ -2,13 +2,15 @@ import { type ButtonHTMLAttributes, type ReactNode, forwardRef } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost' | 'outline';
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   children: ReactNode;
 }
 
@@ -17,19 +19,22 @@ const variantClasses: Record<ButtonVariant, string> = {
     'bg-cisco-blue text-white hover:bg-cisco-blue-dark focus-visible:ring-cisco-blue',
   secondary:
     'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700',
+  outline:
+    'bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-50 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-800',
   danger: 'bg-severity-critical text-white hover:bg-red-700 focus-visible:ring-red-500',
   ghost:
     'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
+  xs: 'px-2 py-1 text-xs',
   sm: 'px-3 py-1.5 text-sm',
   md: 'px-4 py-2 text-sm',
   lg: 'px-6 py-3 text-base',
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', loading, disabled, className, children, ...rest }, ref) => (
+  ({ variant = 'primary', size = 'md', loading, disabled, className, leftIcon, rightIcon, children, ...rest }, ref) => (
     <button
       ref={ref}
       disabled={disabled ?? loading}
@@ -51,7 +56,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
         </svg>
       )}
+      {!loading && leftIcon}
       {children}
+      {rightIcon}
     </button>
   ),
 );

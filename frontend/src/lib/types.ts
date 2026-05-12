@@ -88,6 +88,11 @@ export interface PerformanceSummary {
   cpu_avg?: number;
   memory_avg?: number;
   last_polled_at?: string;
+  top_devices?: Array<{
+    device_id: string;
+    name: string;
+    cpu_5min?: number;
+  }>;
 }
 
 // ─── MIB ─────────────────────────────────────────────────────────────────────
@@ -185,8 +190,11 @@ export interface Alarm {
   state: AlarmState;
   message: string;
   source?: string;
+  source_host?: string;
   oid?: string;
+  event_type?: string;
   raised_at: string;
+  last_seen?: string;
   acknowledged_at?: string;
   acknowledged_by?: string;
   cleared_at?: string;
@@ -198,6 +206,11 @@ export interface AlarmSummary {
   acknowledged: number;
   cleared: number;
   by_severity: Record<AlarmSeverity, number>;
+  critical?: number;
+  major?: number;
+  minor?: number;
+  warning?: number;
+  info?: number;
 }
 
 export interface AlarmWsMessage {

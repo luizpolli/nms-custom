@@ -21,17 +21,18 @@ export function Card({ children, padding = true, className, ...rest }: CardProps
   );
 }
 
-interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+interface CardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  children?: ReactNode;
+  title?: ReactNode;
 }
 
-export function CardHeader({ children, className, ...rest }: CardHeaderProps) {
+export function CardHeader({ children, title, className, ...rest }: CardHeaderProps) {
   return (
     <div
       className={twMerge('border-b border-gray-200 px-4 py-3 dark:border-gray-700', className)}
       {...rest}
     >
-      {children}
+      {children ?? <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{title}</h2>}
     </div>
   );
 }

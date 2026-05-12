@@ -19,6 +19,12 @@ interface SnmpParams {
   confirm_read_community: string;
   write_community: string;
   confirm_write_community: string;
+  v3_username: string;
+  v3_mode: 'AuthPriv' | 'AuthNoPriv' | 'NoAuthNoPriv';
+  v3_auth_type: 'none' | 'HMAC-MD5' | 'HMAC-SHA';
+  v3_auth_password: string;
+  v3_priv_type: 'CBC-DES' | 'CFB-AES-128' | 'CFB-AES-196' | 'CFB-AES-256';
+  v3_priv_password: string;
 }
 
 interface TelnetSshParams {
@@ -77,9 +83,9 @@ interface DeviceFormData {
   identification: 'ip' | 'dns';
   ip_address: string;
   dns_name: string;
-  license_level: string;
   device_role: string;
   group: string;
+  new_group: string;
   credential_id: string;
   // Legacy fields (still on backend Device model)
   name: string;
@@ -117,6 +123,7 @@ interface DeviceFormModalProps {
   open: boolean;
   onClose: () => void;
   device?: Device | null;
+  initialValues?: Partial<DeviceFormData> | null;
 }
 
 type TabKey = 'general' | 'snmp' | 'telnet_ssh' | 'http' | 'tl1' | 'civic' | 'udf';
@@ -138,25 +145,23 @@ const TABS: TabDef[] = [
   { key: 'udf', label: 'User Defined Fields' },
 ];
 
-const LICENSE_OPTIONS = [
-  { value: 'Full', label: 'Full' },
-  { value: 'Standard', label: 'Standard' },
-  { value: 'Lite', label: 'Lite' },
-];
-
 const DEVICE_ROLE_OPTIONS = [
   { value: '', label: '--Select--' },
-  { value: 'core', label: 'Core' },
-  { value: 'aggregation', label: 'Aggregation' },
-  { value: 'access', label: 'Access' },
-  { value: 'edge', label: 'Edge' },
-  { value: 'datacenter', label: 'Datacenter' },
+  { value: 'access_router', label: 'Access Router' },
+  { value: 'aggregation_router', label: 'Aggregation Router' },
+  { value: 'branch_switch', label: 'Branch Switch' },
+  { value: 'border_router', label: 'Border Router' },
+  { value: 'core_switch', label: 'Core Switch' },
+  { value: 'campus_switch', label: 'Campus Switch' },
+  { value: 'distribution_switch', label: 'Distribution Switch' },
+  { value: 'dmvpn_spoke_router', label: 'DMVPN Spoke Router' },
+  { value: 'data_center_switch', label: 'Data Center Switch' },
+  { value: 'hub_router', label: 'Hub Router' },
+  { value: 'master_controller', label: 'Master Controller' },
+  { value: 'unknown', label: 'Unknown' },
 ];
 
-const GROUP_OPTIONS = [
-  { value: '', label: '--Select--' },
-  { value: 'default', label: 'Default' },
-];
+const NEW_GROUP_SENTINEL = '__new__';
 
 const REGION_OPTIONS = [
   { value: '', label: '--Select--' },
@@ -170,9 +175,9 @@ const EMPTY_FORM: DeviceFormData = {
   identification: 'ip',
   ip_address: '',
   dns_name: '',
-  license_level: 'Full',
   device_role: '',
   group: '',
+  new_group: '',
   credential_id: '',
   name: '',
   device_type: 'router',
@@ -190,6 +195,12 @@ const EMPTY_FORM: DeviceFormData = {
     confirm_read_community: '',
     write_community: '',
     confirm_write_community: '',
+    v3_username: '',
+    v3_mode: 'AuthPriv',
+    v3_auth_type: 'HMAC-SHA',
+    v3_auth_password: '',
+    v3_priv_type: 'CFB-AES-128',
+    v3_priv_password: '',
   },
   telnet_ssh: {
     protocol: 'telnet',
@@ -251,7 +262,7 @@ function FieldRow({ label, required, children, hint }: { label: string; required
   );
 }
 
-export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps) {
+export function DeviceFormModal({ open, onClose, device, initialValues }: DeviceFormModalProps) {
   const queryClient = useQueryClient();
   const [form, setForm] = useState<DeviceFormData>(EMPTY_FORM);
   const [tab, setTab] = useState<TabKey>('general');
@@ -262,6 +273,27 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
     queryFn: () => api.get('/credentials').then((r) => r.data),
     enabled: open,
   });
+
+  const { data: existingDevices = [] } = useQuery<{ tags?: string[] }[]>({
+    queryKey: ['devices', 'for-groups'],
+    queryFn: () => api.get('/devices', { params: { limit: 1000 } }).then((r) => r.data),
+    enabled: open,
+  });
+
+  const existingGroups = Array.from(
+    new Set(
+      existingDevices
+        .flatMap((d) => d.tags ?? [])
+        .filter((t) => typeof t === 'string' && t.startsWith('group:'))
+        .map((t) => t.slice('group:'.length)),
+    ),
+  ).sort();
+
+  const groupOptions = [
+    { value: '', label: '--Select--' },
+    ...existingGroups.map((g) => ({ value: g, label: g })),
+    { value: NEW_GROUP_SENTINEL, label: '+ Create new group...' },
+  ];
 
   useEffect(() => {
     if (!open) return;
@@ -281,11 +313,11 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
         credential_id: device.credential_id ?? '',
       } as DeviceFormData);
     } else {
-      setForm(EMPTY_FORM);
+      setForm({ ...EMPTY_FORM, ...initialValues } as DeviceFormData);
     }
     setTab('general');
     setCompleted(new Set());
-  }, [device, open]);
+  }, [device, initialValues, open]);
 
   const set = <K extends keyof DeviceFormData>(key: K, value: DeviceFormData[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -303,6 +335,12 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
 
   const mutation = useMutation({
     mutationFn: (data: DeviceFormData) => {
+      const resolvedGroup =
+        data.group === NEW_GROUP_SENTINEL
+          ? data.new_group.trim()
+          : data.group;
+      const baseTags = (data.tags ?? []).filter((t) => !t.startsWith('group:'));
+      const tags = resolvedGroup ? [...baseTags, `group:${resolvedGroup}`] : baseTags;
       const payload = {
         name: data.name || data.ip_address,
         ip_address: data.identification === 'ip' ? data.ip_address : data.dns_name,
@@ -311,14 +349,13 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
         model: data.model,
         os_type: data.os_type,
         location: data.location,
-        tags: data.tags,
+        tags,
         credential_id: data.credential_id || null,
         metadata: {
           identification: data.identification,
           dns_name: data.dns_name,
-          license_level: data.license_level,
           device_role: data.device_role,
-          group: data.group,
+          group: resolvedGroup,
           snmp: data.snmp,
           telnet_ssh: data.telnet_ssh,
           http: data.http,
@@ -340,9 +377,39 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
   });
 
   const verifyMutation = useMutation({
-    mutationFn: () => api.post('/devices/verify-credentials', form),
-    onSuccess: () => alert('Credentials verified successfully'),
-    onError: () => alert('Credential verification failed'),
+    mutationFn: () =>
+      api
+        .post('/devices/verify-credentials', {
+          ip_address: form.ip_address,
+          dns_name: form.dns_name,
+          identification: form.identification,
+          snmp: {
+            version: form.snmp.version,
+            read_community: form.snmp.read_community,
+            v3_username: form.snmp.v3_username,
+            v3_auth_type: form.snmp.v3_auth_type,
+            v3_auth_password: form.snmp.v3_auth_password,
+            v3_priv_type: form.snmp.v3_priv_type,
+            v3_priv_password: form.snmp.v3_priv_password,
+            port: form.snmp.port,
+            timeout: form.snmp.timeout,
+            retries: form.snmp.retries,
+          },
+          telnet_ssh: form.telnet_ssh,
+          http: form.http,
+        })
+        .then((r) => r.data as { ok: boolean; sys_descr?: string; error?: string }),
+    onSuccess: (data) => {
+      if (data.ok) {
+        alert(`Credentials verified.\n${data.sys_descr ? `sysDescr: ${data.sys_descr}` : ''}`);
+      } else {
+        alert(`Credential verification failed: ${data.error ?? 'unknown error'}`);
+      }
+    },
+    onError: (err: Error) => {
+      console.error('Verify failed', err);
+      alert('Credential verification failed');
+    },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -428,15 +495,29 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
                   />
                 </div>
               </div>
-              <FieldRow label="License Level">
-                <Select value={form.license_level} onChange={(e) => set('license_level', e.target.value)} options={LICENSE_OPTIONS} />
-              </FieldRow>
               <FieldRow label="Device Role">
                 <Select value={form.device_role} onChange={(e) => set('device_role', e.target.value)} options={DEVICE_ROLE_OPTIONS} />
               </FieldRow>
-              <FieldRow label="Add to Group">
-                <Select value={form.group} onChange={(e) => set('group', e.target.value)} options={GROUP_OPTIONS} />
+              <FieldRow
+                label="Add to Group"
+                hint="Pick an existing group, create a new one, or leave blank to auto-categorize by SNMP-detected device type."
+              >
+                <Select
+                  value={form.group}
+                  onChange={(e) => set('group', e.target.value)}
+                  options={groupOptions}
+                />
               </FieldRow>
+              {form.group === NEW_GROUP_SENTINEL && (
+                <FieldRow label="New Group Name" required>
+                  <Input
+                    value={form.new_group}
+                    onChange={(e) => set('new_group', e.target.value)}
+                    placeholder="e.g. site-cdmx, ring-norte"
+                    required
+                  />
+                </FieldRow>
+              )}
               <FieldRow label="Credential Profile">
                 <Select
                   value={form.credential_id}
@@ -468,18 +549,57 @@ export function DeviceFormModal({ open, onClose, device }: DeviceFormModalProps)
               <FieldRow label="SNMP Port" required>
                 <Input type="number" value={form.snmp.port} onChange={(e) => setNested('snmp', 'port', Number(e.target.value))} />
               </FieldRow>
-              <FieldRow label="Read Community" required>
-                <Input type="password" value={form.snmp.read_community} onChange={(e) => setNested('snmp', 'read_community', e.target.value)} />
-              </FieldRow>
-              <FieldRow label="Confirm Read Community" required>
-                <Input type="password" value={form.snmp.confirm_read_community} onChange={(e) => setNested('snmp', 'confirm_read_community', e.target.value)} />
-              </FieldRow>
-              <FieldRow label="Write Community">
-                <Input type="password" value={form.snmp.write_community} onChange={(e) => setNested('snmp', 'write_community', e.target.value)} />
-              </FieldRow>
-              <FieldRow label="Confirm Write Community">
-                <Input type="password" value={form.snmp.confirm_write_community} onChange={(e) => setNested('snmp', 'confirm_write_community', e.target.value)} />
-              </FieldRow>
+              {form.snmp.version !== 'v3' ? (
+                <>
+                  <FieldRow label="Read Community" required>
+                    <Input type="password" value={form.snmp.read_community} onChange={(e) => setNested('snmp', 'read_community', e.target.value)} />
+                  </FieldRow>
+                  <FieldRow label="Confirm Read Community" required>
+                    <Input type="password" value={form.snmp.confirm_read_community} onChange={(e) => setNested('snmp', 'confirm_read_community', e.target.value)} />
+                  </FieldRow>
+                  <FieldRow label="Write Community">
+                    <Input type="password" value={form.snmp.write_community} onChange={(e) => setNested('snmp', 'write_community', e.target.value)} />
+                  </FieldRow>
+                  <FieldRow label="Confirm Write Community">
+                    <Input type="password" value={form.snmp.confirm_write_community} onChange={(e) => setNested('snmp', 'confirm_write_community', e.target.value)} />
+                  </FieldRow>
+                </>
+              ) : (
+                <>
+                  <FieldRow label="Username" required>
+                    <Input value={form.snmp.v3_username} onChange={(e) => setNested('snmp', 'v3_username', e.target.value)} />
+                  </FieldRow>
+                  <FieldRow label="Mode" required>
+                    <Select
+                      value={form.snmp.v3_mode}
+                      onChange={(e) => setNested('snmp', 'v3_mode', e.target.value as SnmpParams['v3_mode'])}
+                      options={[{ value: 'AuthPriv', label: 'AuthPriv' }, { value: 'AuthNoPriv', label: 'AuthNoPriv' }, { value: 'NoAuthNoPriv', label: 'NoAuthNoPriv' }]}
+                    />
+                  </FieldRow>
+                  <FieldRow label="Auth. Type">
+                    <Select
+                      value={form.snmp.v3_auth_type}
+                      onChange={(e) => setNested('snmp', 'v3_auth_type', e.target.value as SnmpParams['v3_auth_type'])}
+                      disabled={form.snmp.v3_mode === 'NoAuthNoPriv'}
+                      options={[{ value: 'none', label: 'none' }, { value: 'HMAC-MD5', label: 'HMAC-MD5' }, { value: 'HMAC-SHA', label: 'HMAC-SHA' }]}
+                    />
+                  </FieldRow>
+                  <FieldRow label="Auth. Password">
+                    <Input type="password" value={form.snmp.v3_auth_password} onChange={(e) => setNested('snmp', 'v3_auth_password', e.target.value)} disabled={form.snmp.v3_mode === 'NoAuthNoPriv' || form.snmp.v3_auth_type === 'none'} />
+                  </FieldRow>
+                  <FieldRow label="Priv. Type">
+                    <Select
+                      value={form.snmp.v3_priv_type}
+                      onChange={(e) => setNested('snmp', 'v3_priv_type', e.target.value as SnmpParams['v3_priv_type'])}
+                      disabled={form.snmp.v3_mode !== 'AuthPriv'}
+                      options={[{ value: 'CBC-DES', label: 'CBC-DES' }, { value: 'CFB-AES-128', label: 'CFB-AES-128' }, { value: 'CFB-AES-196', label: 'CFB-AES-196' }, { value: 'CFB-AES-256', label: 'CFB-AES-256' }]}
+                    />
+                  </FieldRow>
+                  <FieldRow label="Priv. Password">
+                    <Input type="password" value={form.snmp.v3_priv_password} onChange={(e) => setNested('snmp', 'v3_priv_password', e.target.value)} disabled={form.snmp.v3_mode !== 'AuthPriv'} />
+                  </FieldRow>
+                </>
+              )}
             </section>
           )}
 

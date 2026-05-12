@@ -1,7 +1,8 @@
 """IOS version detection, parsing, and EOL/EOS tracking.
 
 Supported platforms: IOS XR, IOS XE, NX-OS, classic IOS.
-EOL/EOS data is currently an in-memory dict — see TODO below for live feed.
+Cisco EOX is queried when CISCO_API_TOKEN is configured; otherwise the service
+uses a small local fallback registry so development and tests stay offline.
 """
 
 from __future__ import annotations
@@ -10,6 +11,7 @@ import re
 import uuid
 from datetime import datetime
 
+import httpx
 from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
@@ -17,11 +19,11 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.models.credential import Credential
 from app.models.device import Device
 from app.models.ios_version import IOSVersion
+from app.config import settings
 from app.services.ssh.client import SSHClient, SSHCredential
 
 # ---------------------------------------------------------------------------
-# EOL / EOS registry (in-memory placeholder)
-# TODO: replace with live Cisco EOX / PSIRT API feed
+# EOL / EOS fallback registry
 # ---------------------------------------------------------------------------
 
 _EOL_VERSIONS: dict[str, bool] = {
@@ -38,6 +40,56 @@ _EOS_VERSIONS: dict[str, bool] = {
     "6.2.3": True,
     "15.6(2)T": True,
 }
+
+
+async def _query_cisco_eox(version: str) -> tuple[bool, bool] | None:
+    """Query Cisco EOX by software release string.
+
+    Returns None when the API is not configured or unavailable. Cisco's EOX API
+    uses token auth; deployments should set CISCO_API_TOKEN after obtaining a
+    token from Cisco API Console.
+    """
+    if not settings.cisco_api_token or not version:
+        return None
+
+    url = f"{settings.cisco_eox_base_url.rstrip('/')}/EOXBySWReleaseString/1/{version}"
+    headers = {
+        "Authorization": f"Bearer {settings.cisco_api_token}",
+        "Accept": "application/json",
+    }
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            resp = await client.get(url, headers=headers, params={"responseencoding": "json"})
+        resp.raise_for_status()
+        payload = resp.json()
+    except Exception as exc:  # pragma: no cover - network/auth dependent
+        logger.warning("Cisco EOX lookup failed for version={}: {}", version, exc)
+        return None
+
+    records = payload.get("EOXRecord") or payload.get("eoxRecord") or []
+    if isinstance(records, dict):
+        records = [records]
+    if not records:
+        return False, False
+
+    now = datetime.now().date()
+    eol = False
+    eos = False
+    for record in records:
+        last_support = record.get("LastDateOfSupport") or record.get("lastDateOfSupport")
+        end_sw = record.get("EndOfSWMaintenanceReleases") or record.get("endOfSWMaintenanceReleases")
+        if last_support:
+            eos = eos or _date_has_passed(str(last_support), now)
+        if end_sw:
+            eol = eol or _date_has_passed(str(end_sw), now)
+    return eol, eos
+
+
+def _date_has_passed(value: str, today) -> bool:
+    try:
+        return datetime.fromisoformat(value[:10]).date() <= today
+    except ValueError:
+        return False
 
 # ---------------------------------------------------------------------------
 # Regex patterns per platform
@@ -184,11 +236,12 @@ class IOSVersionManager:
 
     async def check_eol(self, version: str, platform: str) -> tuple[bool, bool]:
         """Return (is_eol, is_eos) for the given version string.
-
-        Currently uses an in-memory dict.
-        TODO: integrate with Cisco EOX / PSIRT API for live data.
         """
-        is_eol = _EOL_VERSIONS.get(version, False)
-        is_eos = _EOS_VERSIONS.get(version, False)
+        live = await _query_cisco_eox(version)
+        if live is not None:
+            is_eol, is_eos = live
+        else:
+            is_eol = _EOL_VERSIONS.get(version, False)
+            is_eos = _EOS_VERSIONS.get(version, False)
         logger.debug("check_eol version={} platform={} eol={} eos={}", version, platform, is_eol, is_eos)
         return is_eol, is_eos

@@ -20,7 +20,7 @@ from app.models.inventory import Inventory
 from app.schemas.device import DeviceCreate, DeviceRead, DeviceUpdate
 from app.security.crypto import CredentialVault
 from app.services.snmp.engine import SNMPEngine
-from app.services.snmp.poller import SNMPCredential
+from app.services.snmp.poller import SNMPCredential, SNMPPoller
 from app.services.kpi.engine import KPIEngine
 
 router = APIRouter()
@@ -44,8 +44,26 @@ def _build_snmp_cred(device: Device) -> SNMPCredential:
     return SNMPCredential(
         version=cred.snmp_version,
         community=plain,
-        username=cred.username,
+        user=cred.username,
+        auth_key=plain if cred.snmp_version == "v3" else None,
+        priv_key=vault.decrypt(cred.enc_key, cred.id.bytes) if cred.enc_key else None,
+        port=cred.port,
     )
+
+
+class InterfaceRead(BaseModel):
+    if_index: int
+    descr: Optional[str] = None
+    type: Optional[int] = None
+    speed: Optional[int] = None
+    admin_status: Optional[int] = None
+    oper_status: Optional[int] = None
+    in_octets: Optional[int] = None
+    out_octets: Optional[int] = None
+    in_errors: Optional[int] = None
+    out_errors: Optional[int] = None
+    alias: Optional[str] = None
+    phys_address: Optional[str] = None
 
 
 @router.get("", response_model=list[DeviceRead])
@@ -167,6 +185,81 @@ async def bulk_import_devices(
     return BulkImportResponse(created=created, failed=failed)
 
 
+class VerifyCredentialsRequest(BaseModel):
+    """Loose payload — only the SNMP block is required to attempt reachability."""
+
+    ip_address: Optional[str] = None
+    dns_name: Optional[str] = None
+    identification: Optional[str] = None
+    snmp: Optional[dict] = None
+    telnet_ssh: Optional[dict] = None
+    http: Optional[dict] = None
+
+
+class VerifyCredentialsResponse(BaseModel):
+    ok: bool
+    sys_descr: Optional[str] = None
+    error: Optional[str] = None
+
+
+def _snmp_priv_protocol(value: object) -> str | None:
+    """Normalize UI labels to SNMPPoller protocol names."""
+    if not value:
+        return None
+    raw = str(value).upper()
+    if "DES" in raw:
+        return "DES"
+    if "256" in raw:
+        return "AES256"
+    if "196" in raw or "192" in raw:
+        return "AES192"
+    if "128" in raw or "AES" in raw:
+        return "AES128"
+    return raw
+
+
+@router.post("/verify-credentials", response_model=VerifyCredentialsResponse)
+async def verify_credentials(body: VerifyCredentialsRequest) -> VerifyCredentialsResponse:
+    """Quick reachability check using SNMP sysDescr (1.3.6.1.2.1.1.1.0).
+
+    Best-effort: tries SNMP first using whatever was provided in the form. Does
+    not persist anything. Used by the Add Device dialog's "Verify Credentials".
+    """
+    target = (
+        body.ip_address
+        if (body.identification or "ip") == "ip"
+        else body.dns_name
+    ) or body.ip_address or body.dns_name
+    if not target:
+        return VerifyCredentialsResponse(ok=False, error="No IP/DNS provided")
+
+    snmp = body.snmp or {}
+    version = snmp.get("version", "v2c")
+    cred = SNMPCredential(
+        version=version,
+        community=snmp.get("read_community") or "public",
+        user=snmp.get("v3_username"),
+        auth_protocol=(snmp.get("v3_auth_type") or "").replace("HMAC-", "") or None,
+        auth_key=snmp.get("v3_auth_password"),
+        priv_protocol=_snmp_priv_protocol(snmp.get("v3_priv_type")),
+        priv_key=snmp.get("v3_priv_password"),
+        port=int(snmp.get("port") or 161),
+        timeout=float(snmp.get("timeout") or 5),
+        retries=int(snmp.get("retries") or 1),
+    )
+
+    try:
+        poller = SNMPPoller()
+    except RuntimeError as exc:
+        return VerifyCredentialsResponse(ok=False, error=str(exc))
+
+    result = await poller.get(target, ["1.3.6.1.2.1.1.1.0"], cred)
+    if result.success and result.varbinds:
+        sys_descr = next(iter(result.varbinds.values()), None)
+        return VerifyCredentialsResponse(ok=True, sys_descr=sys_descr)
+    return VerifyCredentialsResponse(ok=False, error=result.error or "No response")
+
+
 @router.get("/{id}", response_model=DeviceRead)
 async def get_device(
     id: uuid.UUID,
@@ -222,6 +315,35 @@ async def discover_neighbors(
     lldp = await snmp.discover_lldp_neighbors(device.ip_address, snmp_cred)
     cdp = await snmp.discover_cdp_neighbors(device.ip_address, snmp_cred)
     return lldp + cdp
+
+
+@router.get("/{id}/interfaces", response_model=list[InterfaceRead])
+async def get_interfaces(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> list[InterfaceRead]:
+    """Fetch live IF-MIB interface rows for a device via SNMP."""
+    device = await _get_device_or_404(db, id)
+    snmp_cred = _build_snmp_cred(device)
+    snmp = SNMPEngine()
+    rows = await snmp.get_interfaces(device.ip_address, snmp_cred)
+    return [
+        InterfaceRead(
+            if_index=row.if_index,
+            descr=row.descr,
+            type=row.type_,
+            speed=row.speed,
+            admin_status=row.admin_status,
+            oper_status=row.oper_status,
+            in_octets=row.in_octets,
+            out_octets=row.out_octets,
+            in_errors=row.in_errors,
+            out_errors=row.out_errors,
+            alias=row.alias,
+            phys_address=row.phys_address,
+        )
+        for row in sorted(rows.values(), key=lambda item: item.if_index)
+    ]
 
 
 @router.get("/{id}/inventory")

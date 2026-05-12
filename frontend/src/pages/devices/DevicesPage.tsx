@@ -32,11 +32,6 @@ interface Device {
   credential_id: string;
 }
 
-interface DevicesResponse {
-  items: Device[];
-  total: number;
-}
-
 const LIMIT = 20;
 const VENDOR_OPTIONS = [
   { value: '', label: 'All vendors' },
@@ -63,14 +58,20 @@ export function DevicesPage() {
   const [editDevice, setEditDevice] = useState<Device | null>(null);
   const [importOpen, setImportOpen] = useState(false);
 
-  const queryKey = ['devices', { search, status, vendor, tag, offset }];
+  const queryKey = ['devices', { search, status, vendor, tag }];
 
-  const { data, isLoading, isError } = useQuery<DevicesResponse>({
+  const { data, isLoading, isError } = useQuery<Device[]>({
     queryKey,
     queryFn: () =>
       api
         .get('/devices', {
-          params: { q: search || undefined, status: status || undefined, vendor: vendor || undefined, tag: tag || undefined, limit: LIMIT, offset },
+          params: {
+            q: search || undefined,
+            status: status || undefined,
+            vendor: vendor || undefined,
+            tag: tag || undefined,
+            limit: 1000,
+          },
         })
         .then((r) => r.data),
   });
@@ -99,9 +100,10 @@ export function DevicesPage() {
     setModalOpen(true);
   };
 
-  const devices = data?.items ?? [];
-  const total = data?.total ?? 0;
-  const pages = Math.ceil(total / LIMIT);
+  const allDevices = Array.isArray(data) ? data : [];
+  const total = allDevices.length;
+  const devices = allDevices.slice(offset, offset + LIMIT);
+  const pages = Math.max(1, Math.ceil(total / LIMIT));
   const currentPage = Math.floor(offset / LIMIT) + 1;
 
   const columns = [

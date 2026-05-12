@@ -26,7 +26,7 @@ export function AlarmAckModal({ alarmId, onClose, filtersKey }: AlarmAckModalPro
   });
 
   return (
-    <Modal title="Reconocer alarma" onClose={onClose}>
+    <Modal open title="Reconocer alarma" onClose={onClose}>
       <div className="space-y-4">
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Ingresa tu usuario para reconocer la alarma <span className="font-mono font-medium">{alarmId}</span>.

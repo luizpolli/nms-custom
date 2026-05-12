@@ -9,7 +9,7 @@ export interface AlarmWebSocket {
   connected: boolean;
 }
 
-export function useAlarmWebSocket(): AlarmWebSocket {
+export function useAlarmWebSocket(onMessage?: (message: AlarmWsMessage) => void): AlarmWebSocket {
   const [lastAlarm, setLastAlarm] = useState<Alarm | null>(null);
   const [connected, setConnected] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
@@ -35,6 +35,7 @@ export function useAlarmWebSocket(): AlarmWebSocket {
         if (!mountedRef.current) return;
         try {
           const msg = JSON.parse(event.data) as AlarmWsMessage;
+          onMessage?.(msg);
           if (msg.type === 'alarm' && msg.alarm) {
             setLastAlarm(msg.alarm);
           }
@@ -62,7 +63,7 @@ export function useAlarmWebSocket(): AlarmWebSocket {
       mountedRef.current = false;
       wsRef.current?.close();
     };
-  }, []);
+  }, [onMessage]);
 
   return { lastAlarm, connected };
 }

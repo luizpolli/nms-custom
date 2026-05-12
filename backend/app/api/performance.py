@@ -20,8 +20,6 @@ router = APIRouter()
 
 
 def _kpi_to_read(kpi: KPI) -> KPIRead:
-    # FIXME: rename KPI.metadata column — collides with SQLAlchemy Base.metadata
-    meta = getattr(kpi, "metadata", None)
     return KPIRead(
         id=kpi.id,
         device_id=kpi.device_id,
@@ -30,7 +28,7 @@ def _kpi_to_read(kpi: KPI) -> KPIRead:
         value=kpi.value,
         unit=kpi.unit,
         kpi_area=kpi.kpi_area,
-        metadata=meta,
+        metadata=kpi.meta,
         timestamp=kpi.timestamp,
     )
 

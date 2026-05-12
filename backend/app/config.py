@@ -35,6 +35,10 @@ class Settings(BaseSettings):
     discovery_poll_interval: int = 60
     discovery_timeout: int = 5
 
+    # Cisco lifecycle APIs (optional; falls back to local registry when unset)
+    cisco_api_token: str = ""
+    cisco_eox_base_url: str = "https://apix.cisco.com/supporttools/eox/rest/5"
+
     # Polling
     poll_interval: int = 60
     poll_timeout: int = 10
@@ -61,4 +65,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
