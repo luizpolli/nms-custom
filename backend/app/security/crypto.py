@@ -1,4 +1,4 @@
-"""AES-256-GCM credential vault with per-record deterministic nonces.
+"""AES-256-GCM credential vault with random per-encryption nonces.
 
 Usage:
     vault = CredentialVault.from_settings(settings)
@@ -9,8 +9,6 @@ Usage:
 from __future__ import annotations
 
 import base64
-import hmac
-import hashlib
 import os
 from typing import TYPE_CHECKING
 
@@ -44,7 +42,7 @@ class CredentialVault:
 
         Args:
             key_b64: Base64-encoded 32-byte AES key.
-            iv_b64:  Accepted but unused — nonces are derived per-record via HMAC.
+            iv_b64:  Accepted for backwards compatibility; unused for v2 ciphertexts.
         """
         try:
             self._key_bytes: bytes = base64.b64decode(key_b64)
@@ -62,15 +60,15 @@ class CredentialVault:
     # ------------------------------------------------------------------
 
     def encrypt(self, plaintext: str, record_id: bytes) -> str:
-        """Encrypt *plaintext* and return base64-encoded ciphertext+tag.
+        """Encrypt *plaintext* and return v2:base64(nonce+ciphertext+tag).
 
         Args:
             plaintext:  The secret string to encrypt.
             record_id:  Stable unique bytes for this record (e.g. UUID bytes).
         """
-        nonce = self._derive_nonce(record_id)
+        nonce = os.urandom(_NONCE_LEN)
         ct = self._aesgcm.encrypt(nonce, plaintext.encode(), None)
-        return base64.b64encode(ct).decode()
+        return "v2:" + base64.b64encode(nonce + ct).decode()
 
     def decrypt(self, ciphertext_b64: str, record_id: bytes) -> str:
         """Decrypt a base64-encoded ciphertext produced by :meth:`encrypt`.
@@ -82,9 +80,14 @@ class CredentialVault:
         Raises:
             ValueError: If the tag is invalid or the key is wrong.
         """
-        nonce = self._derive_nonce(record_id)
         try:
+            if ciphertext_b64.startswith("v2:"):
+                raw = base64.b64decode(ciphertext_b64[3:])
+                nonce, ct = raw[:_NONCE_LEN], raw[_NONCE_LEN:]
+                return self._aesgcm.decrypt(nonce, ct, None).decode()
+            # Backwards compatibility for legacy deterministic-nonce ciphertexts.
             raw = base64.b64decode(ciphertext_b64)
+            nonce = self._derive_legacy_nonce(record_id)
             return self._aesgcm.decrypt(nonce, raw, None).decode()
         except Exception as exc:
             raise ValueError("Decryption failed — wrong key or corrupted ciphertext") from exc
@@ -123,7 +126,10 @@ class CredentialVault:
     # Private helpers
     # ------------------------------------------------------------------
 
-    def _derive_nonce(self, record_id: bytes) -> bytes:
-        """Derive a 12-byte nonce: HMAC-SHA256(key, record_id)[:12]."""
+    def _derive_legacy_nonce(self, record_id: bytes) -> bytes:
+        """Derive the legacy deterministic nonce for old ciphertext migration."""
+        import hashlib
+        import hmac
+
         digest = hmac.new(self._key_bytes, record_id, hashlib.sha256).digest()
         return digest[:_NONCE_LEN]

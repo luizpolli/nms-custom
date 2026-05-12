@@ -13,6 +13,7 @@ from app.config import Settings
 from app.database import get_db
 from app.models.credential import Credential
 from app.schemas.credential import CredentialCreate, CredentialRead, CredentialUpdate
+from app.security.audit import audit
 from app.security.crypto import CredentialVault
 
 router = APIRouter()
@@ -57,6 +58,7 @@ async def create_credential(
         cred.enc_key = vault.encrypt(body.enc_secret.get_secret_value(), cred.id.bytes)
     await db.flush()
     await db.refresh(cred)
+    audit("credential.create", target=str(cred.id), protocol=cred.protocol, snmp_version=cred.snmp_version)
     return _to_read(cred)
 
 
@@ -86,6 +88,7 @@ async def update_credential(
         cred.enc_key = vault.encrypt(body.enc_secret.get_secret_value(), cred.id.bytes)
     await db.flush()
     await db.refresh(cred)
+    audit("credential.update", target=str(cred.id), protocol=cred.protocol, snmp_version=cred.snmp_version)
     return _to_read(cred)
 
 
@@ -96,3 +99,4 @@ async def delete_credential(
 ) -> None:
     cred = await _get_or_404(db, id)
     await db.delete(cred)
+    audit("credential.delete", target=str(id))

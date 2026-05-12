@@ -11,12 +11,25 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
+from app.config import settings
 from app.models.mib import MIB
 from app.schemas.mib import MIBCreate, MIBRead, MIBUpdate
+from app.security.audit import audit
 
 router = APIRouter()
 
 MIB_STORAGE_DIR = Path("/data/mibs")
+
+
+def _safe_mib_filename(filename: str | None) -> str:
+    raw = filename or "unnamed.mib"
+    name = Path(raw).name
+    if name in {"", ".", ".."} or raw != name:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+    suffix = Path(name).suffix.lower()
+    if suffix not in settings.mib_allowed_extensions:
+        raise HTTPException(status_code=400, detail="Unsupported MIB file extension")
+    return name
 
 
 async def _get_or_404(db: AsyncSession, mib_id: uuid.UUID) -> MIB:
@@ -83,8 +96,15 @@ async def upload_mib(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> MIBRead:
     MIB_STORAGE_DIR.mkdir(parents=True, exist_ok=True)
-    dest = MIB_STORAGE_DIR / (file.filename or "unnamed.mib")
-    content = await file.read()
+    safe_name = _safe_mib_filename(file.filename)
+    dest = (MIB_STORAGE_DIR / safe_name).resolve()
+    storage_root = MIB_STORAGE_DIR.resolve()
+    if storage_root not in dest.parents:
+        raise HTTPException(status_code=400, detail="Invalid upload path")
+
+    content = await file.read(settings.mib_upload_max_bytes + 1)
+    if len(content) > settings.mib_upload_max_bytes:
+        raise HTTPException(status_code=413, detail="MIB upload exceeds configured size limit")
     try:
         import aiofiles
         async with aiofiles.open(dest, "wb") as f:
@@ -93,11 +113,12 @@ async def upload_mib(
         dest.write_bytes(content)
 
     mib = MIB(
-        name=file.filename or "unnamed.mib",
+        name=safe_name,
         file_path=str(dest),
         status="active",
     )
     db.add(mib)
     await db.flush()
     await db.refresh(mib)
+    audit("mib.upload", target=str(mib.id), filename=safe_name, size=len(content))
     return MIBRead.model_validate(mib)

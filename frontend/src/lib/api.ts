@@ -6,6 +6,14 @@ export const api = axios.create({
   timeout: 30_000,
 });
 
+api.interceptors.request.use((config) => {
+  const apiKey = window.localStorage.getItem('nms_api_key');
+  if (apiKey) {
+    config.headers.set('X-API-Key', apiKey);
+  }
+  return config;
+});
+
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError<{ detail?: string; message?: string }>) => {

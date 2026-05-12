@@ -30,10 +30,23 @@ class Settings(BaseSettings):
     # CORS
     cors_origins: list[str] = Field(default_factory=lambda: ["http://localhost:5173"])
 
+    # API authentication (enable in deployed environments)
+    api_auth_enabled: bool = False
+    api_keys: str | list[str] = ""
+
     # Discovery
     discovery_chunk_size: int = 256
+    discovery_max_hosts: int = 4096
     discovery_poll_interval: int = 60
     discovery_timeout: int = 5
+
+    # Upload limits
+    mib_upload_max_bytes: int = 5 * 1024 * 1024
+    mib_allowed_extensions: list[str] = Field(default_factory=lambda: [".mib", ".my", ".txt"])
+
+    # SSH security
+    ssh_known_hosts_path: str = ""
+    ssh_disable_host_key_checking: bool = False
 
     # Cisco lifecycle APIs (optional; falls back to local registry when unset)
     cisco_api_token: str = ""
@@ -62,6 +75,8 @@ class Settings(BaseSettings):
                 self.cors_origins = ast.literal_eval(self.cors_origins)
             except (ValueError, SyntaxError):
                 self.cors_origins = [self.cors_origins]
+        if isinstance(self.mib_allowed_extensions, str):
+            self.mib_allowed_extensions = [x.strip().lower() for x in self.mib_allowed_extensions.split(",") if x.strip()]
 
 
 settings = Settings()

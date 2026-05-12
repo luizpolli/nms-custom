@@ -217,5 +217,5 @@ class SNMPPoller:
         """Tear down the SNMP engine."""
         try:
             self._engine.close_dispatcher()
-        except Exception:  # noqa: BLE001
-            pass
+        except Exception as exc:  # noqa: BLE001
+            logger.debug("SNMP engine close ignored: {}", exc)

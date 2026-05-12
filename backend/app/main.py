@@ -1,7 +1,7 @@
 """NMS Custom — FastAPI Application Entry Point."""
 
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import Settings
 from app.database import engine, init_db
@@ -17,8 +17,11 @@ from app.api.alarms import router as alarms_router
 from app.api.reports import router as reports_router
 from app.api.health import router as health_router
 from app.workers import WorkerSupervisor
+from app.security.auth import require_api_auth
+from app.security.redaction import configure_log_redaction
 
 settings = Settings()
+configure_log_redaction()
 worker_supervisor: WorkerSupervisor | None = None
 
 
@@ -51,16 +54,17 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(devices_router, prefix="/api/devices", tags=["devices"])
-app.include_router(credentials_router, prefix="/api/credentials", tags=["credentials"])
-app.include_router(performance_router, prefix="/api/performance", tags=["performance"])
-app.include_router(mibs_router, prefix="/api/mibs", tags=["mibs"])
-app.include_router(discovery_router, prefix="/api/discovery", tags=["discovery"])
-app.include_router(commands_router, prefix="/api/commands", tags=["commands"])
-app.include_router(ios_router, prefix="/api/ios", tags=["ios"])
-app.include_router(topology_router, prefix="/api/topology", tags=["topology"])
-app.include_router(alarms_router, prefix="/api/alarms", tags=["alarms"])
-app.include_router(reports_router, prefix="/api/reports", tags=["reports"])
+_api_auth = [Depends(require_api_auth)]
+app.include_router(devices_router, prefix="/api/devices", tags=["devices"], dependencies=_api_auth)
+app.include_router(credentials_router, prefix="/api/credentials", tags=["credentials"], dependencies=_api_auth)
+app.include_router(performance_router, prefix="/api/performance", tags=["performance"], dependencies=_api_auth)
+app.include_router(mibs_router, prefix="/api/mibs", tags=["mibs"], dependencies=_api_auth)
+app.include_router(discovery_router, prefix="/api/discovery", tags=["discovery"], dependencies=_api_auth)
+app.include_router(commands_router, prefix="/api/commands", tags=["commands"], dependencies=_api_auth)
+app.include_router(ios_router, prefix="/api/ios", tags=["ios"], dependencies=_api_auth)
+app.include_router(topology_router, prefix="/api/topology", tags=["topology"], dependencies=_api_auth)
+app.include_router(alarms_router, prefix="/api/alarms", tags=["alarms"], dependencies=_api_auth)
+app.include_router(reports_router, prefix="/api/reports", tags=["reports"], dependencies=_api_auth)
 app.include_router(health_router, prefix="/health", tags=["health"])
 
 

@@ -11,6 +11,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from loguru import logger
+from app.config import settings
 
 try:
     import asyncssh
@@ -45,6 +46,7 @@ class SSHCredential:
     password: str | None = None
     private_key: str | None = None
     known_hosts_path: str | None = None
+    disable_host_key_checking: bool = False
     connect_timeout: int = 10
 
 
@@ -107,8 +109,8 @@ class SSHClient:
             )
             duration_ms = (time.monotonic() - t0) * 1000
             logger.debug(
-                "SSH run [{}] exit={} duration={:.1f}ms host={}",
-                command,
+                "SSH run command_len={} exit={} duration={:.1f}ms host={}",
+                len(command),
                 result.exit_status,
                 duration_ms,
                 self._cred.host,
@@ -137,7 +139,7 @@ class SSHClient:
             results.append(result)
             if not result.success:
                 logger.warning(
-                    "run_many stopping early — command '{}' exited {}", cmd, result.exit_status
+                    "run_many stopping early — command_len={} exited {}", len(cmd), result.exit_status
                 )
                 break
         return results
@@ -199,9 +201,10 @@ def _build_connect_kwargs(cred: SSHCredential) -> dict:
         kwargs["password"] = cred.password
     if cred.private_key is not None:
         kwargs["client_keys"] = [cred.private_key]
-    if cred.known_hosts_path is not None:
-        kwargs["known_hosts"] = cred.known_hosts_path
-    else:
+    known_hosts_path = cred.known_hosts_path or settings.ssh_known_hosts_path or None
+    if known_hosts_path is not None:
+        kwargs["known_hosts"] = known_hosts_path
+    elif cred.disable_host_key_checking or settings.ssh_disable_host_key_checking:
         kwargs["known_hosts"] = None  # disable host key checking when not set
     return kwargs
 

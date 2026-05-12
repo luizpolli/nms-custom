@@ -13,6 +13,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.models.command import Command
 from app.models.credential import Credential
 from app.models.device import Device
+from app.config import settings
+from app.security.crypto import CredentialVault
 from app.services.ssh.client import CommandResult, SSHClient, SSHCredential
 
 
@@ -34,9 +36,9 @@ class CommandRunner:
             ssh_cred = _build_ssh_credential(command.device, credential)
 
             logger.info(
-                "run_saved_command id={} cli='{}' host={}",
+                "run_saved_command id={} cli_len={} host={}",
                 command_id,
-                command.cli_command,
+                len(command.cli_command),
                 command.device.ip_address,
             )
             result = await _execute(ssh_cred, command.cli_command)
@@ -50,7 +52,7 @@ class CommandRunner:
             credential = _resolve_credential_for_device(device)
             ssh_cred = _build_ssh_credential(device, credential)
 
-        logger.info("run_ad_hoc device_id={} cli='{}' host={}", device_id, cli, device.ip_address)
+        logger.info("run_ad_hoc device_id={} cli_len={} host={}", device_id, len(cli), device.ip_address)
         return await _execute(ssh_cred, cli)
 
 
@@ -90,12 +92,14 @@ def _resolve_credential_for_device(device: Device) -> Credential:
 
 
 def _build_ssh_credential(device: Device, credential: Credential) -> SSHCredential:
+    vault = CredentialVault.from_settings(settings)
+    secret = vault.decrypt(credential.auth_key, credential.id.bytes)
     return SSHCredential(
         host=device.ip_address,
         username=credential.username,
         port=credential.port if credential.protocol == "ssh" else 22,
-        password=credential.auth_key if not credential.auth_key.startswith("-----") else None,
-        private_key=credential.auth_key if credential.auth_key.startswith("-----") else None,
+        password=secret if not secret.startswith("-----") else None,
+        private_key=secret if secret.startswith("-----") else None,
     )
 
 

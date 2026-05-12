@@ -6,12 +6,14 @@ import uuid
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
+from app.database import async_session_factory
 from app.models.command import Command
+from app.security.audit import audit
 from app.services.ssh.command_runner import CommandRunner
 
 router = APIRouter()
@@ -19,9 +21,16 @@ router = APIRouter()
 
 class CommandBase(BaseModel):
     device_id: uuid.UUID
-    name: str
-    cli_command: str
-    output_path: str | None = None
+    name: str = Field(..., max_length=128)
+    cli_command: str = Field(..., min_length=1, max_length=512)
+    output_path: str | None = Field(None, max_length=255)
+
+    @field_validator("cli_command")
+    @classmethod
+    def validate_cli(cls, value: str) -> str:
+        if any(ch in value for ch in "\r\n\x00"):
+            raise ValueError("CLI command contains invalid control characters")
+        return value
 
 
 class CommandCreate(CommandBase):
@@ -30,8 +39,15 @@ class CommandCreate(CommandBase):
 
 class CommandUpdate(BaseModel):
     name: str | None = None
-    cli_command: str | None = None
+    cli_command: str | None = Field(None, max_length=512)
     output_path: str | None = None
+
+    @field_validator("cli_command")
+    @classmethod
+    def validate_cli(cls, value: str | None) -> str | None:
+        if value is not None and any(ch in value for ch in "\r\n\x00"):
+            raise ValueError("CLI command contains invalid control characters")
+        return value
 
 
 class CommandRead(BaseModel):
@@ -46,7 +62,14 @@ class CommandRead(BaseModel):
 
 class AdHocRequest(BaseModel):
     device_id: uuid.UUID
-    cli: str
+    cli: str = Field(..., min_length=1, max_length=512)
+
+    @field_validator("cli")
+    @classmethod
+    def validate_cli(cls, value: str) -> str:
+        if any(ch in value for ch in "\r\n\x00"):
+            raise ValueError("CLI command contains invalid control characters")
+        return value
 
 
 async def _get_or_404(db: AsyncSession, cmd_id: uuid.UUID) -> Command:
@@ -112,8 +135,10 @@ async def run_command(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> dict:
-    runner = CommandRunner(db=db)
-    return await runner.run_saved_command(id)
+    runner = CommandRunner(session_factory=async_session_factory)
+    result = await runner.run_saved_command(id)
+    audit("command.run_saved", target=str(id), exit_status=result.exit_status)
+    return result.__dict__ if hasattr(result, "__dict__") else result
 
 
 @router.post("/run-ad-hoc")
@@ -121,5 +146,7 @@ async def run_ad_hoc(
     body: AdHocRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> dict:
-    runner = CommandRunner(db=db)
-    return await runner.run_ad_hoc(device_id=body.device_id, cli=body.cli)
+    runner = CommandRunner(session_factory=async_session_factory)
+    result = await runner.run_ad_hoc(device_id=body.device_id, cli=body.cli)
+    audit("command.run_ad_hoc", target=str(body.device_id), exit_status=result.exit_status)
+    return result.__dict__ if hasattr(result, "__dict__") else result

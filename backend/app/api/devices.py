@@ -45,7 +45,9 @@ def _build_snmp_cred(device: Device) -> SNMPCredential:
         version=cred.snmp_version,
         community=plain,
         user=cred.username,
+        auth_protocol="SHA" if cred.snmp_version == "v3" and plain else None,
         auth_key=plain if cred.snmp_version == "v3" else None,
+        priv_protocol="AES128" if cred.snmp_version == "v3" and cred.enc_key else None,
         priv_key=vault.decrypt(cred.enc_key, cred.id.bytes) if cred.enc_key else None,
         port=cred.port,
     )

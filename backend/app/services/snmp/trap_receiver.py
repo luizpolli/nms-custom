@@ -47,7 +47,7 @@ class SNMPTrapReceiver:
 
     def __init__(
         self,
-        bind_host: str = "0.0.0.0",
+        bind_host: str = "127.0.0.1",
         bind_port: int = 162,
         communities: list[str] | None = None,
     ) -> None:
@@ -94,8 +94,8 @@ class SNMPTrapReceiver:
             return
         try:
             self._engine.transport_dispatcher.close_dispatcher()  # type: ignore[attr-defined]
-        except Exception:  # noqa: BLE001
-            pass
+        except Exception as exc:  # noqa: BLE001
+            logger.debug("SNMP trap receiver close ignored: {}", exc)
         self._engine = None
 
     def _on_pysnmp_trap(
