@@ -8,6 +8,7 @@ import {
   Users,
   Cog,
   ChevronRight,
+  Info,
 } from 'lucide-react';
 import { useThemeStore, type Theme } from '../stores/theme';
 import { Card, CardHeader } from '../components/ui/Card';
@@ -171,13 +172,15 @@ interface AppUser {
 interface AppRole {
   id: string;
   name: string;
+  display_name?: string | null;
   description?: string | null;
   user_type: string;
   permissions: Record<string, boolean>;
   built_in: boolean;
+  editable?: boolean;
 }
 
-type PermissionCatalog = Record<string, { key: string; label: string }[]>;
+type PermissionCatalog = Record<string, { key: string; label: string; description?: string }[]>;
 
 interface SystemSettingsPermission {
   task_group: string;
@@ -185,19 +188,6 @@ interface SystemSettingsPermission {
   additional_permission: string;
   permission_key: string;
 }
-
-const DEFAULT_VIRTUAL_DOMAINS = [
-  'ROOT-DOMAIN',
-  'PANDO',
-  'LA_PAZ',
-  'COCHABAMBA',
-  'SANTA_CRUZ',
-  'TARIJA',
-  'ORURO',
-  'POTOSI',
-  'BENI',
-  'CHUQUISACA',
-];
 
 const EMPTY_USER_FORM = {
   username: '',
@@ -208,11 +198,37 @@ const EMPTY_USER_FORM = {
   email: '',
   password: '',
   confirm_password: '',
-  role: 'viewer',
+  role: 'admin',
   user_type: 'web',
-  virtual_domains: ['ROOT-DOMAIN'] as string[],
+  virtual_domain: 'all-domain',
   custom_permissions: {} as Record<string, boolean>,
 };
+
+function InfoFloat({ title, description }: { title: string; description?: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <span className="relative inline-block">
+      <button
+        type="button"
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-cisco-blue/10 text-cisco-blue hover:bg-cisco-blue/20"
+        aria-label={`Info about ${title}`}
+      >
+        <Info className="h-3 w-3" />
+      </button>
+      {open && (
+        <span className="absolute left-6 top-0 z-40 w-72 rounded-lg border border-gray-200 bg-white p-3 text-xs shadow-lg dark:border-gray-700 dark:bg-gray-900">
+          <span className="block font-semibold text-gray-900 dark:text-gray-100">{title}</span>
+          <span className="mt-1 block text-gray-600 dark:text-gray-300">
+            {description || 'No description provided.'}
+          </span>
+        </span>
+      )}
+    </span>
+  );
+}
 
 function ClientsUsersPanel() {
   const [security, setSecurity] = useState<SecuritySettings | null>(null);
@@ -269,7 +285,7 @@ function ClientsUsersPanel() {
       password: newUser.password,
       role: newUser.role,
       user_type: newUser.user_type,
-      virtual_domain: newUser.virtual_domains.join(','),
+      virtual_domain: newUser.virtual_domain || null,
       display_name: newUser.display_name || `${newUser.first_name} ${newUser.last_name}`.trim() || newUser.username,
       custom_permissions: newUser.custom_permissions,
     };
@@ -277,15 +293,6 @@ function ClientsUsersPanel() {
     setUsers((prev) => [...prev, response.data]);
     setNewUser({ ...EMPTY_USER_FORM });
     setShowNewUser(false);
-  };
-
-  const toggleVirtualDomain = (domain: string) => {
-    setNewUser((prev) => ({
-      ...prev,
-      virtual_domains: prev.virtual_domains.includes(domain)
-        ? prev.virtual_domains.filter((d) => d !== domain)
-        : [...prev.virtual_domains, domain],
-    }));
   };
 
   const createRole = async () => {
@@ -297,7 +304,8 @@ function ClientsUsersPanel() {
 
   const toggleSelectedRolePermission = async (roleId: string, key: string) => {
     const role = roles.find((r) => r.id === roleId);
-    if (!role || role.built_in) return;
+    if (!role) return;
+    if (role.built_in && role.editable === false) return;
     const nextPerms = { ...role.permissions, [key]: !role.permissions[key] };
     const response = await api.patch(`/settings/roles/${roleId}`, { permissions: nextPerms });
     setRoles((prev) => prev.map((r) => (r.id === roleId ? response.data : r)));
@@ -430,8 +438,20 @@ function ClientsUsersPanel() {
                       <label className="block">
                         <span className="mb-1 block font-medium">Role <span className="text-red-500">*</span></span>
                         <Select value={newUser.role} onChange={(e) => setNewUser((p) => ({ ...p, role: e.target.value }))}>
-                          {roles.map((role) => <option key={role.id} value={role.name}>{role.name}</option>)}
+                          <optgroup label="Web UI Roles">
+                            {roles.filter((r) => r.user_type === 'web').map((role) => (
+                              <option key={role.id} value={role.name}>{role.display_name || role.name}</option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="NBI Roles">
+                            {roles.filter((r) => r.user_type === 'nbi').map((role) => (
+                              <option key={role.id} value={role.name}>{role.display_name || role.name}</option>
+                            ))}
+                          </optgroup>
                         </Select>
+                        <span className="mt-1 block text-xs text-gray-500">
+                          {roles.find((r) => r.name === newUser.role)?.description || ''}
+                        </span>
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">User Type</span>
@@ -454,48 +474,45 @@ function ClientsUsersPanel() {
                       </div>
                     </div>
                     <div>
-                      <h4 className="mb-2 text-sm font-semibold">Virtual Domains <span className="text-red-500">*</span></h4>
-                      <p className="mb-2 text-xs text-gray-500">Select/Deselect the desired virtual domains.</p>
-                      <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-                        <table className="min-w-full text-sm">
-                          <thead className="bg-gray-50 dark:bg-gray-800">
-                            <tr>
-                              <th className="w-10 px-2 py-2"></th>
-                              <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">EPNM Virtual Domains</th>
-                              <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Description</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                            {DEFAULT_VIRTUAL_DOMAINS.map((vd) => (
-                              <tr key={vd}>
-                                <td className="px-2 py-2 text-center">
-                                  <input type="checkbox" checked={newUser.virtual_domains.includes(vd)} onChange={() => toggleVirtualDomain(vd)} />
-                                </td>
-                                <td className="px-3 py-2 font-medium">{vd}</td>
-                                <td className="px-3 py-2 text-gray-500">{vd}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                      <h4 className="mb-2 text-sm font-semibold">Scope</h4>
+                      <div className="rounded-lg border border-gray-200 p-3 text-sm dark:border-gray-700">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="font-medium">all-domain</div>
+                            <div className="text-xs text-gray-500">
+                              User has access to every device managed by this server. Virtual domains can be created later under Virtual Domain Management and assigned per user.
+                            </div>
+                          </div>
+                          <Badge variant="success">Default</Badge>
+                        </div>
                       </div>
-                      <p className="mt-2 text-xs text-gray-500">Note: On selecting parent Virtual Domain will automatically include child Domains.</p>
 
-                      <details className="mt-4 rounded-lg border border-gray-200 p-3 text-sm dark:border-gray-700">
-                        <summary className="cursor-pointer font-medium">Optional per-user privilege overrides</summary>
-                        <div className="mt-3 space-y-3">
+                      <div className="mt-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div className="border-b border-gray-200 bg-gray-50 px-3 py-2 text-sm font-semibold dark:border-gray-700 dark:bg-gray-800">
+                          Optional per-user privilege overrides
+                          <span className="ml-2 text-xs font-normal text-gray-500">
+                            Check items to grant extra privileges on top of the selected role.
+                          </span>
+                        </div>
+                        <div className="max-h-96 overflow-y-auto p-3">
                           {Object.entries(catalog).map(([group, permissions]) => (
-                            <div key={group}>
+                            <div key={group} className="mb-3">
                               <div className="mb-1 text-xs font-semibold uppercase text-gray-500">{group}</div>
                               {permissions.map((permission) => (
-                                <label key={permission.key} className="flex items-start gap-2 text-xs">
-                                  <input type="checkbox" checked={!!newUser.custom_permissions[permission.key]} onChange={() => toggleUserPermission(permission.key)} />
-                                  <span>{permission.label}</span>
+                                <label key={permission.key} className="flex items-center gap-2 py-0.5 text-xs">
+                                  <input
+                                    type="checkbox"
+                                    checked={!!newUser.custom_permissions[permission.key]}
+                                    onChange={() => toggleUserPermission(permission.key)}
+                                  />
+                                  <span className="flex-1">{permission.label}</span>
+                                  <InfoFloat title={permission.label} description={permission.description} />
                                 </label>
                               ))}
                             </div>
                           ))}
                         </div>
-                      </details>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -514,7 +531,7 @@ function ClientsUsersPanel() {
                         <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{user.username}</td>
                         <td className="px-4 py-2">{user.user_type === 'nbi' ? 'NBI REST API' : 'Web GUI'}</td>
                         <td className="px-4 py-2">{user.role}</td>
-                        <td className="px-4 py-2">{user.virtual_domain || 'All devices'}</td>
+                        <td className="px-4 py-2">{user.virtual_domain || 'all-domain'}</td>
                         <td className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">{Object.values(user.custom_permissions || {}).filter(Boolean).length}</td>
                         <td className="px-4 py-2"><Badge variant={user.enabled ? 'success' : 'neutral'}>{user.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
                       </tr>
@@ -539,8 +556,10 @@ function ClientsUsersPanel() {
                         className={`block w-full truncate rounded px-3 py-2 text-left text-sm ${
                           selectedRoleId === role.id ? 'bg-cisco-blue/10 font-semibold text-cisco-blue' : 'hover:bg-gray-100 dark:hover:bg-gray-800'
                         }`}
+                        title={role.description || ''}
                       >
-                        {role.name}
+                        <span>{role.display_name || role.name}</span>
+                        <span className="ml-1 text-xs text-gray-400">{role.user_type === 'nbi' ? '(NBI)' : ''}</span>
                       </button>
                     ))}
                   </div>
@@ -559,8 +578,10 @@ function ClientsUsersPanel() {
                     <div>
                       <div className="border-b border-gray-200 p-3 dark:border-gray-700">
                         <div className="flex items-center gap-2">
-                          <h4 className="text-base font-semibold">Role Permissions ({role.name})</h4>
+                          <h4 className="text-base font-semibold">Role Permissions ({role.display_name || role.name})</h4>
                           <Badge variant={role.built_in ? 'default' : 'success'}>{role.built_in ? 'Built-in' : 'Custom'}</Badge>
+                          <Badge variant={role.user_type === 'nbi' ? 'warning' : 'default'}>{role.user_type === 'nbi' ? 'NBI' : 'Web UI'}</Badge>
+                          {role.description && <span className="ml-2 text-xs text-gray-500">{role.description}</span>}
                         </div>
                       </div>
                       <div className="flex border-b border-gray-200 dark:border-gray-700">
@@ -599,29 +620,32 @@ function ClientsUsersPanel() {
                               </thead>
                               <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
                                 {Object.entries(catalog).flatMap(([group, perms]) =>
-                                  perms.map((p) => ({ group, ...p, additional: '' }))
-                                ).concat(
-                                  systemSettingsPerms.map((p) => ({
-                                    group: p.task_group,
-                                    key: p.permission_key,
-                                    label: p.task_name,
-                                    additional: p.additional_permission,
-                                  }))
+                                  perms.map((p) => {
+                                    const submenu = systemSettingsPerms.find((sp) => sp.permission_key === p.key);
+                                    return { group, ...p, additional: submenu?.additional_permission || '' };
+                                  })
                                 )
                                   .filter((row) => !roleFilter || row.label.toLowerCase().includes(roleFilter.toLowerCase()) || row.group.toLowerCase().includes(roleFilter.toLowerCase()))
                                   .map((row, idx) => {
-                                    const checked = role.permissions['*'] || !!role.permissions[row.key];
+                                    const lockedByWildcard = !!role.permissions['*'];
+                                    const checked = lockedByWildcard || !!role.permissions[row.key];
+                                    const disabled = role.built_in && role.editable === false;
                                     return (
                                       <tr key={`${row.key}-${idx}`} className={idx % 2 ? 'bg-gray-50/50 dark:bg-gray-900/40' : ''}>
                                         <td className="px-2 py-2 text-center">
                                           <input
                                             type="checkbox"
                                             checked={checked}
-                                            disabled={role.built_in}
+                                            disabled={disabled}
                                             onChange={() => toggleSelectedRolePermission(role.id, row.key)}
                                           />
                                         </td>
-                                        <td className="px-3 py-2">{row.label}</td>
+                                        <td className="px-3 py-2">
+                                          <div className="flex items-center gap-2">
+                                            <span>{row.label}</span>
+                                            <InfoFloat title={row.label} description={row.description} />
+                                          </div>
+                                        </td>
                                         <td className="px-3 py-2 text-gray-500">{row.group}</td>
                                         <td className="px-3 py-2 text-xs text-gray-500">{row.additional || '—'}</td>
                                       </tr>

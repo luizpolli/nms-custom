@@ -10,6 +10,13 @@ from pydantic import BaseModel, Field, SecretStr, field_validator
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.permissions_catalog import (
+    BUILT_IN_ROLES,
+    PERMISSION_CATALOG,
+    PERMISSION_DESCRIPTIONS,
+    SYSTEM_SETTINGS_SUBMENUS,
+    all_permission_keys,
+)
 from app.config import settings
 from app.database import get_db
 from app.models.system import AppRole, AppUser, SystemSetting
@@ -19,99 +26,8 @@ from app.security.passwords import hash_password
 router = APIRouter()
 _SECURITY_KEY = "security"
 
-PERMISSION_CATALOG: dict[str, list[dict[str, str]]] = {
-    "Monitor": [
-        {"key": "dashboard.view", "label": "View dashboards"},
-        {"key": "alarms.view", "label": "View alarms and events"},
-        {"key": "reports.view", "label": "View reports"},
-    ],
-    "Devices": [
-        {"key": "devices.view", "label": "View devices"},
-        {"key": "devices.manage", "label": "Add/edit/delete devices"},
-        {"key": "devices.credentials.assign", "label": "Assign device credentials"},
-        {"key": "discovery.run", "label": "Run discovery"},
-        {"key": "topology.manage", "label": "Build/manage topology"},
-    ],
-    "Configuration": [
-        {"key": "commands.view", "label": "View command templates"},
-        {"key": "commands.run", "label": "Run commands/jobs"},
-        {"key": "commands.approve", "label": "Approve jobs"},
-        {"key": "inventory.manage", "label": "Manage inventory/images"},
-    ],
-    "Administration": [
-        {"key": "credentials.manage", "label": "Manage credentials"},
-        {"key": "users.manage", "label": "Manage users and roles"},
-        {"key": "settings.manage", "label": "System Settings"},
-        {"key": "audit.view", "label": "View audit trail"},
-    ],
-    "Notification Policies": [
-        {"key": "notification_policies.read", "label": "Notification Policies Read Access"},
-        {"key": "notification_policies.write", "label": "Notification Policies Read-Write Access"},
-    ],
-    "Network Topology": [
-        {"key": "network_topology", "label": "Network Topology"},
-        {"key": "circuit_vc.monitor", "label": "Circuit or VC Monitoring and Troubleshooting"},
-    ],
-    "Performance": [
-        {"key": "performance_dashboard", "label": "Performance Dashboard"},
-    ],
-    "NBI": [
-        {"key": "nbi.read", "label": "NBI read access"},
-        {"key": "nbi.write", "label": "NBI write access"},
-    ],
-}
-
-SYSTEM_SETTINGS_SUBMENU_PERMISSIONS: list[dict[str, str]] = [
-    {"task_group": "General", "task_name": "Account Settings", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "Data Retention", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "Job Approval", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "Login Disclaimer", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "Report", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "Server", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "Software Update", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "General", "task_name": "User Defined Fields", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Mail & Notification", "task_name": "Change Audit Notification", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Mail & Notification", "task_name": "Mail Server Configuration", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Mail & Notification", "task_name": "Notification Destination", "additional_permission": "Notification Policies Read Access or Notification Policies Read-Write Access", "permission_key": "notification_policies.read"},
-    {"task_group": "Network and Device", "task_name": "SNMP", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Inventory", "task_name": "Configuration", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Inventory", "task_name": "Configuration Archive", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Inventory", "task_name": "Network Discovery", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Inventory", "task_name": "Software Image Management", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Inventory", "task_name": "Inventory", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Inventory", "task_name": "SRRG Pool Types", "additional_permission": "Network Topology", "permission_key": "network_topology"},
-    {"task_group": "Inventory", "task_name": "SRRG Pool", "additional_permission": "Network Topology", "permission_key": "network_topology"},
-    {"task_group": "Inventory", "task_name": "Sync Offline Devices", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Maps", "task_name": "Network Topology", "additional_permission": "Network Topology", "permission_key": "network_topology"},
-    {"task_group": "Maps", "task_name": "Bandwidth Utilization", "additional_permission": "Network Topology", "permission_key": "network_topology"},
-    {"task_group": "Circuit VCs", "task_name": "Discovery settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
-    {"task_group": "Circuit VCs", "task_name": "Circuits VCs Display", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
-    {"task_group": "Circuit VCs", "task_name": "Archive Settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
-    {"task_group": "Circuit VCs", "task_name": "Deployment Settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
-    {"task_group": "Circuit VCs", "task_name": "WAE Server Settings", "additional_permission": "Circuit or VC Monitoring and Troubleshooting", "permission_key": "circuit_vc.monitor"},
-    {"task_group": "Alarm and Events", "task_name": "Alarm and Events", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Alarm and Events", "task_name": "Alarm Severity and autoclear", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Alarm and Events", "task_name": "System Event Configuration", "additional_permission": "System Settings", "permission_key": "settings.manage"},
-    {"task_group": "Alarm and Events", "task_name": "Alarm Notification Policies", "additional_permission": "Notification Policies Read Access or Notification Policies Read-Write Access", "permission_key": "notification_policies.read"},
-    {"task_group": "Performance", "task_name": "PTP/SyncE", "additional_permission": "Performance Dashboard", "permission_key": "performance_dashboard"},
-]
-
-
-BUILT_IN_ROLES: dict[str, dict] = {
-    "admin": {"description": "Full web GUI administration", "user_type": "web", "permissions": {"*": True}},
-    "super_user": {"description": "Full operations except root-only bootstrap", "user_type": "web", "permissions": {"*": True, "root.manage": False}},
-    "config_manager": {"description": "Device, discovery, topology and command configuration", "user_type": "web", "permissions": {"devices.view": True, "devices.manage": True, "discovery.run": True, "topology.manage": True, "commands.view": True, "commands.run": True, "reports.view": True}},
-    "operator": {"description": "Operate and monitor managed devices", "user_type": "web", "permissions": {"dashboard.view": True, "alarms.view": True, "devices.view": True, "commands.run": True, "reports.view": True}},
-    "viewer": {"description": "Read-only web GUI access", "user_type": "web", "permissions": {"dashboard.view": True, "alarms.view": True, "devices.view": True, "reports.view": True}},
-    "nbi_read": {"description": "Read-only NBI REST API access", "user_type": "nbi", "permissions": {"nbi.read": True}},
-    "nbi_write": {"description": "Read/write NBI REST API access", "user_type": "nbi", "permissions": {"nbi.read": True, "nbi.write": True}},
-}
-
-
 def _validate_permissions(values: dict[str, bool]) -> dict[str, bool]:
-    allowed = {"*", "root.manage"}
-    for group in PERMISSION_CATALOG.values():
-        allowed.update(item["key"] for item in group)
+    allowed = all_permission_keys()
     unknown = set(values) - allowed
     if unknown:
         raise ValueError(f"Unknown permission(s): {', '.join(sorted(unknown))}")
@@ -191,10 +107,26 @@ class RoleRead(BaseModel):
 
     id: uuid.UUID
     name: str
+    display_name: str | None = None
     description: str | None = None
     user_type: str
     permissions: dict[str, bool]
     built_in: bool
+    editable: bool = True
+
+    @classmethod
+    def from_role(cls, role: AppRole) -> "RoleRead":
+        meta = BUILT_IN_ROLES.get(role.name, {})
+        return cls(
+            id=role.id,
+            name=role.name,
+            display_name=meta.get("display_name") or role.name.replace("_", " ").title(),
+            description=role.description,
+            user_type=role.user_type,
+            permissions=role.permissions or {},
+            built_in=role.built_in,
+            editable=bool(meta.get("editable", True)) if role.built_in else True,
+        )
 
 
 class RoleCreate(BaseModel):
@@ -245,7 +177,9 @@ async def _ensure_builtin_roles(db: AsyncSession) -> None:
         else:
             role.description = spec["description"]
             role.user_type = spec["user_type"]
-            role.permissions = spec["permissions"]
+            # Preserve customized permissions for editable built-ins; reset locked ones.
+            if not spec.get("editable", True) or not role.permissions:
+                role.permissions = spec["permissions"]
             role.built_in = True
 
 
@@ -288,14 +222,14 @@ async def list_permission_catalog() -> dict[str, list[dict[str, str]]]:
 @router.get("/permissions/system-settings")
 async def list_system_settings_permissions() -> list[dict[str, str]]:
     """Table 2: Additional Permissions for System Settings Submenus (EPNM 4.0)."""
-    return SYSTEM_SETTINGS_SUBMENU_PERMISSIONS
+    return SYSTEM_SETTINGS_SUBMENUS
 
 
 @router.get("/roles", response_model=list[RoleRead])
 async def list_roles(db: Annotated[AsyncSession, Depends(get_db)]) -> list[RoleRead]:
     await _ensure_builtin_roles(db)
     result = await db.execute(select(AppRole).order_by(AppRole.built_in.desc(), AppRole.name))
-    return [RoleRead.model_validate(role) for role in result.scalars().all()]
+    return [RoleRead.from_role(role) for role in result.scalars().all()]
 
 
 @router.post("/roles", response_model=RoleRead, status_code=status.HTTP_201_CREATED)
@@ -308,7 +242,7 @@ async def create_role(body: RoleCreate, db: Annotated[AsyncSession, Depends(get_
     await db.flush()
     await db.refresh(role)
     audit("role.create", target=str(role.id), name=role.name, user_type=role.user_type, permissions=role.permissions)
-    return RoleRead.model_validate(role)
+    return RoleRead.from_role(role)
 
 
 @router.patch("/roles/{id}", response_model=RoleRead)
@@ -317,13 +251,15 @@ async def update_role(id: uuid.UUID, body: RoleUpdate, db: Annotated[AsyncSessio
     if role is None:
         raise HTTPException(status_code=404, detail="Role not found")
     if role.built_in:
-        raise HTTPException(status_code=400, detail="Built-in roles cannot be modified; clone into a custom role")
+        meta = BUILT_IN_ROLES.get(role.name, {})
+        if meta.get("editable", True) is False:
+            raise HTTPException(status_code=400, detail="This built-in role is locked and cannot be modified")
     for field, value in body.model_dump(exclude_unset=True).items():
         setattr(role, field, value)
     await db.flush()
     await db.refresh(role)
     audit("role.update", target=str(role.id), name=role.name, user_type=role.user_type, permissions=role.permissions)
-    return RoleRead.model_validate(role)
+    return RoleRead.from_role(role)
 
 
 @router.delete("/roles/{id}", status_code=status.HTTP_204_NO_CONTENT)
