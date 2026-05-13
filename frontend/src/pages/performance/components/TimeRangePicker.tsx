@@ -26,7 +26,7 @@ function hoursAgo(hours: number): TimeRange {
   return { since: since.toISOString(), until: until.toISOString() };
 }
 
-export function TimeRangePicker({ value: _value, onChange }: TimeRangePickerProps) {
+export function TimeRangePicker({ onChange }: TimeRangePickerProps) {
   const [active, setActive] = useState<Preset>('1h');
   const [customSince, setCustomSince] = useState('');
   const [customUntil, setCustomUntil] = useState('');

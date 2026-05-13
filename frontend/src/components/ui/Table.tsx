@@ -1,20 +1,34 @@
-import { type ReactNode, type TdHTMLAttributes, type ThHTMLAttributes } from 'react';
+import { isValidElement, type ReactNode, type TdHTMLAttributes, type ThHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface ColumnDef<T = any> {
+type TableRow = object;
+
+interface ColumnDef<T extends TableRow = TableRow> {
   key: string;
   header: ReactNode;
   render?: (value: unknown, row: T) => ReactNode;
 }
 
-interface TableProps<T = any> {
+interface TableProps<T extends TableRow = TableRow> {
   children?: ReactNode;
   className?: string;
   columns?: ColumnDef<T>[];
   data?: T[];
 }
 
-export function Table<T = any>({ children, className, columns, data }: TableProps<T>) {
+function renderValue(value: unknown): ReactNode {
+  if (value == null) return null;
+  if (isValidElement(value)) return value;
+  if (typeof value === 'string' || typeof value === 'number') return value;
+  if (typeof value === 'boolean') return value ? 'Yes' : 'No';
+  return JSON.stringify(value);
+}
+
+function getRowValue<T extends TableRow>(row: T, key: string): unknown {
+  return (row as Record<string, unknown>)[key];
+}
+
+export function Table<T extends TableRow = TableRow>({ children, className, columns, data }: TableProps<T>) {
   const content = columns && data ? (
     <>
       <Thead>
@@ -24,10 +38,11 @@ export function Table<T = any>({ children, className, columns, data }: TableProp
       </Thead>
       <Tbody>
         {data.map((row, idx) => (
-          <Tr key={String((row as any).id ?? idx)}>
-            {columns.map((col) => (
-              <Td key={col.key}>{col.render ? col.render((row as any)[col.key], row) : ((row as any)[col.key] as ReactNode)}</Td>
-            ))}
+          <Tr key={String(getRowValue(row, 'id') ?? idx)}>
+            {columns.map((col) => {
+              const value = getRowValue(row, col.key);
+              return <Td key={col.key}>{col.render ? col.render(value, row) : renderValue(value)}</Td>;
+            })}
           </Tr>
         ))}
       </Tbody>
