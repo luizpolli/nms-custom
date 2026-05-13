@@ -44,7 +44,7 @@ frontend/.env
 Thumbs.db
 
 # Reports (generated)
-reports/
+/reports/
 *.xlsx
 *.pdf
 
