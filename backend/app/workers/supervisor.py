@@ -43,6 +43,7 @@ class WorkerSupervisor:
         from sqlalchemy import select
         from app.models.device import Device
         from app.services.kpi.engine import KPIEngine
+        from app.services.snmp.engine import SNMPEngine
 
         backoff = 5
         while not self._stop_event.is_set():
@@ -52,7 +53,7 @@ class WorkerSupervisor:
                         select(Device).where(Device.credential_id != None)  # noqa: E711
                     )
                     devices = result.scalars().all()
-                engine = KPIEngine(None)
+                engine = KPIEngine(SNMPEngine(), async_session_factory)
                 await engine.poll_all(devices)
                 logger.debug("KPI poll complete for {} devices", len(devices))
                 await asyncio.sleep(settings.poll_interval)
@@ -97,7 +98,11 @@ class WorkerSupervisor:
                 correlator = AlarmCorrelator(async_session_factory)
                 receiver.on_trap(correlator.handle_trap)
                 await receiver.start()
+                await self._stop_event.wait()
+                await receiver.stop()
             except asyncio.CancelledError:
+                if "receiver" in locals():
+                    await receiver.stop()
                 break
             except Exception as exc:
                 logger.error("Trap receiver error: {}", exc)

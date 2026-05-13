@@ -10,11 +10,12 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, func, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
+from app.database import async_session_factory, get_db
 from app.models.device import Device
 from app.models.kpi import KPI
 from app.schemas.kpi import KPIAggregate, KPIRead
 from app.services.kpi.engine import KPIEngine
+from app.services.snmp.engine import SNMPEngine
 
 router = APIRouter()
 
@@ -63,7 +64,7 @@ async def aggregate_kpis(
     until: datetime = Query(...),
     bucket: str = Query("5m"),
 ) -> KPIAggregate:
-    engine = KPIEngine(db)
+    engine = KPIEngine(SNMPEngine(), async_session_factory)
     return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket)
 
 

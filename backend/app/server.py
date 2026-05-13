@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import datetime as dt
 import ipaddress
 import ssl
@@ -23,7 +24,9 @@ def _ssl_context() -> ssl.SSLContext | None:
         raise RuntimeError("HTTPS enabled but TLS_CERT_FILE/TLS_KEY_FILE are not configured")
     _ensure_development_cert(Path(settings.tls_cert_file), Path(settings.tls_key_file))
     ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    ctx.minimum_version = ssl.TLSVersion.TLSv1_3 if settings.tls_min_version == "TLSv1.3" else ssl.TLSVersion.TLSv1_2
+    ctx.minimum_version = (
+        ssl.TLSVersion.TLSv1_3 if settings.tls_min_version == "TLSv1.3" else ssl.TLSVersion.TLSv1_2
+    )
     ctx.load_cert_chain(settings.tls_cert_file, settings.tls_key_file)
     if settings.tls_ca_file:
         ctx.load_verify_locations(settings.tls_ca_file)
@@ -73,13 +76,21 @@ def _ensure_development_cert(cert_file: Path, key_file: Path) -> None:
 
 def main() -> None:
     bind_host = "0.0.0.0"  # nosec B104 - container listener; ingress/firewall controls exposure.
-    uvicorn.run(
+    ssl_ctx = _ssl_context()
+    config = uvicorn.Config(
         "app.main:app",
         host=bind_host,
         port=8000,
-        ssl=_ssl_context(),
         proxy_headers=True,
+        ssl_certfile=settings.tls_cert_file if ssl_ctx else None,
+        ssl_keyfile=settings.tls_key_file if ssl_ctx else None,
+        ssl_ca_certs=settings.tls_ca_file if ssl_ctx and settings.tls_ca_file else None,
     )
+    config.load()
+    if ssl_ctx and config.ssl:
+        config.ssl.minimum_version = ssl_ctx.minimum_version
+    server = uvicorn.Server(config)
+    asyncio.run(server.serve())
 
 
 if __name__ == "__main__":

@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import BaseModel, Field
 
 from app.config import Settings
-from app.database import get_db
+from app.database import async_session_factory, get_db
 from app.models.credential import Credential
 from app.models.device import Device
 from app.models.inventory import Inventory
@@ -301,9 +301,9 @@ async def poll_device(
 ) -> dict:
     device = await _get_device_or_404(db, id)
     snmp_cred = _build_snmp_cred(device)
-    engine = KPIEngine(db)
+    engine = KPIEngine(SNMPEngine(), async_session_factory)
     kpis_written = await engine.poll_device(device, snmp_cred)
-    return {"kpis_written": kpis_written}
+    return {"kpis_written": len(kpis_written)}
 
 
 @router.post("/{id}/discover-neighbors")
