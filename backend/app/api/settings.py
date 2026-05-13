@@ -6,7 +6,7 @@ import uuid
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel, Field, SecretStr, field_validator
+from pydantic import BaseModel, Field, SecretStr, ValidationInfo, field_validator
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -32,6 +32,32 @@ def _validate_permissions(values: dict[str, bool]) -> dict[str, bool]:
     if unknown:
         raise ValueError(f"Unknown permission(s): {', '.join(sorted(unknown))}")
     return values
+
+
+def _validate_password_strength(password: SecretStr, username: str | None = None, display_name: str | None = None) -> SecretStr:
+    value = password.get_secret_value()
+    if len(value) < 12:
+        raise ValueError("Password must be at least 12 characters")
+    if not any(ch.isupper() for ch in value):
+        raise ValueError("Password must include at least one uppercase letter")
+    if not any(ch.islower() for ch in value):
+        raise ValueError("Password must include at least one lowercase letter")
+    if not any(ch.isdigit() for ch in value):
+        raise ValueError("Password must include at least one number")
+    if not any(not ch.isalnum() and not ch.isspace() for ch in value):
+        raise ValueError("Password must include at least one special character")
+    if any(ch.isspace() for ch in value):
+        raise ValueError("Password must not contain spaces or line breaks")
+
+    lowered = value.lower()
+    identity_parts = [username or ""]
+    if display_name:
+        identity_parts.extend(display_name.split())
+    for part in identity_parts:
+        normalized = part.strip().lower()
+        if len(normalized) >= 3 and normalized in lowered:
+            raise ValueError("Password must not contain username or display name fragments")
+    return password
 
 
 class SecuritySettings(BaseModel):
@@ -82,6 +108,11 @@ class UserCreate(BaseModel):
     enabled: bool = True
     force_password_change: bool = False
 
+    @field_validator("password")
+    @classmethod
+    def validate_password(cls, value: SecretStr, info: ValidationInfo) -> SecretStr:
+        return _validate_password_strength(value, info.data.get("username"), info.data.get("display_name"))
+
     @field_validator("custom_permissions")
     @classmethod
     def validate_custom_permissions(cls, value: dict[str, bool]) -> dict[str, bool]:
@@ -103,6 +134,13 @@ class UserUpdate(BaseModel):
     virtual_domain: str | None = Field(None, max_length=255)
     enabled: bool | None = None
     force_password_change: bool | None = None
+
+    @field_validator("password")
+    @classmethod
+    def validate_password(cls, value: SecretStr | None, info: ValidationInfo) -> SecretStr | None:
+        if value is None:
+            return None
+        return _validate_password_strength(value, info.data.get("username"), info.data.get("display_name"))
 
     @field_validator("custom_permissions")
     @classmethod

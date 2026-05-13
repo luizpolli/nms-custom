@@ -31,7 +31,7 @@ class AppUser(Base):
     username: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
     display_name: Mapped[str | None] = mapped_column(String(255), nullable=True)
     password_hash: Mapped[str] = mapped_column(String(512), nullable=False)
-    role: Mapped[str] = mapped_column(String(50), default="viewer", nullable=False)
+    role: Mapped[str] = mapped_column(String(512), default="viewer", nullable=False)
     user_type: Mapped[str] = mapped_column(String(20), default="web", nullable=False)  # web | nbi
     custom_permissions: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
     virtual_domain: Mapped[str | None] = mapped_column(String(255), nullable=True)

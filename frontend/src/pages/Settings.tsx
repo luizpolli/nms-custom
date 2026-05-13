@@ -10,6 +10,8 @@ import {
   Cog,
   ChevronRight,
   Info,
+  CheckCircle2,
+  XCircle,
 } from 'lucide-react';
 import { useThemeStore, type Theme } from '../stores/theme';
 import { Card, CardHeader } from '../components/ui/Card';
@@ -207,6 +209,105 @@ const EMPTY_USER_FORM = {
   custom_permissions: {} as Record<string, boolean>,
 };
 
+type NewUserForm = typeof EMPTY_USER_FORM;
+type UserFormField = keyof Pick<NewUserForm, 'username' | 'first_name' | 'last_name' | 'email' | 'password' | 'confirm_password' | 'roles'>;
+type UserFormErrors = Partial<Record<UserFormField, string>>;
+
+const USERNAME_PATTERN = /^[A-Za-z0-9_.@-]+$/;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function passwordRuleChecks(user: NewUserForm) {
+  const password = user.password;
+  const identityParts = [user.username, user.email, user.first_name, user.last_name]
+    .map((part) => part.trim().toLowerCase())
+    .filter((part) => part.length >= 3);
+  const lowerPassword = password.toLowerCase();
+
+  return [
+    { key: 'length', label: 'At least 12 characters', valid: password.length >= 12 },
+    { key: 'uppercase', label: 'At least one uppercase letter', valid: /[A-Z]/.test(password) },
+    { key: 'lowercase', label: 'At least one lowercase letter', valid: /[a-z]/.test(password) },
+    { key: 'number', label: 'At least one number', valid: /\d/.test(password) },
+    { key: 'special', label: 'At least one special character', valid: /[^A-Za-z0-9\s]/.test(password) },
+    { key: 'space', label: 'No spaces or line breaks', valid: password.length > 0 && !/\s/.test(password) },
+    {
+      key: 'identity',
+      label: 'Must not contain username, email, first name, or last name',
+      valid: password.length > 0 && !identityParts.some((part) => lowerPassword.includes(part)),
+    },
+  ];
+}
+
+function validateNewUser(user: NewUserForm): UserFormErrors {
+  const errors: UserFormErrors = {};
+  const username = user.username.trim();
+  const firstName = user.first_name.trim();
+  const lastName = user.last_name.trim();
+  const email = user.email.trim();
+
+  if (!username) errors.username = 'User name is required.';
+  else if (username.length < 3) errors.username = 'User name must be at least 3 characters.';
+  else if (!USERNAME_PATTERN.test(username)) errors.username = 'Use only letters, numbers, underscore, dot, at sign, or dash.';
+
+  if (!firstName) errors.first_name = 'First name is required.';
+  if (!lastName) errors.last_name = 'Last name is required.';
+  if (!email) errors.email = 'Email address is required.';
+  else if (!EMAIL_PATTERN.test(email)) errors.email = 'Enter a valid email address.';
+
+  const failedPasswordRule = passwordRuleChecks(user).find((rule) => !rule.valid);
+  if (!user.password) errors.password = 'Password is required.';
+  else if (failedPasswordRule) errors.password = failedPasswordRule.label;
+
+  if (!user.confirm_password) errors.confirm_password = 'Confirm the password.';
+  else if (user.password !== user.confirm_password) errors.confirm_password = 'Passwords do not match.';
+
+  if (user.roles.length === 0) errors.roles = 'Select at least one role.';
+
+  return errors;
+}
+
+function apiValidationErrors(error: unknown): UserFormErrors {
+  if (typeof error !== 'object' || error === null || !('response' in error)) return {};
+  const response = (error as { response?: { data?: { detail?: unknown } } }).response;
+  const detail = response?.data?.detail;
+  if (!Array.isArray(detail)) return {};
+
+  const errors: UserFormErrors = {};
+  for (const item of detail) {
+    if (typeof item !== 'object' || item === null) continue;
+    const loc = (item as { loc?: unknown }).loc;
+    const msg = (item as { msg?: unknown }).msg;
+    if (!Array.isArray(loc) || typeof msg !== 'string') continue;
+    const field = loc[loc.length - 1];
+    let target: UserFormField | null = null;
+    if (field === 'username' || field === 'password' || field === 'roles') target = field;
+    if (field === 'role' || field === 'user_type' || field === 'virtual_domain') target = 'roles';
+    if (target) errors[target] = msg;
+  }
+  return errors;
+}
+
+function PasswordPolicyFloat({ user, visible }: { user: NewUserForm; visible: boolean }) {
+  if (!visible) return null;
+  const checks = passwordRuleChecks(user);
+  return (
+    <div className="absolute left-0 top-full z-40 mt-2 w-full rounded-lg border border-gray-200 bg-white p-3 text-xs shadow-xl dark:border-gray-700 dark:bg-gray-900 md:left-[calc(100%+0.75rem)] md:top-0 md:mt-0 md:w-80">
+      <div className="mb-2 font-semibold text-gray-900 dark:text-gray-100">Password rules</div>
+      <ul className="space-y-1.5">
+        {checks.map((rule) => (
+          <li key={rule.key} className={`flex items-center gap-2 ${rule.valid ? 'text-green-700 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+            {rule.valid ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />}
+            <span>{rule.label}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-2 rounded bg-amber-50 px-2 py-1 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+        Security tip: do not reuse device, TACACS/RADIUS, or personal account passwords.
+      </div>
+    </div>
+  );
+}
+
 function InfoFloat({ title, description }: { title: string; description?: string }) {
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
@@ -263,6 +364,8 @@ function ClientsUsersPanel() {
   const [catalog, setCatalog] = useState<PermissionCatalog>({});
   const [systemSettingsPerms, setSystemSettingsPerms] = useState<SystemSettingsPermission[]>([]);
   const [newUser, setNewUser] = useState({ ...EMPTY_USER_FORM });
+  const [userFormErrors, setUserFormErrors] = useState<UserFormErrors>({});
+  const [passwordHelpOpen, setPasswordHelpOpen] = useState(false);
   const [newRole, setNewRole] = useState({ name: '', description: '', user_type: 'web', permissions: {} as Record<string, boolean> });
   const [saving, setSaving] = useState(false);
   const [tab, setTab] = useState<'users' | 'roles' | 'sessions'>('users');
@@ -306,25 +409,37 @@ function ClientsUsersPanel() {
   };
 
   const createUser = async () => {
-    if (!newUser.username || !newUser.password) return;
-    if (newUser.password !== newUser.confirm_password) {
-      alert('Passwords do not match');
+    const validationErrors = validateNewUser(newUser);
+    setUserFormErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      window.alert('Please fix the highlighted user fields before saving.');
+      setPasswordHelpOpen(!!validationErrors.password);
       return;
     }
+
     const payload = {
-      username: newUser.username,
+      username: newUser.username.trim(),
       password: newUser.password,
       role: newUser.roles[0] || newUser.role,
       roles: newUser.roles,
       user_type: newUser.user_type,
-      virtual_domain: newUser.virtual_domain || null,
+      virtual_domain: newUser.virtual_domain && newUser.virtual_domain !== 'all-domain' ? newUser.virtual_domain : null,
       display_name: newUser.display_name || `${newUser.first_name} ${newUser.last_name}`.trim() || newUser.username,
       custom_permissions: newUser.custom_permissions,
     };
-    const response = await api.post('/settings/users', payload);
-    setUsers((prev) => [...prev, response.data]);
-    setNewUser({ ...EMPTY_USER_FORM });
-    setShowNewUser(false);
+    try {
+      const response = await api.post('/settings/users', payload);
+      setUsers((prev) => [...prev, response.data]);
+      setNewUser({ ...EMPTY_USER_FORM });
+      setUserFormErrors({});
+      setPasswordHelpOpen(false);
+      setShowNewUser(false);
+    } catch (error) {
+      const fieldErrors = apiValidationErrors(error);
+      setUserFormErrors(fieldErrors);
+      if (fieldErrors.password) setPasswordHelpOpen(true);
+      window.alert(Object.keys(fieldErrors).length ? 'Please fix the highlighted user fields before saving.' : 'User could not be saved. Check the field values and try again.');
+    }
   };
 
   const createRole = async () => {
@@ -351,6 +466,7 @@ function ClientsUsersPanel() {
   const selectableRoles = roleMenuOrder.map((name) => roles.find((role) => role.name === name)).filter(Boolean) as AppRole[];
 
   const toggleUserRole = (role: AppRole) => {
+    setUserFormErrors((prev) => ({ ...prev, roles: undefined }));
     setNewUser((prev) => {
       const current = new Set(prev.roles);
       if (current.has(role.name)) current.delete(role.name);
@@ -473,15 +589,15 @@ function ClientsUsersPanel() {
                     <div className="space-y-3 text-sm">
                       <label className="block">
                         <span className="mb-1 block font-medium">User Name <span className="text-red-500">*</span></span>
-                        <Input value={newUser.username} onChange={(e) => setNewUser((p) => ({ ...p, username: e.target.value }))} />
+                        <Input value={newUser.username} error={userFormErrors.username} onChange={(e) => { setNewUser((p) => ({ ...p, username: e.target.value })); setUserFormErrors((p) => ({ ...p, username: undefined })); }} />
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">First Name <span className="text-red-500">*</span></span>
-                        <Input value={newUser.first_name} onChange={(e) => setNewUser((p) => ({ ...p, first_name: e.target.value }))} />
+                        <Input value={newUser.first_name} error={userFormErrors.first_name} onChange={(e) => { setNewUser((p) => ({ ...p, first_name: e.target.value })); setUserFormErrors((p) => ({ ...p, first_name: undefined })); }} />
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">Last Name <span className="text-red-500">*</span></span>
-                        <Input value={newUser.last_name} onChange={(e) => setNewUser((p) => ({ ...p, last_name: e.target.value }))} />
+                        <Input value={newUser.last_name} error={userFormErrors.last_name} onChange={(e) => { setNewUser((p) => ({ ...p, last_name: e.target.value })); setUserFormErrors((p) => ({ ...p, last_name: undefined })); }} />
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">Description</span>
@@ -489,7 +605,7 @@ function ClientsUsersPanel() {
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">Email Address <span className="text-red-500">*</span></span>
-                        <Input type="email" value={newUser.email} onChange={(e) => setNewUser((p) => ({ ...p, email: e.target.value }))} />
+                        <Input type="email" value={newUser.email} error={userFormErrors.email} onChange={(e) => { setNewUser((p) => ({ ...p, email: e.target.value })); setUserFormErrors((p) => ({ ...p, email: undefined })); }} />
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">Role <span className="text-red-500">*</span></span>
@@ -525,6 +641,7 @@ function ClientsUsersPanel() {
                             </div>
                           )}
                         </div>
+                        {userFormErrors.roles && <span className="mt-1 block text-xs text-severity-critical">{userFormErrors.roles}</span>}
                         <span className="mt-1 block text-xs text-gray-500">
                           Monitor Lite is exclusive. Web UI and NBI roles come from Roles.csv.
                         </span>
@@ -536,17 +653,39 @@ function ClientsUsersPanel() {
                           <option value="nbi">NBI REST API</option>
                         </Select>
                       </label>
-                      <label className="block">
-                        <span className="mb-1 block font-medium">Password <span className="text-red-500">*</span></span>
-                        <Input type="password" value={newUser.password} onChange={(e) => setNewUser((p) => ({ ...p, password: e.target.value }))} />
+                      <label className="relative block">
+                        <span className="mb-1 flex items-center gap-2 font-medium">
+                          Password <span className="text-red-500">*</span>
+                          <InfoFloat title="Password rules" description="Use a unique password with at least 12 characters, uppercase and lowercase letters, a number, a special character, no spaces, and no username/name/email fragments." />
+                        </span>
+                        <Input
+                          type="password"
+                          value={newUser.password}
+                          error={userFormErrors.password}
+                          onFocus={() => setPasswordHelpOpen(true)}
+                          onBlur={() => setPasswordHelpOpen(false)}
+                          onChange={(e) => {
+                            setNewUser((p) => ({ ...p, password: e.target.value }));
+                            setUserFormErrors((p) => ({ ...p, password: undefined, confirm_password: undefined }));
+                          }}
+                        />
+                        <PasswordPolicyFloat user={newUser} visible={passwordHelpOpen || !!userFormErrors.password} />
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">Confirm Password <span className="text-red-500">*</span></span>
-                        <Input type="password" value={newUser.confirm_password} onChange={(e) => setNewUser((p) => ({ ...p, confirm_password: e.target.value }))} />
+                        <Input
+                          type="password"
+                          value={newUser.confirm_password}
+                          error={userFormErrors.confirm_password}
+                          onChange={(e) => {
+                            setNewUser((p) => ({ ...p, confirm_password: e.target.value }));
+                            setUserFormErrors((p) => ({ ...p, confirm_password: undefined }));
+                          }}
+                        />
                       </label>
                       <div className="flex gap-2 pt-2">
                         <Button onClick={createUser}>Save</Button>
-                        <Button variant="secondary" onClick={() => { setShowNewUser(false); setNewUser({ ...EMPTY_USER_FORM }); }}>Cancel</Button>
+                        <Button variant="secondary" onClick={() => { setShowNewUser(false); setNewUser({ ...EMPTY_USER_FORM }); setUserFormErrors({}); setPasswordHelpOpen(false); }}>Cancel</Button>
                       </div>
                     </div>
                     <div>
