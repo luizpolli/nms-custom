@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Settings as SettingsIcon,
   Mail,
@@ -208,25 +209,48 @@ const EMPTY_USER_FORM = {
 
 function InfoFloat({ title, description }: { title: string; description?: string }) {
   const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  const show = () => {
+    const rect = buttonRef.current?.getBoundingClientRect();
+    if (rect) {
+      setPos({
+        top: Math.min(rect.top, window.innerHeight - 160),
+        left: Math.min(rect.right + 8, window.innerWidth - 304),
+      });
+    }
+    setOpen(true);
+  };
+
   return (
-    <span className="relative inline-block">
+    <span className="inline-block">
       <button
+        ref={buttonRef}
         type="button"
-        onMouseEnter={() => setOpen(true)}
+        onMouseEnter={show}
         onMouseLeave={() => setOpen(false)}
-        onClick={() => setOpen((v) => !v)}
+        onFocus={show}
+        onBlur={() => setOpen(false)}
+        onClick={() => (open ? setOpen(false) : show())}
         className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-cisco-blue/10 text-cisco-blue hover:bg-cisco-blue/20"
         aria-label={`Info about ${title}`}
       >
         <Info className="h-3 w-3" />
       </button>
-      {open && (
-        <span className="absolute left-6 top-0 z-40 w-72 rounded-lg border border-gray-200 bg-white p-3 text-xs shadow-lg dark:border-gray-700 dark:bg-gray-900">
+      {open && createPortal(
+        <span
+          className="fixed z-[9999] w-72 rounded-lg border border-gray-200 bg-white p-3 text-xs shadow-xl dark:border-gray-700 dark:bg-gray-900"
+          style={{ top: pos.top, left: pos.left }}
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
           <span className="block font-semibold text-gray-900 dark:text-gray-100">{title}</span>
           <span className="mt-1 block text-gray-600 dark:text-gray-300">
             {description || 'No description provided.'}
           </span>
-        </span>
+        </span>,
+        document.body,
       )}
     </span>
   );

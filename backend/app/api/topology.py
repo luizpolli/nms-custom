@@ -14,6 +14,7 @@ from app.database import async_session_factory, get_db
 from app.models.device import Device
 from app.services.snmp.engine import SNMPEngine
 from app.services.topology.builder import TopologyBuilder
+from app.services.topology.credentials import build_credentials_map
 
 router = APIRouter()
 
@@ -43,7 +44,8 @@ async def rebuild_all(
     builder = TopologyBuilder(snmp_engine=snmp, session_factory=async_session_factory)
     result = await db.execute(select(Device))
     devices = result.scalars().all()
-    await builder.build_full(devices=devices)
+    credentials_map = await build_credentials_map(db, devices)
+    await builder.build_full(devices=devices, credentials_map=credentials_map)
     return {"rebuilt": len(devices)}
 
 
@@ -59,5 +61,6 @@ async def rebuild_device(
         raise HTTPException(status_code=404, detail="Device not found")
     snmp = SNMPEngine()
     builder = TopologyBuilder(snmp_engine=snmp, session_factory=async_session_factory)
-    await builder.build_full(devices=[device])
+    credentials_map = await build_credentials_map(db, [device])
+    await builder.build_full(devices=[device], credentials_map=credentials_map)
     return {"rebuilt": 1, "device_id": str(id)}

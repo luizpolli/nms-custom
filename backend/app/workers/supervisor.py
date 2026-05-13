@@ -67,6 +67,7 @@ class WorkerSupervisor:
         from sqlalchemy import select
         from app.models.device import Device
         from app.services.snmp.engine import SNMPEngine
+        from app.services.topology.credentials import build_credentials_map
         from app.services.topology.builder import TopologyBuilder
 
         backoff = 10
@@ -75,9 +76,10 @@ class WorkerSupervisor:
                 async with async_session_factory() as session:
                     result = await session.execute(select(Device))
                     devices = result.scalars().all()
+                    credentials_map = await build_credentials_map(session, devices, settings)
                 snmp = SNMPEngine()
                 builder = TopologyBuilder(snmp_engine=snmp, session_factory=async_session_factory)
-                await builder.build_full(devices=devices)
+                await builder.build_full(devices=devices, credentials_map=credentials_map)
                 logger.debug("Topology rebuilt for {} devices", len(devices))
                 await asyncio.sleep(settings.topology_poll_interval)
             except asyncio.CancelledError:
