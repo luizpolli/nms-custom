@@ -247,6 +247,10 @@ function ClientsUsersPanel() {
   const [roleSubTab, setRoleSubTab] = useState<'tasks' | 'members'>('tasks');
   const [roleFilter, setRoleFilter] = useState('');
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+
+  const toggleCategory = (cat: string) =>
+    setExpandedCategories((prev) => ({ ...prev, [cat]: !prev[cat] }));
 
   useEffect(() => {
     void Promise.all([
@@ -648,62 +652,130 @@ function ClientsUsersPanel() {
                           </button>
                         ))}
                       </div>
-                      {roleSubTab === 'tasks' && (
-                        <div className="p-3">
-                          <Input
-                            placeholder="Filter permissions..."
-                            value={roleFilter}
-                            onChange={(e) => setRoleFilter(e.target.value)}
-                            className="mb-3 max-w-md"
-                          />
-                          <div className="max-h-[500px] overflow-y-auto rounded-lg border border-gray-200 dark:border-gray-700">
-                            <table className="min-w-full text-sm">
-                              <thead className="sticky top-0 bg-gray-50 dark:bg-gray-800">
-                                <tr>
-                                  <th className="w-10 px-2 py-2"></th>
-                                  <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Permissions</th>
-                                  <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Category</th>
-                                  <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Additional Permission</th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                                {Object.entries(catalog).flatMap(([group, perms]) =>
-                                  perms.map((p) => {
-                                    const submenu = systemSettingsPerms.find((sp) => sp.permission_key === p.key);
-                                    return { group, ...p, additional: submenu?.additional_permission || '' };
-                                  })
-                                )
-                                  .filter((row) => !roleFilter || row.label.toLowerCase().includes(roleFilter.toLowerCase()) || row.group.toLowerCase().includes(roleFilter.toLowerCase()))
-                                  .map((row, idx) => {
-                                    const lockedByWildcard = !!role.permissions['*'];
-                                    const checked = lockedByWildcard || !!role.permissions[row.key];
-                                    const disabled = role.built_in && role.editable === false;
-                                    return (
-                                      <tr key={`${row.key}-${idx}`} className={idx % 2 ? 'bg-gray-50/50 dark:bg-gray-900/40' : ''}>
-                                        <td className="px-2 py-2 text-center">
-                                          <input
-                                            type="checkbox"
-                                            checked={checked}
-                                            disabled={disabled}
-                                            onChange={() => toggleSelectedRolePermission(role.id, row.key)}
-                                          />
-                                        </td>
-                                        <td className="px-3 py-2">
-                                          <div className="flex items-center gap-2">
-                                            <span>{row.label}</span>
-                                            <InfoFloat title={row.label} description={row.description} />
-                                          </div>
-                                        </td>
-                                        <td className="px-3 py-2 text-gray-500">{row.group}</td>
-                                        <td className="px-3 py-2 text-xs text-gray-500">{row.additional || '—'}</td>
-                                      </tr>
-                                    );
-                                  })}
-                              </tbody>
-                            </table>
+                      {roleSubTab === 'tasks' && (() => {
+                        const SUBMENU_CAT = 'Additional Permissions for System Settings Submenus';
+                        const lockedByWildcard = !!role.permissions['*'];
+                        const disabled = role.built_in && role.editable === false;
+                        const lf = roleFilter.toLowerCase();
+
+                        // Build submenu lookup keyed by permission_key
+                        const submenuByKey = Object.fromEntries(
+                          systemSettingsPerms.map((sp) => [sp.permission_key, sp.additional_permission])
+                        );
+
+                        // Separate submenu category from regular categories
+                        const regularCats = Object.entries(catalog).filter(([g]) => g !== SUBMENU_CAT);
+                        const submenuCat = catalog[SUBMENU_CAT] ?? [];
+
+                        const renderRow = (p: { key: string; label: string; description?: string }, isSubmenu = false) => {
+                          const checked = lockedByWildcard || !!role.permissions[p.key];
+                          const addlPerm = submenuByKey[p.key] || '';
+                          const infoDesc = isSubmenu
+                            ? `Additional permission required: ${addlPerm}`
+                            : (p.description || '');
+                          return (
+                            <div key={p.key} className="flex items-center gap-2 border-b border-gray-100 px-3 py-1.5 last:border-0 dark:border-gray-800">
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                disabled={disabled}
+                                onChange={() => toggleSelectedRolePermission(role.id, p.key)}
+                                className="shrink-0"
+                              />
+                              <span className="flex-1 text-sm">{p.label}</span>
+                              {isSubmenu && addlPerm && (
+                                <span className="rounded bg-amber-100 px-1.5 py-0.5 text-xs text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                                  {addlPerm}
+                                </span>
+                              )}
+                              <InfoFloat title={p.label} description={infoDesc} />
+                            </div>
+                          );
+                        };
+
+                        return (
+                          <div className="p-3">
+                            <Input
+                              placeholder="Filter by task name or category..."
+                              value={roleFilter}
+                              onChange={(e) => setRoleFilter(e.target.value)}
+                              className="mb-3 max-w-md"
+                            />
+                            <div className="max-h-[560px] space-y-1 overflow-y-auto">
+                              {/* Regular task categories */}
+                              {regularCats.map(([group, perms]) => {
+                                const filtered = perms.filter(
+                                  (p) => !lf || p.label.toLowerCase().includes(lf) || group.toLowerCase().includes(lf)
+                                );
+                                if (!filtered.length) return null;
+                                const enabledCount = filtered.filter(
+                                  (p) => lockedByWildcard || !!role.permissions[p.key]
+                                ).length;
+                                const isOpen = expandedCategories[group] ?? false;
+                                return (
+                                  <div key={group} className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleCategory(group)}
+                                      className="flex w-full items-center justify-between bg-gray-50 px-3 py-2 text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                                    >
+                                      <span>{group}</span>
+                                      <span className="flex items-center gap-2">
+                                        <span className="rounded-full bg-cisco-blue/10 px-2 py-0.5 text-xs text-cisco-blue">
+                                          {enabledCount}/{filtered.length}
+                                        </span>
+                                        <ChevronRight className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+                                      </span>
+                                    </button>
+                                    {isOpen && (
+                                      <div>{filtered.map((p) => renderRow(p))}</div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+
+                              {/* Special category: Additional Permissions for System Settings Submenus */}
+                              {submenuCat.length > 0 && (() => {
+                                const filtered = submenuCat.filter(
+                                  (p) => !lf || p.label.toLowerCase().includes(lf) || SUBMENU_CAT.toLowerCase().includes(lf)
+                                );
+                                if (!filtered.length) return null;
+                                const enabledCount = filtered.filter(
+                                  (p) => lockedByWildcard || !!role.permissions[p.key]
+                                ).length;
+                                const isOpen = expandedCategories[SUBMENU_CAT] ?? false;
+                                return (
+                                  <div className="overflow-hidden rounded-lg border-2 border-amber-400 dark:border-amber-600">
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleCategory(SUBMENU_CAT)}
+                                      className="flex w-full items-center justify-between bg-amber-50 px-3 py-2 text-left text-sm font-semibold text-amber-800 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:hover:bg-amber-900/30"
+                                    >
+                                      <span className="flex items-center gap-2">
+                                        <span className="rounded bg-amber-200 px-1.5 py-0.5 text-xs font-bold text-amber-800 dark:bg-amber-800 dark:text-amber-200">
+                                          Table 2
+                                        </span>
+                                        Additional Permissions for System Settings Submenus
+                                      </span>
+                                      <span className="flex items-center gap-2">
+                                        <span className="rounded-full bg-amber-200 px-2 py-0.5 text-xs text-amber-800 dark:bg-amber-800 dark:text-amber-200">
+                                          {enabledCount}/{filtered.length}
+                                        </span>
+                                        <ChevronRight className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+                                      </span>
+                                    </button>
+                                    {isOpen && (
+                                      <div className="bg-amber-50/50 dark:bg-amber-900/10">
+                                        {filtered.map((p) => renderRow(p, true))}
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })()}
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        );
+                      })()}
                       {roleSubTab === 'members' && (
                         <div className="p-3">
                           <table className="min-w-full text-sm">

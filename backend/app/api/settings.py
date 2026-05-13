@@ -194,6 +194,8 @@ async def _ensure_builtin_roles(db: AsyncSession) -> None:
             if not spec.get("editable", True) or not role.permissions:
                 role.permissions = spec["permissions"]
             role.built_in = True
+    # Flush so the SELECT below sees the newly added rows in the same transaction.
+    await db.flush()
 
 
 @router.get("/security", response_model=SecuritySettings)
@@ -230,6 +232,11 @@ async def list_users(db: Annotated[AsyncSession, Depends(get_db)]) -> list[UserR
 @router.get("/permissions")
 async def list_permission_catalog() -> dict[str, list[dict[str, str]]]:
     return PERMISSION_CATALOG
+
+
+@router.get("/permissions/descriptions")
+async def list_permission_descriptions() -> dict[str, str]:
+    return PERMISSION_DESCRIPTIONS
 
 
 @router.get("/permissions/system-settings")

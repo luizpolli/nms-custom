@@ -302,7 +302,7 @@ PERMISSION_CATALOG["Additional Permissions for System Settings Submenus"] = [
 
 
 def all_permission_keys() -> set[str]:
-    keys: set[str] = {"*", "root.manage"}
+    keys: set[str] = {"*", "root.manage", "nbi.read", "nbi.write"}
     for items in PERMISSION_CATALOG.values():
         keys.update(item["key"] for item in items)
     return keys
