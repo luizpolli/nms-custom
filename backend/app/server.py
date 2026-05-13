@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
+import datetime as dt
+import ipaddress
 import ssl
-import subprocess
 from pathlib import Path
 
 import uvicorn
+from cryptography import x509
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.x509.oid import NameOID
 
 from app.config import settings
 
@@ -31,17 +36,39 @@ def _ensure_development_cert(cert_file: Path, key_file: Path) -> None:
         return
     cert_file.parent.mkdir(parents=True, exist_ok=True)
     key_file.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        [
-            "openssl", "req", "-x509", "-newkey", "rsa:4096", "-sha256", "-days", "365",
-            "-nodes", "-keyout", str(key_file), "-out", str(cert_file),
-            "-subj", "/CN=localhost",
-            "-addext", "subjectAltName=DNS:localhost,IP:127.0.0.1,DNS:app,DNS:frontend",
-        ],
-        check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+
+    private_key = rsa.generate_private_key(public_exponent=65537, key_size=4096)
+    subject = issuer = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, "localhost")])
+    cert = (
+        x509.CertificateBuilder()
+        .subject_name(subject)
+        .issuer_name(issuer)
+        .public_key(private_key.public_key())
+        .serial_number(x509.random_serial_number())
+        .not_valid_before(dt.datetime.now(dt.UTC))
+        .not_valid_after(dt.datetime.now(dt.UTC) + dt.timedelta(days=365))
+        .add_extension(
+            x509.SubjectAlternativeName(
+                [
+                    x509.DNSName("localhost"),
+                    x509.DNSName("app"),
+                    x509.DNSName("frontend"),
+                    x509.IPAddress(ipaddress.ip_address("127.0.0.1")),
+                ]
+            ),
+            critical=False,
+        )
+        .sign(private_key, hashes.SHA256())
     )
+
+    key_file.write_bytes(
+        private_key.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.PKCS8,
+            encryption_algorithm=serialization.NoEncryption(),
+        )
+    )
+    cert_file.write_bytes(cert.public_bytes(serialization.Encoding.PEM))
 
 
 def main() -> None:

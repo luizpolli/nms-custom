@@ -62,6 +62,7 @@ class UserRead(BaseModel):
     username: str
     display_name: str | None = None
     role: str
+    roles: list[str] = Field(default_factory=list)
     user_type: str
     custom_permissions: dict[str, bool] = Field(default_factory=dict)
     virtual_domain: str | None = None
@@ -73,7 +74,8 @@ class UserCreate(BaseModel):
     username: str = Field(..., min_length=3, max_length=255, pattern=r"^[A-Za-z0-9_.@-]+$")
     display_name: str | None = Field(None, max_length=255)
     password: SecretStr = Field(..., min_length=12)
-    role: str = Field("viewer", max_length=100)
+    role: str = Field("admin", max_length=255)
+    roles: list[str] = Field(default_factory=list, max_length=20)
     user_type: Literal["web", "nbi"] = "web"
     custom_permissions: dict[str, bool] = Field(default_factory=dict)
     virtual_domain: str | None = Field(None, max_length=255)
@@ -85,11 +87,17 @@ class UserCreate(BaseModel):
     def validate_custom_permissions(cls, value: dict[str, bool]) -> dict[str, bool]:
         return _validate_permissions(value)
 
+    @field_validator("roles")
+    @classmethod
+    def validate_roles(cls, value: list[str]) -> list[str]:
+        return [role for role in value if role]
+
 
 class UserUpdate(BaseModel):
     display_name: str | None = Field(None, max_length=255)
     password: SecretStr | None = Field(None, min_length=12)
-    role: str | None = Field(None, max_length=100)
+    role: str | None = Field(None, max_length=255)
+    roles: list[str] | None = Field(None, max_length=20)
     user_type: Literal["web", "nbi"] | None = None
     custom_permissions: dict[str, bool] | None = None
     virtual_domain: str | None = Field(None, max_length=255)
@@ -100,6 +108,11 @@ class UserUpdate(BaseModel):
     @classmethod
     def validate_custom_permissions(cls, value: dict[str, bool] | None) -> dict[str, bool] | None:
         return _validate_permissions(value) if value is not None else None
+
+    @field_validator("roles")
+    @classmethod
+    def validate_roles(cls, value: list[str] | None) -> list[str] | None:
+        return [role for role in value if role] if value is not None else None
 
 
 class RoleRead(BaseModel):
@@ -282,7 +295,7 @@ async def create_user(body: UserCreate, db: Annotated[AsyncSession, Depends(get_
         username=body.username,
         display_name=body.display_name,
         password_hash=hash_password(body.password.get_secret_value()),
-        role=body.role,
+        role=",".join(body.roles) if body.roles else body.role,
         user_type=body.user_type,
         custom_permissions=body.custom_permissions,
         virtual_domain=body.virtual_domain,
@@ -301,9 +314,11 @@ async def update_user(id: uuid.UUID, body: UserUpdate, db: Annotated[AsyncSessio
     user = await db.get(AppUser, id)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    data = body.model_dump(exclude_unset=True, exclude={"password"})
+    data = body.model_dump(exclude_unset=True, exclude={"password", "roles"})
     for field, value in data.items():
         setattr(user, field, value)
+    if body.roles is not None:
+        user.role = ",".join(body.roles)
     if body.password is not None:
         user.password_hash = hash_password(body.password.get_secret_value())
     await db.flush()

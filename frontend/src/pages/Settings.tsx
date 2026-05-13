@@ -162,6 +162,7 @@ interface AppUser {
   username: string;
   display_name?: string | null;
   role: string;
+  roles?: string[];
   user_type: string;
   custom_permissions: Record<string, boolean>;
   virtual_domain?: string | null;
@@ -199,6 +200,7 @@ const EMPTY_USER_FORM = {
   password: '',
   confirm_password: '',
   role: 'admin',
+  roles: ['admin'] as string[],
   user_type: 'web',
   virtual_domain: 'all-domain',
   custom_permissions: {} as Record<string, boolean>,
@@ -244,6 +246,7 @@ function ClientsUsersPanel() {
   const [selectedRoleId, setSelectedRoleId] = useState<string | null>(null);
   const [roleSubTab, setRoleSubTab] = useState<'tasks' | 'members'>('tasks');
   const [roleFilter, setRoleFilter] = useState('');
+  const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
 
   useEffect(() => {
     void Promise.all([
@@ -283,7 +286,8 @@ function ClientsUsersPanel() {
     const payload = {
       username: newUser.username,
       password: newUser.password,
-      role: newUser.role,
+      role: newUser.roles[0] || newUser.role,
+      roles: newUser.roles,
       user_type: newUser.user_type,
       virtual_domain: newUser.virtual_domain || null,
       display_name: newUser.display_name || `${newUser.first_name} ${newUser.last_name}`.trim() || newUser.username,
@@ -313,6 +317,30 @@ function ClientsUsersPanel() {
 
   const toggleUserPermission = (key: string) => {
     setNewUser((prev) => ({ ...prev, custom_permissions: { ...prev.custom_permissions, [key]: !prev.custom_permissions[key] } }));
+  };
+
+  const roleMenuOrder = ['root', 'super_users', 'admin', 'config_managers', 'system_monitoring', 'user_defined_1', 'user_defined_2', 'user_defined_3', 'user_defined_4', 'user_defined_5', 'monitor_lite', 'nbi_read', 'nbi_write'];
+  const selectableRoles = roleMenuOrder.map((name) => roles.find((role) => role.name === name)).filter(Boolean) as AppRole[];
+
+  const toggleUserRole = (role: AppRole) => {
+    setNewUser((prev) => {
+      const current = new Set(prev.roles);
+      if (current.has(role.name)) current.delete(role.name);
+      else {
+        if (role.name === 'monitor_lite') current.clear();
+        current.add(role.name);
+        if (current.has('monitor_lite') && role.name !== 'monitor_lite') current.delete('monitor_lite');
+      }
+      const nextRoles = Array.from(current);
+      const hasNbi = nextRoles.some((name) => roles.find((r) => r.name === name)?.user_type === 'nbi');
+      const hasWeb = nextRoles.some((name) => roles.find((r) => r.name === name)?.user_type === 'web');
+      return {
+        ...prev,
+        roles: nextRoles,
+        role: nextRoles[0] || '',
+        user_type: hasNbi && !hasWeb ? 'nbi' : 'web',
+      };
+    });
   };
 
   return (
@@ -437,20 +465,40 @@ function ClientsUsersPanel() {
                       </label>
                       <label className="block">
                         <span className="mb-1 block font-medium">Role <span className="text-red-500">*</span></span>
-                        <Select value={newUser.role} onChange={(e) => setNewUser((p) => ({ ...p, role: e.target.value }))}>
-                          <optgroup label="Web UI Roles">
-                            {roles.filter((r) => r.user_type === 'web').map((role) => (
-                              <option key={role.id} value={role.name}>{role.display_name || role.name}</option>
-                            ))}
-                          </optgroup>
-                          <optgroup label="NBI Roles">
-                            {roles.filter((r) => r.user_type === 'nbi').map((role) => (
-                              <option key={role.id} value={role.name}>{role.display_name || role.name}</option>
-                            ))}
-                          </optgroup>
-                        </Select>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setRoleDropdownOpen((open) => !open)}
+                            className="flex w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-left text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-cisco-blue dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                          >
+                            <span className="truncate">
+                              {newUser.roles.length
+                                ? newUser.roles.map((name) => roles.find((r) => r.name === name)?.display_name || name).join(', ')
+                                : 'Select roles'}
+                            </span>
+                            <ChevronRight className={`h-4 w-4 transition-transform ${roleDropdownOpen ? 'rotate-90' : ''}`} />
+                          </button>
+                          {roleDropdownOpen && (
+                            <div className="absolute z-30 mt-1 max-h-72 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+                              {selectableRoles.map((role) => (
+                                <label key={role.id} className="flex cursor-pointer items-start gap-2 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800">
+                                  <input
+                                    type="checkbox"
+                                    checked={newUser.roles.includes(role.name)}
+                                    onChange={() => toggleUserRole(role)}
+                                    className="mt-0.5"
+                                  />
+                                  <span className="min-w-0 flex-1">
+                                    <span className="block font-medium text-gray-900 dark:text-gray-100">{role.display_name || role.name}</span>
+                                    <span className="block text-xs text-gray-500">{role.user_type === 'nbi' ? 'NBI' : 'Web UI'} · {role.description}</span>
+                                  </span>
+                                </label>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                         <span className="mt-1 block text-xs text-gray-500">
-                          {roles.find((r) => r.name === newUser.role)?.description || ''}
+                          Monitor Lite is exclusive. Web UI and NBI roles come from Roles.csv.
                         </span>
                       </label>
                       <label className="block">
@@ -530,7 +578,7 @@ function ClientsUsersPanel() {
                       <tr key={user.id}>
                         <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{user.username}</td>
                         <td className="px-4 py-2">{user.user_type === 'nbi' ? 'NBI REST API' : 'Web GUI'}</td>
-                        <td className="px-4 py-2">{user.role}</td>
+                        <td className="px-4 py-2">{(user.roles?.length ? user.roles : user.role.split(',')).map((name) => roles.find((r) => r.name === name)?.display_name || name).join(', ')}</td>
                         <td className="px-4 py-2">{user.virtual_domain || 'all-domain'}</td>
                         <td className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">{Object.values(user.custom_permissions || {}).filter(Boolean).length}</td>
                         <td className="px-4 py-2"><Badge variant={user.enabled ? 'success' : 'neutral'}>{user.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
@@ -667,14 +715,14 @@ function ClientsUsersPanel() {
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                              {users.filter((u) => u.role === role.name).map((u) => (
+                              {users.filter((u) => (u.roles?.length ? u.roles : u.role.split(',')).includes(role.name)).map((u) => (
                                 <tr key={u.id}>
                                   <td className="px-3 py-2 font-medium">{u.username}</td>
                                   <td className="px-3 py-2">{u.user_type === 'nbi' ? 'NBI' : 'Web GUI'}</td>
                                   <td className="px-3 py-2"><Badge variant={u.enabled ? 'success' : 'neutral'}>{u.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
                                 </tr>
                               ))}
-                              {users.filter((u) => u.role === role.name).length === 0 && (
+                              {users.filter((u) => (u.roles?.length ? u.roles : u.role.split(',')).includes(role.name)).length === 0 && (
                                 <tr><td className="px-3 py-3 text-gray-500" colSpan={3}>No members assigned to this role.</td></tr>
                               )}
                             </tbody>

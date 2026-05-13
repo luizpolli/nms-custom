@@ -41,6 +41,10 @@ class AppUser(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now, onupdate=datetime.now)
 
+    @property
+    def roles(self) -> list[str]:
+        return [role.strip() for role in self.role.split(",") if role.strip()]
+
 
 class AppRole(Base):
     """Customizable RBAC role with Cisco EPNM-style task permissions."""
