@@ -28,6 +28,7 @@ class WorkerSupervisor:
             asyncio.create_task(self._run_topology_rebuilder_loop(), name="topology-rebuilder"),
             asyncio.create_task(self._run_trap_receiver_loop(), name="trap-receiver"),
             asyncio.create_task(self._run_syslog_receiver_loop(), name="syslog-receiver"),
+            asyncio.create_task(self._run_report_scheduler_loop(), name="report-scheduler"),
         ]
         logger.info("WorkerSupervisor started {} tasks", len(self._tasks))
 
@@ -101,6 +102,23 @@ class WorkerSupervisor:
                 break
             except Exception as exc:
                 logger.error("Trap receiver error: {}", exc)
+                await asyncio.sleep(backoff)
+
+    async def _run_report_scheduler_loop(self) -> None:
+        from app.services.reports.scheduler import ReportScheduleRunner
+
+        backoff = 30
+        while not self._stop_event.is_set():
+            try:
+                runner = ReportScheduleRunner(async_session_factory)
+                ran = await runner.run_due()
+                if ran:
+                    logger.info("Report scheduler: ran {} scheduled report(s)", ran)
+                await asyncio.sleep(settings.report_schedule_check_interval)
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                logger.error("Report scheduler error: {}", exc)
                 await asyncio.sleep(backoff)
 
     async def _run_syslog_receiver_loop(self) -> None:

@@ -8,8 +8,10 @@ from app.models.device import Device
 from app.models.inventory import Inventory
 from app.models.ios_version import IOSVersion
 from app.models.kpi import KPI
+from app.models.kpi_threshold import KPIThreshold
 from app.models.mib import MIB
 from app.models.monitoring_policy import MonitoringPolicy
+from app.models.report_schedule import GeneratedReport, ReportSchedule
 from app.models.topology import TopologyLink, TopologyNode
 from app.models.system import AppRole, AppUser, SystemSetting
 
@@ -22,8 +24,11 @@ __all__ = [
     "Inventory",
     "IOSVersion",
     "KPI",
+    "KPIThreshold",
     "MIB",
     "MonitoringPolicy",
+    "GeneratedReport",
+    "ReportSchedule",
     "TopologyLink",
     "TopologyNode",
     "AppUser",

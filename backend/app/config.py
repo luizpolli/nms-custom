@@ -69,6 +69,7 @@ class Settings(BaseSettings):
     poll_timeout: int = 10
     poll_workers: int = 4
     monitoring_policy_check_interval: int = 30
+    report_schedule_check_interval: int = 60
 
     # Syslog
     syslog_enabled: bool = True

@@ -14,7 +14,11 @@ from app.security.redaction import redact
 
 _REPORTS = [
     {"name": "device_inventory", "format": "xlsx", "description": "Device, inventory and IOS version details"},
-    {"name": "kpi", "format": "xlsx", "description": "KPI time-series by device and metric"},
+    {"name": "kpi", "format": "xlsx", "description": "KPI time-series with Cricket-style bucket + consolidation (avg/min/max/p95)"},
+    {"name": "kpi_top_n", "format": "xlsx", "description": "PPM-style Top-N devices by KPI with p95/p99 ranking"},
+    {"name": "kpi_trends", "format": "xlsx", "description": "Cricket-style hourly / daily / weekly trend summary per device"},
+    {"name": "baseline_comparison", "format": "xlsx", "description": "PPM-style baseline comparison: current period vs prior windows"},
+    {"name": "tca", "format": "xlsx", "description": "Threshold Crossing Alerts: definitions and crossings in period"},
     {"name": "alarms", "format": "xlsx", "description": "Alarm detail and severity summary"},
     {"name": "monitoring_policies", "format": "xlsx", "description": "Monitoring policy configuration, cadence and execution status"},
     {"name": "executive_summary", "format": "pdf", "description": "Executive summary with alarm and KPI overview"},
@@ -64,7 +68,30 @@ class ReportRegistry:
             return await self._excel.kpi_report(
                 since=params["since"], until=params["until"],
                 device_ids=params.get("device_ids"),
+                bucket=params.get("bucket", "raw"),
+                consolidation=params.get("consolidation", "avg"),
             )
+        if name == "kpi_top_n":
+            return await self._excel.kpi_top_n_report(
+                since=params["since"], until=params["until"],
+                top_n=int(params.get("top_n", 10)),
+                consolidation=params.get("consolidation", "p95"),
+                kpi_types=params.get("kpi_types"),
+            )
+        if name == "kpi_trends":
+            return await self._excel.kpi_trends_report(
+                since=params["since"], until=params["until"],
+                device_ids=params.get("device_ids"),
+                buckets=params.get("buckets"),
+            )
+        if name == "baseline_comparison":
+            return await self._excel.baseline_comparison_report(
+                since=params["since"], until=params["until"],
+                baseline_periods=int(params.get("baseline_periods", 4)),
+                device_ids=params.get("device_ids"),
+            )
+        if name == "tca":
+            return await self._excel.tca_report(since=params["since"], until=params["until"])
         if name == "alarms":
             return await self._excel.alarm_report(since=params["since"], until=params["until"])
         if name == "monitoring_policies":
