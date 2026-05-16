@@ -8,13 +8,14 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime, timezone
-from typing import Callable
+from typing import Any, Callable
 
 from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.alarm import Alarm
+from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule
 from app.services.snmp.trap_receiver import TrapEvent
 
 # Well-known trap OIDs (no leading dot)
@@ -110,10 +111,103 @@ class AlarmCorrelator:
 
     async def handle_trap(self, event: TrapEvent) -> Alarm | None:
         """Classify trap, then create / update / clear the matching alarm row."""
-        cls = self.classify(event)
+        return await self._handle_classified_event(
+            source_type="snmp_trap",
+            source_host=event.source_host,
+            trap_oid=event.trap_oid,
+            varbinds=event.varbinds,
+            cls=self.classify(event),
+        )
+
+    async def handle_syslog(
+        self,
+        *,
+        source_host: str,
+        message: str,
+        severity: str = "info",
+        category: str = "syslog",
+        facility: str | None = None,
+        correlation_key: str | None = None,
+        fields: dict[str, str] | None = None,
+    ) -> Alarm | None:
+        """Create/update/clear an alarm from a syslog message after applying rules."""
+        metadata = dict(fields or {})
+        if facility:
+            metadata["facility"] = facility
+        return await self._handle_classified_event(
+            source_type="syslog",
+            source_host=source_host,
+            trap_oid=None,
+            varbinds=metadata,
+            cls={
+                "severity": severity,
+                "category": category,
+                "event_type": facility or "syslog",
+                "message": message,
+                "correlation_key": correlation_key or f"syslog:{source_host}:{facility or 'message'}:{message[:80]}",
+            },
+        )
+
+    async def handle_event(
+        self,
+        *,
+        source_host: str,
+        event_type: str,
+        message: str,
+        severity: str = "info",
+        category: str = "custom",
+        correlation_key: str | None = None,
+        fields: dict[str, str] | None = None,
+    ) -> Alarm | None:
+        """Create/update/clear an alarm from an internal/custom event after applying rules."""
+        return await self._handle_classified_event(
+            source_type="event",
+            source_host=source_host,
+            trap_oid=None,
+            varbinds=dict(fields or {}),
+            cls={
+                "severity": severity,
+                "category": category,
+                "event_type": event_type,
+                "message": message,
+                "correlation_key": correlation_key or f"event:{source_host}:{event_type}",
+            },
+        )
+
+    async def _handle_classified_event(
+        self,
+        *,
+        source_type: str,
+        source_host: str,
+        trap_oid: str | None,
+        varbinds: dict[str, str],
+        cls: dict[str, Any],
+    ) -> Alarm | None:
+        """Apply customer rules and maintain the alarm table for any event source."""
         now = datetime.now(timezone.utc)
 
         async with self._sf() as session:
+            ctx = AlarmRuleContext(
+                source_type=source_type,
+                source_host=source_host,
+                trap_oid=trap_oid,
+                event_type=cls["event_type"],
+                category=cls["category"],
+                message=cls["message"],
+                severity=cls["severity"],
+                varbinds=varbinds,
+                correlation_key=cls["correlation_key"],
+            )
+            rule = await find_matching_rule(session, ctx)
+            if rule is not None:
+                cls = apply_rule(cls, rule, ctx)
+                logger.debug(
+                    "Alarm rule matched: {} ({}) auto_clear={}",
+                    cls["matched_rule_name"],
+                    cls["matched_rule_id"],
+                    cls["auto_clear"],
+                )
+
             if cls["severity"] == "clear":
                 return await self._apply_clear(session, cls["correlation_key"], now)
 
@@ -121,20 +215,24 @@ class AlarmCorrelator:
             if alarm is not None:
                 alarm.occurrence_count += 1
                 alarm.last_seen = now
-                alarm.raw_varbinds = event.varbinds
+                alarm.severity = cls["severity"]
+                alarm.category = cls["category"]
+                alarm.event_type = cls["event_type"]
+                alarm.message = cls["message"]
+                alarm.raw_varbinds = self._raw_payload(varbinds, cls)
                 await session.commit()
                 logger.debug("Alarm deduped: {} ({}x)", cls["correlation_key"], alarm.occurrence_count)
                 return alarm
 
             alarm = Alarm(
                 id=uuid.uuid4(),
-                source_host=event.source_host,
+                source_host=source_host,
                 severity=cls["severity"],
                 category=cls["category"],
                 event_type=cls["event_type"],
                 message=cls["message"],
-                trap_oid=event.trap_oid,
-                raw_varbinds=event.varbinds,
+                trap_oid=trap_oid,
+                raw_varbinds=self._raw_payload(varbinds, cls),
                 correlation_key=cls["correlation_key"],
                 state="active",
                 first_seen=now,
@@ -212,3 +310,11 @@ class AlarmCorrelator:
         await session.commit()
         logger.info("Alarm cleared: {}", correlation_key)
         return alarm
+
+    @staticmethod
+    def _raw_payload(varbinds: dict[str, str], cls: dict[str, Any]) -> dict[str, str]:
+        payload = dict(varbinds)
+        if cls.get("matched_rule_id"):
+            payload["_matched_rule_id"] = str(cls["matched_rule_id"])
+            payload["_matched_rule_name"] = str(cls["matched_rule_name"])
+        return payload

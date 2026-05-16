@@ -60,6 +60,10 @@ const AlarmsPage = lazySafe(
   () => import('./pages/alarms/AlarmsPage').then((m) => pickExport(m, 'AlarmsPage')),
   'AlarmsPage',
 );
+const AlarmRulesPage = lazySafe(
+  () => import('./pages/alarms/AlarmRulesPage').then((m) => pickExport(m, 'AlarmRulesPage')),
+  'AlarmRulesPage',
+);
 
 function pickExport(m: Record<string, unknown>, name: string): { default: ComponentType } {
   const cmp = (m.default ?? m[name]) as ComponentType | undefined;
@@ -112,6 +116,7 @@ export function AppRouter() {
           <Route path="credentials" element={<CredentialsPage />} />
           <Route path="performance" element={<PerformancePage />} />
           <Route path="alarms" element={<AlarmsPage />} />
+          <Route path="alarm-rules" element={<AlarmRulesPage />} />
           <Route path="topology" element={<TopologyPage />} />
           <Route path="discovery" element={<DiscoveryPage />} />
           <Route path="mibs" element={<MIBsPage />} />

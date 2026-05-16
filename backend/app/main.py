@@ -15,6 +15,7 @@ from app.api.commands import router as commands_router
 from app.api.ios import router as ios_router
 from app.api.topology import router as topology_router
 from app.api.alarms import router as alarms_router
+from app.api.alarm_rules import router as alarm_rules_router
 from app.api.reports import router as reports_router
 from app.api.health import router as health_router
 from app.api.settings import router as settings_router
@@ -69,6 +70,7 @@ app.include_router(commands_router, prefix="/api/commands", tags=["commands"], d
 app.include_router(ios_router, prefix="/api/ios", tags=["ios"], dependencies=_api_auth)
 app.include_router(topology_router, prefix="/api/topology", tags=["topology"], dependencies=_api_auth)
 app.include_router(alarms_router, prefix="/api/alarms", tags=["alarms"], dependencies=_api_auth)
+app.include_router(alarm_rules_router, prefix="/api/alarm-rules", tags=["alarm-rules"], dependencies=_api_auth)
 app.include_router(reports_router, prefix="/api/reports", tags=["reports"], dependencies=_api_auth)
 app.include_router(settings_router, prefix="/api/settings", tags=["settings"], dependencies=_api_auth)
 app.include_router(health_router, prefix="/health", tags=["health"])
