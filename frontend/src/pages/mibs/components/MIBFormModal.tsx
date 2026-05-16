@@ -47,22 +47,22 @@ export function MIBFormModal({ mib, onClose, onSaved }: Props) {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-gray-900 dark:text-white">
-            {isEdit ? 'Editar MIB' : 'Nueva MIB'}
+            {isEdit ? 'Edit MIB' : 'New MIB'}
           </h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl leading-none">&times;</button>
         </div>
 
         <div className="space-y-3">
           <div>
-            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre *</label>
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Name *</label>
             <input value={form.name} onChange={set('name')} className={fieldClass} placeholder="IF-MIB" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">OID raíz *</label>
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Root OID *</label>
             <input value={form.oid_root} onChange={set('oid_root')} className={fieldClass} placeholder="1.3.6.1.2.1.2" />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Descripción</label>
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label>
             <textarea
               value={form.description}
               onChange={set('description')}
@@ -71,17 +71,17 @@ export function MIBFormModal({ mib, onClose, onSaved }: Props) {
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Estado</label>
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
             <select value={form.status} onChange={set('status')} className={fieldClass}>
-              <option value="active">Activo</option>
-              <option value="inactive">Inactivo</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
             </select>
           </div>
         </div>
 
         {isError && (
           <p className="mt-2 text-xs text-red-500">
-            {error instanceof Error ? error.message : 'Error al guardar'}
+            {error instanceof Error ? error.message : 'Failed to save'}
           </p>
         )}
 
@@ -90,14 +90,14 @@ export function MIBFormModal({ mib, onClose, onSaved }: Props) {
             onClick={onClose}
             className="rounded-md border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
           >
-            Cancelar
+            Cancel
           </button>
           <button
             onClick={() => mutate()}
             disabled={!form.name || !form.oid_root || isPending}
             className="rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-60 transition-colors"
           >
-            {isPending ? 'Guardando...' : 'Guardar'}
+            {isPending ? 'Saving...' : 'Save'}
           </button>
         </div>
       </div>

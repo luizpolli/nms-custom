@@ -26,7 +26,7 @@ export function DevicePicker({ value, onChange }: DevicePickerProps) {
   });
 
   const options = [
-    { value: '', label: 'Seleccionar dispositivo…' },
+    { value: '', label: 'Select device…' },
     ...devices.map((d) => ({ value: d.id, label: d.name ?? d.hostname ?? d.id })),
   ];
 
@@ -36,7 +36,7 @@ export function DevicePicker({ value, onChange }: DevicePickerProps) {
       onChange={(e) => onChange(e.target.value)}
       disabled={isLoading}
       options={options}
-      aria-label="Seleccionar dispositivo"
+      aria-label="Select device"
     />
   );
 }

@@ -52,23 +52,23 @@ export function IOSPage() {
   const detectMutation = useMutation({
     mutationFn: (deviceId: string) => api.post(`/ios/devices/${deviceId}/detect`),
     onSuccess: () => {
-      setDetectMessage('Detección iniciada.');
+      setDetectMessage('Detection started.');
       setTimeout(() => setDetectMessage(''), 3000);
     },
     onError: (err) => {
       console.error('Detect failed', err);
-      alert('Error al detectar versión IOS');
+      alert('Failed to detect IOS version');
     },
   });
 
   const TABS = [
-    { key: 'by-device' as Tab, label: 'Por dispositivo' },
-    { key: 'eol-report' as Tab, label: 'Reporte EOL' },
+    { key: 'by-device' as Tab, label: 'By device' },
+    { key: 'eol-report' as Tab, label: 'EOL Report' },
   ];
 
   return (
     <div className="p-6 space-y-6">
-      <PageHeader title="Versiones IOS" subtitle="Gestión y seguimiento de versiones de software" />
+      <PageHeader title="IOS Versions" subtitle="Software version management and tracking" />
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
@@ -94,11 +94,11 @@ export function IOSPage() {
         <div className="space-y-4">
           <div className="flex gap-3 items-end">
             <Select
-              label="Seleccionar dispositivo"
+              label="Select device"
               value={selectedDeviceId}
               onChange={(e) => setSelectedDeviceId(e.target.value)}
               options={[
-                { value: '', label: '— Selecciona un dispositivo —' },
+                { value: '', label: '— Select a device —' },
                 ...devices.map((d) => ({ value: d.id, label: d.name })),
               ]}
               className="w-72"
@@ -110,20 +110,20 @@ export function IOSPage() {
                   onClick={() => detectMutation.mutate(selectedDeviceId)}
                   disabled={detectMutation.isPending}
                 >
-                  {detectMutation.isPending ? 'Detectando...' : 'Detectar ahora'}
+                  {detectMutation.isPending ? 'Detecting...' : 'Detect now'}
                 </Button>
               </div>
             )}
           </div>
 
           {!selectedDeviceId && (
-            <EmptyState title="Sin selección" description="Selecciona un dispositivo para ver sus versiones IOS." />
+            <EmptyState title="No selection" description="Select a device to view its IOS versions." />
           )}
 
           {selectedDeviceId && loadingVersions && <Spinner />}
 
           {selectedDeviceId && iosVersions && iosVersions.length === 0 && (
-            <EmptyState title="Sin versiones" description="No se han detectado versiones IOS para este dispositivo." />
+            <EmptyState title="No versions" description="No IOS versions have been detected for this device." />
           )}
 
           {iosVersions && iosVersions.length > 0 && (
@@ -131,15 +131,15 @@ export function IOSPage() {
               <table className="min-w-full text-sm divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Versión</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Detectada el</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Version</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Detected at</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100 bg-white">
                   {iosVersions.map((v) => (
                     <tr key={v.id} className="hover:bg-gray-50">
                       <td className="px-4 py-2 font-mono">{v.version}</td>
-                      <td className="px-4 py-2">{new Date(v.detected_at).toLocaleString('es-MX')}</td>
+                      <td className="px-4 py-2">{new Date(v.detected_at).toLocaleString('en-US')}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -154,14 +154,14 @@ export function IOSPage() {
         <div className="space-y-4">
           {loadingEol && <Spinner />}
           {eolReport && eolReport.length === 0 && (
-            <EmptyState title="Sin datos" description="No hay reporte EOL disponible." />
+            <EmptyState title="No data" description="No EOL report is available." />
           )}
           {eolReport && eolReport.length > 0 && (
             <div className="overflow-x-auto rounded-lg border border-gray-200">
               <table className="min-w-full text-sm divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    {['Dispositivo', 'Versión', 'EOL', 'EOS', 'Fecha EOL', 'Fecha EOS'].map((h) => (
+                    {['Device', 'Version', 'EOL', 'EOS', 'EOL Date', 'EOS Date'].map((h) => (
                       <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{h}</th>
                     ))}
                   </tr>
@@ -175,13 +175,13 @@ export function IOSPage() {
                       <td className="px-4 py-2 font-medium">{entry.device_name}</td>
                       <td className="px-4 py-2 font-mono">{entry.version}</td>
                       <td className="px-4 py-2">
-                        <Badge variant={entry.is_eol ? 'danger' : 'success'}>{entry.is_eol ? 'Sí' : 'No'}</Badge>
+                        <Badge variant={entry.is_eol ? 'danger' : 'success'}>{entry.is_eol ? 'Yes' : 'No'}</Badge>
                       </td>
                       <td className="px-4 py-2">
-                        <Badge variant={entry.is_eos ? 'danger' : 'success'}>{entry.is_eos ? 'Sí' : 'No'}</Badge>
+                        <Badge variant={entry.is_eos ? 'danger' : 'success'}>{entry.is_eos ? 'Yes' : 'No'}</Badge>
                       </td>
-                      <td className="px-4 py-2">{entry.eol_date ? new Date(entry.eol_date).toLocaleDateString('es-MX') : '—'}</td>
-                      <td className="px-4 py-2">{entry.eos_date ? new Date(entry.eos_date).toLocaleDateString('es-MX') : '—'}</td>
+                      <td className="px-4 py-2">{entry.eol_date ? new Date(entry.eol_date).toLocaleDateString('en-US') : '—'}</td>
+                      <td className="px-4 py-2">{entry.eos_date ? new Date(entry.eos_date).toLocaleDateString('en-US') : '—'}</td>
                     </tr>
                   ))}
                 </tbody>

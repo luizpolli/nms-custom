@@ -13,7 +13,7 @@ export function DateRangeInput({ since, until, onSinceChange, onUntilChange }: P
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       <div>
-        <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Desde</label>
+        <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">From</label>
         <input
           type="datetime-local"
           value={since}
@@ -22,7 +22,7 @@ export function DateRangeInput({ since, until, onSinceChange, onUntilChange }: P
         />
       </div>
       <div>
-        <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Hasta</label>
+        <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">To</label>
         <input
           type="datetime-local"
           value={until}

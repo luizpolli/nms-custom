@@ -50,7 +50,7 @@ export function CommandFormModal({ open, onClose, command }: CommandFormModalPro
     },
     onError: (err) => {
       console.error('Save command failed', err);
-      alert('Error al guardar el comando');
+      alert('Failed to save command');
     },
   });
 
@@ -64,26 +64,26 @@ export function CommandFormModal({ open, onClose, command }: CommandFormModalPro
   };
 
   return (
-    <Modal open={open} onClose={onClose} title={command ? 'Editar comando' : 'Crear comando'}>
+    <Modal open={open} onClose={onClose} title={command ? 'Edit command' : 'Create command'}>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <Input label="Nombre" value={form.name} onChange={(e) => handleSet('name', e.target.value)} required />
+        <Input label="Name" value={form.name} onChange={(e) => handleSet('name', e.target.value)} required />
         <Input
-          label="Comando CLI"
+          label="CLI command"
           value={form.cli_command}
           onChange={(e) => handleSet('cli_command', e.target.value)}
           placeholder="show version"
           required
         />
         <Input
-          label="Ruta de salida (output_path)"
+          label="Output path (output_path)"
           value={form.output_path}
           onChange={(e) => handleSet('output_path', e.target.value)}
           placeholder="/var/log/commands/"
         />
         <div className="flex justify-end gap-2 pt-2">
-          <Button type="button" variant="ghost" onClick={onClose}>Cancelar</Button>
+          <Button type="button" variant="ghost" onClick={onClose}>Cancel</Button>
           <Button type="submit" disabled={mutation.isPending}>
-            {mutation.isPending ? 'Guardando...' : 'Guardar'}
+            {mutation.isPending ? 'Saving...' : 'Save'}
           </Button>
         </div>
       </form>

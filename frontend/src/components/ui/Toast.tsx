@@ -69,7 +69,7 @@ export function ToastContainer() {
           <span className="flex-1">{t.message}</span>
           <button
             onClick={() => setToasts((prev) => prev.filter((x) => x.id !== t.id))}
-            aria-label="Cerrar"
+            aria-label="Close"
             className="ml-2 opacity-80 hover:opacity-100"
           >
             <X className="h-4 w-4" />
