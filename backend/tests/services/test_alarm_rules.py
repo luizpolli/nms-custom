@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from app.services.alarms.rules import AlarmRuleContext, apply_rule
+from app.services.alarms.rules import AlarmRuleContext, apply_rule, normalize_alarm_severity
 
 
 def _rule(**overrides):
@@ -70,6 +70,13 @@ def test_apply_rule_autoclear_marks_matching_event_as_clear() -> None:
     assert result["severity"] == "clear"
     assert result["auto_clear"] is True
     assert result["correlation_key"] == "event:router-1:custom.cpu.high"
+
+
+def test_normalize_syslog_and_itu_severity_values() -> None:
+    assert normalize_alarm_severity("err") == "major"
+    assert normalize_alarm_severity("2") == "critical"
+    assert normalize_alarm_severity("notice") == "info"
+    assert normalize_alarm_severity("cleared") == "clear"
 
 
 def test_apply_rule_templates_message_and_correlation_key() -> None:

@@ -13,8 +13,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app.config import settings
 from app.models.mib import MIB
-from app.schemas.mib import MIBCreate, MIBRead, MIBUpdate
+from app.schemas.mib import MIBCreate, MIBRead, MIBSummaryRead, MIBUpdate
 from app.security.audit import audit
+from app.services.snmp.mib_parser import parse_mib_text
 
 router = APIRouter()
 
@@ -67,6 +68,26 @@ async def get_mib(
     return MIBRead.model_validate(mib)
 
 
+@router.get("/{id}/summary", response_model=MIBSummaryRead)
+async def get_mib_summary(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> MIBSummaryRead:
+    """Return parsed SMIv2 module/notification metadata for a stored MIB file."""
+    mib = await _get_or_404(db, id)
+    if not mib.file_path:
+        return MIBSummaryRead()
+    path = Path(mib.file_path)
+    if not path.exists() or not path.is_file():
+        raise HTTPException(status_code=404, detail="MIB file not found")
+    summary = parse_mib_text(path.read_text(errors="ignore"))
+    return MIBSummaryRead(
+        module_name=summary.module_name,
+        module_identity_oid=summary.module_identity_oid,
+        notifications=[n.__dict__ for n in summary.notifications],
+    )
+
+
 @router.patch("/{id}", response_model=MIBRead)
 async def update_mib(
     id: uuid.UUID,
@@ -112,8 +133,15 @@ async def upload_mib(
     except ImportError:
         dest.write_bytes(content)
 
+    summary = parse_mib_text(content.decode(errors="ignore"))
+    description = None
+    if summary.module_name or summary.notifications:
+        description = f"Parsed module {summary.module_name or safe_name}; notifications: {len(summary.notifications)}"
+
     mib = MIB(
         name=safe_name,
+        oid_root=summary.module_identity_oid,
+        description=description,
         file_path=str(dest),
         status="active",
     )

@@ -13,6 +13,44 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.alarm_rule import AlarmRule
 
 
+_SEVERITY_ALIASES = {
+    # RFC 5424 syslog severities mapped into the app alarm scale.
+    "0": "critical",
+    "emerg": "critical",
+    "emergency": "critical",
+    "panic": "critical",
+    "1": "critical",
+    "alert": "critical",
+    "2": "critical",
+    "crit": "critical",
+    "critical": "critical",
+    "3": "major",
+    "err": "major",
+    "error": "major",
+    "4": "warning",
+    "warn": "warning",
+    "warning": "warning",
+    "5": "info",
+    "notice": "info",
+    "6": "info",
+    "informational": "info",
+    "info": "info",
+    "7": "info",
+    "debug": "info",
+    # ITU/RFC 3877 style values.
+    "major": "major",
+    "minor": "minor",
+    "indeterminate": "warning",
+    "cleared": "clear",
+    "clear": "clear",
+}
+
+
+def normalize_alarm_severity(value: str) -> str:
+    """Normalize RFC5424/ITU-ish severities into the app alarm scale."""
+    return _SEVERITY_ALIASES.get(str(value).strip().lower(), value)
+
+
 @dataclass(frozen=True)
 class AlarmRuleContext:
     source_type: str
@@ -95,7 +133,7 @@ def apply_rule(cls: dict[str, Any], rule: AlarmRule, ctx: AlarmRuleContext) -> d
     """Return a classification copy with customer rule overrides applied."""
     data = ctx.template_data()
     next_cls = dict(cls)
-    next_cls["severity"] = "clear" if rule.auto_clear else rule.severity
+    next_cls["severity"] = "clear" if rule.auto_clear else normalize_alarm_severity(rule.severity)
     if rule.category:
         next_cls["category"] = rule.category
     if rule.event_type:

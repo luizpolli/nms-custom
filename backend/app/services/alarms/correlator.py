@@ -15,7 +15,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.alarm import Alarm
-from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule
+from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule, normalize_alarm_severity
 from app.services.snmp.trap_receiver import TrapEvent
 
 # Well-known trap OIDs (no leading dot)
@@ -140,7 +140,7 @@ class AlarmCorrelator:
             trap_oid=None,
             varbinds=metadata,
             cls={
-                "severity": severity,
+                "severity": normalize_alarm_severity(severity),
                 "category": category,
                 "event_type": facility or "syslog",
                 "message": message,
@@ -166,7 +166,7 @@ class AlarmCorrelator:
             trap_oid=None,
             varbinds=dict(fields or {}),
             cls={
-                "severity": severity,
+                "severity": normalize_alarm_severity(severity),
                 "category": category,
                 "event_type": event_type,
                 "message": message,
