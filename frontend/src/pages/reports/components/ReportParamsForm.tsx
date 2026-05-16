@@ -40,7 +40,7 @@ export function ReportParamsForm({ reportName, params, onChange }: Props) {
 
   const { data: devices = [] } = useDevices();
 
-  if (reportName === 'device_inventory') {
+  if (reportName === 'device_inventory' || reportName === 'monitoring_policies') {
     return (
       <p className="text-sm text-gray-500 dark:text-gray-400 italic">
         This report does not require additional parameters.

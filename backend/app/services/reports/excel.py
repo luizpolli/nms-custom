@@ -24,6 +24,7 @@ from app.models.inventory import Inventory
 from app.models.ios_version import IOSVersion
 from app.models.kpi import KPI
 from app.models.alarm import Alarm
+from app.models.monitoring_policy import MonitoringPolicy
 
 _HEADER_FILL = PatternFill("solid", fgColor="1F4E79")
 _HEADER_FONT = Font(bold=True, color="FFFFFF")
@@ -203,3 +204,49 @@ class ExcelReporter:
         for severity, count in sorted(counts.items()):
             ws.append([severity, count])
         _finalise(ws)
+
+    # ------------------------------------------------------------------
+    # Monitoring policy report
+    # ------------------------------------------------------------------
+
+    async def monitoring_policy_report(self) -> bytes:
+        """Monitoring policy configuration and execution status."""
+        async with self._sf() as session:
+            policies = (await session.execute(select(MonitoringPolicy).order_by(MonitoringPolicy.interval_seconds.asc()))).scalars().all()
+
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.title = "Monitoring Policies"
+        ws.append([
+            "Name", "Type", "Enabled", "Interval", "Target", "Custom OIDs",
+            "Last Run", "Next Run", "Last Status", "Last Error", "Description",
+        ])
+        for policy in policies:
+            ws.append([
+                policy.name,
+                policy.policy_type,
+                policy.enabled,
+                _format_interval(policy.interval_seconds),
+                "All devices" if policy.target_all_devices else f"{len(policy.device_ids)} selected devices",
+                len(policy.metric_oids or []),
+                policy.last_run_at.isoformat() if policy.last_run_at else None,
+                policy.next_run_at.isoformat() if policy.next_run_at else None,
+                policy.last_status,
+                policy.last_error,
+                policy.description,
+            ])
+        _finalise(ws)
+        return _wb_to_bytes(wb)
+
+
+def _format_interval(seconds: int) -> str:
+    mapping = {
+        60: "1 minute",
+        300: "5 minutes",
+        900: "15 minutes",
+        3600: "1 hour",
+        21600: "6 hours",
+        43200: "12 hours",
+        86400: "24 hours",
+    }
+    return mapping.get(seconds, f"{seconds}s")

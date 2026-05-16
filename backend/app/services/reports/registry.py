@@ -16,6 +16,7 @@ _REPORTS = [
     {"name": "device_inventory", "format": "xlsx", "description": "Device, inventory and IOS version details"},
     {"name": "kpi", "format": "xlsx", "description": "KPI time-series by device and metric"},
     {"name": "alarms", "format": "xlsx", "description": "Alarm detail and severity summary"},
+    {"name": "monitoring_policies", "format": "xlsx", "description": "Monitoring policy configuration, cadence and execution status"},
     {"name": "executive_summary", "format": "pdf", "description": "Executive summary with alarm and KPI overview"},
     {"name": "device_health", "format": "pdf", "description": "Per-device health: interfaces, alarms, CPU/mem trend"},
 ]
@@ -66,6 +67,8 @@ class ReportRegistry:
             )
         if name == "alarms":
             return await self._excel.alarm_report(since=params["since"], until=params["until"])
+        if name == "monitoring_policies":
+            return await self._excel.monitoring_policy_report()
         if name == "executive_summary":
             return await self._pdf.executive_summary(since=params["since"], until=params["until"])
         if name == "device_health":

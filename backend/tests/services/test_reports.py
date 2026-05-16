@@ -19,10 +19,10 @@ def test_pdf_reporter_instantiates() -> None:
     assert reporter is not None
 
 
-def test_registry_list_available_returns_five_entries() -> None:
+def test_registry_list_available_returns_six_entries() -> None:
     registry = ReportRegistry(None)  # type: ignore[arg-type]
     reports = registry.list_available()
-    assert len(reports) == 5
+    assert len(reports) == 6
 
 
 def test_registry_list_available_has_required_fields() -> None:
@@ -36,7 +36,7 @@ def test_registry_list_available_has_required_fields() -> None:
 def test_registry_list_available_names() -> None:
     registry = ReportRegistry(None)  # type: ignore[arg-type]
     names = {r["name"] for r in registry.list_available()}
-    assert names == {"device_inventory", "kpi", "alarms", "executive_summary", "device_health"}
+    assert names == {"device_inventory", "kpi", "alarms", "monitoring_policies", "executive_summary", "device_health"}
 
 
 def test_registry_list_available_formats() -> None:

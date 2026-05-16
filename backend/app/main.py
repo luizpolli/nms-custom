@@ -10,6 +10,7 @@ from app.api.devices import router as devices_router
 from app.api.credentials import router as credentials_router
 from app.api.performance import router as performance_router
 from app.api.mibs import router as mibs_router
+from app.api.monitoring_policies import router as monitoring_policies_router
 from app.api.discovery import router as discovery_router
 from app.api.commands import router as commands_router
 from app.api.ios import router as ios_router
@@ -65,6 +66,7 @@ app.include_router(devices_router, prefix="/api/devices", tags=["devices"], depe
 app.include_router(credentials_router, prefix="/api/credentials", tags=["credentials"], dependencies=_api_auth)
 app.include_router(performance_router, prefix="/api/performance", tags=["performance"], dependencies=_api_auth)
 app.include_router(mibs_router, prefix="/api/mibs", tags=["mibs"], dependencies=_api_auth)
+app.include_router(monitoring_policies_router, prefix="/api/monitoring-policies", tags=["monitoring-policies"], dependencies=_api_auth)
 app.include_router(discovery_router, prefix="/api/discovery", tags=["discovery"], dependencies=_api_auth)
 app.include_router(commands_router, prefix="/api/commands", tags=["commands"], dependencies=_api_auth)
 app.include_router(ios_router, prefix="/api/ios", tags=["ios"], dependencies=_api_auth)

@@ -68,6 +68,12 @@ class Settings(BaseSettings):
     poll_interval: int = 60
     poll_timeout: int = 10
     poll_workers: int = 4
+    monitoring_policy_check_interval: int = 30
+
+    # Syslog
+    syslog_enabled: bool = True
+    syslog_bind_host: str = "0.0.0.0"
+    syslog_bind_port: int = 5514
 
     # Alarms
     alarm_poll_interval: int = 30
