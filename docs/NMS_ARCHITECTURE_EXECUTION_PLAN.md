@@ -365,18 +365,38 @@ Goal: move from monitoring to assurance/root-cause/impact.
 
 Tasks:
 
-- Correlation groups across traps, syslog, KPI breaches, topology changes.
-- Device/interface/service health score.
-- Topology impact calculation.
-- Event timeline per device, interface, and alarm group.
-- Suppression and dedup rules.
-- Baseline breach detection using historical KPI windows.
+- [x] Correlation groups across active/acknowledged alarms using correlation keys
+  and group ids.
+- [x] Network and impacted-device health score derived from active alarm severity
+  and occurrence count.
+- [ ] Topology impact calculation with downstream dependency traversal.
+- [x] Event timeline API and UI for recent assurance events.
+- [ ] Suppression workflow UI beyond existing dedup/alarm-rule foundation.
+- [x] Baseline breach count from recent non-good KPI quality samples.
 
 Validation:
 
 - Multiple related events collapse into a root-cause group.
 - Dashboard shows health score and impacted entities.
 - Topology overlay explains downstream impact.
+
+
+## Phase 4A completion notes — 2026-05-17
+
+Completed first assurance slice:
+
+- Added `/api/assurance/summary`, `/api/assurance/groups`, and
+  `/api/assurance/timeline`.
+- Added deterministic health scoring helpers and tests.
+- Added Assurance UI page with score cards, root-cause groups, impacted devices,
+  and event timeline.
+- Added Dashboard assurance score card.
+
+Remaining Phase 4 work:
+
+- True topology downstream impact traversal.
+- Interface/service-specific impact scoring.
+- Suppression workflow UI and richer group lifecycle controls.
 
 ## Phase 5 — Scale and production readiness
 

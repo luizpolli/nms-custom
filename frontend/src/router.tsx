@@ -103,6 +103,10 @@ const TelemetryPage = lazySafe(
   () => import('./pages/performance/TelemetryPage').then((m) => pickExport(m, 'TelemetryPage')),
   'TelemetryPage',
 );
+const AssurancePage = lazySafe(
+  () => import('./pages/assurance/AssurancePage').then((m) => pickExport(m, 'AssurancePage')),
+  'AssurancePage',
+);
 
 function PageFallback() {
   return (
@@ -125,6 +129,7 @@ export function AppRouter() {
           <Route path="performance" element={<PerformancePage />} />
           <Route path="telemetry" element={<TelemetryPage />} />
           <Route path="alarms" element={<AlarmsPage />} />
+          <Route path="assurance" element={<AssurancePage />} />
           <Route path="alarm-rules" element={<AlarmRulesPage />} />
           <Route path="monitoring-policies" element={<MonitoringPoliciesPage />} />
           <Route path="topology" element={<TopologyPage />} />

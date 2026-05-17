@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Activity, AlertTriangle, Cpu, Server } from 'lucide-react';
+import { AlertTriangle, Cpu, Server, ShieldCheck } from 'lucide-react';
 import { api } from '../lib/api';
 import { useAlarmWebSocket } from '../lib/ws';
 import { Card, CardHeader } from '../components/ui/Card';
@@ -41,10 +41,22 @@ function usePerformanceSummary() {
   });
 }
 
+function useAssuranceSummary() {
+  return useQuery({
+    queryKey: ['assurance', 'summary'],
+    queryFn: async () => {
+      const { data } = await api.get<{ network_score: number; health_state: string }>('/assurance/summary');
+      return data;
+    },
+    refetchInterval: 30_000,
+  });
+}
+
 function Dashboard() {
   const devices = useDevicesCount();
   const alarms = useAlarmSummary();
   const perf = usePerformanceSummary();
+  const assurance = useAssuranceSummary();
   const ws = useAlarmWebSocket();
 
   const activeAlarms =
@@ -81,10 +93,13 @@ function Dashboard() {
           loading={perf.isLoading}
         />
         <StatCard
-          icon={<Activity className="h-5 w-5" />}
-          label="WebSocket"
-          value={ws.connected ? 'Connected' : 'Disconnected'}
-          tone={ws.connected ? 'success' : 'warning'}
+          icon={<ShieldCheck className="h-5 w-5" />}
+          label="Assurance score"
+          value={assurance.data?.network_score ?? '—'}
+          loading={assurance.isLoading}
+          tone={(assurance.data?.network_score ?? 100) >= 90 ? 'success' : (assurance.data?.network_score ?? 100) >= 75 ? 'warning' : 'danger'}
+          trend={assurance.data?.health_state}
+          trendUp={(assurance.data?.network_score ?? 100) >= 90}
         />
       </div>
 
