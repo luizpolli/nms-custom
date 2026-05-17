@@ -289,16 +289,46 @@ Goal: add streaming ingestion without breaking SNMP compatibility.
 
 Backend tasks:
 
-- Add telemetry models/tables:
+- [x] Add telemetry models/tables:
   - collectors;
   - subscriptions;
   - sensor paths;
   - raw samples with short retention;
   - ingestion stats.
-- Implement telemetry receiver skeleton for gNMI/gRPC/MDT-ready ingestion.
-- Implement telemetry worker normalization into existing KPI model.
-- Add sensor catalog mapping vendor/model/path → normalized metric.
-- Publish collector health and KPI updates through the existing event/WebSocket path.
+- [x] Add Alembic migration for telemetry MVP schema.
+- [x] Add telemetry API skeleton:
+  - collector list/create;
+  - subscription list/create;
+  - sensor path catalog list/create;
+  - sample ingest;
+  - telemetry health summary.
+- [x] Implement telemetry normalization into existing KPI model.
+- [x] Publish normalized telemetry sample events through the canonical event bus.
+- [ ] Implement real gNMI/gRPC/MDT receiver transport. Current API ingest is the
+  receiver skeleton boundary for tests and future collectors.
+- [ ] Add frontend telemetry navigation/pages.
+
+
+
+## Phase 3B completion notes — 2026-05-17
+
+Completed telemetry MVP backend skeleton:
+
+- Added telemetry ORM models and migration `0002_telemetry_mvp_schema.py` for
+  collectors, subscriptions, sensor paths, raw samples, and ingestion stats.
+- Added Pydantic schemas and `/api/telemetry` routes for collector, subscription,
+  sensor catalog, sample ingest, and health summary workflows.
+- Added `TelemetryIngestionService` to persist raw samples and normalize them
+  into the existing KPI table with `source_type=telemetry`.
+- Normalized telemetry samples publish `telemetry.sample.normalized` events via
+  the canonical Redis Streams event bus from Phase 3A.
+- Added tests for telemetry sample normalization.
+
+Remaining for full telemetry productization:
+
+- Real gNMI/gRPC/MDT collector/receiver process.
+- Frontend telemetry pages.
+- Retention policies/continuous aggregates for raw telemetry at scale.
 
 Frontend tasks:
 

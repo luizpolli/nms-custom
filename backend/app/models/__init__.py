@@ -16,6 +16,13 @@ from app.models.monitoring_policy import MonitoringPolicy
 from app.models.report_schedule import GeneratedReport, ReportSchedule
 from app.models.topology import TopologyLink, TopologyNode
 from app.models.system import AppRole, AppUser, SystemSetting
+from app.models.telemetry import (
+    TelemetryCollector,
+    TelemetryIngestionStat,
+    TelemetryRawSample,
+    TelemetrySensorPath,
+    TelemetrySubscription,
+)
 
 __all__ = [
     "Alarm",
@@ -39,4 +46,9 @@ __all__ = [
     "AppUser",
     "AppRole",
     "SystemSetting",
+    "TelemetryCollector",
+    "TelemetryIngestionStat",
+    "TelemetryRawSample",
+    "TelemetrySensorPath",
+    "TelemetrySubscription",
 ]
