@@ -21,6 +21,9 @@ WORKER_KINDS: tuple[str, ...] = (
     "syslog-receiver",
     "report-scheduler",
     "telemetry-receiver",
+    "worker-alarm",
+    "worker-discovery",
+    "worker-telemetry",
 )
 
 _KEY_PREFIX = "nms:workers:"

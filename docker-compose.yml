@@ -144,6 +144,78 @@ services:
     networks:
       - nms-net
 
+  worker-alarm:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-worker-alarm
+    restart: unless-stopped
+    command: python -m app.workers.run worker-alarm
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - nms-net
+
+  worker-discovery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-worker-discovery
+    restart: unless-stopped
+    command: python -m app.workers.run worker-discovery
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - nms-net
+
+  worker-telemetry:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-worker-telemetry
+    restart: unless-stopped
+    command: python -m app.workers.run worker-telemetry
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - nms-net
+
   trap-receiver:
     build:
       context: ./backend

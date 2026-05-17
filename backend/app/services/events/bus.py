@@ -65,6 +65,34 @@ class EventBus:
                 logger.debug("EventBus read_latest skipped malformed event {}: {}", stream_id, exc)
         return events
 
+    async def read_since(
+        self,
+        last_id: str = "0-0",
+        *,
+        count: int = 10,
+        block_ms: int = 1000,
+    ) -> list[tuple[str, EventEnvelope]]:
+        """Read events newer than ``last_id``.
+
+        This deliberately uses plain ``XREAD`` instead of consumer groups so the
+        early worker skeletons are lab-friendly: no Redis bootstrap is required,
+        tests can fake the call easily, and processors stay idempotent via the
+        canonical ``event_id``.
+        """
+        client = await self._client()
+        rows = await client.xread({self.stream_name: last_id}, count=count, block=block_ms)
+        events: list[tuple[str, EventEnvelope]] = []
+        for _stream, stream_rows in rows or []:
+            for stream_id, fields in stream_rows:
+                raw = fields.get("event") if isinstance(fields, dict) else None
+                if not raw:
+                    continue
+                try:
+                    events.append((stream_id, EventEnvelope.from_dict(json.loads(raw))))
+                except Exception as exc:
+                    logger.debug("EventBus read_since skipped malformed event {}: {}", stream_id, exc)
+        return events
+
     async def close(self) -> None:
         if self._redis is None:
             return

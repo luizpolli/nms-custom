@@ -31,6 +31,9 @@ class WorkerSupervisor:
             asyncio.create_task(self._run_syslog_receiver_loop(), name="syslog-receiver"),
             asyncio.create_task(self._run_report_scheduler_loop(), name="report-scheduler"),
             asyncio.create_task(self._run_telemetry_receiver_loop(), name="telemetry-receiver"),
+            asyncio.create_task(self._run_event_consumer_loop("worker-alarm"), name="worker-alarm"),
+            asyncio.create_task(self._run_event_consumer_loop("worker-discovery"), name="worker-discovery"),
+            asyncio.create_task(self._run_event_consumer_loop("worker-telemetry"), name="worker-telemetry"),
         ]
         logger.info("WorkerSupervisor started {} tasks", len(self._tasks))
 
@@ -62,6 +65,36 @@ class WorkerSupervisor:
                 logger.error("Monitoring policy loop error: {}", exc)
                 await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
+        await beat.close()
+
+    async def _run_event_consumer_loop(self, kind: str) -> None:
+        from app.services.events.consumers import consumer_for_kind
+
+        backoff = 5
+        beat = WorkerHeartbeat(kind, 60)
+        consumer = consumer_for_kind(kind)
+        await beat.starting()
+        while not self._stop_event.is_set():
+            try:
+                stats = await consumer.poll_once(count=25, block_ms=1000)
+                logger.debug(
+                    "{} event consumer pass: seen={} handled={} skipped={} errors={}",
+                    kind,
+                    stats.seen,
+                    stats.handled,
+                    stats.skipped,
+                    stats.errors,
+                )
+                await beat.success()
+                if self._stop_event.is_set():
+                    break
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                logger.error("{} event consumer error: {}", kind, exc)
+                await beat.failure(str(exc))
+                await asyncio.sleep(backoff)
+        await consumer.close()
         await beat.close()
 
     async def _run_topology_rebuilder_loop(self) -> None:

@@ -7,6 +7,9 @@ Usage:
     python -m app.workers.run trap-receiver
     python -m app.workers.run syslog-receiver
     python -m app.workers.run telemetry-receiver
+    python -m app.workers.run worker-alarm
+    python -m app.workers.run worker-discovery
+    python -m app.workers.run worker-telemetry
 """
 
 from __future__ import annotations
@@ -29,6 +32,9 @@ WORKER_METHODS = {
     "trap-receiver": "_run_trap_receiver_loop",
     "syslog-receiver": "_run_syslog_receiver_loop",
     "telemetry-receiver": "_run_telemetry_receiver_loop",
+    "worker-alarm": "_run_event_consumer_loop",
+    "worker-discovery": "_run_event_consumer_loop",
+    "worker-telemetry": "_run_event_consumer_loop",
 }
 
 
@@ -54,7 +60,10 @@ async def run_worker(kind: str) -> None:
     method_name = WORKER_METHODS[kind]
     method = getattr(supervisor, method_name)
     logger.info("Starting standalone worker: {}", kind)
-    await method()
+    if method_name == "_run_event_consumer_loop":
+        await method(kind)
+    else:
+        await method()
 
 
 def main() -> None:
