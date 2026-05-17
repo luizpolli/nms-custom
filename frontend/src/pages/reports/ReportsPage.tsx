@@ -46,8 +46,8 @@ export default function ReportsPage() {
       const filename = extractFilename(disposition, `nms-${selected.name}`, ext);
       downloadBlob(res.data, filename);
     },
-    onSuccess: () => showToast('Reporte generado y descargado', 'success'),
-    onError: (err: Error) => showToast(err.message ?? 'Error al generar reporte', 'error'),
+    onSuccess: () => showToast('Report generated and downloaded', 'success'),
+    onError: (err: Error) => showToast(err.message ?? 'Failed to generate report', 'error'),
   });
 
   const showToast = (msg: string, type: 'success' | 'error') => {
@@ -76,15 +76,15 @@ export default function ReportsPage() {
 
       {/* Left panel */}
       <aside className="w-72 flex-shrink-0 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-y-auto p-4">
-        <h1 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Reportes</h1>
+        <h1 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Reports</h1>
 
         {isLoading ? (
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-            Cargando...
+            Loading...
           </div>
         ) : reports.length === 0 ? (
-          <p className="text-sm text-gray-500 dark:text-gray-400">No hay reportes disponibles</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">No reports available</p>
         ) : (
           <div className="space-y-5">
             {Object.entries(groups).map(([group, items]) => (
@@ -111,8 +111,8 @@ export default function ReportsPage() {
         {!selected ? (
           <div className="flex h-full items-center justify-center text-gray-500 dark:text-gray-400">
             <div className="text-center">
-              <p className="text-lg mb-1">Selecciona un reporte</p>
-              <p className="text-sm">Elige un reporte de la lista para configurar y generar</p>
+              <p className="text-lg mb-1">Select a report</p>
+              <p className="text-sm">Choose a report from the list to configure and generate</p>
             </div>
           </div>
         ) : (
@@ -123,7 +123,7 @@ export default function ReportsPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-5">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-4">Parámetros</h3>
+              <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-4">Parameters</h3>
               <ReportParamsForm
                 reportName={selected.name}
                 params={params}
@@ -139,10 +139,10 @@ export default function ReportsPage() {
               {isPending ? (
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  Generando...
+                  Generating...
                 </>
               ) : (
-                'Generar'
+                'Generate'
               )}
             </button>
           </div>

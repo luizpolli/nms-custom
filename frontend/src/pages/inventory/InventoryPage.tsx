@@ -58,20 +58,20 @@ export function InventoryPage() {
   return (
     <div className="p-6 space-y-6">
       <PageHeader
-        title="Inventario"
-        subtitle={`${rows.length} entradas de inventario`}
+        title="Inventory"
+        subtitle={`${rows.length} inventory entries`}
         actions={
           <Button variant="ghost" onClick={() => refetch()} disabled={isFetching}>
             <RefreshCw className={`w-4 h-4 mr-1 ${isFetching ? 'animate-spin' : ''}`} />
-            Actualizar
+            Refresh
           </Button>
         }
       />
 
       {isLoading && <Spinner />}
-      {isError && <p className="text-red-500">Error al cargar inventario.</p>}
+      {isError && <p className="text-red-500">Failed to load inventory.</p>}
       {!isLoading && rows.length === 0 && (
-        <EmptyState title="Sin inventario" description="No hay datos de inventario disponibles." />
+        <EmptyState title="No inventory" description="No inventory data is available." />
       )}
 
       {rows.length > 0 && (
@@ -80,14 +80,14 @@ export function InventoryPage() {
             <thead className="bg-gray-50">
               <tr>
                 {[
-                  'Dispositivo',
+                  'Device',
                   'Serial',
-                  'Modelo',
+                  'Model',
                   'Firmware',
-                  'Puertos',
+                  'Ports',
                   'CPU Cores',
-                  'Mem Total (MB)',
-                  'Mem Libre (MB)',
+                  'Total Mem (MB)',
+                  'Free Mem (MB)',
                   'Uptime',
                 ].map((h) => (
                   <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">

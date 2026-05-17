@@ -5,15 +5,16 @@ from __future__ import annotations
 import asyncio
 import uuid
 from datetime import datetime
-from typing import Annotated, Optional
+from typing import Annotated, Literal, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect, status
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
+from app.database import async_session_factory, get_db
 from app.models.alarm import Alarm
+from app.services.alarms.correlator import AlarmCorrelator
 
 router = APIRouter()
 
@@ -42,6 +43,18 @@ class AlarmRead(BaseModel):
 
 class AlarmAck(BaseModel):
     by_user: str
+
+
+class AlarmEventIngest(BaseModel):
+    source_type: Literal["syslog", "event"] = "event"
+    source_host: str
+    event_type: str | None = None
+    message: str
+    severity: str = "info"
+    category: str | None = None
+    correlation_key: str | None = None
+    facility: str | None = None
+    fields: dict[str, str] = Field(default_factory=dict)
 
 
 class AlarmSummary(BaseModel):
@@ -109,6 +122,33 @@ async def alarm_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> AlarmSu
         total=total, active=active, cleared=cleared, acknowledged=acknowledged,
         critical=critical, major=major, minor=minor, warning=warning,
     )
+
+
+@router.post("/ingest", response_model=AlarmRead | None, status_code=status.HTTP_202_ACCEPTED)
+async def ingest_alarm_event(body: AlarmEventIngest) -> AlarmRead | None:
+    """Ingest a syslog or custom event and apply customer alarm rules."""
+    correlator = AlarmCorrelator(async_session_factory)
+    if body.source_type == "syslog":
+        alarm = await correlator.handle_syslog(
+            source_host=body.source_host,
+            message=body.message,
+            severity=body.severity,
+            category=body.category or "syslog",
+            facility=body.facility or body.event_type,
+            correlation_key=body.correlation_key,
+            fields=body.fields,
+        )
+    else:
+        alarm = await correlator.handle_event(
+            source_host=body.source_host,
+            event_type=body.event_type or "customEvent",
+            message=body.message,
+            severity=body.severity,
+            category=body.category or "custom",
+            correlation_key=body.correlation_key,
+            fields=body.fields,
+        )
+    return AlarmRead.model_validate(alarm) if alarm is not None else None
 
 
 @router.get("/{id}", response_model=AlarmRead)

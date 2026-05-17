@@ -16,7 +16,7 @@ export function PollButton({ deviceId, onSuccess }: PollButtonProps) {
     },
     onError: (err) => {
       console.error('Poll failed', err);
-      alert('Error al consultar el dispositivo');
+      alert('Failed to poll device');
     },
   });
 
@@ -26,7 +26,7 @@ export function PollButton({ deviceId, onSuccess }: PollButtonProps) {
       size="sm"
       onClick={() => mutation.mutate()}
       disabled={mutation.isPending}
-      title="Consultar ahora"
+      title="Poll now"
     >
       <RefreshCw className={`w-4 h-4 ${mutation.isPending ? 'animate-spin' : ''}`} />
     </Button>

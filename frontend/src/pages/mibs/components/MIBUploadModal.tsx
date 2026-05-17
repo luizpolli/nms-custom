@@ -48,7 +48,7 @@ export function MIBUploadModal({ onClose, onUploaded }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold text-gray-900 dark:text-white">Subir MIB</h2>
+          <h2 className="text-base font-semibold text-gray-900 dark:text-white">Upload MIB</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl leading-none">&times;</button>
         </div>
 
@@ -74,8 +74,8 @@ export function MIBUploadModal({ onClose, onUploaded }: Props) {
             <p className="text-sm text-gray-700 dark:text-gray-200 font-medium">{file.name}</p>
           ) : (
             <>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Arrastra un archivo o haz clic</p>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Formatos: .mib, .my, .txt</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Drag a file here or click</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Formats: .mib, .my, .txt</p>
             </>
           )}
         </div>
@@ -94,7 +94,7 @@ export function MIBUploadModal({ onClose, onUploaded }: Props) {
 
         {isError && (
           <p className="mt-2 text-xs text-red-500">
-            {error instanceof Error ? error.message : 'Error al subir archivo'}
+            {error instanceof Error ? error.message : 'Failed to upload file'}
           </p>
         )}
 
@@ -103,14 +103,14 @@ export function MIBUploadModal({ onClose, onUploaded }: Props) {
             onClick={onClose}
             className="rounded-md border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
           >
-            Cancelar
+            Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={!file || isPending}
             className="rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-60 transition-colors"
           >
-            {isPending ? 'Subiendo...' : 'Subir MIB'}
+            {isPending ? 'Uploading...' : 'Upload MIB'}
           </button>
         </div>
       </div>

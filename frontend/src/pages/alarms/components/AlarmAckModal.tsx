@@ -26,32 +26,32 @@ export function AlarmAckModal({ alarmId, onClose, filtersKey }: AlarmAckModalPro
   });
 
   return (
-    <Modal open title="Reconocer alarma" onClose={onClose}>
+    <Modal open title="Acknowledge alarm" onClose={onClose}>
       <div className="space-y-4">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Ingresa tu usuario para reconocer la alarma <span className="font-mono font-medium">{alarmId}</span>.
+          Enter your username to acknowledge alarm <span className="font-mono font-medium">{alarmId}</span>.
         </p>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">Usuario</label>
+          <label className="block text-xs text-gray-500 mb-1">User</label>
           <Input
             value={byUser}
             onChange={(e) => setByUser(e.target.value)}
-            placeholder="usuario@dominio"
+            placeholder="user@domain"
             autoFocus
           />
         </div>
         <div className="flex justify-end gap-2">
-          <Button variant="outline" onClick={onClose}>Cancelar</Button>
+          <Button variant="outline" onClick={onClose}>Cancel</Button>
           <Button
             onClick={() => mutation.mutate()}
             disabled={!byUser.trim() || mutation.isPending}
             loading={mutation.isPending}
           >
-            Reconocer
+            Acknowledge
           </Button>
         </div>
         {mutation.isError && (
-          <p className="text-xs text-red-500">Error al reconocer la alarma. Intenta de nuevo.</p>
+          <p className="text-xs text-red-500">Failed to acknowledge alarm. Please try again.</p>
         )}
       </div>
     </Modal>

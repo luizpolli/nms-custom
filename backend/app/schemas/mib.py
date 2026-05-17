@@ -35,3 +35,16 @@ class MIBRead(MIBBase):
     id: uuid.UUID
     created_at: datetime
     updated_at: datetime
+
+
+class MIBNotificationRead(BaseModel):
+    name: str
+    oid: Optional[str] = None
+    objects: list[str] = Field(default_factory=list)
+    description: Optional[str] = None
+
+
+class MIBSummaryRead(BaseModel):
+    module_name: Optional[str] = None
+    module_identity_oid: Optional[str] = None
+    notifications: list[MIBNotificationRead] = Field(default_factory=list)

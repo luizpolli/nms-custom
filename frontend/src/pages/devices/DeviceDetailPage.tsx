@@ -67,26 +67,26 @@ export function DeviceDetailPage() {
   const pollMutation = useMutation({
     mutationFn: () => api.post(`/devices/${id}/poll`),
     onSuccess: () => {
-      setPollMessage('Consulta iniciada correctamente.');
+      setPollMessage('Poll started successfully.');
       queryClient.invalidateQueries({ queryKey: ['device', id] });
       setTimeout(() => setPollMessage(''), 3000);
     },
     onError: (err) => {
       console.error('Poll failed', err);
-      alert('Error al consultar el dispositivo');
+      alert('Failed to poll device');
     },
   });
 
   const TABS: { key: Tab; label: string }[] = [
-    { key: 'overview', label: 'Resumen' },
-    { key: 'inventory', label: 'Inventario' },
+    { key: 'overview', label: 'Overview' },
+    { key: 'inventory', label: 'Inventory' },
     { key: 'interfaces', label: 'Interfaces' },
-    { key: 'ios', label: 'Versiones IOS' },
-    { key: 'kpis', label: 'KPIs recientes' },
+    { key: 'ios', label: 'IOS Versions' },
+    { key: 'kpis', label: 'Recent KPIs' },
   ];
 
   if (isLoading) return <Spinner />;
-  if (!device) return <p className="p-6 text-red-500">Dispositivo no encontrado.</p>;
+  if (!device) return <p className="p-6 text-red-500">Device not found.</p>;
 
   return (
     <div className="p-6 space-y-6">
@@ -102,7 +102,7 @@ export function DeviceDetailPage() {
               {pollMessage && <span className="text-green-600 text-sm">{pollMessage}</span>}
               <Button onClick={() => pollMutation.mutate()} disabled={pollMutation.isPending}>
                 <RefreshCw className={`w-4 h-4 mr-1 ${pollMutation.isPending ? 'animate-spin' : ''}`} />
-                Consultar ahora
+                Poll now
               </Button>
             </div>
           }
@@ -140,14 +140,14 @@ export function DeviceDetailPage() {
       {/* Tab content */}
       {activeTab === 'overview' && (
         <Card className="p-4 space-y-3">
-          <h3 className="font-semibold text-gray-700">Información del sistema</h3>
+          <h3 className="font-semibold text-gray-700">System information</h3>
           <dl className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-            <dt className="text-gray-500">Tipo</dt><dd>{device.device_type}</dd>
-            <dt className="text-gray-500">Fabricante</dt><dd>{device.vendor || '—'}</dd>
-            <dt className="text-gray-500">Modelo</dt><dd>{device.model || '—'}</dd>
+            <dt className="text-gray-500">Type</dt><dd>{device.device_type}</dd>
+            <dt className="text-gray-500">Vendor</dt><dd>{device.vendor || '—'}</dd>
+            <dt className="text-gray-500">Model</dt><dd>{device.model || '—'}</dd>
             <dt className="text-gray-500">OS</dt><dd>{device.os_type}</dd>
-            <dt className="text-gray-500">Ubicación</dt><dd>{device.location || '—'}</dd>
-            <dt className="text-gray-500">Estado</dt><dd><DeviceStatusBadge status={device.status} /></dd>
+            <dt className="text-gray-500">Location</dt><dd>{device.location || '—'}</dd>
+            <dt className="text-gray-500">Status</dt><dd><DeviceStatusBadge status={device.status} /></dd>
           </dl>
         </Card>
       )}
@@ -156,14 +156,14 @@ export function DeviceDetailPage() {
         <div>
           {!inventory && <Spinner />}
           {inventory && inventory.length === 0 && (
-            <EmptyState title="Sin inventario" description="No hay datos de inventario para este dispositivo." />
+            <EmptyState title="No inventory" description="No inventory data is available for this device." />
           )}
           {inventory && inventory.length > 0 && (
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    {['Serial', 'Modelo', 'Firmware', 'Puertos', 'CPU Cores', 'Mem Total', 'Mem Libre', 'Uptime'].map((h) => (
+                    {['Serial', 'Model', 'Firmware', 'Ports', 'CPU Cores', 'Mem Total', 'Free Mem', 'Uptime'].map((h) => (
                       <th key={h} className="px-4 py-2 text-left text-gray-600 font-medium">{h}</th>
                     ))}
                   </tr>
@@ -191,8 +191,8 @@ export function DeviceDetailPage() {
       {activeTab === 'interfaces' && (
         <Card className="p-6 text-center text-gray-500">
           {/* TODO: Backend does not expose interfaces endpoint yet. Implement when GET /devices/{id}/interfaces is available. */}
-          <p className="text-sm">Las interfaces aún no están disponibles.</p>
-          <p className="text-xs text-gray-400 mt-1">Pendiente: implementar cuando el backend exponga <code>GET /devices/{'{'}{id}{'}'}/interfaces</code>.</p>
+          <p className="text-sm">Interfaces are not available yet.</p>
+          <p className="text-xs text-gray-400 mt-1">Pending: implement when the backend exposes <code>GET /devices/{'{'}{id}{'}'}/interfaces</code>.</p>
         </Card>
       )}
 
@@ -200,22 +200,22 @@ export function DeviceDetailPage() {
         <div>
           {!iosVersions && <Spinner />}
           {iosVersions && iosVersions.length === 0 && (
-            <EmptyState title="Sin versiones" description="No se han detectado versiones IOS para este dispositivo." />
+            <EmptyState title="No versions" description="No IOS versions have been detected for this device." />
           )}
           {iosVersions && iosVersions.length > 0 && (
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-4 py-2 text-left text-gray-600">Versión</th>
-                    <th className="px-4 py-2 text-left text-gray-600">Detectada el</th>
+                    <th className="px-4 py-2 text-left text-gray-600">Version</th>
+                    <th className="px-4 py-2 text-left text-gray-600">Detected at</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {iosVersions.map((v) => (
                     <tr key={v.id} className="hover:bg-gray-50">
                       <td className="px-4 py-2 font-mono">{v.version}</td>
-                      <td className="px-4 py-2">{new Date(v.detected_at).toLocaleString('es-MX')}</td>
+                      <td className="px-4 py-2">{new Date(v.detected_at).toLocaleString('en-US')}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -227,10 +227,10 @@ export function DeviceDetailPage() {
 
       {activeTab === 'kpis' && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <StatCard label="Estado" value={device.status} />
+          <StatCard label="Status" value={device.status} />
           <StatCard label="OS" value={device.os_type} />
-          <StatCard label="Fabricante" value={device.vendor || '—'} />
-          <StatCard label="Modelo" value={device.model || '—'} />
+          <StatCard label="Vendor" value={device.vendor || '—'} />
+          <StatCard label="Model" value={device.model || '—'} />
         </div>
       )}
     </div>

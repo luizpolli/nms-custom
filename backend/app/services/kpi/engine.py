@@ -120,7 +120,7 @@ class KPIEngine:
         ]
 
     async def _persist(self, records: list[KPIRecord]) -> list[KPI]:
-        """Bulk-insert KPIRecords."""
+        """Bulk-insert KPIRecords and evaluate threshold crossings."""
         if not records:
             return []
         kpi_rows = [_record_to_model(r) for r in records]
@@ -128,7 +128,17 @@ class KPIEngine:
             session.add_all(kpi_rows)
             await session.commit()
             logger.debug("Persisted {} KPI rows", len(kpi_rows))
+        await self._evaluate_thresholds(kpi_rows)
         return kpi_rows
+
+    async def _evaluate_thresholds(self, kpi_rows: list[KPI]) -> None:
+        from app.services.kpi.thresholds import KPIThresholdEvaluator
+
+        try:
+            evaluator = KPIThresholdEvaluator(self._session_factory)
+            await evaluator.evaluate(kpi_rows)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("KPI threshold evaluation failed: {}", exc)
 
 
 # ---------------------------------------------------------------------------

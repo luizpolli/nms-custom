@@ -16,7 +16,7 @@ function StatusBadge({ status }: { status: string }) {
     : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400';
   return (
     <span className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${cls}`}>
-      {status === 'active' ? 'Activo' : 'Inactivo'}
+      {status === 'active' ? 'Active' : 'Inactive'}
     </span>
   );
 }
@@ -42,7 +42,7 @@ export default function MIBsPage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['mibs'] });
       setDeleteId(null);
-      showMsg('MIB eliminada');
+      showMsg('MIB deleted');
     },
   });
 
@@ -62,20 +62,20 @@ export default function MIBsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-xl font-semibold text-gray-900 dark:text-white">MIBs</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Gestión de archivos MIB del sistema</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">System MIB file management</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => { setEditMib(null); setShowForm(true); }}
             className="rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
-            Nueva MIB
+            New MIB
           </button>
           <button
             onClick={() => setShowUpload(true)}
             className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
           >
-            Subir MIB
+            Upload MIB
           </button>
         </div>
       </div>
@@ -83,19 +83,19 @@ export default function MIBsPage() {
       {isLoading ? (
         <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
           <span className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-          Cargando MIBs...
+          Loading MIBs...
         </div>
       ) : mibs.length === 0 ? (
         <div className="text-center py-16 text-gray-500 dark:text-gray-400">
-          <p className="text-lg mb-1">Sin MIBs registradas</p>
-          <p className="text-sm">Sube un archivo .mib para comenzar</p>
+          <p className="text-lg mb-1">No registered MIBs</p>
+          <p className="text-sm">Upload a .mib file to get started</p>
         </div>
       ) : (
         <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-700">
               <tr>
-                {['Nombre', 'OID raíz', 'Estado', 'Ruta de archivo', 'Creado', 'Acciones'].map((h) => (
+                {['Name', 'Root OID', 'Status', 'File path', 'Created', 'Actions'].map((h) => (
                   <th key={h} className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     {h}
                   </th>
@@ -110,20 +110,20 @@ export default function MIBsPage() {
                   <td className="px-4 py-3"><StatusBadge status={mib.status} /></td>
                   <td className="px-4 py-3 text-xs text-gray-500 dark:text-gray-400 max-w-xs truncate">{mib.file_path ?? '—'}</td>
                   <td className="px-4 py-3 text-xs text-gray-500 dark:text-gray-400">
-                    {mib.created_at ? new Date(mib.created_at).toLocaleDateString('es-MX') : '—'}
+                    {mib.created_at ? new Date(mib.created_at).toLocaleDateString('en-US') : '—'}
                   </td>
                   <td className="px-4 py-3 flex items-center gap-3">
                     <button
                       onClick={() => { setEditMib(mib); setShowForm(true); }}
                       className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
                     >
-                      Editar
+                      Edit
                     </button>
                     <button
                       onClick={() => setDeleteId(mib.id)}
                       className="text-xs text-red-500 hover:underline"
                     >
-                      Eliminar
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -137,20 +137,20 @@ export default function MIBsPage() {
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full">
-            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Confirmar eliminación</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Esta acción no se puede deshacer.</p>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Confirm deletion</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">This action cannot be undone.</p>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setDeleteId(null)}
                 className="rounded-md border border-gray-300 dark:border-gray-600 px-4 py-2 text-sm text-gray-700 dark:text-gray-300"
               >
-                Cancelar
+                Cancel
               </button>
               <button
                 onClick={() => deleteMib(deleteId)}
                 className="rounded-md bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700"
               >
-                Eliminar
+                Delete
               </button>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default function MIBsPage() {
       {showUpload && (
         <MIBUploadModal
           onClose={() => setShowUpload(false)}
-          onUploaded={() => { setShowUpload(false); showMsg('MIB subida correctamente'); }}
+          onUploaded={() => { setShowUpload(false); showMsg('MIB uploaded successfully'); }}
         />
       )}
 
@@ -168,7 +168,7 @@ export default function MIBsPage() {
         <MIBFormModal
           mib={editMib ?? undefined}
           onClose={() => { setShowForm(false); setEditMib(null); }}
-          onSaved={() => { setShowForm(false); setEditMib(null); showMsg('MIB guardada'); }}
+          onSaved={() => { setShowForm(false); setEditMib(null); showMsg('MIB saved'); }}
         />
       )}
     </div>

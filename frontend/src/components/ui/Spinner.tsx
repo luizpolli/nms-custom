@@ -14,7 +14,7 @@ export function Spinner({ size = 'md', className }: SpinnerProps) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      aria-label="Cargando..."
+      aria-label="Loading..."
       role="status"
     >
       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />

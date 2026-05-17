@@ -14,10 +14,10 @@ const statusVariantMap: Record<DeviceStatus, 'success' | 'danger' | 'warning' | 
 };
 
 const statusLabelMap: Record<DeviceStatus, string> = {
-  reachable: 'Alcanzable',
-  unreachable: 'No alcanzable',
-  unknown: 'Desconocido',
-  polling: 'Consultando',
+  reachable: 'Reachable',
+  unreachable: 'Unreachable',
+  unknown: 'Unknown',
+  polling: 'Polling',
 };
 
 export function DeviceStatusBadge({ status }: DeviceStatusBadgeProps) {
