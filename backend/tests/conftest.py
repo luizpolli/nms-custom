@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import os
 
-# Keep API smoke tests isolated from Docker-only service names in .env.
-os.environ.setdefault("APP_ENV", "test")
-os.environ.setdefault("HTTPS_ENABLED", "false")
-os.environ.setdefault("HTTPS_REDIRECT_ENABLED", "false")
+# Keep API smoke tests isolated from Docker/Compose runtime settings.
+# Compose injects APP_ENV=development into the test container; tests must win.
+os.environ["APP_ENV"] = "test"
+os.environ["HTTPS_ENABLED"] = "false"
+os.environ["HTTPS_REDIRECT_ENABLED"] = "false"
+os.environ["EVENT_BUS_ENABLED"] = "false"
