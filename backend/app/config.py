@@ -32,6 +32,10 @@ class Settings(BaseSettings):
     redis_db: int = 0
     redis_password: str = ""
 
+    # Event bus
+    event_bus_enabled: bool = True
+    event_stream_name: str = "nms:events"
+
     # SNMP
     snmp_default_community: str = "public"
     snmp_version: str = "v2c"

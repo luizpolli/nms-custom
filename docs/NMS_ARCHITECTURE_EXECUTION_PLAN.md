@@ -254,7 +254,36 @@ Completed migration and observability hardening:
 Next: Phase 3 should introduce canonical event envelope + Redis Streams wrapper
 before starting the telemetry MVP.
 
-## Phase 3 — Telemetry MVP
+## Phase 3A — Event bus foundation
+
+Goal: introduce the canonical event envelope and Redis Streams transport before
+adding telemetry-specific ingestion.
+
+Deliverables:
+
+- [x] Canonical `EventEnvelope` contract with `event_id`, `event_type`,
+  `source`, `timestamp`, `trace_id`, optional `device_id`, `object_type`,
+  `object_id`, `severity`, and `payload`.
+- [x] Redis Streams-backed `EventBus` wrapper with publish/read helpers.
+- [x] Configurable stream name via `EVENT_STREAM_NAME` and event-bus disable
+  switch via `EVENT_BUS_ENABLED`.
+- [x] Best-effort publishing from the alarm correlator path, covering SNMP
+  traps, syslog events, custom events, and KPI threshold-crossing events that
+  flow through `AlarmCorrelator`.
+- [x] Unit tests for envelope roundtrip, Redis Streams wrapper behavior, and
+  test-mode publish suppression.
+
+Validation:
+
+- Backend tests pass.
+- Bandit SAST passes.
+- Backend compile check passes.
+- Frontend build and Compose config remain clean.
+
+Next: Phase 3B telemetry MVP can consume the same event contract instead of
+creating a separate ingestion world.
+
+## Phase 3B — Telemetry MVP
 
 Goal: add streaming ingestion without breaking SNMP compatibility.
 
