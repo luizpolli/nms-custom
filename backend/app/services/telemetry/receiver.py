@@ -15,6 +15,7 @@ from typing import Callable
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.services.telemetry.adapters import TelemetryAdapterError, parse_gnmi_json_frame
 from app.services.telemetry.ingestion import TelemetryIngestionService
 
 SessionFactory = Callable[[], AsyncSession]
@@ -48,8 +49,46 @@ class TelemetryReceiver:
             self.config.bind_host,
             self.config.bind_port,
         )
+        if self.config.transport.lower() in {"gnmi-json", "mdt-json", "json"}:
+            await self._run_json_line_server(stop_event)
+            return
+        logger.warning(
+            "Telemetry transport {} has no local protocol server yet; use gnmi-json for line-delimited gNMI/MDT frames",
+            self.config.transport,
+        )
         while not stop_event.is_set():
             try:
                 await asyncio.wait_for(stop_event.wait(), timeout=self.config.idle_heartbeat_seconds)
             except asyncio.TimeoutError:
                 logger.debug("Telemetry receiver idle heartbeat transport={}", self.config.transport)
+
+    async def _run_json_line_server(self, stop_event: asyncio.Event) -> None:
+        """Run a lightweight TCP line-delimited JSON telemetry adapter."""
+        server = await asyncio.start_server(self._handle_client, self.config.bind_host, self.config.bind_port)
+        logger.info("Telemetry JSON adapter listening on {}:{}", self.config.bind_host, self.config.bind_port)
+        async with server:
+            server_task = asyncio.create_task(server.serve_forever())
+            try:
+                await stop_event.wait()
+            finally:
+                server.close()
+                await server.wait_closed()
+                server_task.cancel()
+
+    async def _handle_client(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter) -> None:
+        peer = writer.get_extra_info("peername")
+        try:
+            while line := await reader.readline():
+                try:
+                    samples = parse_gnmi_json_frame(line)
+                    for sample in samples:
+                        await self.ingestion.ingest_sample(sample)
+                    writer.write(f"OK {len(samples)}\n".encode("utf-8"))
+                    await writer.drain()
+                except TelemetryAdapterError as exc:
+                    logger.warning("Telemetry adapter rejected frame from {}: {}", peer, exc)
+                    writer.write(f"ERR {exc}\n".encode("utf-8"))
+                    await writer.drain()
+        finally:
+            writer.close()
+            await writer.wait_closed()
