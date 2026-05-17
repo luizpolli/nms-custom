@@ -73,7 +73,8 @@ class Settings(BaseSettings):
 
     # Syslog
     syslog_enabled: bool = True
-    syslog_bind_host: str = "0.0.0.0"
+    # Container syslog receiver; port exposure is controlled by Compose/K8s/firewall.
+    syslog_bind_host: str = "0.0.0.0"  # nosec B104
     syslog_bind_port: int = 5514
 
     # Alarms
