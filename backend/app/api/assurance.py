@@ -21,6 +21,7 @@ from app.models.kpi import KPI
 from app.models.service import Service, ServiceMember
 from app.models.topology import TopologyLink, TopologyNode
 from app.services.assurance import clamp_score, severity_penalty
+from app.services.assurance.topology_impact import compute_topology_blast_radius
 
 router = APIRouter()
 
@@ -80,6 +81,10 @@ class TopologyImpactNode(BaseModel):
     label: str
     depth: int
     role: str | None = None
+    via_link_id: uuid.UUID | None = None
+    direction: str = "outbound"
+    confidence: str = "high"
+    reason: str = "directed-link"
 
 
 class TopologyImpactResponse(BaseModel):
@@ -87,6 +92,8 @@ class TopologyImpactResponse(BaseModel):
     impacted_nodes: list[TopologyImpactNode]
     impacted_count: int
     max_depth: int
+    traversal_mode: str = "auto"
+    ambiguous_edge_count: int = 0
 
 
 class GroupLifecycleRequest(BaseModel):
@@ -618,13 +625,25 @@ def _node_label(node: TopologyNode) -> str:
     return node.device.name if node.device else node.node_id
 
 
-def _impact_node(node: TopologyNode, depth: int) -> TopologyImpactNode:
+def _impact_node(
+    node: TopologyNode,
+    depth: int,
+    *,
+    via_link_id: uuid.UUID | None = None,
+    direction: str = "outbound",
+    confidence: str = "high",
+    reason: str = "directed-link",
+) -> TopologyImpactNode:
     return TopologyImpactNode(
         node_id=node.node_id,
         device_id=node.device_id,
         label=_node_label(node),
         depth=depth,
         role=node.role,
+        via_link_id=via_link_id,
+        direction=direction,
+        confidence=confidence,
+        reason=reason,
     )
 
 
@@ -634,17 +653,18 @@ async def topology_impact(
     device_id: uuid.UUID | None = None,
     node_id: str | None = None,
     max_depth: int = 3,
+    traversal_mode: str = "auto",
 ) -> TopologyImpactResponse:
-    """Return downstream topology impact from a root device/node.
+    """Return role-aware topology blast radius from a root device/node.
 
-    The graph is treated as directed from link source to target. If discovery
-    created the opposite orientation, callers can pass the other endpoint; this
-    is still useful as a first assurance traversal without mutating topology.
+    ``auto`` follows directed links and safely explores reverse edges when
+    discovery orientation is ambiguous or role hierarchy suggests the persisted
+    edge points upstream.
     """
     nodes_result = await db.execute(select(TopologyNode))
     nodes = list(nodes_result.scalars().all())
     if not nodes:
-        return TopologyImpactResponse(root=None, impacted_nodes=[], impacted_count=0, max_depth=max_depth)
+        return TopologyImpactResponse(root=None, impacted_nodes=[], impacted_count=0, max_depth=max_depth, traversal_mode=traversal_mode)
 
     root = None
     for node in nodes:
@@ -658,32 +678,31 @@ async def topology_impact(
         root = nodes[0]
 
     links_result = await db.execute(select(TopologyLink))
-    adjacency: dict[uuid.UUID, list[uuid.UUID]] = defaultdict(list)
-    for link in links_result.scalars().all():
-        adjacency[link.source_node_id].append(link.target_node_id)
-
-    node_by_pk = {node.id: node for node in nodes}
-    visited = {root.id}
-    queue: list[tuple[uuid.UUID, int]] = [(root.id, 0)]
-    impacted: list[TopologyImpactNode] = []
     depth_limit = max(1, min(max_depth, 10))
+    graph = compute_topology_blast_radius(
+        root=root,
+        nodes=nodes,
+        links=list(links_result.scalars().all()),
+        max_depth=depth_limit,
+        traversal_mode=traversal_mode,
+    )
 
-    while queue:
-        current, depth = queue.pop(0)
-        if depth >= depth_limit:
-            continue
-        for child_id in adjacency.get(current, []):
-            if child_id in visited or child_id not in node_by_pk:
-                continue
-            visited.add(child_id)
-            child_depth = depth + 1
-            child = node_by_pk[child_id]
-            impacted.append(_impact_node(child, child_depth))
-            queue.append((child_id, child_depth))
-
+    impacted = [
+        _impact_node(
+            step.node,
+            step.depth,
+            via_link_id=step.via_link_id,
+            direction=step.direction,
+            confidence=step.confidence,
+            reason=step.reason,
+        )
+        for step in graph.impacted
+    ]
     return TopologyImpactResponse(
         root=_impact_node(root, 0),
         impacted_nodes=impacted,
         impacted_count=len(impacted),
         max_depth=depth_limit,
+        traversal_mode=graph.traversal_mode,
+        ambiguous_edge_count=graph.ambiguous_edge_count,
     )
