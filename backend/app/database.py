@@ -32,12 +32,18 @@ async def init_db() -> None:
     """Ensure ORM-declared tables exist (dev/embedded fallback).
 
     Alembic migrations (``alembic upgrade head``) are the canonical schema
-    source. This helper only runs ``create_all`` so embedded/dev modes that
-    skip the migration step still start with a usable schema.
+    source. This helper runs ``create_all`` and then performs best-effort
+    TimescaleDB setup for local/Compose deployments that skip migrations.
     """
     from app import models  # noqa: F401 — import to register models
+    from app.services.retention import ensure_timescale_schema
+
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+    async with async_session_factory() as session:
+        await ensure_timescale_schema(session)
+        await session.commit()
 
 
 async def close_db() -> None:

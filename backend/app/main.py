@@ -25,9 +25,11 @@ from app.api.settings import router as settings_router
 from app.api.system import router as system_router
 from app.api.telemetry import router as telemetry_router
 from app.api.assurance import router as assurance_router
+from app.api.metrics import router as metrics_router
 from app.workers import WorkerSupervisor
 from app.security.auth import require_api_auth
 from app.security.redaction import configure_log_redaction
+from app.services.observability.metrics import observe_request
 
 settings = Settings()
 configure_log_redaction()
@@ -69,6 +71,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.middleware("http")(observe_request)
 
 # Include routers
 _api_auth = [Depends(require_api_auth)]
@@ -91,6 +94,7 @@ app.include_router(system_router, prefix="/api/system", tags=["system"], depende
 app.include_router(telemetry_router, prefix="/api/telemetry", tags=["telemetry"], dependencies=_api_auth)
 app.include_router(assurance_router, prefix="/api/assurance", tags=["assurance"], dependencies=_api_auth)
 app.include_router(health_router, prefix="/health", tags=["health"])
+app.include_router(metrics_router, tags=["metrics"])
 
 
 @app.get("/api/health")

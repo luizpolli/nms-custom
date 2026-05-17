@@ -473,8 +473,8 @@ Tasks:
   - syslog-receiver;
   - telemetry-receiver.
 - Add worker sharding/concurrency controls.
-- Add retention policies and Timescale continuous aggregates.
-- Add NMS self-observability metrics.
+- [x] Add retention policies and Timescale continuous aggregates.
+- [x] Add NMS self-observability metrics.
 - Prepare Helm chart after Compose boundaries are proven.
 - Add production RBAC review.
 
@@ -483,6 +483,29 @@ Validation:
 - Workers can run independently.
 - Queue depth and worker health are observable.
 - Dashboard queries remain fast with seeded/test volume.
+
+## Phase 5A completion notes — 2026-05-17
+
+Completed first scale/production-readiness slice:
+
+- Added best-effort TimescaleDB setup for `kpis` and `telemetry_raw_samples`:
+  extension check, hypertable conversion, retention policies, and hourly KPI
+  rollup continuous aggregate (`kpi_hourly_rollups`).
+- Added portable retention policy definitions for raw telemetry (7 days) and
+  normalized KPIs (90 days), with explicit `/api/system/retention` visibility.
+- Added Prometheus `/metrics` endpoint with NMS gauges for KPI rows, raw
+  telemetry rows, telemetry accepted/dropped counters, event queue depth, and
+  worker stale/run/error heartbeat state.
+- Added API request count/latency middleware metrics.
+- Added Alembic migration `0003_timescale_retention_metrics.py` for production
+  Timescale deployments, keeping operations best-effort on plain PostgreSQL.
+
+Remaining Phase 5 work:
+
+- Worker sharding/concurrency controls.
+- Helm chart.
+- Production RBAC review.
+- Broader DB latency instrumentation beyond scrape-time counters.
 
 ## Phase 6 — AI-assisted operations
 

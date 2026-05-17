@@ -4,9 +4,14 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from fastapi import APIRouter
+from typing import Annotated
 
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_db
 from app.services.observability import get_all_worker_status
+from app.services.retention import DEFAULT_RETENTION_POLICIES, ensure_timescale_schema
 
 router = APIRouter()
 
@@ -35,4 +40,18 @@ async def system_health() -> dict:
             "stale_count": len(stale_workers),
             "stale_workers": stale_workers,
         },
+    }
+
+
+@router.get("/retention")
+async def retention_status(db: Annotated[AsyncSession, Depends(get_db)]) -> dict:
+    """Return configured retention windows and best-effort Timescale setup status."""
+    timescale = await ensure_timescale_schema(db)
+    return {
+        "generated_at": _now_iso(),
+        "policies": [
+            {"table": policy.table, "timestamp_column": policy.timestamp_column, "keep_days": policy.keep_days}
+            for policy in DEFAULT_RETENTION_POLICIES
+        ],
+        "timescale": timescale,
     }
