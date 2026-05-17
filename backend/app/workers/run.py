@@ -6,6 +6,7 @@ Usage:
     python -m app.workers.run reports
     python -m app.workers.run trap-receiver
     python -m app.workers.run syslog-receiver
+    python -m app.workers.run telemetry-receiver
 """
 
 from __future__ import annotations
@@ -27,6 +28,7 @@ WORKER_METHODS = {
     "reports": "_run_report_scheduler_loop",
     "trap-receiver": "_run_trap_receiver_loop",
     "syslog-receiver": "_run_syslog_receiver_loop",
+    "telemetry-receiver": "_run_telemetry_receiver_loop",
 }
 
 

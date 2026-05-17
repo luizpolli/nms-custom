@@ -30,6 +30,7 @@ class WorkerSupervisor:
             asyncio.create_task(self._run_trap_receiver_loop(), name="trap-receiver"),
             asyncio.create_task(self._run_syslog_receiver_loop(), name="syslog-receiver"),
             asyncio.create_task(self._run_report_scheduler_loop(), name="report-scheduler"),
+            asyncio.create_task(self._run_telemetry_receiver_loop(), name="telemetry-receiver"),
         ]
         logger.info("WorkerSupervisor started {} tasks", len(self._tasks))
 
@@ -145,6 +146,35 @@ class WorkerSupervisor:
                 break
             except Exception as exc:
                 logger.error("Report scheduler error: {}", exc)
+                await beat.failure(str(exc))
+                await asyncio.sleep(backoff)
+        await beat.close()
+
+    async def _run_telemetry_receiver_loop(self) -> None:
+        if not settings.telemetry_receiver_enabled:
+            logger.info("Telemetry receiver disabled")
+            return
+        from app.services.telemetry.receiver import TelemetryReceiver, TelemetryReceiverConfig
+
+        backoff = 10
+        beat = WorkerHeartbeat("telemetry-receiver", 60)
+        await beat.starting()
+        while not self._stop_event.is_set():
+            try:
+                receiver = TelemetryReceiver(
+                    async_session_factory,
+                    TelemetryReceiverConfig(
+                        transport=settings.telemetry_transport,
+                        bind_host=settings.telemetry_bind_host,
+                        bind_port=settings.telemetry_bind_port,
+                    ),
+                )
+                await beat.success()
+                await receiver.run(self._stop_event)
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                logger.error("Telemetry receiver error: {}", exc)
                 await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
         await beat.close()

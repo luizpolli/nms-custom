@@ -173,6 +173,30 @@ services:
     networks:
       - nms-net
 
+  telemetry-receiver:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-telemetry-receiver
+    restart: unless-stopped
+    command: python -m app.workers.run telemetry-receiver
+    env_file:
+      - .env
+    environment:
+      TELEMETRY_BIND_PORT: "${TELEMETRY_BIND_PORT:-57400}"
+      TELEMETRY_TRANSPORT: "${TELEMETRY_TRANSPORT:-gnmi}"
+    ports:
+      - "${TELEMETRY_BIND_PORT:-57400}:${TELEMETRY_BIND_PORT:-57400}/tcp"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nms-net
+
   frontend:
     build:
       context: ./frontend

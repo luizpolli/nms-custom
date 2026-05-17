@@ -304,9 +304,12 @@ Backend tasks:
   - telemetry health summary.
 - [x] Implement telemetry normalization into existing KPI model.
 - [x] Publish normalized telemetry sample events through the canonical event bus.
-- [ ] Implement real gNMI/gRPC/MDT receiver transport. Current API ingest is the
-  receiver skeleton boundary for tests and future collectors.
-- [ ] Add frontend telemetry navigation/pages.
+- [x] Add frontend telemetry navigation/pages for collector status, subscriptions,
+  sensor catalog, and health cards.
+- [x] Add standalone `telemetry-receiver` runtime service/worker boundary with
+  heartbeat and gNMI-ready config.
+- [ ] Implement real gNMI/gRPC/MDT protocol adapter. The receiver process is now
+  wired, but protocol decoding/subscription transport remains future work.
 
 
 
@@ -326,8 +329,7 @@ Completed telemetry MVP backend skeleton:
 
 Remaining for full telemetry productization:
 
-- Real gNMI/gRPC/MDT collector/receiver process.
-- Frontend telemetry pages.
+- Real gNMI/gRPC/MDT protocol adapter inside the now-wired receiver process.
 - Retention policies/continuous aggregates for raw telemetry at scale.
 
 Frontend tasks:
@@ -343,6 +345,19 @@ Validation:
 - Simulated telemetry sample becomes normalized KPI sample.
 - Telemetry health appears in UI.
 - SNMP KPI path remains working.
+
+
+## Phase 3C/3D completion notes — 2026-05-17
+
+Completed telemetry UI and receiver runtime boundary:
+
+- Added Telemetry navigation and page with health cards, collector list/create,
+  subscription list/create, and sensor path catalog list/create.
+- Added standalone `telemetry-receiver` worker kind and Docker Compose service.
+- Added telemetry receiver config/runtime skeleton with heartbeat integration via
+  `/api/system/health`.
+- Kept protocol adapter explicitly pending: gNMI/gRPC/MDT decoding and device
+  subscription transport should plug into `TelemetryReceiver` next.
 
 ## Phase 4 — Correlation and assurance
 

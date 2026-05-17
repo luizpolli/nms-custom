@@ -94,6 +94,13 @@ class Settings(BaseSettings):
     syslog_bind_host: str = "0.0.0.0"  # nosec B104
     syslog_bind_port: int = 5514
 
+    # Telemetry receiver
+    telemetry_receiver_enabled: bool = True
+    # Container telemetry receiver; port exposure is controlled by Compose/K8s/firewall.
+    telemetry_bind_host: str = "0.0.0.0"  # nosec B104
+    telemetry_bind_port: int = 57400
+    telemetry_transport: str = "gnmi"
+
     # Alarms
     alarm_poll_interval: int = 30
     alarm_workers: int = 2

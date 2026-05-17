@@ -59,3 +59,12 @@ def test_normalize_sample_falls_back_to_path_metric():
     assert kpi.kpi_type == "components.component.state.temperature.instant"[:50]
     assert kpi.object_type == "device"
     assert kpi.quality == "good"
+
+from app.services.telemetry.receiver import TelemetryReceiverConfig
+
+
+def test_telemetry_receiver_config_defaults():
+    cfg = TelemetryReceiverConfig()
+    assert cfg.transport == "gnmi"
+    assert cfg.bind_port == 57400
+    assert cfg.idle_heartbeat_seconds == 30
