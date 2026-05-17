@@ -369,7 +369,7 @@ Tasks:
   and group ids.
 - [x] Network and impacted-device health score derived from active alarm severity
   and occurrence count.
-- [ ] Topology impact calculation with downstream dependency traversal.
+- [x] Topology impact calculation with downstream dependency traversal.
 - [x] Event timeline API and UI for recent assurance events.
 - [ ] Suppression workflow UI beyond existing dedup/alarm-rule foundation.
 - [x] Baseline breach count from recent non-good KPI quality samples.
@@ -395,7 +395,26 @@ Completed first assurance slice:
 Remaining Phase 4 work:
 
 - True topology downstream impact traversal.
-- Interface/service-specific impact scoring.
+- Service-specific impact scoring beyond interface/device health.
+- Suppression workflow UI and richer group lifecycle controls.
+
+
+## Phase 4B completion notes — 2026-05-17
+
+Completed topology and interface assurance slice:
+
+- Added `/api/assurance/impact` for downstream topology traversal from a root
+  device/node using persisted topology links.
+- Extended assurance summary with impacted interface scoring based on interface
+  alarms, link status, and non-good interface KPI quality samples.
+- Added Assurance UI cards/tables for impacted interfaces and downstream
+  topology impact.
+- Added tests for group collapse and interface alarm matching.
+
+Remaining Phase 4 work:
+
+- Service-level impact modeling.
+- Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
 - Suppression workflow UI and richer group lifecycle controls.
 
 ## Phase 5 — Scale and production readiness

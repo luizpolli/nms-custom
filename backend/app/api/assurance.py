@@ -15,7 +15,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
 from app.models.alarm import Alarm
 from app.models.device import Device
+from app.models.interface import Interface
 from app.models.kpi import KPI
+from app.models.topology import TopologyLink, TopologyNode
 from app.services.assurance import clamp_score, severity_penalty
 
 router = APIRouter()
@@ -29,6 +31,17 @@ class ImpactedDevice(BaseModel):
     active_alarms: int
     worst_severity: str
     last_seen: datetime | None = None
+
+
+class ImpactedInterface(BaseModel):
+    interface_id: uuid.UUID
+    device_id: uuid.UUID
+    name: str
+    score: int
+    oper_status: str | None = None
+    active_alarms: int = 0
+    baseline_breaches: int = 0
+    worst_severity: str = "info"
 
 
 class CorrelationGroup(BaseModel):
@@ -59,14 +72,31 @@ class TimelineEvent(BaseModel):
     object_id: str | None = None
 
 
+class TopologyImpactNode(BaseModel):
+    node_id: str
+    device_id: uuid.UUID | None = None
+    label: str
+    depth: int
+    role: str | None = None
+
+
+class TopologyImpactResponse(BaseModel):
+    root: TopologyImpactNode | None = None
+    impacted_nodes: list[TopologyImpactNode]
+    impacted_count: int
+    max_depth: int
+
+
 class AssuranceSummary(BaseModel):
     network_score: int
     health_state: str
     active_alarm_count: int
     active_group_count: int
     impacted_device_count: int
+    impacted_interface_count: int
     baseline_breach_count: int
     top_impacted_devices: list[ImpactedDevice]
+    top_impacted_interfaces: list[ImpactedInterface]
     top_groups: list[CorrelationGroup]
 
 
@@ -135,6 +165,56 @@ def _device_name(device_by_id: dict[uuid.UUID, Device], alarm: Alarm) -> str:
     return alarm.source_host or "unknown"
 
 
+def _interface_alarm_match(alarm: Alarm, interface: Interface) -> bool:
+    object_id = str(alarm.object_id or "")
+    corr = str(alarm.correlation_key or "")
+    if alarm.object_type == "interface" and object_id in {str(interface.id), interface.name, str(interface.if_index)}:
+        return True
+    if alarm.device_id and alarm.device_id != interface.device_id:
+        return False
+    return interface.name in corr or (interface.if_index is not None and f":{interface.if_index}" in corr)
+
+
+async def _build_impacted_interfaces(db: AsyncSession, alarms: list[Alarm], since: datetime) -> list[ImpactedInterface]:
+    interface_result = await db.execute(select(Interface))
+    interfaces = list(interface_result.scalars().all())
+    if not interfaces:
+        return []
+
+    kpi_result = await db.execute(
+        select(KPI.object_id, func.count())
+        .where(KPI.object_type == "interface", KPI.quality != "good", KPI.timestamp >= since)
+        .group_by(KPI.object_id)
+    )
+    breach_by_object = {str(row[0]): int(row[1]) for row in kpi_result.all() if row[0] is not None}
+
+    impacted: list[ImpactedInterface] = []
+    for interface in interfaces:
+        matched_alarms = [a for a in alarms if _interface_alarm_match(a, interface)]
+        breach_count = breach_by_object.get(str(interface.id), 0) + breach_by_object.get(interface.name, 0)
+        if not matched_alarms and not breach_count and interface.oper_status not in {"down", "lowerLayerDown"}:
+            continue
+        worst = _worst_alarm(matched_alarms) if matched_alarms else None
+        penalty = sum(severity_penalty(a.severity, a.occurrence_count) for a in matched_alarms)
+        penalty += breach_count * 10
+        if interface.oper_status in {"down", "lowerLayerDown"}:
+            penalty += 20
+        impacted.append(
+            ImpactedInterface(
+                interface_id=interface.id,
+                device_id=interface.device_id,
+                name=interface.name,
+                score=clamp_score(100 - penalty),
+                oper_status=interface.oper_status,
+                active_alarms=len([a for a in matched_alarms if a.state == "active"]),
+                baseline_breaches=breach_count,
+                worst_severity=worst.severity if worst else "warning",
+            )
+        )
+    impacted.sort(key=lambda i: (i.score, -_SEVERITY_ORDER.get(i.worst_severity, 1), i.name))
+    return impacted
+
+
 @router.get("/summary", response_model=AssuranceSummary)
 async def assurance_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> AssuranceSummary:
     alarm_result = await db.execute(
@@ -181,6 +261,7 @@ async def assurance_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> Ass
         select(func.count()).select_from(KPI).where(KPI.quality != "good", KPI.timestamp >= since)
     )
     baseline_breach_count = int(baseline_result.scalar_one() or 0)
+    impacted_interfaces = await _build_impacted_interfaces(db, alarms, since)
 
     groups = _build_groups(alarms)
     return AssuranceSummary(
@@ -189,8 +270,10 @@ async def assurance_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> Ass
         active_alarm_count=len([a for a in alarms if a.state == "active"]),
         active_group_count=len([g for g in groups if g.state == "active"]),
         impacted_device_count=len(impacted_devices),
+        impacted_interface_count=len(impacted_interfaces),
         baseline_breach_count=baseline_breach_count,
         top_impacted_devices=impacted_devices[:10],
+        top_impacted_interfaces=impacted_interfaces[:10],
         top_groups=groups[:10],
     )
 
@@ -242,3 +325,78 @@ async def assurance_timeline(
         )
         for a in result.scalars().all()
     ]
+
+
+def _node_label(node: TopologyNode) -> str:
+    return node.device.name if node.device else node.node_id
+
+
+def _impact_node(node: TopologyNode, depth: int) -> TopologyImpactNode:
+    return TopologyImpactNode(
+        node_id=node.node_id,
+        device_id=node.device_id,
+        label=_node_label(node),
+        depth=depth,
+        role=node.role,
+    )
+
+
+@router.get("/impact", response_model=TopologyImpactResponse)
+async def topology_impact(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    device_id: uuid.UUID | None = None,
+    node_id: str | None = None,
+    max_depth: int = 3,
+) -> TopologyImpactResponse:
+    """Return downstream topology impact from a root device/node.
+
+    The graph is treated as directed from link source to target. If discovery
+    created the opposite orientation, callers can pass the other endpoint; this
+    is still useful as a first assurance traversal without mutating topology.
+    """
+    nodes_result = await db.execute(select(TopologyNode))
+    nodes = list(nodes_result.scalars().all())
+    if not nodes:
+        return TopologyImpactResponse(root=None, impacted_nodes=[], impacted_count=0, max_depth=max_depth)
+
+    root = None
+    for node in nodes:
+        if device_id and node.device_id == device_id:
+            root = node
+            break
+        if node_id and node.node_id == node_id:
+            root = node
+            break
+    if root is None:
+        root = nodes[0]
+
+    links_result = await db.execute(select(TopologyLink))
+    adjacency: dict[uuid.UUID, list[uuid.UUID]] = defaultdict(list)
+    for link in links_result.scalars().all():
+        adjacency[link.source_node_id].append(link.target_node_id)
+
+    node_by_pk = {node.id: node for node in nodes}
+    visited = {root.id}
+    queue: list[tuple[uuid.UUID, int]] = [(root.id, 0)]
+    impacted: list[TopologyImpactNode] = []
+    depth_limit = max(1, min(max_depth, 10))
+
+    while queue:
+        current, depth = queue.pop(0)
+        if depth >= depth_limit:
+            continue
+        for child_id in adjacency.get(current, []):
+            if child_id in visited or child_id not in node_by_pk:
+                continue
+            visited.add(child_id)
+            child_depth = depth + 1
+            child = node_by_pk[child_id]
+            impacted.append(_impact_node(child, child_depth))
+            queue.append((child_id, child_depth))
+
+    return TopologyImpactResponse(
+        root=_impact_node(root, 0),
+        impacted_nodes=impacted,
+        impacted_count=len(impacted),
+        max_depth=depth_limit,
+    )

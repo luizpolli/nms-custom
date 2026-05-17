@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { AlertTriangle, GitBranch, HeartPulse, ShieldCheck, Target } from 'lucide-react';
+import { AlertTriangle, GitBranch, HeartPulse, Network, ShieldCheck, Target } from 'lucide-react';
 import { Badge, Card, EmptyState, PageHeader, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
@@ -11,6 +11,17 @@ type ImpactedDevice = {
   active_alarms: number;
   worst_severity: string;
   last_seen?: string | null;
+};
+
+type ImpactedInterface = {
+  interface_id: string;
+  device_id: string;
+  name: string;
+  score: number;
+  oper_status?: string | null;
+  active_alarms: number;
+  baseline_breaches: number;
+  worst_severity: string;
 };
 
 type CorrelationGroup = {
@@ -38,14 +49,23 @@ type TimelineEvent = {
   correlation_key?: string | null;
 };
 
+type TopologyImpact = {
+  root?: { node_id: string; label: string; depth: number; role?: string | null } | null;
+  impacted_nodes: Array<{ node_id: string; label: string; depth: number; role?: string | null }>;
+  impacted_count: number;
+  max_depth: number;
+};
+
 type AssuranceSummary = {
   network_score: number;
   health_state: string;
   active_alarm_count: number;
   active_group_count: number;
   impacted_device_count: number;
+  impacted_interface_count: number;
   baseline_breach_count: number;
   top_impacted_devices: ImpactedDevice[];
+  top_impacted_interfaces: ImpactedInterface[];
   top_groups: CorrelationGroup[];
 };
 
@@ -60,6 +80,11 @@ export function AssurancePage() {
     queryFn: () => api.get<TimelineEvent[]>('/assurance/timeline', { params: { limit: 25 } }).then((r) => r.data),
     refetchInterval: 30_000,
   });
+  const impactQuery = useQuery({
+    queryKey: ['assurance-impact'],
+    queryFn: () => api.get<TopologyImpact>('/assurance/impact', { params: { max_depth: 3 } }).then((r) => r.data),
+    refetchInterval: 60_000,
+  });
 
   const summary = summaryQuery.data;
   const scoreTone = !summary ? 'default' : summary.network_score >= 90 ? 'success' : summary.network_score >= 75 ? 'warning' : 'danger';
@@ -72,7 +97,7 @@ export function AssurancePage() {
         <StatCard title="Network score" value={summary?.network_score ?? '—'} icon={<ShieldCheck className="h-5 w-5" />} tone={scoreTone} loading={summaryQuery.isLoading} />
         <StatCard title="Health state" value={summary?.health_state ?? '—'} icon={<HeartPulse className="h-5 w-5" />} loading={summaryQuery.isLoading} />
         <StatCard title="Active groups" value={summary?.active_group_count ?? 0} icon={<GitBranch className="h-5 w-5" />} tone={(summary?.active_group_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
-        <StatCard title="Impacted devices" value={summary?.impacted_device_count ?? 0} icon={<Target className="h-5 w-5" />} tone={(summary?.impacted_device_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
+        <StatCard title="Impacted interfaces" value={summary?.impacted_interface_count ?? 0} icon={<Target className="h-5 w-5" />} tone={(summary?.impacted_interface_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
@@ -109,6 +134,37 @@ export function AssurancePage() {
                   {summary.top_impacted_devices.map((d) => <tr key={`${d.device_id ?? d.source_host}-${d.name}`}><Td>{d.name}</Td><Td><Badge variant={d.score >= 90 ? 'success' : d.score >= 75 ? 'warning' : 'danger'}>{d.score}</Badge></Td><Td><Badge variant={d.worst_severity as never}>{d.worst_severity}</Badge></Td><Td>{d.active_alarms}</Td></tr>)}
                 </tbody>
               </table>
+            </div>
+          )}
+        </Card>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+        <Card className="p-4">
+          <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">Top impacted interfaces</h2>
+          {!summary?.top_impacted_interfaces?.length ? <EmptyState title="No impacted interfaces" description="Interface alarms, link state, and KPI quality breaches will appear here." /> : (
+            <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800"><tr><Th>Interface</Th><Th>Score</Th><Th>Status</Th><Th>Signals</Th></tr></thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                  {summary.top_impacted_interfaces.map((iface) => <tr key={iface.interface_id}><Td>{iface.name}</Td><Td><Badge variant={iface.score >= 90 ? 'success' : iface.score >= 75 ? 'warning' : 'danger'}>{iface.score}</Badge></Td><Td>{iface.oper_status ?? 'unknown'}</Td><Td>{iface.active_alarms} alarms · {iface.baseline_breaches} KPI</Td></tr>)}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </Card>
+
+        <Card className="p-4">
+          <div className="mb-3 flex items-center gap-2"><Network className="h-5 w-5 text-cisco-blue" /><h2 className="text-sm font-semibold text-gray-900 dark:text-white">Topology downstream impact</h2></div>
+          {!impactQuery.data?.root ? <EmptyState title="No topology impact" description="Build topology to calculate downstream impacted nodes." /> : (
+            <div className="space-y-3 text-sm">
+              <div className="rounded-lg bg-gray-50 p-3 dark:bg-gray-800"><span className="text-gray-500">Root:</span> <span className="font-medium text-gray-900 dark:text-white">{impactQuery.data.root.label}</span></div>
+              <div className="flex gap-2"><Badge variant={impactQuery.data.impacted_count ? 'warning' : 'success'}>{impactQuery.data.impacted_count} downstream</Badge><Badge variant="info">depth {impactQuery.data.max_depth}</Badge></div>
+              {!impactQuery.data.impacted_nodes.length ? <p className="text-gray-500">No downstream nodes from selected/root node.</p> : (
+                <div className="space-y-2">
+                  {impactQuery.data.impacted_nodes.slice(0, 12).map((node) => <div key={node.node_id} className="flex justify-between rounded border border-gray-200 px-3 py-2 dark:border-gray-700"><span>{node.label}</span><Badge variant="default">hop {node.depth}</Badge></div>)}
+                </div>
+              )}
             </div>
           )}
         </Card>
