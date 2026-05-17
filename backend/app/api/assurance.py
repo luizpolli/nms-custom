@@ -18,6 +18,7 @@ from app.models.audit import AuditLog
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.kpi import KPI
+from app.models.service import Service, ServiceMember
 from app.models.topology import TopologyLink, TopologyNode
 from app.services.assurance import clamp_score, severity_penalty
 
@@ -97,6 +98,32 @@ class GroupLifecycleResponse(BaseModel):
     group_key: str
     state: str
     affected_alarm_count: int
+
+
+class ServiceImpactMember(BaseModel):
+    member_id: uuid.UUID
+    device_id: uuid.UUID | None = None
+    interface_id: uuid.UUID | None = None
+    label: str
+    role: str
+    weight: float
+    score: int
+    active_alarms: int
+    worst_severity: str
+
+
+class ServiceImpact(BaseModel):
+    service_id: uuid.UUID
+    name: str
+    kind: str
+    description: str | None = None
+    score: int
+    health_state: str
+    member_count: int
+    impacted_member_count: int
+    active_alarm_count: int
+    worst_severity: str
+    members: list[ServiceImpactMember] = Field(default_factory=list)
 
 
 class AssuranceSummary(BaseModel):
@@ -434,6 +461,157 @@ async def assurance_timeline(
         )
         for a in result.scalars().all()
     ]
+
+
+def _severity_rank(sev: str | None) -> int:
+    return _SEVERITY_ORDER.get((sev or "info").lower(), 1)
+
+
+def _worst_severity(values: list[str]) -> str:
+    if not values:
+        return "info"
+    return max(values, key=_severity_rank)
+
+
+def _compute_service_impact(
+    service: Service,
+    alarms_by_device: dict[uuid.UUID, list[Alarm]],
+    alarms_by_interface: dict[uuid.UUID, list[Alarm]],
+    interface_oper_status: dict[uuid.UUID, str | None],
+) -> ServiceImpact:
+    members: list[ServiceImpactMember] = []
+    severities: list[str] = []
+    total_active = 0
+
+    for m in service.members or []:
+        label = "unknown"
+        member_alarms: list[Alarm] = []
+        if m.device_id:
+            member_alarms = alarms_by_device.get(m.device_id, [])
+            label = m.device.name if m.device else str(m.device_id)
+        elif m.interface_id:
+            member_alarms = alarms_by_interface.get(m.interface_id, [])
+            label = m.interface.name if m.interface else str(m.interface_id)
+
+        penalty = sum(severity_penalty(a.severity, a.occurrence_count) for a in member_alarms)
+        if m.interface_id and interface_oper_status.get(m.interface_id) in {"down", "lowerLayerDown"}:
+            penalty += 20
+        score = clamp_score(100 - penalty)
+        active = [a for a in member_alarms if a.state == "active"]
+        worst = _worst_severity([a.severity for a in member_alarms])
+        if member_alarms:
+            severities.append(worst)
+        total_active += len(active)
+        members.append(
+            ServiceImpactMember(
+                member_id=m.id,
+                device_id=m.device_id,
+                interface_id=m.interface_id,
+                label=label,
+                role=m.role,
+                weight=m.weight,
+                score=score,
+                active_alarms=len(active),
+                worst_severity=worst if member_alarms else "info",
+            )
+        )
+
+    if members:
+        total_weight = sum(max(m.weight, 0.0) for m in members) or float(len(members))
+        weighted = sum(m.score * max(m.weight, 0.0) for m in members)
+        service_score = clamp_score(weighted / total_weight) if total_weight else 100
+    else:
+        service_score = 100
+
+    impacted_member_count = sum(1 for m in members if m.active_alarms > 0 or m.score < 100)
+
+    return ServiceImpact(
+        service_id=service.id,
+        name=service.name,
+        kind=service.kind,
+        description=service.description,
+        score=service_score,
+        health_state=_health_state(service_score),
+        member_count=len(members),
+        impacted_member_count=impacted_member_count,
+        active_alarm_count=total_active,
+        worst_severity=_worst_severity(severities),
+        members=sorted(members, key=lambda x: (x.score, -_severity_rank(x.worst_severity))),
+    )
+
+
+@router.get("/services", response_model=list[ServiceImpact])
+async def assurance_services(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    limit: int = 50,
+) -> list[ServiceImpact]:
+    """Compute health/impact per registered Service."""
+    services_result = await db.execute(select(Service).order_by(Service.name))
+    services = list(services_result.scalars().all())
+    if not services:
+        return []
+
+    alarm_result = await db.execute(
+        select(Alarm)
+        .where(Alarm.state.in_(["active", "acknowledged", "suppressed"]))
+        .order_by(Alarm.last_seen.desc())
+        .limit(2000)
+    )
+    alarms = list(alarm_result.scalars().all())
+
+    interface_result = await db.execute(select(Interface))
+    interfaces = list(interface_result.scalars().all())
+    interface_oper_status = {i.id: i.oper_status for i in interfaces}
+
+    alarms_by_device: dict[uuid.UUID, list[Alarm]] = defaultdict(list)
+    for a in alarms:
+        if a.device_id:
+            alarms_by_device[a.device_id].append(a)
+
+    alarms_by_interface: dict[uuid.UUID, list[Alarm]] = defaultdict(list)
+    for iface in interfaces:
+        matched = [a for a in alarms if _interface_alarm_match(a, iface)]
+        if matched:
+            alarms_by_interface[iface.id] = matched
+
+    impacts = [
+        _compute_service_impact(s, alarms_by_device, alarms_by_interface, interface_oper_status)
+        for s in services
+    ]
+    impacts.sort(key=lambda x: (x.score, -_severity_rank(x.worst_severity), x.name))
+    return impacts[:limit]
+
+
+@router.get("/services/{service_id}", response_model=ServiceImpact)
+async def assurance_service_detail(
+    service_id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> ServiceImpact:
+    service = await db.get(Service, service_id)
+    if not service:
+        raise HTTPException(status_code=404, detail="Service not found")
+
+    alarm_result = await db.execute(
+        select(Alarm).where(Alarm.state.in_(["active", "acknowledged", "suppressed"])).limit(2000)
+    )
+    alarms = list(alarm_result.scalars().all())
+
+    interface_result = await db.execute(select(Interface))
+    interfaces = list(interface_result.scalars().all())
+    interface_oper_status = {i.id: i.oper_status for i in interfaces}
+
+    alarms_by_device: dict[uuid.UUID, list[Alarm]] = defaultdict(list)
+    for a in alarms:
+        if a.device_id:
+            alarms_by_device[a.device_id].append(a)
+
+    alarms_by_interface: dict[uuid.UUID, list[Alarm]] = defaultdict(list)
+    for iface in interfaces:
+        matched = [a for a in alarms if _interface_alarm_match(a, iface)]
+        if matched:
+            alarms_by_interface[iface.id] = matched
+
+    return _compute_service_impact(service, alarms_by_device, alarms_by_interface, interface_oper_status)
 
 
 def _node_label(node: TopologyNode) -> str:

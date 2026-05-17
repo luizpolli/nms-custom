@@ -450,9 +450,25 @@ Completed group lifecycle controls:
 - Added Assurance UI controls to suppress/unsuppress groups directly from the
   root-cause group card.
 
+## Phase 4E completion notes — 2026-05-17
+
+Completed service-level impact modeling:
+
+- Added `Service` and `ServiceMember` models for logical customer, transport,
+  platform, or infrastructure service groupings.
+- Added Alembic migration `0004_services.py` for `services` and
+  `service_members`.
+- Added `/api/services` CRUD endpoints for service definitions and membership.
+- Added `/api/assurance/services` and `/api/assurance/services/{service_id}` to
+  score service impact from member device alarms, interface alarms, and
+  interface operational state.
+- Added Assurance UI service-impact table next to device/interface/topology
+  impact views.
+- Added backend unit tests for healthy, critical, weighted, interface-down, and
+  empty-service scoring paths.
+
 Remaining Phase 4 work:
 
-- Service-level impact modeling.
 - Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
 
 ## Phase 5 — Scale and production readiness
@@ -527,11 +543,12 @@ Validation:
 
 ## Immediate next tasks
 
-1. Finish current repo gap analysis against this plan.
-2. Run baseline validation gates:
-   - backend tests;
-   - frontend build/typecheck.
-3. Start Phase 1 with data model alignment and dashboard drill-down improvements.
+1. Decide whether to finish the remaining Phase 4 topology-role blast-radius
+   refinement now or move to Phase 5 worker sharding/concurrency controls.
+2. Implement real gNMI/gRPC/MDT telemetry protocol adapter when telemetry
+   productization becomes the priority.
+3. Prepare production RBAC review before exposing command/service controls to a
+   real multi-user environment.
 
 ## Notification rules
 

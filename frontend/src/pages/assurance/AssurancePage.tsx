@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { AlertTriangle, GitBranch, HeartPulse, Network, ShieldCheck, Target } from 'lucide-react';
+import { AlertTriangle, GitBranch, HeartPulse, Network, ShieldCheck, Target, Waypoints } from 'lucide-react';
 import { Badge, Button, Card, EmptyState, PageHeader, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
@@ -56,6 +56,30 @@ type TopologyImpact = {
   max_depth: number;
 };
 
+type ServiceImpact = {
+  service_id: string;
+  name: string;
+  kind: string;
+  description?: string | null;
+  score: number;
+  health_state: string;
+  member_count: number;
+  impacted_member_count: number;
+  active_alarm_count: number;
+  worst_severity: string;
+  members: Array<{
+    member_id: string;
+    device_id?: string | null;
+    interface_id?: string | null;
+    label: string;
+    role: string;
+    weight: number;
+    score: number;
+    active_alarms: number;
+    worst_severity: string;
+  }>;
+};
+
 type AssuranceSummary = {
   network_score: number;
   health_state: string;
@@ -84,6 +108,11 @@ export function AssurancePage() {
   const impactQuery = useQuery({
     queryKey: ['assurance-impact'],
     queryFn: () => api.get<TopologyImpact>('/assurance/impact', { params: { max_depth: 3 } }).then((r) => r.data),
+    refetchInterval: 60_000,
+  });
+  const serviceImpactQuery = useQuery({
+    queryKey: ['assurance-services'],
+    queryFn: () => api.get<ServiceImpact[]>('/assurance/services', { params: { limit: 8 } }).then((r) => r.data),
     refetchInterval: 60_000,
   });
 
@@ -166,6 +195,20 @@ export function AssurancePage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+        <Card className="p-4">
+          <div className="mb-3 flex items-center gap-2"><Waypoints className="h-5 w-5 text-cisco-blue" /><h2 className="text-sm font-semibold text-gray-900 dark:text-white">Service impact</h2></div>
+          {!serviceImpactQuery.data?.length ? <EmptyState title="No services modeled" description="Create logical services to score customer, transport, or platform impact from member alarms and interface health." /> : (
+            <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800"><tr><Th>Service</Th><Th>Score</Th><Th>Worst</Th><Th>Impact</Th></tr></thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                  {serviceImpactQuery.data.map((svc) => <tr key={svc.service_id}><Td><div className="font-medium text-gray-900 dark:text-white">{svc.name}</div><div className="text-xs text-gray-500">{svc.kind} · {svc.member_count} members</div></Td><Td><Badge variant={svc.score >= 90 ? 'success' : svc.score >= 75 ? 'warning' : 'danger'}>{svc.score}</Badge></Td><Td><Badge variant={svc.worst_severity as never}>{svc.worst_severity}</Badge></Td><Td>{svc.impacted_member_count} members · {svc.active_alarm_count} alarms</Td></tr>)}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </Card>
+
         <Card className="p-4">
           <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">Top impacted interfaces</h2>
           {!summary?.top_impacted_interfaces?.length ? <EmptyState title="No impacted interfaces" description="Interface alarms, link state, and KPI quality breaches will appear here." /> : (

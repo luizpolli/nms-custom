@@ -25,6 +25,7 @@ from app.api.settings import router as settings_router
 from app.api.system import router as system_router
 from app.api.telemetry import router as telemetry_router
 from app.api.assurance import router as assurance_router
+from app.api.services import router as services_router
 from app.api.metrics import router as metrics_router
 from app.workers import WorkerSupervisor
 from app.security.auth import require_api_auth
@@ -93,6 +94,7 @@ app.include_router(settings_router, prefix="/api/settings", tags=["settings"], d
 app.include_router(system_router, prefix="/api/system", tags=["system"], dependencies=_api_auth)
 app.include_router(telemetry_router, prefix="/api/telemetry", tags=["telemetry"], dependencies=_api_auth)
 app.include_router(assurance_router, prefix="/api/assurance", tags=["assurance"], dependencies=_api_auth)
+app.include_router(services_router, prefix="/api/services", tags=["services"], dependencies=_api_auth)
 app.include_router(health_router, prefix="/health", tags=["health"])
 app.include_router(metrics_router, tags=["metrics"])
 
