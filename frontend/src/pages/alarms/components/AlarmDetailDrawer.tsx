@@ -22,6 +22,8 @@ interface AlarmDetailDrawerProps {
   filtersKey: unknown[];
   onClose: () => void;
   onAck: (id: string) => void;
+  onSuppress: (id: string) => void;
+  onUnsuppress: (id: string) => void;
 }
 
 const SEVERITY_BADGE_MAP: Record<string, 'danger' | 'warning' | 'default' | 'success'> = {
@@ -45,7 +47,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-export function AlarmDetailDrawer({ alarm, filtersKey, onClose, onAck }: AlarmDetailDrawerProps) {
+export function AlarmDetailDrawer({ alarm, filtersKey, onClose, onAck, onSuppress, onUnsuppress }: AlarmDetailDrawerProps) {
   const queryClient = useQueryClient();
   const clearMutation = useMutation({
     mutationFn: () => clearAlarm(alarm.id),
@@ -97,9 +99,18 @@ export function AlarmDetailDrawer({ alarm, filtersKey, onClose, onAck }: AlarmDe
         </div>
 
         <div className="flex gap-2 px-4 py-3 border-t border-gray-200 dark:border-gray-700">
-          {alarm.state !== 'acknowledged' && (
+          {alarm.state !== 'acknowledged' && alarm.state !== 'suppressed' && (
             <Button size="sm" variant="outline" onClick={() => onAck(alarm.id)}>
               Acknowledge
+            </Button>
+          )}
+          {alarm.state === 'suppressed' ? (
+            <Button size="sm" variant="outline" onClick={() => onUnsuppress(alarm.id)}>
+              Unsuppress
+            </Button>
+          ) : (
+            <Button size="sm" variant="ghost" onClick={() => onSuppress(alarm.id)}>
+              Suppress
             </Button>
           )}
           <Button

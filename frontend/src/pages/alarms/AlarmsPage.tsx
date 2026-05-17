@@ -7,6 +7,7 @@ import { AlarmSummaryStrip } from './components/AlarmSummaryStrip';
 import { AlarmTable, Alarm } from './components/AlarmTable';
 import { AlarmDetailDrawer } from './components/AlarmDetailDrawer';
 import { AlarmAckModal } from './components/AlarmAckModal';
+import { AlarmSuppressModal } from './components/AlarmSuppressModal';
 
 interface AlarmSummary {
   critical: number;
@@ -51,11 +52,16 @@ async function clearAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/clear`);
 }
 
+async function unsuppressAlarm(id: string): Promise<void> {
+  await api.post(`/alarms/${id}/unsuppress`, { by_user: 'operator' });
+}
+
 export function AlarmsPage() {
   const queryClient = useQueryClient();
   const [filters, setFilters] = useState<AlarmFilters>(DEFAULT_FILTERS);
   const [selectedAlarm, setSelectedAlarm] = useState<Alarm | null>(null);
   const [ackAlarmId, setAckAlarmId] = useState<string | null>(null);
+  const [suppressAlarmId, setSuppressAlarmId] = useState<string | null>(null);
 
   const filtersKey = [filters.severity, filters.state, filters.device_id, filters.since, filters.until, filters.limit];
 
@@ -95,6 +101,15 @@ export function AlarmsPage() {
     await clearAlarm(id);
     queryClient.invalidateQueries({ queryKey: ['alarms', ...filtersKey] });
     queryClient.invalidateQueries({ queryKey: ['alarms-summary'] });
+    queryClient.invalidateQueries({ queryKey: ['assurance-summary'] });
+    if (selectedAlarm?.id === id) setSelectedAlarm(null);
+  }
+
+  async function handleUnsuppress(id: string) {
+    await unsuppressAlarm(id);
+    queryClient.invalidateQueries({ queryKey: ['alarms', ...filtersKey] });
+    queryClient.invalidateQueries({ queryKey: ['alarms-summary'] });
+    queryClient.invalidateQueries({ queryKey: ['assurance-summary'] });
     if (selectedAlarm?.id === id) setSelectedAlarm(null);
   }
 
@@ -138,6 +153,7 @@ export function AlarmsPage() {
                 { value: 'active', label: 'Active' },
                 { value: 'acknowledged', label: 'Acknowledged' },
                 { value: 'cleared', label: 'Cleared' },
+                { value: 'suppressed', label: 'Suppressed' },
               ]}
             />
           </div>
@@ -180,6 +196,8 @@ export function AlarmsPage() {
             onView={setSelectedAlarm}
             onAck={setAckAlarmId}
             onClear={handleClear}
+            onSuppress={setSuppressAlarmId}
+            onUnsuppress={handleUnsuppress}
           />
         )}
       </Card>
@@ -190,6 +208,8 @@ export function AlarmsPage() {
           filtersKey={filtersKey}
           onClose={() => setSelectedAlarm(null)}
           onAck={(id) => { setSelectedAlarm(null); setAckAlarmId(id); }}
+          onSuppress={(id) => { setSelectedAlarm(null); setSuppressAlarmId(id); }}
+          onUnsuppress={handleUnsuppress}
         />
       )}
 
@@ -198,6 +218,14 @@ export function AlarmsPage() {
           alarmId={ackAlarmId}
           filtersKey={filtersKey}
           onClose={() => setAckAlarmId(null)}
+        />
+      )}
+
+      {suppressAlarmId && (
+        <AlarmSuppressModal
+          alarmId={suppressAlarmId}
+          filtersKey={filtersKey}
+          onClose={() => setSuppressAlarmId(null)}
         />
       )}
     </div>

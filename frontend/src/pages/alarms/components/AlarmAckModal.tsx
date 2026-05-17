@@ -21,6 +21,8 @@ export function AlarmAckModal({ alarmId, onClose, filtersKey }: AlarmAckModalPro
     mutationFn: () => ackAlarm(alarmId, byUser),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['alarms', ...filtersKey] });
+      queryClient.invalidateQueries({ queryKey: ['alarms-summary'] });
+      queryClient.invalidateQueries({ queryKey: ['assurance-summary'] });
       onClose();
     },
   });

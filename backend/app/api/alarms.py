@@ -14,6 +14,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import async_session_factory, get_db
 from app.models.alarm import Alarm
+from app.models.audit import AuditLog
 from app.services.alarms.correlator import AlarmCorrelator
 
 router = APIRouter()
@@ -39,10 +40,16 @@ class AlarmRead(BaseModel):
     cleared_at: datetime | None = None
     ack_by: str | None = None
     occurrence_count: int
+    raw_varbinds: dict | None = None
 
 
 class AlarmAck(BaseModel):
     by_user: str
+
+
+class AlarmSuppress(BaseModel):
+    by_user: str
+    reason: str = ""
 
 
 class AlarmEventIngest(BaseModel):
@@ -74,6 +81,28 @@ async def _get_or_404(db: AsyncSession, alarm_id: uuid.UUID) -> Alarm:
     if alarm is None:
         raise HTTPException(status_code=404, detail="Alarm not found")
     return alarm
+
+
+async def _audit_alarm_action(
+    db: AsyncSession,
+    *,
+    alarm: Alarm,
+    actor: str | None,
+    action: str,
+    message: str,
+    details: dict | None = None,
+) -> None:
+    db.add(
+        AuditLog(
+            actor=actor,
+            action=action,
+            object_type="alarm",
+            object_id=str(alarm.id),
+            outcome="success",
+            message=message,
+            details={"alarm_id": str(alarm.id), "correlation_key": alarm.correlation_key, **(details or {})},
+        )
+    )
 
 
 @router.get("", response_model=list[AlarmRead])
@@ -169,6 +198,13 @@ async def ack_alarm(
     alarm = await _get_or_404(db, id)
     alarm.state = "acknowledged"
     alarm.ack_by = body.by_user
+    await _audit_alarm_action(
+        db,
+        alarm=alarm,
+        actor=body.by_user,
+        action="alarm.acknowledge",
+        message=f"Alarm acknowledged by {body.by_user}",
+    )
     await db.flush()
     await db.refresh(alarm)
     return AlarmRead.model_validate(alarm)
@@ -182,6 +218,68 @@ async def clear_alarm(
     alarm = await _get_or_404(db, id)
     alarm.state = "cleared"
     alarm.cleared_at = datetime.now()
+    await _audit_alarm_action(
+        db,
+        alarm=alarm,
+        actor=None,
+        action="alarm.clear",
+        message="Alarm manually cleared",
+    )
+    await db.flush()
+    await db.refresh(alarm)
+    return AlarmRead.model_validate(alarm)
+
+
+@router.post("/{id}/suppress", response_model=AlarmRead)
+async def suppress_alarm(
+    id: uuid.UUID,
+    body: AlarmSuppress,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> AlarmRead:
+    alarm = await _get_or_404(db, id)
+    now = datetime.now()
+    raw = dict(alarm.raw_varbinds or {})
+    raw["_suppression"] = {
+        "by": body.by_user,
+        "reason": body.reason,
+        "suppressed_at": now.isoformat(),
+    }
+    alarm.state = "suppressed"
+    alarm.ack_by = body.by_user
+    alarm.raw_varbinds = raw
+    alarm.last_seen = now
+    await _audit_alarm_action(
+        db,
+        alarm=alarm,
+        actor=body.by_user,
+        action="alarm.suppress",
+        message=f"Alarm suppressed by {body.by_user}",
+        details={"reason": body.reason},
+    )
+    await db.flush()
+    await db.refresh(alarm)
+    return AlarmRead.model_validate(alarm)
+
+
+@router.post("/{id}/unsuppress", response_model=AlarmRead)
+async def unsuppress_alarm(
+    id: uuid.UUID,
+    body: AlarmAck,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> AlarmRead:
+    alarm = await _get_or_404(db, id)
+    raw = dict(alarm.raw_varbinds or {})
+    raw.pop("_suppression", None)
+    alarm.raw_varbinds = raw or None
+    alarm.state = "active"
+    alarm.last_seen = datetime.now()
+    await _audit_alarm_action(
+        db,
+        alarm=alarm,
+        actor=body.by_user,
+        action="alarm.unsuppress",
+        message=f"Alarm unsuppressed by {body.by_user}",
+    )
     await db.flush()
     await db.refresh(alarm)
     return AlarmRead.model_validate(alarm)

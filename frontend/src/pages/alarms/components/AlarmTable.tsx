@@ -23,6 +23,8 @@ interface AlarmTableProps {
   onView: (alarm: Alarm) => void;
   onAck: (id: string) => void;
   onClear: (id: string) => void;
+  onSuppress: (id: string) => void;
+  onUnsuppress: (id: string) => void;
 }
 
 type SortKey = keyof Pick<Alarm, 'severity' | 'state' | 'source_host' | 'first_seen' | 'last_seen' | 'occurrence_count'>;
@@ -41,7 +43,7 @@ function fmt(ts: string) {
   return new Date(ts).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
 }
 
-export function AlarmTable({ alarms, onView, onAck, onClear }: AlarmTableProps) {
+export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsuppress }: AlarmTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>('last_seen');
   const [sortAsc, setSortAsc] = useState(false);
 
@@ -117,8 +119,13 @@ export function AlarmTable({ alarms, onView, onAck, onClear }: AlarmTableProps) 
               <td className="px-3 py-2 whitespace-nowrap">
                 <div className="flex gap-1">
                   <Button size="xs" variant="ghost" onClick={() => onView(alarm)}>View</Button>
-                  {alarm.state !== 'acknowledged' && (
+                  {alarm.state !== 'acknowledged' && alarm.state !== 'suppressed' && (
                     <Button size="xs" variant="outline" onClick={() => onAck(alarm.id)}>Acknowledge</Button>
+                  )}
+                  {alarm.state === 'suppressed' ? (
+                    <Button size="xs" variant="outline" onClick={() => onUnsuppress(alarm.id)}>Unsuppress</Button>
+                  ) : (
+                    <Button size="xs" variant="ghost" onClick={() => onSuppress(alarm.id)}>Suppress</Button>
                   )}
                   <Button size="xs" variant="danger" onClick={() => onClear(alarm.id)}>Clear</Button>
                 </div>

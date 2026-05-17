@@ -371,7 +371,7 @@ Tasks:
   and occurrence count.
 - [x] Topology impact calculation with downstream dependency traversal.
 - [x] Event timeline API and UI for recent assurance events.
-- [ ] Suppression workflow UI beyond existing dedup/alarm-rule foundation.
+- [x] Suppression workflow UI beyond existing dedup/alarm-rule foundation.
 - [x] Baseline breach count from recent non-good KPI quality samples.
 
 Validation:
@@ -396,7 +396,7 @@ Remaining Phase 4 work:
 
 - True topology downstream impact traversal.
 - Service-specific impact scoring beyond interface/device health.
-- Suppression workflow UI and richer group lifecycle controls.
+- Richer group lifecycle controls beyond alarm-level suppress/unsuppress.
 
 
 ## Phase 4B completion notes — 2026-05-17
@@ -415,7 +415,27 @@ Remaining Phase 4 work:
 
 - Service-level impact modeling.
 - Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
-- Suppression workflow UI and richer group lifecycle controls.
+- Richer group lifecycle controls beyond alarm-level suppress/unsuppress.
+
+
+## Phase 4C completion notes — 2026-05-17
+
+Completed alarm suppression lifecycle slice:
+
+- Added alarm suppress/unsuppress API endpoints with audit-log entries.
+- Suppressed alarms keep visibility via `state=suppressed` and retain suppression
+  actor/reason metadata under `raw_varbinds._suppression`.
+- Added Alarms UI suppression modal, suppressed filter, suppress/unsuppress table
+  actions, and detail drawer controls.
+- Assurance summaries now include suppressed alarms in lifecycle context while
+  keeping active counts explicit.
+
+Remaining Phase 4 work:
+
+- Group-level lifecycle controls such as suppress/unsuppress whole correlation
+  groups.
+- Service-level impact modeling.
+- Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
 
 ## Phase 5 — Scale and production readiness
 

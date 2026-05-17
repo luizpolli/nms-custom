@@ -218,7 +218,7 @@ async def _build_impacted_interfaces(db: AsyncSession, alarms: list[Alarm], sinc
 @router.get("/summary", response_model=AssuranceSummary)
 async def assurance_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> AssuranceSummary:
     alarm_result = await db.execute(
-        select(Alarm).where(Alarm.state.in_(["active", "acknowledged"])).order_by(Alarm.last_seen.desc()).limit(500)
+        select(Alarm).where(Alarm.state.in_(["active", "acknowledged", "suppressed"])).order_by(Alarm.last_seen.desc()).limit(500)
     )
     alarms = list(alarm_result.scalars().all())
 
