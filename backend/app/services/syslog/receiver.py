@@ -97,7 +97,8 @@ class _SyslogProtocol(asyncio.DatagramProtocol):
 class SyslogReceiver:
     """UDP syslog listener that dispatches parsed events to handlers."""
 
-    def __init__(self, bind_host: str = "0.0.0.0", bind_port: int = 5514) -> None:
+    # Container syslog listener; deployment controls exposed ports.
+    def __init__(self, bind_host: str = "0.0.0.0", bind_port: int = 5514) -> None:  # nosec B104
         self.bind_host = bind_host
         self.bind_port = bind_port
         self._handlers: list[SyslogHandler] = []
