@@ -641,9 +641,28 @@ Remaining Phase 6 work:
 
 ## Immediate next tasks
 
-1. Replace defensive worker handlers with real domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out.
-2. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
-3. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
+## Phase 5F completion notes — 2026-05-17
+
+Completed mock-device simulator harness:
+
+- Added `tools/simulators/mock_device.py` to create/find a mock Cisco device through the API and emit local lab traffic.
+- Added UDP syslog simulation with Cisco-ish heartbeat and `%LINK-3-UPDOWN` messages.
+- Added line-delimited gNMI/MDT JSON telemetry simulation for interface counters and CPU utilization.
+- Added `make sim-device`, `make sim-syslog`, `make sim-telemetry`, and `make sim-run` helpers.
+- Added `docs/MOCK_DEVICE_SIMULATORS.md` with local lab workflow and limitations.
+- Added unit tests for simulator payload builders.
+
+Remaining Phase 5 work:
+
+- Add native SNMP trap simulator once the local pysnmp dependency stack is fixed or replaced.
+- Replace defensive worker handlers with real domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out.
+
+## Immediate next tasks
+
+1. Run mock simulator traffic through local receivers and inspect resulting telemetry/KPI/alarm/event-bus behavior.
+2. Replace defensive worker handlers with real domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out.
+3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
+4. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 
 ## Notification rules
 

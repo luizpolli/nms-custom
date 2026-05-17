@@ -1,6 +1,6 @@
 # ── Makefile for NMS_Custom ──────────────────────────────────────
 
-.PHONY: up down test lint migrate migrate-stamp migrate-revision logs shell build restart helm-lint helm-template
+.PHONY: up down test lint migrate migrate-stamp migrate-revision logs shell build restart helm-lint helm-template sim-device sim-syslog sim-telemetry
 
 APP := nms-app
 PROJECT := nms-custom
@@ -75,6 +75,20 @@ helm-lint:
 
 helm-template:
 	helm template nms-custom helm/nms-custom >/tmp/nms-custom-rendered.yaml
+
+# ── Mock lab traffic ─────────────────────────────────────────────
+
+sim-device:
+	python3 tools/simulators/mock_device.py ensure-device
+
+sim-syslog:
+	python3 tools/simulators/mock_device.py syslog --count $${COUNT:-10}
+
+sim-telemetry:
+	python3 tools/simulators/mock_device.py telemetry --count $${COUNT:-10}
+
+sim-run:
+	python3 tools/simulators/mock_device.py run --count $${COUNT:-10}
 
 db-reset:
 	docker compose down -v

@@ -281,7 +281,7 @@ services:
       - .env
     environment:
       TELEMETRY_BIND_PORT: "${TELEMETRY_BIND_PORT:-57400}"
-      TELEMETRY_TRANSPORT: "${TELEMETRY_TRANSPORT:-gnmi}"
+      TELEMETRY_TRANSPORT: "${TELEMETRY_TRANSPORT:-gnmi-json}"
     ports:
       - "${TELEMETRY_BIND_PORT:-57400}:${TELEMETRY_BIND_PORT:-57400}/tcp"
     volumes:
