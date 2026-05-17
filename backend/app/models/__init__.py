@@ -2,10 +2,12 @@
 
 from app.models.alarm import Alarm
 from app.models.alarm_rule import AlarmRule
+from app.models.audit import AuditLog
 from app.models.command import Command
-from app.models.credential import Credential
+from app.models.credential import Credential, CredentialAssignment
 from app.models.device import Device
 from app.models.inventory import Inventory
+from app.models.interface import Interface
 from app.models.ios_version import IOSVersion
 from app.models.kpi import KPI
 from app.models.kpi_threshold import KPIThreshold
@@ -18,10 +20,13 @@ from app.models.system import AppRole, AppUser, SystemSetting
 __all__ = [
     "Alarm",
     "AlarmRule",
+    "AuditLog",
     "Command",
     "Credential",
+    "CredentialAssignment",
     "Device",
     "Inventory",
+    "Interface",
     "IOSVersion",
     "KPI",
     "KPIThreshold",

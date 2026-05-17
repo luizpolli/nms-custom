@@ -181,11 +181,17 @@ class MonitoringPolicyRunner:
                             KPI(
                                 device_id=device.id,
                                 kpi_type=str(metric.get("name") or got_oid)[:50],
+                                metric_name=str(metric.get("name") or got_oid)[:255],
                                 technology=policy.policy_type,
                                 value=value,
                                 unit=str(metric.get("unit") or "")[:20] or None,
                                 kpi_area="custom_mib",
+                                source_type="snmp",
+                                object_type="device",
+                                object_id=str(device.id),
+                                quality="good",
                                 meta={"policy_id": str(policy.id), "oid": got_oid},
+                                labels={"policy": policy.name},
                                 timestamp=now,
                             )
                         )

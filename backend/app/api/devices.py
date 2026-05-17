@@ -172,6 +172,7 @@ async def bulk_import_devices(
                 vendor=row.vendor,
                 model=row.model,
                 location=row.site,
+                site_id=row.site,
                 tags=row.tags,
                 credential_id=cred.id,
             )

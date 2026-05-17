@@ -36,6 +36,12 @@ class Alarm(Base):
     trap_oid: Mapped[str | None] = mapped_column(String(255), nullable=True)
     raw_varbinds: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     correlation_key: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    dedup_key: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    correlation_group_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+    root_alarm_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("alarms.id"), nullable=True)
+    source_type: Mapped[str] = mapped_column(String(30), nullable=False, default="trap")
+    object_type: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    object_id: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
     state: Mapped[str] = mapped_column(String(20), nullable=False, default="active")
     # "active"|"cleared"|"acknowledged"
     first_seen: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
@@ -48,6 +54,7 @@ class Alarm(Base):
     )
 
     device = relationship("Device", lazy="selectin")
+    root_alarm = relationship("Alarm", remote_side=[id], lazy="selectin")
 
     def __repr__(self) -> str:
         return f"<Alarm {self.event_type} {self.severity} src={self.source_host} state={self.state}>"

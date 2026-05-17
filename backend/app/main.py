@@ -35,9 +35,14 @@ worker_supervisor: WorkerSupervisor | None = None
 async def lifespan(app: FastAPI):
     """Application lifespan: startup & shutdown hooks."""
     global worker_supervisor
+    if settings.app_env == "test":
+        yield
+        return
+
     await init_db()
-    worker_supervisor = WorkerSupervisor()
-    await worker_supervisor.start()
+    if settings.start_embedded_workers:
+        worker_supervisor = WorkerSupervisor()
+        await worker_supervisor.start()
     yield
     if worker_supervisor:
         await worker_supervisor.stop()

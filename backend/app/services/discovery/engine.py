@@ -187,6 +187,7 @@ async def _upsert_device(session: AsyncSession, dev: DiscoveredDevice) -> int:
         vendor=dev.vendor,
         os_type=dev.os_type,
         status="discovered",
+        snmp_enabled=True,
     )
     session.add(new_device)
     return 1

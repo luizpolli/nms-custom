@@ -19,6 +19,12 @@ class AlarmBase(BaseModel):
     trap_oid: Optional[str] = Field(None, max_length=255)
     raw_varbinds: Optional[dict] = None
     correlation_key: str = Field(..., max_length=255)
+    dedup_key: Optional[str] = Field(None, max_length=255)
+    correlation_group_id: Optional[uuid.UUID] = None
+    root_alarm_id: Optional[uuid.UUID] = None
+    source_type: str = Field("trap", max_length=30)
+    object_type: Optional[str] = Field(None, max_length=50)
+    object_id: Optional[str] = Field(None, max_length=255)
     state: str = Field("active", max_length=20)
     first_seen: datetime
     last_seen: datetime
@@ -37,6 +43,12 @@ class AlarmUpdate(BaseModel):
     event_type: Optional[str] = None
     message: Optional[str] = None
     state: Optional[str] = None
+    dedup_key: Optional[str] = None
+    correlation_group_id: Optional[uuid.UUID] = None
+    root_alarm_id: Optional[uuid.UUID] = None
+    source_type: Optional[str] = None
+    object_type: Optional[str] = None
+    object_id: Optional[str] = None
     last_seen: Optional[datetime] = None
     cleared_at: Optional[datetime] = None
     ack_by: Optional[str] = None

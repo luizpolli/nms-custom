@@ -18,6 +18,14 @@ class DeviceBase(BaseModel):
     os_type: Optional[str] = Field(None, max_length=100)
     status: str = Field("unknown", max_length=20)
     location: Optional[str] = Field(None, max_length=255)
+    site_id: Optional[str] = Field(None, max_length=255)
+    role: Optional[str] = Field(None, max_length=100)
+    lifecycle_state: str = Field("active", max_length=50)
+    platform_family: Optional[str] = Field(None, max_length=100)
+    mgmt_vrf: Optional[str] = Field(None, max_length=100)
+    snmp_enabled: bool = True
+    ssh_enabled: bool = False
+    telemetry_enabled: bool = False
     tags: List[str] = Field(default_factory=list)
     credential_id: Optional[uuid.UUID] = None
 
@@ -35,6 +43,14 @@ class DeviceUpdate(BaseModel):
     os_type: Optional[str] = None
     status: Optional[str] = None
     location: Optional[str] = None
+    site_id: Optional[str] = None
+    role: Optional[str] = None
+    lifecycle_state: Optional[str] = None
+    platform_family: Optional[str] = None
+    mgmt_vrf: Optional[str] = None
+    snmp_enabled: Optional[bool] = None
+    ssh_enabled: Optional[bool] = None
+    telemetry_enabled: Optional[bool] = None
     tags: Optional[List[str]] = None
     credential_id: Optional[uuid.UUID] = None
 

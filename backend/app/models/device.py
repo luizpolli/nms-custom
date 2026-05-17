@@ -3,7 +3,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import String, DateTime, Text, ARRAY, Enum, ForeignKey
+from sqlalchemy import Boolean, String, DateTime, ARRAY, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
@@ -23,6 +23,14 @@ class Device(Base):
     os_type: Mapped[str | None] = mapped_column(String(100), nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="unknown")
     location: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    site_id: Mapped[str | None] = mapped_column(String(255), nullable=True, index=True)
+    role: Mapped[str | None] = mapped_column(String(100), nullable=True, index=True)
+    lifecycle_state: Mapped[str] = mapped_column(String(50), nullable=False, default="active")
+    platform_family: Mapped[str | None] = mapped_column(String(100), nullable=True, index=True)
+    mgmt_vrf: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    snmp_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    ssh_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    telemetry_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     tags: Mapped[list[str]] = mapped_column(ARRAY(String), default=list)
     credential_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("credentials.id"), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now)
@@ -31,9 +39,11 @@ class Device(Base):
     # Relationships
     credential = relationship("Credential", back_populates="devices", lazy="selectin")
     inventory = relationship("Inventory", back_populates="device", uselist=False, lazy="selectin")
+    interfaces = relationship("Interface", back_populates="device", lazy="selectin")
     kpis = relationship("KPI", back_populates="device", lazy="selectin")
     ios_versions = relationship("IOSVersion", back_populates="device", lazy="selectin")
     commands = relationship("Command", back_populates="device", lazy="selectin")
+    credential_assignments = relationship("CredentialAssignment", back_populates="device", lazy="selectin")
 
     def __repr__(self) -> str:
         return f"<Device {self.name} ({self.ip_address})>"
