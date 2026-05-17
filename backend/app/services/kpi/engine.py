@@ -150,11 +150,17 @@ def _record_to_model(r: KPIRecord) -> KPI:
     return KPI(
         device_id=r.device_id,
         kpi_type=r.kpi_type,
+        metric_name=r.kpi_type,
         technology=r.technology,
         value=r.value,
         unit=r.unit,
         kpi_area=r.kpi_area,
+        source_type="snmp",
+        object_type="device",
+        object_id=str(r.device_id),
+        quality="good",
         meta=r.metadata,
+        labels={"technology": r.technology} if r.technology else None,
         timestamp=r.timestamp,
     )
 

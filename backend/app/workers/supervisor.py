@@ -9,6 +9,7 @@ from loguru import logger
 
 from app.config import Settings
 from app.database import async_session_factory
+from app.services.observability.heartbeat import WorkerHeartbeat
 
 settings = Settings()
 
@@ -29,6 +30,7 @@ class WorkerSupervisor:
             asyncio.create_task(self._run_trap_receiver_loop(), name="trap-receiver"),
             asyncio.create_task(self._run_syslog_receiver_loop(), name="syslog-receiver"),
             asyncio.create_task(self._run_report_scheduler_loop(), name="report-scheduler"),
+            asyncio.create_task(self._run_telemetry_receiver_loop(), name="telemetry-receiver"),
         ]
         logger.info("WorkerSupervisor started {} tasks", len(self._tasks))
 
@@ -45,17 +47,22 @@ class WorkerSupervisor:
         from app.services.monitoring.policies import MonitoringPolicyRunner
 
         backoff = 5
+        beat = WorkerHeartbeat("monitoring-policies", settings.monitoring_policy_check_interval)
+        await beat.starting()
         while not self._stop_event.is_set():
             try:
                 runner = MonitoringPolicyRunner(async_session_factory)
                 due = await runner.run_due()
                 logger.debug("Monitoring policy loop complete; {} policies executed", due)
+                await beat.success()
                 await asyncio.sleep(settings.monitoring_policy_check_interval)
             except asyncio.CancelledError:
                 break
             except Exception as exc:
                 logger.error("Monitoring policy loop error: {}", exc)
+                await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
+        await beat.close()
 
     async def _run_topology_rebuilder_loop(self) -> None:
         from sqlalchemy import select
@@ -65,6 +72,8 @@ class WorkerSupervisor:
         from app.services.topology.builder import TopologyBuilder
 
         backoff = 10
+        beat = WorkerHeartbeat("topology", settings.topology_poll_interval)
+        await beat.starting()
         while not self._stop_event.is_set():
             try:
                 async with async_session_factory() as session:
@@ -75,12 +84,15 @@ class WorkerSupervisor:
                 builder = TopologyBuilder(snmp_engine=snmp, session_factory=async_session_factory)
                 await builder.build_full(devices=devices, credentials_map=credentials_map)
                 logger.debug("Topology rebuilt for {} devices", len(devices))
+                await beat.success()
                 await asyncio.sleep(settings.topology_poll_interval)
             except asyncio.CancelledError:
                 break
             except Exception as exc:
                 logger.error("Topology rebuilder error: {}", exc)
+                await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
+        await beat.close()
 
     async def _run_trap_receiver_loop(self) -> None:
         from app.services.snmp.trap_receiver import SNMPTrapReceiver
@@ -88,13 +100,23 @@ class WorkerSupervisor:
 
         trap_port = int(os.environ.get("TRAP_PORT", "162"))
         backoff = 10
+        beat = WorkerHeartbeat("trap-receiver", 60)
+        await beat.starting()
         while not self._stop_event.is_set():
             try:
                 receiver = SNMPTrapReceiver(bind_port=trap_port)
                 correlator = AlarmCorrelator(async_session_factory)
                 receiver.on_trap(correlator.handle_trap)
                 await receiver.start()
-                await self._stop_event.wait()
+                await beat.success()
+                # Long-lived receiver: refresh heartbeat periodically so the
+                # API can distinguish "alive but idle" from "dead/crashed".
+                while not self._stop_event.is_set():
+                    try:
+                        await asyncio.wait_for(self._stop_event.wait(), timeout=30)
+                        break
+                    except asyncio.TimeoutError:
+                        await beat.success()
                 await receiver.stop()
             except asyncio.CancelledError:
                 if "receiver" in locals():
@@ -102,24 +124,60 @@ class WorkerSupervisor:
                 break
             except Exception as exc:
                 logger.error("Trap receiver error: {}", exc)
+                await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
+        await beat.close()
 
     async def _run_report_scheduler_loop(self) -> None:
         from app.services.reports.scheduler import ReportScheduleRunner
 
         backoff = 30
+        beat = WorkerHeartbeat("report-scheduler", settings.report_schedule_check_interval)
+        await beat.starting()
         while not self._stop_event.is_set():
             try:
                 runner = ReportScheduleRunner(async_session_factory)
                 ran = await runner.run_due()
                 if ran:
                     logger.info("Report scheduler: ran {} scheduled report(s)", ran)
+                await beat.success()
                 await asyncio.sleep(settings.report_schedule_check_interval)
             except asyncio.CancelledError:
                 break
             except Exception as exc:
                 logger.error("Report scheduler error: {}", exc)
+                await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
+        await beat.close()
+
+    async def _run_telemetry_receiver_loop(self) -> None:
+        if not settings.telemetry_receiver_enabled:
+            logger.info("Telemetry receiver disabled")
+            return
+        from app.services.telemetry.receiver import TelemetryReceiver, TelemetryReceiverConfig
+
+        backoff = 10
+        beat = WorkerHeartbeat("telemetry-receiver", 60)
+        await beat.starting()
+        while not self._stop_event.is_set():
+            try:
+                receiver = TelemetryReceiver(
+                    async_session_factory,
+                    TelemetryReceiverConfig(
+                        transport=settings.telemetry_transport,
+                        bind_host=settings.telemetry_bind_host,
+                        bind_port=settings.telemetry_bind_port,
+                    ),
+                )
+                await beat.success()
+                await receiver.run(self._stop_event)
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                logger.error("Telemetry receiver error: {}", exc)
+                await beat.failure(str(exc))
+                await asyncio.sleep(backoff)
+        await beat.close()
 
     async def _run_syslog_receiver_loop(self) -> None:
         if not settings.syslog_enabled:

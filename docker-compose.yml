@@ -47,6 +47,7 @@ services:
     env_file:
       - .env
     environment:
+      START_EMBEDDED_WORKERS: "${START_EMBEDDED_WORKERS:-false}"
       HTTPS_ENABLED: "${HTTPS_ENABLED:-true}"
       HTTPS_REDIRECT_ENABLED: "${HTTPS_REDIRECT_ENABLED:-true}"
       TLS_MIN_VERSION: "${TLS_MIN_VERSION:-TLSv1.3}"
@@ -68,6 +69,131 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      - nms-net
+
+  worker-poller:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-worker-poller
+    restart: unless-stopped
+    command: python -m app.workers.run monitoring-policies
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nms-net
+
+  worker-topology:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-worker-topology
+    restart: unless-stopped
+    command: python -m app.workers.run topology
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nms-net
+
+  worker-report:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-worker-report
+    restart: unless-stopped
+    command: python -m app.workers.run reports
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nms-net
+
+  trap-receiver:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-trap-receiver
+    restart: unless-stopped
+    command: python -m app.workers.run trap-receiver
+    env_file:
+      - .env
+    environment:
+      TRAP_PORT: "${TRAP_PORT:-1162}"
+    ports:
+      - "${TRAP_PORT:-1162}:${TRAP_PORT:-1162}/udp"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nms-net
+
+  syslog-receiver:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-syslog-receiver
+    restart: unless-stopped
+    command: python -m app.workers.run syslog-receiver
+    env_file:
+      - .env
+    ports:
+      - "${SYSLOG_BIND_PORT:-5514}:${SYSLOG_BIND_PORT:-5514}/udp"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nms-net
+
+  telemetry-receiver:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nms-telemetry-receiver
+    restart: unless-stopped
+    command: python -m app.workers.run telemetry-receiver
+    env_file:
+      - .env
+    environment:
+      TELEMETRY_BIND_PORT: "${TELEMETRY_BIND_PORT:-57400}"
+      TELEMETRY_TRANSPORT: "${TELEMETRY_TRANSPORT:-gnmi}"
+    ports:
+      - "${TELEMETRY_BIND_PORT:-57400}:${TELEMETRY_BIND_PORT:-57400}/tcp"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - nms-net
 

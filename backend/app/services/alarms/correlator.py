@@ -16,6 +16,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.alarm import Alarm
 from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule, normalize_alarm_severity
+from app.services.events import EventEnvelope, publish_event
 from app.services.snmp.trap_receiver import TrapEvent
 
 # Well-known trap OIDs (no leading dot)
@@ -208,6 +209,24 @@ class AlarmCorrelator:
                     cls["auto_clear"],
                 )
 
+            await publish_event(
+                EventEnvelope(
+                    event_type=cls["event_type"],
+                    source=source_type,
+                    severity=cls["severity"],
+                    object_type="alarm",
+                    object_id=cls["correlation_key"],
+                    payload={
+                        "source_host": source_host,
+                        "category": cls["category"],
+                        "message": cls["message"],
+                        "correlation_key": cls["correlation_key"],
+                        "trap_oid": trap_oid,
+                        "fields": varbinds,
+                    },
+                )
+            )
+
             if cls["severity"] == "clear":
                 return await self._apply_clear(session, cls["correlation_key"], now)
 
@@ -234,6 +253,9 @@ class AlarmCorrelator:
                 trap_oid=trap_oid,
                 raw_varbinds=self._raw_payload(varbinds, cls),
                 correlation_key=cls["correlation_key"],
+                dedup_key=cls["correlation_key"],
+                source_type="trap",
+                object_type="device",
                 state="active",
                 first_seen=now,
                 last_seen=now,
