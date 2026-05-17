@@ -22,6 +22,7 @@ from app.api.reports import router as reports_router
 from app.api.report_schedules import router as report_schedules_router
 from app.api.health import router as health_router
 from app.api.settings import router as settings_router
+from app.api.system import router as system_router
 from app.workers import WorkerSupervisor
 from app.security.auth import require_api_auth
 from app.security.redaction import configure_log_redaction
@@ -84,6 +85,7 @@ app.include_router(kpi_thresholds_router, prefix="/api/kpi-thresholds", tags=["k
 app.include_router(reports_router, prefix="/api/reports", tags=["reports"], dependencies=_api_auth)
 app.include_router(report_schedules_router, prefix="/api/report-schedules", tags=["report-schedules"], dependencies=_api_auth)
 app.include_router(settings_router, prefix="/api/settings", tags=["settings"], dependencies=_api_auth)
+app.include_router(system_router, prefix="/api/system", tags=["system"], dependencies=_api_auth)
 app.include_router(health_router, prefix="/health", tags=["health"])
 
 

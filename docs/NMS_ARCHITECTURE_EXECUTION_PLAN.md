@@ -224,14 +224,35 @@ Inserted before Phase 3 to fix two foundational gaps surfaced by Phases 1–2:
   round-trip cleanly on a clean Postgres 16.
 - Verified: backend tests `112 passed`.
 
-### Worker observability (next)
+### Worker observability (done)
 
-- Each worker loop will publish a Redis heartbeat: `nms:workers:<kind>` with
-  `last_run_at`, `last_status`, `runs_total`, `errors_total`, `last_error`.
-- New `GET /api/system/health` endpoint will aggregate heartbeats and flag
+- Added best-effort Redis worker heartbeat publisher: `nms:workers:<kind>` with
+  `last_run_at`, `last_status`, `runs_total`, `errors_total`, `last_error`, and
+  `expected_interval_s`.
+- Instrumented monitoring-policy, topology, trap receiver, and report scheduler
+  loops with startup/success/failure heartbeats. Long-lived trap receiver
+  refreshes its heartbeat periodically while idle.
+- Added `GET /api/system/health` to aggregate worker heartbeat state and flag
   workers as stale when `now - last_run_at > interval * 3`.
-- Frontend system-health surface will follow in Phase 5; this phase only
-  wires the API.
+- Added system-health API tests for stale and healthy worker summaries.
+- Frontend system-health surface will follow in Phase 5; this phase only wires
+  backend self-observability.
+
+## Phase 2.5 completion notes — 2026-05-17
+
+Completed migration and observability hardening:
+
+- Alembic baseline replaces ad-hoc schema ALTER logic for production-ready
+  migrations while preserving `create_all` as a dev/embedded fallback.
+- Separated worker services now publish best-effort Redis heartbeats.
+- API exposes worker health at `GET /api/system/health`.
+- Phase validation gates:
+  - backend tests pass;
+  - Bandit SAST passes;
+  - backend compile check passes.
+
+Next: Phase 3 should introduce canonical event envelope + Redis Streams wrapper
+before starting the telemetry MVP.
 
 ## Phase 3 — Telemetry MVP
 
