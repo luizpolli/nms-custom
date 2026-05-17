@@ -557,11 +557,12 @@ Validation:
 - `./backend/.venv/bin/python -m compileall -q backend/app` → passed.
 - `docker compose config --quiet` → passed.
 - `npm run build` in `frontend/` → passed.
-- `helm lint helm/nms-custom` → blocked locally: `helm` is not installed.
+- `helm lint helm/nms-custom` → passed after installing Helm locally.
+- `helm template nms-custom helm/nms-custom` → rendered successfully.
 
 Remaining Phase 5 work:
 
-- Run Helm lint/render in CI or a workstation with Helm installed.
+- Add Helm lint/render to CI.
 - Replace skeleton event consumers with full alarm/discovery/telemetry processors and consumer-group semantics when processing ownership/ack strategy is finalized.
 
 ## Phase 3E telemetry productization notes — 2026-05-17
@@ -623,7 +624,7 @@ Remaining Phase 6 work:
 
 ## Immediate next tasks
 
-1. Run Helm lint/render in an environment with Helm installed and add it to CI.
+1. Add Helm lint/render to CI.
 2. Replace event-bus consumer skeletons with real processors and ack/claim semantics.
 3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 
