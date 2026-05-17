@@ -539,6 +539,31 @@ Remaining Phase 5 work:
 - Harden Helm for real clusters: ingress, TLS secret integration, secret-manager support, autoscaling, NetworkPolicies, pod disruption budgets, and chart lint in CI.
 - Split additional worker kinds (`worker-alarm`, `worker-discovery`, `worker-telemetry`) when event-bus consumers are implemented.
 
+## Phase 5C completion notes — 2026-05-17
+
+Completed Helm and worker hardening slice:
+
+- Added Helm Ingress template with TLS wiring and class/annotation support.
+- Added existing-secret and provider-neutral ExternalSecret placeholders without requiring a specific secret manager.
+- Added NetworkPolicy, HPA, and PDB templates with chart values disabled by default.
+- Added `make helm-lint` helper.
+- Added event-bus worker skeletons for `worker-alarm`, `worker-discovery`, and `worker-telemetry` using Redis Streams `XREAD` via the existing `EventBus` abstraction.
+- Wired the new worker kinds into standalone runner, embedded supervisor, worker heartbeat catalog, Docker Compose, and Helm deployments.
+- Added unit tests for defensive/idempotent event consumer behavior.
+
+Validation:
+
+- `./backend/.venv/bin/python -m pytest backend/tests -q` → 159 passed.
+- `./backend/.venv/bin/python -m compileall -q backend/app` → passed.
+- `docker compose config --quiet` → passed.
+- `npm run build` in `frontend/` → passed.
+- `helm lint helm/nms-custom` → blocked locally: `helm` is not installed.
+
+Remaining Phase 5 work:
+
+- Run Helm lint/render in CI or a workstation with Helm installed.
+- Replace skeleton event consumers with full alarm/discovery/telemetry processors and consumer-group semantics when processing ownership/ack strategy is finalized.
+
 ## Phase 3E telemetry productization notes — 2026-05-17
 
 Completed telemetry protocol-adapter skeleton:
@@ -550,6 +575,7 @@ Completed telemetry protocol-adapter skeleton:
 Remaining telemetry productization work:
 
 - Add native gRPC/gNMI protobuf transport with TLS/mTLS, subscriptions, backpressure, and per-device collector credentials once lab devices or packet captures are available.
+- Native gNMI is now documented as a lab-ready interface contract in code; real protobuf/gRPC dependencies remain intentionally deferred.
 
 ## Phase 6 — AI-assisted operations
 
@@ -582,13 +608,24 @@ Completed advisory-only AI operations API slice:
 Remaining Phase 6 work:
 
 - Optional LLM-backed assistant with strict retrieval/citation guardrails and command-output redaction.
-- Frontend AI Ops page/cards if this becomes a UX priority.
+
+## Phase 6B completion notes — 2026-05-17
+
+Completed advisory UI slice:
+
+- Added AI Ops navigation and page with cards for alarm-group summary, KPI anomaly explanation, report narrative, and runbook suggestions.
+- Every card marks output as advisory-only and displays citations/evidence when the API returns them.
+- The UI degrades cleanly when advisory endpoints have no data.
+
+Remaining Phase 6 work:
+
+- Optional LLM-backed assistant with strict retrieval/citation guardrails and command-output redaction.
 
 ## Immediate next tasks
 
-1. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
-2. Harden Helm for real cluster deployment (Ingress/TLS, external secrets, NetworkPolicies, HPA/PDB, chart lint in CI).
-3. Add event-bus-driven alarm/discovery/telemetry worker consumers so Compose/Helm can split those worker kinds cleanly.
+1. Run Helm lint/render in an environment with Helm installed and add it to CI.
+2. Replace event-bus consumer skeletons with real processors and ack/claim semantics.
+3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 
 ## Notification rules
 
