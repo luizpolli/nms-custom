@@ -560,9 +560,15 @@ Validation:
 - `helm lint helm/nms-custom` → passed after installing Helm locally.
 - `helm template nms-custom helm/nms-custom` → rendered successfully.
 
+## Phase 5D completion notes — 2026-05-17
+
+Completed CI validation hardening:
+
+- Added `.github/workflows/ci.yml` with backend tests, backend compile, frontend build, Docker Compose config validation, Helm lint, and Helm render jobs.
+- Added `make helm-template` helper alongside `make helm-lint`.
+
 Remaining Phase 5 work:
 
-- Add Helm lint/render to CI.
 - Replace skeleton event consumers with full alarm/discovery/telemetry processors and consumer-group semantics when processing ownership/ack strategy is finalized.
 
 ## Phase 3E telemetry productization notes — 2026-05-17
@@ -624,9 +630,9 @@ Remaining Phase 6 work:
 
 ## Immediate next tasks
 
-1. Add Helm lint/render to CI.
-2. Replace event-bus consumer skeletons with real processors and ack/claim semantics.
-3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
+1. Replace event-bus consumer skeletons with real processors and ack/claim semantics.
+2. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
+3. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 
 ## Notification rules
 

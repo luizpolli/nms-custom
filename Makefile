@@ -1,6 +1,6 @@
 # ── Makefile for NMS_Custom ──────────────────────────────────────
 
-.PHONY: up down test lint migrate migrate-stamp migrate-revision logs shell build restart helm-lint
+.PHONY: up down test lint migrate migrate-stamp migrate-revision logs shell build restart helm-lint helm-template
 
 APP := nms-app
 PROJECT := nms-custom
@@ -72,6 +72,9 @@ test: backend-test
 
 helm-lint:
 	helm lint helm/nms-custom
+
+helm-template:
+	helm template nms-custom helm/nms-custom >/tmp/nms-custom-rendered.yaml
 
 db-reset:
 	docker compose down -v
