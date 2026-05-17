@@ -467,9 +467,17 @@ Completed service-level impact modeling:
 - Added backend unit tests for healthy, critical, weighted, interface-down, and
   empty-service scoring paths.
 
-Remaining Phase 4 work:
+## Phase 4F completion notes — 2026-05-17
 
-- Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
+Completed topology-role-aware blast-radius refinement:
+
+- Added role-aware topology traversal that understands common core/distribution/access/customer hierarchy.
+- `/api/assurance/impact` now supports `traversal_mode=auto|downstream|upstream|bidirectional`.
+- `auto` mode keeps directed traversal but safely reverse-walks ambiguous or upstream-oriented discovery edges so LLDP/CDP orientation quirks do not hide blast radius.
+- Impact results now include link id, traversal direction, confidence, reason, and ambiguous-edge count.
+- Added unit tests for downstream traversal, ambiguous reverse traversal, and bidirectional mode.
+
+Phase 4 status: complete for the current roadmap. Future improvements can add richer service dependency weighting and manual link-direction overrides.
 
 ## Phase 5 — Scale and production readiness
 
@@ -516,12 +524,32 @@ Completed first scale/production-readiness slice:
 - Added Alembic migration `0003_timescale_retention_metrics.py` for production
   Timescale deployments, keeping operations best-effort on plain PostgreSQL.
 
+## Phase 5B completion notes — 2026-05-17
+
+Completed second scale/production-readiness slice:
+
+- Added deterministic worker sharding helpers and monitoring-policy device partitioning via `WORKER_SHARD_ID` / `WORKER_SHARD_COUNT`.
+- Added `WORKER_MAX_CONCURRENCY` control for bounded concurrent policy execution.
+- Added DB query latency histogram instrumentation for self-observability scrape probes.
+- Added baseline Helm chart under `helm/nms-custom` for API, frontend, worker services, telemetry receiver, Redis, TimescaleDB, services, ConfigMap, and least-privilege service account/RBAC.
+- Added `docs/PRODUCTION_RBAC_REVIEW.md` with high-risk permissions, recommended production defaults, Kubernetes RBAC posture, and pre-production gaps.
+
 Remaining Phase 5 work:
 
-- Worker sharding/concurrency controls.
-- Helm chart.
-- Production RBAC review.
-- Broader DB latency instrumentation beyond scrape-time counters.
+- Harden Helm for real clusters: ingress, TLS secret integration, secret-manager support, autoscaling, NetworkPolicies, pod disruption budgets, and chart lint in CI.
+- Split additional worker kinds (`worker-alarm`, `worker-discovery`, `worker-telemetry`) when event-bus consumers are implemented.
+
+## Phase 3E telemetry productization notes — 2026-05-17
+
+Completed telemetry protocol-adapter skeleton:
+
+- Added gNMI/MDT-style JSON frame parser that normalizes path/value/timestamp/update payloads into `TelemetrySampleIngest` rows.
+- `telemetry-receiver` can now run a line-delimited TCP JSON adapter via `TELEMETRY_TRANSPORT=gnmi-json|mdt-json|json` and pass decoded samples into the existing ingestion/KPI normalization path.
+- Added tests for multiple updates, path object handling, decimal values, and required device id validation.
+
+Remaining telemetry productization work:
+
+- Add native gRPC/gNMI protobuf transport with TLS/mTLS, subscriptions, backpressure, and per-device collector credentials once lab devices or packet captures are available.
 
 ## Phase 6 — AI-assisted operations
 
@@ -529,11 +557,11 @@ Goal: add intelligence only after data is clean enough to trust.
 
 Tasks:
 
-- Alarm group summarization.
-- KPI anomaly explanations.
-- Report narratives.
-- Runbook suggestion engine.
-- Optional operational assistant that uses command outputs, known models, topology, and alarm context.
+- [x] Alarm group summarization.
+- [x] KPI anomaly explanations.
+- [x] Report narratives.
+- [x] Runbook suggestion engine.
+- [ ] Optional operational assistant that uses command outputs, known models, topology, and alarm context.
 
 Validation:
 
@@ -541,14 +569,26 @@ Validation:
 - AI is advisory, not required for core monitoring.
 - No secrets or command outputs leak into unsafe contexts.
 
+## Phase 6A completion notes — 2026-05-17
+
+Completed advisory-only AI operations API slice:
+
+- Added `/api/ai-ops/alarm-groups/{group_key}/summary` for cited alarm-group summaries.
+- Added `/api/ai-ops/kpis/anomalies/explain` for cited KPI anomaly explanations.
+- Added `/api/ai-ops/reports/narrative` for report narrative drafts backed by alarm/KPI citations.
+- Added `/api/ai-ops/runbooks/suggest` for deterministic runbook suggestions from active alarm category.
+- All responses carry `advisory_only=true` and cite underlying alarm/KPI IDs.
+
+Remaining Phase 6 work:
+
+- Optional LLM-backed assistant with strict retrieval/citation guardrails and command-output redaction.
+- Frontend AI Ops page/cards if this becomes a UX priority.
+
 ## Immediate next tasks
 
-1. Decide whether to finish the remaining Phase 4 topology-role blast-radius
-   refinement now or move to Phase 5 worker sharding/concurrency controls.
-2. Implement real gNMI/gRPC/MDT telemetry protocol adapter when telemetry
-   productization becomes the priority.
-3. Prepare production RBAC review before exposing command/service controls to a
-   real multi-user environment.
+1. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
+2. Harden Helm for real cluster deployment (Ingress/TLS, external secrets, NetworkPolicies, HPA/PDB, chart lint in CI).
+3. Add event-bus-driven alarm/discovery/telemetry worker consumers so Compose/Helm can split those worker kinds cleanly.
 
 ## Notification rules
 
