@@ -84,6 +84,9 @@ class Settings(BaseSettings):
     poll_interval: int = 60
     poll_timeout: int = 10
     poll_workers: int = 4
+    worker_shard_id: int = 0
+    worker_shard_count: int = 1
+    worker_max_concurrency: int = 8
     monitoring_policy_check_interval: int = 30
     report_schedule_check_interval: int = 60
     start_embedded_workers: bool = True

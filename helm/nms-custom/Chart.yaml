@@ -1,0 +1,6 @@
+apiVersion: v2
+name: nms-custom
+description: NMS Custom API, workers, receivers, frontend, Redis, and TimescaleDB chart
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

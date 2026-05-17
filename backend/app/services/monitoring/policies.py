@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import uuid
 from datetime import datetime, timedelta, timezone
 
@@ -15,6 +16,7 @@ from app.models.kpi import KPI
 from app.models.monitoring_policy import MonitoringPolicy
 from app.services.kpi.engine import KPIEngine, _build_credential
 from app.services.snmp.engine import SNMPEngine
+from app.services.workers.sharding import filter_for_shard, normalize_shard_config
 
 POLICY_PRESETS = [
     {
@@ -111,8 +113,14 @@ class MonitoringPolicyRunner:
             result = await session.execute(select(MonitoringPolicy).where(MonitoringPolicy.enabled.is_(True)))
             policies = [p for p in result.scalars().all() if _is_due(p, now)]
 
-        for policy in policies:
-            await self.run_policy(policy.id)
+        concurrency = max(1, int(self._settings.worker_max_concurrency or 1))
+        sem = asyncio.Semaphore(concurrency)
+
+        async def _run(policy: MonitoringPolicy) -> None:
+            async with sem:
+                await self.run_policy(policy.id)
+
+        await asyncio.gather(*[_run(policy) for policy in policies])
         return len(policies)
 
     async def run_policy(self, policy_id: uuid.UUID) -> dict[str, int]:
@@ -149,7 +157,9 @@ class MonitoringPolicyRunner:
         if not policy.target_all_devices and policy.device_ids:
             stmt = stmt.where(Device.id.in_([uuid.UUID(str(v)) for v in policy.device_ids]))
         result = await session.execute(stmt)
-        return list(result.scalars().all())
+        devices = list(result.scalars().all())
+        shard = normalize_shard_config(self._settings.worker_shard_id, self._settings.worker_shard_count)
+        return filter_for_shard(devices, shard)
 
     async def _execute(self, policy: MonitoringPolicy, devices: list[Device]) -> dict[str, int]:
         if policy.policy_type == "syslog":

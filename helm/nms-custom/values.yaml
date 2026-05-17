@@ -1,0 +1,43 @@
+image:
+  backend: nms-custom-backend:latest
+  frontend: nms-custom-frontend:latest
+  pullPolicy: IfNotPresent
+
+replicaCount:
+  api: 1
+  frontend: 1
+  poller: 1
+  topology: 1
+  report: 1
+  telemetryReceiver: 1
+
+config:
+  appEnv: production
+  startEmbeddedWorkers: "false"
+  httpsEnabled: "true"
+  apiAuthEnabled: "true"
+  workerShardCount: "1"
+  workerMaxConcurrency: "8"
+  telemetryTransport: gnmi
+
+postgres:
+  enabled: true
+  image: timescale/timescaledb:latest-pg16
+  storage: 20Gi
+  user: nms
+  database: nms
+  passwordSecret: nms-postgres
+
+redis:
+  enabled: true
+  image: redis:7-alpine
+
+service:
+  apiPort: 8000
+  frontendPort: 5173
+  telemetryPort: 57400
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}

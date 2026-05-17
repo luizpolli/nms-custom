@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nms-custom.name" . }}-api
+  labels:
+    {{- include "nms-custom.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+spec:
+  replicas: {{ .Values.replicaCount.api }}
+  selector:
+    matchLabels: {app.kubernetes.io/component: api, app.kubernetes.io/instance: {{ .Release.Name }}}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/component: api, app.kubernetes.io/instance: {{ .Release.Name }}}
+    spec:
+      serviceAccountName: {{ include "nms-custom.name" . }}
+      containers:
+        - name: api
+          image: {{ .Values.image.backend }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef: {name: {{ include "nms-custom.name" . }}-config}
+          env:
+            - name: WORKER_SHARD_ID
+              value: "0"
+            - name: POSTGRES_PASSWORD
+              valueFrom: {secretKeyRef: {name: {{ .Values.postgres.passwordSecret }}, key: password}}
+          ports:
+            - containerPort: 8000
+---
+{{- range $worker := list (dict "name" "worker-poller" "kind" "monitoring-policies") (dict "name" "worker-topology" "kind" "topology") (dict "name" "worker-report" "kind" "reports") (dict "name" "telemetry-receiver" "kind" "telemetry-receiver") }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nms-custom.name" $ }}-{{ $worker.name }}
+  labels:
+    {{- include "nms-custom.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: {{ $worker.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/component: {{ $worker.name }}, app.kubernetes.io/instance: {{ $.Release.Name }}}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/component: {{ $worker.name }}, app.kubernetes.io/instance: {{ $.Release.Name }}}
+    spec:
+      serviceAccountName: {{ include "nms-custom.name" $ }}
+      containers:
+        - name: {{ $worker.name }}
+          image: {{ $.Values.image.backend }}
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          command: ["python", "-m", "app.workers.run", "{{ $worker.kind }}"]
+          envFrom:
+            - configMapRef: {name: {{ include "nms-custom.name" $ }}-config}
+          env:
+            - name: WORKER_SHARD_ID
+              value: "0"
+            - name: POSTGRES_PASSWORD
+              valueFrom: {secretKeyRef: {name: {{ $.Values.postgres.passwordSecret }}, key: password}}
+---
+{{- end }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nms-custom.name" . }}-frontend
+spec:
+  replicas: {{ .Values.replicaCount.frontend }}
+  selector:
+    matchLabels: {app.kubernetes.io/component: frontend, app.kubernetes.io/instance: {{ .Release.Name }}}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/component: frontend, app.kubernetes.io/instance: {{ .Release.Name }}}
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.image.frontend }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5173

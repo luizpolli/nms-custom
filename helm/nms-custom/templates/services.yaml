@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nms-custom.name" . }}-api
+spec:
+  selector: {app.kubernetes.io/component: api, app.kubernetes.io/instance: {{ .Release.Name }}}
+  ports:
+    - name: https
+      port: {{ .Values.service.apiPort }}
+      targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nms-custom.name" . }}-frontend
+spec:
+  selector: {app.kubernetes.io/component: frontend, app.kubernetes.io/instance: {{ .Release.Name }}}
+  ports:
+    - name: http
+      port: {{ .Values.service.frontendPort }}
+      targetPort: 5173
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nms-custom.name" . }}-telemetry
+spec:
+  selector: {app.kubernetes.io/component: telemetry-receiver, app.kubernetes.io/instance: {{ .Release.Name }}}
+  ports:
+    - name: gnmi
+      port: {{ .Values.service.telemetryPort }}
+      targetPort: 57400

@@ -27,6 +27,12 @@ REQUEST_LATENCY = Histogram(
     ["method", "path"],
     buckets=(0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10),
 )
+DB_QUERY_LATENCY = Histogram(
+    "nms_db_query_duration_seconds",
+    "Database query latency in seconds for NMS self-observability probes.",
+    ["operation"],
+    buckets=(0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5),
+)
 
 
 @dataclass(slots=True)
@@ -68,18 +74,21 @@ async def collect_metrics_snapshot() -> MetricsSnapshot:
     snapshot = MetricsSnapshot(event_queue_depth=await _event_queue_depth())
     try:
         async with async_session_factory() as session:
-            snapshot.kpi_rows = int((await session.execute(select(func.count()).select_from(KPI))).scalar_one() or 0)
-            snapshot.raw_telemetry_rows = int(
-                (await session.execute(select(func.count()).select_from(TelemetryRawSample))).scalar_one() or 0
-            )
-            stats = (
-                await session.execute(
-                    select(
-                        func.coalesce(func.sum(TelemetryIngestionStat.samples_total), 0),
-                        func.coalesce(func.sum(TelemetryIngestionStat.dropped_total), 0),
-                    )
+            with DB_QUERY_LATENCY.labels("count_kpis").time():
+                snapshot.kpi_rows = int((await session.execute(select(func.count()).select_from(KPI))).scalar_one() or 0)
+            with DB_QUERY_LATENCY.labels("count_telemetry_raw").time():
+                snapshot.raw_telemetry_rows = int(
+                    (await session.execute(select(func.count()).select_from(TelemetryRawSample))).scalar_one() or 0
                 )
-            ).one()
+            with DB_QUERY_LATENCY.labels("sum_telemetry_stats").time():
+                stats = (
+                    await session.execute(
+                        select(
+                            func.coalesce(func.sum(TelemetryIngestionStat.samples_total), 0),
+                            func.coalesce(func.sum(TelemetryIngestionStat.dropped_total), 0),
+                        )
+                    )
+                ).one()
             snapshot.telemetry_samples_total = int(stats[0] or 0)
             snapshot.telemetry_dropped_total = int(stats[1] or 0)
     except Exception as exc:
