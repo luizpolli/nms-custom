@@ -8,9 +8,11 @@ for every event type yet.
 from __future__ import annotations
 
 import asyncio
+import socket
 from dataclasses import dataclass, field
 from loguru import logger
 
+from app.config import Settings
 from app.services.events import EventBus, EventEnvelope
 
 
@@ -20,6 +22,8 @@ class ConsumerStats:
     handled: int = 0
     skipped: int = 0
     errors: int = 0
+    acked: int = 0
+    claimed: int = 0
     last_stream_id: str = "0-0"
     processed_event_ids: set[str] = field(default_factory=set)
 
@@ -31,9 +35,22 @@ class EventConsumer:
     event_prefixes: tuple[str, ...] = ()
     event_types: tuple[str, ...] = ()
 
-    def __init__(self, bus: EventBus | None = None) -> None:
+    def __init__(
+        self,
+        bus: EventBus | None = None,
+        *,
+        group_name: str | None = None,
+        consumer_name: str | None = None,
+        use_consumer_group: bool = True,
+    ) -> None:
+        settings = Settings()
         self.bus = bus or EventBus()
+        self.group_name = group_name or f"{settings.event_consumer_group_prefix}:{self.worker_kind}"
+        self.consumer_name = consumer_name or f"{socket.gethostname()}:{self.worker_kind}"
+        self.use_consumer_group = use_consumer_group
+        self.stale_ms = settings.event_consumer_stale_ms
         self.stats = ConsumerStats()
+        self._group_ready = False
 
     def accepts(self, event: EventEnvelope) -> bool:
         event_type = (event.event_type or "").lower()
@@ -70,9 +87,33 @@ class EventConsumer:
             return False
 
     async def poll_once(self, *, count: int = 10, block_ms: int = 1000) -> ConsumerStats:
-        events = await self.bus.read_since(self.stats.last_stream_id, count=count, block_ms=block_ms)
+        if self.use_consumer_group:
+            if not self._group_ready:
+                await self.bus.ensure_consumer_group(self.group_name)
+                self._group_ready = True
+            events = await self.bus.claim_stale(
+                self.group_name,
+                self.consumer_name,
+                min_idle_ms=self.stale_ms,
+                count=count,
+            )
+            if events:
+                self.stats.claimed += len(events)
+            else:
+                events = await self.bus.read_group(
+                    self.group_name,
+                    self.consumer_name,
+                    count=count,
+                    block_ms=block_ms,
+                )
+        else:
+            events = await self.bus.read_since(self.stats.last_stream_id, count=count, block_ms=block_ms)
+
         for stream_id, event in events:
+            errors_before = self.stats.errors
             await self.process_one(stream_id, event)
+            if self.use_consumer_group and self.stats.errors == errors_before:
+                self.stats.acked += await self.bus.ack(self.group_name, stream_id)
         return self.stats
 
     async def run_forever(self, stop_event: asyncio.Event, *, idle_sleep_s: float = 1.0) -> None:
@@ -105,7 +146,7 @@ class TelemetryEventConsumer(EventConsumer):
     event_prefixes = ("telemetry", "kpi", "gnmi")
 
 
-def consumer_for_kind(kind: str, bus: EventBus | None = None) -> EventConsumer:
+def consumer_for_kind(kind: str, bus: EventBus | None = None, **kwargs) -> EventConsumer:
     mapping: dict[str, type[EventConsumer]] = {
         "worker-alarm": AlarmEventConsumer,
         "worker-discovery": DiscoveryEventConsumer,
@@ -113,7 +154,7 @@ def consumer_for_kind(kind: str, bus: EventBus | None = None) -> EventConsumer:
     }
     if kind not in mapping:
         raise ValueError(f"Unknown event consumer kind: {kind}")
-    return mapping[kind](bus=bus)
+    return mapping[kind](bus=bus, **kwargs)
 
 
 EVENT_CONSUMER_KINDS: tuple[str, ...] = ("worker-alarm", "worker-discovery", "worker-telemetry")

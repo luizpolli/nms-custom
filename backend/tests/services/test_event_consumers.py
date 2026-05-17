@@ -13,9 +13,25 @@ class FakeBus:
     def __init__(self, events):
         self.events = events
         self.closed = False
+        self.group_created = False
+        self.acked = []
+        self.claimed = []
 
     async def read_since(self, last_id="0-0", *, count=10, block_ms=1000):
         return self.events
+
+    async def ensure_consumer_group(self, group_name, *, start_id="0-0"):
+        self.group_created = True
+
+    async def read_group(self, group_name, consumer_name, *, count=10, block_ms=1000, new_messages_id=">"):
+        return self.events
+
+    async def claim_stale(self, group_name, consumer_name, *, min_idle_ms=60000, count=10):
+        return self.claimed
+
+    async def ack(self, group_name, *stream_ids):
+        self.acked.extend(stream_ids)
+        return len(stream_ids)
 
     async def close(self):
         self.closed = True
@@ -48,6 +64,9 @@ async def test_consumer_poll_once_skips_unrelated_events():
     assert stats.handled == 1
     assert stats.skipped == 1
     assert stats.last_stream_id == "2-0"
+    assert stats.acked == 2
+    assert bus.group_created is True
+    assert bus.acked == ["1-0", "2-0"]
 
 
 @pytest.mark.asyncio
@@ -66,3 +85,17 @@ def test_consumer_factory_rejects_unknown_kind():
     assert isinstance(consumer_for_kind("worker-alarm"), AlarmEventConsumer)
     with pytest.raises(ValueError):
         consumer_for_kind("nope")
+
+
+@pytest.mark.asyncio
+async def test_consumer_claims_stale_pending_before_new_reads():
+    bus = FakeBus([])
+    bus.claimed = [("9-0", _event("alarm.created", "evt-9"))]
+    consumer = AlarmEventConsumer(bus=bus, group_name="g", consumer_name="c")
+
+    stats = await consumer.poll_once()
+
+    assert stats.claimed == 1
+    assert stats.handled == 1
+    assert stats.acked == 1
+    assert bus.acked == ["9-0"]

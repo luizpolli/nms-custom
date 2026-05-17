@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     # Event bus
     event_bus_enabled: bool = True
     event_stream_name: str = "nms:events"
+    event_consumer_group_prefix: str = "nms"
+    event_consumer_block_ms: int = 1000
+    event_consumer_stale_ms: int = 60000
 
     # SNMP
     snmp_default_community: str = "public"

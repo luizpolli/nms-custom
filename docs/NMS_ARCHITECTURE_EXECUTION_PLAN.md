@@ -567,9 +567,20 @@ Completed CI validation hardening:
 - Added `.github/workflows/ci.yml` with backend tests, backend compile, frontend build, Docker Compose config validation, Helm lint, and Helm render jobs.
 - Added `make helm-template` helper alongside `make helm-lint`.
 
+## Phase 5E completion notes — 2026-05-17
+
+Completed Redis Streams consumer-group semantics:
+
+- Added `EventBus` helpers for consumer-group creation, `XREADGROUP`, `XACK`, and stale pending-event reclaim via `XAUTOCLAIM`.
+- Updated alarm, discovery, and telemetry event workers to use explicit group/consumer identity with ack-after-success behavior.
+- Added worker stats for acknowledged and claimed events.
+- Added configurable consumer group prefix, block interval, and stale-claim timeout for Compose/Kubernetes environments.
+- Updated Helm values/ConfigMap for event stream and consumer tuning.
+- Added tests covering ack behavior and stale pending-event claim flow.
+
 Remaining Phase 5 work:
 
-- Replace skeleton event consumers with full alarm/discovery/telemetry processors and consumer-group semantics when processing ownership/ack strategy is finalized.
+- Replace defensive worker handlers with domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out once processor ownership rules are finalized.
 
 ## Phase 3E telemetry productization notes — 2026-05-17
 
@@ -630,7 +641,7 @@ Remaining Phase 6 work:
 
 ## Immediate next tasks
 
-1. Replace event-bus consumer skeletons with real processors and ack/claim semantics.
+1. Replace defensive worker handlers with real domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out.
 2. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 3. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 

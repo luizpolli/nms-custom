@@ -78,12 +78,14 @@ class WorkerSupervisor:
             try:
                 stats = await consumer.poll_once(count=25, block_ms=1000)
                 logger.debug(
-                    "{} event consumer pass: seen={} handled={} skipped={} errors={}",
+                    "{} event consumer pass: seen={} handled={} skipped={} errors={} acked={} claimed={}",
                     kind,
                     stats.seen,
                     stats.handled,
                     stats.skipped,
                     stats.errors,
+                    stats.acked,
+                    stats.claimed,
                 )
                 await beat.success()
                 if self._stop_event.is_set():

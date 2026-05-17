@@ -74,10 +74,9 @@ class EventBus:
     ) -> list[tuple[str, EventEnvelope]]:
         """Read events newer than ``last_id``.
 
-        This deliberately uses plain ``XREAD`` instead of consumer groups so the
-        early worker skeletons are lab-friendly: no Redis bootstrap is required,
-        tests can fake the call easily, and processors stay idempotent via the
-        canonical ``event_id``.
+        This remains available for diagnostics and tests. Production worker
+        loops use consumer groups via ``read_group`` so delivery ownership and
+        acknowledgement are explicit.
         """
         client = await self._client()
         rows = await client.xread({self.stream_name: last_id}, count=count, block=block_ms)
@@ -91,6 +90,86 @@ class EventBus:
                     events.append((stream_id, EventEnvelope.from_dict(json.loads(raw))))
                 except Exception as exc:
                     logger.debug("EventBus read_since skipped malformed event {}: {}", stream_id, exc)
+        return events
+
+    async def ensure_consumer_group(self, group_name: str, *, start_id: str = "0-0") -> None:
+        """Create a Redis Streams consumer group if it does not already exist."""
+        client = await self._client()
+        try:
+            await client.xgroup_create(self.stream_name, group_name, id=start_id, mkstream=True)
+        except Exception as exc:
+            # redis-py surfaces BUSYGROUP as a ResponseError. Keep this loose so
+            # fake clients and alternate Redis implementations do not leak setup
+            # details into worker startup.
+            if "BUSYGROUP" not in str(exc):
+                raise
+
+    async def read_group(
+        self,
+        group_name: str,
+        consumer_name: str,
+        *,
+        count: int = 10,
+        block_ms: int = 1000,
+        new_messages_id: str = ">",
+    ) -> list[tuple[str, EventEnvelope]]:
+        """Read events through a Redis Streams consumer group."""
+        client = await self._client()
+        rows = await client.xreadgroup(
+            group_name,
+            consumer_name,
+            {self.stream_name: new_messages_id},
+            count=count,
+            block=block_ms,
+        )
+        return self._decode_stream_rows(rows, "read_group")
+
+    async def claim_stale(
+        self,
+        group_name: str,
+        consumer_name: str,
+        *,
+        min_idle_ms: int = 60000,
+        count: int = 10,
+    ) -> list[tuple[str, EventEnvelope]]:
+        """Claim stale pending events for this consumer using XAUTOCLAIM."""
+        client = await self._client()
+        try:
+            result = await client.xautoclaim(
+                self.stream_name,
+                group_name,
+                consumer_name,
+                min_idle_time=min_idle_ms,
+                start_id="0-0",
+                count=count,
+            )
+        except Exception as exc:
+            logger.debug("EventBus claim_stale failed for group {}: {}", group_name, exc)
+            return []
+
+        # redis-py returns (next_id, [(stream_id, fields), ...], deleted_ids)
+        # for modern Redis. Older/fake clients may only return rows.
+        stream_rows = result[1] if isinstance(result, (tuple, list)) and len(result) >= 2 else result
+        return self._decode_stream_rows([(self.stream_name, stream_rows or [])], "claim_stale")
+
+    async def ack(self, group_name: str, *stream_ids: str) -> int:
+        """Acknowledge processed events for a consumer group."""
+        if not stream_ids:
+            return 0
+        client = await self._client()
+        return int(await client.xack(self.stream_name, group_name, *stream_ids))
+
+    def _decode_stream_rows(self, rows: Any, source: str) -> list[tuple[str, EventEnvelope]]:
+        events: list[tuple[str, EventEnvelope]] = []
+        for _stream, stream_rows in rows or []:
+            for stream_id, fields in stream_rows:
+                raw = fields.get("event") if isinstance(fields, dict) else None
+                if not raw:
+                    continue
+                try:
+                    events.append((stream_id, EventEnvelope.from_dict(json.loads(raw))))
+                except Exception as exc:
+                    logger.debug("EventBus {} skipped malformed event {}: {}", source, stream_id, exc)
         return events
 
     async def close(self) -> None:

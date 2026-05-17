@@ -22,6 +22,10 @@ config:
   workerShardCount: "1"
   workerMaxConcurrency: "8"
   telemetryTransport: gnmi
+  eventStreamName: nms:events
+  eventConsumerGroupPrefix: nms
+  eventConsumerBlockMs: "1000"
+  eventConsumerStaleMs: "60000"
 
 postgres:
   enabled: true
