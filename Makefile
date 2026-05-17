@@ -1,6 +1,6 @@
 # ── Makefile for NMS_Custom ──────────────────────────────────────
 
-.PHONY: up down test lint migrate logs shell build restart
+.PHONY: up down test lint migrate migrate-stamp migrate-revision logs shell build restart
 
 APP := nms-app
 PROJECT := nms-custom
@@ -45,6 +45,18 @@ backend-venv:
 
 backend-migrate:
 	docker compose exec $(APP) alembic upgrade head
+
+migrate: backend-migrate
+
+# Mark existing DB as already at baseline (one-time, for envs upgraded from
+# pre-alembic create_all). Skips applying baseline DDL on a populated schema.
+migrate-stamp:
+	docker compose exec $(APP) alembic stamp head
+
+# Generate a new migration file from current ORM state. Usage:
+#   make migrate-revision MSG="add foo column"
+migrate-revision:
+	docker compose exec $(APP) alembic revision --autogenerate -m "$(MSG)"
 
 backend-test:
 	cd backend && python -m pytest tests/ -v --tb=short

@@ -201,6 +201,38 @@ Notes:
 - This is the first runtime split. There is not yet a true event-bus-driven alarm worker; alarm processing is still attached to trap/syslog receivers and API workflows.
 - Next phase should introduce canonical event envelope + Redis Streams wrapper before telemetry MVP.
 
+## Phase 2.5 — Migration hardening and worker observability (in progress)
+
+Inserted before Phase 3 to fix two foundational gaps surfaced by Phases 1–2:
+
+1. `init_db()` was applying ad-hoc `ALTER TABLE IF NOT EXISTS` DDL on every
+   API start, which would not scale to production schema changes.
+2. The new worker/receiver services have no lag/health visibility.
+
+### Alembic baseline (done)
+
+- Added `backend/alembic.ini` and async `backend/alembic/env.py` driven by
+  `Settings.database_url` and `app.database.Base.metadata`.
+- Generated `alembic/versions/0001_baseline_schema.py` capturing the full
+  current ORM schema (devices, interfaces, KPI, alarms, alarm rules,
+  monitoring policies, MIBs, reports, RBAC, audit log, topology).
+- Removed inline `ALTER TABLE` DDL from `init_db()`; `create_all` remains
+  as a dev/embedded fallback only.
+- `Makefile`: added `migrate` (`alembic upgrade head`), `migrate-stamp`
+  (one-time mark of pre-alembic envs), and `migrate-revision MSG="…"`.
+- Verified: `alembic upgrade head` + `alembic downgrade base` + `alembic check`
+  round-trip cleanly on a clean Postgres 16.
+- Verified: backend tests `112 passed`.
+
+### Worker observability (next)
+
+- Each worker loop will publish a Redis heartbeat: `nms:workers:<kind>` with
+  `last_run_at`, `last_status`, `runs_total`, `errors_total`, `last_error`.
+- New `GET /api/system/health` endpoint will aggregate heartbeats and flag
+  workers as stale when `now - last_run_at > interval * 3`.
+- Frontend system-health surface will follow in Phase 5; this phase only
+  wires the API.
+
 ## Phase 3 — Telemetry MVP
 
 Goal: add streaming ingestion without breaking SNMP compatibility.
