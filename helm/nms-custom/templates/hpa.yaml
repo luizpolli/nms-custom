@@ -1,0 +1,59 @@
+{{- if .Values.autoscaling.api.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "nms-custom.name" . }}-api
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "nms-custom.name" . }}-api
+  minReplicas: {{ .Values.autoscaling.api.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.api.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: {{ .Values.autoscaling.api.targetCPUUtilizationPercentage }}}
+---
+{{- end }}
+{{- if .Values.autoscaling.frontend.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "nms-custom.name" . }}-frontend
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "nms-custom.name" . }}-frontend
+  minReplicas: {{ .Values.autoscaling.frontend.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.frontend.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: {{ .Values.autoscaling.frontend.targetCPUUtilizationPercentage }}}
+---
+{{- end }}
+{{- if .Values.autoscaling.workers.enabled }}
+{{- range $name := list "worker-poller" "worker-topology" "worker-report" "worker-alarm" "worker-discovery" "worker-telemetry" }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "nms-custom.name" $ }}-{{ $name }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "nms-custom.name" $ }}-{{ $name }}
+  minReplicas: {{ $.Values.autoscaling.workers.minReplicas }}
+  maxReplicas: {{ $.Values.autoscaling.workers.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: {{ $.Values.autoscaling.workers.targetCPUUtilizationPercentage }}}
+---
+{{- end }}
+{{- end }}

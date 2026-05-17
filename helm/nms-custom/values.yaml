@@ -10,6 +10,9 @@ replicaCount:
   topology: 1
   report: 1
   telemetryReceiver: 1
+  alarmWorker: 1
+  discoveryWorker: 1
+  telemetryWorker: 1
 
 config:
   appEnv: production
@@ -27,10 +30,76 @@ postgres:
   user: nms
   database: nms
   passwordSecret: nms-postgres
+  existingSecret: ""
+  externalHost: ""
 
 redis:
   enabled: true
   image: redis:7-alpine
+  externalHost: ""
+
+secrets:
+  # Use an existing Kubernetes Secret for app env vars such as API_KEY,
+  # SECRET_KEY, POSTGRES_PASSWORD, TLS paths, provider credentials, etc.
+  existingSecret: ""
+  envFrom: []
+  externalSecret:
+    enabled: false
+    apiVersion: external-secrets.io/v1beta1
+    kind: ExternalSecret
+    secretStoreRef:
+      name: ""
+      kind: ClusterSecretStore
+    refreshInterval: 1h
+    data: []
+    dataFrom: []
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: nms.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: frontend
+        - path: /api
+          pathType: Prefix
+          service: api
+  tls: []
+  # - secretName: nms-custom-tls
+  #   hosts: [nms.example.com]
+
+networkPolicy:
+  enabled: false
+  ingress:
+    allowNamespaceSelector: {}
+  egress:
+    enabled: true
+    allowDns: true
+    extra: []
+
+autoscaling:
+  api:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+  frontend:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+  workers:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 75
+
+pdb:
+  enabled: false
+  minAvailable: 1
 
 service:
   apiPort: 8000

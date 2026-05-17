@@ -1,3 +1,4 @@
+{{- $secretName := default .Values.postgres.passwordSecret .Values.postgres.existingSecret -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,15 +21,26 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef: {name: {{ include "nms-custom.name" . }}-config}
+            {{- if .Values.secrets.existingSecret }}
+            - secretRef: {name: {{ .Values.secrets.existingSecret }}}
+            {{- end }}
+            {{- range .Values.secrets.envFrom }}
+            - {{- toYaml . | nindent 14 }}
+            {{- end }}
           env:
             - name: WORKER_SHARD_ID
               value: "0"
             - name: POSTGRES_PASSWORD
-              valueFrom: {secretKeyRef: {name: {{ .Values.postgres.passwordSecret }}, key: password}}
+              valueFrom: {secretKeyRef: {name: {{ $secretName }}, key: password}}
           ports:
             - containerPort: 8000
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
 ---
-{{- range $worker := list (dict "name" "worker-poller" "kind" "monitoring-policies") (dict "name" "worker-topology" "kind" "topology") (dict "name" "worker-report" "kind" "reports") (dict "name" "telemetry-receiver" "kind" "telemetry-receiver") }}
+{{- $workers := list (dict "name" "worker-poller" "kind" "monitoring-policies" "replicaKey" "poller") (dict "name" "worker-topology" "kind" "topology" "replicaKey" "topology") (dict "name" "worker-report" "kind" "reports" "replicaKey" "report") (dict "name" "telemetry-receiver" "kind" "telemetry-receiver" "replicaKey" "telemetryReceiver") (dict "name" "worker-alarm" "kind" "worker-alarm" "replicaKey" "alarmWorker") (dict "name" "worker-discovery" "kind" "worker-discovery" "replicaKey" "discoveryWorker") (dict "name" "worker-telemetry" "kind" "worker-telemetry" "replicaKey" "telemetryWorker") }}
+{{- range $worker := $workers }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,7 +49,7 @@ metadata:
     {{- include "nms-custom.labels" $ | nindent 4 }}
     app.kubernetes.io/component: {{ $worker.name }}
 spec:
-  replicas: 1
+  replicas: {{ get $.Values.replicaCount $worker.replicaKey }}
   selector:
     matchLabels: {app.kubernetes.io/component: {{ $worker.name }}, app.kubernetes.io/instance: {{ $.Release.Name }}}
   template:
@@ -52,17 +64,30 @@ spec:
           command: ["python", "-m", "app.workers.run", "{{ $worker.kind }}"]
           envFrom:
             - configMapRef: {name: {{ include "nms-custom.name" $ }}-config}
+            {{- if $.Values.secrets.existingSecret }}
+            - secretRef: {name: {{ $.Values.secrets.existingSecret }}}
+            {{- end }}
+            {{- range $.Values.secrets.envFrom }}
+            - {{- toYaml . | nindent 14 }}
+            {{- end }}
           env:
             - name: WORKER_SHARD_ID
               value: "0"
             - name: POSTGRES_PASSWORD
-              valueFrom: {secretKeyRef: {name: {{ $.Values.postgres.passwordSecret }}, key: password}}
+              valueFrom: {secretKeyRef: {name: {{ $secretName }}, key: password}}
+          {{- with $.Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
 ---
 {{- end }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "nms-custom.name" . }}-frontend
+  labels:
+    {{- include "nms-custom.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
 spec:
   replicas: {{ .Values.replicaCount.frontend }}
   selector:
@@ -77,3 +102,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 5173
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}

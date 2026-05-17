@@ -12,7 +12,7 @@ data:
   WORKER_SHARD_COUNT: {{ .Values.config.workerShardCount | quote }}
   WORKER_MAX_CONCURRENCY: {{ .Values.config.workerMaxConcurrency | quote }}
   TELEMETRY_TRANSPORT: {{ .Values.config.telemetryTransport | quote }}
-  POSTGRES_HOST: {{ include "nms-custom.name" . }}-postgres
+  POSTGRES_HOST: {{ default (printf "%s-postgres" (include "nms-custom.name" .)) .Values.postgres.externalHost | quote }}
   POSTGRES_DB: {{ .Values.postgres.database | quote }}
   POSTGRES_USER: {{ .Values.postgres.user | quote }}
-  REDIS_HOST: {{ include "nms-custom.name" . }}-redis
+  REDIS_HOST: {{ default (printf "%s-redis" (include "nms-custom.name" .)) .Values.redis.externalHost | quote }}
