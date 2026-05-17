@@ -396,7 +396,7 @@ Remaining Phase 4 work:
 
 - True topology downstream impact traversal.
 - Service-specific impact scoring beyond interface/device health.
-- Richer group lifecycle controls beyond alarm-level suppress/unsuppress.
+- Service-level impact modeling.
 
 
 ## Phase 4B completion notes — 2026-05-17
@@ -415,7 +415,7 @@ Remaining Phase 4 work:
 
 - Service-level impact modeling.
 - Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
-- Richer group lifecycle controls beyond alarm-level suppress/unsuppress.
+- Service-level impact modeling.
 
 
 ## Phase 4C completion notes — 2026-05-17
@@ -433,7 +433,25 @@ Completed alarm suppression lifecycle slice:
 Remaining Phase 4 work:
 
 - Group-level lifecycle controls such as suppress/unsuppress whole correlation
-  groups.
+  groups. Completed as Phase 4D with Assurance group controls and audit logs.
+- Service-level impact modeling.
+- Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
+
+
+## Phase 4D completion notes — 2026-05-17
+
+Completed group lifecycle controls:
+
+- Added Assurance APIs to suppress/unsuppress a whole correlation group.
+- Group lifecycle writes a correlation-group audit event and updates all member
+  alarms with group suppression metadata.
+- Assurance group state now reports `suppressed` when all member alarms are
+  suppressed.
+- Added Assurance UI controls to suppress/unsuppress groups directly from the
+  root-cause group card.
+
+Remaining Phase 4 work:
+
 - Service-level impact modeling.
 - Bidirectional/topology-role-aware blast radius for ambiguous discovery edges.
 

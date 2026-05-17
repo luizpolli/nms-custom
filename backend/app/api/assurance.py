@@ -7,13 +7,14 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
 from app.models.alarm import Alarm
+from app.models.audit import AuditLog
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.kpi import KPI
@@ -87,6 +88,17 @@ class TopologyImpactResponse(BaseModel):
     max_depth: int
 
 
+class GroupLifecycleRequest(BaseModel):
+    by_user: str
+    reason: str = ""
+
+
+class GroupLifecycleResponse(BaseModel):
+    group_key: str
+    state: str
+    affected_alarm_count: int
+
+
 class AssuranceSummary(BaseModel):
     network_score: int
     health_state: str
@@ -127,6 +139,16 @@ def _worst_alarm(alarms: list[Alarm]) -> Alarm:
     )[0]
 
 
+def _state_for_group(items: list[Alarm]) -> str:
+    if any(a.state == "active" for a in items):
+        return "active"
+    if items and all(a.state == "suppressed" for a in items):
+        return "suppressed"
+    if any(a.state == "acknowledged" for a in items):
+        return "acknowledged"
+    return items[0].state if items else "unknown"
+
+
 def _build_groups(alarms: list[Alarm], limit: int = 10) -> list[CorrelationGroup]:
     grouped: dict[str, list[Alarm]] = defaultdict(list)
     for alarm in alarms:
@@ -144,7 +166,7 @@ def _build_groups(alarms: list[Alarm], limit: int = 10) -> list[CorrelationGroup
                 root_cause=root.message,
                 severity=root.severity,
                 category=root.category,
-                state="active" if active_items else root.state,
+                state=_state_for_group(items),
                 active_count=len(active_items),
                 occurrence_count=sum(a.occurrence_count for a in items),
                 impacted_devices=impacted,
@@ -290,6 +312,93 @@ async def assurance_groups(
     stmt = stmt.order_by(Alarm.last_seen.desc()).limit(1000)
     result = await db.execute(stmt)
     return _build_groups(list(result.scalars().all()), limit=min(limit, 200))
+
+
+async def _alarms_for_group(db: AsyncSession, group_key: str) -> list[Alarm]:
+    result = await db.execute(select(Alarm).where(Alarm.state.in_(["active", "acknowledged", "suppressed"])).limit(2000))
+    alarms = [alarm for alarm in result.scalars().all() if _group_key(alarm) == group_key]
+    if not alarms:
+        raise HTTPException(status_code=404, detail="Correlation group not found")
+    return alarms
+
+
+async def _audit_group_action(
+    db: AsyncSession,
+    *,
+    group_key: str,
+    actor: str,
+    action: str,
+    message: str,
+    affected_alarm_count: int,
+    reason: str = "",
+) -> None:
+    db.add(
+        AuditLog(
+            actor=actor,
+            action=action,
+            object_type="correlation_group",
+            object_id=group_key,
+            outcome="success",
+            message=message,
+            details={"group_key": group_key, "affected_alarm_count": affected_alarm_count, "reason": reason},
+        )
+    )
+
+
+@router.post("/groups/{group_key}/suppress", response_model=GroupLifecycleResponse)
+async def suppress_group(
+    group_key: str,
+    body: GroupLifecycleRequest,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> GroupLifecycleResponse:
+    alarms = await _alarms_for_group(db, group_key)
+    now = datetime.now(timezone.utc)
+    for alarm in alarms:
+        raw = dict(alarm.raw_varbinds or {})
+        raw["_group_suppression"] = {"by": body.by_user, "reason": body.reason, "suppressed_at": now.isoformat()}
+        alarm.raw_varbinds = raw
+        alarm.state = "suppressed"
+        alarm.ack_by = body.by_user
+        alarm.last_seen = now
+    await _audit_group_action(
+        db,
+        group_key=group_key,
+        actor=body.by_user,
+        action="assurance.group.suppress",
+        message=f"Correlation group suppressed by {body.by_user}",
+        affected_alarm_count=len(alarms),
+        reason=body.reason,
+    )
+    await db.flush()
+    return GroupLifecycleResponse(group_key=group_key, state="suppressed", affected_alarm_count=len(alarms))
+
+
+@router.post("/groups/{group_key}/unsuppress", response_model=GroupLifecycleResponse)
+async def unsuppress_group(
+    group_key: str,
+    body: GroupLifecycleRequest,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> GroupLifecycleResponse:
+    alarms = await _alarms_for_group(db, group_key)
+    now = datetime.now(timezone.utc)
+    for alarm in alarms:
+        raw = dict(alarm.raw_varbinds or {})
+        raw.pop("_group_suppression", None)
+        raw.pop("_suppression", None)
+        alarm.raw_varbinds = raw or None
+        alarm.state = "active"
+        alarm.last_seen = now
+    await _audit_group_action(
+        db,
+        group_key=group_key,
+        actor=body.by_user,
+        action="assurance.group.unsuppress",
+        message=f"Correlation group unsuppressed by {body.by_user}",
+        affected_alarm_count=len(alarms),
+        reason=body.reason,
+    )
+    await db.flush()
+    return GroupLifecycleResponse(group_key=group_key, state="active", affected_alarm_count=len(alarms))
 
 
 @router.get("/timeline", response_model=list[TimelineEvent])

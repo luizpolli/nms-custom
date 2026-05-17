@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AlertTriangle, GitBranch, HeartPulse, Network, ShieldCheck, Target } from 'lucide-react';
-import { Badge, Card, EmptyState, PageHeader, StatCard } from '../../components/ui';
+import { Badge, Button, Card, EmptyState, PageHeader, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
 type ImpactedDevice = {
@@ -70,6 +70,7 @@ type AssuranceSummary = {
 };
 
 export function AssurancePage() {
+  const queryClient = useQueryClient();
   const summaryQuery = useQuery({
     queryKey: ['assurance-summary'],
     queryFn: () => api.get<AssuranceSummary>('/assurance/summary').then((r) => r.data),
@@ -85,6 +86,23 @@ export function AssurancePage() {
     queryFn: () => api.get<TopologyImpact>('/assurance/impact', { params: { max_depth: 3 } }).then((r) => r.data),
     refetchInterval: 60_000,
   });
+
+  const groupLifecycleMutation = useMutation({
+    mutationFn: ({ groupKey, action, byUser, reason }: { groupKey: string; action: 'suppress' | 'unsuppress'; byUser: string; reason: string }) =>
+      api.post(`/assurance/groups/${encodeURIComponent(groupKey)}/${action}`, { by_user: byUser, reason }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['assurance-summary'] });
+      queryClient.invalidateQueries({ queryKey: ['assurance-timeline'] });
+      queryClient.invalidateQueries({ queryKey: ['alarms-summary'] });
+    },
+  });
+
+  function runGroupLifecycle(group: CorrelationGroup, action: 'suppress' | 'unsuppress') {
+    const byUser = window.prompt(`${action === 'suppress' ? 'Suppress' : 'Unsuppress'} group as user`, 'operator');
+    if (!byUser?.trim()) return;
+    const reason = action === 'suppress' ? (window.prompt('Reason', 'Known issue / maintenance') ?? '') : '';
+    groupLifecycleMutation.mutate({ groupKey: group.group_key, action, byUser: byUser.trim(), reason });
+  }
 
   const summary = summaryQuery.data;
   const scoreTone = !summary ? 'default' : summary.network_score >= 90 ? 'success' : summary.network_score >= 75 ? 'warning' : 'danger';
@@ -116,7 +134,15 @@ export function AssurancePage() {
                       <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{group.root_cause}</p>
                       <p className="mt-1 text-xs text-gray-500">{group.impacted_devices.join(', ') || 'No impacted device mapped'}</p>
                     </div>
-                    <Badge variant={group.state === 'active' ? 'warning' : 'default'}>{group.active_count} active</Badge>
+                    <div className="flex shrink-0 flex-col items-end gap-2">
+                      <Badge variant={group.state === 'active' ? 'warning' : group.state === 'suppressed' ? 'success' : 'default'}>{group.state}</Badge>
+                      <Badge variant="default">{group.active_count} active</Badge>
+                      {group.state === 'suppressed' ? (
+                        <Button size="xs" variant="outline" onClick={() => runGroupLifecycle(group, 'unsuppress')} disabled={groupLifecycleMutation.isPending}>Unsuppress</Button>
+                      ) : (
+                        <Button size="xs" variant="ghost" onClick={() => runGroupLifecycle(group, 'suppress')} disabled={groupLifecycleMutation.isPending}>Suppress group</Button>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
