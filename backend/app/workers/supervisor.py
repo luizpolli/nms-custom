@@ -170,8 +170,18 @@ class WorkerSupervisor:
                     ),
                 )
                 await beat.success()
-                await receiver.run(self._stop_event)
+                receiver_task = asyncio.create_task(receiver.run(self._stop_event), name="telemetry-receiver-runtime")
+                while not self._stop_event.is_set() and not receiver_task.done():
+                    try:
+                        await asyncio.wait_for(self._stop_event.wait(), timeout=30)
+                    except asyncio.TimeoutError:
+                        await beat.success()
+                if not receiver_task.done():
+                    receiver_task.cancel()
+                await receiver_task
             except asyncio.CancelledError:
+                if "receiver_task" in locals() and not receiver_task.done():
+                    receiver_task.cancel()
                 break
             except Exception as exc:
                 logger.error("Telemetry receiver error: {}", exc)
@@ -187,6 +197,8 @@ class WorkerSupervisor:
         from app.services.syslog.receiver import SyslogEvent, SyslogReceiver
 
         backoff = 10
+        beat = WorkerHeartbeat("syslog-receiver", 60)
+        await beat.starting()
         while not self._stop_event.is_set():
             try:
                 receiver = SyslogReceiver(
@@ -213,7 +225,15 @@ class WorkerSupervisor:
 
                 receiver.on_syslog(_handle)
                 await receiver.start()
-                await self._stop_event.wait()
+                await beat.success()
+                # Long-lived receiver: refresh heartbeat periodically so idle
+                # syslog periods do not look like receiver failure.
+                while not self._stop_event.is_set():
+                    try:
+                        await asyncio.wait_for(self._stop_event.wait(), timeout=30)
+                        break
+                    except asyncio.TimeoutError:
+                        await beat.success()
                 await receiver.stop()
             except asyncio.CancelledError:
                 if "receiver" in locals():
@@ -221,4 +241,6 @@ class WorkerSupervisor:
                 break
             except Exception as exc:
                 logger.error("Syslog receiver error: {}", exc)
+                await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
+        await beat.close()
