@@ -18,6 +18,7 @@ import {
   Layers,
   FileText,
   Settings,
+  FlaskConical,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
@@ -40,6 +41,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: '/alarms', label: 'Alarms', icon: <Bell className="h-5 w-5" /> },
   { to: '/assurance', label: 'Assurance', icon: <ShieldCheck className="h-5 w-5" /> },
   { to: '/ai-ops', label: 'AI Ops', icon: <Bot className="h-5 w-5" /> },
+  { to: '/lab', label: 'Lab Health', icon: <FlaskConical className="h-5 w-5" /> },
   { to: '/alarm-rules', label: 'Alarm Rules', icon: <SlidersHorizontal className="h-5 w-5" /> },
   { to: '/monitoring-policies', label: 'Monitoring Policies', icon: <ClipboardList className="h-5 w-5" /> },
   { to: '/topology', label: 'Topology', icon: <Network className="h-5 w-5" /> },

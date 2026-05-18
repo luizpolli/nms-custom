@@ -682,16 +682,25 @@ Completed SNMP trap simulator support for local/mock labs:
 - Trap correlation now prefers `sysName.0` as the logical source host, preserving packet source in varbinds when the simulator/relay hides the device IP.
 - Mock simulator docs now cover syslog, SNMP traps, and telemetry together.
 
+## Phase 5J completion notes — 2026-05-17
+
+Completed lab health and EPS visibility:
+
+- Added `/api/lab/health` for compact local lab diagnostics across mock devices, telemetry samples/KPIs, syslog/trap/event alarms, Redis Stream health, pending consumer-group lag, and worker heartbeats.
+- Added frontend `Lab Health` page with summary cards for telemetry EPS, alarm EPS, event-bus EPS, pending events, stale workers, mock devices, alarm sources, event-bus breakdowns, and worker status.
+- Added sidebar route `/lab` so local simulator state can be checked without jumping between API, DB, and logs.
+- Live local validation showed mock device discovery, syslog/trap alarm counts, Redis stream groups, zero pending events, and healthy workers.
+
 Remaining Phase 5 work:
 
 - Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
 - Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
-- Add lab health/UI affordances to quickly see mock telemetry, alarms, and worker processing status.
+- Add optional deeper EPS/latency histograms once `nms-traffic-sim` starts driving sustained loads.
 
 ## Immediate next tasks
 
-1. Add lab health/UI affordances to quickly see mock telemetry, alarms, and worker processing status.
-2. Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
+1. Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
+2. Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
 3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 4. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 

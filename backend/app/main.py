@@ -28,6 +28,7 @@ from app.api.telemetry import router as telemetry_router
 from app.api.assurance import router as assurance_router
 from app.api.services import router as services_router
 from app.api.metrics import router as metrics_router
+from app.api.lab import router as lab_router
 from app.workers import WorkerSupervisor
 from app.security.auth import require_api_auth
 from app.security.redaction import configure_log_redaction
@@ -99,6 +100,7 @@ app.include_router(ai_ops_router, prefix="/api/ai-ops", tags=["ai-ops"], depende
 app.include_router(services_router, prefix="/api/services", tags=["services"], dependencies=_api_auth)
 app.include_router(health_router, prefix="/health", tags=["health"])
 app.include_router(metrics_router, tags=["metrics"])
+app.include_router(lab_router, prefix="/api/lab", tags=["lab"], dependencies=_api_auth)
 
 
 @app.get("/api/health")
