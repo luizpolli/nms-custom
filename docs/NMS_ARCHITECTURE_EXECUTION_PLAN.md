@@ -896,14 +896,25 @@ Interface-level service membership controls added.
 - Interface service members send only `interface_id`, preserving existing service impact scoring semantics.
 - Validation: backend compile/schema smoke clean; `npm run build` in `frontend/` clean.
 
+## Phase 4J completion notes — 2026-05-18
+
+Service dependency modeling added.
+
+- Added `ServiceDependency` ORM model for directed service-to-service dependency edges.
+- Added Alembic migration `0005_service_dependencies.py` with unique source/target edge constraint and indexes.
+- Added Services API endpoints to add/remove dependencies under `/api/services/{service_id}/dependencies`.
+- Services API responses now include each service's outgoing dependencies with labels, type, direction, weight, critical flag, and description.
+- Services UI can add/remove dependencies, set direction, weight, type, criticality, and description.
+- Validation: backend compile clean; `npm run build` in `frontend/` clean.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
 2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
    the laptop ceiling above is the environment, not the pipeline.
-3. Add richer service dependency modeling (service-to-service dependencies,
-   critical path weighting, and optional manual dependency direction overrides).
+3. Use service dependencies in assurance scoring/blast-radius propagation so
+   degraded upstream services penalize dependent downstream services.
 
 ## Notification rules
 

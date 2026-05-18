@@ -5,7 +5,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, Float, ForeignKey, String, Text
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, String, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -27,9 +27,52 @@ class Service(Base):
     members: Mapped[list["ServiceMember"]] = relationship(
         "ServiceMember", back_populates="service", cascade="all, delete-orphan", lazy="selectin"
     )
+    upstream_dependencies: Mapped[list["ServiceDependency"]] = relationship(
+        "ServiceDependency",
+        foreign_keys="ServiceDependency.source_service_id",
+        back_populates="source_service",
+        cascade="all, delete-orphan",
+        lazy="selectin",
+    )
+    downstream_dependencies: Mapped[list["ServiceDependency"]] = relationship(
+        "ServiceDependency",
+        foreign_keys="ServiceDependency.target_service_id",
+        back_populates="target_service",
+        cascade="all, delete-orphan",
+        lazy="selectin",
+    )
 
     def __repr__(self) -> str:
         return f"<Service {self.name}>"
+
+
+class ServiceDependency(Base):
+    """Directed dependency between logical services for blast-radius modeling."""
+
+    __tablename__ = "service_dependencies"
+    __table_args__ = (
+        UniqueConstraint("source_service_id", "target_service_id", name="uq_service_dependency_edge"),
+    )
+
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    source_service_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("services.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    target_service_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("services.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    dependency_type: Mapped[str] = mapped_column(String(50), nullable=False, default="depends_on")
+    direction: Mapped[str] = mapped_column(String(50), nullable=False, default="source_to_target")
+    weight: Mapped[float] = mapped_column(Float, nullable=False, default=1.0)
+    is_critical: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now)
+
+    source_service = relationship("Service", foreign_keys=[source_service_id], back_populates="upstream_dependencies")
+    target_service = relationship("Service", foreign_keys=[target_service_id], back_populates="downstream_dependencies")
+
+    def __repr__(self) -> str:
+        return f"<ServiceDependency {self.source_service_id}->{self.target_service_id}>"
 
 
 class ServiceMember(Base):

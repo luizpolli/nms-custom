@@ -4,6 +4,20 @@ import { Activity, Layers3, Plus, Trash2, Waypoints } from 'lucide-react';
 import { Badge, Button, Card, EmptyState, Input, Modal, PageHeader, Select, Spinner, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
+type ServiceDependency = {
+  id: string;
+  source_service_id: string;
+  target_service_id: string;
+  source_service_name?: string | null;
+  target_service_name?: string | null;
+  dependency_type: string;
+  direction: string;
+  weight: number;
+  is_critical: boolean;
+  description?: string | null;
+  created_at: string;
+};
+
 type ServiceMember = {
   id: string;
   device_id?: string | null;
@@ -21,6 +35,7 @@ type ServiceRecord = {
   created_at: string;
   updated_at: string;
   members: ServiceMember[];
+  dependencies: ServiceDependency[];
 };
 
 type ServiceImpactMember = {
@@ -102,8 +117,10 @@ export function ServicesPage() {
   const queryClient = useQueryClient();
   const [createOpen, setCreateOpen] = useState(false);
   const [memberService, setMemberService] = useState<ServiceRecord | null>(null);
+  const [dependencyService, setDependencyService] = useState<ServiceRecord | null>(null);
   const [form, setForm] = useState<ServiceForm>(EMPTY_FORM);
   const [memberForm, setMemberForm] = useState<{ member_mode: MemberMode; device_id: string; interface_id: string; role: string; weight: string }>({ member_mode: 'device', device_id: '', interface_id: '', role: 'member', weight: '1' });
+  const [dependencyForm, setDependencyForm] = useState({ target_service_id: '', dependency_type: 'depends_on', direction: 'source_to_target', weight: '1', is_critical: false, description: '' });
 
   const servicesQuery = useQuery({
     queryKey: ['services'],
@@ -179,6 +196,38 @@ export function ServicesPage() {
     },
   });
 
+  const addDependencyMutation = useMutation({
+    mutationFn: () => {
+      if (!dependencyService) throw new Error('No service selected');
+      return api.post(`/services/${dependencyService.id}/dependencies`, {
+        target_service_id: dependencyForm.target_service_id,
+        dependency_type: dependencyForm.dependency_type || 'depends_on',
+        direction: dependencyForm.direction || 'source_to_target',
+        weight: Number(dependencyForm.weight) || 1,
+        is_critical: dependencyForm.is_critical,
+        description: dependencyForm.description || null,
+      });
+    },
+    onSuccess: () => {
+      invalidateServices();
+      setDependencyService(null);
+      setDependencyForm({ target_service_id: '', dependency_type: 'depends_on', direction: 'source_to_target', weight: '1', is_critical: false, description: '' });
+    },
+    onError: (err) => {
+      console.error('Add dependency failed', err);
+      alert('Failed to add service dependency');
+    },
+  });
+
+  const removeDependencyMutation = useMutation({
+    mutationFn: ({ serviceId, dependencyId }: { serviceId: string; dependencyId: string }) => api.delete(`/services/${serviceId}/dependencies/${dependencyId}`),
+    onSuccess: invalidateServices,
+    onError: (err) => {
+      console.error('Remove dependency failed', err);
+      alert('Failed to remove dependency');
+    },
+  });
+
   const removeMemberMutation = useMutation({
     mutationFn: ({ serviceId, memberId }: { serviceId: string; memberId: string }) => api.delete(`/services/${serviceId}/members/${memberId}`),
     onSuccess: invalidateServices,
@@ -204,6 +253,7 @@ export function ServicesPage() {
   const createInterfaceOptions = [{ value: '', label: createInterfacesQuery.isFetching ? 'Loading interfaces…' : 'Select interface…' }, ...(createInterfacesQuery.data ?? []).map((iface) => ({ value: iface.id, label: interfaceLabel(iface) }))];
   const memberInterfaceOptions = [{ value: '', label: memberInterfacesQuery.isFetching ? 'Loading interfaces…' : 'Select interface…' }, ...(memberInterfacesQuery.data ?? []).map((iface) => ({ value: iface.id, label: interfaceLabel(iface) }))];
   const services = servicesQuery.data ?? [];
+  const dependencyTargetOptions = [{ value: '', label: 'Select target service…' }, ...services.filter((svc) => svc.id !== dependencyService?.id).map((svc) => ({ value: svc.id, label: `${svc.name} (${svc.kind})` }))];
   const impactedCount = (impactQuery.data ?? []).filter((svc) => svc.impacted_member_count > 0 || svc.score < 100).length;
   const averageScore = impactQuery.data?.length
     ? Math.round(impactQuery.data.reduce((sum, svc) => sum + svc.score, 0) / impactQuery.data.length)
@@ -217,6 +267,11 @@ export function ServicesPage() {
   const handleRemoveMember = (serviceId: string, member: ServiceMember) => {
     if (!window.confirm('Remove this service member?')) return;
     removeMemberMutation.mutate({ serviceId, memberId: member.id });
+  };
+
+  const handleRemoveDependency = (serviceId: string, dependency: ServiceDependency) => {
+    if (!window.confirm('Remove this service dependency?')) return;
+    removeDependencyMutation.mutate({ serviceId, dependencyId: dependency.id });
   };
 
   return (
@@ -277,6 +332,7 @@ export function ServicesPage() {
                       <Td>
                         <div className="flex gap-2">
                           <Button variant="ghost" size="sm" onClick={() => setMemberService(service)}>Add member</Button>
+                          <Button variant="ghost" size="sm" onClick={() => setDependencyService(service)}>Add dependency</Button>
                           <Button variant="ghost" size="sm" onClick={() => handleDeleteService(service)} title="Delete service">
                             <Trash2 className="h-4 w-4 text-red-500" />
                           </Button>
@@ -305,6 +361,22 @@ export function ServicesPage() {
                 </div>
                 <Badge variant={score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger'}>{score}</Badge>
               </div>
+              {!!service.dependencies?.length && (
+                <div className="mb-3 space-y-2">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-gray-500">Dependencies</div>
+                  {service.dependencies.map((dependency) => (
+                    <div key={dependency.id} className="flex items-center justify-between gap-3 rounded-lg border border-blue-100 bg-blue-50 px-3 py-2 text-sm dark:border-blue-900/40 dark:bg-blue-950/20">
+                      <div className="min-w-0">
+                        <div className="truncate font-medium text-gray-900 dark:text-white">→ {dependency.target_service_name ?? dependency.target_service_id}</div>
+                        <div className="text-xs text-gray-500">{dependency.dependency_type} · weight {dependency.weight}{dependency.is_critical ? ' · critical' : ''}</div>
+                      </div>
+                      <Button variant="ghost" size="xs" onClick={() => handleRemoveDependency(service.id, dependency)} title="Remove dependency">
+                        <Trash2 className="h-3.5 w-3.5 text-red-500" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
               {!service.members.length ? (
                 <EmptyState title="No members" description="Add devices to include this service in impact scoring." />
               ) : (
@@ -351,6 +423,25 @@ export function ServicesPage() {
           <div className="flex justify-end gap-2">
             <Button type="button" variant="ghost" onClick={() => setCreateOpen(false)}>Cancel</Button>
             <Button type="submit" loading={createMutation.isPending} disabled={!form.name.trim()}>Create</Button>
+          </div>
+        </form>
+      </Modal>
+
+      <Modal open={Boolean(dependencyService)} onClose={() => setDependencyService(null)} title={`Add dependency${dependencyService ? ` from ${dependencyService.name}` : ''}`} size="lg">
+        <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); addDependencyMutation.mutate(); }}>
+          <Select label="Target service" required options={dependencyTargetOptions} value={dependencyForm.target_service_id} onChange={(e) => setDependencyForm((prev) => ({ ...prev, target_service_id: e.target.value }))} />
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            <Input label="Type" value={dependencyForm.dependency_type} onChange={(e) => setDependencyForm((prev) => ({ ...prev, dependency_type: e.target.value }))} />
+            <Select label="Direction" options={[{ value: 'source_to_target', label: 'Source → target' }, { value: 'target_to_source', label: 'Target → source' }, { value: 'bidirectional', label: 'Bidirectional' }]} value={dependencyForm.direction} onChange={(e) => setDependencyForm((prev) => ({ ...prev, direction: e.target.value }))} />
+            <Input label="Weight" type="number" min="0.1" step="0.1" value={dependencyForm.weight} onChange={(e) => setDependencyForm((prev) => ({ ...prev, weight: e.target.value }))} />
+            <label className="flex items-center gap-2 pt-6 text-sm text-gray-700 dark:text-gray-300">
+              <input type="checkbox" checked={dependencyForm.is_critical} onChange={(e) => setDependencyForm((prev) => ({ ...prev, is_critical: e.target.checked }))} /> Critical dependency
+            </label>
+          </div>
+          <Input label="Description" value={dependencyForm.description} onChange={(e) => setDependencyForm((prev) => ({ ...prev, description: e.target.value }))} />
+          <div className="flex justify-end gap-2">
+            <Button type="button" variant="ghost" onClick={() => setDependencyService(null)}>Cancel</Button>
+            <Button type="submit" loading={addDependencyMutation.isPending} disabled={!dependencyForm.target_service_id}>Add dependency</Button>
           </div>
         </form>
       </Modal>
