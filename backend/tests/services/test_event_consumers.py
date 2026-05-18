@@ -16,6 +16,7 @@ class FakeBus:
         self.group_created = False
         self.acked = []
         self.claimed = []
+        self.published = []
 
     async def read_since(self, last_id="0-0", *, count=10, block_ms=1000):
         return self.events
@@ -32,6 +33,10 @@ class FakeBus:
     async def ack(self, group_name, *stream_ids):
         self.acked.extend(stream_ids)
         return len(stream_ids)
+
+    async def publish(self, envelope):
+        self.published.append(envelope)
+        return "fake-stream-id"
 
     async def close(self):
         self.closed = True
@@ -164,7 +169,10 @@ async def test_telemetry_consumer_evaluates_normalized_sample_thresholds(monkeyp
 
 @pytest.mark.asyncio
 async def test_discovery_consumer_updates_device_status_by_id():
+    import uuid as _uuid
+
     class DeviceObj:
+        id = _uuid.UUID("54f0cf75-6d50-4064-9ae4-d169552a71ce")
         status = "unknown"
         updated_at = None
 
@@ -221,3 +229,148 @@ async def test_alarm_consumer_enriches_alarm_with_known_device(monkeypatch):
     assert alarm.object_id == "device-1"
     assert alarm.source_type == "syslog"
     assert session.commits == 1
+
+
+# ---- Phase 5K: Discovery refresh trigger tests ----
+
+@pytest.mark.asyncio
+async def test_discovery_consumer_emits_refresh_when_device_becomes_up():
+    """A device flipping from down->up must publish discovery.refresh.requested."""
+    import uuid
+
+    class DeviceObj:
+        id = uuid.UUID("54f0cf75-6d50-4064-9ae4-d169552a71ce")
+        status = "down"
+        updated_at = None
+
+    device = DeviceObj()
+    bus = FakeBus([])
+    session = FakeSession(device)
+    consumer = DiscoveryEventConsumer(bus=bus, session_factory=FakeSessionFactory(session))
+
+    event = EventEnvelope(
+        event_type="discovery.device.status",
+        source="discovery",
+        device_id="54f0cf75-6d50-4064-9ae4-d169552a71ce",
+        payload={"status": "up"},
+    )
+
+    assert await consumer.process_one("1-0", event) is True
+    assert device.status == "up"
+    refresh_events = [e for e in bus.published if e.event_type == "discovery.refresh.requested"]
+    assert len(refresh_events) == 1
+    assert refresh_events[0].payload["device_id"] == "54f0cf75-6d50-4064-9ae4-d169552a71ce"
+    assert "down->up" in refresh_events[0].payload["reason"]
+
+
+@pytest.mark.asyncio
+async def test_discovery_consumer_no_refresh_when_status_unchanged():
+    """A device already up that receives another 'up' event must NOT re-emit the refresh."""
+    import uuid
+
+    class DeviceObj:
+        id = uuid.UUID("54f0cf75-6d50-4064-9ae4-d169552a71ce")
+        status = "up"
+        updated_at = None
+
+    device = DeviceObj()
+    bus = FakeBus([])
+    session = FakeSession(device)
+    consumer = DiscoveryEventConsumer(bus=bus, session_factory=FakeSessionFactory(session))
+    # Pre-seed last_status so the consumer already knows device is up
+    consumer._last_status["54f0cf75-6d50-4064-9ae4-d169552a71ce"] = "up"
+
+    event = EventEnvelope(
+        event_type="discovery.device.status",
+        source="discovery",
+        device_id="54f0cf75-6d50-4064-9ae4-d169552a71ce",
+        payload={"status": "up"},
+    )
+
+    assert await consumer.process_one("1-0", event) is True
+    refresh_events = [e for e in bus.published if e.event_type == "discovery.refresh.requested"]
+    assert len(refresh_events) == 0
+
+
+# ---- Phase 5K: Telemetry fan-out tests ----
+
+@pytest.mark.asyncio
+async def test_telemetry_consumer_emits_kpi_evaluated_fan_out(monkeypatch):
+    """After threshold evaluation, a telemetry.kpi.evaluated fan-out event must be published."""
+    kpi = object()
+
+    class FakeEvaluator:
+        def __init__(self, session_factory):
+            pass
+
+        async def evaluate(self, samples):
+            return 0  # no TCAs — severity should be 'nominal'
+
+    monkeypatch.setattr("app.services.kpi.thresholds.KPIThresholdEvaluator", FakeEvaluator)
+    bus = FakeBus([])
+    event = EventEnvelope(
+        event_type="telemetry.sample.normalized",
+        source="telemetry",
+        event_id="evt-fanout",
+        device_id="dev-abc",
+        payload={"kpi_id": 42, "value": 3.14},
+    )
+    consumer = TelemetryEventConsumer(bus=bus, session_factory=FakeSessionFactory(FakeSession(kpi)))
+
+    assert await consumer.process_one("1-0", event) is True
+    fan_outs = [e for e in bus.published if e.event_type == "telemetry.kpi.evaluated"]
+    assert len(fan_outs) == 1
+    fo = fan_outs[0]
+    assert fo.payload["kpi_id"] == 42
+    assert fo.payload["device_id"] == "dev-abc"
+    assert fo.payload["value"] == 3.14
+    assert fo.payload["severity"] == "nominal"
+    assert fo.severity == "nominal"
+
+
+@pytest.mark.asyncio
+async def test_telemetry_consumer_emits_warning_severity_on_tca(monkeypatch):
+    """When threshold evaluator returns >0 TCAs, fan-out severity must be 'warning'."""
+    kpi = object()
+
+    class FakeEvaluator:
+        def __init__(self, session_factory):
+            pass
+
+        async def evaluate(self, samples):
+            return 2  # two TCAs fired
+
+    monkeypatch.setattr("app.services.kpi.thresholds.KPIThresholdEvaluator", FakeEvaluator)
+    bus = FakeBus([])
+    event = EventEnvelope(
+        event_type="telemetry.sample.normalized",
+        source="telemetry",
+        event_id="evt-tca",
+        device_id="dev-xyz",
+        payload={"kpi_id": 7, "value": 99.9},
+    )
+    consumer = TelemetryEventConsumer(bus=bus, session_factory=FakeSessionFactory(FakeSession(kpi)))
+
+    assert await consumer.process_one("1-0", event) is True
+    fan_outs = [e for e in bus.published if e.event_type == "telemetry.kpi.evaluated"]
+    assert len(fan_outs) == 1
+    assert fan_outs[0].payload["severity"] == "warning"
+    assert fan_outs[0].severity == "warning"
+
+
+@pytest.mark.asyncio
+async def test_telemetry_consumer_no_fan_out_when_kpi_not_found():
+    """When the KPI row is absent, no fan-out event should be published."""
+    bus = FakeBus([])
+    event = EventEnvelope(
+        event_type="telemetry.sample.normalized",
+        source="telemetry",
+        event_id="evt-no-kpi",
+        payload={"kpi_id": 999},
+    )
+    # session.get returns None → KPI not found
+    consumer = TelemetryEventConsumer(bus=bus, session_factory=FakeSessionFactory(FakeSession(None)))
+
+    assert await consumer.process_one("1-0", event) is True
+    fan_outs = [e for e in bus.published if e.event_type == "telemetry.kpi.evaluated"]
+    assert len(fan_outs) == 0

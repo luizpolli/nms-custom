@@ -697,12 +697,27 @@ Remaining Phase 5 work:
 - Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
 - Add optional deeper EPS/latency histograms once `nms-traffic-sim` starts driving sustained loads.
 
+## Phase 5K completion notes — 2026-05-17
+
+Completed discovery refresh triggers and telemetry fan-out processors:
+
+- `DiscoveryEventConsumer._apply_device_status` now returns `(prev_status, updated)` so the caller knows the previous device state before the update.
+- Added `DiscoveryEventConsumer._maybe_emit_refresh`: when a device transitions to `up` from `down`/`unknown`/`None`, or when `payload.refresh_requested=true`, publishes a `discovery.refresh.requested` event with `device_id`, `correlation_key`, and `reason`. Idempotent via a per-instance `_last_status` cache.
+- Added `TelemetryEventConsumer._emit_kpi_evaluated`: after threshold evaluation for `telemetry.sample.normalized`, publishes a `telemetry.kpi.evaluated` fan-out event with `kpi_id`, `device_id`, `value`, and `severity` (`nominal` when no TCAs fired, `warning` when at least one crossed). Fan-out is skipped when the KPI row is not found (existing early-return guard).
+- Added 5 new tests in `backend/tests/services/test_event_consumers.py`:
+  - Discovery emits refresh on `down->up` transition.
+  - Discovery does not re-emit when status is already `up` (idempotency).
+  - Telemetry fan-out carries `nominal` severity when no TCA fires.
+  - Telemetry fan-out carries `warning` severity when TCAs fire.
+  - No fan-out emitted when KPI row is not found.
+- `FakeBus` in the test file gained a `publish` method and a `published` list for assertion.
+- Validation: `pytest backend/tests -q` → 174 passed (up from 169).
+
 ## Immediate next tasks
 
-1. Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
-2. Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
-3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
-4. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
+1. Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
+2. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
+3. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 
 ## Notification rules
 

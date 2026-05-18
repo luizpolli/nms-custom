@@ -223,19 +223,25 @@ class DiscoveryEventConsumer(EventConsumer):
     worker_kind = "worker-discovery"
     event_prefixes = ("discovery", "inventory", "topology")
 
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        # Per-instance cache: device_id str -> last known status str
+        self._last_status: dict[str, str] = {}
+
     async def handle(self, event: EventEnvelope) -> bool:
         if not await super().handle(event):
             return False
-        updated = await self._apply_device_status(event)
+        prev_status, updated = await self._apply_device_status(event)
         if updated:
             logger.debug("{} updated discovery device state for event_id={}", self.worker_kind, event.event_id)
+        await self._maybe_emit_refresh(event, prev_status)
         return True
 
-    async def _apply_device_status(self, event: EventEnvelope) -> bool:
+    async def _apply_device_status(self, event: EventEnvelope) -> tuple[str | None, bool]:
         payload = event.payload or {}
         status = payload.get("status") or payload.get("device_status")
         if status not in {"up", "down", "unknown", "degraded"}:
-            return False
+            return None, False
 
         async with self.session_factory() as session:
             device = None
@@ -249,11 +255,48 @@ class DiscoveryEventConsumer(EventConsumer):
                 result = await session.execute(select(Device).where(Device.ip_address == str(payload["ip_address"])).limit(1))
                 device = result.scalar_one_or_none()
             if device is None:
-                return False
+                return None, False
+            prev_status = str(device.status) if device.status else None
             device.status = str(status)
             device.updated_at = datetime.now(timezone.utc)
             await session.commit()
-            return True
+            return prev_status, True
+
+    async def _maybe_emit_refresh(self, event: EventEnvelope, prev_status: str | None) -> None:
+        """Publish a discovery.refresh.requested signal when a device becomes up.
+
+        Idempotent: uses _last_status to skip re-emission when the previous status
+        was already 'up' (i.e., no real transition happened).
+        """
+        payload = event.payload or {}
+        status = payload.get("status") or payload.get("device_status")
+        refresh_requested = bool(payload.get("refresh_requested"))
+
+        raw_device_id = str(event.device_id or payload.get("device_id") or "")
+        if not raw_device_id:
+            return
+
+        # Idempotency guard using cached last-seen status
+        last_known = self._last_status.get(raw_device_id)
+        became_up = status == "up" and (last_known or prev_status) not in {"up"}
+        if not became_up and not refresh_requested:
+            self._last_status[raw_device_id] = str(status) if status else last_known or ""
+            return
+
+        self._last_status[raw_device_id] = str(status) if status else ""
+        reason = "refresh_requested" if refresh_requested else f"status_transition:{prev_status}->{status}"
+        refresh_event = EventEnvelope(
+            event_type="discovery.refresh.requested",
+            source=self.worker_kind,
+            device_id=raw_device_id,
+            trace_id=event.trace_id,
+            payload={
+                "device_id": raw_device_id,
+                "correlation_key": str(event.object_id or payload.get("correlation_key") or ""),
+                "reason": reason,
+            },
+        )
+        await self.bus.publish(refresh_event)
 
 
 class TelemetryEventConsumer(EventConsumer):
@@ -282,7 +325,27 @@ class TelemetryEventConsumer(EventConsumer):
         if kpi is None:
             return 0
         evaluator = KPIThresholdEvaluator(self.session_factory)
-        return await evaluator.evaluate([kpi])
+        tca_count = await evaluator.evaluate([kpi])
+        await self._emit_kpi_evaluated(event, kpi_id, tca_count)
+        return tca_count
+
+    async def _emit_kpi_evaluated(self, event: EventEnvelope, kpi_id: int, tca_count: int) -> None:
+        """Fan-out a telemetry.kpi.evaluated event after threshold evaluation."""
+        severity = "nominal" if tca_count == 0 else "warning"
+        fan_out = EventEnvelope(
+            event_type="telemetry.kpi.evaluated",
+            source=self.worker_kind,
+            device_id=event.device_id or str(event.payload.get("device_id") or ""),
+            trace_id=event.trace_id,
+            severity=severity,
+            payload={
+                "kpi_id": kpi_id,
+                "device_id": event.device_id or str(event.payload.get("device_id") or ""),
+                "value": event.payload.get("value"),
+                "severity": severity,
+            },
+        )
+        await self.bus.publish(fan_out)
 
 
 def consumer_for_kind(kind: str, bus: EventBus | None = None, **kwargs) -> EventConsumer:
