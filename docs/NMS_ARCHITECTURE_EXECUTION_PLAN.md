@@ -856,14 +856,32 @@ The stream is `MAXLEN`-trimmed at ~10k, so `XLEN` alone underestimates
 throughput; always use `XINFO GROUPS nms:events`'s `entries-read` for
 baseline numbers.
 
+## Phase 4G completion notes — 2026-05-18
+
+Service impact UI page added.
+
+- Added frontend `/services` page and sidebar entry for service impact visibility.
+- Page surfaces `/api/services` inventory and `/api/assurance/services` impact scoring.
+- Shows service count, average score, impacted services, impact matrix, and member-level score cards.
+- Validation: `npm run build` in `frontend/` clean.
+
+## Phase 1 frontend follow-up — 2026-05-18
+
+Device detail interface tab wired to the existing live IF-MIB endpoint.
+
+- Replaced the placeholder Interfaces tab with an on-demand SNMP fetch against `GET /api/devices/{id}/interfaces`.
+- Added interface table with index, description, alias, admin/oper state, speed, error counters, and MAC address.
+- Added refresh control and failure empty-state guidance for missing credentials/unreachable devices.
+- Validation: `npm run build` in `frontend/` clean.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
-2. Service impact UI page surfacing the Phase 4D/4E `/api/services` and
-   `/api/assurance` data (currently backend-only).
-3. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
+2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
    the laptop ceiling above is the environment, not the pipeline.
+3. Add service create/member management controls in the Services UI so operators
+   do not need to seed service models through raw API calls.
 
 ## Notification rules
 

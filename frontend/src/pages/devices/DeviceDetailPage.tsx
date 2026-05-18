@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ArrowLeft, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Network, RefreshCw } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Button, Card, StatCard, Spinner, EmptyState, PageHeader } from '../../components/ui';
 import { DeviceStatusBadge } from './components/DeviceStatusBadge';
@@ -37,6 +37,21 @@ interface IOSVersion {
   detected_at: string;
 }
 
+interface InterfaceRow {
+  if_index: number;
+  descr?: string | null;
+  type?: number | null;
+  speed?: number | null;
+  admin_status?: number | null;
+  oper_status?: number | null;
+  in_octets?: number | null;
+  out_octets?: number | null;
+  in_errors?: number | null;
+  out_errors?: number | null;
+  alias?: string | null;
+  phys_address?: string | null;
+}
+
 type Tab = 'overview' | 'inventory' | 'interfaces' | 'ios' | 'kpis';
 
 export function DeviceDetailPage() {
@@ -62,6 +77,13 @@ export function DeviceDetailPage() {
     queryKey: ['ios-versions', id],
     queryFn: () => api.get(`/ios/devices/${id}/versions`).then((r) => r.data),
     enabled: activeTab === 'ios' && Boolean(id),
+  });
+
+  const interfacesQuery = useQuery<InterfaceRow[]>({
+    queryKey: ['device-interfaces', id],
+    queryFn: () => api.get(`/devices/${id}/interfaces`).then((r) => r.data),
+    enabled: activeTab === 'interfaces' && Boolean(id),
+    retry: 1,
   });
 
   const pollMutation = useMutation({
@@ -189,10 +211,56 @@ export function DeviceDetailPage() {
       )}
 
       {activeTab === 'interfaces' && (
-        <Card className="p-6 text-center text-gray-500">
-          {/* TODO: Backend does not expose interfaces endpoint yet. Implement when GET /devices/{id}/interfaces is available. */}
-          <p className="text-sm">Interfaces are not available yet.</p>
-          <p className="text-xs text-gray-400 mt-1">Pending: implement when the backend exposes <code>GET /devices/{'{'}{id}{'}'}/interfaces</code>.</p>
+        <Card className="p-4 space-y-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <h3 className="flex items-center gap-2 font-semibold text-gray-700 dark:text-gray-100">
+                <Network className="h-4 w-4" /> Live IF-MIB interfaces
+              </h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Fetched on demand through SNMP using the device credential profile.</p>
+            </div>
+            <Button variant="ghost" size="sm" onClick={() => interfacesQuery.refetch()} disabled={interfacesQuery.isFetching}>
+              <RefreshCw className={`w-4 h-4 mr-1 ${interfacesQuery.isFetching ? 'animate-spin' : ''}`} /> Refresh
+            </Button>
+          </div>
+
+          {interfacesQuery.isLoading && <Spinner />}
+          {interfacesQuery.isError && (
+            <EmptyState
+              title="Interface fetch failed"
+              description="Check that the device has a valid SNMP credential and is reachable from the backend."
+            />
+          )}
+          {interfacesQuery.data && interfacesQuery.data.length === 0 && (
+            <EmptyState title="No interfaces returned" description="The device responded, but no IF-MIB rows were returned." />
+          )}
+          {interfacesQuery.data && interfacesQuery.data.length > 0 && (
+            <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
+                  <tr>
+                    {['Index', 'Description', 'Alias', 'Admin', 'Oper', 'Speed', 'Errors', 'MAC'].map((h) => (
+                      <th key={h} className="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                  {interfacesQuery.data.map((iface) => (
+                    <tr key={iface.if_index} className="hover:bg-gray-50 dark:hover:bg-gray-800/60">
+                      <td className="px-3 py-2 font-mono text-gray-700 dark:text-gray-200">{iface.if_index}</td>
+                      <td className="px-3 py-2 text-gray-900 dark:text-white">{iface.descr || '—'}</td>
+                      <td className="px-3 py-2 text-gray-600 dark:text-gray-300">{iface.alias || '—'}</td>
+                      <td className="px-3 py-2"><StatusPill value={iface.admin_status} /></td>
+                      <td className="px-3 py-2"><StatusPill value={iface.oper_status} /></td>
+                      <td className="px-3 py-2 text-gray-600 dark:text-gray-300">{formatSpeed(iface.speed)}</td>
+                      <td className="px-3 py-2 text-gray-600 dark:text-gray-300">{formatErrors(iface)}</td>
+                      <td className="px-3 py-2 font-mono text-xs text-gray-500 dark:text-gray-400">{iface.phys_address || '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </Card>
       )}
 
@@ -235,4 +303,27 @@ export function DeviceDetailPage() {
       )}
     </div>
   );
+}
+
+function StatusPill({ value }: { value?: number | null }) {
+  const label = value === 1 ? 'up' : value === 2 ? 'down' : value == null ? 'unknown' : String(value);
+  const classes = value === 1
+    ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
+    : value === 2
+      ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300'
+      : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300';
+  return <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${classes}`}>{label}</span>;
+}
+
+function formatSpeed(speed?: number | null) {
+  if (!speed) return '—';
+  if (speed >= 1_000_000_000) return `${(speed / 1_000_000_000).toFixed(1)} Gbps`;
+  if (speed >= 1_000_000) return `${Math.round(speed / 1_000_000)} Mbps`;
+  if (speed >= 1_000) return `${Math.round(speed / 1_000)} Kbps`;
+  return `${speed} bps`;
+}
+
+function formatErrors(iface: InterfaceRow) {
+  const total = (iface.in_errors ?? 0) + (iface.out_errors ?? 0);
+  return total ? `${total} (${iface.in_errors ?? 0}/${iface.out_errors ?? 0})` : '0';
 }
