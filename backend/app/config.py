@@ -111,6 +111,14 @@ class Settings(BaseSettings):
     alarm_poll_interval: int = 30
     alarm_workers: int = 2
 
+    # AI Ops LLM assistant (Phase 6C). Disabled by default; deterministic NullProvider when on.
+    ai_ops_llm_enabled: bool = False
+    ai_ops_llm_provider: str = "null"
+    ai_ops_max_alarms: int = 20
+    ai_ops_max_kpis: int = 20
+    ai_ops_max_question_chars: int = 1000
+    ai_ops_max_answer_chars: int = 2000
+
     # Topology
     topology_poll_interval: int = 300
     lldp_interval: int = 120

@@ -732,10 +732,73 @@ Validation:
 
 Deferred: full async integration test feeding bytes through `SNMPTrapReceiver` with a live UDP socket is deferred to a separate integration-test suite; it requires `pysnmp-lextudio` and root/CAP_NET_BIND_SERVICE for port 162.
 
+## Phase 5M completion notes — 2026-05-17
+
+Native gNMI proto contract scaffolding and stub adapter (lab-bound).
+
+Deliverables:
+
+- `backend/app/services/telemetry/native_gnmi.py` extended with
+  `StubNativeGnmiAdapter`, `GnmiUpdate`, `make_lab_subscription`, and
+  `build_stub_from_paths`. `GnmiSubscriptionConfig` now carries a
+  `device_id` so emitted samples match `TelemetrySampleIngest`'s required
+  `device_id` field.
+- `proto/README.md` documents the codegen target against upstream
+  openconfig/gnmi without vendoring proto files until a real lab/capture is
+  available.
+- `backend/tests/services/test_native_gnmi_stub.py` exercises TLS validation,
+  mTLS material requirement, the lab subscription factory, and stub
+  replayability (5 tests).
+
+Real gRPC/protobuf interop remains blocked on lab hardware or captured
+Subscribe streams; the contract is now in place so a future adapter can
+be dropped in without touching downstream code.
+
+## Phase 6C completion notes — 2026-05-17
+
+AI Ops LLM assistant with strict guardrails. LLM-disabled by default.
+
+Deliverables:
+
+- `backend/app/services/ai_ops/guardrails.py` — `redact_text` strips IPv4,
+  IPv6, MAC, FQDN, secrets, SNMP communities, and PEM private key blocks
+  before anything crosses the trust boundary. `validate_question` and
+  `validate_answer` enforce length caps and citation integrity (rejects
+  unknown ids, rejects uncited answers when evidence exists, requires the
+  `prefix:id` citation shape so redaction placeholders cannot be mistaken
+  for citations).
+- `backend/app/services/ai_ops/providers.py` — `LLMProvider` Protocol +
+  deterministic `NullLLMProvider` for tests/lab/air-gapped deploys.
+  `get_provider("null")` is the only built-in; real providers must be
+  registered explicitly.
+- `backend/app/services/ai_ops/assistant.py` — retrieval-grounded
+  orchestrator: validates question, pulls active alarms + non-good KPIs,
+  redacts every label before building evidence, calls the provider, and
+  validates the answer against the allowed citation set.
+- `app/api/ai_ops.py` — new `POST /api/ai-ops/assistant/ask` endpoint;
+  returns `503` when `ai_ops_llm_enabled=False`.
+- `app/config.py` — `ai_ops_llm_enabled` (default `False`),
+  `ai_ops_llm_provider` (`null`), plus per-call caps.
+- `backend/tests/services/test_ai_ops_assistant.py` — 15 tests covering
+  redaction, citation validation, question length checks, the Null
+  provider, and an end-to-end orchestrator run with a fake session.
+
+Validation:
+
+- `pytest backend/tests -q` → 224 passed (+20 vs Phase 5L).
+- `python -m compileall -q backend/app` → clean.
+- `docker compose config --quiet` → clean.
+- `helm lint helm/nms-custom` → clean.
+- `npm run build` in `frontend/` → clean.
+
 ## Immediate next tasks
 
-1. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
-2. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
+1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
+   blocked on lab hardware or captures).
+2. Frontend UI for `POST /api/ai-ops/assistant/ask` once a real provider is
+   selected and gated by RBAC.
+3. Drive sustained EPS load from `nms-traffic-sim` against the completed
+   pipeline to validate throughput.
 
 ## Notification rules
 

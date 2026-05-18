@@ -11,14 +11,18 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.database import get_db
 from app.models.alarm import Alarm
 from app.models.kpi import KPI
+from app.services.ai_ops.assistant import answer_question
+from app.services.ai_ops.guardrails import GuardrailLimits
+from app.services.ai_ops.providers import get_provider
 
 router = APIRouter()
 
@@ -181,4 +185,56 @@ async def report_narrative(db: Annotated[AsyncSession, Depends(get_db)], hours: 
             AdvisoryCitation(source_type="kpi", object_id=str(k.id), label=k.metric_name or k.kpi_type, timestamp=k.timestamp, detail=f"quality={k.quality} value={k.value}")
             for k in kpis[:5]
         ],
+    )
+
+
+class AssistantAskRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=1000)
+    kpi_hours: int = Field(default=24, ge=1, le=168)
+
+
+class AssistantAnswerResponse(BaseModel):
+    question: str
+    answer: str
+    citations: list[AdvisoryCitation] = Field(default_factory=list)
+    provider: str
+    advisory_only: bool = True
+    rejected_reason: str | None = None
+    generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+@router.post("/assistant/ask", response_model=AssistantAnswerResponse)
+async def assistant_ask(
+    payload: AssistantAskRequest,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> AssistantAnswerResponse:
+    if not getattr(settings, "ai_ops_llm_enabled", False):
+        raise HTTPException(status_code=503, detail="AI Ops LLM assistant disabled")
+    provider = get_provider(getattr(settings, "ai_ops_llm_provider", "null"))
+    limits = GuardrailLimits(
+        max_alarms=getattr(settings, "ai_ops_max_alarms", 20),
+        max_kpis=getattr(settings, "ai_ops_max_kpis", 20),
+        max_question_chars=getattr(settings, "ai_ops_max_question_chars", 1000),
+        max_answer_chars=getattr(settings, "ai_ops_max_answer_chars", 2000),
+    )
+    try:
+        result = await answer_question(
+            db, payload.question, provider=provider, limits=limits, kpi_hours=payload.kpi_hours
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return AssistantAnswerResponse(
+        question=result.question,
+        answer=result.answer,
+        citations=[
+            AdvisoryCitation(
+                source_type=c.source_type,
+                object_id=c.citation_id,
+                label=c.label,
+                detail=c.detail or None,
+            )
+            for c in result.citations
+        ],
+        provider=result.provider,
+        rejected_reason=result.rejected_reason,
     )
