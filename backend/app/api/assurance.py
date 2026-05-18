@@ -18,7 +18,7 @@ from app.models.audit import AuditLog
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.kpi import KPI
-from app.models.service import Service, ServiceDependency, ServiceMember
+from app.models.service import Service, ServiceDependency, ServiceMember, ServiceScoreSnapshot
 from app.models.topology import TopologyLink, TopologyNode
 from app.services.assurance import clamp_score, severity_penalty
 from app.services.assurance.topology_impact import compute_topology_blast_radius
@@ -639,6 +639,7 @@ async def assurance_services(
         for s in services
     ]
     impacts.sort(key=lambda x: (x.score, -_severity_rank(x.worst_severity), x.name))
+    await _persist_service_score_snapshots(db, impacts)
     return impacts[:limit]
 
 
@@ -678,6 +679,94 @@ async def assurance_service_detail(
         for s in all_services
     }
     return _compute_service_impact(service, alarms_by_device, alarms_by_interface, interface_oper_status, base_scores)
+
+
+_SNAPSHOT_THROTTLE_SECONDS = 60
+
+
+async def _persist_service_score_snapshots(
+    db: AsyncSession,
+    impacts: list[ServiceImpact],
+    *,
+    throttle_seconds: int = _SNAPSHOT_THROTTLE_SECONDS,
+) -> None:
+    """Persist score snapshots, skipping services with a recent snapshot."""
+    if not impacts:
+        return
+
+    cutoff = datetime.now(timezone.utc) - timedelta(seconds=throttle_seconds)
+    latest_result = await db.execute(
+        select(ServiceScoreSnapshot.service_id, func.max(ServiceScoreSnapshot.captured_at))
+        .where(ServiceScoreSnapshot.service_id.in_([i.service_id for i in impacts]))
+        .group_by(ServiceScoreSnapshot.service_id)
+    )
+    latest = {row[0]: row[1] for row in latest_result.all()}
+
+    fresh: list[ServiceScoreSnapshot] = []
+    for impact in impacts:
+        last = latest.get(impact.service_id)
+        if last is not None:
+            if last.tzinfo is None:
+                last = last.replace(tzinfo=timezone.utc)
+            if last >= cutoff:
+                continue
+        fresh.append(
+            ServiceScoreSnapshot(
+                service_id=impact.service_id,
+                score=impact.score,
+                base_score=impact.base_score,
+                dependency_penalty=impact.dependency_penalty,
+                health_state=impact.health_state,
+            )
+        )
+
+    if fresh:
+        db.add_all(fresh)
+        await db.commit()
+
+
+class ServiceScorePoint(BaseModel):
+    captured_at: datetime
+    score: int
+    base_score: int | None = None
+    dependency_penalty: int = 0
+    health_state: str
+
+
+@router.get("/services/{service_id}/history", response_model=list[ServiceScorePoint])
+async def assurance_service_history(
+    service_id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    hours: int = 24,
+    limit: int = 500,
+) -> list[ServiceScorePoint]:
+    """Return service score snapshots over the requested time window."""
+    service = await db.get(Service, service_id)
+    if not service:
+        raise HTTPException(status_code=404, detail="Service not found")
+
+    hours = max(1, min(hours, 24 * 30))
+    limit = max(1, min(limit, 5000))
+    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+
+    result = await db.execute(
+        select(ServiceScoreSnapshot)
+        .where(ServiceScoreSnapshot.service_id == service_id)
+        .where(ServiceScoreSnapshot.captured_at >= since)
+        .order_by(ServiceScoreSnapshot.captured_at.asc())
+        .limit(limit)
+    )
+    snapshots = list(result.scalars().all())
+    return [
+        ServiceScorePoint(
+            captured_at=s.captured_at,
+            score=s.score,
+            base_score=s.base_score,
+            dependency_penalty=s.dependency_penalty,
+            health_state=s.health_state,
+        )
+        for s in snapshots
+    ]
 
 
 def _node_label(node: TopologyNode) -> str:

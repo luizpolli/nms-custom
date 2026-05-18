@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, String, Text, UniqueConstraint
+
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc)
+
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -100,3 +104,24 @@ class ServiceMember(Base):
 
     def __repr__(self) -> str:
         return f"<ServiceMember service={self.service_id} device={self.device_id} iface={self.interface_id}>"
+
+
+class ServiceScoreSnapshot(Base):
+    """Point-in-time service health snapshot for history/trend visibility."""
+
+    __tablename__ = "service_score_history"
+
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    service_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("services.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    score: Mapped[int] = mapped_column(Integer, nullable=False)
+    base_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    dependency_penalty: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    health_state: Mapped[str] = mapped_column(String(32), nullable=False, default="healthy")
+    captured_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=_utcnow, nullable=False, index=True
+    )
+
+    def __repr__(self) -> str:
+        return f"<ServiceScoreSnapshot service={self.service_id} score={self.score} at={self.captured_at}>"

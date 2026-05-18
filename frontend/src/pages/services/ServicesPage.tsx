@@ -417,6 +417,9 @@ export function ServicesPage() {
                 </div>
                 <Badge variant={score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger'}>{score}</Badge>
               </div>
+              <div className="mb-3">
+                <ServiceScoreSparkline serviceId={service.id} />
+              </div>
               {!!impact?.dependency_impacts?.length && (
                 <div className="mb-3 space-y-2">
                   <div className="text-xs font-semibold uppercase tracking-wide text-red-500">Propagated dependency impact</div>
@@ -539,6 +542,60 @@ function interfaceLabel(iface: ManagedInterface) {
   const index = iface.if_index == null ? '' : `#${iface.if_index} · `;
   const status = iface.oper_status ? ` · ${iface.oper_status}` : '';
   return `${index}${iface.name}${iface.alias ? ` (${iface.alias})` : ''}${status}`;
+}
+
+type ScoreHistoryPoint = {
+  captured_at: string;
+  score: number;
+  base_score: number | null;
+  dependency_penalty: number;
+  health_state: string;
+};
+
+function ServiceScoreSparkline({ serviceId }: { serviceId: string }) {
+  const historyQuery = useQuery({
+    queryKey: ['service-history', serviceId],
+    queryFn: () =>
+      api
+        .get<ScoreHistoryPoint[]>(`/assurance/services/${serviceId}/history`, { params: { hours: 24 } })
+        .then((r) => r.data),
+    refetchInterval: 120_000,
+    staleTime: 60_000,
+  });
+
+  const points = historyQuery.data ?? [];
+  if (historyQuery.isLoading) {
+    return <div className="h-10 w-full animate-pulse rounded bg-gray-100 dark:bg-gray-800" />;
+  }
+  if (points.length < 2) {
+    return (
+      <div className="flex h-10 items-center justify-center rounded border border-dashed border-gray-200 text-[11px] text-gray-400 dark:border-gray-700">
+        no trend yet · history accumulates as scoring runs
+      </div>
+    );
+  }
+
+  const width = 240;
+  const height = 40;
+  const xs = points.map((_, i) => (points.length === 1 ? 0 : (i / (points.length - 1)) * width));
+  const ys = points.map((p) => height - (Math.max(0, Math.min(100, p.score)) / 100) * height);
+  const path = xs.map((x, i) => `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${ys[i].toFixed(1)}`).join(' ');
+  const minScore = Math.min(...points.map((p) => p.score));
+  const maxScore = Math.max(...points.map((p) => p.score));
+  const lastScore = points[points.length - 1].score;
+  const strokeColor = lastScore >= 90 ? '#16a34a' : lastScore >= 75 ? '#ca8a04' : '#dc2626';
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-[11px] text-gray-500">
+        <span>24h trend</span>
+        <span>min {minScore} · max {maxScore} · n={points.length}</span>
+      </div>
+      <svg viewBox={`0 0 ${width} ${height}`} className="h-10 w-full" preserveAspectRatio="none">
+        <path d={path} fill="none" stroke={strokeColor} strokeWidth={1.5} />
+      </svg>
+    </div>
+  );
 }
 
 function Th({ children }: { children: React.ReactNode }) {

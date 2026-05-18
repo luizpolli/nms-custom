@@ -927,6 +927,17 @@ Dependency graph visualization added to Services UI.
 - Impacted edges show propagated penalty and target service score, making blast-radius propagation visible without opening each service card.
 - Validation: `npm run build` in `frontend/` clean.
 
+## Phase 4M completion notes — 2026-05-18
+
+Service score history and 24h trend sparkline added.
+
+- Added `ServiceScoreSnapshot` ORM model and Alembic migration `0006_service_score_history.py`.
+- `GET /api/assurance/services` now persists per-service score snapshots, throttled to one write per service per 60s.
+- Added `GET /api/assurance/services/{service_id}/history?hours=24` returning ordered snapshots with score, base score, dependency penalty, and health state.
+- Services UI service cards render a 24h SVG sparkline with min/max/sample count.
+- Standardized snapshot timestamps on UTC-aware `datetime.now(timezone.utc)` for consistent throttle math across PostgreSQL and SQLite test runs.
+- Validation: `pytest backend/tests -q` → 238 passed (+3); `npm run build` clean; `docker compose config --quiet` clean.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
