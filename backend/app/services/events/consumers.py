@@ -1,19 +1,29 @@
-"""Defensive Redis Streams consumer skeletons for domain workers.
+"""Redis Streams consumers for domain workers.
 
-These consumers intentionally do only lightweight routing today. They make the
-worker topology production-shaped without pretending full async processors exist
-for every event type yet.
+The consumers keep delivery/ACK semantics in one place and run small, idempotent
+domain processors for events that already have a concrete local workflow.
 """
 
 from __future__ import annotations
 
 import asyncio
 import socket
+import uuid
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from typing import Callable
+
 from loguru import logger
+from sqlalchemy import or_, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import Settings
+from app.database import async_session_factory
+from app.models.alarm import Alarm
+from app.models.device import Device
 from app.services.events import EventBus, EventEnvelope
+
+SessionFactory = Callable[[], AsyncSession]
 
 
 @dataclass(slots=True)
@@ -42,9 +52,11 @@ class EventConsumer:
         group_name: str | None = None,
         consumer_name: str | None = None,
         use_consumer_group: bool = True,
+        session_factory: SessionFactory | None = None,
     ) -> None:
         settings = Settings()
         self.bus = bus or EventBus()
+        self.session_factory = session_factory or async_session_factory
         self.group_name = group_name or f"{settings.event_consumer_group_prefix}:{self.worker_kind}"
         self.consumer_name = consumer_name or f"{socket.gethostname()}:{self.worker_kind}"
         self.use_consumer_group = use_consumer_group
@@ -135,15 +147,142 @@ class AlarmEventConsumer(EventConsumer):
     event_prefixes = ("alarm", "trap", "syslog")
     event_types = ("linkdown", "linkup")
 
+    def accepts(self, event: EventEnvelope) -> bool:
+        if super().accepts(event):
+            return True
+        return event.source in {"syslog", "trap"} or event.object_type == "alarm"
+
+    async def handle(self, event: EventEnvelope) -> bool:
+        if not await super().handle(event):
+            return False
+        enriched = await self._enrich_alarm(event)
+        if enriched:
+            logger.debug("{} enriched alarm for event_id={}", self.worker_kind, event.event_id)
+        return True
+
+    async def _enrich_alarm(self, event: EventEnvelope) -> bool:
+        """Attach known device metadata to an active alarm when possible."""
+        correlation_key = str(event.object_id or event.payload.get("correlation_key") or "")
+        source_host = str(event.payload.get("source_host") or "")
+        if not correlation_key and not source_host:
+            return False
+
+        async with self.session_factory() as session:
+            alarm = await self._find_alarm(session, correlation_key, source_host)
+            if alarm is None:
+                return False
+            device = await self._find_device(session, event, source_host)
+            changed = False
+            if device is not None and alarm.device_id != device.id:
+                alarm.device_id = device.id
+                alarm.object_type = alarm.object_type or "device"
+                alarm.object_id = alarm.object_id or str(device.id)
+                changed = True
+            if event.source and alarm.source_type != event.source:
+                alarm.source_type = event.source
+                changed = True
+            if changed:
+                await session.commit()
+            return changed
+
+    async def _find_alarm(self, session: AsyncSession, correlation_key: str, source_host: str) -> Alarm | None:
+        clauses = []
+        if correlation_key:
+            clauses.append(Alarm.correlation_key == correlation_key)
+        if source_host:
+            clauses.append(Alarm.source_host == source_host)
+        if not clauses:
+            return None
+        result = await session.execute(
+            select(Alarm)
+            .where(Alarm.state == "active", or_(*clauses))
+            .order_by(Alarm.last_seen.desc())
+            .limit(1)
+        )
+        return result.scalar_one_or_none()
+
+    async def _find_device(self, session: AsyncSession, event: EventEnvelope, source_host: str) -> Device | None:
+        if event.device_id:
+            try:
+                device = await session.get(Device, uuid.UUID(str(event.device_id)))
+                if device is not None:
+                    return device
+            except ValueError:
+                pass
+        if not source_host:
+            return None
+        result = await session.execute(
+            select(Device)
+            .where(or_(Device.ip_address == source_host, Device.name == source_host))
+            .limit(1)
+        )
+        return result.scalar_one_or_none()
+
 
 class DiscoveryEventConsumer(EventConsumer):
     worker_kind = "worker-discovery"
     event_prefixes = ("discovery", "inventory", "topology")
 
+    async def handle(self, event: EventEnvelope) -> bool:
+        if not await super().handle(event):
+            return False
+        updated = await self._apply_device_status(event)
+        if updated:
+            logger.debug("{} updated discovery device state for event_id={}", self.worker_kind, event.event_id)
+        return True
+
+    async def _apply_device_status(self, event: EventEnvelope) -> bool:
+        payload = event.payload or {}
+        status = payload.get("status") or payload.get("device_status")
+        if status not in {"up", "down", "unknown", "degraded"}:
+            return False
+
+        async with self.session_factory() as session:
+            device = None
+            raw_device_id = event.device_id or payload.get("device_id")
+            if raw_device_id:
+                try:
+                    device = await session.get(Device, uuid.UUID(str(raw_device_id)))
+                except ValueError:
+                    device = None
+            if device is None and payload.get("ip_address"):
+                result = await session.execute(select(Device).where(Device.ip_address == str(payload["ip_address"])).limit(1))
+                device = result.scalar_one_or_none()
+            if device is None:
+                return False
+            device.status = str(status)
+            device.updated_at = datetime.now(timezone.utc)
+            await session.commit()
+            return True
+
 
 class TelemetryEventConsumer(EventConsumer):
     worker_kind = "worker-telemetry"
     event_prefixes = ("telemetry", "kpi", "gnmi")
+
+    async def handle(self, event: EventEnvelope) -> bool:
+        if not await super().handle(event):
+            return False
+        evaluated = await self._evaluate_thresholds(event)
+        if evaluated:
+            logger.debug("{} evaluated {} TCA event(s) for event_id={}", self.worker_kind, evaluated, event.event_id)
+        return True
+
+    async def _evaluate_thresholds(self, event: EventEnvelope) -> int:
+        if (event.event_type or "").lower() != "telemetry.sample.normalized":
+            return 0
+        kpi_id = event.payload.get("kpi_id")
+        if kpi_id is None:
+            return 0
+        from app.models.kpi import KPI
+        from app.services.kpi.thresholds import KPIThresholdEvaluator
+
+        async with self.session_factory() as session:
+            kpi = await session.get(KPI, int(kpi_id))
+        if kpi is None:
+            return 0
+        evaluator = KPIThresholdEvaluator(self.session_factory)
+        return await evaluator.evaluate([kpi])
 
 
 def consumer_for_kind(kind: str, bus: EventBus | None = None, **kwargs) -> EventConsumer:

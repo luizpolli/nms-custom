@@ -254,7 +254,7 @@ class AlarmCorrelator:
                 raw_varbinds=self._raw_payload(varbinds, cls),
                 correlation_key=cls["correlation_key"],
                 dedup_key=cls["correlation_key"],
-                source_type="trap",
+                source_type=source_type,
                 object_type="device",
                 state="active",
                 first_seen=now,

@@ -97,6 +97,8 @@ class TelemetryIngestionService:
                     object_id=kpi.object_id,
                     severity="info" if sample.quality == "good" else "warning",
                     payload={
+                        "raw_sample_id": raw.id,
+                        "kpi_id": kpi.id,
                         "path": sample.path,
                         "metric_name": kpi.metric_name,
                         "kpi_type": kpi.kpi_type,

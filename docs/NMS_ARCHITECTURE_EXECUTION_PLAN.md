@@ -652,15 +652,27 @@ Completed mock-device simulator harness:
 - Added `docs/MOCK_DEVICE_SIMULATORS.md` with local lab workflow and limitations.
 - Added unit tests for simulator payload builders.
 
+## Phase 5G completion notes — 2026-05-17
+
+Completed first real worker processors and simulator inspection pass:
+
+- Telemetry normalized-sample events now include `raw_sample_id` and `kpi_id` so downstream workers can load the persisted KPI row.
+- `worker-telemetry` now evaluates KPI thresholds for `telemetry.sample.normalized` events instead of only ACKing them.
+- `worker-alarm` now accepts syslog/trap-sourced alarm events even when the event type is facility/OID-shaped, and enriches active alarms with device metadata when a matching device can be found.
+- Alarm correlation now preserves the true source type (`syslog`, `trap`, or `event`) when creating alarm rows.
+- `worker-discovery` now applies lightweight device status updates from discovery/inventory/topology events.
+- Mock simulator traffic was run through local receivers: syslog alarms were created and telemetry frames returned `OK 2` while raw telemetry/KPI rows were inserted.
+
 Remaining Phase 5 work:
 
 - Add native SNMP trap simulator once the local pysnmp dependency stack is fixed or replaced.
-- Replace defensive worker handlers with real domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out.
+- Improve mock syslog device correlation: UDP localhost/Docker source IP cannot represent the mock management IP, so enrichment needs hostname/IP extraction or simulator metadata rules.
+- Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
 
 ## Immediate next tasks
 
-1. Run mock simulator traffic through local receivers and inspect resulting telemetry/KPI/alarm/event-bus behavior.
-2. Replace defensive worker handlers with real domain processors for alarm enrichment, discovery refresh triggers, and telemetry fan-out.
+1. Add hostname/IP extraction for syslog alarms so simulator-created devices correlate to syslog events in Docker/local runs.
+2. Add native SNMP trap simulator once dependency strategy is settled.
 3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 4. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 
