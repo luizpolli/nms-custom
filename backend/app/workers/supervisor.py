@@ -243,14 +243,18 @@ class WorkerSupervisor:
                 correlator = AlarmCorrelator(async_session_factory)
 
                 async def _handle(event: SyslogEvent) -> None:
+                    packet_source_host = event.source_host
+                    logical_source_host = event.hostname or event.source_host
                     await correlator.handle_syslog(
-                        source_host=event.source_host,
+                        source_host=logical_source_host,
                         message=event.message,
                         severity=event.severity,
                         category="syslog",
                         facility=event.msg_id or event.app_name or (str(event.facility) if event.facility is not None else None),
                         fields={
                             "raw": event.raw,
+                            "packet_source_host": packet_source_host,
+                            "hostname": event.hostname or "",
                             "facility": str(event.facility) if event.facility is not None else "",
                             "app_name": event.app_name or "",
                             "msg_id": event.msg_id or "",

@@ -15,6 +15,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.alarm import Alarm
+from app.models.device import Device
 from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule, normalize_alarm_severity
 from app.services.events import EventEnvelope, publish_event
 from app.services.snmp.trap_receiver import TrapEvent
@@ -209,11 +210,15 @@ class AlarmCorrelator:
                     cls["auto_clear"],
                 )
 
+            device = await self._find_device_by_host(session, source_host)
+            device_id = str(device.id) if device is not None else None
+
             await publish_event(
                 EventEnvelope(
                     event_type=cls["event_type"],
                     source=source_type,
                     severity=cls["severity"],
+                    device_id=device_id,
                     object_type="alarm",
                     object_id=cls["correlation_key"],
                     payload={
@@ -239,12 +244,17 @@ class AlarmCorrelator:
                 alarm.event_type = cls["event_type"]
                 alarm.message = cls["message"]
                 alarm.raw_varbinds = self._raw_payload(varbinds, cls)
+                if device is not None and alarm.device_id != device.id:
+                    alarm.device_id = device.id
+                    alarm.object_type = alarm.object_type or "device"
+                    alarm.object_id = alarm.object_id or str(device.id)
                 await session.commit()
                 logger.debug("Alarm deduped: {} ({}x)", cls["correlation_key"], alarm.occurrence_count)
                 return alarm
 
             alarm = Alarm(
                 id=uuid.uuid4(),
+                device_id=device.id if device is not None else None,
                 source_host=source_host,
                 severity=cls["severity"],
                 category=cls["category"],
@@ -256,6 +266,7 @@ class AlarmCorrelator:
                 dedup_key=cls["correlation_key"],
                 source_type=source_type,
                 object_type="device",
+                object_id=str(device.id) if device is not None else None,
                 state="active",
                 first_seen=now,
                 last_seen=now,
@@ -265,6 +276,16 @@ class AlarmCorrelator:
             await session.commit()
             logger.info("Alarm created: {} sev={}", cls["correlation_key"], cls["severity"])
             return alarm
+
+    async def _find_device_by_host(self, session: AsyncSession, host: str) -> Device | None:
+        if not host:
+            return None
+        result = await session.execute(
+            select(Device)
+            .where((Device.ip_address == host) | (Device.name == host))
+            .limit(1)
+        )
+        return result.scalar_one_or_none()
 
     async def ack(self, alarm_id: uuid.UUID, by_user: str) -> Alarm:
         """Acknowledge an alarm."""

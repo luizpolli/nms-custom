@@ -28,6 +28,11 @@ _RFC5424_RE = re.compile(
     r"(?P<structured_data>-|\[[^\]]*\])(?:\s+(?P<message>.*))?$"
 )
 _BSD_RE = re.compile(r"^<(?P<pri>\d{1,3})>(?P<message>.*)$", re.DOTALL)
+_BSD_HEADER_RE = re.compile(
+    r"^(?P<timestamp>[A-Z][a-z]{2}\s+\d{1,2}(?:\s+\d{2}:\d{2}:\d{2})?)\s+"
+    r"(?P<hostname>\S+)\s+(?P<body>.*)$",
+    re.DOTALL,
+)
 
 
 @dataclass(slots=True)
@@ -37,6 +42,7 @@ class SyslogEvent:
     facility: int | None
     severity: str
     message: str
+    hostname: str | None = None
     app_name: str | None = None
     msg_id: str | None = None
     structured_data: str | None = None
@@ -58,6 +64,7 @@ def parse_syslog(payload: bytes, source_host: str, source_port: int) -> SyslogEv
             facility=pri // 8,
             severity=SYSLOG_SEVERITIES.get(pri % 8, "info"),
             message=match.group("message") or "",
+            hostname=match.group("hostname"),
             app_name=None if match.group("app") == "-" else match.group("app"),
             msg_id=None if match.group("msgid") == "-" else match.group("msgid"),
             structured_data=None if match.group("structured_data") == "-" else match.group("structured_data"),
@@ -67,12 +74,16 @@ def parse_syslog(payload: bytes, source_host: str, source_port: int) -> SyslogEv
     match = _BSD_RE.match(raw)
     if match:
         pri = int(match.group("pri"))
+        message = match.group("message")
+        header = _BSD_HEADER_RE.match(message)
+        hostname = header.group("hostname") if header else None
         return SyslogEvent(
             source_host=source_host,
             source_port=source_port,
             facility=pri // 8,
             severity=SYSLOG_SEVERITIES.get(pri % 8, "info"),
-            message=match.group("message"),
+            message=message,
+            hostname=hostname,
             raw=raw,
         )
 

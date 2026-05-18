@@ -11,6 +11,7 @@ def test_parse_rfc5424_syslog() -> None:
     )
 
     assert event.source_host == '10.0.0.1'
+    assert event.hostname == 'router-1'
     assert event.facility == 16
     assert event.severity == 'info'
     assert event.app_name == 'IOS-XR'
@@ -23,4 +24,17 @@ def test_parse_bsd_syslog_priority() -> None:
 
     assert event.facility == 16
     assert event.severity == 'error'
+    assert event.hostname == 'router-1'
     assert '%LINK-3-UPDOWN' in event.message
+
+
+def test_parse_bsd_syslog_extracts_simulator_hostname() -> None:
+    event = parse_syslog(
+        b'<134>May 18 01:28:16 mock-iosxr-1 %NMS-6-MOCK: mock heartbeat sequence=1',
+        '151.101.192.223',
+        5514,
+    )
+
+    assert event.source_host == '151.101.192.223'
+    assert event.hostname == 'mock-iosxr-1'
+    assert event.message.startswith('May 18 01:28:16 mock-iosxr-1')

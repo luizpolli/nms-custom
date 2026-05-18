@@ -663,16 +663,25 @@ Completed first real worker processors and simulator inspection pass:
 - `worker-discovery` now applies lightweight device status updates from discovery/inventory/topology events.
 - Mock simulator traffic was run through local receivers: syslog alarms were created and telemetry frames returned `OK 2` while raw telemetry/KPI rows were inserted.
 
+## Phase 5H completion notes — 2026-05-17
+
+Completed syslog-to-device correlation for local/mock labs:
+
+- Syslog parsing now extracts RFC5424 and BSD-style hostnames while preserving the packet source IP.
+- The syslog receiver passes the logical hostname to alarm correlation and keeps the packet source in alarm fields for audit/debugging.
+- Alarm correlation now resolves devices by source hostname/IP and attaches `device_id`/`object_id` directly when creating or deduping alarms.
+- This fixes Docker/local runs where UDP source IP is a bridge/local address but the syslog payload contains the real/simulated device name.
+
 Remaining Phase 5 work:
 
 - Add native SNMP trap simulator once the local pysnmp dependency stack is fixed or replaced.
-- Improve mock syslog device correlation: UDP localhost/Docker source IP cannot represent the mock management IP, so enrichment needs hostname/IP extraction or simulator metadata rules.
 - Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
+- Add lab health/UI affordances to quickly see mock telemetry, alarms, and worker processing status.
 
 ## Immediate next tasks
 
-1. Add hostname/IP extraction for syslog alarms so simulator-created devices correlate to syslog events in Docker/local runs.
-2. Add native SNMP trap simulator once dependency strategy is settled.
+1. Add native SNMP trap simulator once dependency strategy is settled.
+2. Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
 3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 4. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 
