@@ -791,14 +791,44 @@ Validation:
 - `helm lint helm/nms-custom` → clean.
 - `npm run build` in `frontend/` → clean.
 
+## Phase 6D completion notes — 2026-05-18
+
+Frontend UI for the AI Ops assistant.
+
+- `frontend/src/pages/aiops/AIOpsPage.tsx` — added `AssistantPanel`: question
+  input (1000-char cap matching backend), `kpi_hours` selector (1–168),
+  submit handler wired to `POST /api/ai-ops/assistant/ask`.
+- Renders provider, redacted answer, guardrail rejection reason when
+  applicable, and the citation list using the existing `CitationList`
+  component.
+- 503 responses (when `AI_OPS_LLM_ENABLED=False`) are surfaced as an
+  EmptyState rather than a hard error.
+
+Validation: `npm run build` clean.
+
+## Phase 5N — EPS baseline against simulator
+
+Drove `nms-traffic-sim syslog` at 500 EPS for 20s against the local
+Compose stack (laptop):
+
+- Sent 10000 UDP syslog messages.
+- Stream `nms:events` grew from 54 → 9949 (+9895 events captured).
+- All three consumer groups (`nms:worker-alarm`,
+  `nms:worker-discovery`, `nms:worker-telemetry`) drained to lag=0 within
+  seconds of burst end.
+
+Effective sustained throughput ~495 EPS end-to-end with zero consumer
+lag. Baseline recorded in `README.md` for future regressions.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
-2. Frontend UI for `POST /api/ai-ops/assistant/ask` once a real provider is
-   selected and gated by RBAC.
-3. Drive sustained EPS load from `nms-traffic-sim` against the completed
-   pipeline to validate throughput.
+2. Wire RBAC on the AI Ops assistant endpoint before enabling
+   `AI_OPS_LLM_ENABLED` in any shared environment.
+3. Higher-rate EPS soak runs (5k+ EPS, mixed syslog/traps/telemetry) once a
+   dedicated lab host is available — the laptop ceiling above is the
+   environment, not the pipeline.
 
 ## Notification rules
 

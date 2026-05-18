@@ -77,12 +77,56 @@ Open [http://localhost:5173](http://localhost:5173) (frontend) and
 
 ## Services & Ports
 
-| Service     | Port(s)           | Description                   |
-|-------------|-------------------|-------------------------------|
-| Frontend    | 5173              | React + Vite dev server       |
-| Backend API | 8000              | FastAPI + Swagger             |
-| Postgres    | 5432              | PostgreSQL + TimescaleDB      |
-| Redis       | 6379              | Redis cache & message broker  |
+| Service             | Port(s)        | Description                          |
+|---------------------|----------------|--------------------------------------|
+| Frontend            | 5173           | React + Vite dev server              |
+| Backend API         | 8000           | FastAPI + Swagger                    |
+| Postgres            | 5432           | PostgreSQL + TimescaleDB             |
+| Redis               | 6379           | Redis Streams + cache                |
+| Syslog receiver     | 5514/udp       | Cisco-ish syslog ingestion           |
+| SNMP trap receiver  | 1162/udp       | SNMPv2c traps (data-driven classifier) |
+| Telemetry receiver  | 57400/tcp      | gNMI/MDT-like line-delimited JSON    |
+
+## Worker / receiver topology
+
+Runtime is split out of the API container:
+
+- `worker-poller` — monitoring policies, KPI sampling
+- `worker-topology` — LLDP/CDP graph refresh
+- `worker-report` — scheduled report generation
+- `worker-alarm` — Redis Streams alarm event consumer
+- `worker-discovery` — discovery event consumer + refresh fan-out
+- `worker-telemetry` — telemetry event consumer + KPI fan-out
+- `syslog-receiver`, `trap-receiver`, `telemetry-receiver` — UDP/TCP ingest pods
+
+All event consumers use Redis Streams consumer groups (`XGROUP / XREADGROUP / XACK / XAUTOCLAIM`).
+
+## Phases shipped (highlights)
+
+- **Phase 1–2**: device/interface/KPI/alarm data model + runtime split (API vs workers/receivers).
+- **Phase 2.5**: Alembic baseline + worker heartbeat + `GET /api/system/health`.
+- **Phase 3A–3E**: event bus (Redis Streams) + canonical envelope + telemetry MVP (gNMI-JSON / MDT-JSON / JSON).
+- **Phase 4A–4F**: alarm correlation, assurance groups, service impact scoring.
+- **Phase 5A–5L**: production hardening (Helm chart, CI, consumer groups, simulators, lab health UI, EPS visibility, vendor trap fixtures + classifier).
+- **Phase 5M**: native gNMI proto contract + `StubNativeGnmiAdapter` (lab-bound).
+- **Phase 6A–6C**: AI-assisted operations.
+  - 6A/6B: deterministic advisory endpoints (alarm groups, KPI anomalies, runbooks, narrative).
+  - **6C**: LLM-backed assistant with strict guardrails — redaction (IPs, MACs, FQDNs, secrets, SNMP community, PEM keys), citation enforcement (`prefix:id`), retrieval-grounded, provider-agnostic. Ships a deterministic `NullLLMProvider`; LLM disabled by default behind `AI_OPS_LLM_ENABLED`.
+  - Frontend: `/ai-ops` page exposes the assistant form + advisory cards with citations.
+
+See [docs/NMS_ARCHITECTURE_EXECUTION_PLAN.md](docs/NMS_ARCHITECTURE_EXECUTION_PLAN.md) for the full per-phase log.
+
+## Load testing
+
+Use the standalone [`nms-traffic-sim`](https://github.com/kapy024/nms-traffic-sim) project to drive synthetic syslog / SNMP traps / event-bus NDJSON / gNMI-JSON telemetry against the ingestion path without real hardware.
+
+Baseline (2026-05-18, single laptop, all services in Compose):
+
+| Stream  | Target EPS | Sent  | Duration | Stream growth | Consumer lag |
+|---------|-----------:|------:|---------:|--------------:|-------------:|
+| syslog  | 500        | 10000 | 20s      | +9895 events  | 0            |
+
+The three consumer groups (`nms:worker-alarm`, `nms:worker-discovery`, `nms:worker-telemetry`) drained to 0 lag within seconds of the burst ending.
 
 ## Makefile Commands
 
