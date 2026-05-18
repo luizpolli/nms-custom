@@ -60,6 +60,7 @@ class ServiceRead(BaseModel):
     name: str
     kind: str
     description: str | None = None
+    target_score: int | None = None
     member_count: int
     created_at: datetime
     updated_at: datetime
@@ -71,6 +72,7 @@ class ServiceCreate(BaseModel):
     name: str
     kind: str = "other"
     description: str | None = None
+    target_score: int | None = None
     members: list[ServiceMemberCreate] = Field(default_factory=list)
 
 
@@ -78,6 +80,7 @@ class ServiceUpdate(BaseModel):
     name: str | None = None
     kind: str | None = None
     description: str | None = None
+    target_score: int | None = Field(default=None, ge=0, le=100)
 
 
 def _to_dependency_read(d: ServiceDependency) -> ServiceDependencyRead:
@@ -114,6 +117,7 @@ def _to_service_read(s: Service) -> ServiceRead:
         name=s.name,
         kind=s.kind,
         description=s.description,
+        target_score=s.target_score,
         member_count=len(members),
         created_at=s.created_at,
         updated_at=s.updated_at,
@@ -135,7 +139,7 @@ async def create_service(
     existing = await db.execute(select(Service).where(Service.name == body.name))
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Service name already exists")
-    service = Service(name=body.name, kind=body.kind, description=body.description)
+    service = Service(name=body.name, kind=body.kind, description=body.description, target_score=body.target_score)
     for m in body.members:
         service.members.append(
             ServiceMember(
@@ -170,12 +174,15 @@ async def update_service(
     service = await db.get(Service, service_id)
     if not service:
         raise HTTPException(status_code=404, detail="Service not found")
-    if body.name is not None:
-        service.name = body.name
-    if body.kind is not None:
-        service.kind = body.kind
-    if body.description is not None:
-        service.description = body.description
+    update_data = body.model_dump(exclude_unset=True)
+    if "name" in update_data and update_data["name"] is not None:
+        service.name = update_data["name"]
+    if "kind" in update_data and update_data["kind"] is not None:
+        service.kind = update_data["kind"]
+    if "description" in update_data:
+        service.description = update_data["description"]
+    if "target_score" in update_data:
+        service.target_score = update_data["target_score"]
     await db.flush()
     await db.refresh(service)
     return _to_service_read(service)

@@ -25,6 +25,7 @@ class Service(Base):
     name: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     kind: Mapped[str] = mapped_column(String(50), nullable=False, default="other")
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    target_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now, onupdate=datetime.now)
 

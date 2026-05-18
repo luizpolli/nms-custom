@@ -725,6 +725,93 @@ async def _persist_service_score_snapshots(
         await db.commit()
 
 
+class ServiceAlert(BaseModel):
+    service_id: uuid.UUID
+    name: str
+    kind: str
+    score: int
+    target_score: int
+    deficit: int
+    health_state: str
+    worst_severity: str
+    impacted_member_count: int
+    active_alarm_count: int
+
+
+_DEFAULT_TARGET_SCORE = 90
+
+
+@router.get("/service-alerts", response_model=list[ServiceAlert])
+async def assurance_service_alerts(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    default_target: int = _DEFAULT_TARGET_SCORE,
+) -> list[ServiceAlert]:
+    """Return services whose current score is below their target threshold."""
+    default_target = max(0, min(default_target, 100))
+    services_result = await db.execute(select(Service).order_by(Service.name))
+    services = list(services_result.scalars().all())
+    if not services:
+        return []
+
+    alarm_result = await db.execute(
+        select(Alarm)
+        .where(Alarm.state.in_(["active", "acknowledged", "suppressed"]))
+        .order_by(Alarm.last_seen.desc())
+        .limit(2000)
+    )
+    alarms = list(alarm_result.scalars().all())
+
+    interface_result = await db.execute(select(Interface))
+    interfaces = list(interface_result.scalars().all())
+    interface_oper_status = {i.id: i.oper_status for i in interfaces}
+
+    alarms_by_device: dict[uuid.UUID, list[Alarm]] = defaultdict(list)
+    for a in alarms:
+        if a.device_id:
+            alarms_by_device[a.device_id].append(a)
+
+    alarms_by_interface: dict[uuid.UUID, list[Alarm]] = defaultdict(list)
+    for iface in interfaces:
+        matched = [a for a in alarms if _interface_alarm_match(a, iface)]
+        if matched:
+            alarms_by_interface[iface.id] = matched
+
+    base_impacts = [
+        _compute_service_impact(s, alarms_by_device, alarms_by_interface, interface_oper_status)
+        for s in services
+    ]
+    base_scores = {impact.service_id: impact.score for impact in base_impacts}
+    impacts = [
+        _compute_service_impact(s, alarms_by_device, alarms_by_interface, interface_oper_status, base_scores)
+        for s in services
+    ]
+    target_by_id = {s.id: s.target_score for s in services}
+
+    alerts: list[ServiceAlert] = []
+    for impact in impacts:
+        target = target_by_id.get(impact.service_id)
+        effective_target = target if target is not None else default_target
+        if impact.score >= effective_target:
+            continue
+        alerts.append(
+            ServiceAlert(
+                service_id=impact.service_id,
+                name=impact.name,
+                kind=impact.kind,
+                score=impact.score,
+                target_score=effective_target,
+                deficit=effective_target - impact.score,
+                health_state=impact.health_state,
+                worst_severity=impact.worst_severity,
+                impacted_member_count=impact.impacted_member_count,
+                active_alarm_count=impact.active_alarm_count,
+            )
+        )
+
+    alerts.sort(key=lambda a: (-a.deficit, a.name))
+    return alerts
+
+
 class ServiceScorePoint(BaseModel):
     captured_at: datetime
     score: int

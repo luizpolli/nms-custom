@@ -31,11 +31,25 @@ type ServiceRecord = {
   name: string;
   kind: string;
   description?: string | null;
+  target_score?: number | null;
   member_count: number;
   created_at: string;
   updated_at: string;
   members: ServiceMember[];
   dependencies: ServiceDependency[];
+};
+
+type ServiceAlert = {
+  service_id: string;
+  name: string;
+  kind: string;
+  score: number;
+  target_score: number;
+  deficit: number;
+  health_state: string;
+  worst_severity: string;
+  impacted_member_count: number;
+  active_alarm_count: number;
 };
 
 type ServiceImpactMember = {
@@ -101,6 +115,7 @@ type ServiceForm = {
   name: string;
   kind: string;
   description: string;
+  target_score: string;
   member_mode: MemberMode;
   device_id: string;
   interface_id: string;
@@ -112,6 +127,7 @@ const EMPTY_FORM: ServiceForm = {
   name: '',
   kind: 'customer',
   description: '',
+  target_score: '',
   member_mode: 'device',
   device_id: '',
   interface_id: '',
@@ -147,6 +163,11 @@ export function ServicesPage() {
     queryFn: () => api.get<ServiceImpact[]>('/assurance/services', { params: { limit: 100 } }).then((r) => r.data),
     refetchInterval: 60_000,
   });
+  const alertsQuery = useQuery({
+    queryKey: ['assurance-service-alerts'],
+    queryFn: () => api.get<ServiceAlert[]>('/assurance/service-alerts').then((r) => r.data),
+    refetchInterval: 60_000,
+  });
   const devicesQuery = useQuery({
     queryKey: ['devices', 'service-options'],
     queryFn: () => api.get<DeviceOption[]>('/devices', { params: { limit: 1000 } }).then((r) => r.data),
@@ -165,6 +186,37 @@ export function ServicesPage() {
   const invalidateServices = () => {
     queryClient.invalidateQueries({ queryKey: ['services'] });
     queryClient.invalidateQueries({ queryKey: ['assurance-services'] });
+    queryClient.invalidateQueries({ queryKey: ['assurance-service-alerts'] });
+  };
+
+  const updateTargetMutation = useMutation({
+    mutationFn: ({ serviceId, target }: { serviceId: string; target: number | null }) =>
+      api.patch(`/services/${serviceId}`, { target_score: target }),
+    onSuccess: invalidateServices,
+    onError: (err) => {
+      console.error('Update target score failed', err);
+      alert('Failed to update service target score');
+    },
+  });
+
+  const handleSetTarget = (service: ServiceRecord) => {
+    const current = service.target_score == null ? '' : String(service.target_score);
+    const raw = window.prompt(
+      `Target score for "${service.name}" (0-100, empty to clear)`,
+      current,
+    );
+    if (raw === null) return;
+    const trimmed = raw.trim();
+    if (trimmed === '') {
+      updateTargetMutation.mutate({ serviceId: service.id, target: null });
+      return;
+    }
+    const parsed = Number(trimmed);
+    if (!Number.isFinite(parsed) || parsed < 0 || parsed > 100) {
+      alert('Target score must be between 0 and 100');
+      return;
+    }
+    updateTargetMutation.mutate({ serviceId: service.id, target: Math.round(parsed) });
   };
 
   const createMutation = useMutation({
@@ -173,10 +225,12 @@ export function ServicesPage() {
         ? (body.interface_id ? { interface_id: body.interface_id, role: body.role || 'member', weight: Number(body.weight) || 1 } : null)
         : (body.device_id ? { device_id: body.device_id, role: body.role || 'member', weight: Number(body.weight) || 1 } : null);
       const members = memberPayload ? [memberPayload] : [];
+      const parsedTarget = body.target_score === '' ? null : Number(body.target_score);
       return api.post('/services', {
         name: body.name,
         kind: body.kind,
         description: body.description || null,
+        target_score: parsedTarget !== null && Number.isFinite(parsedTarget) ? parsedTarget : null,
         members,
       });
     },
@@ -262,6 +316,8 @@ export function ServicesPage() {
   });
 
   const impactById = useMemo(() => new Map((impactQuery.data ?? []).map((item) => [item.service_id, item])), [impactQuery.data]);
+  const alertById = useMemo(() => new Map((alertsQuery.data ?? []).map((item) => [item.service_id, item])), [alertsQuery.data]);
+  const alerts = alertsQuery.data ?? [];
   const deviceById = useMemo(() => new Map((devicesQuery.data ?? []).map((device) => [device.id, device])), [devicesQuery.data]);
   const deviceOptions = [{ value: '', label: 'No initial member' }, ...(devicesQuery.data ?? []).map((device) => ({ value: device.id, label: `${device.name} (${device.ip_address})` }))];
   const requiredDeviceOptions = [{ value: '', label: 'Select device…' }, ...(devicesQuery.data ?? []).map((device) => ({ value: device.id, label: `${device.name} (${device.ip_address})` }))];
@@ -403,19 +459,54 @@ export function ServicesPage() {
         )}
       </Card>
 
+      {alerts.length > 0 && (
+        <Card className="border-red-200 bg-red-50 p-4 dark:border-red-900/40 dark:bg-red-950/20">
+          <div className="mb-2 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm font-semibold text-red-700 dark:text-red-300">
+              <Activity className="h-4 w-4" /> {alerts.length} service{alerts.length === 1 ? '' : 's'} below target threshold
+            </div>
+            <span className="text-xs text-red-600 dark:text-red-400">default target 90 · per-service overrides honored</span>
+          </div>
+          <ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            {alerts.slice(0, 8).map((alert) => (
+              <li key={alert.service_id} className="flex items-center justify-between gap-3 rounded border border-red-200 bg-white px-3 py-2 text-sm dark:border-red-900/40 dark:bg-gray-900">
+                <div className="min-w-0">
+                  <div className="truncate font-medium text-gray-900 dark:text-white">{alert.name}</div>
+                  <div className="text-xs text-gray-500">{alert.kind} · score {alert.score} / target {alert.target_score} · {alert.active_alarm_count} active alarm{alert.active_alarm_count === 1 ? '' : 's'}</div>
+                </div>
+                <Badge variant="danger">-{alert.deficit}</Badge>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
+
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         {services.map((service) => {
           const impact = impactById.get(service.id);
           const score = impact?.score ?? 100;
           const impactMembers = new Map((impact?.members ?? []).map((m) => [m.member_id, m]));
+          const alert = alertById.get(service.id);
+          const targetLabel = service.target_score == null ? 'default 90' : String(service.target_score);
           return (
-            <Card key={service.id} className="p-4">
+            <Card key={service.id} className={`p-4 ${alert ? 'border-red-200 dark:border-red-900/40' : ''}`}>
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-white">{service.name}</h3>
                   <p className="text-xs text-gray-500">{service.kind} · {impact?.health_state ?? 'pending'}{impact?.dependency_penalty ? ` · dependency penalty -${impact.dependency_penalty}` : ''}</p>
+                  <button
+                    type="button"
+                    className="mt-1 text-xs text-blue-600 hover:underline dark:text-blue-400"
+                    onClick={() => handleSetTarget(service)}
+                    title="Set or clear target score"
+                  >
+                    target {targetLabel}
+                  </button>
                 </div>
-                <Badge variant={score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger'}>{score}</Badge>
+                <div className="flex flex-col items-end gap-1">
+                  <Badge variant={score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger'}>{score}</Badge>
+                  {alert && <Badge variant="danger">breach -{alert.deficit}</Badge>}
+                </div>
               </div>
               <div className="mb-3">
                 <ServiceScoreSparkline serviceId={service.id} />
@@ -486,6 +577,16 @@ export function ServicesPage() {
           <Input label="Name" required value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))} />
           <Select label="Kind" options={KIND_OPTIONS} value={form.kind} onChange={(e) => setForm((prev) => ({ ...prev, kind: e.target.value }))} />
           <Input label="Description" value={form.description} onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))} />
+          <Input
+            label="Target score (0-100, optional)"
+            type="number"
+            min="0"
+            max="100"
+            step="1"
+            placeholder="default 90"
+            value={form.target_score}
+            onChange={(e) => setForm((prev) => ({ ...prev, target_score: e.target.value }))}
+          />
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             <Select label="Initial member type" options={[{ value: 'device', label: 'Device' }, { value: 'interface', label: 'Interface' }]} value={form.member_mode} onChange={(e) => setForm((prev) => ({ ...prev, member_mode: e.target.value as MemberMode, interface_id: '' }))} />
             <Select label="Device" options={deviceOptions} value={form.device_id} onChange={(e) => setForm((prev) => ({ ...prev, device_id: e.target.value, interface_id: '' }))} />

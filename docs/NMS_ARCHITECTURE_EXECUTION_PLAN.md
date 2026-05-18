@@ -927,6 +927,16 @@ Dependency graph visualization added to Services UI.
 - Impacted edges show propagated penalty and target service score, making blast-radius propagation visible without opening each service card.
 - Validation: `npm run build` in `frontend/` clean.
 
+## Phase 4N completion notes — 2026-05-18
+
+Threshold-based service alerts added.
+
+- Added nullable `target_score` column on `services` and Alembic migration `0007_service_target_score.py`.
+- Extended Services API (`ServiceRead/Create/Update`) to round-trip `target_score`; PATCH validates 0–100.
+- Added `GET /api/assurance/service-alerts` returning services below their explicit target (or default 90), sorted by deficit.
+- Services UI: alerts banner above the cards lists current breaches; each card shows a "breach -N" badge and a click-to-edit target score control; create modal accepts an optional target.
+- Validation: `pytest backend/tests -q` → 241 passed (+3); `npm run build` clean; `docker compose config --quiet` clean.
+
 ## Phase 4M completion notes — 2026-05-18
 
 Service score history and 24h trend sparkline added.
