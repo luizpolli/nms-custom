@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Activity, Layers3, Plus, Trash2, Waypoints } from 'lucide-react';
+import { Activity, GitBranch, Layers3, Plus, Trash2, Waypoints } from 'lucide-react';
 import { Badge, Button, Card, EmptyState, Input, Modal, PageHeader, Select, Spinner, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
@@ -135,6 +135,7 @@ export function ServicesPage() {
   const [form, setForm] = useState<ServiceForm>(EMPTY_FORM);
   const [memberForm, setMemberForm] = useState<{ member_mode: MemberMode; device_id: string; interface_id: string; role: string; weight: string }>({ member_mode: 'device', device_id: '', interface_id: '', role: 'member', weight: '1' });
   const [dependencyForm, setDependencyForm] = useState({ target_service_id: '', dependency_type: 'depends_on', direction: 'source_to_target', weight: '1', is_critical: false, description: '' });
+  const [dependencyFilter, setDependencyFilter] = useState<'all' | 'impacted' | 'critical'>('all');
 
   const servicesQuery = useQuery({
     queryKey: ['services'],
@@ -268,6 +269,12 @@ export function ServicesPage() {
   const memberInterfaceOptions = [{ value: '', label: memberInterfacesQuery.isFetching ? 'Loading interfaces…' : 'Select interface…' }, ...(memberInterfacesQuery.data ?? []).map((iface) => ({ value: iface.id, label: interfaceLabel(iface) }))];
   const services = servicesQuery.data ?? [];
   const dependencyTargetOptions = [{ value: '', label: 'Select target service…' }, ...services.filter((svc) => svc.id !== dependencyService?.id).map((svc) => ({ value: svc.id, label: `${svc.name} (${svc.kind})` }))];
+  const dependencyEdges = services.flatMap((service) => (service.dependencies ?? []).map((dependency) => ({ service, dependency, impact: impactById.get(service.id) })));
+  const filteredDependencyEdges = dependencyEdges.filter(({ dependency, impact }) => {
+    if (dependencyFilter === 'critical') return dependency.is_critical;
+    if (dependencyFilter === 'impacted') return Boolean(impact?.dependency_impacts?.some((item) => item.dependency_id === dependency.id));
+    return true;
+  });
   const impactedCount = (impactQuery.data ?? []).filter((svc) => svc.impacted_member_count > 0 || svc.score < 100).length;
   const averageScore = impactQuery.data?.length
     ? Math.round(impactQuery.data.reduce((sum, svc) => sum + svc.score, 0) / impactQuery.data.length)
@@ -305,6 +312,41 @@ export function ServicesPage() {
         <StatCard title="Average score" value={impactQuery.isLoading ? '—' : averageScore} icon={<Activity className="h-5 w-5" />} tone={averageScore >= 90 ? 'success' : averageScore >= 75 ? 'warning' : 'danger'} loading={impactQuery.isLoading} />
         <StatCard title="Impacted services" value={impactedCount} icon={<Waypoints className="h-5 w-5" />} tone={impactedCount ? 'warning' : 'success'} loading={impactQuery.isLoading} />
       </div>
+
+      <Card className="p-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <div>
+            <h2 className="flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"><GitBranch className="h-4 w-4" /> Dependency graph</h2>
+            <p className="text-xs text-gray-500">Directed service edges with propagated blast-radius penalties.</p>
+          </div>
+          <Select className="w-40" value={dependencyFilter} onChange={(e) => setDependencyFilter(e.target.value as 'all' | 'impacted' | 'critical')} options={[{ value: 'all', label: 'All edges' }, { value: 'impacted', label: 'Impacted' }, { value: 'critical', label: 'Critical' }]} />
+        </div>
+        {!dependencyEdges.length ? (
+          <EmptyState title="No dependency edges" description="Add dependencies between services to visualize service-to-service blast radius." />
+        ) : (
+          <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
+            {filteredDependencyEdges.map(({ service, dependency, impact }) => {
+              const dependencyImpact = impact?.dependency_impacts?.find((item) => item.dependency_id === dependency.id);
+              const targetScore = dependencyImpact?.target_score;
+              return (
+                <div key={dependency.id} className={`rounded-lg border p-3 text-sm ${dependencyImpact ? 'border-red-200 bg-red-50 dark:border-red-900/50 dark:bg-red-950/20' : 'border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900'}`}>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="truncate font-semibold text-gray-900 dark:text-white">{service.name} → {dependency.target_service_name ?? dependency.target_service_id}</div>
+                      <div className="text-xs text-gray-500">{dependency.dependency_type} · {dependency.direction} · weight {dependency.weight}{dependency.is_critical ? ' · critical' : ''}</div>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-2">
+                      {typeof targetScore === 'number' && <Badge variant={targetScore >= 90 ? 'success' : targetScore >= 75 ? 'warning' : 'danger'}>{targetScore}</Badge>}
+                      {dependencyImpact && <Badge variant="danger">-{dependencyImpact.propagated_penalty}</Badge>}
+                    </div>
+                  </div>
+                  {dependency.description && <p className="mt-2 text-xs text-gray-500">{dependency.description}</p>}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </Card>
 
       <Card className="p-4">
         <div className="mb-3 flex items-center justify-between gap-3">

@@ -918,14 +918,23 @@ Service dependency impact propagation added.
 - Added tests for dependency penalty propagation and healthy dependency no-op behavior.
 - Validation: focused service-impact tests clean; `npm run build` in `frontend/` clean.
 
+## Phase 4L completion notes — 2026-05-18
+
+Dependency graph visualization added to Services UI.
+
+- Added a dependency graph panel showing directed service edges with type, direction, weight, criticality, and optional description.
+- Added filters for all, impacted, and critical dependency edges.
+- Impacted edges show propagated penalty and target service score, making blast-radius propagation visible without opening each service card.
+- Validation: `npm run build` in `frontend/` clean.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
 2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
    the laptop ceiling above is the environment, not the pipeline.
-3. Add dependency graph visualization/filtering to Services or Assurance UI so
-   operators can inspect propagated blast radius visually.
+3. Add nms-traffic-sim Cisco trap presets aligned with nms-custom classifier
+   for BGP, OSPF, fan, PSU, and config-change scenarios.
 
 ## Notification rules
 
