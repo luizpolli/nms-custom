@@ -17,6 +17,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.alarm import Alarm
 from app.models.device import Device
 from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule, normalize_alarm_severity
+from app.services.assurance.snapshot_trigger import maybe_snapshot_for_alarm
 from app.services.events import EventEnvelope, publish_event
 from app.services.snmp.trap_receiver import TrapEvent
 
@@ -293,6 +294,7 @@ class AlarmCorrelator:
             session.add(alarm)
             await session.commit()
             logger.info("Alarm created: {} sev={}", cls["correlation_key"], cls["severity"])
+            await maybe_snapshot_for_alarm(session, alarm)
             return alarm
 
     async def _find_device_by_host(self, session: AsyncSession, host: str) -> Device | None:
@@ -370,6 +372,7 @@ class AlarmCorrelator:
         alarm.last_seen = now
         await session.commit()
         logger.info("Alarm cleared: {}", correlation_key)
+        await maybe_snapshot_for_alarm(session, alarm)
         return alarm
 
     @staticmethod

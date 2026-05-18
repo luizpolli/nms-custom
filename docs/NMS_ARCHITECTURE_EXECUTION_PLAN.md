@@ -927,6 +927,15 @@ Dependency graph visualization added to Services UI.
 - Impacted edges show propagated penalty and target service score, making blast-radius propagation visible without opening each service card.
 - Validation: `npm run build` in `frontend/` clean.
 
+## Phase 4O completion notes — 2026-05-18
+
+Event-driven service score snapshot trigger added.
+
+- New `app/services/assurance/snapshot_trigger.py` with `maybe_snapshot_for_alarm` (gated to critical/major/clear) and `snapshot_all_services` (no throttle).
+- Wired into `AlarmCorrelator` after alarm create and after clear so the score history and threshold-alerts reflect real incidents without waiting for the 60s scheduled poll.
+- Best-effort: any snapshot failure is logged and swallowed so the alarm path never breaks.
+- Validation: `pytest backend/tests -q` → 247 passed (+6).
+
 ## Phase 4N completion notes — 2026-05-18
 
 Threshold-based service alerts added.
