@@ -865,6 +865,17 @@ Service impact UI page added.
 - Shows service count, average score, impacted services, impact matrix, and member-level score cards.
 - Validation: `npm run build` in `frontend/` clean.
 
+## Phase 4H completion notes — 2026-05-18
+
+Services UI management controls added.
+
+- Added create-service modal backed by `POST /api/services`.
+- Added initial device-member selection during service creation.
+- Added add/remove device member controls backed by `/api/services/{service_id}/members`.
+- Added delete-service action backed by `DELETE /api/services/{service_id}`.
+- Services page now lets operators model device-level service impact without raw API calls.
+- Validation: `npm run build` in `frontend/` clean.
+
 ## Phase 1 frontend follow-up — 2026-05-18
 
 Device detail interface tab wired to the existing live IF-MIB endpoint.
@@ -880,8 +891,7 @@ Device detail interface tab wired to the existing live IF-MIB endpoint.
    blocked on lab hardware or captures).
 2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
    the laptop ceiling above is the environment, not the pipeline.
-3. Add service create/member management controls in the Services UI so operators
-   do not need to seed service models through raw API calls.
+3. Add interface-level service membership controls once normalized interface IDs are exposed in the device/interface UI.
 
 ## Notification rules
 
