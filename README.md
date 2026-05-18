@@ -122,11 +122,12 @@ Use the standalone [`nms-traffic-sim`](https://github.com/kapy024/nms-traffic-si
 
 Baseline (2026-05-18, single laptop, all services in Compose):
 
-| Stream  | Target EPS | Sent  | Duration | Stream growth | Consumer lag |
-|---------|-----------:|------:|---------:|--------------:|-------------:|
-| syslog  | 500        | 10000 | 20s      | +9895 events  | 0            |
+| Mode    | Composition                                  | Duration | Frames sent | Events through `nms:events` | Effective EPS | Consumer lag |
+|---------|----------------------------------------------|---------:|------------:|----------------------------:|--------------:|-------------:|
+| syslog  | 500 EPS UDP syslog                           | 20s      | 10000       | +9895                       | ~495          | 0            |
+| mixed   | 300 EPS syslog + 100 EPS traps + 100 fps tel | 65s      | 24000+      | +23655 (via `entries-read`) | ~364          | 0 (3 pending) |
 
-The three consumer groups (`nms:worker-alarm`, `nms:worker-discovery`, `nms:worker-telemetry`) drained to 0 lag within seconds of the burst ending.
+The three consumer groups (`nms:worker-alarm`, `nms:worker-discovery`, `nms:worker-telemetry`) drained to 0 lag within seconds of each burst ending. The `nms:events` stream is `MAXLEN`-trimmed to ~10k for storage; use `XINFO GROUPS nms:events` field `entries-read` for true throughput counts.
 
 ## Makefile Commands
 

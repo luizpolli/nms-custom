@@ -50,6 +50,9 @@ class Settings(BaseSettings):
     # API authentication (enable in deployed environments)
     api_auth_enabled: bool = False
     api_keys: str | list[str] = ""
+    # Optional role mapping: "key1:admin,key2:ai-ops,key3:viewer". Keys not
+    # listed here keep the default admin role for back-compat.
+    api_key_roles: str = ""
     root_web_login_enabled: bool = False
     max_parallel_sessions: int = 5
     idle_timeout_minutes: int = 30
@@ -118,6 +121,10 @@ class Settings(BaseSettings):
     ai_ops_max_kpis: int = 20
     ai_ops_max_question_chars: int = 1000
     ai_ops_max_answer_chars: int = 2000
+    # Comma-separated list of roles allowed to call the LLM-backed assistant.
+    # Defaults to "admin,ai-ops" so plain viewers cannot trigger LLM calls
+    # even when AI_OPS_LLM_ENABLED is true.
+    ai_ops_assistant_allowed_roles: str = "admin,ai-ops"
 
     # Topology
     topology_poll_interval: int = 300

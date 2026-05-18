@@ -20,6 +20,7 @@ from app.config import settings
 from app.database import get_db
 from app.models.alarm import Alarm
 from app.models.kpi import KPI
+from app.security.auth import require_roles, roles_from_setting
 from app.services.ai_ops.assistant import answer_question
 from app.services.ai_ops.guardrails import GuardrailLimits
 from app.services.ai_ops.providers import get_provider
@@ -203,7 +204,16 @@ class AssistantAnswerResponse(BaseModel):
     generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
-@router.post("/assistant/ask", response_model=AssistantAnswerResponse)
+_ASSISTANT_ROLES = roles_from_setting(
+    getattr(settings, "ai_ops_assistant_allowed_roles", "admin,ai-ops")
+)
+
+
+@router.post(
+    "/assistant/ask",
+    response_model=AssistantAnswerResponse,
+    dependencies=[Depends(require_roles(*_ASSISTANT_ROLES))],
+)
 async def assistant_ask(
     payload: AssistantAskRequest,
     db: Annotated[AsyncSession, Depends(get_db)],

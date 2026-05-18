@@ -820,15 +820,50 @@ Compose stack (laptop):
 Effective sustained throughput ~495 EPS end-to-end with zero consumer
 lag. Baseline recorded in `README.md` for future regressions.
 
+## Phase 6E completion notes — 2026-05-18
+
+RBAC gating on the LLM-backed AI Ops assistant.
+
+- `app/security/auth.py`: `Principal.role` is now derived from a new
+  `api_key_roles` setting ("key1:admin,key2:ai-ops,..."). Unmapped keys
+  keep the default `admin` role for back-compat. Added a `require_roles(...)`
+  dependency factory and a `roles_from_setting` helper.
+- `app/config.py`: added `api_key_roles` and
+  `ai_ops_assistant_allowed_roles` (default `"admin,ai-ops"`).
+- `app/api/ai_ops.py`: `POST /assistant/ask` now requires one of the allowed
+  roles in addition to the existing router-level API auth. Returns 403 if the
+  caller's role is not in the allow-list.
+- 9 new tests in `backend/tests/services/test_auth_roles.py` covering CSV
+  parsing, role-map lookup, local-dev passthrough, admin/ai-ops accept,
+  viewer reject.
+
+Plain viewers cannot trigger LLM calls even when `AI_OPS_LLM_ENABLED=True`.
+
+## Phase 5O — mixed EPS soak baseline
+
+Ran three concurrent emitters from `nms-traffic-sim` for 65s against the
+local Compose stack:
+
+- syslog 300 EPS + traps 100 EPS + telemetry 100 fps.
+- ~24000 frames sent across all three streams.
+- `entries-read` on `nms:events` advanced from 9949 → 33604 = +23655 events
+  ingested → ~364 EPS sustained aggregate.
+- Consumer-group lag drained to 0 within seconds; alarm group had 3
+  pending entries (expected — `XAUTOCLAIM` reclaims them on the next cycle).
+- Telemetry receiver did write `OK n` acks per frame as expected.
+
+The stream is `MAXLEN`-trimmed at ~10k, so `XLEN` alone underestimates
+throughput; always use `XINFO GROUPS nms:events`'s `entries-read` for
+baseline numbers.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
-2. Wire RBAC on the AI Ops assistant endpoint before enabling
-   `AI_OPS_LLM_ENABLED` in any shared environment.
-3. Higher-rate EPS soak runs (5k+ EPS, mixed syslog/traps/telemetry) once a
-   dedicated lab host is available — the laptop ceiling above is the
-   environment, not the pipeline.
+2. Service impact UI page surfacing the Phase 4D/4E `/api/services` and
+   `/api/assurance` data (currently backend-only).
+3. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
+   the laptop ceiling above is the environment, not the pipeline.
 
 ## Notification rules
 
