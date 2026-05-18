@@ -51,7 +51,27 @@ The simulator sends Cisco-ish BSD syslog messages. Every fifth message is a `%LI
 make sim-trap COUNT=20
 ```
 
-The simulator builds minimal SNMPv2c Trap-PDUs directly, so local trap generation does **not** depend on `pysnmp`. Odd sequences emit `linkDown`; even sequences emit the matching `linkUp` clear for the same simulated interface. The payload includes `sysName.0=mock-iosxr-1`, allowing alarm correlation to attach traps to the mock device even when Docker rewrites the UDP source IP.
+The simulator builds minimal SNMPv2c Trap-PDUs directly, so local trap generation does **not** depend on `pysnmp`. The default trap type is `link-down`. Use `--trap-type` to emit other Cisco trap variants:
+
+```bash
+python tools/simulators/mock_device.py trap \
+  --host 127.0.0.1 --port 1162 --count 5 \
+  --trap-type bgp-down
+```
+
+Supported `--trap-type` values:
+
+| Value | Trap OID | Notes |
+|---|---|---|
+| `link-down` | `1.3.6.1.6.3.1.1.5.3` | Standard IF-MIB linkDown |
+| `link-up` | `1.3.6.1.6.3.1.1.5.4` | Standard IF-MIB linkUp (clear) |
+| `bgp-down` | `1.3.6.1.4.1.9.9.187.0.0.1` | Cisco BGP MIB v2 cbgpPeer2StateChanged |
+| `ospf-down` | `1.3.6.1.2.1.14.16.2.2` | OSPF-MIB ospfNbrStateChange |
+| `fan-fail` | `1.3.6.1.4.1.9.9.13.3.0.1` | Cisco ENV MON fan status change |
+| `psu-fail` | `1.3.6.1.4.1.9.9.13.3.0.3` | Cisco ENV MON PSU redundant supply |
+| `config-change` | `1.3.6.1.4.1.9.9.43.2.0.2` | Cisco Config Man MIB ccmCLIRunningConfigChanged |
+
+The payload always includes `sysName.0=<device-name>`, allowing alarm correlation to attach traps to the mock device even when Docker rewrites the UDP source IP.
 
 ## Emit telemetry
 
@@ -92,5 +112,5 @@ python tools/simulators/mock_device.py run \
 
 ## Current limits
 
-- SNMP trap generation covers a focused SNMPv2c linkDown/linkUp lab path; broader vendor trap catalogs still need fixtures/captures.
 - Native gNMI protobuf/gRPC interop still requires lab devices or captures.
+- Full async integration test for trap_receiver (live UDP socket) is deferred; the classifier is fully tested at the parsing level.

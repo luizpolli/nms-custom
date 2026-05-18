@@ -28,6 +28,15 @@ SYS_NAME_OID = "1.3.6.1.2.1.1.5.0"
 SNMP_TRAP_OID = "1.3.6.1.6.3.1.1.4.1.0"
 IF_INDEX_PREFIX = "1.3.6.1.2.1.2.2.1.1"
 
+# Cisco vendor trap OIDs
+BGP_PEER2_STATE_CHANGED = "1.3.6.1.4.1.9.9.187.0.0.1"
+OSPF_NBR_STATE_CHANGE = "1.3.6.1.2.1.14.16.2.2"
+CISCO_ENV_FAN_STATUS_CHANGE = "1.3.6.1.4.1.9.9.13.3.0.1"
+CISCO_ENV_PSU_STATUS_CHANGE = "1.3.6.1.4.1.9.9.13.3.0.3"
+CCM_CLI_RUNNING_CONFIG_CHANGED = "1.3.6.1.4.1.9.9.43.2.0.2"
+
+VALID_TRAP_TYPES = ("link-down", "link-up", "bgp-down", "ospf-down", "fan-fail", "psu-fail", "config-change")
+
 
 @dataclass(slots=True)
 class MockDevice:
@@ -100,34 +109,118 @@ def _ber_varbind(oid: str, value: bytes) -> bytes:
     return _ber_sequence(_ber_oid(oid) + value)
 
 
+def _build_pdu(community: str, sequence: int, varbind_bytes: bytes) -> bytes:
+    """Wrap varbinds into a full SNMPv2c Trap-PDU (SEQUENCE wrapper)."""
+    varbinds = _ber_sequence(varbind_bytes)
+    pdu = _ber_tlv(0xA7, _ber_integer(sequence) + _ber_integer(0) + _ber_integer(0) + varbinds)
+    return _ber_sequence(_ber_integer(1) + _ber_octet_string(community) + pdu)
+
+
+def _common_varbinds(device: MockDevice, trap_oid: str, sequence: int) -> bytes:
+    uptime_ticks = max(1, sequence) * 100
+    return (
+        _ber_varbind(SYS_UPTIME_OID, _ber_integer(uptime_ticks, tag=0x43))
+        + _ber_varbind(SNMP_TRAP_OID, _ber_oid(trap_oid))
+        + _ber_varbind(SYS_NAME_OID, _ber_octet_string(device.name))
+    )
+
+
 def build_snmp_v2c_trap_packet(
     device: MockDevice,
     sequence: int,
     *,
     community: str = "public",
+    trap_type: str = "link-down",
 ) -> bytes:
-    """Build a minimal SNMPv2c Trap-PDU without requiring pysnmp locally."""
+    """Build a minimal SNMPv2c Trap-PDU without requiring pysnmp locally.
+
+    trap_type accepts: link-down, link-up, bgp-down, ospf-down, fan-fail,
+    psu-fail, config-change.
+    """
+    builders = {
+        "link-down": _build_link_down,
+        "link-up": _build_link_up,
+        "bgp-down": _build_bgp_down,
+        "ospf-down": _build_ospf_down,
+        "fan-fail": _build_fan_fail,
+        "psu-fail": _build_psu_fail,
+        "config-change": _build_config_change,
+    }
+    if trap_type not in builders:
+        raise ValueError(f"Unknown trap_type {trap_type!r}. Valid: {list(builders)}")
+    varbind_bytes = builders[trap_type](device, sequence)
+    return _build_pdu(community, sequence, varbind_bytes)
+
+
+def _build_link_down(device: MockDevice, sequence: int) -> bytes:
     if_index = ((sequence - 1) // 2) % 4 + 1
-    trap_oid = LINK_UP_OID if sequence % 2 == 0 else LINK_DOWN_OID
-    uptime_ticks = max(1, sequence) * 100
-    varbinds = _ber_sequence(
-        b"".join(
-            [
-                _ber_varbind(SYS_UPTIME_OID, _ber_integer(uptime_ticks, tag=0x43)),
-                _ber_varbind(SNMP_TRAP_OID, _ber_oid(trap_oid)),
-                _ber_varbind(SYS_NAME_OID, _ber_octet_string(device.name)),
-                _ber_varbind(f"{IF_INDEX_PREFIX}.{if_index}", _ber_integer(if_index)),
-            ]
-        )
+    return (
+        _common_varbinds(device, LINK_DOWN_OID, sequence)
+        + _ber_varbind(f"{IF_INDEX_PREFIX}.{if_index}", _ber_integer(if_index))
     )
-    pdu = _ber_tlv(
-        0xA7,
-        _ber_integer(sequence)
-        + _ber_integer(0)
-        + _ber_integer(0)
-        + varbinds,
+
+
+def _build_link_up(device: MockDevice, sequence: int) -> bytes:
+    if_index = ((sequence - 1) // 2) % 4 + 1
+    return (
+        _common_varbinds(device, LINK_UP_OID, sequence)
+        + _ber_varbind(f"{IF_INDEX_PREFIX}.{if_index}", _ber_integer(if_index))
     )
-    return _ber_sequence(_ber_integer(1) + _ber_octet_string(community) + pdu)
+
+
+def _build_bgp_down(device: MockDevice, sequence: int) -> bytes:
+    peer_ip = f"192.168.{sequence % 256}.{(sequence % 254) + 1}"
+    peer_oid_suffix = ".".join(str(o) for o in [0, 0, 0, 0, 1] + [int(x) for x in peer_ip.split(".")])
+    remote_addr_oid = f"1.3.6.1.4.1.9.9.187.1.2.5.1.11.{peer_oid_suffix}"
+    peer_state_oid = f"1.3.6.1.4.1.9.9.187.1.2.5.1.3.{peer_oid_suffix}"
+    return (
+        _common_varbinds(device, BGP_PEER2_STATE_CHANGED, sequence)
+        + _ber_varbind(remote_addr_oid, _ber_octet_string(peer_ip))
+        + _ber_varbind(peer_state_oid, _ber_integer(1))  # idle
+    )
+
+
+def _build_ospf_down(device: MockDevice, sequence: int) -> bytes:
+    nbr_ip = f"10.0.{sequence % 256}.{(sequence % 254) + 1}"
+    nbr_ip_oid = "1.3.6.1.2.1.14.10.1.1." + ".".join(str(o) for o in [int(x) for x in nbr_ip.split(".")] + [0])
+    nbr_state_oid = "1.3.6.1.2.1.14.10.1.6." + ".".join(str(o) for o in [int(x) for x in nbr_ip.split(".")] + [0])
+    return (
+        _common_varbinds(device, OSPF_NBR_STATE_CHANGE, sequence)
+        + _ber_varbind(nbr_ip_oid, _ber_octet_string(nbr_ip))
+        + _ber_varbind(nbr_state_oid, _ber_integer(1))  # down
+    )
+
+
+def _build_fan_fail(device: MockDevice, sequence: int) -> bytes:
+    fan_idx = (sequence % 4) + 1
+    descr_oid = f"1.3.6.1.4.1.9.9.13.1.4.1.2.{fan_idx}"
+    status_oid = f"1.3.6.1.4.1.9.9.13.1.4.1.3.{fan_idx}"
+    return (
+        _common_varbinds(device, CISCO_ENV_FAN_STATUS_CHANGE, sequence)
+        + _ber_varbind(descr_oid, _ber_octet_string(f"FanTray{fan_idx - 1}"))
+        + _ber_varbind(status_oid, _ber_integer(3))  # failed
+    )
+
+
+def _build_psu_fail(device: MockDevice, sequence: int) -> bytes:
+    psu_idx = (sequence % 2) + 1
+    descr_oid = f"1.3.6.1.4.1.9.9.13.1.5.1.2.{psu_idx}"
+    state_oid = f"1.3.6.1.4.1.9.9.13.1.5.1.4.{psu_idx}"
+    return (
+        _common_varbinds(device, CISCO_ENV_PSU_STATUS_CHANGE, sequence)
+        + _ber_varbind(descr_oid, _ber_octet_string(f"PowerSupply{psu_idx - 1}"))
+        + _ber_varbind(state_oid, _ber_integer(4))  # notFunctioning
+    )
+
+
+def _build_config_change(device: MockDevice, sequence: int) -> bytes:
+    user_oid = f"1.3.6.1.4.1.9.9.43.1.1.6.1.4.{sequence}"
+    cmd_src_oid = f"1.3.6.1.4.1.9.9.43.1.1.6.1.5.{sequence}"
+    return (
+        _common_varbinds(device, CCM_CLI_RUNNING_CONFIG_CHANGED, sequence)
+        + _ber_varbind(user_oid, _ber_octet_string("admin"))
+        + _ber_varbind(cmd_src_oid, _ber_integer(1))  # commandLine
+    )
 
 
 def build_gnmi_json_frame(device_id: str, sequence: int, *, source: str = "mock-device") -> dict[str, Any]:
@@ -229,14 +322,14 @@ def emit_snmp_traps(
     count: int,
     interval: float,
     community: str = "public",
+    trap_type: str = "link-down",
 ) -> None:
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         for seq in range(1, count + 1):
-            packet = build_snmp_v2c_trap_packet(device, seq, community=community)
+            packet = build_snmp_v2c_trap_packet(device, seq, community=community, trap_type=trap_type)
             sock.sendto(packet, (host, port))
-            oid = LINK_UP_OID if seq % 2 == 0 else LINK_DOWN_OID
-            print(f"trap sent seq={seq} oid={oid} bytes={len(packet)}")
+            print(f"trap sent seq={seq} type={trap_type} bytes={len(packet)}")
             time.sleep(interval)
     finally:
         sock.close()
@@ -271,12 +364,18 @@ def main() -> None:
     syslog_p.add_argument("--count", type=int, default=10)
     syslog_p.add_argument("--interval", type=float, default=1.0)
 
-    trap_p = sub.add_parser("trap", help="emit raw SNMPv2c linkUp/linkDown traps")
+    trap_p = sub.add_parser("trap", help="emit raw SNMPv2c traps (link-down, link-up, bgp-down, ospf-down, fan-fail, psu-fail, config-change)")
     trap_p.add_argument("--host", default="127.0.0.1")
     trap_p.add_argument("--port", type=int, default=1162)
     trap_p.add_argument("--community", default="public")
     trap_p.add_argument("--count", type=int, default=10)
     trap_p.add_argument("--interval", type=float, default=1.0)
+    trap_p.add_argument(
+        "--trap-type",
+        default="link-down",
+        choices=list(VALID_TRAP_TYPES),
+        help="Type of SNMP trap to emit",
+    )
 
     telemetry_p = sub.add_parser("telemetry", help="emit line-delimited gNMI JSON telemetry")
     telemetry_p.add_argument("--host", default="127.0.0.1")
@@ -311,6 +410,7 @@ def main() -> None:
             count=args.count,
             interval=args.interval,
             community=args.community,
+            trap_type=args.trap_type,
         )
     elif args.cmd == "telemetry":
         device_id = args.device_id or ensure_device(args.api_url, device)

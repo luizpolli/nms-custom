@@ -713,11 +713,29 @@ Completed discovery refresh triggers and telemetry fan-out processors:
 - `FakeBus` in the test file gained a `publish` method and a `published` list for assertion.
 - Validation: `pytest backend/tests -q` → 174 passed (up from 169).
 
+## Phase 5L completion notes — 2026-05-17
+
+Broader vendor SNMP trap fixtures and classifier added.
+
+Deliverables:
+
+- `backend/tests/fixtures/traps/cisco_traps.py` — 7 Cisco trap fixture dicts covering linkDown, linkUp, BGP peer state change, OSPF neighbor state change, fan fail, PSU fail, and config change. Each includes OID, realistic varbinds, expected_event_type, expected_severity, and expected_correlation_key_hint.
+- `backend/app/services/snmp/trap_classifier.py` — data-driven OID->event_type/severity map; `classify_trap(trap_oid, varbinds) -> ClassifiedTrap`. Unknown OIDs fall back to `snmp.trap / info`.
+- `tools/simulators/mock_device.py` — extended `build_snmp_v2c_trap_packet` with a `trap_type` parameter; `trap` subcommand now accepts `--trap-type {link-down,link-up,bgp-down,ospf-down,fan-fail,psu-fail,config-change}`. No new third-party deps; raw BER bytes only.
+- `backend/tests/services/test_snmp_trap_fixtures.py` — 30 tests: 21 parametrized classifier assertions (event_type, severity, correlation_key per fixture) + 2 generic fallback tests + 7 end-to-end simulator round-trip tests (raw PDU -> parse -> classify -> alarm-shaped dict).
+
+Validation:
+
+- `pytest backend/tests -q` → 204 passed (+30 vs Phase 5K).
+- `python -m compileall -q backend/app` → clean.
+- `docker compose config --quiet` → clean.
+
+Deferred: full async integration test feeding bytes through `SNMPTrapReceiver` with a live UDP socket is deferred to a separate integration-test suite; it requires `pysnmp-lextudio` and root/CAP_NET_BIND_SERVICE for port 162.
+
 ## Immediate next tasks
 
-1. Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
-2. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
-3. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
+1. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
+2. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.
 
 ## Notification rules
 
