@@ -16,8 +16,10 @@ from app.config import Settings
 from app.database import async_session_factory, get_db
 from app.models.credential import Credential
 from app.models.device import Device
+from app.models.interface import Interface
 from app.models.inventory import Inventory
 from app.schemas.device import DeviceCreate, DeviceRead, DeviceUpdate
+from app.schemas.interface import InterfaceRead as ManagedInterfaceRead
 from app.security.crypto import CredentialVault
 from app.services.snmp.engine import SNMPEngine
 from app.services.snmp.poller import SNMPCredential, SNMPPoller
@@ -318,6 +320,21 @@ async def discover_neighbors(
     lldp = await snmp.discover_lldp_neighbors(device.ip_address, snmp_cred)
     cdp = await snmp.discover_cdp_neighbors(device.ip_address, snmp_cred)
     return lldp + cdp
+
+
+@router.get("/{id}/managed-interfaces", response_model=list[ManagedInterfaceRead])
+async def get_managed_interfaces(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> list[ManagedInterfaceRead]:
+    """Return persisted normalized Interface records for service/topology membership."""
+    await _get_device_or_404(db, id)
+    result = await db.execute(
+        select(Interface)
+        .where(Interface.device_id == id)
+        .order_by(Interface.if_index.asc().nullslast(), Interface.name)
+    )
+    return [ManagedInterfaceRead.model_validate(interface) for interface in result.scalars().all()]
 
 
 @router.get("/{id}/interfaces", response_model=list[InterfaceRead])

@@ -885,13 +885,25 @@ Device detail interface tab wired to the existing live IF-MIB endpoint.
 - Added refresh control and failure empty-state guidance for missing credentials/unreachable devices.
 - Validation: `npm run build` in `frontend/` clean.
 
+## Phase 4I completion notes — 2026-05-18
+
+Interface-level service membership controls added.
+
+- Added `GET /api/devices/{id}/managed-interfaces` for persisted normalized interface records with stable IDs.
+- Fixed normalized interface schema serialization around SQLAlchemy's reserved `metadata` attribute by reading `metadata_json`.
+- Services UI can now create initial members as device or interface targets.
+- Services UI can add device or interface members to existing services; interface options are fetched after selecting a device.
+- Interface service members send only `interface_id`, preserving existing service impact scoring semantics.
+- Validation: backend compile/schema smoke clean; `npm run build` in `frontend/` clean.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
 2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
    the laptop ceiling above is the environment, not the pipeline.
-3. Add interface-level service membership controls once normalized interface IDs are exposed in the device/interface UI.
+3. Add richer service dependency modeling (service-to-service dependencies,
+   critical path weighting, and optional manual dependency direction overrides).
 
 ## Notification rules
 

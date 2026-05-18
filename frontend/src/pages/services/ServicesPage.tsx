@@ -56,11 +56,25 @@ type DeviceOption = {
   status?: string;
 };
 
+type ManagedInterface = {
+  id: string;
+  device_id: string;
+  if_index?: number | null;
+  name: string;
+  description?: string | null;
+  alias?: string | null;
+  oper_status?: string | null;
+};
+
+type MemberMode = 'device' | 'interface';
+
 type ServiceForm = {
   name: string;
   kind: string;
   description: string;
+  member_mode: MemberMode;
   device_id: string;
+  interface_id: string;
   role: string;
   weight: string;
 };
@@ -69,7 +83,9 @@ const EMPTY_FORM: ServiceForm = {
   name: '',
   kind: 'customer',
   description: '',
+  member_mode: 'device',
   device_id: '',
+  interface_id: '',
   role: 'member',
   weight: '1',
 };
@@ -87,7 +103,7 @@ export function ServicesPage() {
   const [createOpen, setCreateOpen] = useState(false);
   const [memberService, setMemberService] = useState<ServiceRecord | null>(null);
   const [form, setForm] = useState<ServiceForm>(EMPTY_FORM);
-  const [memberForm, setMemberForm] = useState({ device_id: '', role: 'member', weight: '1' });
+  const [memberForm, setMemberForm] = useState<{ member_mode: MemberMode; device_id: string; interface_id: string; role: string; weight: string }>({ member_mode: 'device', device_id: '', interface_id: '', role: 'member', weight: '1' });
 
   const servicesQuery = useQuery({
     queryKey: ['services'],
@@ -103,6 +119,16 @@ export function ServicesPage() {
     queryKey: ['devices', 'service-options'],
     queryFn: () => api.get<DeviceOption[]>('/devices', { params: { limit: 1000 } }).then((r) => r.data),
   });
+  const createInterfacesQuery = useQuery({
+    queryKey: ['managed-interfaces', form.device_id],
+    queryFn: () => api.get<ManagedInterface[]>(`/devices/${form.device_id}/managed-interfaces`).then((r) => r.data),
+    enabled: createOpen && form.member_mode === 'interface' && Boolean(form.device_id),
+  });
+  const memberInterfacesQuery = useQuery({
+    queryKey: ['managed-interfaces', memberForm.device_id],
+    queryFn: () => api.get<ManagedInterface[]>(`/devices/${memberForm.device_id}/managed-interfaces`).then((r) => r.data),
+    enabled: Boolean(memberService) && memberForm.member_mode === 'interface' && Boolean(memberForm.device_id),
+  });
 
   const invalidateServices = () => {
     queryClient.invalidateQueries({ queryKey: ['services'] });
@@ -111,7 +137,10 @@ export function ServicesPage() {
 
   const createMutation = useMutation({
     mutationFn: (body: ServiceForm) => {
-      const members = body.device_id ? [{ device_id: body.device_id, role: body.role || 'member', weight: Number(body.weight) || 1 }] : [];
+      const memberPayload = body.member_mode === 'interface'
+        ? (body.interface_id ? { interface_id: body.interface_id, role: body.role || 'member', weight: Number(body.weight) || 1 } : null)
+        : (body.device_id ? { device_id: body.device_id, role: body.role || 'member', weight: Number(body.weight) || 1 } : null);
+      const members = memberPayload ? [memberPayload] : [];
       return api.post('/services', {
         name: body.name,
         kind: body.kind,
@@ -134,7 +163,7 @@ export function ServicesPage() {
     mutationFn: () => {
       if (!memberService) throw new Error('No service selected');
       return api.post(`/services/${memberService.id}/members`, {
-        device_id: memberForm.device_id,
+        ...(memberForm.member_mode === 'interface' ? { interface_id: memberForm.interface_id } : { device_id: memberForm.device_id }),
         role: memberForm.role || 'member',
         weight: Number(memberForm.weight) || 1,
       });
@@ -142,7 +171,7 @@ export function ServicesPage() {
     onSuccess: () => {
       invalidateServices();
       setMemberService(null);
-      setMemberForm({ device_id: '', role: 'member', weight: '1' });
+      setMemberForm({ member_mode: 'device', device_id: '', interface_id: '', role: 'member', weight: '1' });
     },
     onError: (err) => {
       console.error('Add member failed', err);
@@ -172,6 +201,8 @@ export function ServicesPage() {
   const deviceById = useMemo(() => new Map((devicesQuery.data ?? []).map((device) => [device.id, device])), [devicesQuery.data]);
   const deviceOptions = [{ value: '', label: 'No initial member' }, ...(devicesQuery.data ?? []).map((device) => ({ value: device.id, label: `${device.name} (${device.ip_address})` }))];
   const requiredDeviceOptions = [{ value: '', label: 'Select device…' }, ...(devicesQuery.data ?? []).map((device) => ({ value: device.id, label: `${device.name} (${device.ip_address})` }))];
+  const createInterfaceOptions = [{ value: '', label: createInterfacesQuery.isFetching ? 'Loading interfaces…' : 'Select interface…' }, ...(createInterfacesQuery.data ?? []).map((iface) => ({ value: iface.id, label: interfaceLabel(iface) }))];
+  const memberInterfaceOptions = [{ value: '', label: memberInterfacesQuery.isFetching ? 'Loading interfaces…' : 'Select interface…' }, ...(memberInterfacesQuery.data ?? []).map((iface) => ({ value: iface.id, label: interfaceLabel(iface) }))];
   const services = servicesQuery.data ?? [];
   const impactedCount = (impactQuery.data ?? []).filter((svc) => svc.impacted_member_count > 0 || svc.score < 100).length;
   const averageScore = impactQuery.data?.length
@@ -311,7 +342,9 @@ export function ServicesPage() {
           <Select label="Kind" options={KIND_OPTIONS} value={form.kind} onChange={(e) => setForm((prev) => ({ ...prev, kind: e.target.value }))} />
           <Input label="Description" value={form.description} onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))} />
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-            <Select label="Initial device member" options={deviceOptions} value={form.device_id} onChange={(e) => setForm((prev) => ({ ...prev, device_id: e.target.value }))} />
+            <Select label="Initial member type" options={[{ value: 'device', label: 'Device' }, { value: 'interface', label: 'Interface' }]} value={form.member_mode} onChange={(e) => setForm((prev) => ({ ...prev, member_mode: e.target.value as MemberMode, interface_id: '' }))} />
+            <Select label="Device" options={deviceOptions} value={form.device_id} onChange={(e) => setForm((prev) => ({ ...prev, device_id: e.target.value, interface_id: '' }))} />
+            {form.member_mode === 'interface' && <Select label="Interface" options={createInterfaceOptions} value={form.interface_id} onChange={(e) => setForm((prev) => ({ ...prev, interface_id: e.target.value }))} />}
             <Input label="Role" value={form.role} onChange={(e) => setForm((prev) => ({ ...prev, role: e.target.value }))} />
             <Input label="Weight" type="number" min="0.1" step="0.1" value={form.weight} onChange={(e) => setForm((prev) => ({ ...prev, weight: e.target.value }))} />
           </div>
@@ -324,19 +357,27 @@ export function ServicesPage() {
 
       <Modal open={Boolean(memberService)} onClose={() => setMemberService(null)} title={`Add member${memberService ? ` to ${memberService.name}` : ''}`} size="lg">
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); addMemberMutation.mutate(); }}>
-          <Select label="Device" required options={requiredDeviceOptions} value={memberForm.device_id} onChange={(e) => setMemberForm((prev) => ({ ...prev, device_id: e.target.value }))} />
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            <Select label="Member type" options={[{ value: 'device', label: 'Device' }, { value: 'interface', label: 'Interface' }]} value={memberForm.member_mode} onChange={(e) => setMemberForm((prev) => ({ ...prev, member_mode: e.target.value as MemberMode, interface_id: '' }))} />
+            <Select label="Device" required options={requiredDeviceOptions} value={memberForm.device_id} onChange={(e) => setMemberForm((prev) => ({ ...prev, device_id: e.target.value, interface_id: '' }))} />
+            {memberForm.member_mode === 'interface' && <Select label="Interface" required options={memberInterfaceOptions} value={memberForm.interface_id} onChange={(e) => setMemberForm((prev) => ({ ...prev, interface_id: e.target.value }))} />}
             <Input label="Role" value={memberForm.role} onChange={(e) => setMemberForm((prev) => ({ ...prev, role: e.target.value }))} />
             <Input label="Weight" type="number" min="0.1" step="0.1" value={memberForm.weight} onChange={(e) => setMemberForm((prev) => ({ ...prev, weight: e.target.value }))} />
           </div>
           <div className="flex justify-end gap-2">
             <Button type="button" variant="ghost" onClick={() => setMemberService(null)}>Cancel</Button>
-            <Button type="submit" loading={addMemberMutation.isPending} disabled={!memberForm.device_id}>Add member</Button>
+            <Button type="submit" loading={addMemberMutation.isPending} disabled={memberForm.member_mode === 'interface' ? !memberForm.interface_id : !memberForm.device_id}>Add member</Button>
           </div>
         </form>
       </Modal>
     </div>
   );
+}
+
+function interfaceLabel(iface: ManagedInterface) {
+  const index = iface.if_index == null ? '' : `#${iface.if_index} · `;
+  const status = iface.oper_status ? ` · ${iface.oper_status}` : '';
+  return `${index}${iface.name}${iface.alias ? ` (${iface.alias})` : ''}${status}`;
 }
 
 function Th({ children }: { children: React.ReactNode }) {

@@ -21,7 +21,7 @@ class InterfaceBase(BaseModel):
     speed_bps: Optional[int] = None
     interface_type: Optional[str] = Field(None, max_length=100)
     role: Optional[str] = Field(None, max_length=100)
-    metadata: Optional[dict[str, Any]] = None
+    metadata: Optional[dict[str, Any]] = Field(default=None, validation_alias="metadata_json")
     discovered_at: Optional[datetime] = None
 
 
@@ -45,7 +45,7 @@ class InterfaceUpdate(BaseModel):
 
 
 class InterfaceRead(InterfaceBase):
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
     id: uuid.UUID
     created_at: datetime
