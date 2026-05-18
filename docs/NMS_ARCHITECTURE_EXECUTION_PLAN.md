@@ -907,14 +907,25 @@ Service dependency modeling added.
 - Services UI can add/remove dependencies, set direction, weight, type, criticality, and description.
 - Validation: backend compile clean; `npm run build` in `frontend/` clean.
 
+## Phase 4K completion notes — 2026-05-18
+
+Service dependency impact propagation added.
+
+- Assurance service scoring now performs a base pass, then applies dependency penalties from degraded target services.
+- Critical dependencies and dependency weight increase propagated penalty; healthy dependencies do not penalize.
+- `ServiceImpact` now returns `base_score`, `dependency_penalty`, and `dependency_impacts` with target score and propagated penalty evidence.
+- Services UI shows propagated dependency impact blocks and includes dependency penalty in impact text.
+- Added tests for dependency penalty propagation and healthy dependency no-op behavior.
+- Validation: focused service-impact tests clean; `npm run build` in `frontend/` clean.
+
 ## Immediate next tasks
 
 1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
    blocked on lab hardware or captures).
 2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
    the laptop ceiling above is the environment, not the pipeline.
-3. Use service dependencies in assurance scoring/blast-radius propagation so
-   degraded upstream services penalize dependent downstream services.
+3. Add dependency graph visualization/filtering to Services or Assurance UI so
+   operators can inspect propagated blast radius visually.
 
 ## Notification rules
 

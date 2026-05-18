@@ -50,18 +50,32 @@ type ServiceImpactMember = {
   worst_severity: string;
 };
 
+type ServiceDependencyImpact = {
+  dependency_id: string;
+  target_service_id: string;
+  target_service_name: string;
+  target_score: number;
+  propagated_penalty: number;
+  weight: number;
+  is_critical: boolean;
+  direction: string;
+};
+
 type ServiceImpact = {
   service_id: string;
   name: string;
   kind: string;
   description?: string | null;
   score: number;
+  base_score?: number | null;
+  dependency_penalty: number;
   health_state: string;
   member_count: number;
   impacted_member_count: number;
   active_alarm_count: number;
   worst_severity: string;
   members: ServiceImpactMember[];
+  dependency_impacts: ServiceDependencyImpact[];
 };
 
 type DeviceOption = {
@@ -327,7 +341,7 @@ export function ServicesPage() {
                       <Td><Badge variant={score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger'}>{score}</Badge></Td>
                       <Td><Badge variant={(impact?.worst_severity ?? 'info') as never}>{impact?.worst_severity ?? 'info'}</Badge></Td>
                       <Td>{service.member_count}</Td>
-                      <Td>{impact ? `${impact.impacted_member_count} members · ${impact.active_alarm_count} alarms` : 'pending score'}</Td>
+                      <Td>{impact ? `${impact.impacted_member_count} members · ${impact.active_alarm_count} alarms${impact.dependency_penalty ? ` · dep -${impact.dependency_penalty}` : ''}` : 'pending score'}</Td>
                       <Td>{new Date(service.updated_at).toLocaleString()}</Td>
                       <Td>
                         <div className="flex gap-2">
@@ -357,10 +371,24 @@ export function ServicesPage() {
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-white">{service.name}</h3>
-                  <p className="text-xs text-gray-500">{service.kind} · {impact?.health_state ?? 'pending'}</p>
+                  <p className="text-xs text-gray-500">{service.kind} · {impact?.health_state ?? 'pending'}{impact?.dependency_penalty ? ` · dependency penalty -${impact.dependency_penalty}` : ''}</p>
                 </div>
                 <Badge variant={score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger'}>{score}</Badge>
               </div>
+              {!!impact?.dependency_impacts?.length && (
+                <div className="mb-3 space-y-2">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-red-500">Propagated dependency impact</div>
+                  {impact.dependency_impacts.map((dependency) => (
+                    <div key={dependency.dependency_id} className="flex items-center justify-between gap-3 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm dark:border-red-900/40 dark:bg-red-950/20">
+                      <div className="min-w-0">
+                        <div className="truncate font-medium text-gray-900 dark:text-white">{dependency.target_service_name}</div>
+                        <div className="text-xs text-gray-500">target score {dependency.target_score} · penalty -{dependency.propagated_penalty}{dependency.is_critical ? ' · critical' : ''}</div>
+                      </div>
+                      <Badge variant={dependency.target_score >= 90 ? 'success' : dependency.target_score >= 75 ? 'warning' : 'danger'}>{dependency.target_score}</Badge>
+                    </div>
+                  ))}
+                </div>
+              )}
               {!!service.dependencies?.length && (
                 <div className="mb-3 space-y-2">
                   <div className="text-xs font-semibold uppercase tracking-wide text-gray-500">Dependencies</div>

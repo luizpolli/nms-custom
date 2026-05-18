@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 from app.api.assurance import _compute_service_impact
 from app.models.alarm import Alarm
-from app.models.service import Service, ServiceMember
+from app.models.service import Service, ServiceDependency, ServiceMember
 
 
 def _alarm(device_id=None, severity="major", state="active") -> Alarm:
@@ -92,3 +92,42 @@ def test_service_impact_handles_no_members():
     impact = _compute_service_impact(svc, {}, {}, {})
     assert impact.score == 100
     assert impact.member_count == 0
+
+
+def test_service_impact_dependency_penalty_propagates():
+    downstream = Service(id=uuid.uuid4(), name="customer-vpn", kind="customer", members=[])
+    upstream = Service(id=uuid.uuid4(), name="core-transport", kind="transport", members=[])
+    dep = ServiceDependency(
+        id=uuid.uuid4(),
+        source_service_id=downstream.id,
+        target_service_id=upstream.id,
+        target_service=upstream,
+        weight=1.0,
+        is_critical=True,
+        direction="source_to_target",
+    )
+    downstream.upstream_dependencies = [dep]
+    impact = _compute_service_impact(downstream, {}, {}, {}, {upstream.id: 50})
+    assert impact.base_score == 100
+    assert impact.score < 100
+    assert impact.dependency_penalty > 0
+    assert impact.dependency_impacts[0].target_service_name == "core-transport"
+
+
+def test_service_impact_healthy_dependency_does_not_penalize():
+    downstream = Service(id=uuid.uuid4(), name="customer-vpn", kind="customer", members=[])
+    upstream = Service(id=uuid.uuid4(), name="core-transport", kind="transport", members=[])
+    downstream.upstream_dependencies = [
+        ServiceDependency(
+            id=uuid.uuid4(),
+            source_service_id=downstream.id,
+            target_service_id=upstream.id,
+            target_service=upstream,
+            weight=1.0,
+            is_critical=True,
+        )
+    ]
+    impact = _compute_service_impact(downstream, {}, {}, {}, {upstream.id: 95})
+    assert impact.score == 100
+    assert impact.dependency_penalty == 0
+    assert impact.dependency_impacts == []

@@ -18,7 +18,7 @@ from app.models.audit import AuditLog
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.kpi import KPI
-from app.models.service import Service, ServiceMember
+from app.models.service import Service, ServiceDependency, ServiceMember
 from app.models.topology import TopologyLink, TopologyNode
 from app.services.assurance import clamp_score, severity_penalty
 from app.services.assurance.topology_impact import compute_topology_blast_radius
@@ -119,18 +119,32 @@ class ServiceImpactMember(BaseModel):
     worst_severity: str
 
 
+class ServiceDependencyImpact(BaseModel):
+    dependency_id: uuid.UUID
+    target_service_id: uuid.UUID
+    target_service_name: str
+    target_score: int
+    propagated_penalty: int
+    weight: float
+    is_critical: bool
+    direction: str
+
+
 class ServiceImpact(BaseModel):
     service_id: uuid.UUID
     name: str
     kind: str
     description: str | None = None
     score: int
+    base_score: int | None = None
+    dependency_penalty: int = 0
     health_state: str
     member_count: int
     impacted_member_count: int
     active_alarm_count: int
     worst_severity: str
     members: list[ServiceImpactMember] = Field(default_factory=list)
+    dependency_impacts: list[ServiceDependencyImpact] = Field(default_factory=list)
 
 
 class AssuranceSummary(BaseModel):
@@ -480,11 +494,20 @@ def _worst_severity(values: list[str]) -> str:
     return max(values, key=_severity_rank)
 
 
+def _dependency_penalty(base_score: int, *, weight: float, is_critical: bool) -> int:
+    if base_score >= 90:
+        return 0
+    severity_gap = 100 - base_score
+    factor = 0.35 + (0.25 if is_critical else 0.0)
+    return min(60, max(1, round(severity_gap * max(weight, 0.0) * factor)))
+
+
 def _compute_service_impact(
     service: Service,
     alarms_by_device: dict[uuid.UUID, list[Alarm]],
     alarms_by_interface: dict[uuid.UUID, list[Alarm]],
     interface_oper_status: dict[uuid.UUID, str | None],
+    dependency_scores: dict[uuid.UUID, int] | None = None,
 ) -> ServiceImpact:
     members: list[ServiceImpactMember] = []
     severities: list[str] = []
@@ -531,19 +554,44 @@ def _compute_service_impact(
         service_score = 100
 
     impacted_member_count = sum(1 for m in members if m.active_alarms > 0 or m.score < 100)
+    dependency_impacts: list[ServiceDependencyImpact] = []
+    dependency_penalty = 0
+    if dependency_scores:
+        for d in service.upstream_dependencies or []:
+            target_score = dependency_scores.get(d.target_service_id, 100)
+            penalty = _dependency_penalty(target_score, weight=d.weight, is_critical=d.is_critical)
+            if penalty <= 0:
+                continue
+            dependency_penalty += penalty
+            dependency_impacts.append(
+                ServiceDependencyImpact(
+                    dependency_id=d.id,
+                    target_service_id=d.target_service_id,
+                    target_service_name=d.target_service.name if d.target_service else str(d.target_service_id),
+                    target_score=target_score,
+                    propagated_penalty=penalty,
+                    weight=d.weight,
+                    is_critical=d.is_critical,
+                    direction=d.direction,
+                )
+            )
+    final_score = clamp_score(service_score - dependency_penalty)
 
     return ServiceImpact(
         service_id=service.id,
         name=service.name,
         kind=service.kind,
         description=service.description,
-        score=service_score,
-        health_state=_health_state(service_score),
+        score=final_score,
+        base_score=service_score,
+        dependency_penalty=dependency_penalty,
+        health_state=_health_state(final_score),
         member_count=len(members),
         impacted_member_count=impacted_member_count,
         active_alarm_count=total_active,
         worst_severity=_worst_severity(severities),
         members=sorted(members, key=lambda x: (x.score, -_severity_rank(x.worst_severity))),
+        dependency_impacts=sorted(dependency_impacts, key=lambda x: (-x.propagated_penalty, x.target_service_name)),
     )
 
 
@@ -581,8 +629,13 @@ async def assurance_services(
         if matched:
             alarms_by_interface[iface.id] = matched
 
-    impacts = [
+    base_impacts = [
         _compute_service_impact(s, alarms_by_device, alarms_by_interface, interface_oper_status)
+        for s in services
+    ]
+    base_scores = {impact.service_id: impact.score for impact in base_impacts}
+    impacts = [
+        _compute_service_impact(s, alarms_by_device, alarms_by_interface, interface_oper_status, base_scores)
         for s in services
     ]
     impacts.sort(key=lambda x: (x.score, -_severity_rank(x.worst_severity), x.name))
@@ -618,7 +671,13 @@ async def assurance_service_detail(
         if matched:
             alarms_by_interface[iface.id] = matched
 
-    return _compute_service_impact(service, alarms_by_device, alarms_by_interface, interface_oper_status)
+    all_services_result = await db.execute(select(Service))
+    all_services = list(all_services_result.scalars().all())
+    base_scores = {
+        s.id: _compute_service_impact(s, alarms_by_device, alarms_by_interface, interface_oper_status).score
+        for s in all_services
+    }
+    return _compute_service_impact(service, alarms_by_device, alarms_by_interface, interface_oper_status, base_scores)
 
 
 def _node_label(node: TopologyNode) -> str:
