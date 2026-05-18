@@ -5,6 +5,7 @@ Use these helpers when you want traffic that looks like Cisco devices without ne
 ## What is covered
 
 - UDP syslog messages to `syslog-receiver` (`localhost:5514` by default).
+- Raw SNMPv2c linkDown/linkUp traps to `trap-receiver` (`localhost:1162` by default).
 - Line-delimited gNMI/MDT-style JSON telemetry frames to `telemetry-receiver` (`localhost:57400` by default).
 - API bootstrap for a mock Cisco device so telemetry samples reference a real `devices.id`.
 
@@ -44,6 +45,14 @@ make sim-syslog COUNT=20
 
 The simulator sends Cisco-ish BSD syslog messages. Every fifth message is a `%LINK-3-UPDOWN` alarm-like event.
 
+## Emit SNMP traps
+
+```bash
+make sim-trap COUNT=20
+```
+
+The simulator builds minimal SNMPv2c Trap-PDUs directly, so local trap generation does **not** depend on `pysnmp`. Odd sequences emit `linkDown`; even sequences emit the matching `linkUp` clear for the same simulated interface. The payload includes `sysName.0=mock-iosxr-1`, allowing alarm correlation to attach traps to the mock device even when Docker rewrites the UDP source IP.
+
 ## Emit telemetry
 
 ```bash
@@ -52,16 +61,16 @@ make sim-telemetry COUNT=20
 
 The simulator creates/finds the mock device, then sends parser-compatible gNMI JSON frames with interface counters and CPU utilization.
 
-## Run both
+## Run all simulators
 
 ```bash
 make sim-run COUNT=20
 ```
 
-This sends syslog first, then telemetry. Watch services with:
+This sends syslog first, then SNMP traps, then telemetry. Watch services with:
 
 ```bash
-docker compose logs -f syslog-receiver telemetry-receiver worker-alarm worker-telemetry app
+docker compose logs -f syslog-receiver trap-receiver telemetry-receiver worker-alarm worker-telemetry app
 ```
 
 ## Custom targets
@@ -73,6 +82,8 @@ python tools/simulators/mock_device.py run \
   --ip 10.255.0.21 \
   --syslog-host 127.0.0.1 \
   --syslog-port 5514 \
+  --trap-host 127.0.0.1 \
+  --trap-port 1162 \
   --telemetry-host 127.0.0.1 \
   --telemetry-port 57400 \
   --count 50 \
@@ -81,5 +92,5 @@ python tools/simulators/mock_device.py run \
 
 ## Current limits
 
-- Native SNMP trap generation is intentionally not included yet because the local pysnmp dependency stack currently fails to import in this environment. Syslog and telemetry cover the receiver/event-bus/KPI path without extra fragile dependencies.
+- SNMP trap generation covers a focused SNMPv2c linkDown/linkUp lab path; broader vendor trap catalogs still need fixtures/captures.
 - Native gNMI protobuf/gRPC interop still requires lab devices or captures.

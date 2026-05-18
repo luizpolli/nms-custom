@@ -672,15 +672,25 @@ Completed syslog-to-device correlation for local/mock labs:
 - Alarm correlation now resolves devices by source hostname/IP and attaches `device_id`/`object_id` directly when creating or deduping alarms.
 - This fixes Docker/local runs where UDP source IP is a bridge/local address but the syslog payload contains the real/simulated device name.
 
+## Phase 5I completion notes — 2026-05-17
+
+Completed SNMP trap simulator support for local/mock labs:
+
+- Added raw SNMPv2c Trap-PDU generation to `tools/simulators/mock_device.py` without depending on the broken local `pysnmp/pyasn1` import path.
+- Added `make sim-trap` and updated `make sim-run` to emit syslog, SNMP traps, and telemetry.
+- Trap simulator emits paired `linkDown`/`linkUp` traps with `sysUpTime.0`, `snmpTrapOID.0`, `sysName.0`, and `ifIndex` varbinds.
+- Trap correlation now prefers `sysName.0` as the logical source host, preserving packet source in varbinds when the simulator/relay hides the device IP.
+- Mock simulator docs now cover syslog, SNMP traps, and telemetry together.
+
 Remaining Phase 5 work:
 
-- Add native SNMP trap simulator once the local pysnmp dependency stack is fixed or replaced.
+- Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
 - Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
 - Add lab health/UI affordances to quickly see mock telemetry, alarms, and worker processing status.
 
 ## Immediate next tasks
 
-1. Add native SNMP trap simulator once dependency strategy is settled.
+1. Add lab health/UI affordances to quickly see mock telemetry, alarms, and worker processing status.
 2. Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
 3. Add native gRPC/gNMI protobuf transport with TLS/mTLS and subscription management when lab devices or captures are available.
 4. Add optional LLM-backed AI Ops assistant only after strict retrieval/citation and redaction guardrails are defined.

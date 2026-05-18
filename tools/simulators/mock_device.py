@@ -17,10 +17,16 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any
+
+LINK_DOWN_OID = "1.3.6.1.6.3.1.1.5.3"
+LINK_UP_OID = "1.3.6.1.6.3.1.1.5.4"
+SYS_UPTIME_OID = "1.3.6.1.2.1.1.3.0"
+SYS_NAME_OID = "1.3.6.1.2.1.1.5.0"
+SNMP_TRAP_OID = "1.3.6.1.6.3.1.1.4.1.0"
+IF_INDEX_PREFIX = "1.3.6.1.2.1.2.2.1.1"
 
 
 @dataclass(slots=True)
@@ -42,6 +48,86 @@ def build_syslog_message(device: MockDevice, sequence: int, *, alarm: bool = Fal
         f"<134>{datetime.now(timezone.utc).strftime('%b %d %H:%M:%S')} {device.name} "
         f"%NMS-6-MOCK: mock heartbeat sequence={sequence} platform={device.platform}"
     )
+
+
+def _ber_length(length: int) -> bytes:
+    if length < 0x80:
+        return bytes([length])
+    raw = length.to_bytes((length.bit_length() + 7) // 8, "big")
+    return bytes([0x80 | len(raw)]) + raw
+
+
+def _ber_tlv(tag: int, value: bytes) -> bytes:
+    return bytes([tag]) + _ber_length(len(value)) + value
+
+
+def _ber_sequence(value: bytes) -> bytes:
+    return _ber_tlv(0x30, value)
+
+
+def _ber_integer(value: int, *, tag: int = 0x02) -> bytes:
+    if value == 0:
+        raw = b"\x00"
+    else:
+        raw = value.to_bytes((value.bit_length() + 7) // 8, "big")
+        if raw[0] & 0x80:
+            raw = b"\x00" + raw
+    return _ber_tlv(tag, raw)
+
+
+def _ber_octet_string(value: str) -> bytes:
+    return _ber_tlv(0x04, value.encode("utf-8"))
+
+
+def _ber_oid(oid: str) -> bytes:
+    parts = [int(part) for part in oid.strip(".").split(".")]
+    if len(parts) < 2:
+        raise ValueError(f"OID requires at least two arcs: {oid!r}")
+    encoded = bytearray([40 * parts[0] + parts[1]])
+    for part in parts[2:]:
+        if part < 0:
+            raise ValueError(f"OID arc must be positive: {oid!r}")
+        stack = [part & 0x7F]
+        part >>= 7
+        while part:
+            stack.append(0x80 | (part & 0x7F))
+            part >>= 7
+        encoded.extend(reversed(stack))
+    return _ber_tlv(0x06, bytes(encoded))
+
+
+def _ber_varbind(oid: str, value: bytes) -> bytes:
+    return _ber_sequence(_ber_oid(oid) + value)
+
+
+def build_snmp_v2c_trap_packet(
+    device: MockDevice,
+    sequence: int,
+    *,
+    community: str = "public",
+) -> bytes:
+    """Build a minimal SNMPv2c Trap-PDU without requiring pysnmp locally."""
+    if_index = ((sequence - 1) // 2) % 4 + 1
+    trap_oid = LINK_UP_OID if sequence % 2 == 0 else LINK_DOWN_OID
+    uptime_ticks = max(1, sequence) * 100
+    varbinds = _ber_sequence(
+        b"".join(
+            [
+                _ber_varbind(SYS_UPTIME_OID, _ber_integer(uptime_ticks, tag=0x43)),
+                _ber_varbind(SNMP_TRAP_OID, _ber_oid(trap_oid)),
+                _ber_varbind(SYS_NAME_OID, _ber_octet_string(device.name)),
+                _ber_varbind(f"{IF_INDEX_PREFIX}.{if_index}", _ber_integer(if_index)),
+            ]
+        )
+    )
+    pdu = _ber_tlv(
+        0xA7,
+        _ber_integer(sequence)
+        + _ber_integer(0)
+        + _ber_integer(0)
+        + varbinds,
+    )
+    return _ber_sequence(_ber_integer(1) + _ber_octet_string(community) + pdu)
 
 
 def build_gnmi_json_frame(device_id: str, sequence: int, *, source: str = "mock-device") -> dict[str, Any]:
@@ -135,6 +221,27 @@ def emit_syslog(host: str, port: int, device: MockDevice, *, count: int, interva
         sock.close()
 
 
+def emit_snmp_traps(
+    host: str,
+    port: int,
+    device: MockDevice,
+    *,
+    count: int,
+    interval: float,
+    community: str = "public",
+) -> None:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        for seq in range(1, count + 1):
+            packet = build_snmp_v2c_trap_packet(device, seq, community=community)
+            sock.sendto(packet, (host, port))
+            oid = LINK_UP_OID if seq % 2 == 0 else LINK_DOWN_OID
+            print(f"trap sent seq={seq} oid={oid} bytes={len(packet)}")
+            time.sleep(interval)
+    finally:
+        sock.close()
+
+
 def emit_telemetry(host: str, port: int, device_id: str, *, count: int, interval: float) -> None:
     with socket.create_connection((host, port), timeout=10) as sock:
         file = sock.makefile("rwb")
@@ -164,6 +271,13 @@ def main() -> None:
     syslog_p.add_argument("--count", type=int, default=10)
     syslog_p.add_argument("--interval", type=float, default=1.0)
 
+    trap_p = sub.add_parser("trap", help="emit raw SNMPv2c linkUp/linkDown traps")
+    trap_p.add_argument("--host", default="127.0.0.1")
+    trap_p.add_argument("--port", type=int, default=1162)
+    trap_p.add_argument("--community", default="public")
+    trap_p.add_argument("--count", type=int, default=10)
+    trap_p.add_argument("--interval", type=float, default=1.0)
+
     telemetry_p = sub.add_parser("telemetry", help="emit line-delimited gNMI JSON telemetry")
     telemetry_p.add_argument("--host", default="127.0.0.1")
     telemetry_p.add_argument("--port", type=int, default=57400)
@@ -174,6 +288,8 @@ def main() -> None:
     run_p = sub.add_parser("run", help="ensure device, then emit syslog and telemetry")
     run_p.add_argument("--syslog-host", default="127.0.0.1")
     run_p.add_argument("--syslog-port", type=int, default=5514)
+    run_p.add_argument("--trap-host", default="127.0.0.1")
+    run_p.add_argument("--trap-port", type=int, default=1162)
     run_p.add_argument("--telemetry-host", default="127.0.0.1")
     run_p.add_argument("--telemetry-port", type=int, default=57400)
     run_p.add_argument("--count", type=int, default=10)
@@ -186,12 +302,23 @@ def main() -> None:
         print(ensure_device(args.api_url, device))
     elif args.cmd == "syslog":
         emit_syslog(args.host, args.port, device, count=args.count, interval=args.interval)
+    elif args.cmd == "trap":
+        ensure_device(args.api_url, device)
+        emit_snmp_traps(
+            args.host,
+            args.port,
+            device,
+            count=args.count,
+            interval=args.interval,
+            community=args.community,
+        )
     elif args.cmd == "telemetry":
         device_id = args.device_id or ensure_device(args.api_url, device)
         emit_telemetry(args.host, args.port, device_id, count=args.count, interval=args.interval)
     elif args.cmd == "run":
         device_id = ensure_device(args.api_url, device)
         emit_syslog(args.syslog_host, args.syslog_port, device, count=args.count, interval=args.interval)
+        emit_snmp_traps(args.trap_host, args.trap_port, device, count=args.count, interval=args.interval)
         emit_telemetry(args.telemetry_host, args.telemetry_port, device_id, count=args.count, interval=args.interval)
     else:  # pragma: no cover
         parser.error("unknown command")

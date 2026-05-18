@@ -29,6 +29,7 @@ _AUTH_FAILURE = "1.3.6.1.6.3.1.1.5.5"
 
 # ifIndex OID prefix (ifIndex column, table 2.2.1.1)
 _IF_INDEX_PREFIX = "1.3.6.1.2.1.2.2.1.1."
+_SYS_NAME_OID = "1.3.6.1.2.1.1.5.0"
 
 SessionFactory = Callable[[], AsyncSession]
 
@@ -113,13 +114,30 @@ class AlarmCorrelator:
 
     async def handle_trap(self, event: TrapEvent) -> Alarm | None:
         """Classify trap, then create / update / clear the matching alarm row."""
+        source_host = self._trap_source_host(event)
+        varbinds = dict(event.varbinds)
+        if source_host != event.source_host:
+            varbinds.setdefault("packet_source_host", event.source_host)
         return await self._handle_classified_event(
             source_type="snmp_trap",
-            source_host=event.source_host,
+            source_host=source_host,
             trap_oid=event.trap_oid,
-            varbinds=event.varbinds,
-            cls=self.classify(event),
+            varbinds=varbinds,
+            cls=self.classify(
+                TrapEvent(
+                    source_host=source_host,
+                    source_port=event.source_port,
+                    community=event.community,
+                    trap_oid=event.trap_oid,
+                    varbinds=event.varbinds,
+                    received_at=event.received_at,
+                )
+            ),
         )
+
+    def _trap_source_host(self, event: TrapEvent) -> str:
+        """Prefer sysName.0 when simulators/relays hide the real source IP."""
+        return event.varbinds.get(_SYS_NAME_OID) or event.source_host
 
     async def handle_syslog(
         self,

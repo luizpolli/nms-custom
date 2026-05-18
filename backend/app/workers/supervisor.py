@@ -139,7 +139,10 @@ class WorkerSupervisor:
         await beat.starting()
         while not self._stop_event.is_set():
             try:
-                receiver = SNMPTrapReceiver(bind_port=trap_port)
+                receiver = SNMPTrapReceiver(
+                    bind_host=os.environ.get("TRAP_BIND_HOST", "0.0.0.0"),  # nosec B104 - container listener
+                    bind_port=trap_port,
+                )
                 correlator = AlarmCorrelator(async_session_factory)
                 receiver.on_trap(correlator.handle_trap)
                 await receiver.start()

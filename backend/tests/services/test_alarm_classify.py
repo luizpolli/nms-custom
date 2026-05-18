@@ -107,3 +107,9 @@ class TestClassifyUnknown:
         result = correlator.classify(_event(""))
         assert result["severity"] == "info"
         assert result["category"] == "other"
+
+
+def test_trap_source_prefers_sysname_for_simulated_or_relayed_traps(correlator: AlarmCorrelator) -> None:
+    event = _event(_LINK_DOWN, {"1.3.6.1.2.1.1.5.0": "mock-iosxr-1"})
+
+    assert correlator._trap_source_host(event) == "mock-iosxr-1"  # noqa: SLF001
