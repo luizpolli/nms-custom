@@ -100,6 +100,31 @@ def _latency_histogram(values: list[float]) -> dict[str, Any]:
     }
 
 
+def _scenario_annotation(
+    scenario_label: str | None,
+    run_id: str | None,
+    notes: str | None,
+    annotated_at: datetime,
+) -> dict[str, Any]:
+    """Normalize optional operator labels for exported lab snapshots."""
+
+    def clean(value: str | None) -> str | None:
+        if value is None:
+            return None
+        normalized = " ".join(value.strip().split())
+        return normalized or None
+
+    label = clean(scenario_label)
+    run = clean(run_id)
+    text = clean(notes)
+    return {
+        "scenario_label": label,
+        "run_id": run,
+        "notes": text,
+        "annotated_at": _iso(annotated_at) if any([label, run, text]) else None,
+    }
+
+
 async def _event_bus_summary(since: datetime) -> dict[str, Any]:
     settings = Settings()
     bus = EventBus(redis_url=settings.redis_url, stream_name=settings.event_stream_name)
@@ -162,6 +187,9 @@ async def _event_bus_summary(since: datetime) -> dict[str, Any]:
 async def lab_health(
     db: Annotated[AsyncSession, Depends(get_db)],
     window_minutes: int = Query(default=15, ge=1, le=1440),
+    scenario_label: str | None = Query(default=None, max_length=120),
+    run_id: str | None = Query(default=None, max_length=80),
+    notes: str | None = Query(default=None, max_length=500),
 ) -> dict[str, Any]:
     """Return compact local lab visibility for mock traffic and EPS checks."""
     now = _now()
@@ -255,6 +283,7 @@ async def lab_health(
         "generated_at": _iso(now),
         "window_minutes": window_minutes,
         "window_start": _iso(since),
+        "scenario": _scenario_annotation(scenario_label, run_id, notes, now),
         "mock_devices": [
             {
                 "id": str(device.id),

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 
-from app.api.lab import _eps_histogram, _histogram_bucket_seconds, _latency_histogram
+from app.api.lab import _eps_histogram, _histogram_bucket_seconds, _latency_histogram, _scenario_annotation
 
 
 def test_histogram_bucket_seconds_keeps_short_windows_granular() -> None:
@@ -61,3 +61,34 @@ def test_latency_histogram_buckets_ms_values() -> None:
     assert histogram["sample_count"] == 6
     assert [bucket["count"] for bucket in histogram["buckets"]] == [1, 1, 1, 1, 1, 1]
     assert histogram["note"] is None
+
+
+def test_scenario_annotation_normalizes_optional_export_labels() -> None:
+    annotated_at = datetime(2026, 5, 19, 12, 30, tzinfo=timezone.utc)
+
+    annotation = _scenario_annotation(
+        "  mixed   soak  ",
+        " run-001 ",
+        "  syslog + traps   + telemetry  ",
+        annotated_at,
+    )
+
+    assert annotation == {
+        "scenario_label": "mixed soak",
+        "run_id": "run-001",
+        "notes": "syslog + traps + telemetry",
+        "annotated_at": annotated_at.isoformat(),
+    }
+
+
+def test_scenario_annotation_stays_empty_without_labels() -> None:
+    annotated_at = datetime(2026, 5, 19, 12, 30, tzinfo=timezone.utc)
+
+    annotation = _scenario_annotation("   ", None, "", annotated_at)
+
+    assert annotation == {
+        "scenario_label": None,
+        "run_id": None,
+        "notes": None,
+        "annotated_at": None,
+    }

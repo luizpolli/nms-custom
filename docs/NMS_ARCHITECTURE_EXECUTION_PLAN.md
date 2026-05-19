@@ -25,6 +25,58 @@ To avoid burning context on huge rewrites:
 - Notify only when a phase or meaningful task finishes, or when blocked by a real decision.
 - Use subagents for large code reviews or isolated implementation areas, not for every tiny edit.
 
+## Current phase/task tracker — updated 2026-05-19
+
+This is the operator-facing checklist for what is actually done vs. still pending. Detailed phase notes remain below.
+
+### Completed / implemented
+
+- [x] **Phase 0 — Baseline and gap alignment:** recommendation reviewed, repo gaps mapped, tests/build gates identified.
+- [x] **Phase 1 — Core SNMP/SSH/inventory foundation:** normalized device/interface/KPI/alarm/audit/credential-assignment data model; frontend device-interface follow-up wired to live IF-MIB fetch.
+- [x] **Phase 2 — Runtime separation:** standalone worker/receiver entrypoint and Compose services for poller, topology, reports, traps, syslog, and telemetry receiver boundaries.
+- [x] **Phase 2.5 — Migration + worker observability:** Alembic baseline, worker Redis heartbeats, and `/api/system/health`.
+- [x] **Phase 3A — Event bus foundation:** canonical event envelope and Redis Streams wrapper.
+- [x] **Phase 3B/3C/3D/3E — Telemetry MVP/productization:** telemetry schema/API/UI, receiver service, JSON gNMI/MDT-style adapter, KPI normalization, and event publishing.
+- [x] **Phase 4A–4P — Assurance/service impact:** root-cause groups, alarm lifecycle/suppression, topology blast-radius, services/dependencies, service score history, threshold alerts, event-driven snapshots, and network score sparkline.
+- [x] **Phase 5A–5E — Scale/production readiness:** Timescale retention/aggregates, Prometheus metrics, worker sharding/concurrency, Helm baseline/hardening, CI validation, Redis consumer groups, and stale pending-event reclaim.
+- [x] **Phase 5F–5O — Local lab/simulator hardening:** mock-device simulator, syslog/trap/telemetry flows, Cisco trap fixtures/classifier, native gNMI contract stub, EPS baselines, mixed soak notes, and cross-repo simulator presets.
+- [x] **Lab Health polish:** `/api/lab/health`, frontend Lab Health page, telemetry/alarm/event-bus EPS cards, worker/event-bus breakdowns, **EPS distributions**, **latency histograms**, and **Run snapshot → Export JSON** with timestamped scenario/run annotations.
+- [x] **Alarm action polish:** alarm table **Clear** action uses the success/green button variant where applicable.
+- [x] **Phase 6A–6E — AI-assisted operations:** advisory APIs/UI, LLM-disabled-by-default assistant, redaction/citation guardrails, and RBAC gating.
+- [x] **Security/documentation sweep — 2026-05-19:** reviewed auth/RBAC, TLS, AI Ops LLM guardrails, ingestion surfaces, MIB upload, SSH command execution, Compose/Helm exposure; added `docs/SECURITY_REVIEW.md`, `docs/FUNCTIONAL_MANUAL.md`, README links/checklist, and expanded `.env.example` security knobs.
+- [x] **Settings administration IA phase 1 — 2026-05-19:** refactored the Settings page into Cisco EPNM-style administration submenus: General, System, Security, Users/Roles, Network Devices, Inventory, Alarms/Events, Integrations/AI Ops, and Lab/Operations. Existing live security settings and user/role/permission controls remain wired to the current APIs; pending areas now have explicit placeholders and submenu scope.
+
+### Prioritized remaining work
+
+#### P0 — Blocked / needs real lab input
+
+- [ ] **Native gRPC/protobuf gNMI adapter:** implement the real `NativeGnmiAdapter` transport with TLS/mTLS, subscriptions, backpressure, and per-device credentials. Blocked until lab hardware, packet captures, or a compatible test gNMI server is available.
+- [ ] **High-rate 5k+ EPS soak:** validate sustained high-throughput behavior on a dedicated lab host. Blocked because current laptop baselines already hit the environment ceiling rather than an obvious pipeline limit.
+
+#### P1 — Next unblocked engineering work
+
+- [x] **Lab Health scenario annotations:** exported JSON snapshots include optional timestamped scenario/run labels and notes for named lab events.
+- [ ] **Domain processors for event workers:** replace remaining defensive/skeleton event handlers with owned processors for alarm enrichment, discovery refresh orchestration, and telemetry fan-out rules.
+- [ ] **Helm production hardening:** add cluster-ready ingress/TLS integration, secret-manager wiring, autoscaling defaults, NetworkPolicies/PDB enablement guidance, and chart lint/render coverage in CI where missing.
+- [ ] **API/command authorization hardening:** `ALLOWED_HOSTS` is now enforced; still add per-action roles for command create/run, command allow-lists, and consider hashed/constant-time API key validation.
+- [ ] **Settings P1 backend forms:** turn high-value placeholders into real editable forms for System mail/jobs/retention, Network Device CLI/SNMP defaults, and Alarms/Events severity/notification defaults.
+- [ ] **Settings P1 deep links:** add URL-addressable Settings subroutes or query params (`/settings?section=security`) so admin docs and permissions can link directly to each submenu.
+- [ ] **Broader integration tests:** add UDP/socket-level trap receiver integration tests in a dedicated suite once dependencies/capabilities are available.
+
+#### P2 — Later polish / product expansion
+
+- [ ] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, and richer service/member evidence.
+- [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
+- [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
+- [ ] **Settings P2 polish:** add searchable Settings index, permission-aware hiding/locking per submenu, audit events for all admin changes, and import/export of Settings profiles.
+
+### Settings administration backlog
+
+- **P0:** keep live Security and Users/Roles flows stable while the page is reorganized; preserve `/settings/security`, `/settings/users`, `/settings/roles`, `/settings/permissions`, and `/settings/permissions/system-settings` behavior.
+- **P1:** implement editable backend-backed forms for System, Network Devices, Alarms/Events, and Integrations/AI Ops; add URL deep links to each submenu.
+- **P2:** add Settings search, permission-aware submenu visibility, audit coverage for all admin writes, and profile import/export.
+
+
 ## Recommended improvements beyond the document
 
 These would make the final product stronger:
@@ -639,8 +691,6 @@ Remaining Phase 6 work:
 
 - Optional LLM-backed assistant with strict retrieval/citation guardrails and command-output redaction.
 
-## Immediate next tasks
-
 ## Phase 5F completion notes — 2026-05-17
 
 Completed mock-device simulator harness:
@@ -696,7 +746,7 @@ Remaining Phase 5 work:
 
 - Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
 - Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
-- Lab Health EPS/latency histograms and JSON snapshot export are now in place; next polish is to add scenario annotations once sustained simulator runs are available.
+- Lab Health EPS/latency histograms and JSON snapshot export are now in place, including optional scenario/run annotations for tying snapshots to named lab events.
 
 ## Phase 5K completion notes — 2026-05-17
 
@@ -978,11 +1028,13 @@ Verified available presets/profiles:
 - Event profiles: `bgp-neighbor`, `ospf-adjacency`, `fan-fail`, `power-supply`, and `config-change`.
 - Scenario files: `link-flap-then-bgp-down.json`, `ospf-flap-storm.json`, `psu-then-fan-cascade.json`, and `config-change-window.json`.
 
-## Immediate next tasks
+## Current immediate next tasks — 2026-05-19
 
-1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` — **blocked** until lab hardware, packet captures, or a compatible test gNMI server is available.
-2. Higher-rate EPS soak (5k+ EPS) — **blocked** until a dedicated lab host is available; current laptop baselines already identify the environment ceiling, not a pipeline bottleneck.
-3. Optional unblocked polish: add Lab Health scenario annotations for sustained simulator runs once timestamped lab runs are available.
+The source of truth is the **Current phase/task tracker** near the top of this document. In short:
+
+1. **P0 blocked:** native gRPC/protobuf gNMI adapter and 5k+ EPS soak both need real lab input/host capacity.
+2. **P1 unblocked:** real event-worker domain processors, Helm production hardening, command/API authorization follow-ups, and broader integration tests.
+3. **P2 later:** service dependency refinements, optional LLM provider integration, and richer report exports.
 
 ## Notification rules
 

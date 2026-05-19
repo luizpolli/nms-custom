@@ -33,7 +33,7 @@ A full-featured **Network Management System** inspired by **Cisco Prime Performa
         └────────────┘ └──────┘ └───────────┘
 ```
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full design document.
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full design document, [docs/FUNCTIONAL_MANUAL.md](docs/FUNCTIONAL_MANUAL.md) for the operator/function manual, and [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md) for the current security posture and hardening checklist.
 
 ## Quick Start
 
@@ -77,15 +77,15 @@ Open [http://localhost:5173](http://localhost:5173) (frontend) and
 
 ## Services & Ports
 
-| Service             | Port(s)        | Description                          |
-|---------------------|----------------|--------------------------------------|
-| Frontend            | 5173           | React + Vite dev server              |
-| Backend API         | 8000           | FastAPI + Swagger                    |
-| Postgres            | 5432           | PostgreSQL + TimescaleDB             |
-| Redis               | 6379           | Redis Streams + cache                |
-| Syslog receiver     | 5514/udp       | Cisco-ish syslog ingestion           |
-| SNMP trap receiver  | 1162/udp       | SNMPv2c traps (data-driven classifier) |
-| Telemetry receiver  | 57400/tcp      | gNMI/MDT-like line-delimited JSON    |
+| Service             | Port(s)        | Description                          | Exposure guidance |
+|---------------------|----------------|--------------------------------------|-------------------|
+| Frontend            | 5173           | React + Vite UI                      | expose through HTTPS/ingress only |
+| Backend API         | 8000           | FastAPI + Swagger                    | require API auth outside local dev |
+| Postgres            | 5432           | PostgreSQL + TimescaleDB             | do not expose beyond localhost/private network |
+| Redis               | 6379           | Redis Streams + cache                | do not expose beyond localhost/private network |
+| Syslog receiver     | 5514/udp       | Cisco-ish syslog ingestion           | allow-list trusted device/simulator subnets |
+| SNMP trap receiver  | 1162/udp       | SNMPv2c traps (data-driven classifier) | allow-list trusted device/simulator subnets |
+| Telemetry receiver  | 57400/tcp      | gNMI/MDT-like line-delimited JSON    | restrict to trusted collectors; native gNMI should use TLS/mTLS |
 
 ## Worker / receiver topology
 
@@ -128,6 +128,22 @@ Baseline (2026-05-18, single laptop, all services in Compose):
 | mixed   | 300 EPS syslog + 100 EPS traps + 100 fps tel | 65s      | 24000+      | +23655 (via `entries-read`) | ~364          | 0 (3 pending) |
 
 The three consumer groups (`nms:worker-alarm`, `nms:worker-discovery`, `nms:worker-telemetry`) drained to 0 lag within seconds of each burst ending. The `nms:events` stream is `MAXLEN`-trimmed to ~10k for storage; use `XINFO GROUPS nms:events` field `entries-read` for true throughput counts.
+
+## Security quick checklist
+
+Local defaults are intentionally convenient for development. Before using a shared lab or production-like host:
+
+- Set `APP_ENV=production`, `DEBUG=false`, `API_AUTH_ENABLED=true`, strong `API_KEYS`, and least-privilege `API_KEY_ROLES`.
+- Replace `SECRET_KEY`, Postgres password, credential encryption material, and `SNMP_DEFAULT_COMMUNITY`; never deploy `public` as a default community.
+- Use explicit `CORS_ORIGINS` / `ALLOWED_HOSTS` (enforced by Trusted Host middleware; local defaults only allow localhost/test/container names) and real TLS cert/key files.
+- Keep Postgres/Redis off untrusted networks; restrict syslog/trap/telemetry receiver ports with firewall rules or NetworkPolicies.
+- Keep external AI Ops LLM providers disabled until retention/egress review is complete.
+
+Details: [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
+
+## Functional manual
+
+The detailed module-by-module operating guide lives in [docs/FUNCTIONAL_MANUAL.md](docs/FUNCTIONAL_MANUAL.md). It covers inventory, credential vault, SNMP/KPI polling, MIB uploads, alarms, assurance/service impact, topology, discovery, SSH command execution, reporting, telemetry/gNMI, workers/event bus, Lab Health, AI Ops, and deployment modes.
 
 ## Makefile Commands
 

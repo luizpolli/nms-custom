@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import uuid
 from datetime import datetime
 from typing import AsyncGenerator
@@ -11,11 +12,15 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.models.command import Command
+from app.models.command_run import CommandRun
 from app.models.credential import Credential
 from app.models.device import Device
 from app.config import settings
 from app.security.crypto import CredentialVault
 from app.services.ssh.client import CommandResult, SSHClient, SSHCredential
+
+_STDOUT_MAX = 65536
+_BULK_SEMAPHORE_SIZE = 8
 
 
 class CommandRunner:
@@ -28,24 +33,63 @@ class CommandRunner:
     def __init__(self, session_factory: async_sessionmaker[AsyncSession]) -> None:
         self._sf = session_factory
 
-    async def run_saved_command(self, command_id: uuid.UUID) -> CommandResult:
-        """Load a saved Command, execute it, persist last_output, and return the result."""
+    async def run_saved_command(
+        self,
+        command_id: uuid.UUID,
+        *,
+        device_id: uuid.UUID | None = None,
+        triggered_by: str = "manual",
+    ) -> CommandResult:
+        """Load a saved Command, execute it, persist last_output and a run record."""
         async with self._sf() as session:
             command = await _load_command(session, command_id)
-            credential = _resolve_credential(command)
-            ssh_cred = _build_ssh_credential(command.device, credential)
+            target_device_id = device_id or command.device_id
+
+            if device_id and device_id != command.device_id:
+                device = await _load_device(session, device_id)
+                credential = _resolve_credential_for_device(device)
+                ssh_cred = _build_ssh_credential(device, credential)
+            else:
+                device = command.device
+                credential = _resolve_credential(command)
+                ssh_cred = _build_ssh_credential(device, credential)
 
             logger.info(
                 "run_saved_command id={} cli_len={} host={}",
                 command_id,
                 len(command.cli_command),
-                command.device.ip_address,
+                device.ip_address,
             )
+            started_at = datetime.now()
             result = await _execute(ssh_cred, command.cli_command)
-            await _persist_output(session, command, result.stdout)
+            finished_at = datetime.now()
+
+            command.last_output = result.stdout
+            command.updated_at = datetime.now()
+            session.add(command)
+
+            run = CommandRun(
+                command_id=command_id,
+                device_id=target_device_id,
+                started_at=started_at,
+                finished_at=finished_at,
+                exit_status=result.exit_status,
+                stdout=(result.stdout or "")[:_STDOUT_MAX],
+                stderr=(result.stderr or "")[:_STDOUT_MAX],
+                triggered_by=triggered_by,
+            )
+            session.add(run)
+            await session.commit()
+            logger.debug("Persisted run id={} for command id={}", run.id, command_id)
             return result
 
-    async def run_ad_hoc(self, device_id: uuid.UUID, cli: str) -> CommandResult:
+    async def run_ad_hoc(
+        self,
+        device_id: uuid.UUID,
+        cli: str,
+        *,
+        triggered_by: str = "manual",
+    ) -> CommandResult:
         """Execute a CLI string on the given device without persisting output."""
         async with self._sf() as session:
             device = await _load_device(session, device_id)
@@ -54,6 +98,45 @@ class CommandRunner:
 
         logger.info("run_ad_hoc device_id={} cli_len={} host={}", device_id, len(cli), device.ip_address)
         return await _execute(ssh_cred, cli)
+
+    async def run_bulk(
+        self,
+        command_id: uuid.UUID,
+        device_ids: list[uuid.UUID],
+        *,
+        triggered_by: str = "bulk",
+    ) -> list[dict]:
+        """Run a saved command against multiple devices concurrently.
+
+        Returns a list of per-device result dicts with keys:
+        device_id, exit_status, stdout, stderr, error.
+        """
+        sem = asyncio.Semaphore(_BULK_SEMAPHORE_SIZE)
+
+        async def _run_one(dev_id: uuid.UUID) -> dict:
+            async with sem:
+                try:
+                    result = await self.run_saved_command(
+                        command_id, device_id=dev_id, triggered_by=triggered_by
+                    )
+                    return {
+                        "device_id": str(dev_id),
+                        "exit_status": result.exit_status,
+                        "stdout": result.stdout,
+                        "stderr": result.stderr,
+                        "error": None,
+                    }
+                except Exception as exc:
+                    logger.warning("bulk run failed for device {}: {}", dev_id, exc)
+                    return {
+                        "device_id": str(dev_id),
+                        "exit_status": -1,
+                        "stdout": "",
+                        "stderr": "",
+                        "error": str(exc),
+                    }
+
+        return list(await asyncio.gather(*[_run_one(d) for d in device_ids]))
 
 
 # ---------------------------------------------------------------------------
@@ -106,11 +189,3 @@ def _build_ssh_credential(device: Device, credential: Credential) -> SSHCredenti
 async def _execute(ssh_cred: SSHCredential, cli: str) -> CommandResult:
     async with SSHClient(ssh_cred) as client:
         return await client.run(cli)
-
-
-async def _persist_output(session: AsyncSession, command: Command, output: str) -> None:
-    command.last_output = output
-    command.updated_at = datetime.now()
-    session.add(command)
-    await session.commit()
-    logger.debug("Persisted last_output for command id={}", command.id)

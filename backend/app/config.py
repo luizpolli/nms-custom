@@ -5,6 +5,28 @@ from pydantic_settings import BaseSettings
 from typing import Any
 
 
+DEFAULT_ALLOWED_HOSTS = ["localhost", "127.0.0.1", "::1", "testserver", "app", "backend"]
+
+
+def _parse_list_setting(value: str | list[str]) -> list[str]:
+    """Parse JSON/Python-list or comma-separated environment list settings."""
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item).strip()]
+
+    import ast
+
+    raw = value.strip()
+    if not raw:
+        return []
+    try:
+        parsed = ast.literal_eval(raw)
+    except (ValueError, SyntaxError):
+        parsed = None
+    if isinstance(parsed, list):
+        return [str(item).strip() for item in parsed if str(item).strip()]
+    return [item.strip() for item in raw.split(",") if item.strip()]
+
+
 class Settings(BaseSettings):
     """Centralized settings for the NMS Custom application."""
 
@@ -45,7 +67,7 @@ class Settings(BaseSettings):
 
     # CORS / hosts
     cors_origins: list[str] = Field(default_factory=lambda: ["http://localhost:5173"])
-    allowed_hosts: str | list[str] = "*"
+    allowed_hosts: str | list[str] = Field(default_factory=lambda: DEFAULT_ALLOWED_HOSTS.copy())
 
     # API authentication (enable in deployed environments)
     api_auth_enabled: bool = False
@@ -155,14 +177,12 @@ class Settings(BaseSettings):
         return self
 
     def model_post_init(self, _context: Any) -> None:
-        """Parse CORS origins if provided as JSON string."""
+        """Normalize list settings provided as JSON/Python strings or CSV env vars."""
         if isinstance(self.cors_origins, str):
-            import ast
-
-            try:
-                self.cors_origins = ast.literal_eval(self.cors_origins)
-            except (ValueError, SyntaxError):
-                self.cors_origins = [self.cors_origins]
+            self.cors_origins = _parse_list_setting(self.cors_origins)
+        self.allowed_hosts = _parse_list_setting(self.allowed_hosts)
+        if not self.allowed_hosts:
+            self.allowed_hosts = DEFAULT_ALLOWED_HOSTS.copy()
         if isinstance(self.mib_allowed_extensions, str):
             self.mib_allowed_extensions = [x.strip().lower() for x in self.mib_allowed_extensions.split(",") if x.strip()]
 

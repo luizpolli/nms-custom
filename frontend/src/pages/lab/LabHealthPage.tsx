@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Activity, Bell, Download, RadioTower, Server, Workflow } from 'lucide-react';
 import { api } from '../../lib/api';
@@ -5,8 +6,16 @@ import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { Card, CardHeader } from '../../components/ui/Card';
 import { EmptyState } from '../../components/ui/EmptyState';
+import { Input } from '../../components/ui/Input';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { StatCard } from '../../components/ui/StatCard';
+
+type LabScenario = {
+  scenario_label?: string | null;
+  run_id?: string | null;
+  notes?: string | null;
+  annotated_at?: string | null;
+};
 
 type WorkerStatus = {
   kind: string;
@@ -34,6 +43,7 @@ type CountBucket = {
 type LabHealth = {
   generated_at: string;
   window_minutes: number;
+  scenario: LabScenario;
   mock_devices: Array<{
     id: string;
     name: string;
@@ -90,11 +100,18 @@ type LabHealth = {
   };
 };
 
-function useLabHealth() {
+function useLabHealth(scenario: LabScenario) {
   return useQuery({
-    queryKey: ['lab', 'health'],
+    queryKey: ['lab', 'health', scenario],
     queryFn: async () => {
-      const { data } = await api.get<LabHealth>('/lab/health', { params: { window_minutes: 15 } });
+      const { data } = await api.get<LabHealth>('/lab/health', {
+        params: {
+          window_minutes: 15,
+          scenario_label: scenario.scenario_label || undefined,
+          run_id: scenario.run_id || undefined,
+          notes: scenario.notes || undefined,
+        },
+      });
       return data;
     },
     refetchInterval: 10_000,
@@ -102,7 +119,8 @@ function useLabHealth() {
 }
 
 export function LabHealthPage() {
-  const lab = useLabHealth();
+  const [scenario, setScenario] = useState<LabScenario>({ scenario_label: '', run_id: '', notes: '' });
+  const lab = useLabHealth(scenario);
   const data = lab.data;
   const staleWorkers = data?.workers.filter((worker) => worker.is_stale) ?? [];
   const activeAlarms = sumSourceState(data?.alarms.by_source_state, 'active');
@@ -121,7 +139,7 @@ export function LabHealthPage() {
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Run snapshot</h2>
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                 {data
-                  ? `Generated ${fmtDate(data.generated_at)} · window ${data.window_minutes}m`
+                  ? `Generated ${fmtDate(data.generated_at)} · window ${data.window_minutes}m${scenarioSummary(data.scenario)}`
                   : 'Waiting for lab health data'}
               </p>
             </div>
@@ -131,12 +149,36 @@ export function LabHealthPage() {
               size="sm"
               leftIcon={<Download className="h-4 w-4" />}
               disabled={!data}
-              onClick={() => data && downloadLabHealthSnapshot(data)}
+              onClick={() => data && downloadLabHealthSnapshot(withScenarioDraft(data, scenario))}
             >
               Export JSON
             </Button>
           </div>
         </CardHeader>
+        <div className="grid gap-3 border-t border-gray-100 p-4 dark:border-gray-800 sm:grid-cols-3">
+          <Input
+            label="Scenario label"
+            placeholder="mixed soak, trap storm..."
+            maxLength={120}
+            value={scenario.scenario_label ?? ''}
+            onChange={(event) => setScenario((current) => ({ ...current, scenario_label: event.target.value }))}
+          />
+          <Input
+            label="Run ID"
+            placeholder="run-001"
+            maxLength={80}
+            value={scenario.run_id ?? ''}
+            onChange={(event) => setScenario((current) => ({ ...current, run_id: event.target.value }))}
+          />
+          <Input
+            label="Notes"
+            placeholder="traffic mix, rate, lab host..."
+            maxLength={500}
+            value={scenario.notes ?? ''}
+            onChange={(event) => setScenario((current) => ({ ...current, notes: event.target.value }))}
+            hint="Included in /api/lab/health and exported JSON snapshots."
+          />
+        </div>
       </Card>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
@@ -434,6 +476,33 @@ function fmtDate(value?: string | null) {
 function fmtTime(value?: string | null) {
   if (!value) return '—';
   return new Date(value).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function scenarioSummary(scenario?: LabScenario) {
+  if (!scenario) return '';
+  const parts = [scenario.scenario_label, scenario.run_id].filter(Boolean);
+  return parts.length ? ` · ${parts.join(' · ')}` : '';
+}
+
+function cleanScenarioValue(value?: string | null) {
+  const normalized = value?.trim().replace(/\s+/g, ' ');
+  return normalized || null;
+}
+
+function withScenarioDraft(data: LabHealth, scenario: LabScenario): LabHealth {
+  const draft = {
+    scenario_label: cleanScenarioValue(scenario.scenario_label),
+    run_id: cleanScenarioValue(scenario.run_id),
+    notes: cleanScenarioValue(scenario.notes),
+  };
+  const annotated = Boolean(draft.scenario_label || draft.run_id || draft.notes);
+  return {
+    ...data,
+    scenario: {
+      ...draft,
+      annotated_at: annotated ? (data.scenario.annotated_at ?? data.generated_at) : null,
+    },
+  };
 }
 
 function downloadLabHealthSnapshot(data: LabHealth) {

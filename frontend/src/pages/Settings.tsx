@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
   Settings as SettingsIcon,
-  Mail,
   Network,
   Package,
   Bell,
   Users,
-  Cog,
+  ShieldCheck,
+  ServerCog,
+  BrainCircuit,
+  FlaskConical,
   ChevronRight,
   Info,
   CheckCircle2,
@@ -22,12 +24,14 @@ import { api } from '../lib/api';
 
 type CategoryKey =
   | 'general'
-  | 'mail'
-  | 'network'
+  | 'system'
+  | 'security'
+  | 'usersRoles'
+  | 'networkDevices'
   | 'inventory'
-  | 'alarms'
-  | 'clients'
-  | 'services';
+  | 'alarmsEvents'
+  | 'integrationsAiOps'
+  | 'labOperations';
 
 interface Category {
   key: CategoryKey;
@@ -35,6 +39,8 @@ interface Category {
   title: string;
   description: string;
   icon: React.ReactNode;
+  submenus: string[];
+  status?: 'live' | 'partial' | 'planned';
 }
 
 const CATEGORIES: Category[] = [
@@ -42,55 +48,82 @@ const CATEGORIES: Category[] = [
     key: 'general',
     number: 1,
     title: 'General',
-    description:
-      'Configure system wide settings like cisco.com credentials, Database, Jobs, Server Tuning, Software updates and TAC support.',
+    description: 'Global UI preferences, product identity, support metadata, and TAC/cisco.com placeholders.',
     icon: <SettingsIcon className="h-5 w-5" />,
+    submenus: ['Appearance', 'Polling summary', 'cisco.com / TAC'],
+    status: 'partial',
   },
   {
-    key: 'mail',
+    key: 'system',
     number: 2,
-    title: 'Mail and Notifications',
-    description: 'Configure the mail server and notification receivers.',
-    icon: <Mail className="h-5 w-5" />,
+    title: 'System',
+    description: 'Server, database, jobs, mail, backups, software updates, and runtime tuning.',
+    icon: <ServerCog className="h-5 w-5" />,
+    submenus: ['Server tuning', 'Database', 'Jobs', 'Mail notifications', 'Backups', 'Software updates'],
+    status: 'planned',
   },
   {
-    key: 'network',
+    key: 'security',
     number: 3,
-    title: 'Network and Devices',
-    description:
-      'Configure the network and Device level settings like CLI session, SNMP, Controller Upgrade, Plug & Play.',
+    title: 'Security',
+    description: 'HTTPS/TLS, API authentication, root login, session limits, and certificate settings.',
+    icon: <ShieldCheck className="h-5 w-5" />,
+    submenus: ['HTTPS / TLS', 'Certificates', 'API auth', 'Sessions'],
+    status: 'live',
+  },
+  {
+    key: 'usersRoles',
+    number: 4,
+    title: 'Users / Roles',
+    description: 'Local Web GUI and NBI users, Cisco-style built-in roles, custom roles, and task permissions.',
+    icon: <Users className="h-5 w-5" />,
+    submenus: ['Users', 'Roles', 'Task permissions', 'Virtual domains'],
+    status: 'live',
+  },
+  {
+    key: 'networkDevices',
+    number: 5,
+    title: 'Network Devices',
+    description: 'Device access defaults, CLI/SNMP behavior, Plug & Play onboarding, and controller upgrades.',
     icon: <Network className="h-5 w-5" />,
+    submenus: ['CLI session', 'SNMP defaults', 'Credentials policy', 'Plug & Play', 'Controller upgrades'],
+    status: 'planned',
   },
   {
     key: 'inventory',
-    number: 4,
-    title: 'Inventory',
-    description:
-      'Configure inventory functions like configuration, configuration Archives, Image Managements, Group Management, Discovery settings.',
-    icon: <Package className="h-5 w-5" />,
-  },
-  {
-    key: 'alarms',
-    number: 5,
-    title: 'Alarms and Events',
-    description:
-      'Configure Fault functions like Alarm settings, Severity configurations, System Events, Trap storage, Syslogs, notification receivers.',
-    icon: <Bell className="h-5 w-5" />,
-  },
-  {
-    key: 'clients',
     number: 6,
-    title: 'Clients and Users',
-    description:
-      'Configure Clients and Users settings like client trouble shooting, Database settings, Client discovery, OUI.',
-    icon: <Users className="h-5 w-5" />,
+    title: 'Inventory',
+    description: 'Configuration archives, image management, discovery defaults, groups, and lifecycle settings.',
+    icon: <Package className="h-5 w-5" />,
+    submenus: ['Config archives', 'Image management', 'Discovery', 'Device groups', 'Lifecycle'],
+    status: 'planned',
   },
   {
-    key: 'services',
+    key: 'alarmsEvents',
     number: 7,
-    title: 'Services',
-    description: 'Configure Service functions like PTP/SyncE.',
-    icon: <Cog className="h-5 w-5" />,
+    title: 'Alarms / Events',
+    description: 'Severity mappings, trap/syslog intake, event retention, notification rules, and suppression defaults.',
+    icon: <Bell className="h-5 w-5" />,
+    submenus: ['Severity mapping', 'Trap storage', 'Syslog', 'Event retention', 'Notifications'],
+    status: 'planned',
+  },
+  {
+    key: 'integrationsAiOps',
+    number: 8,
+    title: 'Integrations / AI Ops',
+    description: 'Northbound APIs, webhooks, AI Ops recommendations, model/provider knobs, and external tools.',
+    icon: <BrainCircuit className="h-5 w-5" />,
+    submenus: ['Northbound API', 'Webhooks', 'AI Ops', 'LLM providers', 'Export targets'],
+    status: 'planned',
+  },
+  {
+    key: 'labOperations',
+    number: 9,
+    title: 'Lab / Operations',
+    description: 'Lab health, traffic simulator hooks, maintenance windows, operational runbooks, and PTP/SyncE.',
+    icon: <FlaskConical className="h-5 w-5" />,
+    submenus: ['Lab health', 'Traffic simulator', 'Maintenance', 'Runbooks', 'PTP / SyncE'],
+    status: 'planned',
   },
 ];
 
@@ -357,7 +390,7 @@ function InfoFloat({ title, description }: { title: string; description?: string
   );
 }
 
-function ClientsUsersPanel() {
+function ClientsUsersPanel({ mode = 'full' }: { mode?: 'full' | 'security' | 'users' }) {
   const [security, setSecurity] = useState<SecuritySettings | null>(null);
   const [users, setUsers] = useState<AppUser[]>([]);
   const [roles, setRoles] = useState<AppRole[]>([]);
@@ -368,7 +401,7 @@ function ClientsUsersPanel() {
   const [passwordHelpOpen, setPasswordHelpOpen] = useState(false);
   const [newRole, setNewRole] = useState({ name: '', description: '', user_type: 'web', permissions: {} as Record<string, boolean> });
   const [saving, setSaving] = useState(false);
-  const [tab, setTab] = useState<'users' | 'roles' | 'sessions'>('users');
+  const [tab, setTab] = useState<'users' | 'roles' | 'sessions'>(mode === 'security' ? 'sessions' : 'users');
   const [showNewUser, setShowNewUser] = useState(false);
   const [selectedRoleId, setSelectedRoleId] = useState<string | null>(null);
   const [roleSubTab, setRoleSubTab] = useState<'tasks' | 'members'>('tasks');
@@ -489,6 +522,7 @@ function ClientsUsersPanel() {
 
   return (
     <div className="space-y-6">
+      {mode !== 'users' && (
       <Card>
         <CardHeader title="HTTPS / TLS and Certificates" />
         {security && (
@@ -530,10 +564,11 @@ function ClientsUsersPanel() {
           </div>
         )}
       </Card>
+      )}
 
       <Card>
-        <CardHeader title="Application Access and User Permissions" />
-        {security && (
+        <CardHeader title={mode === 'security' ? 'Application Access and Sessions' : 'Application Access and User Permissions'} />
+        {mode !== 'users' && security && (
           <div className="grid grid-cols-1 gap-4 border-b border-gray-200 p-4 text-sm dark:border-gray-700 md:grid-cols-3">
             <label className="flex items-center gap-2">
               <input type="checkbox" checked={security.api_auth_enabled} onChange={(e) => updateSecurity('api_auth_enabled', e.target.checked)} />
@@ -554,6 +589,13 @@ function ClientsUsersPanel() {
           </div>
         )}
 
+        {mode === 'security' && (
+          <div className="p-4 text-sm text-gray-500">
+            Active session inventory and token revocation are pending. Current limits are saved through the live security settings API above.
+          </div>
+        )}
+
+        {mode !== 'security' && (
         <div className="p-0">
           <div className="flex border-b border-gray-200 dark:border-gray-700">
             {([
@@ -973,24 +1015,29 @@ function ClientsUsersPanel() {
 
           {tab === 'sessions' && (
             <div className="p-4 text-sm text-gray-500">
-              Active session tracking coming soon. Session timeout and concurrent session limits are configured above.
+              Active session tracking coming soon. Session timeout and concurrent session limits are configured in the Security submenu.
             </div>
           )}
         </div>
+        )}
       </Card>
     </div>
   );
 }
 
-function PlaceholderPanel({ title, items }: { title: string; items: string[] }) {
+function PlaceholderPanel({ title, summary, items }: { title: string; summary?: string; items: string[] }) {
   return (
     <Card>
       <CardHeader title={title} />
       <div className="p-4 text-sm">
-        <p className="mb-3 text-gray-500">Configure the following functions (coming soon):</p>
-        <ul className="list-disc space-y-1 pl-5 text-gray-700 dark:text-gray-300">
+        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+          <div className="font-semibold">Phase 1 placeholder</div>
+          <p className="mt-1 text-xs">{summary || 'This submenu is intentionally visible now so the Settings IA matches an EPNM-style administrator map before backend forms are added.'}</p>
+        </div>
+        <p className="mb-3 text-gray-500">Planned administration functions:</p>
+        <ul className="grid grid-cols-1 gap-2 text-gray-700 dark:text-gray-300 md:grid-cols-2">
           {items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item} className="rounded border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">{item}</li>
           ))}
         </ul>
       </div>
@@ -1002,60 +1049,91 @@ function CategoryContent({ category }: { category: CategoryKey }) {
   switch (category) {
     case 'general':
       return <GeneralPanel />;
-    case 'mail':
+    case 'system':
       return (
         <PlaceholderPanel
-          title="Mail and Notifications"
+          title="System Administration"
+          summary="Consolidates server-wide settings that were previously scattered or missing from Settings."
           items={[
-            'SMTP server (host, port, TLS, auth)',
-            'Sender address and reply-to',
-            'Notification receivers (email, webhook, syslog)',
-            'Per-severity routing rules',
+            'Server tuning and worker concurrency',
+            'Database health, retention, and maintenance jobs',
+            'Scheduled jobs and polling windows',
+            'SMTP server and notification sender settings',
+            'Backup / restore policies',
+            'Software update and TAC support metadata',
           ]}
         />
       );
-    case 'network':
+    case 'security':
+      return <ClientsUsersPanel mode="security" />;
+    case 'usersRoles':
+      return <ClientsUsersPanel mode="users" />;
+    case 'networkDevices':
       return (
         <PlaceholderPanel
-          title="Network and Devices"
+          title="Network Device Administration"
           items={[
-            'Default CLI session settings (timeout, retries)',
-            'Default SNMP polling parameters',
-            'Controller upgrade policies',
-            'Plug & Play onboarding',
+            'Default CLI session timeout, retries, and terminal settings',
+            'Default SNMP v2/v3 polling and trap parameters',
+            'Credential policy links to credential vault',
+            'Plug & Play onboarding defaults',
+            'Controller upgrade and device access policies',
           ]}
         />
       );
     case 'inventory':
       return (
         <PlaceholderPanel
-          title="Inventory"
+          title="Inventory Administration"
           items={[
-            'Configuration management',
-            'Configuration archives',
-            'Image management',
-            'Device group management',
-            'Discovery settings',
+            'Configuration archive frequency and retention',
+            'Golden image and software image management',
+            'Discovery defaults and scope controls',
+            'Device group management policies',
+            'Lifecycle and compliance metadata',
           ]}
         />
       );
-    case 'alarms':
+    case 'alarmsEvents':
       return (
         <PlaceholderPanel
-          title="Alarms and Events"
+          title="Alarms and Events Administration"
           items={[
             'Alarm severity mapping',
-            'System events configuration',
             'Trap storage and forwarding',
-            'Syslog ingestion (UDP/TCP)',
-            'Notification receivers',
+            'Syslog ingestion defaults',
+            'Event retention and cleanup windows',
+            'Notification receivers and routing by severity',
+            'Default suppression behavior',
           ]}
         />
       );
-    case 'clients':
-      return <ClientsUsersPanel />;
-    case 'services':
-      return <PlaceholderPanel title="Services" items={['PTP / SyncE configuration']} />;
+    case 'integrationsAiOps':
+      return (
+        <PlaceholderPanel
+          title="Integrations and AI Ops"
+          items={[
+            'Northbound API keys and access profiles',
+            'Webhook targets and retry policy',
+            'AI Ops recommendation thresholds',
+            'LLM/model provider settings',
+            'Export targets for reports and assurance signals',
+          ]}
+        />
+      );
+    case 'labOperations':
+      return (
+        <PlaceholderPanel
+          title="Lab and Operations"
+          items={[
+            'Lab health defaults and thresholds',
+            'Traffic simulator integration hooks',
+            'Maintenance windows and blackout calendars',
+            'Operational runbook links',
+            'PTP / SyncE service settings',
+          ]}
+        />
+      );
   }
 }
 
@@ -1089,10 +1167,33 @@ function Settings() {
                   <div className="flex items-center gap-2">
                     <span className="text-cisco-blue dark:text-cisco-blue-light">{cat.icon}</span>
                     <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{cat.title}</h3>
+                    {cat.status && (
+                      <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                        cat.status === 'live'
+                          ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
+                          : cat.status === 'partial'
+                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                            : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
+                      }`}>
+                        {cat.status}
+                      </span>
+                    )}
                   </div>
                   <p className="mt-1 text-xs leading-snug text-gray-600 dark:text-gray-400 line-clamp-3">
                     {cat.description}
                   </p>
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {cat.submenus.slice(0, 3).map((submenu) => (
+                      <span key={submenu} className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+                        {submenu}
+                      </span>
+                    ))}
+                    {cat.submenus.length > 3 && (
+                      <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-500 dark:bg-gray-800">
+                        +{cat.submenus.length - 3}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </div>

@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
+from starlette.middleware.trustedhost import TrustedHostMiddleware
 from app.config import Settings
 from app.database import engine, init_db
 from app.api.devices import router as devices_router
@@ -13,6 +14,7 @@ from app.api.mibs import router as mibs_router
 from app.api.monitoring_policies import router as monitoring_policies_router
 from app.api.discovery import router as discovery_router
 from app.api.commands import router as commands_router
+from app.api.command_schedules import router as command_schedules_router
 from app.api.ios import router as ios_router
 from app.api.topology import router as topology_router
 from app.api.alarms import router as alarms_router
@@ -75,6 +77,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.middleware("http")(observe_request)
+# Add TrustedHost last so it is the outermost middleware and rejects bad Host
+# headers before request metrics or route handling.
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.allowed_hosts)
 
 # Include routers
 _api_auth = [Depends(require_api_auth)]
@@ -85,6 +90,7 @@ app.include_router(mibs_router, prefix="/api/mibs", tags=["mibs"], dependencies=
 app.include_router(monitoring_policies_router, prefix="/api/monitoring-policies", tags=["monitoring-policies"], dependencies=_api_auth)
 app.include_router(discovery_router, prefix="/api/discovery", tags=["discovery"], dependencies=_api_auth)
 app.include_router(commands_router, prefix="/api/commands", tags=["commands"], dependencies=_api_auth)
+app.include_router(command_schedules_router, prefix="/api/command-schedules", tags=["command-schedules"], dependencies=_api_auth)
 app.include_router(ios_router, prefix="/api/ios", tags=["ios"], dependencies=_api_auth)
 app.include_router(topology_router, prefix="/api/topology", tags=["topology"], dependencies=_api_auth)
 app.include_router(alarms_router, prefix="/api/alarms", tags=["alarms"], dependencies=_api_auth)
