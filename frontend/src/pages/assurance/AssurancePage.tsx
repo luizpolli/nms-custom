@@ -93,6 +93,60 @@ type AssuranceSummary = {
   top_groups: CorrelationGroup[];
 };
 
+type NetworkScorePoint = {
+  bucket_start: string;
+  avg_score: number;
+  min_score: number;
+  max_score: number;
+  sample_count: number;
+  service_count: number;
+};
+
+function NetworkScoreSparkline() {
+  const historyQuery = useQuery({
+    queryKey: ['assurance-network-history'],
+    queryFn: () =>
+      api.get<NetworkScorePoint[]>('/assurance/history', { params: { hours: 24, bucket_minutes: 15 } }).then((r) => r.data),
+    refetchInterval: 120_000,
+    staleTime: 60_000,
+  });
+
+  const points = historyQuery.data ?? [];
+  if (historyQuery.isLoading) {
+    return <div className="h-10 w-full animate-pulse rounded bg-gray-100 dark:bg-gray-800" />;
+  }
+  if (points.length < 2) {
+    return (
+      <div className="flex h-10 items-center justify-center rounded border border-dashed border-gray-200 text-[11px] text-gray-400 dark:border-gray-700">
+        no trend yet · history accumulates as scoring runs
+      </div>
+    );
+  }
+
+  const width = 480;
+  const height = 40;
+  const xs = points.map((_, i) => (i / (points.length - 1)) * width);
+  const ys = points.map((p) => height - (Math.max(0, Math.min(100, p.avg_score)) / 100) * height);
+  const path = xs.map((x, i) => `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${ys[i].toFixed(1)}`).join(' ');
+  const last = points[points.length - 1];
+  const minScore = Math.min(...points.map((p) => p.min_score));
+  const maxScore = Math.max(...points.map((p) => p.max_score));
+  const totalSamples = points.reduce((s, p) => s + p.sample_count, 0);
+  const strokeColor = last.avg_score >= 90 ? '#16a34a' : last.avg_score >= 75 ? '#ca8a04' : '#dc2626';
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-[11px] text-gray-500">
+        <span>24h network trend</span>
+        <span>min {minScore} · max {maxScore} · {totalSamples} samples</span>
+      </div>
+      <svg viewBox={`0 0 ${width} ${height}`} className="h-10 w-full" preserveAspectRatio="none">
+        <path d={path} fill="none" stroke={strokeColor} strokeWidth={1.5} />
+      </svg>
+    </div>
+  );
+}
+
 export function AssurancePage() {
   const queryClient = useQueryClient();
   const summaryQuery = useQuery({
@@ -146,6 +200,10 @@ export function AssurancePage() {
         <StatCard title="Active groups" value={summary?.active_group_count ?? 0} icon={<GitBranch className="h-5 w-5" />} tone={(summary?.active_group_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
         <StatCard title="Impacted interfaces" value={summary?.impacted_interface_count ?? 0} icon={<Target className="h-5 w-5" />} tone={(summary?.impacted_interface_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
       </div>
+
+      <Card className="p-4">
+        <NetworkScoreSparkline />
+      </Card>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <Card className="p-4">

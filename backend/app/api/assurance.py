@@ -820,6 +820,68 @@ class ServiceScorePoint(BaseModel):
     health_state: str
 
 
+class NetworkScorePoint(BaseModel):
+    bucket_start: datetime
+    avg_score: float
+    min_score: int
+    max_score: int
+    sample_count: int
+    service_count: int
+
+
+def _bucket_snapshots(
+    snapshots: list[ServiceScoreSnapshot],
+    since: datetime,
+    bucket_minutes: int,
+) -> list[NetworkScorePoint]:
+    bucket_secs = bucket_minutes * 60
+    since_ts = since.timestamp()
+    buckets: dict[int, list[tuple[uuid.UUID, int]]] = {}
+    for s in snapshots:
+        ts = s.captured_at
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=timezone.utc)
+        offset = ts.timestamp() - since_ts
+        key = int(offset // bucket_secs)
+        buckets.setdefault(key, []).append((s.service_id, s.score))
+
+    result: list[NetworkScorePoint] = []
+    for key in sorted(buckets):
+        entries = buckets[key]
+        scores = [e[1] for e in entries]
+        bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=timezone.utc)
+        result.append(
+            NetworkScorePoint(
+                bucket_start=bucket_start,
+                avg_score=round(sum(scores) / len(scores), 2),
+                min_score=int(min(scores)),
+                max_score=int(max(scores)),
+                sample_count=int(len(scores)),
+                service_count=int(len({e[0] for e in entries})),
+            )
+        )
+    return result
+
+
+@router.get("/history", response_model=list[NetworkScorePoint])
+async def assurance_network_history(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    hours: int = 24,
+    bucket_minutes: int = 15,
+) -> list[NetworkScorePoint]:
+    hours = max(1, min(hours, 720))
+    bucket_minutes = max(1, min(bucket_minutes, 1440))
+    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+
+    result = await db.execute(
+        select(ServiceScoreSnapshot)
+        .where(ServiceScoreSnapshot.captured_at >= since)
+        .order_by(ServiceScoreSnapshot.captured_at.asc())
+    )
+    snapshots = list(result.scalars().all())
+    return _bucket_snapshots(snapshots, since, bucket_minutes)
+
+
 @router.get("/services/{service_id}/history", response_model=list[ServiceScorePoint])
 async def assurance_service_history(
     service_id: uuid.UUID,

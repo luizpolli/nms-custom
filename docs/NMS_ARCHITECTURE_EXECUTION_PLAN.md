@@ -927,6 +927,16 @@ Dependency graph visualization added to Services UI.
 - Impacted edges show propagated penalty and target service score, making blast-radius propagation visible without opening each service card.
 - Validation: `npm run build` in `frontend/` clean.
 
+## Phase 4P completion notes — 2026-05-18
+
+Network-wide service score history endpoint and Assurance page sparkline added.
+
+- Added `GET /api/assurance/history?hours=24&bucket_minutes=15` returning time-bucketed aggregates (`avg_score`, `min_score`, `max_score`, `sample_count`, `service_count`) over all `ServiceScoreSnapshot` rows in the window. Inputs clamped: hours 1–720, bucket_minutes 1–1440. Empty buckets omitted; results sorted ascending by `bucket_start`.
+- New `NetworkScorePoint` Pydantic model; bucketing logic extracted to `_bucket_snapshots` helper (pure Python, no numpy/pandas).
+- Added `NetworkScoreSparkline` component to `AssurancePage.tsx` rendered in a `Card` between the stat row and the main grid. Fetches via `@tanstack/react-query` at 2 min refetch / 60s stale; SVG-only, no new deps; mirrors `ServiceScoreSparkline` style from `ServicesPage.tsx`. Shows min/max/sample-count labels; renders placeholder when <2 buckets.
+- Added `backend/tests/services/test_network_score_history.py` with 6 unit tests covering: empty result, single bucket, multi-bucket aggregation, min/max/avg correctness, naive-datetime handling, ascending sort.
+- Validation: `pytest backend/tests -q` → 253 passed (+6); `npm run build` clean; `docker compose config --quiet` clean.
+
 ## Phase 4O completion notes — 2026-05-18
 
 Event-driven service score snapshot trigger added.
