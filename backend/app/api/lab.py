@@ -29,6 +29,77 @@ def _iso(value: datetime | None) -> str | None:
     return value.isoformat() if value else None
 
 
+def _as_utc(value: datetime) -> datetime:
+    """Normalize DB timestamps so SQLite/PG timezone behavior does not break comparisons."""
+    if value.tzinfo is None:
+        return value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
+
+
+def _histogram_bucket_seconds(window_minutes: int) -> int:
+    """Return a compact bucket size for lab EPS histograms."""
+    if window_minutes <= 60:
+        return 60
+    if window_minutes <= 360:
+        return 300
+    return 3600
+
+
+def _eps_histogram(timestamps: list[datetime], since: datetime, now: datetime, bucket_seconds: int) -> list[dict[str, Any]]:
+    """Build a time-bucketed EPS distribution from already-fetched samples."""
+    window_seconds = max((now - since).total_seconds(), 1)
+    bucket_count = max(1, int((window_seconds + bucket_seconds - 1) // bucket_seconds))
+    counts = [0] * bucket_count
+
+    for timestamp in timestamps:
+        timestamp = _as_utc(timestamp)
+        if timestamp < since or timestamp > now:
+            continue
+        index = min(int((timestamp - since).total_seconds() // bucket_seconds), bucket_count - 1)
+        counts[index] += 1
+
+    buckets: list[dict[str, Any]] = []
+    for index, count in enumerate(counts):
+        start = since + timedelta(seconds=index * bucket_seconds)
+        end = min(start + timedelta(seconds=bucket_seconds), now)
+        seconds = max((end - start).total_seconds(), 1)
+        buckets.append(
+            {
+                "start": _iso(start),
+                "end": _iso(end),
+                "count": count,
+                "eps": round(count / seconds, 2),
+            }
+        )
+    return buckets
+
+
+def _latency_histogram(values: list[float]) -> dict[str, Any]:
+    """Build a fixed latency distribution from KPI latency values in milliseconds."""
+    buckets = [
+        ("<10ms", None, 10.0),
+        ("10-50ms", 10.0, 50.0),
+        ("50-100ms", 50.0, 100.0),
+        ("100-250ms", 100.0, 250.0),
+        ("250ms-1s", 250.0, 1000.0),
+        (">=1s", 1000.0, None),
+    ]
+    rows = []
+    for label, lower, upper in buckets:
+        count = sum(
+            1
+            for value in values
+            if (lower is None or value >= lower) and (upper is None or value < upper)
+        )
+        rows.append({"label": label, "lower_ms": lower, "upper_ms": upper, "count": count})
+    return {
+        "unit": "ms",
+        "sample_count": len(values),
+        "buckets": rows,
+        "note": None if values else "No latency KPI samples in this window; histogram is empty rather than simulated.",
+    }
+
+
 async def _event_bus_summary(since: datetime) -> dict[str, Any]:
     settings = Settings()
     bus = EventBus(redis_url=settings.redis_url, stream_name=settings.event_stream_name)
@@ -137,6 +208,38 @@ async def lab_health(
             .group_by(Alarm.source_type)
         )
     ).all()
+    raw_sample_times = (
+        await db.execute(
+            select(TelemetryRawSample.received_at)
+            .where(TelemetryRawSample.received_at >= since)
+            .order_by(TelemetryRawSample.received_at.asc())
+            .limit(5000)
+        )
+    ).scalars().all()
+    kpi_times = (
+        await db.execute(
+            select(KPI.timestamp)
+            .where(KPI.source_type == "telemetry", KPI.timestamp >= since)
+            .order_by(KPI.timestamp.asc())
+            .limit(5000)
+        )
+    ).scalars().all()
+    alarm_times = (
+        await db.execute(
+            select(Alarm.last_seen)
+            .where(Alarm.last_seen >= since, Alarm.source_type.in_(["syslog", "snmp_trap", "event"]))
+            .order_by(Alarm.last_seen.asc())
+            .limit(5000)
+        )
+    ).scalars().all()
+    latency_values = (
+        await db.execute(
+            select(KPI.value)
+            .where(KPI.kpi_type == "latency", KPI.timestamp >= since)
+            .order_by(KPI.timestamp.asc())
+            .limit(5000)
+        )
+    ).scalars().all()
 
     alarm_summary: dict[str, dict[str, int]] = {}
     for source_type, state, count in alarm_rows:
@@ -147,6 +250,7 @@ async def lab_health(
     event_bus = await _event_bus_summary(since)
 
     window_seconds = max((now - since).total_seconds(), 1)
+    bucket_seconds = _histogram_bucket_seconds(window_minutes)
     return {
         "generated_at": _iso(now),
         "window_minutes": window_minutes,
@@ -176,6 +280,14 @@ async def lab_health(
             "by_source_state": alarm_summary,
             "recent_by_source": recent_alarm_summary,
             "recent_eps": round(sum(recent_alarm_summary.values()) / window_seconds, 2),
+        },
+        "distributions": {
+            "bucket_seconds": bucket_seconds,
+            "raw_sample_eps": _eps_histogram(list(raw_sample_times), since, now, bucket_seconds),
+            "kpi_eps": _eps_histogram(list(kpi_times), since, now, bucket_seconds),
+            "alarm_eps": _eps_histogram([ts for ts in alarm_times if ts is not None], since, now, bucket_seconds),
+            "latency_ms": _latency_histogram([float(value) for value in latency_values]),
+            "truncated_at": 5000,
         },
         "event_bus": event_bus,
         "workers": [worker.to_dict() for worker in workers],

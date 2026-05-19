@@ -689,13 +689,14 @@ Completed lab health and EPS visibility:
 - Added `/api/lab/health` for compact local lab diagnostics across mock devices, telemetry samples/KPIs, syslog/trap/event alarms, Redis Stream health, pending consumer-group lag, and worker heartbeats.
 - Added frontend `Lab Health` page with summary cards for telemetry EPS, alarm EPS, event-bus EPS, pending events, stale workers, mock devices, alarm sources, event-bus breakdowns, and worker status.
 - Added sidebar route `/lab` so local simulator state can be checked without jumping between API, DB, and logs.
+- Added a `Run snapshot` panel with JSON export so sustained lab runs can be attached to notes/tickets without copying raw API output by hand.
 - Live local validation showed mock device discovery, syslog/trap alarm counts, Redis stream groups, zero pending events, and healthy workers.
 
 Remaining Phase 5 work:
 
 - Add broader vendor trap fixtures/captures beyond the focused linkDown/linkUp SNMPv2c lab path.
 - Add richer discovery refresh triggers and telemetry fan-out processors beyond threshold evaluation.
-- Add optional deeper EPS/latency histograms once `nms-traffic-sim` starts driving sustained loads.
+- Lab Health EPS/latency histograms and JSON snapshot export are now in place; next polish is to add scenario annotations once sustained simulator runs are available.
 
 ## Phase 5K completion notes — 2026-05-17
 
@@ -967,14 +968,21 @@ Service score history and 24h trend sparkline added.
 - Standardized snapshot timestamps on UTC-aware `datetime.now(timezone.utc)` for consistent throttle math across PostgreSQL and SQLite test runs.
 - Validation: `pytest backend/tests -q` → 238 passed (+3); `npm run build` clean; `docker compose config --quiet` clean.
 
+## Cross-repo simulator follow-up — 2026-05-19
+
+The `nms-traffic-sim` follow-up for Cisco classifier-aligned trap presets is complete in the simulator repo.
+
+Verified available presets/profiles:
+
+- Menu presets: `bgp-down-traps`, `ospf-down-traps`, `fan-fail-traps`, `psu-fail-traps`, and `config-change-traps`.
+- Event profiles: `bgp-neighbor`, `ospf-adjacency`, `fan-fail`, `power-supply`, and `config-change`.
+- Scenario files: `link-flap-then-bgp-down.json`, `ospf-flap-storm.json`, `psu-then-fan-cascade.json`, and `config-change-window.json`.
+
 ## Immediate next tasks
 
-1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` (still
-   blocked on lab hardware or captures).
-2. Higher-rate EPS soak (5k+ EPS) once a dedicated lab host is available —
-   the laptop ceiling above is the environment, not the pipeline.
-3. Add nms-traffic-sim Cisco trap presets aligned with nms-custom classifier
-   for BGP, OSPF, fan, PSU, and config-change scenarios.
+1. Real gRPC/protobuf gNMI adapter implementing `NativeGnmiAdapter` — **blocked** until lab hardware, packet captures, or a compatible test gNMI server is available.
+2. Higher-rate EPS soak (5k+ EPS) — **blocked** until a dedicated lab host is available; current laptop baselines already identify the environment ceiling, not a pipeline bottleneck.
+3. Optional unblocked polish: add Lab Health scenario annotations for sustained simulator runs once timestamped lab runs are available.
 
 ## Notification rules
 

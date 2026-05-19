@@ -115,7 +115,7 @@ export function AlarmDetailDrawer({ alarm, filtersKey, onClose, onAck, onSuppres
           )}
           <Button
             size="sm"
-            variant="danger"
+            variant="success"
             onClick={() => clearMutation.mutate()}
             loading={clearMutation.isPending}
           >

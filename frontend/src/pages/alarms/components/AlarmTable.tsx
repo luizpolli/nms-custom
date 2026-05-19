@@ -127,7 +127,7 @@ export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsup
                   ) : (
                     <Button size="xs" variant="ghost" onClick={() => onSuppress(alarm.id)}>Suppress</Button>
                   )}
-                  <Button size="xs" variant="danger" onClick={() => onClear(alarm.id)}>Clear</Button>
+                  <Button size="xs" variant="success" onClick={() => onClear(alarm.id)}>Clear</Button>
                 </div>
               </td>
             </tr>

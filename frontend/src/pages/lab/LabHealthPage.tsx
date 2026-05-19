@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { Activity, Bell, RadioTower, Server, Workflow } from 'lucide-react';
+import { Activity, Bell, Download, RadioTower, Server, Workflow } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Badge } from '../../components/ui/Badge';
+import { Button } from '../../components/ui/Button';
 import { Card, CardHeader } from '../../components/ui/Card';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { PageHeader } from '../../components/ui/PageHeader';
@@ -14,6 +15,20 @@ type WorkerStatus = {
   runs_total: number;
   errors_total: number;
   is_stale: boolean;
+};
+
+type EpsBucket = {
+  start: string;
+  end: string;
+  count: number;
+  eps: number;
+};
+
+type CountBucket = {
+  label: string;
+  lower_ms?: number | null;
+  upper_ms?: number | null;
+  count: number;
 };
 
 type LabHealth = {
@@ -41,6 +56,19 @@ type LabHealth = {
     by_source_state: Record<string, Record<string, number>>;
     recent_by_source: Record<string, number>;
     recent_eps: number;
+  };
+  distributions: {
+    bucket_seconds: number;
+    raw_sample_eps: EpsBucket[];
+    kpi_eps: EpsBucket[];
+    alarm_eps: EpsBucket[];
+    latency_ms: {
+      unit: 'ms';
+      sample_count: number;
+      buckets: CountBucket[];
+      note?: string | null;
+    };
+    truncated_at: number;
   };
   event_bus: {
     available: boolean;
@@ -85,6 +113,31 @@ export function LabHealthPage() {
         title="Lab Health"
         subtitle="Mock traffic, EPS, receiver, worker, and event-bus visibility"
       />
+
+      <Card padding={false}>
+        <CardHeader>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Run snapshot</h2>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                {data
+                  ? `Generated ${fmtDate(data.generated_at)} · window ${data.window_minutes}m`
+                  : 'Waiting for lab health data'}
+              </p>
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              leftIcon={<Download className="h-4 w-4" />}
+              disabled={!data}
+              onClick={() => data && downloadLabHealthSnapshot(data)}
+            >
+              Export JSON
+            </Button>
+          </div>
+        </CardHeader>
+      </Card>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <StatCard
@@ -170,6 +223,22 @@ export function LabHealthPage() {
             <EmptyState message="No telemetry data" />
           )}
         </Card>
+
+        <Card padding={false}>
+          <CardHeader title="EPS distribution" />
+          {data ? (
+            <div className="space-y-4 p-4">
+              <MiniHistogram title="Raw telemetry samples" buckets={data.distributions.raw_sample_eps} />
+              <MiniHistogram title="Telemetry KPIs" buckets={data.distributions.kpi_eps} />
+              <MiniHistogram title="Alarms" buckets={data.distributions.alarm_eps} />
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                Bucket size: {formatBucketSeconds(data.distributions.bucket_seconds)}. Reads are capped at {data.distributions.truncated_at.toLocaleString()} samples per series.
+              </div>
+            </div>
+          ) : (
+            <EmptyState message="No EPS distribution data" />
+          )}
+        </Card>
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
@@ -195,6 +264,26 @@ export function LabHealthPage() {
             </div>
           ) : (
             <EmptyState message="No alarm data" />
+          )}
+        </Card>
+
+        <Card padding={false}>
+          <CardHeader title="Latency distribution" />
+          {data ? (
+            <div className="space-y-3 p-4">
+              <CountHistogram buckets={data.distributions.latency_ms.buckets} />
+              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                <span>{data.distributions.latency_ms.sample_count.toLocaleString()} latency KPI samples</span>
+                <span>Unit: {data.distributions.latency_ms.unit}</span>
+              </div>
+              {data.distributions.latency_ms.note && (
+                <div className="rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+                  {data.distributions.latency_ms.note}
+                </div>
+              )}
+            </div>
+          ) : (
+            <EmptyState message="No latency histogram data" />
           )}
         </Card>
 
@@ -281,6 +370,57 @@ function TopMap({ title, values }: { title: string; values: Record<string, numbe
   );
 }
 
+function MiniHistogram({ title, buckets }: { title: string; buckets: EpsBucket[] }) {
+  const max = Math.max(...buckets.map((bucket) => bucket.eps), 0);
+  return (
+    <div>
+      <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+        <span>{title}</span>
+        <span>max {max.toFixed(2)} EPS</span>
+      </div>
+      <div className="flex h-16 items-end gap-1 rounded-md border border-gray-100 bg-gray-50 p-2 dark:border-gray-800 dark:bg-gray-950/40">
+        {buckets.map((bucket) => {
+          const height = max > 0 ? Math.max((bucket.eps / max) * 100, 4) : 0;
+          return (
+            <div
+              key={`${bucket.start}-${bucket.end}`}
+              className="flex-1 rounded-t bg-blue-500/80 dark:bg-blue-400/80"
+              style={{ height: `${height}%` }}
+              title={`${fmtTime(bucket.start)}-${fmtTime(bucket.end)}: ${bucket.count} (${bucket.eps.toFixed(2)} EPS)`}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function CountHistogram({ buckets }: { buckets: CountBucket[] }) {
+  const max = Math.max(...buckets.map((bucket) => bucket.count), 0);
+  return (
+    <div className="space-y-2">
+      {buckets.map((bucket) => {
+        const width = max > 0 ? Math.max((bucket.count / max) * 100, 3) : 0;
+        return (
+          <div key={bucket.label} className="grid grid-cols-[5rem_1fr_3rem] items-center gap-2 text-sm">
+            <span className="text-gray-600 dark:text-gray-300">{bucket.label}</span>
+            <div className="h-3 rounded-full bg-gray-100 dark:bg-gray-800">
+              <div className="h-3 rounded-full bg-emerald-500 dark:bg-emerald-400" style={{ width: `${width}%` }} />
+            </div>
+            <span className="text-right font-medium text-gray-900 dark:text-gray-100">{bucket.count}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function formatBucketSeconds(seconds: number) {
+  if (seconds < 60) return `${seconds}s`;
+  if (seconds < 3600) return `${Math.round(seconds / 60)}m`;
+  return `${Math.round(seconds / 3600)}h`;
+}
+
 function sumSourceState(states: Record<string, Record<string, number>> | undefined, state: string): number {
   if (!states) return 0;
   return Object.values(states).reduce((sum, row) => sum + (row[state] ?? 0), 0);
@@ -289,6 +429,25 @@ function sumSourceState(states: Record<string, Record<string, number>> | undefin
 function fmtDate(value?: string | null) {
   if (!value) return '—';
   return new Date(value).toLocaleString();
+}
+
+function fmtTime(value?: string | null) {
+  if (!value) return '—';
+  return new Date(value).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function downloadLabHealthSnapshot(data: LabHealth) {
+  const generatedAt = new Date(data.generated_at);
+  const stamp = Number.isNaN(generatedAt.getTime())
+    ? 'unknown-time'
+    : generatedAt.toISOString().replace(/[:.]/g, '-');
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = `lab-health-${stamp}.json`;
+  anchor.click();
+  URL.revokeObjectURL(url);
 }
 
 export default LabHealthPage;
