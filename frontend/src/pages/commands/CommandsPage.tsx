@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Play, Plus, Trash2 } from 'lucide-react';
+import { Play, Plus, Trash2, Layers } from 'lucide-react';
 import { api } from '../../lib/api';
 import { PageHeader, Button, Input, Select, Modal, Spinner, EmptyState } from '../../components/ui';
 import { CommandFormModal } from './CommandFormModal';
+import { BulkRunModal } from './BulkRunModal';
+import { RunHistoryPanel } from './RunHistoryPanel';
+import { SchedulesPanel } from './SchedulesPanel';
 
 interface Device {
   id: string;
   name: string;
+  ip_address?: string;
 }
 
 interface Command {
@@ -22,13 +26,22 @@ interface RunResult {
   output: string;
 }
 
+type Tab = 'commands' | 'history' | 'schedules';
+
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'commands', label: 'Commands' },
+  { id: 'history', label: 'Run History' },
+  { id: 'schedules', label: 'Schedules' },
+];
+
 export function CommandsPage() {
   const queryClient = useQueryClient();
+  const [activeTab, setActiveTab] = useState<Tab>('commands');
   const [modalOpen, setModalOpen] = useState(false);
   const [editCommand, setEditCommand] = useState<Command | null>(null);
   const [outputModal, setOutputModal] = useState<{ title: string; output: string } | null>(null);
+  const [bulkRunOpen, setBulkRunOpen] = useState(false);
 
-  // Ad-hoc panel state
   const [adHocDeviceId, setAdHocDeviceId] = useState('');
   const [adHocCli, setAdHocCli] = useState('');
 
@@ -37,7 +50,7 @@ export function CommandsPage() {
     queryFn: () => api.get('/commands').then((r) => r.data),
   });
 
-  const { data: devicesData } = useQuery<{ items: Device[] }>({
+  const { data: devicesData } = useQuery<Device[] | { items: Device[] }>({
     queryKey: ['devices-select'],
     queryFn: () => api.get('/devices', { params: { limit: 200 } }).then((r) => r.data),
   });
@@ -90,98 +103,131 @@ export function CommandsPage() {
         title="Commands"
         subtitle={`${commands.length} saved commands`}
         actions={
-          <Button onClick={() => { setEditCommand(null); setModalOpen(true); }}>
-            <Plus className="w-4 h-4 mr-1" /> Add Command
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="secondary" onClick={() => setBulkRunOpen(true)} disabled={commands.length === 0}>
+              <Layers className="w-4 h-4 mr-1" /> Bulk Run
+            </Button>
+            <Button onClick={() => { setEditCommand(null); setModalOpen(true); }}>
+              <Plus className="w-4 h-4 mr-1" /> Add Command
+            </Button>
+          </div>
         }
       />
 
-      {isLoading && <Spinner />}
-      {isError && <p className="text-red-500">Failed to load commands.</p>}
-      {!isLoading && commands.length === 0 && (
-        <EmptyState title="No commands" description="Create the first command using the button above." />
-      )}
-
-      {commands.length > 0 && (
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-full text-sm divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                {['Name', 'CLI command', 'Output path', 'Actions'].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100 bg-white">
-              {commands.map((cmd) => (
-                <tr key={cmd.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 font-medium">{cmd.name}</td>
-                  <td className="px-4 py-2 font-mono text-xs">{cmd.cli_command}</td>
-                  <td className="px-4 py-2 text-gray-500 text-xs">{cmd.output_path || '—'}</td>
-                  <td className="px-4 py-2">
-                    <div className="flex gap-1">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => runMutation.mutate(cmd.id)}
-                        disabled={runMutation.isPending}
-                        title="Run"
-                      >
-                        <Play className="w-4 h-4 text-green-600" />
-                      </Button>
-                      <Button variant="ghost" size="sm" onClick={() => { setEditCommand(cmd); setModalOpen(true); }}>
-                        Edit
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          if (window.confirm(`Delete command "${cmd.name}"?`)) deleteMutation.mutate(cmd.id);
-                        }}
-                      >
-                        <Trash2 className="w-4 h-4 text-red-500" />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Ad-hoc panel */}
-      <div className="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50">
-        <h3 className="font-semibold text-gray-700">Run ad-hoc command</h3>
-        <div className="flex flex-wrap gap-3 items-end">
-          <Select
-            label="Device"
-            value={adHocDeviceId}
-            onChange={(e) => setAdHocDeviceId(e.target.value)}
-            options={[
-              { value: '', label: '— Select device —' },
-              ...devices.map((d) => ({ value: d.id, label: d.name })),
-            ]}
-            className="w-64"
-          />
-          <Input
-            label="CLI command"
-            value={adHocCli}
-            onChange={(e) => setAdHocCli(e.target.value)}
-            placeholder="show version"
-            className="w-80"
-          />
-          <Button
-            onClick={() => adHocMutation.mutate()}
-            disabled={!adHocDeviceId || !adHocCli || adHocMutation.isPending}
-          >
-            <Play className="w-4 h-4 mr-1" />
-            {adHocMutation.isPending ? 'Running...' : 'Run'}
-          </Button>
-        </div>
+      <div className="border-b border-gray-200 dark:border-gray-700">
+        <nav className="-mb-px flex gap-4">
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`pb-3 px-1 text-sm font-medium border-b-2 transition-colors ${
+                activeTab === tab.id
+                  ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
       </div>
 
-      {/* Output modal */}
+      {activeTab === 'commands' && (
+        <div className="space-y-6">
+          {isLoading && <Spinner />}
+          {isError && <p className="text-red-500">Failed to load commands.</p>}
+          {!isLoading && commands.length === 0 && (
+            <EmptyState title="No commands" description="Create the first command using the button above." />
+          )}
+
+          {commands.length > 0 && (
+            <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <table className="min-w-full text-sm divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
+                  <tr>
+                    {['Name', 'CLI command', 'Output path', 'Actions'].map((h) => (
+                      <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-800 bg-white dark:bg-gray-900">
+                  {commands.map((cmd) => (
+                    <tr key={cmd.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                      <td className="px-4 py-2 font-medium">{cmd.name}</td>
+                      <td className="px-4 py-2 font-mono text-xs">{cmd.cli_command}</td>
+                      <td className="px-4 py-2 text-gray-500 text-xs">{cmd.output_path || '—'}</td>
+                      <td className="px-4 py-2">
+                        <div className="flex gap-1">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => runMutation.mutate(cmd.id)}
+                            disabled={runMutation.isPending}
+                            title="Run"
+                          >
+                            <Play className="w-4 h-4 text-green-600" />
+                          </Button>
+                          <Button variant="ghost" size="sm" onClick={() => { setEditCommand(cmd); setModalOpen(true); }}>
+                            Edit
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              if (window.confirm(`Delete command "${cmd.name}"?`)) deleteMutation.mutate(cmd.id);
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4 text-red-500" />
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          <div className="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+            <h3 className="font-semibold text-gray-700 dark:text-gray-300">Run ad-hoc command</h3>
+            <div className="flex flex-wrap gap-3 items-end">
+              <Select
+                label="Device"
+                value={adHocDeviceId}
+                onChange={(e) => setAdHocDeviceId(e.target.value)}
+                options={[
+                  { value: '', label: '— Select device —' },
+                  ...devices.map((d) => ({ value: d.id, label: d.name })),
+                ]}
+                className="w-64"
+              />
+              <Input
+                label="CLI command"
+                value={adHocCli}
+                onChange={(e) => setAdHocCli(e.target.value)}
+                placeholder="show version"
+                className="w-80"
+              />
+              <Button
+                onClick={() => adHocMutation.mutate()}
+                disabled={!adHocDeviceId || !adHocCli || adHocMutation.isPending}
+              >
+                <Play className="w-4 h-4 mr-1" />
+                {adHocMutation.isPending ? 'Running...' : 'Run'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'history' && (
+        <RunHistoryPanel commands={commands} devices={devices} />
+      )}
+
+      {activeTab === 'schedules' && (
+        <SchedulesPanel commands={commands} devices={devices} />
+      )}
+
       {outputModal && (
         <Modal open={Boolean(outputModal)} onClose={() => setOutputModal(null)} title={outputModal.title}>
           <pre className="bg-gray-900 text-green-400 p-4 rounded text-xs overflow-auto max-h-96 whitespace-pre-wrap font-mono">
@@ -194,6 +240,7 @@ export function CommandsPage() {
       )}
 
       <CommandFormModal open={modalOpen} onClose={() => setModalOpen(false)} command={editCommand} />
+      <BulkRunModal open={bulkRunOpen} onClose={() => setBulkRunOpen(false)} commands={commands} />
     </div>
   );
 }
