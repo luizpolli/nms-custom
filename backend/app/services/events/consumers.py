@@ -147,6 +147,11 @@ class AlarmEventConsumer(EventConsumer):
     event_prefixes = ("alarm", "trap", "syslog")
     event_types = ("linkdown", "linkup")
 
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        from app.services.events.processors.alarm_enrichment import AlarmEnrichmentProcessor
+        self._enrichment_processor = AlarmEnrichmentProcessor(self.session_factory)
+
     def accepts(self, event: EventEnvelope) -> bool:
         if super().accepts(event):
             return True
@@ -161,7 +166,7 @@ class AlarmEventConsumer(EventConsumer):
         return True
 
     async def _enrich_alarm(self, event: EventEnvelope) -> bool:
-        """Attach known device metadata to an active alarm when possible."""
+        """Find active alarm and enrich it with device/interface/topology metadata."""
         correlation_key = str(event.object_id or event.payload.get("correlation_key") or "")
         source_host = str(event.payload.get("source_host") or "")
         if not correlation_key and not source_host:
@@ -183,7 +188,19 @@ class AlarmEventConsumer(EventConsumer):
                 changed = True
             if changed:
                 await session.commit()
-            return changed
+
+        if_index_raw = event.payload.get("if_index")
+        if_index = int(if_index_raw) if if_index_raw is not None else None
+        try:
+            async with self.session_factory() as session:
+                fresh_alarm = await self._find_alarm(session, correlation_key, source_host)
+            if fresh_alarm is not None:
+                await self._enrichment_processor.enrich(fresh_alarm, if_index=if_index)
+                changed = True
+        except Exception as exc:
+            logger.debug("{} enrichment failed for event_id={}: {}", self.worker_kind, event.event_id, exc)
+
+        return changed
 
     async def _find_alarm(self, session: AsyncSession, correlation_key: str, source_host: str) -> Alarm | None:
         clauses = []
@@ -227,6 +244,8 @@ class DiscoveryEventConsumer(EventConsumer):
         super().__init__(**kwargs)
         # Per-instance cache: device_id str -> last known status str
         self._last_status: dict[str, str] = {}
+        from app.services.events.processors.discovery_refresh import DiscoveryRefreshOrchestrator
+        self._refresh_orchestrator = DiscoveryRefreshOrchestrator(self.session_factory)
 
     async def handle(self, event: EventEnvelope) -> bool:
         if not await super().handle(event):
@@ -235,6 +254,10 @@ class DiscoveryEventConsumer(EventConsumer):
         if updated:
             logger.debug("{} updated discovery device state for event_id={}", self.worker_kind, event.event_id)
         await self._maybe_emit_refresh(event, prev_status)
+        if (event.event_type or "").lower() == "discovery.refresh.requested":
+            device_id = str(event.device_id or event.payload.get("device_id") or "")
+            reason = str(event.payload.get("reason") or "event")
+            await self._refresh_orchestrator.maybe_refresh(device_id, reason=reason)
         return True
 
     async def _apply_device_status(self, event: EventEnvelope) -> tuple[str | None, bool]:
@@ -302,6 +325,11 @@ class DiscoveryEventConsumer(EventConsumer):
 class TelemetryEventConsumer(EventConsumer):
     worker_kind = "worker-telemetry"
     event_prefixes = ("telemetry", "kpi", "gnmi")
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        from app.services.events.processors.telemetry_fanout import TelemetryFanoutProcessor
+        self._fanout_processor = TelemetryFanoutProcessor(self.session_factory, bus=self.bus)
 
     async def handle(self, event: EventEnvelope) -> bool:
         if not await super().handle(event):
