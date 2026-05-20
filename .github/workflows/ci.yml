@@ -41,9 +41,17 @@ jobs:
         env:
           DATABASE_URL: postgresql+asyncpg://nms:nms_secret@localhost:5432/nms
           CREDENTIAL_ENCRYPTION_KEY: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
-        run: python -m pytest tests -q
+        run: |
+          mkdir -p pytest-reports
+          python -m pytest tests --junitxml=pytest-reports/backend.xml -q
       - name: Compile backend modules
         run: python -m compileall -q app
+      - name: Upload backend test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-reports
+          path: pytest-reports/
 
   frontend:
     runs-on: ubuntu-latest
@@ -61,6 +69,12 @@ jobs:
         run: npm ci
       - name: Build frontend
         run: npm run build
+      - name: Upload frontend build
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist/
 
   compose:
     runs-on: ubuntu-latest
@@ -89,3 +103,8 @@ jobs:
         run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-dev.yaml >/tmp/nms-custom-dev.yaml
       - name: Render Helm chart (prod)
         run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-prod.yaml >/tmp/nms-custom-prod.yaml
+      - name: Verify Helm rendered templates are not empty
+        run: |
+          if [ ! -s /tmp/nms-custom-dev.yaml ]; then echo "Dev rendered template empty"; exit 1; fi
+          if [ ! -s /tmp/nms-custom-prod.yaml ]; then echo "Prod rendered template empty"; exit 1; fi
+          echo "Helm templates rendered successfully"
