@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import hmac
 from dataclasses import dataclass
 from typing import Iterable
 
@@ -10,18 +12,82 @@ from starlette.requests import HTTPConnection
 
 from app.config import settings
 
+# ---------------------------------------------------------------------------
+# Fine-grained command permission constants
+# ---------------------------------------------------------------------------
+
+PERM_COMMANDS_READ = "commands:read"
+PERM_COMMANDS_CREATE = "commands:create"
+PERM_COMMANDS_UPDATE = "commands:update"
+PERM_COMMANDS_DELETE = "commands:delete"
+PERM_COMMANDS_RUN = "commands:run"
+PERM_COMMANDS_RUN_BULK = "commands:run_bulk"
+PERM_COMMANDS_EXPORT = "commands:export"
+PERM_COMMANDS_SCHEDULE = "commands:schedule"
+
+# Roles and their granted command permissions (additive).
+_ROLE_COMMAND_PERMS: dict[str, frozenset[str]] = {
+    "admin": frozenset({
+        PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,
+        PERM_COMMANDS_DELETE, PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK,
+        PERM_COMMANDS_EXPORT, PERM_COMMANDS_SCHEDULE,
+    }),
+    "operator": frozenset({
+        PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,
+        PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK, PERM_COMMANDS_EXPORT,
+        PERM_COMMANDS_SCHEDULE,
+    }),
+    "ai-ops": frozenset({
+        PERM_COMMANDS_READ, PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK,
+        PERM_COMMANDS_EXPORT,
+    }),
+    "viewer": frozenset({PERM_COMMANDS_READ}),
+}
+
 
 @dataclass(frozen=True)
 class Principal:
     subject: str
     role: str = "admin"
 
+    def has_command_perm(self, perm: str) -> bool:
+        """Return True if this principal's role grants *perm*."""
+        role_perms = _ROLE_COMMAND_PERMS.get(self.role.lower(), frozenset())
+        return perm in role_perms
 
-def _configured_keys() -> set[str]:
+
+# ---------------------------------------------------------------------------
+# Constant-time API key verification (stdlib only — no bcrypt/argon2 needed
+# for env-var/config-driven keys because we never store plaintext in a DB;
+# using hmac.compare_digest prevents timing oracles on the comparison itself).
+# ---------------------------------------------------------------------------
+
+def _sha256_digest(value: str) -> bytes:
+    return hashlib.sha256(value.encode()).digest()
+
+
+def verify_api_key(presented: str, allowed_keys: Iterable[str]) -> bool:
+    """Constant-time check: does *presented* match any key in *allowed_keys*.
+
+    Uses hmac.compare_digest over SHA-256 digests to prevent timing oracles.
+    Returns True on first match; always runs through all keys to avoid
+    short-circuit leakage.
+    """
+    presented_digest = _sha256_digest(presented)
+    matched = False
+    for key in allowed_keys:
+        key_digest = _sha256_digest(key)
+        if hmac.compare_digest(presented_digest, key_digest):
+            matched = True
+        # Do NOT break early — keep iterating to prevent timing leakage.
+    return matched
+
+
+def _configured_keys() -> list[str]:
     raw = settings.api_keys
     if isinstance(raw, str):
-        return {item.strip() for item in raw.split(",") if item.strip()}
-    return {str(item).strip() for item in raw if str(item).strip()}
+        return [item.strip() for item in raw.split(",") if item.strip()]
+    return [str(item).strip() for item in raw if str(item).strip()]
 
 
 def _role_map() -> dict[str, str]:
@@ -40,7 +106,7 @@ def _role_map() -> dict[str, str]:
 
 
 def require_roles(*roles: str):
-    """FastAPI dependency factory: require the principal to hold any of `roles`.
+    """FastAPI dependency factory: require the principal to hold any of *roles*.
 
     When API auth is disabled the local-dev principal is granted implicitly.
     """
@@ -54,6 +120,26 @@ def require_roles(*roles: str):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail=f"role '{principal.role}' is not permitted for this endpoint",
+            )
+        return principal
+
+    return _checker
+
+
+def require_command_permission(perm: str):
+    """FastAPI dependency factory: require a specific command permission.
+
+    Uses the role->permission table so a user with only ``commands:read``
+    cannot reach run/create/delete endpoints.
+    """
+    async def _checker(conn: HTTPConnection) -> Principal:
+        principal = await require_api_auth(conn)
+        if not settings.api_auth_enabled:
+            return principal
+        if not principal.has_command_perm(perm):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=f"permission '{perm}' required; role '{principal.role}' is not sufficient",
             )
         return principal
 
@@ -89,11 +175,18 @@ async def require_api_auth(conn: HTTPConnection) -> Principal:
     auth_header = conn.headers.get("authorization", "")
     if not presented and auth_header.lower().startswith("bearer "):
         presented = auth_header[7:].strip()
-    if not presented or presented not in allowed:
+
+    if not presented or not verify_api_key(presented, allowed):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing API credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    role = _role_map().get(presented, "admin")
+
+    # Resolve role — still need plaintext comparison for the role map lookup.
+    # This is safe because role lookup happens *after* authentication succeeds.
+    role = next(
+        (r for k, r in _role_map().items() if k == presented),
+        "admin",
+    )
     return Principal(subject="api-key", role=role)

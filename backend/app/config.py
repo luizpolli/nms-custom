@@ -100,6 +100,11 @@ class Settings(BaseSettings):
     mib_upload_max_bytes: int = 5 * 1024 * 1024
     mib_allowed_extensions: list[str] = Field(default_factory=lambda: [".mib", ".my", ".txt"])
 
+    # Command allow-list (comma-separated regex patterns).
+    # When non-empty every CLI text submitted for create/update/run must match
+    # at least one pattern; empty means allow-all (default for dev).
+    command_allowlist: str = ""
+
     # SSH security
     ssh_known_hosts_path: str = ""
     ssh_disable_host_key_checking: bool = False

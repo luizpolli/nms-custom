@@ -17,6 +17,19 @@ from app.models.command import Command
 from app.models.command_run import CommandRun
 from app.models.device import Device
 from app.security.audit import audit
+from app.security.allowlist import assert_command_allowed
+from app.security.auth import (
+    Principal,
+    require_command_permission,
+    PERM_COMMANDS_READ,
+    PERM_COMMANDS_CREATE,
+    PERM_COMMANDS_UPDATE,
+    PERM_COMMANDS_DELETE,
+    PERM_COMMANDS_RUN,
+    PERM_COMMANDS_RUN_BULK,
+    PERM_COMMANDS_EXPORT,
+    PERM_COMMANDS_SCHEDULE,
+)
 from app.services.ssh.command_runner import CommandRunner
 from app.services.command_export import RENDERERS, CONTENT_TYPES, export_to_file
 from app.services.email_sender import send_email
@@ -158,7 +171,10 @@ def _serialize_run(run: CommandRun) -> dict:
 
 
 @router.get("", response_model=list[CommandRead])
-async def list_commands(db: Annotated[AsyncSession, Depends(get_db)]) -> list[CommandRead]:
+async def list_commands(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_READ))],
+) -> list[CommandRead]:
     result = await db.execute(select(Command))
     return [CommandRead.model_validate(c) for c in result.scalars().all()]
 
@@ -167,7 +183,9 @@ async def list_commands(db: Annotated[AsyncSession, Depends(get_db)]) -> list[Co
 async def create_command(
     body: CommandCreate,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_CREATE))],
 ) -> CommandRead:
+    assert_command_allowed(body.cli_command)
     cmd = Command(**body.model_dump())
     db.add(cmd)
     await db.flush()
@@ -180,6 +198,7 @@ async def create_command(
 async def get_command(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_READ))],
 ) -> CommandRead:
     cmd = await _get_or_404(db, id)
     return CommandRead.model_validate(cmd)
@@ -190,9 +209,12 @@ async def update_command(
     id: uuid.UUID,
     body: CommandUpdate,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_UPDATE))],
 ) -> CommandRead:
     cmd = await _get_or_404(db, id)
     for field, value in body.model_dump(exclude_unset=True).items():
+        if field == "cli_command" and value is not None:
+            assert_command_allowed(value)
         setattr(cmd, field, value)
     await db.flush()
     await db.refresh(cmd)
@@ -204,6 +226,7 @@ async def update_command(
 async def delete_command(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_DELETE))],
 ) -> None:
     cmd = await _get_or_404(db, id)
     await db.delete(cmd)
@@ -219,6 +242,7 @@ async def delete_command(
 async def run_command(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_RUN))],
 ) -> dict:
     runner = CommandRunner(session_factory=async_session_factory)
     result = await runner.run_saved_command(id)
@@ -230,7 +254,9 @@ async def run_command(
 async def run_ad_hoc(
     body: AdHocRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_RUN))],
 ) -> dict:
+    assert_command_allowed(body.cli)
     runner = CommandRunner(session_factory=async_session_factory)
     result = await runner.run_ad_hoc(device_id=body.device_id, cli=body.cli)
     audit("command.run_ad_hoc", target=str(body.device_id), exit_status=result.exit_status)
@@ -242,6 +268,7 @@ async def run_bulk(
     id: uuid.UUID,
     body: BulkRunRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_RUN_BULK))],
 ) -> list[BulkRunResult]:
     await _get_or_404(db, id)
     device_ids = await _resolve_device_ids(db, body)
@@ -260,6 +287,7 @@ async def run_bulk(
 async def list_runs(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_READ))],
     limit: int = 100,
 ) -> list[CommandRunRead]:
     await _get_or_404(db, id)
@@ -283,6 +311,7 @@ async def export_runs(
     id: uuid.UUID,
     body: ExportRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_EXPORT))],
 ) -> Response:
     await _get_or_404(db, id)
     stmt = (

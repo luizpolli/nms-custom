@@ -14,6 +14,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db, async_session_factory
 from app.models.command_schedule import CommandSchedule
 from app.security.audit import audit
+from app.security.auth import (
+    Principal,
+    require_command_permission,
+    PERM_COMMANDS_READ,
+    PERM_COMMANDS_SCHEDULE,
+    PERM_COMMANDS_DELETE,
+)
 from app.services.ssh.command_runner import CommandRunner
 
 router = APIRouter()
@@ -94,6 +101,7 @@ async def _get_or_404(db: AsyncSession, schedule_id: uuid.UUID) -> CommandSchedu
 @router.get("", response_model=list[CommandScheduleRead])
 async def list_schedules(
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_READ))],
     enabled: bool | None = None,
 ) -> list[CommandScheduleRead]:
     stmt = select(CommandSchedule)
@@ -108,6 +116,7 @@ async def list_schedules(
 async def create_schedule(
     body: CommandScheduleCreate,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_SCHEDULE))],
 ) -> CommandScheduleRead:
     data = body.model_dump()
     data["device_ids"] = [str(d) for d in data.get("device_ids", [])]
@@ -123,6 +132,7 @@ async def create_schedule(
 async def get_schedule(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_READ))],
 ) -> CommandScheduleRead:
     sched = await _get_or_404(db, id)
     return CommandScheduleRead.model_validate(sched)
@@ -133,6 +143,7 @@ async def update_schedule(
     id: uuid.UUID,
     body: CommandScheduleUpdate,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_SCHEDULE))],
 ) -> CommandScheduleRead:
     sched = await _get_or_404(db, id)
     updates = body.model_dump(exclude_unset=True)
@@ -151,6 +162,7 @@ async def update_schedule(
 async def delete_schedule(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_DELETE))],
 ) -> None:
     sched = await _get_or_404(db, id)
     await db.delete(sched)
@@ -161,6 +173,7 @@ async def delete_schedule(
 async def run_now(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_SCHEDULE))],
 ) -> list[BulkRunResult]:
     sched = await _get_or_404(db, id)
     device_ids = [uuid.UUID(d) for d in sched.device_ids]

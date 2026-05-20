@@ -16,6 +16,7 @@ from app.models.command_run import CommandRun
 from app.models.credential import Credential
 from app.models.device import Device
 from app.config import settings
+from app.security.allowlist import assert_command_allowed
 from app.security.crypto import CredentialVault
 from app.services.ssh.client import CommandResult, SSHClient, SSHCredential
 
@@ -53,6 +54,9 @@ class CommandRunner:
                 device = command.device
                 credential = _resolve_credential(command)
                 ssh_cred = _build_ssh_credential(device, credential)
+
+            # Defense-in-depth: enforce allowlist at execution time too.
+            assert_command_allowed(command.cli_command)
 
             logger.info(
                 "run_saved_command id={} cli_len={} host={}",
@@ -95,6 +99,9 @@ class CommandRunner:
             device = await _load_device(session, device_id)
             credential = _resolve_credential_for_device(device)
             ssh_cred = _build_ssh_credential(device, credential)
+
+        # Defense-in-depth: enforce allowlist at execution time too.
+        assert_command_allowed(cli)
 
         logger.info("run_ad_hoc device_id={} cli_len={} host={}", device_id, len(cli), device.ip_address)
         return await _execute(ssh_cred, cli)
