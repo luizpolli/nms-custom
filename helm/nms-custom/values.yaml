@@ -58,10 +58,41 @@ secrets:
     data: []
     dataFrom: []
 
+# Top-level shorthand for External Secrets Operator — mirrors secrets.externalSecret
+# but uses the naming from the P1 spec for ergonomic prod values overrides.
+externalSecrets:
+  enabled: false
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: ""
+    kind: ClusterSecretStore
+  # credential classes rendered as separate ExternalSecret objects
+  credentialClasses:
+    db:
+      enabled: true
+      remoteRef:
+        key: nms/db
+    smtp:
+      enabled: true
+      remoteRef:
+        key: nms/smtp
+    apiKeys:
+      enabled: true
+      remoteRef:
+        key: nms/api-keys
+
 ingress:
   enabled: false
   className: ""
   annotations: {}
+  # cert-manager.io/cluster-issuer annotation is injected when tls.certManager.enabled=true
+  certManager:
+    enabled: false
+    clusterIssuer: letsencrypt-prod
+  host: nms.example.com
+  tls:
+    enabled: false
+    secretName: nms-custom-tls
   hosts:
     - host: nms.example.com
       paths:
@@ -71,35 +102,50 @@ ingress:
         - path: /api
           pathType: Prefix
           service: api
-  tls: []
-  # - secretName: nms-custom-tls
-  #   hosts: [nms.example.com]
 
 networkPolicy:
   enabled: false
   ingress:
+    # matchLabels for the ingress-controller namespace (e.g. ingress-nginx)
+    ingressControllerNamespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: ingress-nginx
     allowNamespaceSelector: {}
   egress:
     enabled: true
     allowDns: true
+    # CIDR or pod-selector rules for DB, Redis, SMTP — override in prod values
+    dbCIDR: ""
+    redisCIDR: ""
+    smtpHost: ""
+    smtpPort: 587
     extra: []
 
 autoscaling:
   api:
     enabled: false
-    minReplicas: 2
+    minReplicas: 1
     maxReplicas: 5
     targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
   frontend:
     enabled: false
-    minReplicas: 2
+    minReplicas: 1
     maxReplicas: 5
     targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
   workers:
     enabled: false
     minReplicas: 1
-    maxReplicas: 3
-    targetCPUUtilizationPercentage: 75
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+  receiver:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
 
 pdb:
   enabled: false

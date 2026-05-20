@@ -78,7 +78,13 @@ jobs:
       - uses: azure/setup-helm@v4
         with:
           version: latest
-      - name: Lint Helm chart
+      - name: Lint Helm chart (default values)
         run: helm lint helm/nms-custom
-      - name: Render Helm chart
-        run: helm template nms-custom helm/nms-custom >/tmp/nms-custom-rendered.yaml
+      - name: Lint Helm chart (dev values)
+        run: helm lint helm/nms-custom -f helm/nms-custom/values-dev.yaml
+      - name: Lint Helm chart (prod values)
+        run: helm lint helm/nms-custom -f helm/nms-custom/values-prod.yaml
+      - name: Render Helm chart (dev)
+        run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-dev.yaml >/tmp/nms-custom-dev.yaml
+      - name: Render Helm chart (prod)
+        run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-prod.yaml >/tmp/nms-custom-prod.yaml

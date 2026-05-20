@@ -1,0 +1,22 @@
+# Development overrides — all hardening features off; safe for local/staging clusters
+ingress:
+  enabled: false
+
+externalSecrets:
+  enabled: false
+
+networkPolicy:
+  enabled: false
+
+autoscaling:
+  api:
+    enabled: false
+  frontend:
+    enabled: false
+  workers:
+    enabled: false
+  receiver:
+    enabled: false
+
+pdb:
+  enabled: false

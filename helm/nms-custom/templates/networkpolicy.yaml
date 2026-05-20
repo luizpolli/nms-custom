@@ -1,8 +1,9 @@
+# NetworkPolicy — default-deny ingress + explicit allow rules
 {{- if .Values.networkPolicy.enabled -}}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ include "nms-custom.name" . }}-default
+  name: {{ include "nms-custom.name" . }}-default-deny
   labels:
     {{- include "nms-custom.labels" . | nindent 4 }}
 spec:
@@ -14,22 +15,71 @@ spec:
     {{- if .Values.networkPolicy.egress.enabled }}
     - Egress
     {{- end }}
+  ingress: []
+---
+# Allow intra-namespace traffic (pods within the release)
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "nms-custom.name" . }}-allow-intra
+  labels:
+    {{- include "nms-custom.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  policyTypes:
+    - Ingress
   ingress:
     - from:
         - podSelector:
             matchLabels:
               app.kubernetes.io/instance: {{ .Release.Name }}
-        {{- if .Values.networkPolicy.ingress.allowNamespaceSelector }}
+---
+# Allow traffic from the ingress controller namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "nms-custom.name" . }}-allow-ingress-ctrl
+  labels:
+    {{- include "nms-custom.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            {{- toYaml .Values.networkPolicy.ingress.ingressControllerNamespaceSelector | nindent 12 }}
+    {{- if .Values.networkPolicy.ingress.allowNamespaceSelector }}
+    - from:
         - namespaceSelector:
             {{- toYaml .Values.networkPolicy.ingress.allowNamespaceSelector | nindent 12 }}
-        {{- end }}
-  {{- if .Values.networkPolicy.egress.enabled }}
+    {{- end }}
+{{- if .Values.networkPolicy.egress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "nms-custom.name" . }}-egress
+  labels:
+    {{- include "nms-custom.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  policyTypes:
+    - Egress
   egress:
+    # allow intra-release
     - to:
         - podSelector:
             matchLabels:
               app.kubernetes.io/instance: {{ .Release.Name }}
     {{- if .Values.networkPolicy.egress.allowDns }}
+    # DNS
     - to:
         - namespaceSelector: {}
       ports:
@@ -38,8 +88,35 @@ spec:
         - protocol: TCP
           port: 53
     {{- end }}
+    {{- if .Values.networkPolicy.egress.dbCIDR }}
+    # DB egress
+    - to:
+        - ipBlock:
+            cidr: {{ .Values.networkPolicy.egress.dbCIDR }}
+      ports:
+        - protocol: TCP
+          port: 5432
+    {{- end }}
+    {{- if .Values.networkPolicy.egress.redisCIDR }}
+    # Redis egress
+    - to:
+        - ipBlock:
+            cidr: {{ .Values.networkPolicy.egress.redisCIDR }}
+      ports:
+        - protocol: TCP
+          port: 6379
+    {{- end }}
+    {{- if .Values.networkPolicy.egress.smtpHost }}
+    # SMTP egress
+    - to:
+        - ipBlock:
+            cidr: {{ printf "%s/32" .Values.networkPolicy.egress.smtpHost }}
+      ports:
+        - protocol: TCP
+          port: {{ .Values.networkPolicy.egress.smtpPort }}
+    {{- end }}
     {{- with .Values.networkPolicy.egress.extra }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-  {{- end }}
+{{- end }}
 {{- end }}

@@ -1,59 +1,55 @@
-{{- if .Values.autoscaling.api.enabled }}
+# HPA — one per scalable workload; memory metric added alongside CPU
+{{- define "nms-custom.hpa" -}}
+{{- $name := index . 0 -}}
+{{- $cfg := index . 1 -}}
+{{- $releaseName := index . 2 -}}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "nms-custom.name" . }}-api
+  name: nms-custom-{{ $name }}
+  labels:
+    app.kubernetes.io/name: nms-custom
+    app.kubernetes.io/instance: {{ $releaseName }}
+    app.kubernetes.io/component: {{ $name }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "nms-custom.name" . }}-api
-  minReplicas: {{ .Values.autoscaling.api.minReplicas }}
-  maxReplicas: {{ .Values.autoscaling.api.maxReplicas }}
+    name: nms-custom-{{ $name }}
+  minReplicas: {{ $cfg.minReplicas }}
+  maxReplicas: {{ $cfg.maxReplicas }}
   metrics:
     - type: Resource
       resource:
         name: cpu
-        target: {type: Utilization, averageUtilization: {{ .Values.autoscaling.api.targetCPUUtilizationPercentage }}}
+        target:
+          type: Utilization
+          averageUtilization: {{ $cfg.targetCPUUtilizationPercentage }}
+    {{- if $cfg.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ $cfg.targetMemoryUtilizationPercentage }}
+    {{- end }}
+{{- end -}}
+
+{{- if .Values.autoscaling.api.enabled }}
+{{ include "nms-custom.hpa" (list "api" .Values.autoscaling.api .Release.Name) }}
 ---
 {{- end }}
 {{- if .Values.autoscaling.frontend.enabled }}
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: {{ include "nms-custom.name" . }}-frontend
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: {{ include "nms-custom.name" . }}-frontend
-  minReplicas: {{ .Values.autoscaling.frontend.minReplicas }}
-  maxReplicas: {{ .Values.autoscaling.frontend.maxReplicas }}
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target: {type: Utilization, averageUtilization: {{ .Values.autoscaling.frontend.targetCPUUtilizationPercentage }}}
+{{ include "nms-custom.hpa" (list "frontend" .Values.autoscaling.frontend .Release.Name) }}
+---
+{{- end }}
+{{- if .Values.autoscaling.receiver.enabled }}
+{{ include "nms-custom.hpa" (list "telemetry-receiver" .Values.autoscaling.receiver .Release.Name) }}
 ---
 {{- end }}
 {{- if .Values.autoscaling.workers.enabled }}
-{{- range $name := list "worker-poller" "worker-topology" "worker-report" "worker-alarm" "worker-discovery" "worker-telemetry" }}
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: {{ include "nms-custom.name" $ }}-{{ $name }}
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: {{ include "nms-custom.name" $ }}-{{ $name }}
-  minReplicas: {{ $.Values.autoscaling.workers.minReplicas }}
-  maxReplicas: {{ $.Values.autoscaling.workers.maxReplicas }}
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target: {type: Utilization, averageUtilization: {{ $.Values.autoscaling.workers.targetCPUUtilizationPercentage }}}
+{{- range $workerName := list "worker-poller" "worker-topology" "worker-report" "worker-alarm" "worker-discovery" "worker-telemetry" }}
+{{ include "nms-custom.hpa" (list $workerName $.Values.autoscaling.workers $.Release.Name) }}
 ---
 {{- end }}
 {{- end }}
