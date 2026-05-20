@@ -67,7 +67,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare Compose env file
-        run: cp .env.example .env
+        run: |
+          if [ ! -f .env ]; then cp .env.example .env; fi
       - name: Validate Docker Compose config
         run: docker compose config --quiet
 
