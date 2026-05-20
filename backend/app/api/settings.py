@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import uuid
 from typing import Annotated, Literal
 
@@ -25,6 +26,192 @@ from app.security.passwords import hash_password
 
 router = APIRouter()
 _SECURITY_KEY = "security"
+_SYSTEM_KEY = "system"
+_NETWORK_DEVICES_KEY = "network_devices"
+_ALARMS_EVENTS_KEY = "alarms_events"
+
+_EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
+
+
+# ---------------------------------------------------------------------------
+# System settings: mail / jobs / retention
+# ---------------------------------------------------------------------------
+
+class SystemMailSettings(BaseModel):
+    smtp_host: str = Field("", max_length=255)
+    smtp_port: int = Field(587, ge=1, le=65535)
+    smtp_from: str = Field("", max_length=255)
+    smtp_use_tls: bool = True
+    smtp_username: str = Field("", max_length=255)
+
+    @field_validator("smtp_from")
+    @classmethod
+    def validate_email(cls, value: str) -> str:
+        if value and not _EMAIL_PATTERN.match(value):
+            raise ValueError("smtp_from must be a valid email address")
+        return value
+
+
+class SystemJobSettings(BaseModel):
+    job_concurrency: int = Field(4, ge=1, le=64)
+    job_retry_backoff_seconds: int = Field(30, ge=5, le=3600)
+    job_max_retries: int = Field(3, ge=0, le=20)
+
+
+class SystemRetentionSettings(BaseModel):
+    alarm_retention_days: int = Field(90, ge=1, le=3650)
+    event_retention_days: int = Field(30, ge=1, le=3650)
+    kpi_retention_days: int = Field(365, ge=1, le=3650)
+    telemetry_sample_retention_days: int = Field(7, ge=1, le=365)
+
+
+class SystemAdminSettings(BaseModel):
+    mail: SystemMailSettings = Field(default_factory=SystemMailSettings)
+    jobs: SystemJobSettings = Field(default_factory=SystemJobSettings)
+    retention: SystemRetentionSettings = Field(default_factory=SystemRetentionSettings)
+
+
+# ---------------------------------------------------------------------------
+# Network device settings: CLI / SNMP defaults
+# ---------------------------------------------------------------------------
+
+class NetworkCliSettings(BaseModel):
+    ssh_timeout_seconds: int = Field(30, ge=1, le=600)
+    ssh_port: int = Field(22, ge=1, le=65535)
+    cli_retries: int = Field(2, ge=0, le=10)
+    max_concurrent_ssh_sessions: int = Field(10, ge=1, le=200)
+    terminal_length: int = Field(0, ge=0, le=512)
+
+
+class NetworkSnmpSettings(BaseModel):
+    snmp_version: Literal["v2c", "v3"] = "v2c"
+    snmp_community: str = Field("public", max_length=255)
+    snmp_port: int = Field(161, ge=1, le=65535)
+    snmp_timeout_seconds: int = Field(5, ge=1, le=120)
+    snmp_retries: int = Field(2, ge=0, le=10)
+    polling_interval_seconds: int = Field(60, ge=10, le=86400)
+
+
+class NetworkDeviceAdminSettings(BaseModel):
+    cli: NetworkCliSettings = Field(default_factory=NetworkCliSettings)
+    snmp: NetworkSnmpSettings = Field(default_factory=NetworkSnmpSettings)
+
+
+# ---------------------------------------------------------------------------
+# Alarms/Events settings: severity / notifications
+# ---------------------------------------------------------------------------
+
+class AlarmSeverityMapping(BaseModel):
+    critical_oid_value: int = Field(1, ge=0)
+    major_oid_value: int = Field(2, ge=0)
+    minor_oid_value: int = Field(3, ge=0)
+    warning_oid_value: int = Field(4, ge=0)
+    info_oid_value: int = Field(5, ge=0)
+
+
+class AlarmNotificationSettings(BaseModel):
+    email_enabled: bool = False
+    email_recipients: str = Field("", max_length=2048)
+    syslog_forward_enabled: bool = False
+    syslog_forward_host: str = Field("", max_length=255)
+    syslog_forward_port: int = Field(514, ge=1, le=65535)
+    min_severity_to_notify: Literal["critical", "major", "minor", "warning", "info"] = "major"
+
+    @field_validator("syslog_forward_host")
+    @classmethod
+    def validate_host(cls, value: str) -> str:
+        if value and (".." in value or any(ch in value for ch in "\r\n\x00 ")):
+            raise ValueError("Invalid syslog host")
+        return value
+
+
+class AlarmSuppressionSettings(BaseModel):
+    suppression_window_minutes: int = Field(5, ge=0, le=1440)
+    flap_detection_enabled: bool = True
+    flap_threshold_count: int = Field(3, ge=1, le=100)
+
+
+class AlarmsEventsAdminSettings(BaseModel):
+    severity_mapping: AlarmSeverityMapping = Field(default_factory=AlarmSeverityMapping)
+    notifications: AlarmNotificationSettings = Field(default_factory=AlarmNotificationSettings)
+    suppression: AlarmSuppressionSettings = Field(default_factory=AlarmSuppressionSettings)
+
+
+# ---------------------------------------------------------------------------
+# Generic DB load/save helpers
+# ---------------------------------------------------------------------------
+
+async def _load_setting(db: AsyncSession, key: str, model_cls: type, defaults_fn) -> BaseModel:
+    row = await db.get(SystemSetting, key)
+    if not row:
+        return defaults_fn()
+    return model_cls(**{**defaults_fn().model_dump(), **row.value})
+
+
+async def _save_setting(db: AsyncSession, key: str, data: BaseModel) -> None:
+    row = await db.get(SystemSetting, key)
+    if row is None:
+        row = SystemSetting(key=key, value=data.model_dump())
+        db.add(row)
+    else:
+        row.value = data.model_dump()
+
+
+# ---------------------------------------------------------------------------
+# System settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/system", response_model=SystemAdminSettings)
+async def get_system_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> SystemAdminSettings:
+    return await _load_setting(db, _SYSTEM_KEY, SystemAdminSettings, SystemAdminSettings)
+
+
+@router.put("/system", response_model=SystemAdminSettings)
+async def update_system_settings(
+    body: SystemAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> SystemAdminSettings:
+    await _save_setting(db, _SYSTEM_KEY, body)
+    audit("settings.system.update", target=_SYSTEM_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
+# Network device settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/network-devices", response_model=NetworkDeviceAdminSettings)
+async def get_network_device_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> NetworkDeviceAdminSettings:
+    return await _load_setting(db, _NETWORK_DEVICES_KEY, NetworkDeviceAdminSettings, NetworkDeviceAdminSettings)
+
+
+@router.put("/network-devices", response_model=NetworkDeviceAdminSettings)
+async def update_network_device_settings(
+    body: NetworkDeviceAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> NetworkDeviceAdminSettings:
+    await _save_setting(db, _NETWORK_DEVICES_KEY, body)
+    audit("settings.network_devices.update", target=_NETWORK_DEVICES_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
+# Alarms/Events settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/alarms-events", response_model=AlarmsEventsAdminSettings)
+async def get_alarms_events_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> AlarmsEventsAdminSettings:
+    return await _load_setting(db, _ALARMS_EVENTS_KEY, AlarmsEventsAdminSettings, AlarmsEventsAdminSettings)
+
+
+@router.put("/alarms-events", response_model=AlarmsEventsAdminSettings)
+async def update_alarms_events_settings(
+    body: AlarmsEventsAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> AlarmsEventsAdminSettings:
+    await _save_setting(db, _ALARMS_EVENTS_KEY, body)
+    audit("settings.alarms_events.update", target=_ALARMS_EVENTS_KEY)
+    return body
 
 def _validate_permissions(values: dict[str, bool]) -> dict[str, bool]:
     allowed = all_permission_keys()

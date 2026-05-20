@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useSearchParams } from 'react-router-dom';
 import {
   Settings as SettingsIcon,
   Network,
@@ -1025,6 +1026,350 @@ function ClientsUsersPanel({ mode = 'full' }: { mode?: 'full' | 'security' | 'us
   );
 }
 
+// ---------------------------------------------------------------------------
+// System panel: mail / jobs / retention
+// ---------------------------------------------------------------------------
+
+interface SystemMailCfg { smtp_host: string; smtp_port: number; smtp_from: string; smtp_use_tls: boolean; smtp_username: string; }
+interface SystemJobsCfg { job_concurrency: number; job_retry_backoff_seconds: number; job_max_retries: number; }
+interface SystemRetentionCfg { alarm_retention_days: number; event_retention_days: number; kpi_retention_days: number; telemetry_sample_retention_days: number; }
+interface SystemAdminSettings { mail: SystemMailCfg; jobs: SystemJobsCfg; retention: SystemRetentionCfg; }
+
+const SYSTEM_DEFAULTS: SystemAdminSettings = {
+  mail: { smtp_host: '', smtp_port: 587, smtp_from: '', smtp_use_tls: true, smtp_username: '' },
+  jobs: { job_concurrency: 4, job_retry_backoff_seconds: 30, job_max_retries: 3 },
+  retention: { alarm_retention_days: 90, event_retention_days: 30, kpi_retention_days: 365, telemetry_sample_retention_days: 7 },
+};
+
+function SystemPanel() {
+  const [cfg, setCfg] = useState<SystemAdminSettings>(SYSTEM_DEFAULTS);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    api.get('/settings/system').then((r) => setCfg(r.data)).catch(() => {});
+  }, []);
+
+  const setMail = <K extends keyof SystemMailCfg>(k: K, v: SystemMailCfg[K]) =>
+    setCfg((p) => ({ ...p, mail: { ...p.mail, [k]: v } }));
+  const setJobs = <K extends keyof SystemJobsCfg>(k: K, v: SystemJobsCfg[K]) =>
+    setCfg((p) => ({ ...p, jobs: { ...p.jobs, [k]: v } }));
+  const setRetention = <K extends keyof SystemRetentionCfg>(k: K, v: SystemRetentionCfg[K]) =>
+    setCfg((p) => ({ ...p, retention: { ...p.retention, [k]: v } }));
+
+  const save = async () => {
+    setSaving(true); setSaved(false); setError(null);
+    try {
+      const r = await api.put('/settings/system', cfg);
+      setCfg(r.data); setSaved(true);
+    } catch { setError('Save failed — check field values.'); }
+    finally { setSaving(false); }
+  };
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="Mail Notifications (SMTP)" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          <label className="block">
+            <span className="mb-1 block font-medium">SMTP host</span>
+            <Input value={cfg.mail.smtp_host} onChange={(e) => setMail('smtp_host', e.target.value)} placeholder="smtp.example.com" />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">SMTP port</span>
+            <Input type="number" value={cfg.mail.smtp_port} onChange={(e) => setMail('smtp_port', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">From address</span>
+            <Input type="email" value={cfg.mail.smtp_from} onChange={(e) => setMail('smtp_from', e.target.value)} placeholder="nms@example.com" />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Username</span>
+            <Input value={cfg.mail.smtp_username} onChange={(e) => setMail('smtp_username', e.target.value)} placeholder="optional" />
+          </label>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" checked={cfg.mail.smtp_use_tls} onChange={(e) => setMail('smtp_use_tls', e.target.checked)} />
+            Use TLS / STARTTLS
+          </label>
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="Scheduled Jobs" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
+          <label className="block">
+            <span className="mb-1 block font-medium">Job concurrency</span>
+            <Input type="number" value={cfg.jobs.job_concurrency} onChange={(e) => setJobs('job_concurrency', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Retry backoff (seconds)</span>
+            <Input type="number" value={cfg.jobs.job_retry_backoff_seconds} onChange={(e) => setJobs('job_retry_backoff_seconds', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Max retries</span>
+            <Input type="number" value={cfg.jobs.job_max_retries} onChange={(e) => setJobs('job_max_retries', Number(e.target.value))} />
+          </label>
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="Data Retention Windows" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          {([
+            ['alarm_retention_days', 'Alarm retention (days)'],
+            ['event_retention_days', 'Event retention (days)'],
+            ['kpi_retention_days', 'KPI retention (days)'],
+            ['telemetry_sample_retention_days', 'Telemetry sample retention (days)'],
+          ] as [keyof SystemRetentionCfg, string][]).map(([key, label]) => (
+            <label key={key} className="block">
+              <span className="mb-1 block font-medium">{label}</span>
+              <Input type="number" value={cfg.retention[key]} onChange={(e) => setRetention(key, Number(e.target.value))} />
+            </label>
+          ))}
+        </div>
+      </Card>
+
+      <div className="flex items-center gap-3">
+        <Button onClick={save} disabled={saving}>{saving ? 'Saving...' : 'Save System Settings'}</Button>
+        {saved && <span className="text-sm text-green-600">Saved.</span>}
+        {error && <span className="text-sm text-red-600">{error}</span>}
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Network Devices panel: CLI / SNMP defaults
+// ---------------------------------------------------------------------------
+
+interface NetworkCliCfg { ssh_timeout_seconds: number; ssh_port: number; cli_retries: number; max_concurrent_ssh_sessions: number; terminal_length: number; }
+interface NetworkSnmpCfg { snmp_version: 'v2c' | 'v3'; snmp_community: string; snmp_port: number; snmp_timeout_seconds: number; snmp_retries: number; polling_interval_seconds: number; }
+interface NetworkDeviceAdminSettings { cli: NetworkCliCfg; snmp: NetworkSnmpCfg; }
+
+const NETWORK_DEFAULTS: NetworkDeviceAdminSettings = {
+  cli: { ssh_timeout_seconds: 30, ssh_port: 22, cli_retries: 2, max_concurrent_ssh_sessions: 10, terminal_length: 0 },
+  snmp: { snmp_version: 'v2c', snmp_community: 'public', snmp_port: 161, snmp_timeout_seconds: 5, snmp_retries: 2, polling_interval_seconds: 60 },
+};
+
+function NetworkDevicesPanel() {
+  const [cfg, setCfg] = useState<NetworkDeviceAdminSettings>(NETWORK_DEFAULTS);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    api.get('/settings/network-devices').then((r) => setCfg(r.data)).catch(() => {});
+  }, []);
+
+  const setCli = <K extends keyof NetworkCliCfg>(k: K, v: NetworkCliCfg[K]) =>
+    setCfg((p) => ({ ...p, cli: { ...p.cli, [k]: v } }));
+  const setSnmp = <K extends keyof NetworkSnmpCfg>(k: K, v: NetworkSnmpCfg[K]) =>
+    setCfg((p) => ({ ...p, snmp: { ...p.snmp, [k]: v } }));
+
+  const save = async () => {
+    setSaving(true); setSaved(false); setError(null);
+    try {
+      const r = await api.put('/settings/network-devices', cfg);
+      setCfg(r.data); setSaved(true);
+    } catch { setError('Save failed — check field values.'); }
+    finally { setSaving(false); }
+  };
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="CLI Session Defaults" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          <label className="block">
+            <span className="mb-1 block font-medium">SSH timeout (seconds)</span>
+            <Input type="number" value={cfg.cli.ssh_timeout_seconds} onChange={(e) => setCli('ssh_timeout_seconds', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">SSH port</span>
+            <Input type="number" value={cfg.cli.ssh_port} onChange={(e) => setCli('ssh_port', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">CLI retries</span>
+            <Input type="number" value={cfg.cli.cli_retries} onChange={(e) => setCli('cli_retries', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Max concurrent SSH sessions</span>
+            <Input type="number" value={cfg.cli.max_concurrent_ssh_sessions} onChange={(e) => setCli('max_concurrent_ssh_sessions', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Terminal length (0 = no-more-prompt)</span>
+            <Input type="number" value={cfg.cli.terminal_length} onChange={(e) => setCli('terminal_length', Number(e.target.value))} />
+          </label>
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="SNMP Defaults" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          <label className="block">
+            <span className="mb-1 block font-medium">SNMP version</span>
+            <Select value={cfg.snmp.snmp_version} onChange={(e) => setSnmp('snmp_version', e.target.value as 'v2c' | 'v3')} className="max-w-xs">
+              <option value="v2c">v2c</option>
+              <option value="v3">v3</option>
+            </Select>
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Community string</span>
+            <Input value={cfg.snmp.snmp_community} onChange={(e) => setSnmp('snmp_community', e.target.value)} placeholder="public" />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">SNMP port</span>
+            <Input type="number" value={cfg.snmp.snmp_port} onChange={(e) => setSnmp('snmp_port', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Timeout (seconds)</span>
+            <Input type="number" value={cfg.snmp.snmp_timeout_seconds} onChange={(e) => setSnmp('snmp_timeout_seconds', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Retries</span>
+            <Input type="number" value={cfg.snmp.snmp_retries} onChange={(e) => setSnmp('snmp_retries', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Polling interval (seconds)</span>
+            <Input type="number" value={cfg.snmp.polling_interval_seconds} onChange={(e) => setSnmp('polling_interval_seconds', Number(e.target.value))} />
+          </label>
+        </div>
+      </Card>
+
+      <div className="flex items-center gap-3">
+        <Button onClick={save} disabled={saving}>{saving ? 'Saving...' : 'Save Network Device Settings'}</Button>
+        {saved && <span className="text-sm text-green-600">Saved.</span>}
+        {error && <span className="text-sm text-red-600">{error}</span>}
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Alarms/Events panel: severity / notifications / suppression
+// ---------------------------------------------------------------------------
+
+interface AlarmSeverityMapping { critical_oid_value: number; major_oid_value: number; minor_oid_value: number; warning_oid_value: number; info_oid_value: number; }
+interface AlarmNotificationCfg { email_enabled: boolean; email_recipients: string; syslog_forward_enabled: boolean; syslog_forward_host: string; syslog_forward_port: number; min_severity_to_notify: string; }
+interface AlarmSuppressionCfg { suppression_window_minutes: number; flap_detection_enabled: boolean; flap_threshold_count: number; }
+interface AlarmsEventsAdminSettings { severity_mapping: AlarmSeverityMapping; notifications: AlarmNotificationCfg; suppression: AlarmSuppressionCfg; }
+
+const ALARMS_DEFAULTS: AlarmsEventsAdminSettings = {
+  severity_mapping: { critical_oid_value: 1, major_oid_value: 2, minor_oid_value: 3, warning_oid_value: 4, info_oid_value: 5 },
+  notifications: { email_enabled: false, email_recipients: '', syslog_forward_enabled: false, syslog_forward_host: '', syslog_forward_port: 514, min_severity_to_notify: 'major' },
+  suppression: { suppression_window_minutes: 5, flap_detection_enabled: true, flap_threshold_count: 3 },
+};
+
+function AlarmsEventsPanel() {
+  const [cfg, setCfg] = useState<AlarmsEventsAdminSettings>(ALARMS_DEFAULTS);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    api.get('/settings/alarms-events').then((r) => setCfg(r.data)).catch(() => {});
+  }, []);
+
+  const setSev = <K extends keyof AlarmSeverityMapping>(k: K, v: number) =>
+    setCfg((p) => ({ ...p, severity_mapping: { ...p.severity_mapping, [k]: v } }));
+  const setNotif = <K extends keyof AlarmNotificationCfg>(k: K, v: AlarmNotificationCfg[K]) =>
+    setCfg((p) => ({ ...p, notifications: { ...p.notifications, [k]: v } }));
+  const setSuppr = <K extends keyof AlarmSuppressionCfg>(k: K, v: AlarmSuppressionCfg[K]) =>
+    setCfg((p) => ({ ...p, suppression: { ...p.suppression, [k]: v } }));
+
+  const save = async () => {
+    setSaving(true); setSaved(false); setError(null);
+    try {
+      const r = await api.put('/settings/alarms-events', cfg);
+      setCfg(r.data); setSaved(true);
+    } catch { setError('Save failed — check field values.'); }
+    finally { setSaving(false); }
+  };
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="Severity OID Value Mapping" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
+          {([
+            ['critical_oid_value', 'Critical'],
+            ['major_oid_value', 'Major'],
+            ['minor_oid_value', 'Minor'],
+            ['warning_oid_value', 'Warning'],
+            ['info_oid_value', 'Info'],
+          ] as [keyof AlarmSeverityMapping, string][]).map(([key, label]) => (
+            <label key={key} className="block">
+              <span className="mb-1 block font-medium">{label} OID value</span>
+              <Input type="number" value={cfg.severity_mapping[key]} onChange={(e) => setSev(key, Number(e.target.value))} />
+            </label>
+          ))}
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="Notification Channels" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          <label className="flex items-center gap-2 md:col-span-2">
+            <input type="checkbox" checked={cfg.notifications.email_enabled} onChange={(e) => setNotif('email_enabled', e.target.checked)} />
+            Enable email notifications
+          </label>
+          <label className="block md:col-span-2">
+            <span className="mb-1 block font-medium">Email recipients (comma-separated)</span>
+            <Input value={cfg.notifications.email_recipients} onChange={(e) => setNotif('email_recipients', e.target.value)} placeholder="noc@corp.com, admin@corp.com" disabled={!cfg.notifications.email_enabled} />
+          </label>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" checked={cfg.notifications.syslog_forward_enabled} onChange={(e) => setNotif('syslog_forward_enabled', e.target.checked)} />
+            Forward to syslog server
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Syslog host</span>
+            <Input value={cfg.notifications.syslog_forward_host} onChange={(e) => setNotif('syslog_forward_host', e.target.value)} placeholder="syslog.corp.com" disabled={!cfg.notifications.syslog_forward_enabled} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Syslog port</span>
+            <Input type="number" value={cfg.notifications.syslog_forward_port} onChange={(e) => setNotif('syslog_forward_port', Number(e.target.value))} disabled={!cfg.notifications.syslog_forward_enabled} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Minimum severity to notify</span>
+            <Select value={cfg.notifications.min_severity_to_notify} onChange={(e) => setNotif('min_severity_to_notify', e.target.value)} className="max-w-xs">
+              <option value="critical">Critical</option>
+              <option value="major">Major</option>
+              <option value="minor">Minor</option>
+              <option value="warning">Warning</option>
+              <option value="info">Info</option>
+            </Select>
+          </label>
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="Suppression and Flap Detection" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
+          <label className="block">
+            <span className="mb-1 block font-medium">Suppression window (minutes)</span>
+            <Input type="number" value={cfg.suppression.suppression_window_minutes} onChange={(e) => setSuppr('suppression_window_minutes', Number(e.target.value))} />
+          </label>
+          <label className="flex items-center gap-2 md:pt-6">
+            <input type="checkbox" checked={cfg.suppression.flap_detection_enabled} onChange={(e) => setSuppr('flap_detection_enabled', e.target.checked)} />
+            Enable flap detection
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Flap threshold (count)</span>
+            <Input type="number" value={cfg.suppression.flap_threshold_count} onChange={(e) => setSuppr('flap_threshold_count', Number(e.target.value))} disabled={!cfg.suppression.flap_detection_enabled} />
+          </label>
+        </div>
+      </Card>
+
+      <div className="flex items-center gap-3">
+        <Button onClick={save} disabled={saving}>{saving ? 'Saving...' : 'Save Alarms & Events Settings'}</Button>
+        {saved && <span className="text-sm text-green-600">Saved.</span>}
+        {error && <span className="text-sm text-red-600">{error}</span>}
+      </div>
+    </div>
+  );
+}
+
 function PlaceholderPanel({ title, summary, items }: { title: string; summary?: string; items: string[] }) {
   return (
     <Card>
@@ -1050,37 +1395,13 @@ function CategoryContent({ category }: { category: CategoryKey }) {
     case 'general':
       return <GeneralPanel />;
     case 'system':
-      return (
-        <PlaceholderPanel
-          title="System Administration"
-          summary="Consolidates server-wide settings that were previously scattered or missing from Settings."
-          items={[
-            'Server tuning and worker concurrency',
-            'Database health, retention, and maintenance jobs',
-            'Scheduled jobs and polling windows',
-            'SMTP server and notification sender settings',
-            'Backup / restore policies',
-            'Software update and TAC support metadata',
-          ]}
-        />
-      );
+      return <SystemPanel />;
     case 'security':
       return <ClientsUsersPanel mode="security" />;
     case 'usersRoles':
       return <ClientsUsersPanel mode="users" />;
     case 'networkDevices':
-      return (
-        <PlaceholderPanel
-          title="Network Device Administration"
-          items={[
-            'Default CLI session timeout, retries, and terminal settings',
-            'Default SNMP v2/v3 polling and trap parameters',
-            'Credential policy links to credential vault',
-            'Plug & Play onboarding defaults',
-            'Controller upgrade and device access policies',
-          ]}
-        />
-      );
+      return <NetworkDevicesPanel />;
     case 'inventory':
       return (
         <PlaceholderPanel
@@ -1095,19 +1416,7 @@ function CategoryContent({ category }: { category: CategoryKey }) {
         />
       );
     case 'alarmsEvents':
-      return (
-        <PlaceholderPanel
-          title="Alarms and Events Administration"
-          items={[
-            'Alarm severity mapping',
-            'Trap storage and forwarding',
-            'Syslog ingestion defaults',
-            'Event retention and cleanup windows',
-            'Notification receivers and routing by severity',
-            'Default suppression behavior',
-          ]}
-        />
-      );
+      return <AlarmsEventsPanel />;
     case 'integrationsAiOps':
       return (
         <PlaceholderPanel
@@ -1137,8 +1446,32 @@ function CategoryContent({ category }: { category: CategoryKey }) {
   }
 }
 
+const SECTION_KEYS = new Set<CategoryKey>([
+  'general', 'system', 'security', 'usersRoles', 'networkDevices',
+  'inventory', 'alarmsEvents', 'integrationsAiOps', 'labOperations',
+]);
+
+function isValidSection(s: string | null): s is CategoryKey {
+  return s !== null && SECTION_KEYS.has(s as CategoryKey);
+}
+
 function Settings() {
-  const [active, setActive] = useState<CategoryKey>('general');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sectionParam = searchParams.get('section');
+  const [active, setActive] = useState<CategoryKey>(
+    isValidSection(sectionParam) ? sectionParam : 'general',
+  );
+
+  const handleSelect = (key: CategoryKey) => {
+    setActive(key);
+    setSearchParams({ section: key }, { replace: true });
+  };
+
+  // Sync if URL param changes externally (e.g. back/forward navigation).
+  useEffect(() => {
+    const s = searchParams.get('section');
+    if (isValidSection(s) && s !== active) setActive(s);
+  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="p-6 space-y-6">
@@ -1152,7 +1485,7 @@ function Settings() {
           {CATEGORIES.map((cat) => (
             <button
               key={cat.key}
-              onClick={() => setActive(cat.key)}
+              onClick={() => handleSelect(cat.key)}
               className={`w-full rounded-lg border p-3 text-left transition-colors ${
                 active === cat.key
                   ? 'border-cisco-blue bg-cisco-blue/5 ring-1 ring-cisco-blue'
