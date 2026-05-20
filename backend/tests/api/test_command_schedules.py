@@ -84,10 +84,14 @@ async def _fake_db():
 
 @pytest.fixture
 def client():
+    prev = app.dependency_overrides.get(get_db)
     app.dependency_overrides[get_db] = _fake_db
     with TestClient(app, raise_server_exceptions=False) as c:
         yield c
-    app.dependency_overrides.pop(get_db, None)
+    if prev is None:
+        app.dependency_overrides.pop(get_db, None)
+    else:
+        app.dependency_overrides[get_db] = prev
 
 
 def test_list_schedules(client):
