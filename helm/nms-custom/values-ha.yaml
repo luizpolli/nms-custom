@@ -1,0 +1,79 @@
+# Multi-AZ HA overrides — apply on top of values-prod.yaml
+# Usage:
+#   helm upgrade --install nms-custom ./helm/nms-custom \
+#     -f helm/nms-custom/values-prod.yaml \
+#     -f helm/nms-custom/values-ha.yaml
+#
+# Targets the "Large" reference size (2 000–5 000 devices, 3 AZs).
+
+replicaCount:
+  api: 4
+  frontend: 3
+  poller: 4              # must equal config.workerShardCount
+  topology: 2
+  report: 2
+  telemetryReceiver: 3
+  alarmWorker: 3
+  discoveryWorker: 2     # singleton via lease — 2 for hot standby
+  telemetryWorker: 4
+
+config:
+  workerShardCount: "4"
+  eventConsumerBlockMs: "250"   # lower latency for alarms
+
+autoscaling:
+  api:
+    enabled: true
+    minReplicas: 4
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 65
+    targetMemoryUtilizationPercentage: 75
+  frontend:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 70
+  workers:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 65
+    targetMemoryUtilizationPercentage: 80
+  receiver:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 60
+    targetMemoryUtilizationPercentage: 75
+
+pdb:
+  enabled: true
+  minAvailable: 2        # tolerate 1 pod loss without losing quorum
+
+# Hard topology spread — guarantee replicas land in distinct AZs.
+ha:
+  enabled: true
+  podAntiAffinityMode: hard
+  topologyKey: topology.kubernetes.io/zone
+  topologySpread:
+    enabled: true
+    maxSkew: 1
+    whenUnsatisfiable: DoNotSchedule
+
+# In HA we assume Postgres and Redis are externalized to managed/Patroni clusters.
+postgres:
+  enabled: false
+  externalHost: ""       # e.g. nms-pg.prod.svc:5432
+  passwordSecret: nms-postgres-credentials
+
+redis:
+  enabled: false
+  externalHost: ""       # e.g. redis-master.prod.svc:6379
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi

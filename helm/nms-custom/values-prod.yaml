@@ -1,6 +1,25 @@
-# Production overrides — all hardening features on
+# Production overrides — all hardening features on, multi-replica defaults
 image:
   pullPolicy: Always
+
+# Production HA replicas — sized for "Medium" (500–2 000 devices).
+# For Large/XLarge use values-ha.yaml on top of this file.
+replicaCount:
+  api: 3
+  frontend: 2
+  poller: 2          # NOTE: must equal config.workerShardCount
+  topology: 1
+  report: 2
+  telemetryReceiver: 2
+  alarmWorker: 2
+  discoveryWorker: 2 # singleton via Redis lease, ≥2 for HA standby
+  telemetryWorker: 2
+
+config:
+  workerShardCount: "2"   # must match replicaCount.poller
+  # Production-tuned event consumer cadence
+  eventConsumerBlockMs: "500"
+  eventConsumerStaleMs: "60000"
 
 ingress:
   enabled: true
@@ -95,3 +114,12 @@ resources:
   limits:
     cpu: 500m
     memory: 512Mi
+
+ha:
+  enabled: true
+  podAntiAffinityMode: soft
+  topologyKey: topology.kubernetes.io/zone
+  topologySpread:
+    enabled: true
+    maxSkew: 1
+    whenUnsatisfiable: ScheduleAnyway

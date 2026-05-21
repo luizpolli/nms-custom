@@ -8,6 +8,11 @@ metadata:
     app.kubernetes.io/component: api
 spec:
   replicas: {{ .Values.replicaCount.api }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels: {app.kubernetes.io/component: api, app.kubernetes.io/instance: {{ .Release.Name }}}
   template:
@@ -15,6 +20,10 @@ spec:
       labels: {app.kubernetes.io/component: api, app.kubernetes.io/instance: {{ .Release.Name }}}
     spec:
       serviceAccountName: {{ include "nms-custom.name" . }}
+      terminationGracePeriodSeconds: {{ default 30 .Values.terminationGracePeriodSeconds }}
+      affinity:
+        {{- include "nms-custom.podAntiAffinity" (list "api" .) | nindent 8 }}
+      {{- include "nms-custom.topologySpread" (list "api" .) | nindent 6 }}
       containers:
         - name: api
           image: {{ .Values.image.backend }}
@@ -30,16 +39,19 @@ spec:
           env:
             - name: WORKER_SHARD_ID
               value: "0"
+            - name: POD_NAME
+              valueFrom: {fieldRef: {fieldPath: metadata.name}}
             - name: POSTGRES_PASSWORD
               valueFrom: {secretKeyRef: {name: {{ $secretName }}, key: password}}
           ports:
             - containerPort: 8000
+          {{- include "nms-custom.apiProbes" . | nindent 10 }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
 ---
-{{- $workers := list (dict "name" "worker-poller" "kind" "monitoring-policies" "replicaKey" "poller") (dict "name" "worker-topology" "kind" "topology" "replicaKey" "topology") (dict "name" "worker-report" "kind" "reports" "replicaKey" "report") (dict "name" "telemetry-receiver" "kind" "telemetry-receiver" "replicaKey" "telemetryReceiver") (dict "name" "worker-alarm" "kind" "worker-alarm" "replicaKey" "alarmWorker") (dict "name" "worker-discovery" "kind" "worker-discovery" "replicaKey" "discoveryWorker") (dict "name" "worker-telemetry" "kind" "worker-telemetry" "replicaKey" "telemetryWorker") }}
+{{- $workers := list (dict "name" "worker-poller" "kind" "monitoring-policies" "replicaKey" "poller" "shardAware" true) (dict "name" "worker-topology" "kind" "topology" "replicaKey" "topology" "shardAware" false) (dict "name" "worker-report" "kind" "reports" "replicaKey" "report" "shardAware" false) (dict "name" "telemetry-receiver" "kind" "telemetry-receiver" "replicaKey" "telemetryReceiver" "shardAware" false) (dict "name" "worker-alarm" "kind" "worker-alarm" "replicaKey" "alarmWorker" "shardAware" false) (dict "name" "worker-discovery" "kind" "worker-discovery" "replicaKey" "discoveryWorker" "shardAware" false) (dict "name" "worker-telemetry" "kind" "worker-telemetry" "replicaKey" "telemetryWorker" "shardAware" false) }}
 {{- range $worker := $workers }}
 apiVersion: apps/v1
 kind: Deployment
@@ -50,6 +62,16 @@ metadata:
     app.kubernetes.io/component: {{ $worker.name }}
 spec:
   replicas: {{ get $.Values.replicaCount $worker.replicaKey }}
+  {{- if $worker.shardAware }}
+  # Sharded workers use OrderedReady so SHARD_ID via ordinal is stable.
+  # Deployment can't expose ordinals; we use podHash + downward API instead
+  # and rely on consumer-group / device-id hashing for partition stability.
+  {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels: {app.kubernetes.io/component: {{ $worker.name }}, app.kubernetes.io/instance: {{ $.Release.Name }}}
   template:
@@ -57,6 +79,10 @@ spec:
       labels: {app.kubernetes.io/component: {{ $worker.name }}, app.kubernetes.io/instance: {{ $.Release.Name }}}
     spec:
       serviceAccountName: {{ include "nms-custom.name" $ }}
+      terminationGracePeriodSeconds: {{ default 30 $.Values.terminationGracePeriodSeconds }}
+      affinity:
+        {{- include "nms-custom.podAntiAffinity" (list $worker.name $) | nindent 8 }}
+      {{- include "nms-custom.topologySpread" (list $worker.name $) | nindent 6 }}
       containers:
         - name: {{ $worker.name }}
           image: {{ $.Values.image.backend }}
@@ -71,6 +97,12 @@ spec:
             - {{- toYaml . | nindent 14 }}
             {{- end }}
           env:
+            - name: POD_NAME
+              valueFrom: {fieldRef: {fieldPath: metadata.name}}
+            - name: POD_IP
+              valueFrom: {fieldRef: {fieldPath: status.podIP}}
+            # Sharded workers derive SHARD_ID from POD_NAME hash at startup; this
+            # placeholder lets the container fall back to "0" if not sharded.
             - name: WORKER_SHARD_ID
               value: "0"
             - name: POSTGRES_PASSWORD
@@ -90,18 +122,28 @@ metadata:
     app.kubernetes.io/component: frontend
 spec:
   replicas: {{ .Values.replicaCount.frontend }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels: {app.kubernetes.io/component: frontend, app.kubernetes.io/instance: {{ .Release.Name }}}
   template:
     metadata:
       labels: {app.kubernetes.io/component: frontend, app.kubernetes.io/instance: {{ .Release.Name }}}
     spec:
+      terminationGracePeriodSeconds: {{ default 30 .Values.terminationGracePeriodSeconds }}
+      affinity:
+        {{- include "nms-custom.podAntiAffinity" (list "frontend" .) | nindent 8 }}
+      {{- include "nms-custom.topologySpread" (list "frontend" .) | nindent 6 }}
       containers:
         - name: frontend
           image: {{ .Values.image.frontend }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 5173
+          {{- include "nms-custom.frontendProbes" . | nindent 10 }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

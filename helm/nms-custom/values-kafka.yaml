@@ -1,0 +1,28 @@
+# Kafka event-bus overlay. Apply on top of values-prod.yaml or values-ha.yaml.
+#
+# Two modes:
+#   (a) Bundled Kafka (kafka.enabled=true)  — chart deploys a 3-broker KRaft set.
+#       Acceptable for medium workloads; not recommended for XLarge.
+#   (b) External Kafka (kafka.enabled=false, config.kafkaBrokers=…) — point at
+#       a managed cluster (MSK, Confluent Cloud, Aiven) or your platform team's
+#       Kafka. This is the production default.
+#
+# Usage (external):
+#   helm upgrade --install nms-custom ./helm/nms-custom \
+#     -f helm/nms-custom/values-prod.yaml \
+#     -f helm/nms-custom/values-kafka.yaml \
+#     --set config.kafkaBrokers=kafka.prod.svc:9092
+
+config:
+  eventBusBackend: "kafka"
+  kafkaBrokers: ""               # set via --set or env
+  kafkaTopicPrefix: nms
+  kafkaSecurityProtocol: SASL_SSL
+  kafkaSaslMechanism: SCRAM-SHA-512
+
+kafka:
+  enabled: false                  # flip to true to deploy bundled brokers
+  brokers: 3
+  replicationFactor: 3
+  minInsyncReplicas: 2
+  storage: 100Gi

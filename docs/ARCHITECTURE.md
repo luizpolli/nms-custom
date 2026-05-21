@@ -20,7 +20,9 @@
 16. [Infrastructure](#infrastructure)
 17. [Security Considerations](#security-considerations)
 18. [Scalability & Performance](#scalability--performance)
-19. [Future Enhancements](#future-enhancements)
+19. [High Availability & Multi-Cluster](#high-availability--multi-cluster)
+20. [Event Bus Backends](#event-bus-backends)
+21. [Future Enhancements](#future-enhancements)
 
 ---
 
@@ -571,18 +573,157 @@ Each worker:
 
 ## Scalability & Performance
 
-### Current Design (Single Node)
+### Reference sizes
 
-- Polls up to 500 devices at 60s intervals
-- TimescaleDB handles time-series KPI data efficiently
-- Redis queues for async workers
+| Talla    | Devices       | KPIs/min   | Traps/s | API replicas | Worker replicas | DB IOPS |
+|----------|---------------|-----------:|--------:|-------------:|----------------:|--------:|
+| Small    | 10–500        |    ~30 000 |      50 |            2 |               1 |   1 000 |
+| Medium   | 500–2 000     |   ~120 000 |     200 |            3 |               2 |   5 000 |
+| Large    | 2 000–5 000   |   ~300 000 |     500 |            4 |               4 |  15 000 |
+| XLarge   | 5 000–15 000  |   ~900 000 |   1 500 |            6 |               8 |  40 000 |
 
-### Future Scaling
+### Horizontal scaling rules
 
-- **Horizontal scaling**: Multiple backend instances behind load balancer
-- **Worker scaling**: Redis Streams for distributed worker pools
-- **Database**: TimescaleDB continuous aggregates for KPI rollups
-- **MIB compilation**: Cache compiled MIBs in Redis
+- **Stateless** components (API, frontend, telemetry-receiver, report worker)
+  escalan libremente con HPA (CPU + memoria).
+- **Workers de consumer-group** (alarm, telemetry, fanout) escalan con HPA y
+  Redis Streams se encarga del rebalanceo (`XREADGROUP` + `XAUTOCLAIM`).
+- **Poller SNMP** está **sharded** por `device_id % SHARD_COUNT`. Las réplicas
+  se cambian con coordinación (`WORKER_SHARD_COUNT` debe igualar
+  `replicaCount.poller`); no se usa HPA aquí.
+- **Discovery worker** es **singleton con lease distribuido** en Redis
+  (`SET NX EX 300`). Múltiples instancias arrancan, sólo una corre el ciclo.
+- **Trap receiver UDP** se despliega como DaemonSet o ≥2 réplicas con
+  `externalTrafficPolicy: Local` para preservar source IP.
+
+### Database
+
+- TimescaleDB con compresión nativa a partir del día 7 (segment by `device_id`)
+- Retención: raw 7 días, 5-min rollup 30 días, 1-h rollup 1 año, 1-d 5 años
+- Continuous aggregates (`cagg_5m`, `cagg_1h`, `cagg_1d`) reducen 100× la carga
+  de queries dashboard
+- `chunk_time_interval = 1 day` para alinearse con el patrón de retención
+
+### Caching
+
+- MIBs compilados se cachean en Redis (clave `mib:compiled:{name}`, TTL 24 h)
+- Inventory snapshot por device en Redis (clave `device:inv:{id}`, TTL 5 min)
+- Auth tokens y rate-limit counters en Redis
+
+Para fórmulas, tuning detallado y benchmarks, ver [SCALING.md](./SCALING.md).
+
+---
+
+## High Availability & Multi-Cluster
+
+### Single-cluster HA (default productivo)
+
+```
+                       ┌────────────────┐
+                       │ Ingress NGINX  │ ≥2 réplicas en 2 AZs
+                       └────────┬───────┘
+                                │
+          ┌─────────────────────┼─────────────────────┐
+          │                     │                     │
+   ┌──────▼───────┐      ┌──────▼───────┐      ┌──────▼───────┐
+   │ API (zone-a) │      │ API (zone-b) │      │ API (zone-c) │
+   └──────┬───────┘      └──────┬───────┘      └──────┬───────┘
+          │                     │                     │
+          └─────────┬───────────┴─────────┬───────────┘
+                    │                     │
+        ┌───────────▼────────────┐ ┌──────▼────────────┐
+        │ Postgres primary       │ │ Redis Sentinel(3) │
+        │  + sync replica (AZ-b) │ │  + 2 replicas     │
+        │  + async replica (AZ-c)│ │                   │
+        └────────────────────────┘ └───────────────────┘
+```
+
+**Garantías:**
+- RTO ≤ 60 s para failover de DB (Patroni / RDS / Crunchy)
+- RPO ≈ 0 con réplica síncrona en otra AZ
+- Quorum de 2/3 zonas tolera la caída completa de 1 AZ
+- `topologySpreadConstraints` reparte réplicas entre zonas
+- PodDisruptionBudget con `minAvailable: 1` por workload
+
+### HA por componente
+
+| Componente              | Estrategia HA                                          |
+|-------------------------|--------------------------------------------------------|
+| API / Frontend          | ≥2 réplicas + HPA + PDB + topology spread             |
+| Worker poller           | N réplicas sharded (no HPA — coordinated rescale)     |
+| Worker telemetry/alarm  | HPA libre, consumer group rebalancea automáticamente   |
+| Worker discovery        | ≥2 réplicas, lease en Redis garantiza singleton activo|
+| Telemetry receiver gNMI | HPA por memoria, servicio ClusterIP + LB              |
+| Trap receiver UDP/162   | DaemonSet con `hostPort: 162` o LB UDP con local-pref |
+| Postgres / TimescaleDB  | **Externo** en producción (Patroni / managed)         |
+| Redis                   | Sentinel (3+) o Cluster (≥6 nodos)                    |
+| Kafka (opcional)        | 3+ brokers, KRaft, replication-factor=3               |
+
+> El `StatefulSet` de Postgres incluido en el chart es **sólo para dev/lab**.
+> En producción `postgres.enabled=false` y `postgres.externalHost=…`.
+
+### Multi-cluster federado (hub-and-spoke)
+
+Para escalas > 5 000 devices o geo-distribución:
+
+```
+       ┌─────────────────────────────┐
+       │   Hub cluster (us-east)     │
+       │ Postgres central · Reports  │
+       │ Frontend · SSO · RBAC global│
+       └─────────────┬───────────────┘
+                     │ Kafka MirrorMaker 2.0 / API push
+   ┌─────────┬───────┴────────┬──────────┐
+   │         │                │          │
+ ┌─▼─┐    ┌─▼─┐            ┌─▼─┐      ┌─▼─┐
+ │ MX│    │ EU│            │APAC│      │EDGE│
+ └───┘    └───┘            └────┘      └────┘
+```
+
+- Cada **spoke** corre un NMS_Custom completo con DB y Redis locales.
+- Polling/trap reception son **siempre locales** (no atravesar región vía UDP).
+- El **hub** agrega inventario y KPIs vía Kafka MirrorMaker o `federation_pull`
+  worker que llama a `/api/devices?federation=true` cada N minutos.
+- Conflictos: `last_writer_wins` por timestamp del spoke.
+- DR cross-region: Postgres streaming replica + S3 cross-region para configs.
+
+Detalle completo (tradeoffs, failover, runbooks): [SCALING.md](./SCALING.md).
+
+---
+
+## Event Bus Backends
+
+NMS_Custom abstrae el event bus tras `app.services.events.bus.EventBus` para
+permitir cambiar de backend sin tocar los publishers ni los consumers.
+
+### Redis Streams (default)
+
+- Configurado vía `EVENT_BUS_BACKEND=redis` y `REDIS_URL=…`
+- Consumer groups con `XREADGROUP`, recovery de stale via `XAUTOCLAIM`
+- `MAXLEN ~ 10 000–1 000 000` con `~` (approximate trimming)
+- Throughput: ~500 k – 1 M msg/s en un nodo Redis decente
+- Latencia p99: < 1 ms
+- HA: Redis Sentinel con 3 sentinels en AZs distintas
+
+### Kafka (opcional)
+
+- Habilitado con `EVENT_BUS_BACKEND=kafka`,
+  `KAFKA_BROKERS=k1:9092,k2:9092,k3:9092`, `KAFKA_TOPIC_PREFIX=nms`
+- Topics: `nms.events`, `nms.alarms`, `nms.telemetry`, `nms.audit`
+- Replication-factor 3, min.insync.replicas=2 para durabilidad
+- Consumer groups nativos; `EOS` opcional (transactional producers)
+- HA: 3+ brokers, KRaft (sin Zookeeper) recomendado
+
+### Cuándo cambiar
+
+Usar Kafka si:
+- > 5 000 devices o > 500 k msg/s sostenido
+- Retención de eventos > 7 días (compliance, ML, replay)
+- Federación multi-cluster con MirrorMaker 2.0
+- La organización ya opera Kafka y tiene SRE para él
+
+Mantener Redis Streams en otros casos — menos ops, menor footprint, latencia
+sub-milisegundo para alarmas en tiempo real.
 
 ---
 
@@ -597,4 +738,9 @@ Each worker:
 - [ ] Grafana dashboard exporter
 - [ ] GraphQL API layer
 - [ ] CLI tool for automation
-- [ ] HA cluster with postgres streaming replication
+- [x] HA cluster with postgres streaming replication (ver SCALING.md)
+- [x] Multi-cluster hub-and-spoke con federación de inventario (ver SCALING.md)
+- [x] Kafka backend opcional para event bus
+- [ ] gRPC bidirectional streaming para telemetry receiver (replace gNMI shim)
+- [ ] WebAssembly plugins para custom KPI calculators
+- [ ] Distributed trace propagation (OpenTelemetry) end-to-end

@@ -12,10 +12,15 @@ data:
   WORKER_SHARD_COUNT: {{ .Values.config.workerShardCount | quote }}
   WORKER_MAX_CONCURRENCY: {{ .Values.config.workerMaxConcurrency | quote }}
   TELEMETRY_TRANSPORT: {{ .Values.config.telemetryTransport | quote }}
+  EVENT_BUS_BACKEND: {{ default "redis" .Values.config.eventBusBackend | quote }}
   EVENT_STREAM_NAME: {{ .Values.config.eventStreamName | quote }}
   EVENT_CONSUMER_GROUP_PREFIX: {{ .Values.config.eventConsumerGroupPrefix | quote }}
   EVENT_CONSUMER_BLOCK_MS: {{ .Values.config.eventConsumerBlockMs | quote }}
   EVENT_CONSUMER_STALE_MS: {{ .Values.config.eventConsumerStaleMs | quote }}
+  KAFKA_BROKERS: {{ default "" .Values.config.kafkaBrokers | quote }}
+  KAFKA_TOPIC_PREFIX: {{ default "nms" .Values.config.kafkaTopicPrefix | quote }}
+  KAFKA_SECURITY_PROTOCOL: {{ default "PLAINTEXT" .Values.config.kafkaSecurityProtocol | quote }}
+  KAFKA_SASL_MECHANISM: {{ default "" .Values.config.kafkaSaslMechanism | quote }}
   POSTGRES_HOST: {{ default (printf "%s-postgres" (include "nms-custom.name" .)) .Values.postgres.externalHost | quote }}
   POSTGRES_DB: {{ .Values.postgres.database | quote }}
   POSTGRES_USER: {{ .Values.postgres.user | quote }}

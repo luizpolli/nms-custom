@@ -4,15 +4,15 @@ image:
   pullPolicy: IfNotPresent
 
 replicaCount:
-  api: 1
-  frontend: 1
+  api: 2
+  frontend: 2
   poller: 1
   topology: 1
   report: 1
-  telemetryReceiver: 1
-  alarmWorker: 1
-  discoveryWorker: 1
-  telemetryWorker: 1
+  telemetryReceiver: 2
+  alarmWorker: 2
+  discoveryWorker: 2
+  telemetryWorker: 2
 
 config:
   appEnv: production
@@ -22,10 +22,29 @@ config:
   workerShardCount: "1"
   workerMaxConcurrency: "8"
   telemetryTransport: gnmi
+  # Event bus backend — "redis" (default) or "kafka"
+  eventBusBackend: "redis"
   eventStreamName: nms:events
   eventConsumerGroupPrefix: nms
   eventConsumerBlockMs: "1000"
   eventConsumerStaleMs: "60000"
+  # Kafka (only used when eventBusBackend=kafka)
+  kafkaBrokers: ""
+  kafkaTopicPrefix: nms
+  kafkaSecurityProtocol: PLAINTEXT
+  kafkaSaslMechanism: ""
+
+# Optional bundled Kafka subchart (disabled by default — operate Kafka separately
+# or via your cloud provider in production). When enabled, this stack ships a
+# 3-broker KRaft cluster suitable for medium workloads.
+kafka:
+  enabled: false
+  brokers: 3
+  replicationFactor: 3
+  minInsyncReplicas: 2
+  storage: 50Gi
+  # If you provide an existing broker list, leave .enabled=false and set
+  # config.kafkaBrokers to the external endpoint(s).
 
 postgres:
   enabled: true
@@ -160,3 +179,44 @@ resources: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+# High-availability scheduling — pod anti-affinity + topology spread keep
+# replicas distributed across nodes and AZs. Defaults are "soft" (preferred)
+# so single-AZ clusters still schedule; flip to required in values-ha.yaml.
+ha:
+  enabled: true
+  # "soft" = preferredDuringSchedulingIgnoredDuringExecution
+  # "hard" = requiredDuringSchedulingIgnoredDuringExecution
+  podAntiAffinityMode: soft
+  topologyKey: topology.kubernetes.io/zone
+  topologySpread:
+    enabled: true
+    maxSkew: 1
+    # "ScheduleAnyway" tolerates small clusters; HA values overrides to "DoNotSchedule"
+    whenUnsatisfiable: ScheduleAnyway
+
+probes:
+  api:
+    liveness:
+      path: /healthz
+      initialDelaySeconds: 20
+      periodSeconds: 15
+      timeoutSeconds: 3
+      failureThreshold: 3
+    readiness:
+      path: /readyz
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 3
+      failureThreshold: 3
+  frontend:
+    liveness:
+      path: /
+      initialDelaySeconds: 10
+      periodSeconds: 30
+    readiness:
+      path: /
+      initialDelaySeconds: 5
+      periodSeconds: 10
+
+terminationGracePeriodSeconds: 30
