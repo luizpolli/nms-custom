@@ -67,7 +67,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 
 - [x] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, dependency evidence payloads, and persisted service score evidence.
 - [x] **Operational assistant expansion:** optional OpenAI-compatible LLM provider integration is available beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails and disabled-by-default posture.
-- [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
+- [x] **Reporting polish:** exportable assurance and service trend reports (`assurance_trend`, `service_trend` in the report registry) generate XLSX workbooks from `ServiceScoreSnapshot` history. Lab trend export still deferred until real lab datasets are stable.
 - [x] **Settings P2 polish:** Settings profile import/export, sidebar search, permission-aware submenu hiding/locking, and settings audit persistence/visibility are in place.
 - [x] **Settings backend RBAC enforcement:** Settings/users/roles/profile/audit endpoints now enforce API-key role permissions when API auth is enabled; local lab mode remains permissive when auth is disabled.
 

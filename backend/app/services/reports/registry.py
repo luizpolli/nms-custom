@@ -21,6 +21,8 @@ _REPORTS = [
     {"name": "tca", "format": "xlsx", "description": "Threshold Crossing Alerts: definitions and crossings in period"},
     {"name": "alarms", "format": "xlsx", "description": "Alarm detail and severity summary"},
     {"name": "monitoring_policies", "format": "xlsx", "description": "Monitoring policy configuration, cadence and execution status"},
+    {"name": "assurance_trend", "format": "xlsx", "description": "Network assurance score trend bucketed over a time window"},
+    {"name": "service_trend", "format": "xlsx", "description": "Per-service score trend with raw snapshots and summary index"},
     {"name": "executive_summary", "format": "pdf", "description": "Executive summary with alarm and KPI overview"},
     {"name": "device_health", "format": "pdf", "description": "Per-device health: interfaces, alarms, CPU/mem trend"},
 ]
@@ -96,6 +98,16 @@ class ReportRegistry:
             return await self._excel.alarm_report(since=params["since"], until=params["until"])
         if name == "monitoring_policies":
             return await self._excel.monitoring_policy_report()
+        if name == "assurance_trend":
+            return await self._excel.assurance_trend_report(
+                since=params["since"], until=params["until"],
+                bucket_minutes=int(params.get("bucket_minutes", 15)),
+            )
+        if name == "service_trend":
+            return await self._excel.service_trend_report(
+                since=params["since"], until=params["until"],
+                service_ids=params.get("service_ids"),
+            )
         if name == "executive_summary":
             return await self._pdf.executive_summary(since=params["since"], until=params["until"])
         if name == "device_health":

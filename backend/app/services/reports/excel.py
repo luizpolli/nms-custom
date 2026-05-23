@@ -26,6 +26,7 @@ from app.models.kpi import KPI
 from app.models.alarm import Alarm
 from app.models.kpi_threshold import KPIThreshold
 from app.models.monitoring_policy import MonitoringPolicy
+from app.models.service import Service, ServiceScoreSnapshot
 from app.services.reports.consolidation import (
     BUCKET_SECONDS,
     BucketSize,
@@ -522,6 +523,180 @@ class ExcelReporter:
                 policy.description,
             ])
         _finalise(ws)
+        return _wb_to_bytes(wb)
+
+    # ------------------------------------------------------------------
+    # Assurance / service trend reports
+    # ------------------------------------------------------------------
+
+    async def assurance_trend_report(
+        self,
+        since: datetime,
+        until: datetime,
+        bucket_minutes: int = 15,
+    ) -> bytes:
+        """Network-wide assurance score trend bucketed over the window.
+
+        Two sheets: Summary (per-bucket avg/min/max + service/sample counts)
+        and Per-Service (one row per service per bucket).
+        """
+        if bucket_minutes < 1:
+            bucket_minutes = 1
+        since_aware = since if since.tzinfo else since.replace(tzinfo=timezone.utc)
+        until_aware = until if until.tzinfo else until.replace(tzinfo=timezone.utc)
+
+        async with self._sf() as session:
+            snapshots = (
+                await session.execute(
+                    select(ServiceScoreSnapshot)
+                    .where(ServiceScoreSnapshot.captured_at >= since_aware)
+                    .where(ServiceScoreSnapshot.captured_at <= until_aware)
+                    .order_by(ServiceScoreSnapshot.captured_at.asc())
+                )
+            ).scalars().all()
+            services = (await session.execute(select(Service))).scalars().all()
+
+        service_names = {s.id: s.name for s in services}
+        bucket_secs = bucket_minutes * 60
+        since_ts = since_aware.timestamp()
+
+        per_bucket: dict[int, list[tuple]] = defaultdict(list)
+        for snap in snapshots:
+            ts = snap.captured_at
+            ts_aware = ts if ts.tzinfo else ts.replace(tzinfo=timezone.utc)
+            offset = ts_aware.timestamp() - since_ts
+            key = int(offset // bucket_secs)
+            per_bucket[key].append((snap.service_id, snap.score, snap.health_state))
+
+        wb = openpyxl.Workbook()
+        summary_ws = wb.active
+        summary_ws.title = "Assurance Trend"
+        summary_ws.append([
+            "Bucket Start", "Avg Score", "Min Score", "Max Score",
+            "Sample Count", "Service Count",
+        ])
+        for key in sorted(per_bucket):
+            entries = per_bucket[key]
+            scores = [e[1] for e in entries]
+            bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=timezone.utc)
+            summary_ws.append([
+                bucket_start.isoformat(),
+                round(sum(scores) / len(scores), 2),
+                int(min(scores)),
+                int(max(scores)),
+                len(scores),
+                len({e[0] for e in entries}),
+            ])
+        _finalise(summary_ws)
+
+        detail_ws = wb.create_sheet("Per-Service")
+        detail_ws.append([
+            "Bucket Start", "Service", "Avg Score", "Min Score", "Max Score",
+            "Sample Count", "Worst Health State",
+        ])
+        _severity_rank = {"healthy": 0, "degraded": 1, "critical": 2, "down": 3}
+        for key in sorted(per_bucket):
+            bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=timezone.utc)
+            per_service: dict = defaultdict(list)
+            for sid, score, state in per_bucket[key]:
+                per_service[sid].append((score, state))
+            for sid in per_service:
+                samples = per_service[sid]
+                scores = [s for s, _ in samples]
+                worst = max(samples, key=lambda x: _severity_rank.get(x[1], 0))[1]
+                detail_ws.append([
+                    bucket_start.isoformat(),
+                    service_names.get(sid, str(sid)),
+                    round(sum(scores) / len(scores), 2),
+                    int(min(scores)),
+                    int(max(scores)),
+                    len(scores),
+                    worst,
+                ])
+        _finalise(detail_ws)
+
+        meta = wb.create_sheet("Window")
+        meta.append(["From", "To", "Bucket Minutes", "Total Snapshots"])
+        meta.append([since_aware.isoformat(), until_aware.isoformat(), bucket_minutes, len(snapshots)])
+        _finalise(meta)
+        return _wb_to_bytes(wb)
+
+    async def service_trend_report(
+        self,
+        since: datetime,
+        until: datetime,
+        service_ids: list | None = None,
+    ) -> bytes:
+        """Per-service score trend: one sheet per service with raw snapshots."""
+        since_aware = since if since.tzinfo else since.replace(tzinfo=timezone.utc)
+        until_aware = until if until.tzinfo else until.replace(tzinfo=timezone.utc)
+
+        async with self._sf() as session:
+            q = (
+                select(ServiceScoreSnapshot)
+                .where(ServiceScoreSnapshot.captured_at >= since_aware)
+                .where(ServiceScoreSnapshot.captured_at <= until_aware)
+                .order_by(ServiceScoreSnapshot.captured_at.asc())
+            )
+            if service_ids:
+                q = q.where(ServiceScoreSnapshot.service_id.in_(service_ids))
+            snapshots = (await session.execute(q)).scalars().all()
+            services = (await session.execute(select(Service))).scalars().all()
+
+        service_names = {s.id: s.name for s in services}
+        service_targets = {s.id: s.target_score for s in services}
+        per_service: dict = defaultdict(list)
+        for snap in snapshots:
+            per_service[snap.service_id].append(snap)
+
+        wb = openpyxl.Workbook()
+        wb.remove(wb.active)  # type: ignore[arg-type]
+
+        if not per_service:
+            wb.create_sheet("No Data")
+            return _wb_to_bytes(wb)
+
+        index_ws = wb.create_sheet("Index")
+        index_ws.append([
+            "Service", "Target", "Samples", "Avg Score", "Min Score", "Max Score", "Last Score", "Last State",
+        ])
+
+        for sid in per_service:
+            name = service_names.get(sid, str(sid))
+            sheet_name = (name or "service")[:31]
+            ws = wb.create_sheet(sheet_name)
+            ws.append([
+                "Captured At", "Score", "Base Score", "Dependency Penalty", "Health State",
+            ])
+            scores: list[int] = []
+            last = None
+            for snap in per_service[sid]:
+                ws.append([
+                    snap.captured_at.isoformat(),
+                    snap.score,
+                    snap.base_score,
+                    snap.dependency_penalty,
+                    snap.health_state,
+                ])
+                scores.append(snap.score)
+                last = snap
+            _finalise(ws)
+            index_ws.append([
+                name,
+                service_targets.get(sid),
+                len(scores),
+                round(sum(scores) / len(scores), 2),
+                int(min(scores)),
+                int(max(scores)),
+                last.score if last else None,
+                last.health_state if last else None,
+            ])
+        _finalise(index_ws)
+
+        meta = wb.create_sheet("Window")
+        meta.append(["From", "To", "Total Snapshots", "Services"])
+        meta.append([since_aware.isoformat(), until_aware.isoformat(), len(snapshots), len(per_service)])
+        _finalise(meta)
         return _wb_to_bytes(wb)
 
 

@@ -39,6 +39,8 @@ def test_registry_list_available_names() -> None:
         "tca",
         "alarms",
         "monitoring_policies",
+        "assurance_trend",
+        "service_trend",
         "executive_summary",
         "device_health",
     }

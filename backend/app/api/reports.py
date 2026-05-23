@@ -35,6 +35,8 @@ class ReportRequest(BaseModel):
         "tca",
         "alarms",
         "monitoring_policies",
+        "assurance_trend",
+        "service_trend",
         "executive_summary",
         "device_health",
     ]
