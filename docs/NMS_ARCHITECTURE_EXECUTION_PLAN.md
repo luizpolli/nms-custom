@@ -59,8 +59,8 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [ ] **Domain processors for event workers:** replace remaining defensive/skeleton event handlers with owned processors for alarm enrichment, discovery refresh orchestration, and telemetry fan-out rules.
 - [ ] **Helm production hardening:** add cluster-ready ingress/TLS integration, secret-manager wiring, autoscaling defaults, NetworkPolicies/PDB enablement guidance, and chart lint/render coverage in CI where missing.
 - [x] **API/command authorization hardening:** `ALLOWED_HOSTS` is enforced; command endpoints have per-action RBAC, command allow-list enforcement, constant-time API key checks, and optional `sha256$<hex>` API key configuration.
-- [ ] **Settings P1 backend forms:** turn high-value placeholders into real editable forms for System mail/jobs/retention, Network Device CLI/SNMP defaults, and Alarms/Events severity/notification defaults.
-- [ ] **Settings P1 deep links:** add URL-addressable Settings subroutes or query params (`/settings?section=security`) so admin docs and permissions can link directly to each submenu.
+- [x] **Settings P1 backend forms:** high-value placeholders now have editable backend-backed forms for System mail/jobs/retention, Network Device CLI/SNMP defaults, and Alarms/Events severity/notification defaults.
+- [x] **Settings P1 deep links:** Settings supports URL-addressable query params (`/settings?section=security`) so admin docs and permissions can link directly to each submenu.
 - [ ] **Broader integration tests:** add UDP/socket-level trap receiver integration tests in a dedicated suite once dependencies/capabilities are available.
 
 #### P2 — Later polish / product expansion
@@ -73,7 +73,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 ### Settings administration backlog
 
 - **P0:** keep live Security and Users/Roles flows stable while the page is reorganized; preserve `/settings/security`, `/settings/users`, `/settings/roles`, `/settings/permissions`, and `/settings/permissions/system-settings` behavior.
-- **P1:** implement editable backend-backed forms for System, Network Devices, Alarms/Events, and Integrations/AI Ops; add URL deep links to each submenu.
+- **P1:** completed editable backend-backed forms for System, Network Devices, and Alarms/Events; completed URL deep links to each submenu. Integrations/AI Ops provider settings remain future product work.
 - **P2:** add Settings search, permission-aware submenu visibility, audit coverage for all admin writes, and profile import/export.
 
 
