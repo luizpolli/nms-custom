@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import uuid
 from dataclasses import dataclass
 
 import pytest
+import httpx
 
 from app.services.ai_ops.assistant import answer_question
 from app.services.ai_ops.guardrails import (
@@ -20,6 +22,7 @@ from app.services.ai_ops.guardrails import (
 from app.services.ai_ops.providers import (
     LLMRequest,
     NullLLMProvider,
+    OpenAICompatibleProvider,
     get_provider,
 )
 
@@ -104,6 +107,15 @@ def test_get_provider_rejects_unknown():
         get_provider("totally-not-a-real-provider")
 
 
+def test_get_provider_openai_requires_api_key(monkeypatch):
+    from app.config import settings
+
+    monkeypatch.setattr(settings, "ai_ops_llm_api_key", "")
+    monkeypatch.setattr(settings, "ai_ops_llm_model", "test-model")
+    with pytest.raises(ValueError):
+        get_provider("openai-compatible")
+
+
 def test_null_provider_emits_citations_for_each_evidence_item():
     provider = NullLLMProvider()
     ev = _evidence("alarm:1", "kpi:2")
@@ -119,6 +131,64 @@ def test_null_provider_handles_empty_evidence():
         NullLLMProvider().complete(LLMRequest(system="s", user="u", evidence=[]))
     )
     assert "evidencia" in out.lower()
+
+
+def test_openai_compatible_provider_sends_redacted_prompt_and_parses_answer():
+    seen: dict[str, object] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen["authorization"] = request.headers.get("authorization")
+        seen["payload"] = json.loads(request.content.decode())
+        return httpx.Response(
+            200,
+            json={
+                "choices": [
+                    {"message": {"content": "Revisa la alarma citada [alarm:1]."}}
+                ]
+            },
+        )
+
+    transport = httpx.MockTransport(handler)
+
+    async def _run() -> str:
+        async with httpx.AsyncClient(transport=transport) as client:
+            provider = OpenAICompatibleProvider(
+                api_key="secret-key",
+                model="test-model",
+                base_url="https://llm.local/v1",
+                client=client,
+            )
+            return await provider.complete(
+                LLMRequest(
+                    system="system",
+                    user="user prompt [alarm:1]",
+                    evidence=_evidence("alarm:1"),
+                )
+            )
+
+    out = asyncio.run(_run())
+    assert out == "Revisa la alarma citada [alarm:1]."
+    assert seen["authorization"] == "Bearer secret-key"
+    payload = seen["payload"]
+    assert isinstance(payload, dict)
+    assert payload["model"] == "test-model"
+    assert payload["messages"][1]["content"] == "user prompt [alarm:1]"
+
+
+def test_openai_compatible_provider_rejects_invalid_payload():
+    transport = httpx.MockTransport(lambda _request: httpx.Response(200, json={"choices": []}))
+
+    async def _run() -> None:
+        async with httpx.AsyncClient(transport=transport) as client:
+            provider = OpenAICompatibleProvider(
+                api_key="secret-key",
+                model="test-model",
+                client=client,
+            )
+            await provider.complete(LLMRequest(system="system", user="user", evidence=[]))
+
+    with pytest.raises(ValueError):
+        asyncio.run(_run())
 
 
 # --- orchestrator with fake DB ----------------------------------------------

@@ -251,14 +251,14 @@ This manual describes what each major module does, how operators use it, and the
 - Deterministic advisory endpoints for alarm groups, KPI anomalies, runbook hints, and narrative summaries.
 - Optional assistant endpoint behind `AI_OPS_LLM_ENABLED`.
 - Role gate for assistant calls; defaults to `admin,ai-ops`.
-- Provider abstraction with a built-in deterministic `NullLLMProvider`.
+- Provider abstraction with a built-in deterministic `NullLLMProvider` and an optional OpenAI-compatible chat-completions adapter.
 - Redaction for IPs, MACs, FQDNs, secrets, SNMP communities, and private keys.
 - Citation enforcement: assistant answers must cite retrieved evidence IDs in `[prefix:id]` format.
 - Question and answer length caps.
 
 **Security guidance**
 
-- Keep external LLM providers disabled until provider retention, logging, and egress policies are approved.
+- Keep external LLM providers disabled until provider retention, logging, and egress policies are approved. Configure `AI_OPS_LLM_PROVIDER=openai-compatible`, `AI_OPS_LLM_BASE_URL`, `AI_OPS_LLM_MODEL`, and `AI_OPS_LLM_API_KEY` only for approved environments.
 - Never relax citation enforcement for operational recommendations.
 - Treat redaction as a guardrail, not as permission to send raw secrets to third parties.
 

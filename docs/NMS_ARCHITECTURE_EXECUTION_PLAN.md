@@ -66,7 +66,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 #### P2 — Later polish / product expansion
 
 - [x] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, dependency evidence payloads, and persisted service score evidence.
-- [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
+- [x] **Operational assistant expansion:** optional OpenAI-compatible LLM provider integration is available beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails and disabled-by-default posture.
 - [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
 - [x] **Settings P2 polish:** Settings profile import/export, sidebar search, permission-aware submenu hiding/locking, and settings audit persistence/visibility are in place.
 - [x] **Settings backend RBAC enforcement:** Settings/users/roles/profile/audit endpoints now enforce API-key role permissions when API auth is enabled; local lab mode remains permissive when auth is disabled.
@@ -1075,12 +1075,22 @@ Settings backend authorization now matches the frontend permission-aware navigat
 - Local lab mode remains unchanged: when API auth is disabled, Settings endpoints continue to work without credentials.
 - Validation: `.venv/bin/python -m pytest tests/api/test_settings_admin.py tests/security/test_command_authz.py -q` → 39 passed; `.venv/bin/python -m pytest tests/api/test_routes_smoke.py -q` → 4 passed.
 
+## Operational assistant provider expansion — 2026-05-23
+
+The AI Ops assistant now has an optional real provider path while preserving the existing safe defaults.
+
+- Added `OpenAICompatibleProvider`, a lightweight `httpx` adapter for `/v1/chat/completions` style APIs.
+- Added provider settings: `AI_OPS_LLM_API_KEY`, `AI_OPS_LLM_BASE_URL`, `AI_OPS_LLM_MODEL`, and `AI_OPS_LLM_TIMEOUT_SECONDS`.
+- `AI_OPS_LLM_PROVIDER=null` remains the default; external calls only happen when `AI_OPS_LLM_ENABLED=true` and `AI_OPS_LLM_PROVIDER=openai-compatible` are explicitly configured.
+- The assistant orchestrator still redacts evidence before handoff and validates provider answers against known citation IDs before returning them.
+- Validation: `.venv/bin/python -m pytest tests/services/test_ai_ops_assistant.py -q` → 18 passed; `.venv/bin/python -m pytest tests/services/test_ai_ops_assistant.py tests/api/test_routes_smoke.py -q` → 22 passed.
+
 ## Current immediate next tasks — 2026-05-23
 
 The source of truth is the **Current phase/task tracker** near the top of this document. In short:
 
 1. **P0 blocked:** native gRPC/protobuf gNMI adapter and 5k+ EPS soak both need real lab input/host capacity.
-2. **P2 later:** optional LLM provider integration and richer report exports.
+2. **P2 later:** richer report exports.
 
 ## Notification rules
 

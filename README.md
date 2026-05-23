@@ -111,7 +111,7 @@ All event consumers use Redis Streams consumer groups (`XGROUP / XREADGROUP / XA
 - **Phase 5M**: native gNMI proto contract + `StubNativeGnmiAdapter` (lab-bound).
 - **Phase 6A–6C**: AI-assisted operations.
   - 6A/6B: deterministic advisory endpoints (alarm groups, KPI anomalies, runbooks, narrative).
-  - **6C**: LLM-backed assistant with strict guardrails — redaction (IPs, MACs, FQDNs, secrets, SNMP community, PEM keys), citation enforcement (`prefix:id`), retrieval-grounded, provider-agnostic. Ships a deterministic `NullLLMProvider`; LLM disabled by default behind `AI_OPS_LLM_ENABLED`.
+  - **6C**: LLM-backed assistant with strict guardrails — redaction (IPs, MACs, FQDNs, secrets, SNMP community, PEM keys), citation enforcement (`prefix:id`), retrieval-grounded, provider-agnostic. Ships a deterministic `NullLLMProvider` and an optional OpenAI-compatible chat-completions adapter; LLM disabled by default behind `AI_OPS_LLM_ENABLED`.
   - Frontend: `/ai-ops` page exposes the assistant form + advisory cards with citations.
 
 See [docs/NMS_ARCHITECTURE_EXECUTION_PLAN.md](docs/NMS_ARCHITECTURE_EXECUTION_PLAN.md) for the full per-phase log.
@@ -137,7 +137,7 @@ Local defaults are intentionally convenient for development. Before using a shar
 - Replace `SECRET_KEY`, Postgres password, credential encryption material, and `SNMP_DEFAULT_COMMUNITY`; never deploy `public` as a default community.
 - Use explicit `CORS_ORIGINS` / `ALLOWED_HOSTS` (enforced by Trusted Host middleware; local defaults only allow localhost/test/container names) and real TLS cert/key files.
 - Keep Postgres/Redis off untrusted networks; restrict syslog/trap/telemetry receiver ports with firewall rules or NetworkPolicies.
-- Keep external AI Ops LLM providers disabled until retention/egress review is complete.
+- Keep external AI Ops LLM providers disabled until retention/egress review is complete; only enable `AI_OPS_LLM_PROVIDER=openai-compatible` with approved base URL, model, and API-key handling.
 
 Details: [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
 

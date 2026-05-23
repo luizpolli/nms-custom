@@ -69,7 +69,7 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 | TLS | Optional HTTPS with TLS min version; Compose defaults enable HTTPS | Development self-signed cert auto-generation if cert/key missing |
 | CORS / host headers | Configurable `CORS_ORIGINS`; `ALLOWED_HOSTS` enforced by Trusted Host middleware with localhost/test/container dev defaults | Production deployments must set explicit public hostnames; avoid `*` |
 | Credentials | Vault encryption plus log/audit redaction | Placeholder keys in examples; key rotation docs should be expanded |
-| AI Ops LLM | Disabled by default; null provider; redaction; evidence citations; max lengths; role gate | External provider integrations still need provider-specific egress/retention review |
+| AI Ops LLM | Disabled by default; null provider; optional OpenAI-compatible adapter; redaction; evidence citations; max lengths; role gate | External provider use still needs provider-specific egress/retention review before enabling |
 | MIB uploads | Filename normalization, traversal check, extension allow-list, size cap | Parser treats content as text; malicious large/complex MIBs need fuzz/timeout coverage |
 | Ingestion | Dedicated receivers and event envelope | UDP/TCP listeners rely on firewall/network policy; unauthenticated protocol modes |
 | SSH commands | Auth-gated, audited, bounded length, no control chars, command-action RBAC, optional `COMMAND_ALLOWLIST` | Production deployments must explicitly configure roles and allow-list patterns |
@@ -89,5 +89,5 @@ Before exposing beyond a single local developer machine:
 - [ ] Postgres/Redis ports are not reachable from untrusted networks.
 - [ ] Ingestion receiver ports are limited to trusted source subnets.
 - [ ] TLS cert/key are mounted from a trusted issuer or internal CA.
-- [ ] AI Ops external providers remain disabled until data retention, logging, and redaction are reviewed.
+- [ ] AI Ops external providers remain disabled until data retention, logging, and redaction are reviewed; only enable `openai-compatible` with approved base URL/model/API key handling.
 - [ ] SSH command endpoints are limited to trusted admins/operators and backed by `COMMAND_ALLOWLIST`.

@@ -144,6 +144,10 @@ class Settings(BaseSettings):
     # AI Ops LLM assistant (Phase 6C). Disabled by default; deterministic NullProvider when on.
     ai_ops_llm_enabled: bool = False
     ai_ops_llm_provider: str = "null"
+    ai_ops_llm_api_key: str = ""
+    ai_ops_llm_base_url: str = "https://api.openai.com/v1"
+    ai_ops_llm_model: str = "gpt-4o-mini"
+    ai_ops_llm_timeout_seconds: float = 30.0
     ai_ops_max_alarms: int = 20
     ai_ops_max_kpis: int = 20
     ai_ops_max_question_chars: int = 1000

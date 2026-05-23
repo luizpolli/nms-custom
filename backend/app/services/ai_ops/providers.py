@@ -10,6 +10,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
+import httpx
+
 from .guardrails import EvidenceItem
 
 
@@ -58,11 +60,82 @@ class NullLLMProvider:
         return "\n".join(lines)
 
 
+class OpenAICompatibleProvider:
+    """Minimal OpenAI-compatible chat completions adapter.
+
+    Works with OpenAI's `/v1/chat/completions` shape and compatible local/hosted
+    gateways. The assistant orchestrator already redacts prompts and validates
+    citations after the provider returns.
+    """
+
+    name = "openai-compatible"
+
+    def __init__(
+        self,
+        *,
+        api_key: str,
+        model: str,
+        base_url: str = "https://api.openai.com/v1",
+        timeout_seconds: float = 30.0,
+        client: httpx.AsyncClient | None = None,
+    ) -> None:
+        if not api_key:
+            raise ValueError("ai_ops_llm_api_key is required for openai-compatible provider")
+        if not model:
+            raise ValueError("ai_ops_llm_model is required for openai-compatible provider")
+        self.api_key = api_key
+        self.model = model
+        self.base_url = base_url.rstrip("/")
+        self.timeout_seconds = timeout_seconds
+        self._client = client
+
+    async def complete(self, request: LLMRequest) -> str:
+        payload = {
+            "model": self.model,
+            "messages": [
+                {"role": "system", "content": request.system},
+                {"role": "user", "content": request.user},
+            ],
+            "temperature": request.temperature,
+            "max_tokens": request.max_tokens,
+        }
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+        url = f"{self.base_url}/chat/completions"
+
+        if self._client is not None:
+            response = await self._client.post(url, json=payload, headers=headers)
+        else:
+            async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                response = await client.post(url, json=payload, headers=headers)
+
+        response.raise_for_status()
+        data = response.json()
+        try:
+            content = data["choices"][0]["message"]["content"]
+        except (KeyError, IndexError, TypeError) as exc:
+            raise ValueError("LLM provider returned an invalid chat completion payload") from exc
+        if not isinstance(content, str) or not content.strip():
+            raise ValueError("LLM provider returned an empty answer")
+        return content.strip()
+
+
 def get_provider(name: str | None) -> LLMProvider:
-    """Return a provider by name. Only `null` ships in-tree."""
+    """Return a provider by name."""
     key = (name or "null").strip().lower()
     if key in ("", "null", "none", "off", "disabled"):
         return NullLLMProvider()
+    if key in ("openai", "openai-compatible", "chat-completions"):
+        from app.config import settings
+
+        return OpenAICompatibleProvider(
+            api_key=settings.ai_ops_llm_api_key,
+            model=settings.ai_ops_llm_model,
+            base_url=settings.ai_ops_llm_base_url,
+            timeout_seconds=settings.ai_ops_llm_timeout_seconds,
+        )
     raise ValueError(
         f"unknown ai_ops provider '{name}'. Implement LLMProvider and register it."
     )
