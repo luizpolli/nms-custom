@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import hmac
 import hashlib
 
 import pytest
@@ -133,6 +132,12 @@ def test_verify_api_key_matches_one_of_many():
     assert verify_api_key("key-b", ["key-a", "key-b", "key-c"]) is True
 
 
+def test_verify_api_key_accepts_sha256_configured_key():
+    digest = hashlib.sha256("secret-abc".encode()).hexdigest()
+    assert verify_api_key("secret-abc", [f"sha256${digest}"]) is True
+    assert verify_api_key("wrong-key", [f"sha256${digest}"]) is False
+
+
 def test_verify_api_key_wrong_among_many():
     assert verify_api_key("key-x", ["key-a", "key-b", "key-c"]) is False
 
@@ -158,3 +163,16 @@ def test_require_api_auth_uses_constant_time(monkeypatch):
     with pytest.raises(HTTPException) as exc:
         asyncio.run(require_api_auth(_conn({"x-api-key": "wrong-key"})))
     assert exc.value.status_code == 401
+
+
+def test_require_api_auth_role_map_accepts_sha256_keys(monkeypatch):
+    digest = hashlib.sha256("viewer-secret".encode()).hexdigest()
+    configured = f"sha256${digest}"
+    monkeypatch.setattr(settings, "api_auth_enabled", True)
+    monkeypatch.setattr(settings, "api_keys", configured)
+    monkeypatch.setattr(settings, "api_key_roles", f"{configured}:viewer")
+
+    from app.security.auth import require_api_auth
+
+    principal = asyncio.run(require_api_auth(_conn({"x-api-key": "viewer-secret"})))
+    assert principal.role == "viewer"

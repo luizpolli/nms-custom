@@ -62,8 +62,28 @@ class Principal:
 # using hmac.compare_digest prevents timing oracles on the comparison itself).
 # ---------------------------------------------------------------------------
 
+_SHA256_PREFIX = "sha256$"
+
+
 def _sha256_digest(value: str) -> bytes:
     return hashlib.sha256(value.encode()).digest()
+
+
+def _sha256_hexdigest(value: str) -> str:
+    return hashlib.sha256(value.encode()).hexdigest()
+
+
+def _key_matches(presented: str, configured_key: str) -> bool:
+    """Constant-time match against plaintext or ``sha256$<hex>`` keys."""
+    configured_key = configured_key.strip()
+    if configured_key.lower().startswith(_SHA256_PREFIX):
+        expected_hex = configured_key[len(_SHA256_PREFIX):].strip().lower()
+        actual_hex = _sha256_hexdigest(presented)
+        if len(expected_hex) != len(actual_hex):
+            # Keep compare_digest length-stable for the common SHA-256 path.
+            return False
+        return hmac.compare_digest(actual_hex, expected_hex)
+    return hmac.compare_digest(_sha256_digest(presented), _sha256_digest(configured_key))
 
 
 def verify_api_key(presented: str, allowed_keys: Iterable[str]) -> bool:
@@ -73,11 +93,9 @@ def verify_api_key(presented: str, allowed_keys: Iterable[str]) -> bool:
     Returns True on first match; always runs through all keys to avoid
     short-circuit leakage.
     """
-    presented_digest = _sha256_digest(presented)
     matched = False
     for key in allowed_keys:
-        key_digest = _sha256_digest(key)
-        if hmac.compare_digest(presented_digest, key_digest):
+        if _key_matches(presented, key):
             matched = True
         # Do NOT break early — keep iterating to prevent timing leakage.
     return matched
@@ -183,10 +201,10 @@ async def require_api_auth(conn: HTTPConnection) -> Principal:
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    # Resolve role — still need plaintext comparison for the role map lookup.
-    # This is safe because role lookup happens *after* authentication succeeds.
+    # Resolve role. Role-map keys may be plaintext or sha256$ digests; lookup
+    # happens only after authentication succeeds.
     role = next(
-        (r for k, r in _role_map().items() if k == presented),
+        (r for k, r in _role_map().items() if _key_matches(presented, k)),
         "admin",
     )
     return Principal(subject="api-key", role=role)

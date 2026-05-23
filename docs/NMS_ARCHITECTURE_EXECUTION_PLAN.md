@@ -58,7 +58,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Lab Health scenario annotations:** exported JSON snapshots include optional timestamped scenario/run labels and notes for named lab events.
 - [ ] **Domain processors for event workers:** replace remaining defensive/skeleton event handlers with owned processors for alarm enrichment, discovery refresh orchestration, and telemetry fan-out rules.
 - [ ] **Helm production hardening:** add cluster-ready ingress/TLS integration, secret-manager wiring, autoscaling defaults, NetworkPolicies/PDB enablement guidance, and chart lint/render coverage in CI where missing.
-- [ ] **API/command authorization hardening:** `ALLOWED_HOSTS` is now enforced; still add per-action roles for command create/run, command allow-lists, and consider hashed/constant-time API key validation.
+- [x] **API/command authorization hardening:** `ALLOWED_HOSTS` is enforced; command endpoints have per-action RBAC, command allow-list enforcement, constant-time API key checks, and optional `sha256$<hex>` API key configuration.
 - [ ] **Settings P1 backend forms:** turn high-value placeholders into real editable forms for System mail/jobs/retention, Network Device CLI/SNMP defaults, and Alarms/Events severity/notification defaults.
 - [ ] **Settings P1 deep links:** add URL-addressable Settings subroutes or query params (`/settings?section=security`) so admin docs and permissions can link directly to each submenu.
 - [ ] **Broader integration tests:** add UDP/socket-level trap receiver integration tests in a dedicated suite once dependencies/capabilities are available.
@@ -1033,7 +1033,7 @@ Verified available presets/profiles:
 The source of truth is the **Current phase/task tracker** near the top of this document. In short:
 
 1. **P0 blocked:** native gRPC/protobuf gNMI adapter and 5k+ EPS soak both need real lab input/host capacity.
-2. **P1 unblocked:** real event-worker domain processors, Helm production hardening, command/API authorization follow-ups, and broader integration tests.
+2. **P1 unblocked:** real event-worker domain processors, Helm production hardening, Settings P1 backend forms/deep links, and broader integration tests.
 3. **P2 later:** service dependency refinements, optional LLM provider integration, and richer report exports.
 
 ## Notification rules

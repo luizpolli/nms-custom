@@ -38,16 +38,17 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 
 ### P1 — Recommended hardening next
 
-1. **Add command execution authorization tiers.**
-   - SSH command execution is API-auth gated and audited, with basic control-character validation.
-   - Add role/permission separation for command create/run and command allow-lists so viewers/operators cannot run arbitrary device CLI.
+1. **Keep command execution least-privilege.**
+   - SSH command execution is API-auth gated, audited, role/permission separated by command action, and can be restricted by `COMMAND_ALLOWLIST`.
+   - Before shared lab or production use, configure least-privilege `API_KEY_ROLES` and a command allow-list appropriate for the managed device fleet.
 
 2. **Add receiver-level authentication where protocols allow it.**
    - Native gNMI should require TLS/mTLS and per-device credentials.
    - Syslog/SNMP trap ingestion should stay restricted by source networks because the protocols are weakly authenticated in common lab modes.
 
-3. **Improve API-key handling.**
-   - Current API key matching is functional. For higher assurance, store hashed API keys, compare with constant-time checks, add key IDs, and audit key use.
+3. **Improve API-key lifecycle management.**
+   - API key comparisons use constant-time checks and `API_KEYS` / `API_KEY_ROLES` may use `sha256$<hex-digest>` values to avoid plaintext keys in env files.
+   - For higher assurance, add key IDs, rotation runbooks, and per-key audit metadata.
 
 4. **Container production hardening.**
    - Add non-root runtime users, read-only filesystems where possible, dropped Linux capabilities, and stricter volume mounts for Compose/Helm.
@@ -63,7 +64,7 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 
 | Area | Current control | Residual risk |
 | --- | --- | --- |
-| API auth | `API_AUTH_ENABLED`, `API_KEYS`, `API_KEY_ROLES`; router-level dependency on API routes | Disabled by default for local dev; plain API keys in env |
+| API auth | `API_AUTH_ENABLED`, `API_KEYS`, `API_KEY_ROLES`; router-level dependency on API routes; constant-time plaintext or `sha256$<hex>` key matching | Disabled by default for local dev; key IDs/rotation are still manual |
 | RBAC | Role dependency available; AI Ops assistant restricted to `admin,ai-ops` by default | Most API routes are broad API-key authenticated, not per-action authorized |
 | TLS | Optional HTTPS with TLS min version; Compose defaults enable HTTPS | Development self-signed cert auto-generation if cert/key missing |
 | CORS / host headers | Configurable `CORS_ORIGINS`; `ALLOWED_HOSTS` enforced by Trusted Host middleware with localhost/test/container dev defaults | Production deployments must set explicit public hostnames; avoid `*` |
@@ -71,7 +72,7 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 | AI Ops LLM | Disabled by default; null provider; redaction; evidence citations; max lengths; role gate | External provider integrations still need provider-specific egress/retention review |
 | MIB uploads | Filename normalization, traversal check, extension allow-list, size cap | Parser treats content as text; malicious large/complex MIBs need fuzz/timeout coverage |
 | Ingestion | Dedicated receivers and event envelope | UDP/TCP listeners rely on firewall/network policy; unauthenticated protocol modes |
-| SSH commands | Auth-gated, audited, bounded length, no control chars | Needs command allow-lists and role separation before production use |
+| SSH commands | Auth-gated, audited, bounded length, no control chars, command-action RBAC, optional `COMMAND_ALLOWLIST` | Production deployments must explicitly configure roles and allow-list patterns |
 | Compose exposure | Clear service/port map | Datastores and receivers publish host ports by default |
 | Helm | Production-ish values for auth/HTTPS, NetworkPolicy/PDB/ExternalSecret stubs | NetworkPolicy disabled by default; chart lint/render CI coverage still pending |
 
@@ -81,7 +82,7 @@ Before exposing beyond a single local developer machine:
 
 - [ ] `APP_ENV=production` and `DEBUG=false`.
 - [ ] `API_AUTH_ENABLED=true` with at least two rotated, high-entropy API keys.
-- [ ] `API_KEY_ROLES` maps keys to least-privilege roles.
+- [ ] `API_KEY_ROLES` maps keys to least-privilege roles; prefer `sha256$<hex-digest>` keys outside local dev.
 - [ ] `SECRET_KEY`, credential encryption key, and database passwords are generated secrets, not examples.
 - [ ] `SNMP_DEFAULT_COMMUNITY` is not `public`; prefer SNMPv3 credentials.
 - [ ] `CORS_ORIGINS` and `ALLOWED_HOSTS` are explicit.
@@ -89,4 +90,4 @@ Before exposing beyond a single local developer machine:
 - [ ] Ingestion receiver ports are limited to trusted source subnets.
 - [ ] TLS cert/key are mounted from a trusted issuer or internal CA.
 - [ ] AI Ops external providers remain disabled until data retention, logging, and redaction are reviewed.
-- [ ] SSH command endpoints are limited to trusted admins and backed by command allow-lists.
+- [ ] SSH command endpoints are limited to trusted admins/operators and backed by `COMMAND_ALLOWLIST`.
