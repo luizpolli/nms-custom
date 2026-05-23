@@ -112,6 +112,9 @@ def test_service_impact_dependency_penalty_propagates():
     assert impact.score < 100
     assert impact.dependency_penalty > 0
     assert impact.dependency_impacts[0].target_service_name == "core-transport"
+    assert impact.evidence is not None
+    assert impact.evidence["dependency_penalty"] == impact.dependency_penalty
+    assert impact.evidence["dependency_impacts"][0]["dependency_id"] == str(dep.id)
 
 
 def test_service_impact_healthy_dependency_does_not_penalize():
@@ -131,3 +134,27 @@ def test_service_impact_healthy_dependency_does_not_penalize():
     assert impact.score == 100
     assert impact.dependency_penalty == 0
     assert impact.dependency_impacts == []
+
+
+def test_service_impact_direction_override_none_suppresses_penalty():
+    downstream = Service(id=uuid.uuid4(), name="customer-vpn", kind="customer", members=[])
+    upstream = Service(id=uuid.uuid4(), name="core-transport", kind="transport", members=[])
+    dep = ServiceDependency(
+        id=uuid.uuid4(),
+        source_service_id=downstream.id,
+        target_service_id=upstream.id,
+        target_service=upstream,
+        weight=10.0,
+        is_critical=True,
+        direction="source_to_target",
+        direction_override="none",
+    )
+    downstream.upstream_dependencies = [dep]
+
+    impact = _compute_service_impact(downstream, {}, {}, {}, {upstream.id: 10})
+
+    assert impact.score == 100
+    assert impact.dependency_penalty == 0
+    assert impact.dependency_impacts == []
+    assert impact.evidence is not None
+    assert impact.evidence["dependency_impacts"] == []

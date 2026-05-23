@@ -128,6 +128,8 @@ class ServiceDependencyImpact(BaseModel):
     weight: float
     is_critical: bool
     direction: str
+    direction_override: str = "auto"
+    effective_direction: str = "source_to_target"
 
 
 class ServiceImpact(BaseModel):
@@ -145,6 +147,7 @@ class ServiceImpact(BaseModel):
     worst_severity: str
     members: list[ServiceImpactMember] = Field(default_factory=list)
     dependency_impacts: list[ServiceDependencyImpact] = Field(default_factory=list)
+    evidence: dict | None = None
 
 
 class AssuranceSummary(BaseModel):
@@ -502,6 +505,13 @@ def _dependency_penalty(base_score: int, *, weight: float, is_critical: bool) ->
     return min(60, max(1, round(severity_gap * max(weight, 0.0) * factor)))
 
 
+def _effective_dependency_direction(dependency: ServiceDependency) -> str:
+    override = getattr(dependency, "direction_override", "auto") or "auto"
+    if override == "auto":
+        return dependency.direction
+    return override
+
+
 def _compute_service_impact(
     service: Service,
     alarms_by_device: dict[uuid.UUID, list[Alarm]],
@@ -558,6 +568,9 @@ def _compute_service_impact(
     dependency_penalty = 0
     if dependency_scores:
         for d in service.upstream_dependencies or []:
+            effective_direction = _effective_dependency_direction(d)
+            if effective_direction == "none":
+                continue
             target_score = dependency_scores.get(d.target_service_id, 100)
             penalty = _dependency_penalty(target_score, weight=d.weight, is_critical=d.is_critical)
             if penalty <= 0:
@@ -573,9 +586,41 @@ def _compute_service_impact(
                     weight=d.weight,
                     is_critical=d.is_critical,
                     direction=d.direction,
+                    direction_override=getattr(d, "direction_override", "auto") or "auto",
+                    effective_direction=effective_direction,
                 )
             )
     final_score = clamp_score(service_score - dependency_penalty)
+
+    evidence_payload: dict = {
+        "base_score": service_score,
+        "dependency_penalty": dependency_penalty,
+        "members": [
+            {
+                "member_id": str(m.member_id),
+                "label": m.label,
+                "weight": m.weight,
+                "score": m.score,
+                "active_alarms": m.active_alarms,
+                "worst_severity": m.worst_severity,
+            }
+            for m in members
+        ],
+        "dependency_impacts": [
+            {
+                "dependency_id": str(d.dependency_id),
+                "target_service_name": d.target_service_name,
+                "target_score": d.target_score,
+                "weight": d.weight,
+                "is_critical": d.is_critical,
+                "propagated_penalty": d.propagated_penalty,
+                "direction": d.direction,
+                "direction_override": d.direction_override,
+                "effective_direction": d.effective_direction,
+            }
+            for d in dependency_impacts
+        ],
+    }
 
     return ServiceImpact(
         service_id=service.id,
@@ -592,6 +637,7 @@ def _compute_service_impact(
         worst_severity=_worst_severity(severities),
         members=sorted(members, key=lambda x: (x.score, -_severity_rank(x.worst_severity))),
         dependency_impacts=sorted(dependency_impacts, key=lambda x: (-x.propagated_penalty, x.target_service_name)),
+        evidence=evidence_payload,
     )
 
 
@@ -717,6 +763,7 @@ async def _persist_service_score_snapshots(
                 base_score=impact.base_score,
                 dependency_penalty=impact.dependency_penalty,
                 health_state=impact.health_state,
+                evidence=impact.evidence,
             )
         )
 
@@ -818,6 +865,7 @@ class ServiceScorePoint(BaseModel):
     base_score: int | None = None
     dependency_penalty: int = 0
     health_state: str
+    evidence: dict | None = None
 
 
 class NetworkScorePoint(BaseModel):
@@ -913,6 +961,7 @@ async def assurance_service_history(
             base_score=s.base_score,
             dependency_penalty=s.dependency_penalty,
             health_state=s.health_state,
+            evidence=s.evidence,
         )
         for s in snapshots
     ]

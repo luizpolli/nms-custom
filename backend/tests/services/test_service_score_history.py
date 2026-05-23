@@ -40,6 +40,7 @@ def _impact(service_id: uuid.UUID, score: int = 80) -> ServiceImpact:
         impacted_member_count=0,
         active_alarm_count=0,
         worst_severity="info",
+        evidence={"base_score": score, "dependency_penalty": 0},
     )
 
 
@@ -57,6 +58,7 @@ async def test_persist_snapshot_writes_first_sample():
         assert len(rows) == 1
         assert rows[0].service_id == service.id
         assert rows[0].score == 75
+        assert rows[0].evidence == {"base_score": 75, "dependency_penalty": 0}
     finally:
         await session.close()
 

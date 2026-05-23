@@ -17,6 +17,10 @@ from app.models.service import Service, ServiceDependency, ServiceMember
 router = APIRouter()
 
 
+_VALID_DIRECTIONS = {"source_to_target", "target_to_source", "bidirectional"}
+_VALID_OVERRIDES = {"auto", "source_to_target", "target_to_source", "bidirectional", "none"}
+
+
 class ServiceDependencyRead(BaseModel):
     id: uuid.UUID
     source_service_id: uuid.UUID
@@ -25,6 +29,8 @@ class ServiceDependencyRead(BaseModel):
     target_service_name: str | None = None
     dependency_type: str
     direction: str
+    direction_override: str = "auto"
+    effective_direction: str = "source_to_target"
     weight: float
     is_critical: bool
     description: str | None = None
@@ -35,8 +41,18 @@ class ServiceDependencyCreate(BaseModel):
     target_service_id: uuid.UUID
     dependency_type: str = "depends_on"
     direction: str = "source_to_target"
+    direction_override: str = "auto"
     weight: float = 1.0
     is_critical: bool = False
+    description: str | None = None
+
+
+class ServiceDependencyUpdate(BaseModel):
+    dependency_type: str | None = None
+    direction: str | None = None
+    direction_override: str | None = None
+    weight: float | None = Field(default=None, ge=0.0, le=10.0)
+    is_critical: bool | None = None
     description: str | None = None
 
 
@@ -83,7 +99,15 @@ class ServiceUpdate(BaseModel):
     target_score: int | None = Field(default=None, ge=0, le=100)
 
 
+def _effective_direction(d: ServiceDependency) -> str:
+    override = getattr(d, "direction_override", "auto") or "auto"
+    if override == "auto" or override == "none":
+        return d.direction
+    return override
+
+
 def _to_dependency_read(d: ServiceDependency) -> ServiceDependencyRead:
+    override = getattr(d, "direction_override", "auto") or "auto"
     return ServiceDependencyRead(
         id=d.id,
         source_service_id=d.source_service_id,
@@ -92,6 +116,8 @@ def _to_dependency_read(d: ServiceDependency) -> ServiceDependencyRead:
         target_service_name=d.target_service.name if d.target_service else None,
         dependency_type=d.dependency_type,
         direction=d.direction,
+        direction_override=override,
+        effective_direction=_effective_direction(d),
         weight=d.weight,
         is_critical=d.is_critical,
         description=d.description,
@@ -244,11 +270,16 @@ async def add_dependency(
     )
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Dependency already exists")
+    if body.direction not in _VALID_DIRECTIONS:
+        raise HTTPException(status_code=400, detail=f"Invalid direction: {body.direction}")
+    if body.direction_override not in _VALID_OVERRIDES:
+        raise HTTPException(status_code=400, detail=f"Invalid direction_override: {body.direction_override}")
     dependency = ServiceDependency(
         source_service_id=service_id,
         target_service_id=body.target_service_id,
         dependency_type=body.dependency_type,
         direction=body.direction,
+        direction_override=body.direction_override,
         weight=body.weight,
         is_critical=body.is_critical,
         description=body.description,
@@ -256,6 +287,38 @@ async def add_dependency(
     dependency.source_service = service
     dependency.target_service = target
     db.add(dependency)
+    await db.flush()
+    await db.refresh(dependency)
+    return _to_dependency_read(dependency)
+
+
+@router.patch("/{service_id}/dependencies/{dependency_id}", response_model=ServiceDependencyRead)
+async def update_dependency(
+    service_id: uuid.UUID,
+    dependency_id: uuid.UUID,
+    body: ServiceDependencyUpdate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> ServiceDependencyRead:
+    dependency = await db.get(ServiceDependency, dependency_id)
+    if not dependency or dependency.source_service_id != service_id:
+        raise HTTPException(status_code=404, detail="Dependency not found")
+    data = body.model_dump(exclude_unset=True)
+    if "direction" in data and data["direction"] is not None:
+        if data["direction"] not in _VALID_DIRECTIONS:
+            raise HTTPException(status_code=400, detail=f"Invalid direction: {data['direction']}")
+        dependency.direction = data["direction"]
+    if "direction_override" in data and data["direction_override"] is not None:
+        if data["direction_override"] not in _VALID_OVERRIDES:
+            raise HTTPException(status_code=400, detail=f"Invalid direction_override: {data['direction_override']}")
+        dependency.direction_override = data["direction_override"]
+    if "dependency_type" in data and data["dependency_type"] is not None:
+        dependency.dependency_type = data["dependency_type"]
+    if "weight" in data and data["weight"] is not None:
+        dependency.weight = float(data["weight"])
+    if "is_critical" in data and data["is_critical"] is not None:
+        dependency.is_critical = bool(data["is_critical"])
+    if "description" in data:
+        dependency.description = data["description"]
     await db.flush()
     await db.refresh(dependency)
     return _to_dependency_read(dependency)

@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 def _utcnow() -> datetime:
     return datetime.now(timezone.utc)
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
+from sqlalchemy import JSON, Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -68,6 +68,7 @@ class ServiceDependency(Base):
     )
     dependency_type: Mapped[str] = mapped_column(String(50), nullable=False, default="depends_on")
     direction: Mapped[str] = mapped_column(String(50), nullable=False, default="source_to_target")
+    direction_override: Mapped[str] = mapped_column(String(50), nullable=False, default="auto", server_default="auto")
     weight: Mapped[float] = mapped_column(Float, nullable=False, default=1.0)
     is_critical: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
@@ -120,6 +121,7 @@ class ServiceScoreSnapshot(Base):
     base_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
     dependency_penalty: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     health_state: Mapped[str] = mapped_column(String(32), nullable=False, default="healthy")
+    evidence: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     captured_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=_utcnow, nullable=False, index=True
     )

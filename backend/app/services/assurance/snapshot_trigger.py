@@ -95,6 +95,7 @@ async def snapshot_all_services(session: AsyncSession) -> int:
             base_score=impact.base_score,
             dependency_penalty=impact.dependency_penalty,
             health_state=impact.health_state,
+            evidence=impact.evidence,
         )
         for impact in impacts
     ]

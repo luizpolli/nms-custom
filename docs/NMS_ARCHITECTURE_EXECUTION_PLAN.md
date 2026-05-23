@@ -65,7 +65,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 
 #### P2 — Later polish / product expansion
 
-- [ ] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, and richer service/member evidence.
+- [x] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, dependency evidence payloads, and persisted service score evidence.
 - [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
 - [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
 - [ ] **Settings P2 polish:** add searchable Settings index, permission-aware hiding/locking per submenu, audit events for all admin changes, and import/export of Settings profiles.
