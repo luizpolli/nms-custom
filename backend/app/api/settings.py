@@ -29,6 +29,7 @@ _SECURITY_KEY = "security"
 _SYSTEM_KEY = "system"
 _NETWORK_DEVICES_KEY = "network_devices"
 _ALARMS_EVENTS_KEY = "alarms_events"
+_PROFILE_VERSION = 1
 
 _EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 
@@ -157,6 +158,13 @@ async def _save_setting(db: AsyncSession, key: str, data: BaseModel) -> None:
         row.value = data.model_dump()
 
 
+async def _load_security_settings(db: AsyncSession) -> SecuritySettings:
+    row = await db.get(SystemSetting, _SECURITY_KEY)
+    if not row:
+        return _defaults()
+    return SecuritySettings(**{**_defaults().model_dump(), **row.value})
+
+
 # ---------------------------------------------------------------------------
 # System settings endpoints
 # ---------------------------------------------------------------------------
@@ -266,6 +274,14 @@ class SecuritySettings(BaseModel):
         if value and (".." in value or any(ch in value for ch in "\r\n\x00")):
             raise ValueError("Invalid certificate path")
         return value
+
+
+class SettingsProfile(BaseModel):
+    profile_version: int = _PROFILE_VERSION
+    security: SecuritySettings
+    system: SystemAdminSettings
+    network_devices: NetworkDeviceAdminSettings
+    alarms_events: AlarmsEventsAdminSettings
 
 
 class UserRead(BaseModel):
@@ -425,10 +441,7 @@ async def _ensure_builtin_roles(db: AsyncSession) -> None:
 
 @router.get("/security", response_model=SecuritySettings)
 async def get_security_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> SecuritySettings:
-    row = await db.get(SystemSetting, _SECURITY_KEY)
-    if not row:
-        return _defaults()
-    return SecuritySettings(**{**_defaults().model_dump(), **row.value})
+    return await _load_security_settings(db)
 
 
 @router.patch("/security", response_model=SecuritySettings)
@@ -445,6 +458,58 @@ async def update_security_settings(
     else:
         row.value = body.model_dump()
     audit("settings.security.update", target="security", settings=body.model_dump())
+    return body
+
+
+@router.get("/profile", response_model=SettingsProfile)
+async def export_settings_profile(db: Annotated[AsyncSession, Depends(get_db)]) -> SettingsProfile:
+    profile = SettingsProfile(
+        security=await _load_security_settings(db),
+        system=await _load_setting(db, _SYSTEM_KEY, SystemAdminSettings, SystemAdminSettings),
+        network_devices=await _load_setting(
+            db,
+            _NETWORK_DEVICES_KEY,
+            NetworkDeviceAdminSettings,
+            NetworkDeviceAdminSettings,
+        ),
+        alarms_events=await _load_setting(
+            db,
+            _ALARMS_EVENTS_KEY,
+            AlarmsEventsAdminSettings,
+            AlarmsEventsAdminSettings,
+        ),
+    )
+    audit("settings.profile.export", target="settings-profile")
+    return profile
+
+
+@router.put("/profile", response_model=SettingsProfile)
+async def import_settings_profile(
+    body: SettingsProfile,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> SettingsProfile:
+    if body.profile_version != _PROFILE_VERSION:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Unsupported settings profile version {body.profile_version}",
+        )
+    if body.security.https_enabled and (
+        not body.security.tls_cert_file or not body.security.tls_key_file
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="HTTPS requires certificate and key file paths",
+        )
+
+    await _save_setting(db, _SECURITY_KEY, body.security)
+    await _save_setting(db, _SYSTEM_KEY, body.system)
+    await _save_setting(db, _NETWORK_DEVICES_KEY, body.network_devices)
+    await _save_setting(db, _ALARMS_EVENTS_KEY, body.alarms_events)
+    audit(
+        "settings.profile.import",
+        target="settings-profile",
+        profile_version=body.profile_version,
+    )
     return body
 
 

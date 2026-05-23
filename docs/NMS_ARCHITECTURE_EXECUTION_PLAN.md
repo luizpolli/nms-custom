@@ -68,7 +68,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, dependency evidence payloads, and persisted service score evidence.
 - [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
 - [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
-- [ ] **Settings P2 polish:** add searchable Settings index, permission-aware hiding/locking per submenu, audit events for all admin changes, and import/export of Settings profiles.
+- [ ] **Settings P2 polish:** Settings profile import/export is in place for backend-backed sections; remaining polish is searchable Settings index, permission-aware hiding/locking per submenu, and broader audit-event persistence/visibility.
 
 ### Settings administration backlog
 
@@ -1036,6 +1036,15 @@ Broader receiver socket coverage is in place.
 - Syslog receiver tests bind a local UDP socket and validate Cisco-ish BSD syslog and malformed payload dispatch through registered handlers.
 - SNMP trap receiver test sends a raw simulator-built SNMPv2c trap packet through a real UDP socket and validates the resulting `TrapEvent`; it skips only when `pysnmp-lextudio` is not installed in the local environment.
 - Validation: `.venv/bin/python -m pytest tests/integration/test_receiver_udp_socket.py tests/services/test_syslog_receiver.py tests/services/test_snmp_trap_fixtures.py tests/integration/test_trap_receiver_socket.py` → 42 passed, 1 skipped. The skip is expected in the current local venv because `pysnmp-lextudio` is absent.
+
+## Settings profile import/export — 2026-05-23
+
+Settings P2 import/export profile support is in place for the backend-backed sections.
+
+- Added `GET /api/settings/profile` to export `security`, `system`, `network_devices`, and `alarms_events` settings with a profile version.
+- Added `PUT /api/settings/profile` to import those sections atomically through the same validation models used by the individual settings endpoints.
+- Profile import/export emits audit events through the existing audit logger.
+- Validation: `.venv/bin/python -m pytest tests/api/test_settings_admin.py` → 17 passed.
 
 ## Current immediate next tasks — 2026-05-19
 

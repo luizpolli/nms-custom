@@ -288,3 +288,60 @@ class TestAlarmsEventsSettings:
         resp = self.client.get("/api/settings/alarms-events")
         assert resp.status_code == 200
         assert resp.json()["suppression"]["suppression_window_minutes"] == 15
+
+
+# ---------------------------------------------------------------------------
+# Settings profile import/export tests
+# ---------------------------------------------------------------------------
+
+class TestSettingsProfile:
+    def setup_method(self):
+        self.store: dict = {}
+        self.client = _make_client(self.store)
+
+    def teardown_method(self):
+        app.dependency_overrides.pop(get_db, None)
+
+    def test_export_profile_returns_all_backend_backed_sections(self):
+        resp = self.client.get("/api/settings/profile")
+        assert resp.status_code == 200
+        body = resp.json()
+
+        assert body["profile_version"] == 1
+        assert body["security"]["tls_min_version"] in {"TLSv1.2", "TLSv1.3"}
+        assert body["system"]["mail"]["smtp_port"] == 587
+        assert body["network_devices"]["snmp"]["snmp_port"] == 161
+        assert body["alarms_events"]["notifications"]["min_severity_to_notify"] == "major"
+
+    def test_import_profile_persists_all_sections(self):
+        payload = self.client.get("/api/settings/profile").json()
+        payload["security"]["api_auth_enabled"] = True
+        payload["system"]["mail"]["smtp_host"] = "smtp.profile.local"
+        payload["network_devices"]["cli"]["ssh_timeout_seconds"] = 75
+        payload["alarms_events"]["suppression"]["suppression_window_minutes"] = 22
+
+        resp = self.client.put("/api/settings/profile", json=payload)
+        assert resp.status_code == 200
+
+        assert self.client.get("/api/settings/security").json()["api_auth_enabled"] is True
+        assert self.client.get("/api/settings/system").json()["mail"]["smtp_host"] == "smtp.profile.local"
+        assert self.client.get("/api/settings/network-devices").json()["cli"]["ssh_timeout_seconds"] == 75
+        assert self.client.get("/api/settings/alarms-events").json()["suppression"]["suppression_window_minutes"] == 22
+
+    def test_import_profile_rejects_unknown_version(self):
+        payload = self.client.get("/api/settings/profile").json()
+        payload["profile_version"] = 999
+
+        resp = self.client.put("/api/settings/profile", json=payload)
+        assert resp.status_code == 400
+        assert "Unsupported settings profile version" in resp.json()["detail"]
+
+    def test_import_profile_rejects_incomplete_https_config(self):
+        payload = self.client.get("/api/settings/profile").json()
+        payload["security"]["https_enabled"] = True
+        payload["security"]["tls_cert_file"] = ""
+        payload["security"]["tls_key_file"] = ""
+
+        resp = self.client.put("/api/settings/profile", json=payload)
+        assert resp.status_code == 400
+        assert resp.json()["detail"] == "HTTPS requires certificate and key file paths"
