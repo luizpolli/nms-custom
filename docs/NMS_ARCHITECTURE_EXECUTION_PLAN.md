@@ -68,7 +68,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, dependency evidence payloads, and persisted service score evidence.
 - [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
 - [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
-- [ ] **Settings P2 polish:** Settings profile import/export is in place for backend-backed sections; remaining polish is searchable Settings index, permission-aware hiding/locking per submenu, and broader audit-event persistence/visibility.
+- [ ] **Settings P2 polish:** Settings profile import/export and sidebar search are in place; remaining polish is permission-aware hiding/locking per submenu and broader audit-event persistence/visibility.
 
 ### Settings administration backlog
 
@@ -1045,6 +1045,14 @@ Settings P2 import/export profile support is in place for the backend-backed sec
 - Added `PUT /api/settings/profile` to import those sections atomically through the same validation models used by the individual settings endpoints.
 - Profile import/export emits audit events through the existing audit logger.
 - Validation: `.venv/bin/python -m pytest tests/api/test_settings_admin.py` → 17 passed.
+
+## Settings searchable index — 2026-05-23
+
+Settings P2 navigation search is in place.
+
+- Added a sidebar search control on the Settings page that filters categories by title, description, status, and submenu labels.
+- Matching submenu chips are surfaced first so administrators can find sections like SNMP, TLS, retention, webhooks, and lab operations quickly.
+- Validation: `npm run build` → clean.
 
 ## Current immediate next tasks — 2026-05-19
 

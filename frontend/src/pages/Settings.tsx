@@ -15,6 +15,8 @@ import {
   Info,
   CheckCircle2,
   XCircle,
+  Search,
+  X,
 } from 'lucide-react';
 import { useThemeStore, type Theme } from '../stores/theme';
 import { Card, CardHeader } from '../components/ui/Card';
@@ -1455,12 +1457,26 @@ function isValidSection(s: string | null): s is CategoryKey {
   return s !== null && SECTION_KEYS.has(s as CategoryKey);
 }
 
+function settingsSearchText(category: Category): string {
+  return [
+    category.title,
+    category.description,
+    category.status || '',
+    ...category.submenus,
+  ].join(' ').toLowerCase();
+}
+
 function Settings() {
   const [searchParams, setSearchParams] = useSearchParams();
   const sectionParam = searchParams.get('section');
+  const [settingsSearch, setSettingsSearch] = useState('');
   const [active, setActive] = useState<CategoryKey>(
     isValidSection(sectionParam) ? sectionParam : 'general',
   );
+  const normalizedSearch = settingsSearch.trim().toLowerCase();
+  const visibleCategories = normalizedSearch
+    ? CATEGORIES.filter((cat) => settingsSearchText(cat).includes(normalizedSearch))
+    : CATEGORIES;
 
   const handleSelect = (key: CategoryKey) => {
     setActive(key);
@@ -1482,56 +1498,90 @@ function Settings() {
 
       <div className="grid grid-cols-12 gap-6">
         <aside className="col-span-12 md:col-span-4 lg:col-span-3 space-y-2">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => handleSelect(cat.key)}
-              className={`w-full rounded-lg border p-3 text-left transition-colors ${
-                active === cat.key
-                  ? 'border-cisco-blue bg-cisco-blue/5 ring-1 ring-cisco-blue'
-                  : 'border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800'
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cisco-blue text-xs font-bold text-white">
-                  {cat.number}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-cisco-blue dark:text-cisco-blue-light">{cat.icon}</span>
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{cat.title}</h3>
-                    {cat.status && (
-                      <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
-                        cat.status === 'live'
-                          ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
-                          : cat.status === 'partial'
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
-                            : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
-                      }`}>
-                        {cat.status}
-                      </span>
-                    )}
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+            <Input
+              type="search"
+              value={settingsSearch}
+              onChange={(e) => setSettingsSearch(e.target.value)}
+              placeholder="Search settings..."
+              className="pl-9 pr-9"
+              aria-label="Search settings"
+            />
+            {settingsSearch && (
+              <button
+                type="button"
+                onClick={() => setSettingsSearch('')}
+                className="absolute right-2 top-2 inline-flex h-6 w-6 items-center justify-center rounded text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                aria-label="Clear settings search"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+
+          {visibleCategories.map((cat) => {
+            const matchedSubmenus = normalizedSearch
+              ? cat.submenus.filter((submenu) => submenu.toLowerCase().includes(normalizedSearch))
+              : cat.submenus.slice(0, 3);
+
+            return (
+              <button
+                key={cat.key}
+                onClick={() => handleSelect(cat.key)}
+                className={`w-full rounded-lg border p-3 text-left transition-colors ${
+                  active === cat.key
+                    ? 'border-cisco-blue bg-cisco-blue/5 ring-1 ring-cisco-blue'
+                    : 'border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800'
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cisco-blue text-xs font-bold text-white">
+                    {cat.number}
                   </div>
-                  <p className="mt-1 text-xs leading-snug text-gray-600 dark:text-gray-400 line-clamp-3">
-                    {cat.description}
-                  </p>
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {cat.submenus.slice(0, 3).map((submenu) => (
-                      <span key={submenu} className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-600 dark:bg-gray-800 dark:text-gray-300">
-                        {submenu}
-                      </span>
-                    ))}
-                    {cat.submenus.length > 3 && (
-                      <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-500 dark:bg-gray-800">
-                        +{cat.submenus.length - 3}
-                      </span>
-                    )}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-cisco-blue dark:text-cisco-blue-light">{cat.icon}</span>
+                      <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{cat.title}</h3>
+                      {cat.status && (
+                        <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                          cat.status === 'live'
+                            ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
+                            : cat.status === 'partial'
+                              ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                              : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
+                        }`}>
+                          {cat.status}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 text-xs leading-snug text-gray-600 dark:text-gray-400 line-clamp-3">
+                      {cat.description}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {(matchedSubmenus.length ? matchedSubmenus : cat.submenus.slice(0, 3)).slice(0, 3).map((submenu) => (
+                        <span key={submenu} className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+                          {submenu}
+                        </span>
+                      ))}
+                      {!normalizedSearch && cat.submenus.length > 3 && (
+                        <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-500 dark:bg-gray-800">
+                          +{cat.submenus.length - 3}
+                        </span>
+                      )}
+                    </div>
                   </div>
+                  <ChevronRight className="h-4 w-4 text-gray-400" />
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
-              </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
+
+          {visibleCategories.length === 0 && (
+            <div className="rounded-lg border border-dashed border-gray-300 bg-white p-4 text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
+              No matching settings sections.
+            </div>
+          )}
         </aside>
 
         <main className="col-span-12 md:col-span-8 lg:col-span-9">
