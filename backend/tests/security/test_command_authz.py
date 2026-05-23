@@ -19,7 +19,9 @@ from app.security.auth import (
     PERM_COMMANDS_SCHEDULE,
     PERM_COMMANDS_DELETE,
     PERM_COMMANDS_EXPORT,
+    PERM_SETTINGS_SYSTEM,
     require_command_permission,
+    require_settings_permission,
     verify_api_key,
 )
 
@@ -107,6 +109,40 @@ def test_command_perm_passthrough_when_auth_disabled(monkeypatch):
     monkeypatch.setattr(settings, "api_auth_enabled", False)
     dep = require_command_permission(PERM_COMMANDS_RUN)
     # Auth disabled: local-dev principal, no role check applied.
+    p = asyncio.run(dep(_conn({})))
+    assert p.subject == "local-dev"
+
+
+def test_admin_has_settings_perms():
+    p = Principal(subject="test", role="admin")
+    assert p.has_setting_perm(PERM_SETTINGS_SYSTEM)
+
+
+def test_viewer_cannot_access_settings_when_auth_enabled(monkeypatch):
+    monkeypatch.setattr(settings, "api_auth_enabled", True)
+    monkeypatch.setattr(settings, "api_keys", "viewer-key")
+    monkeypatch.setattr(settings, "api_key_roles", "viewer-key:viewer")
+
+    dep = require_settings_permission(PERM_SETTINGS_SYSTEM)
+    with pytest.raises(HTTPException) as exc:
+        asyncio.run(dep(_conn({"x-api-key": "viewer-key"})))
+    assert exc.value.status_code == 403
+    assert PERM_SETTINGS_SYSTEM in exc.value.detail
+
+
+def test_admin_can_access_settings_when_auth_enabled(monkeypatch):
+    monkeypatch.setattr(settings, "api_auth_enabled", True)
+    monkeypatch.setattr(settings, "api_keys", "admin-key")
+    monkeypatch.setattr(settings, "api_key_roles", "admin-key:admin")
+
+    dep = require_settings_permission(PERM_SETTINGS_SYSTEM)
+    principal = asyncio.run(dep(_conn({"x-api-key": "admin-key"})))
+    assert principal.role == "admin"
+
+
+def test_settings_perm_passthrough_when_auth_disabled(monkeypatch):
+    monkeypatch.setattr(settings, "api_auth_enabled", False)
+    dep = require_settings_permission(PERM_SETTINGS_SYSTEM)
     p = asyncio.run(dep(_conn({})))
     assert p.subject == "local-dev"
 

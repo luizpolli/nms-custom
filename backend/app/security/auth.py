@@ -25,6 +25,16 @@ PERM_COMMANDS_RUN_BULK = "commands:run_bulk"
 PERM_COMMANDS_EXPORT = "commands:export"
 PERM_COMMANDS_SCHEDULE = "commands:schedule"
 
+# Settings/admin permissions use the same catalog keys exposed by
+# app.api.permissions_catalog so API-key roles and the UI speak one language.
+PERM_SETTINGS_SYSTEM = "administrative_operations_system_settings"
+PERM_SETTINGS_USERS_GROUPS = "administrative_operations_users_and_groups"
+PERM_SETTINGS_USER_ADMIN_USERS_GROUPS = "user_administration_users_and_groups"
+PERM_SETTINGS_VIEW_AUDIT = "administrative_operations_view_audit_logs_access"
+PERM_SETTINGS_AUDIT_TRAILS = "administrative_operations_audit_trails"
+PERM_SETTINGS_NETWORK_SNMP = "system_settings_submenu_network_and_device_snmp"
+PERM_SETTINGS_ALARMS_EVENTS = "system_settings_submenu_alarm_and_events_alarm_and_events"
+
 # Roles and their granted command permissions (additive).
 _ROLE_COMMAND_PERMS: dict[str, frozenset[str]] = {
     "admin": frozenset({
@@ -44,6 +54,13 @@ _ROLE_COMMAND_PERMS: dict[str, frozenset[str]] = {
     "viewer": frozenset({PERM_COMMANDS_READ}),
 }
 
+_ROLE_SETTINGS_PERMS: dict[str, frozenset[str]] = {
+    "admin": frozenset({"*"}),
+    "operator": frozenset(),
+    "ai-ops": frozenset(),
+    "viewer": frozenset(),
+}
+
 
 @dataclass(frozen=True)
 class Principal:
@@ -54,6 +71,11 @@ class Principal:
         """Return True if this principal's role grants *perm*."""
         role_perms = _ROLE_COMMAND_PERMS.get(self.role.lower(), frozenset())
         return perm in role_perms
+
+    def has_setting_perm(self, perm: str) -> bool:
+        """Return True if this principal's role grants a settings/admin permission."""
+        role_perms = _ROLE_SETTINGS_PERMS.get(self.role.lower(), frozenset())
+        return "*" in role_perms or perm in role_perms
 
 
 # ---------------------------------------------------------------------------
@@ -160,6 +182,28 @@ def require_command_permission(perm: str):
                 detail=f"permission '{perm}' required; role '{principal.role}' is not sufficient",
             )
         return principal
+
+    return _checker
+
+
+def require_settings_permission(*perms: str):
+    """FastAPI dependency factory: require any settings/admin permission.
+
+    The checks are enforced only when API auth is enabled, matching the command
+    authorization behavior and keeping local lab mode frictionless.
+    """
+    required = tuple(perm for perm in perms if perm)
+
+    async def _checker(conn: HTTPConnection) -> Principal:
+        principal = await require_api_auth(conn)
+        if not settings.api_auth_enabled:
+            return principal
+        if not required or any(principal.has_setting_perm(perm) for perm in required):
+            return principal
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"one of permissions {required!r} required; role '{principal.role}' is not sufficient",
+        )
 
     return _checker
 

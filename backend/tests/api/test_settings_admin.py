@@ -111,6 +111,27 @@ class TestSystemSettings:
         assert body["jobs"]["job_concurrency"] == 4
         assert body["retention"]["alarm_retention_days"] == 90
 
+    def test_viewer_api_key_cannot_read_system_settings(self, monkeypatch):
+        from app.config import settings
+
+        monkeypatch.setattr(settings, "api_auth_enabled", True)
+        monkeypatch.setattr(settings, "api_keys", "viewer-key")
+        monkeypatch.setattr(settings, "api_key_roles", "viewer-key:viewer")
+
+        resp = self.client.get("/api/settings/system", headers={"X-API-Key": "viewer-key"})
+        assert resp.status_code == 403
+
+    def test_admin_api_key_can_read_system_settings(self, monkeypatch):
+        from app.config import settings
+
+        monkeypatch.setattr(settings, "api_auth_enabled", True)
+        monkeypatch.setattr(settings, "api_keys", "admin-key")
+        monkeypatch.setattr(settings, "api_key_roles", "admin-key:admin")
+
+        resp = self.client.get("/api/settings/system", headers={"X-API-Key": "admin-key"})
+        assert resp.status_code == 200
+        assert resp.json()["jobs"]["job_concurrency"] == 4
+
     def test_put_persists_and_reflects(self):
         payload = {
             "mail": {"smtp_host": "mail.example.com", "smtp_port": 465,

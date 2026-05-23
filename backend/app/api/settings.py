@@ -24,6 +24,16 @@ from app.models.audit import AuditLog
 from app.models.system import AppRole, AppUser, SystemSetting
 from app.schemas.audit import AuditLogRead
 from app.security.audit import audit
+from app.security.auth import (
+    PERM_SETTINGS_ALARMS_EVENTS,
+    PERM_SETTINGS_AUDIT_TRAILS,
+    PERM_SETTINGS_NETWORK_SNMP,
+    PERM_SETTINGS_SYSTEM,
+    PERM_SETTINGS_USER_ADMIN_USERS_GROUPS,
+    PERM_SETTINGS_USERS_GROUPS,
+    PERM_SETTINGS_VIEW_AUDIT,
+    require_settings_permission,
+)
 from app.security.passwords import hash_password
 
 router = APIRouter()
@@ -192,7 +202,10 @@ async def _load_security_settings(db: AsyncSession) -> SecuritySettings:
 # ---------------------------------------------------------------------------
 
 @router.get("/system", response_model=SystemAdminSettings)
-async def get_system_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> SystemAdminSettings:
+async def get_system_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> SystemAdminSettings:
     return await _load_setting(db, _SYSTEM_KEY, SystemAdminSettings, SystemAdminSettings)
 
 
@@ -200,6 +213,7 @@ async def get_system_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> S
 async def update_system_settings(
     body: SystemAdminSettings,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
 ) -> SystemAdminSettings:
     await _save_setting(db, _SYSTEM_KEY, body)
     _record_settings_audit(db, "settings.system.update", target=_SYSTEM_KEY)
@@ -211,7 +225,10 @@ async def update_system_settings(
 # ---------------------------------------------------------------------------
 
 @router.get("/network-devices", response_model=NetworkDeviceAdminSettings)
-async def get_network_device_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> NetworkDeviceAdminSettings:
+async def get_network_device_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM, PERM_SETTINGS_NETWORK_SNMP))],
+) -> NetworkDeviceAdminSettings:
     return await _load_setting(db, _NETWORK_DEVICES_KEY, NetworkDeviceAdminSettings, NetworkDeviceAdminSettings)
 
 
@@ -219,6 +236,7 @@ async def get_network_device_settings(db: Annotated[AsyncSession, Depends(get_db
 async def update_network_device_settings(
     body: NetworkDeviceAdminSettings,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM, PERM_SETTINGS_NETWORK_SNMP))],
 ) -> NetworkDeviceAdminSettings:
     await _save_setting(db, _NETWORK_DEVICES_KEY, body)
     _record_settings_audit(db, "settings.network_devices.update", target=_NETWORK_DEVICES_KEY)
@@ -230,7 +248,10 @@ async def update_network_device_settings(
 # ---------------------------------------------------------------------------
 
 @router.get("/alarms-events", response_model=AlarmsEventsAdminSettings)
-async def get_alarms_events_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> AlarmsEventsAdminSettings:
+async def get_alarms_events_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM, PERM_SETTINGS_ALARMS_EVENTS))],
+) -> AlarmsEventsAdminSettings:
     return await _load_setting(db, _ALARMS_EVENTS_KEY, AlarmsEventsAdminSettings, AlarmsEventsAdminSettings)
 
 
@@ -238,6 +259,7 @@ async def get_alarms_events_settings(db: Annotated[AsyncSession, Depends(get_db)
 async def update_alarms_events_settings(
     body: AlarmsEventsAdminSettings,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM, PERM_SETTINGS_ALARMS_EVENTS))],
 ) -> AlarmsEventsAdminSettings:
     await _save_setting(db, _ALARMS_EVENTS_KEY, body)
     _record_settings_audit(db, "settings.alarms_events.update", target=_ALARMS_EVENTS_KEY)
@@ -462,7 +484,10 @@ async def _ensure_builtin_roles(db: AsyncSession) -> None:
 
 
 @router.get("/security", response_model=SecuritySettings)
-async def get_security_settings(db: Annotated[AsyncSession, Depends(get_db)]) -> SecuritySettings:
+async def get_security_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> SecuritySettings:
     return await _load_security_settings(db)
 
 
@@ -470,6 +495,7 @@ async def get_security_settings(db: Annotated[AsyncSession, Depends(get_db)]) ->
 async def update_security_settings(
     body: SecuritySettings,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
 ) -> SecuritySettings:
     if body.https_enabled and (not body.tls_cert_file or not body.tls_key_file):
         raise HTTPException(status_code=400, detail="HTTPS requires certificate and key file paths")
@@ -493,7 +519,10 @@ async def update_security_settings(
 
 
 @router.get("/profile", response_model=SettingsProfile)
-async def export_settings_profile(db: Annotated[AsyncSession, Depends(get_db)]) -> SettingsProfile:
+async def export_settings_profile(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> SettingsProfile:
     profile = SettingsProfile(
         security=await _load_security_settings(db),
         system=await _load_setting(db, _SYSTEM_KEY, SystemAdminSettings, SystemAdminSettings),
@@ -518,6 +547,7 @@ async def export_settings_profile(db: Annotated[AsyncSession, Depends(get_db)]) 
 async def import_settings_profile(
     body: SettingsProfile,
     db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
 ) -> SettingsProfile:
     if body.profile_version != _PROFILE_VERSION:
         raise HTTPException(
@@ -548,6 +578,7 @@ async def import_settings_profile(
 @router.get("/audit", response_model=list[AuditLogRead])
 async def list_settings_audit(
     db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_VIEW_AUDIT, PERM_SETTINGS_AUDIT_TRAILS))],
     limit: int = 50,
 ) -> list[AuditLogRead]:
     capped_limit = min(max(limit, 1), 200)
@@ -561,36 +592,52 @@ async def list_settings_audit(
 
 
 @router.get("/users", response_model=list[UserRead])
-async def list_users(db: Annotated[AsyncSession, Depends(get_db)]) -> list[UserRead]:
+async def list_users(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> list[UserRead]:
     result = await db.execute(select(AppUser).order_by(AppUser.username))
     return [UserRead.model_validate(user) for user in result.scalars().all()]
 
 
 @router.get("/permissions")
-async def list_permission_catalog() -> dict[str, list[dict[str, str]]]:
+async def list_permission_catalog(
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> dict[str, list[dict[str, str]]]:
     return PERMISSION_CATALOG
 
 
 @router.get("/permissions/descriptions")
-async def list_permission_descriptions() -> dict[str, str]:
+async def list_permission_descriptions(
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> dict[str, str]:
     return PERMISSION_DESCRIPTIONS
 
 
 @router.get("/permissions/system-settings")
-async def list_system_settings_permissions() -> list[dict[str, str]]:
+async def list_system_settings_permissions(
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM, PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> list[dict[str, str]]:
     """Table 2: Additional Permissions for System Settings Submenus (EPNM 4.0)."""
     return SYSTEM_SETTINGS_SUBMENUS
 
 
 @router.get("/roles", response_model=list[RoleRead])
-async def list_roles(db: Annotated[AsyncSession, Depends(get_db)]) -> list[RoleRead]:
+async def list_roles(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> list[RoleRead]:
     await _ensure_builtin_roles(db)
     result = await db.execute(select(AppRole).order_by(AppRole.built_in.desc(), AppRole.name))
     return [RoleRead.from_role(role) for role in result.scalars().all()]
 
 
 @router.post("/roles", response_model=RoleRead, status_code=status.HTTP_201_CREATED)
-async def create_role(body: RoleCreate, db: Annotated[AsyncSession, Depends(get_db)]) -> RoleRead:
+async def create_role(
+    body: RoleCreate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> RoleRead:
     existing = await db.execute(select(AppRole).where(AppRole.name == body.name))
     if existing.scalar_one_or_none() is not None:
         raise HTTPException(status_code=409, detail="Role already exists")
@@ -608,7 +655,12 @@ async def create_role(body: RoleCreate, db: Annotated[AsyncSession, Depends(get_
 
 
 @router.patch("/roles/{id}", response_model=RoleRead)
-async def update_role(id: uuid.UUID, body: RoleUpdate, db: Annotated[AsyncSession, Depends(get_db)]) -> RoleRead:
+async def update_role(
+    id: uuid.UUID,
+    body: RoleUpdate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> RoleRead:
     role = await db.get(AppRole, id)
     if role is None:
         raise HTTPException(status_code=404, detail="Role not found")
@@ -630,7 +682,11 @@ async def update_role(id: uuid.UUID, body: RoleUpdate, db: Annotated[AsyncSessio
 
 
 @router.delete("/roles/{id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_role(id: uuid.UUID, db: Annotated[AsyncSession, Depends(get_db)]) -> None:
+async def delete_role(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> None:
     role = await db.get(AppRole, id)
     if role is None:
         raise HTTPException(status_code=404, detail="Role not found")
@@ -641,7 +697,11 @@ async def delete_role(id: uuid.UUID, db: Annotated[AsyncSession, Depends(get_db)
 
 
 @router.post("/users", response_model=UserRead, status_code=status.HTTP_201_CREATED)
-async def create_user(body: UserCreate, db: Annotated[AsyncSession, Depends(get_db)]) -> UserRead:
+async def create_user(
+    body: UserCreate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> UserRead:
     existing = await db.execute(select(AppUser).where(AppUser.username == body.username))
     if existing.scalar_one_or_none() is not None:
         raise HTTPException(status_code=409, detail="Username already exists")
@@ -669,7 +729,12 @@ async def create_user(body: UserCreate, db: Annotated[AsyncSession, Depends(get_
 
 
 @router.patch("/users/{id}", response_model=UserRead)
-async def update_user(id: uuid.UUID, body: UserUpdate, db: Annotated[AsyncSession, Depends(get_db)]) -> UserRead:
+async def update_user(
+    id: uuid.UUID,
+    body: UserUpdate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> UserRead:
     user = await db.get(AppUser, id)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
@@ -692,7 +757,11 @@ async def update_user(id: uuid.UUID, body: UserUpdate, db: Annotated[AsyncSessio
 
 
 @router.delete("/users/{id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user(id: uuid.UUID, db: Annotated[AsyncSession, Depends(get_db)]) -> None:
+async def delete_user(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+) -> None:
     user = await db.get(AppUser, id)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")

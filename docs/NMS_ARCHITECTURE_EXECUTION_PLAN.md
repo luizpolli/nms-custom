@@ -69,6 +69,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
 - [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
 - [x] **Settings P2 polish:** Settings profile import/export, sidebar search, permission-aware submenu hiding/locking, and settings audit persistence/visibility are in place.
+- [x] **Settings backend RBAC enforcement:** Settings/users/roles/profile/audit endpoints now enforce API-key role permissions when API auth is enabled; local lab mode remains permissive when auth is disabled.
 
 ### Settings administration backlog
 
@@ -1064,12 +1065,22 @@ Settings P2 polish is complete for the current admin surface.
 - Matching submenu chips are surfaced first so administrators can find sections like SNMP, TLS, retention, webhooks, and lab operations quickly.
 - Validation: `npm run build` → clean.
 
-## Current immediate next tasks — 2026-05-19
+## Settings backend RBAC enforcement — 2026-05-23
+
+Settings backend authorization now matches the frontend permission-aware navigation.
+
+- Added settings/admin permission constants and `require_settings_permission(...)` to the API-key authorization layer.
+- Settings, security, profile import/export, audit visibility, users, roles, and permission-catalog endpoints now require the appropriate EPNM-style settings/user/audit permissions when `API_AUTH_ENABLED=true`.
+- Admin API keys retain full access through wildcard settings permission; viewer/operator/ai-ops API keys are denied by default for Settings administration.
+- Local lab mode remains unchanged: when API auth is disabled, Settings endpoints continue to work without credentials.
+- Validation: `.venv/bin/python -m pytest tests/api/test_settings_admin.py tests/security/test_command_authz.py -q` → 39 passed; `.venv/bin/python -m pytest tests/api/test_routes_smoke.py -q` → 4 passed.
+
+## Current immediate next tasks — 2026-05-23
 
 The source of truth is the **Current phase/task tracker** near the top of this document. In short:
 
 1. **P0 blocked:** native gRPC/protobuf gNMI adapter and 5k+ EPS soak both need real lab input/host capacity.
-2. **P2 later:** optional LLM provider integration, richer report exports, and Settings P2 polish.
+2. **P2 later:** optional LLM provider integration and richer report exports.
 
 ## Notification rules
 
