@@ -39,7 +39,7 @@ class ConsumerStats:
 
 
 class EventConsumer:
-    """Base idempotent event consumer for worker skeletons."""
+    """Base idempotent event consumer for domain workers."""
 
     worker_kind = "worker-events"
     event_prefixes: tuple[str, ...] = ()
@@ -71,7 +71,7 @@ class EventConsumer:
     async def handle(self, event: EventEnvelope) -> bool:
         """Handle a single event.
 
-        Returns True when the skeleton claimed the event. Subclasses should keep
+        Returns True when the consumer claimed the event. Subclasses should keep
         this idempotent and side-effect safe.
         """
         if not self.accepts(event):
@@ -334,46 +334,11 @@ class TelemetryEventConsumer(EventConsumer):
     async def handle(self, event: EventEnvelope) -> bool:
         if not await super().handle(event):
             return False
-        evaluated = await self._evaluate_thresholds(event)
-        if evaluated:
-            logger.debug("{} evaluated {} TCA event(s) for event_id={}", self.worker_kind, evaluated, event.event_id)
+        routed = await self._fanout_processor.process(event)
+        routed_total = sum(routed.values())
+        if routed_total:
+            logger.debug("{} routed telemetry event_id={} routes={}", self.worker_kind, event.event_id, routed)
         return True
-
-    async def _evaluate_thresholds(self, event: EventEnvelope) -> int:
-        if (event.event_type or "").lower() != "telemetry.sample.normalized":
-            return 0
-        kpi_id = event.payload.get("kpi_id")
-        if kpi_id is None:
-            return 0
-        from app.models.kpi import KPI
-        from app.services.kpi.thresholds import KPIThresholdEvaluator
-
-        async with self.session_factory() as session:
-            kpi = await session.get(KPI, int(kpi_id))
-        if kpi is None:
-            return 0
-        evaluator = KPIThresholdEvaluator(self.session_factory)
-        tca_count = await evaluator.evaluate([kpi])
-        await self._emit_kpi_evaluated(event, kpi_id, tca_count)
-        return tca_count
-
-    async def _emit_kpi_evaluated(self, event: EventEnvelope, kpi_id: int, tca_count: int) -> None:
-        """Fan-out a telemetry.kpi.evaluated event after threshold evaluation."""
-        severity = "nominal" if tca_count == 0 else "warning"
-        fan_out = EventEnvelope(
-            event_type="telemetry.kpi.evaluated",
-            source=self.worker_kind,
-            device_id=event.device_id or str(event.payload.get("device_id") or ""),
-            trace_id=event.trace_id,
-            severity=severity,
-            payload={
-                "kpi_id": kpi_id,
-                "device_id": event.device_id or str(event.payload.get("device_id") or ""),
-                "value": event.payload.get("value"),
-                "severity": severity,
-            },
-        )
-        await self.bus.publish(fan_out)
 
 
 def consumer_for_kind(kind: str, bus: EventBus | None = None, **kwargs) -> EventConsumer:

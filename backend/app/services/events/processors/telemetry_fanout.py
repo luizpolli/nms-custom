@@ -36,8 +36,9 @@ class FanoutRule:
     kpi_type: str = ""
     # All tags must be present in payload["device_tags"] list
     required_device_tags: list[str] = field(default_factory=list)
-    # Where to route: "kpi" | "threshold" | "webhook"
-    destinations: list[str] = field(default_factory=lambda: ["kpi", "threshold"])
+    # Where to route: "kpi" | "threshold" | "webhook".
+    # "threshold" runs the KPI evaluator and emits telemetry.kpi.evaluated.
+    destinations: list[str] = field(default_factory=lambda: ["threshold"])
     # Webhook URL when destinations includes "webhook"
     webhook_url: str = ""
 
@@ -83,14 +84,16 @@ class TelemetryFanoutProcessor:
         return routed
 
     async def _route(self, dest: str, event: EventEnvelope, rule: FanoutRule) -> int:
-        if dest in ("kpi", "threshold"):
-            return await self._route_kpi(event)
+        if dest == "kpi":
+            return await self._route_kpi(event, publish_evaluated=False)
+        if dest == "threshold":
+            return await self._route_kpi(event, publish_evaluated=True)
         if dest == "webhook":
             return await self._route_webhook(event, rule.webhook_url)
         logger.debug("FanoutProcessor: unknown destination '{}' — skipping", dest)
         return 0
 
-    async def _route_kpi(self, event: EventEnvelope) -> int:
+    async def _route_kpi(self, event: EventEnvelope, *, publish_evaluated: bool) -> int:
         kpi_id = event.payload.get("kpi_id")
         if kpi_id is None:
             return 0
@@ -108,7 +111,28 @@ class TelemetryFanoutProcessor:
             return 0
         evaluator = KPIThresholdEvaluator(self._sf)
         count = await evaluator.evaluate([kpi])
+        if publish_evaluated:
+            await self._publish_kpi_evaluated(event, kpi_id_int, count)
         return count
+
+    async def _publish_kpi_evaluated(self, event: EventEnvelope, kpi_id: int, tca_count: int) -> None:
+        if self._bus is None:
+            return
+        severity = "nominal" if tca_count == 0 else "warning"
+        fan_out = EventEnvelope(
+            event_type="telemetry.kpi.evaluated",
+            source="fanout-processor",
+            device_id=event.device_id or str(event.payload.get("device_id") or ""),
+            trace_id=event.trace_id,
+            severity=severity,
+            payload={
+                "kpi_id": kpi_id,
+                "device_id": event.device_id or str(event.payload.get("device_id") or ""),
+                "value": event.payload.get("value"),
+                "severity": severity,
+            },
+        )
+        await self._bus.publish(fan_out)
 
     async def _route_webhook(self, event: EventEnvelope, url: str) -> int:
         if not url or self._bus is None:
@@ -129,5 +153,5 @@ def _default_rule() -> FanoutRule:
     return FanoutRule(
         name="default",
         event_type_pattern="telemetry.*",
-        destinations=["kpi", "threshold"],
+        destinations=["threshold"],
     )
