@@ -17,8 +17,10 @@ import {
   XCircle,
   Search,
   X,
+  Lock,
 } from 'lucide-react';
 import { useThemeStore, type Theme } from '../stores/theme';
+import { useAuthStore } from '../stores/auth';
 import { Card, CardHeader } from '../components/ui/Card';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Select } from '../components/ui/Select';
@@ -45,6 +47,81 @@ interface Category {
   submenus: string[];
   status?: 'live' | 'partial' | 'planned';
 }
+
+const CATEGORY_PERMISSIONS: Record<CategoryKey, string[]> = {
+  general: ['administrative_operations_system_settings'],
+  system: ['administrative_operations_system_settings'],
+  security: ['administrative_operations_system_settings'],
+  usersRoles: ['administrative_operations_users_and_groups', 'user_administration_users_and_groups'],
+  networkDevices: ['administrative_operations_system_settings', 'system_settings_submenu_network_and_device_snmp'],
+  inventory: ['administrative_operations_system_settings', 'system_settings_submenu_inventory_inventory'],
+  alarmsEvents: ['administrative_operations_system_settings', 'system_settings_submenu_alarm_and_events_alarm_and_events'],
+  integrationsAiOps: ['administrative_operations_system_settings'],
+  labOperations: ['administrative_operations_system_settings', 'system_settings_submenu_performance_ptp_synce'],
+};
+
+const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>> = {
+  general: {
+    Appearance: ['administrative_operations_user_preferences'],
+    'Polling summary': ['administrative_operations_system_settings'],
+    'cisco.com / TAC': ['feedback_and_support_tac_case_management_tool'],
+  },
+  system: {
+    'Server tuning': ['system_settings_submenu_general_server'],
+    Database: ['administrative_operations_system_settings'],
+    Jobs: ['system_settings_submenu_general_job_approval', 'job_management_view_job'],
+    'Mail notifications': ['system_settings_submenu_mail_notification_mail_server_configuration'],
+    Backups: ['administrative_operations_system_settings'],
+    'Software updates': ['system_settings_submenu_general_software_update'],
+  },
+  security: {
+    'HTTPS / TLS': ['administrative_operations_system_settings'],
+    Certificates: ['administrative_operations_system_settings'],
+    'API auth': ['administrative_operations_system_settings'],
+    Sessions: ['administrative_operations_system_settings'],
+  },
+  usersRoles: {
+    Users: ['administrative_operations_users_and_groups', 'user_administration_users_and_groups'],
+    Roles: ['administrative_operations_users_and_groups', 'user_administration_users_and_groups'],
+    'Task permissions': ['administrative_operations_users_and_groups'],
+    'Virtual domains': ['administrative_operations_virtual_domain_management', 'user_administration_virtual_domain_management'],
+  },
+  networkDevices: {
+    'CLI session': ['administrative_operations_device_console_config'],
+    'SNMP defaults': ['system_settings_submenu_network_and_device_snmp'],
+    'Credentials policy': ['network_configuration_credential_profile_view_access'],
+    'Plug & Play': ['network_configuration_auto_provisioning'],
+    'Controller upgrades': ['software_image_management_swim_access_privilege'],
+  },
+  inventory: {
+    'Config archives': ['system_settings_submenu_inventory_configuration_archive'],
+    'Image management': ['system_settings_submenu_inventory_software_image_management'],
+    Discovery: ['system_settings_submenu_inventory_network_discovery'],
+    'Device groups': ['groups_management_modify_groups'],
+    Lifecycle: ['system_settings_submenu_inventory_inventory'],
+  },
+  alarmsEvents: {
+    'Severity mapping': ['system_settings_submenu_alarm_and_events_alarm_severity_and_auto_clear'],
+    'Trap storage': ['system_settings_submenu_alarm_and_events_alarm_and_events'],
+    Syslog: ['system_settings_submenu_alarm_and_events_system_event_configuration'],
+    'Event retention': ['system_settings_submenu_alarm_and_events_alarm_and_events'],
+    Notifications: ['system_settings_submenu_alarm_and_events_alarm_notification_policies'],
+  },
+  integrationsAiOps: {
+    'Northbound API': ['nbi.read', 'nbi.write'],
+    Webhooks: ['administrative_operations_system_settings'],
+    'AI Ops': ['administrative_operations_system_settings'],
+    'LLM providers': ['administrative_operations_system_settings'],
+    'Export targets': ['reports_report_launch_pad'],
+  },
+  labOperations: {
+    'Lab health': ['administrative_operations_health_monitor_details'],
+    'Traffic simulator': ['administrative_operations_system_settings'],
+    Maintenance: ['administrative_operations_scheduled_tasks_and_data_collection'],
+    Runbooks: ['administrative_operations_system_settings'],
+    'PTP / SyncE': ['system_settings_submenu_performance_ptp_synce'],
+  },
+};
 
 const CATEGORIES: Category[] = [
   {
@@ -227,6 +304,15 @@ interface SystemSettingsPermission {
   task_name: string;
   additional_permission: string;
   permission_key: string;
+}
+
+interface SettingsAuditLog {
+  id: string;
+  timestamp: string;
+  actor?: string | null;
+  action: string;
+  object_id?: string | null;
+  outcome: string;
 }
 
 const EMPTY_USER_FORM = {
@@ -1372,6 +1458,47 @@ function AlarmsEventsPanel() {
   );
 }
 
+function SettingsAuditPanel() {
+  const [entries, setEntries] = useState<SettingsAuditLog[]>([]);
+
+  useEffect(() => {
+    api.get('/settings/audit?limit=8').then((r) => setEntries(r.data)).catch(() => setEntries([]));
+  }, []);
+
+  return (
+    <Card>
+      <CardHeader title="Recent Settings Audit" />
+      <div className="overflow-x-auto p-4">
+        <table className="min-w-full text-sm">
+          <thead className="text-xs uppercase text-gray-500">
+            <tr>
+              <th className="px-3 py-2 text-left">Time</th>
+              <th className="px-3 py-2 text-left">Action</th>
+              <th className="px-3 py-2 text-left">Target</th>
+              <th className="px-3 py-2 text-left">Actor</th>
+              <th className="px-3 py-2 text-left">Outcome</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+            {entries.map((entry) => (
+              <tr key={entry.id}>
+                <td className="px-3 py-2 text-gray-500">{new Date(entry.timestamp).toLocaleString()}</td>
+                <td className="px-3 py-2 font-medium">{entry.action}</td>
+                <td className="px-3 py-2">{entry.object_id || '-'}</td>
+                <td className="px-3 py-2">{entry.actor || 'system'}</td>
+                <td className="px-3 py-2"><Badge variant={entry.outcome === 'success' ? 'success' : 'warning'}>{entry.outcome}</Badge></td>
+              </tr>
+            ))}
+            {entries.length === 0 && (
+              <tr><td className="px-3 py-4 text-gray-500" colSpan={5}>No settings audit events recorded yet.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </Card>
+  );
+}
+
 function PlaceholderPanel({ title, summary, items }: { title: string; summary?: string; items: string[] }) {
   return (
     <Card>
@@ -1397,7 +1524,12 @@ function CategoryContent({ category }: { category: CategoryKey }) {
     case 'general':
       return <GeneralPanel />;
     case 'system':
-      return <SystemPanel />;
+      return (
+        <div className="space-y-6">
+          <SystemPanel />
+          <SettingsAuditPanel />
+        </div>
+      );
     case 'security':
       return <ClientsUsersPanel mode="security" />;
     case 'usersRoles':
@@ -1467,18 +1599,65 @@ function settingsSearchText(category: Category): string {
 }
 
 function Settings() {
+  const authUser = useAuthStore((state) => state.user);
   const [searchParams, setSearchParams] = useSearchParams();
   const sectionParam = searchParams.get('section');
   const [settingsSearch, setSettingsSearch] = useState('');
+  const [navUsers, setNavUsers] = useState<AppUser[]>([]);
+  const [navRoles, setNavRoles] = useState<AppRole[]>([]);
   const [active, setActive] = useState<CategoryKey>(
     isValidSection(sectionParam) ? sectionParam : 'general',
   );
   const normalizedSearch = settingsSearch.trim().toLowerCase();
-  const visibleCategories = normalizedSearch
-    ? CATEGORIES.filter((cat) => settingsSearchText(cat).includes(normalizedSearch))
-    : CATEGORIES;
+
+  useEffect(() => {
+    void Promise.all([
+      api.get('/settings/users').then((r) => setNavUsers(r.data)).catch(() => setNavUsers([])),
+      api.get('/settings/roles').then((r) => setNavRoles(r.data)).catch(() => setNavRoles([])),
+    ]);
+  }, []);
+
+  const roleByName = new Map(navRoles.map((role) => [role.name, role]));
+  const currentUser = navUsers.find((user) => user.username === authUser?.name);
+  const effectivePermissions = (() => {
+    const merged: Record<string, boolean> = {};
+    const roleNames = currentUser
+      ? (currentUser.roles?.length ? currentUser.roles : currentUser.role.split(',')).map((name) => name.trim()).filter(Boolean)
+      : authUser?.name === 'admin'
+        ? ['admin']
+        : [];
+
+    for (const roleName of roleNames) {
+      const role = roleByName.get(roleName);
+      if (role?.permissions) Object.assign(merged, role.permissions);
+    }
+    if (currentUser?.custom_permissions) Object.assign(merged, currentUser.custom_permissions);
+
+    // Labs commonly start with a local mock admin but no persisted users/roles yet.
+    if (!Object.keys(merged).length && (!authUser || authUser.name === 'admin')) {
+      merged['*'] = true;
+    }
+    return merged;
+  })();
+
+  const canAccess = (permissions?: string[]) =>
+    !permissions?.length || !!effectivePermissions['*'] || permissions.some((key) => !!effectivePermissions[key]);
+
+  const visibleSubmenus = (cat: Category) => {
+    const submenuPermissions = SUBMENU_PERMISSIONS[cat.key] || {};
+    return cat.submenus.filter((submenu) => canAccess(submenuPermissions[submenu]));
+  };
+
+  const categoryIsAccessible = (cat: Category) =>
+    canAccess(CATEGORY_PERMISSIONS[cat.key]) && visibleSubmenus(cat).length > 0;
+
+  const accessibleCategories = CATEGORIES.filter(categoryIsAccessible);
+  const visibleCategories = (normalizedSearch
+    ? accessibleCategories.filter((cat) => settingsSearchText({ ...cat, submenus: visibleSubmenus(cat) }).includes(normalizedSearch))
+    : accessibleCategories);
 
   const handleSelect = (key: CategoryKey) => {
+    if (!accessibleCategories.some((cat) => cat.key === key)) return;
     setActive(key);
     setSearchParams({ section: key }, { replace: true });
   };
@@ -1488,6 +1667,12 @@ function Settings() {
     const s = searchParams.get('section');
     if (isValidSection(s) && s !== active) setActive(s);
   }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!accessibleCategories.some((cat) => cat.key === active) && accessibleCategories.length) {
+      handleSelect(accessibleCategories[0].key);
+    }
+  }, [active, accessibleCategories.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="p-6 space-y-6">
@@ -1521,9 +1706,10 @@ function Settings() {
           </div>
 
           {visibleCategories.map((cat) => {
+            const allowedSubmenus = visibleSubmenus(cat);
             const matchedSubmenus = normalizedSearch
-              ? cat.submenus.filter((submenu) => submenu.toLowerCase().includes(normalizedSearch))
-              : cat.submenus.slice(0, 3);
+              ? allowedSubmenus.filter((submenu) => submenu.toLowerCase().includes(normalizedSearch))
+              : allowedSubmenus.slice(0, 3);
 
             return (
               <button
@@ -1554,19 +1740,24 @@ function Settings() {
                           {cat.status}
                         </span>
                       )}
+                      {allowedSubmenus.length < cat.submenus.length && (
+                        <span title="Some submenus are hidden by permissions" className="text-gray-400">
+                          <Lock className="h-3.5 w-3.5" />
+                        </span>
+                      )}
                     </div>
                     <p className="mt-1 text-xs leading-snug text-gray-600 dark:text-gray-400 line-clamp-3">
                       {cat.description}
                     </p>
                     <div className="mt-2 flex flex-wrap gap-1">
-                      {(matchedSubmenus.length ? matchedSubmenus : cat.submenus.slice(0, 3)).slice(0, 3).map((submenu) => (
+                      {(matchedSubmenus.length ? matchedSubmenus : allowedSubmenus.slice(0, 3)).slice(0, 3).map((submenu) => (
                         <span key={submenu} className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-600 dark:bg-gray-800 dark:text-gray-300">
                           {submenu}
                         </span>
                       ))}
-                      {!normalizedSearch && cat.submenus.length > 3 && (
+                      {!normalizedSearch && allowedSubmenus.length > 3 && (
                         <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[10px] text-gray-500 dark:bg-gray-800">
-                          +{cat.submenus.length - 3}
+                          +{allowedSubmenus.length - 3}
                         </span>
                       )}
                     </div>

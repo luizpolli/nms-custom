@@ -68,7 +68,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Richer service dependency modeling:** manual link-direction overrides, dependency weighting improvements, dependency evidence payloads, and persisted service score evidence.
 - [ ] **Operational assistant expansion:** optional LLM provider integration beyond the built-in null provider, keeping strict retrieval/citation/redaction guardrails.
 - [ ] **Reporting polish:** exportable lab/assurance/service trend reports once real lab datasets are stable.
-- [ ] **Settings P2 polish:** Settings profile import/export and sidebar search are in place; remaining polish is permission-aware hiding/locking per submenu and broader audit-event persistence/visibility.
+- [x] **Settings P2 polish:** Settings profile import/export, sidebar search, permission-aware submenu hiding/locking, and settings audit persistence/visibility are in place.
 
 ### Settings administration backlog
 
@@ -1051,6 +1051,16 @@ Settings P2 import/export profile support is in place for the backend-backed sec
 Settings P2 navigation search is in place.
 
 - Added a sidebar search control on the Settings page that filters categories by title, description, status, and submenu labels.
+
+## Settings permission-aware navigation and audit visibility — 2026-05-23
+
+Settings P2 polish is complete for the current admin surface.
+
+- Settings navigation now derives effective permissions from the current frontend user, persisted users, roles, and role/custom permission grants.
+- Categories and submenu chips are hidden when the active user lacks the mapped EPNM-style task/submenu permission; lab/mock admin sessions keep a permissive fallback when no users/roles are persisted yet.
+- Settings writes, profile import/export, and user/role administration now create persistent `AuditLog` entries in addition to structured log audit events.
+- Added `GET /api/settings/audit` and a Recent Settings Audit panel under System settings for visibility into recent settings changes.
+- Validation: `.venv/bin/python -m pytest tests/api/test_settings_admin.py -q` → 17 passed; `npm run build` → clean.
 - Matching submenu chips are surfaced first so administrators can find sections like SNMP, TLS, retention, webhooks, and lab operations quickly.
 - Validation: `npm run build` → clean.
 

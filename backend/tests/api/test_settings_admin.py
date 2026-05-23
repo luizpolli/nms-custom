@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 
 from app.database import get_db
 from app.main import app
+from app.models.audit import AuditLog
 from app.models.system import SystemSetting
 
 
@@ -50,6 +51,8 @@ class FakeSession:
     def add(self, obj):
         if isinstance(obj, SystemSetting):
             self._store[obj.key] = obj
+        elif isinstance(obj, AuditLog):
+            self._store.setdefault("__audit__", []).append(obj)
 
     async def flush(self):
         pass
@@ -122,6 +125,8 @@ class TestSystemSettings:
         assert body["mail"]["smtp_host"] == "mail.example.com"
         assert body["jobs"]["job_concurrency"] == 8
         assert body["retention"]["alarm_retention_days"] == 180
+        assert self.store["__audit__"][-1].action == "settings.system.update"
+        assert self.store["__audit__"][-1].object_id == "system"
 
     def test_put_invalid_email_rejected(self):
         payload = {
@@ -194,6 +199,8 @@ class TestNetworkDeviceSettings:
         body = resp.json()
         assert body["cli"]["ssh_timeout_seconds"] == 60
         assert body["snmp"]["snmp_version"] == "v3"
+        assert self.store["__audit__"][-1].action == "settings.network_devices.update"
+        assert self.store["__audit__"][-1].object_id == "network_devices"
 
     def test_put_invalid_timeout_rejected(self):
         payload = {
@@ -257,6 +264,8 @@ class TestAlarmsEventsSettings:
         body = resp.json()
         assert body["notifications"]["email_enabled"] is True
         assert body["notifications"]["min_severity_to_notify"] == "critical"
+        assert self.store["__audit__"][-1].action == "settings.alarms_events.update"
+        assert self.store["__audit__"][-1].object_id == "alarms_events"
 
     def test_put_invalid_syslog_host_rejected(self):
         payload = {
@@ -312,6 +321,7 @@ class TestSettingsProfile:
         assert body["system"]["mail"]["smtp_port"] == 587
         assert body["network_devices"]["snmp"]["snmp_port"] == 161
         assert body["alarms_events"]["notifications"]["min_severity_to_notify"] == "major"
+        assert self.store["__audit__"][-1].action == "settings.profile.export"
 
     def test_import_profile_persists_all_sections(self):
         payload = self.client.get("/api/settings/profile").json()
@@ -327,6 +337,7 @@ class TestSettingsProfile:
         assert self.client.get("/api/settings/system").json()["mail"]["smtp_host"] == "smtp.profile.local"
         assert self.client.get("/api/settings/network-devices").json()["cli"]["ssh_timeout_seconds"] == 75
         assert self.client.get("/api/settings/alarms-events").json()["suppression"]["suppression_window_minutes"] == 22
+        assert any(entry.action == "settings.profile.import" for entry in self.store["__audit__"])
 
     def test_import_profile_rejects_unknown_version(self):
         payload = self.client.get("/api/settings/profile").json()

@@ -20,7 +20,9 @@ from app.api.permissions_catalog import (
 )
 from app.config import settings
 from app.database import get_db
+from app.models.audit import AuditLog
 from app.models.system import AppRole, AppUser, SystemSetting
+from app.schemas.audit import AuditLogRead
 from app.security.audit import audit
 from app.security.passwords import hash_password
 
@@ -32,6 +34,26 @@ _ALARMS_EVENTS_KEY = "alarms_events"
 _PROFILE_VERSION = 1
 
 _EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
+
+
+def _record_settings_audit(
+    db: AsyncSession,
+    action: str,
+    *,
+    target: str,
+    details: dict | None = None,
+) -> None:
+    audit(action, target=target, **(details or {}))
+    db.add(
+        AuditLog(
+            actor="system",
+            action=action,
+            object_type="settings",
+            object_id=target,
+            outcome="success",
+            details=details or {},
+        )
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -180,7 +202,7 @@ async def update_system_settings(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> SystemAdminSettings:
     await _save_setting(db, _SYSTEM_KEY, body)
-    audit("settings.system.update", target=_SYSTEM_KEY)
+    _record_settings_audit(db, "settings.system.update", target=_SYSTEM_KEY)
     return body
 
 
@@ -199,7 +221,7 @@ async def update_network_device_settings(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> NetworkDeviceAdminSettings:
     await _save_setting(db, _NETWORK_DEVICES_KEY, body)
-    audit("settings.network_devices.update", target=_NETWORK_DEVICES_KEY)
+    _record_settings_audit(db, "settings.network_devices.update", target=_NETWORK_DEVICES_KEY)
     return body
 
 
@@ -218,7 +240,7 @@ async def update_alarms_events_settings(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> AlarmsEventsAdminSettings:
     await _save_setting(db, _ALARMS_EVENTS_KEY, body)
-    audit("settings.alarms_events.update", target=_ALARMS_EVENTS_KEY)
+    _record_settings_audit(db, "settings.alarms_events.update", target=_ALARMS_EVENTS_KEY)
     return body
 
 def _validate_permissions(values: dict[str, bool]) -> dict[str, bool]:
@@ -457,7 +479,16 @@ async def update_security_settings(
         db.add(row)
     else:
         row.value = body.model_dump()
-    audit("settings.security.update", target="security", settings=body.model_dump())
+    _record_settings_audit(
+        db,
+        "settings.security.update",
+        target="security",
+        details={
+            "https_enabled": body.https_enabled,
+            "api_auth_enabled": body.api_auth_enabled,
+            "root_web_login_enabled": body.root_web_login_enabled,
+        },
+    )
     return body
 
 
@@ -479,7 +510,7 @@ async def export_settings_profile(db: Annotated[AsyncSession, Depends(get_db)]) 
             AlarmsEventsAdminSettings,
         ),
     )
-    audit("settings.profile.export", target="settings-profile")
+    _record_settings_audit(db, "settings.profile.export", target="settings-profile")
     return profile
 
 
@@ -505,12 +536,28 @@ async def import_settings_profile(
     await _save_setting(db, _SYSTEM_KEY, body.system)
     await _save_setting(db, _NETWORK_DEVICES_KEY, body.network_devices)
     await _save_setting(db, _ALARMS_EVENTS_KEY, body.alarms_events)
-    audit(
+    _record_settings_audit(
+        db,
         "settings.profile.import",
         target="settings-profile",
-        profile_version=body.profile_version,
+        details={"profile_version": body.profile_version},
     )
     return body
+
+
+@router.get("/audit", response_model=list[AuditLogRead])
+async def list_settings_audit(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    limit: int = 50,
+) -> list[AuditLogRead]:
+    capped_limit = min(max(limit, 1), 200)
+    result = await db.execute(
+        select(AuditLog)
+        .where(AuditLog.object_type == "settings")
+        .order_by(AuditLog.timestamp.desc())
+        .limit(capped_limit)
+    )
+    return [AuditLogRead.model_validate(row) for row in result.scalars().all()]
 
 
 @router.get("/users", response_model=list[UserRead])
@@ -551,7 +598,12 @@ async def create_role(body: RoleCreate, db: Annotated[AsyncSession, Depends(get_
     db.add(role)
     await db.flush()
     await db.refresh(role)
-    audit("role.create", target=str(role.id), name=role.name, user_type=role.user_type, permissions=role.permissions)
+    _record_settings_audit(
+        db,
+        "role.create",
+        target=str(role.id),
+        details={"name": role.name, "user_type": role.user_type, "permissions": role.permissions},
+    )
     return RoleRead.from_role(role)
 
 
@@ -568,7 +620,12 @@ async def update_role(id: uuid.UUID, body: RoleUpdate, db: Annotated[AsyncSessio
         setattr(role, field, value)
     await db.flush()
     await db.refresh(role)
-    audit("role.update", target=str(role.id), name=role.name, user_type=role.user_type, permissions=role.permissions)
+    _record_settings_audit(
+        db,
+        "role.update",
+        target=str(role.id),
+        details={"name": role.name, "user_type": role.user_type, "permissions": role.permissions},
+    )
     return RoleRead.from_role(role)
 
 
@@ -580,7 +637,7 @@ async def delete_role(id: uuid.UUID, db: Annotated[AsyncSession, Depends(get_db)
     if role.built_in:
         raise HTTPException(status_code=400, detail="Built-in roles cannot be deleted")
     await db.delete(role)
-    audit("role.delete", target=str(id), name=role.name)
+    _record_settings_audit(db, "role.delete", target=str(id), details={"name": role.name})
 
 
 @router.post("/users", response_model=UserRead, status_code=status.HTTP_201_CREATED)
@@ -602,7 +659,12 @@ async def create_user(body: UserCreate, db: Annotated[AsyncSession, Depends(get_
     db.add(user)
     await db.flush()
     await db.refresh(user)
-    audit("user.create", target=str(user.id), username=user.username, role=user.role, user_type=user.user_type)
+    _record_settings_audit(
+        db,
+        "user.create",
+        target=str(user.id),
+        details={"username": user.username, "role": user.role, "user_type": user.user_type},
+    )
     return UserRead.model_validate(user)
 
 
@@ -620,7 +682,12 @@ async def update_user(id: uuid.UUID, body: UserUpdate, db: Annotated[AsyncSessio
         user.password_hash = hash_password(body.password.get_secret_value())
     await db.flush()
     await db.refresh(user)
-    audit("user.update", target=str(user.id), username=user.username, role=user.role, user_type=user.user_type)
+    _record_settings_audit(
+        db,
+        "user.update",
+        target=str(user.id),
+        details={"username": user.username, "role": user.role, "user_type": user.user_type},
+    )
     return UserRead.model_validate(user)
 
 
@@ -630,4 +697,4 @@ async def delete_user(id: uuid.UUID, db: Annotated[AsyncSession, Depends(get_db)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
     await db.delete(user)
-    audit("user.delete", target=str(id), username=user.username)
+    _record_settings_audit(db, "user.delete", target=str(id), details={"username": user.username})
