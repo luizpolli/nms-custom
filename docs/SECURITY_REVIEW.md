@@ -74,7 +74,7 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 | Ingestion | Dedicated receivers and event envelope | UDP/TCP listeners rely on firewall/network policy; unauthenticated protocol modes |
 | SSH commands | Auth-gated, audited, bounded length, no control chars, command-action RBAC, optional `COMMAND_ALLOWLIST` | Production deployments must explicitly configure roles and allow-list patterns |
 | Compose exposure | Clear service/port map | Datastores and receivers publish host ports by default |
-| Helm | Production-ish values for auth/HTTPS, NetworkPolicy/PDB/ExternalSecret stubs | NetworkPolicy disabled by default; chart lint/render CI coverage still pending |
+| Helm | Production values for auth/HTTPS, ingress/TLS, NetworkPolicy, PDB, HPA, ExternalSecret, and dev/prod/HA lint/render CI gates | NetworkPolicy is intentionally disabled by default values; production overrides enable it |
 
 ## Production deployment checklist
 

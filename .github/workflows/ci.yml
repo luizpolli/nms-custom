@@ -99,12 +99,17 @@ jobs:
         run: helm lint helm/nms-custom -f helm/nms-custom/values-dev.yaml
       - name: Lint Helm chart (prod values)
         run: helm lint helm/nms-custom -f helm/nms-custom/values-prod.yaml
+      - name: Lint Helm chart (prod + HA values)
+        run: helm lint helm/nms-custom -f helm/nms-custom/values-prod.yaml -f helm/nms-custom/values-ha.yaml
       - name: Render Helm chart (dev)
         run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-dev.yaml >/tmp/nms-custom-dev.yaml
       - name: Render Helm chart (prod)
         run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-prod.yaml >/tmp/nms-custom-prod.yaml
+      - name: Render Helm chart (prod + HA)
+        run: helm template nms-custom helm/nms-custom -f helm/nms-custom/values-prod.yaml -f helm/nms-custom/values-ha.yaml >/tmp/nms-custom-ha.yaml
       - name: Verify Helm rendered templates are not empty
         run: |
           if [ ! -s /tmp/nms-custom-dev.yaml ]; then echo "Dev rendered template empty"; exit 1; fi
           if [ ! -s /tmp/nms-custom-prod.yaml ]; then echo "Prod rendered template empty"; exit 1; fi
+          if [ ! -s /tmp/nms-custom-ha.yaml ]; then echo "HA rendered template empty"; exit 1; fi
           echo "Helm templates rendered successfully"

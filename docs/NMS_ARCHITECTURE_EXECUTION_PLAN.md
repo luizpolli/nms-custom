@@ -57,7 +57,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 
 - [x] **Lab Health scenario annotations:** exported JSON snapshots include optional timestamped scenario/run labels and notes for named lab events.
 - [x] **Domain processors for event workers:** alarm, discovery, and telemetry workers delegate to owned processors for alarm enrichment, discovery refresh orchestration, and telemetry fan-out/threshold routing.
-- [ ] **Helm production hardening:** add cluster-ready ingress/TLS integration, secret-manager wiring, autoscaling defaults, NetworkPolicies/PDB enablement guidance, and chart lint/render coverage in CI where missing.
+- [x] **Helm production hardening:** cluster-ready ingress/TLS, ExternalSecret wiring, autoscaling defaults, NetworkPolicy/PDB guidance, telemetry receiver PDB coverage, and dev/prod/HA chart lint/render CI gates are in place.
 - [x] **API/command authorization hardening:** `ALLOWED_HOSTS` is enforced; command endpoints have per-action RBAC, command allow-list enforcement, constant-time API key checks, and optional `sha256$<hex>` API key configuration.
 - [x] **Settings P1 backend forms:** high-value placeholders now have editable backend-backed forms for System mail/jobs/retention, Network Device CLI/SNMP defaults, and Alarms/Events severity/notification defaults.
 - [x] **Settings P1 deep links:** Settings supports URL-addressable query params (`/settings?section=security`) so admin docs and permissions can link directly to each submenu.
@@ -1033,7 +1033,7 @@ Verified available presets/profiles:
 The source of truth is the **Current phase/task tracker** near the top of this document. In short:
 
 1. **P0 blocked:** native gRPC/protobuf gNMI adapter and 5k+ EPS soak both need real lab input/host capacity.
-2. **P1 unblocked:** Helm production hardening and broader receiver integration tests.
+2. **P1 unblocked:** broader receiver integration tests.
 3. **P2 later:** service dependency refinements, optional LLM provider integration, and richer report exports.
 
 ## Notification rules
