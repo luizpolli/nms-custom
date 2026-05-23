@@ -61,7 +61,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **API/command authorization hardening:** `ALLOWED_HOSTS` is enforced; command endpoints have per-action RBAC, command allow-list enforcement, constant-time API key checks, and optional `sha256$<hex>` API key configuration.
 - [x] **Settings P1 backend forms:** high-value placeholders now have editable backend-backed forms for System mail/jobs/retention, Network Device CLI/SNMP defaults, and Alarms/Events severity/notification defaults.
 - [x] **Settings P1 deep links:** Settings supports URL-addressable query params (`/settings?section=security`) so admin docs and permissions can link directly to each submenu.
-- [ ] **Broader integration tests:** add UDP/socket-level trap receiver integration tests in a dedicated suite once dependencies/capabilities are available.
+- [x] **Broader integration tests:** dedicated UDP/socket-level receiver suite covers syslog happy/malformed datagrams and a real raw SNMPv2c trap socket path guarded for environments without `pysnmp-lextudio`.
 
 #### P2 — Later polish / product expansion
 
@@ -1028,13 +1028,21 @@ Verified available presets/profiles:
 - Event profiles: `bgp-neighbor`, `ospf-adjacency`, `fan-fail`, `power-supply`, and `config-change`.
 - Scenario files: `link-flap-then-bgp-down.json`, `ospf-flap-storm.json`, `psu-then-fan-cascade.json`, and `config-change-window.json`.
 
+## Receiver integration tests — 2026-05-23
+
+Broader receiver socket coverage is in place.
+
+- Added `backend/tests/integration/test_receiver_udp_socket.py` for datagram-level receiver paths.
+- Syslog receiver tests bind a local UDP socket and validate Cisco-ish BSD syslog and malformed payload dispatch through registered handlers.
+- SNMP trap receiver test sends a raw simulator-built SNMPv2c trap packet through a real UDP socket and validates the resulting `TrapEvent`; it skips only when `pysnmp-lextudio` is not installed in the local environment.
+- Validation: `.venv/bin/python -m pytest tests/integration/test_receiver_udp_socket.py tests/services/test_syslog_receiver.py tests/services/test_snmp_trap_fixtures.py tests/integration/test_trap_receiver_socket.py` → 42 passed, 1 skipped. The skip is expected in the current local venv because `pysnmp-lextudio` is absent.
+
 ## Current immediate next tasks — 2026-05-19
 
 The source of truth is the **Current phase/task tracker** near the top of this document. In short:
 
 1. **P0 blocked:** native gRPC/protobuf gNMI adapter and 5k+ EPS soak both need real lab input/host capacity.
-2. **P1 unblocked:** broader receiver integration tests.
-3. **P2 later:** service dependency refinements, optional LLM provider integration, and richer report exports.
+2. **P2 later:** optional LLM provider integration, richer report exports, and Settings P2 polish.
 
 ## Notification rules
 
