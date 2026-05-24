@@ -49,6 +49,15 @@ class AlarmAck(BaseModel):
     by_user: str
 
 
+class BulkAlarmAck(BaseModel):
+    alarm_ids: list[uuid.UUID]
+    by_user: str
+
+
+class BulkAlarmClear(BaseModel):
+    alarm_ids: list[uuid.UUID]
+
+
 class AlarmSuppress(BaseModel):
     by_user: str
     reason: str = ""
@@ -309,6 +318,60 @@ async def get_alarm(
 ) -> AlarmRead:
     alarm = await _get_or_404(db, id)
     return AlarmRead.model_validate(alarm)
+
+
+@router.post("/bulk-ack")
+async def bulk_ack_alarms(
+    body: BulkAlarmAck,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> dict[str, int]:
+    if not body.alarm_ids:
+        return {"acknowledged": 0}
+
+    result = await db.execute(select(Alarm).where(Alarm.id.in_(body.alarm_ids)))
+    alarms = result.scalars().all()
+    now = datetime.now()
+    for alarm in alarms:
+        alarm.state = "acknowledged"
+        alarm.ack_by = body.by_user
+        alarm.last_seen = now
+        await _audit_alarm_action(
+            db,
+            alarm=alarm,
+            actor=body.by_user,
+            action="alarm.bulk_acknowledge",
+            message=f"Alarm bulk acknowledged by {body.by_user}",
+            details={"bulk_alarm_count": len(alarms)},
+        )
+    await db.flush()
+    return {"acknowledged": len(alarms)}
+
+
+@router.post("/bulk-clear")
+async def bulk_clear_alarms(
+    body: BulkAlarmClear,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> dict[str, int]:
+    if not body.alarm_ids:
+        return {"cleared": 0}
+
+    result = await db.execute(select(Alarm).where(Alarm.id.in_(body.alarm_ids)))
+    alarms = result.scalars().all()
+    now = datetime.now()
+    for alarm in alarms:
+        alarm.state = "cleared"
+        alarm.cleared_at = now
+        alarm.last_seen = now
+        await _audit_alarm_action(
+            db,
+            alarm=alarm,
+            actor=None,
+            action="alarm.bulk_clear",
+            message="Alarm bulk cleared",
+            details={"bulk_alarm_count": len(alarms)},
+        )
+    await db.flush()
+    return {"cleared": len(alarms)}
 
 
 @router.post("/{id}/ack", response_model=AlarmRead)

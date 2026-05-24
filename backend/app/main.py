@@ -62,8 +62,11 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="NMS Custom",
     description="Network Management System inspired by Cisco Prime",
-    version="0.1.0",
+    version="1.1.0",
     lifespan=lifespan,
+    docs_url="/api/docs" if settings.app_env == "development" else None,
+    redoc_url="/api/redoc" if settings.app_env == "development" else None,
+    openapi_url="/api/openapi.json" if settings.app_env == "development" else None,
 )
 
 if settings.https_redirect_enabled and settings.https_enabled:

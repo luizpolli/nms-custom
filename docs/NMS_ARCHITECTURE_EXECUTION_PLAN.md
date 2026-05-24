@@ -25,7 +25,7 @@ To avoid burning context on huge rewrites:
 - Notify only when a phase or meaningful task finishes, or when blocked by a real decision.
 - Use subagents for large code reviews or isolated implementation areas, not for every tiny edit.
 
-## Current phase/task tracker — updated 2026-05-19
+## Current phase/task tracker — updated 2026-05-23
 
 This is the operator-facing checklist for what is actually done vs. still pending. Detailed phase notes remain below.
 
@@ -71,11 +71,29 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Settings P2 polish:** Settings profile import/export, sidebar search, permission-aware submenu hiding/locking, and settings audit persistence/visibility are in place.
 - [x] **Settings backend RBAC enforcement:** Settings/users/roles/profile/audit endpoints now enforce API-key role permissions when API auth is enabled; local lab mode remains permissive when auth is disabled.
 
+#### v1.1 — GUI polish and operational features (2026-05-23)
+
+- [x] **Bug: Command save failure:** CommandFormModal now includes device picker dropdown; `device_id` is sent on create/update.
+- [x] **Bug: MIB upload 500:** storage directory is configurable via `MIB_STORAGE_DIR`; MIB upload/form modals use the authenticated `api` instance.
+- [x] **Alarm text search:** `q` parameter searches across message, source_host, event_type, category, and correlation_key.
+- [x] **Alarm saved filter presets:** public/private saved filters per user with full CRUD; frontend load/save/delete UI.
+- [x] **Event forwarding configuration:** forwarding targets (syslog UDP/TCP, SNMP trap, HTTP webhook) with event type and severity filters, enable/disable, test endpoint, and Settings UI.
+- [x] **Device CSV export (EPNM format):** export with standard columns; root-only credential export option.
+- [x] **Device CSV import (EPNM format):** extended import supporting SNMPv3, CLI, HTTP, and location fields with backward compatibility.
+- [x] **React Error Boundaries:** every route wrapped in ErrorBoundary; render crashes show recoverable error panel instead of blank page.
+- [x] **Swagger/OpenAPI docs:** `/api/docs` and `/api/redoc` available in development mode.
+- [x] **Acceptance Test Procedure (ATP):** 19 sections, 100+ test cases covering all GUI features.
+- [x] **OS & Server Hardening Guide:** RHEL, firewall, sysctl, TLS, DB, Redis, Docker, K8s hardening checklists.
+- [ ] **Bulk alarm operations:** bulk ack/clear endpoints and multi-select UI with floating action bar.
+- [ ] **Dashboard real data widgets:** recent alarms, device status breakdown, alarm severity chart.
+- [ ] **Device form EPNM tabs:** General, SNMP, CLI/SSH, Location, Credential tabs in device create/edit modal.
+- [ ] **Global toast notifications:** visible error/success toasts from API responses.
+
 ### Settings administration backlog
 
 - **P0:** keep live Security and Users/Roles flows stable while the page is reorganized; preserve `/settings/security`, `/settings/users`, `/settings/roles`, `/settings/permissions`, and `/settings/permissions/system-settings` behavior.
-- **P1:** completed editable backend-backed forms for System, Network Devices, and Alarms/Events; completed URL deep links to each submenu. Integrations/AI Ops provider settings remain future product work.
-- **P2:** add Settings search, permission-aware submenu visibility, audit coverage for all admin writes, and profile import/export.
+- **P1:** completed editable backend-backed forms for System, Network Devices, and Alarms/Events; completed URL deep links to each submenu. Event Forwarding section implemented. Integrations/AI Ops provider settings remain future product work.
+- **P2:** completed Settings search, permission-aware submenu visibility, audit coverage for all admin writes, and profile import/export.
 
 
 ## Recommended improvements beyond the document

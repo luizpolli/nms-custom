@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ComponentType } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Spinner } from './components/ui/Spinner';
 
 interface PlaceholderProps {
@@ -128,32 +129,36 @@ function PageFallback() {
   );
 }
 
+function Guarded({ children, name }: { children: React.ReactNode; name: string }) {
+  return <ErrorBoundary fallbackTitle={`Error loading ${name}`}>{children}</ErrorBoundary>;
+}
+
 export function AppRouter() {
   return (
     <Suspense fallback={<PageFallback />}>
       <Routes>
         <Route element={<AppShell />}>
-          <Route index element={<Dashboard />} />
-          <Route path="devices" element={<DevicesPage />} />
-          <Route path="devices/:id" element={<DeviceDetailPage />} />
-          <Route path="inventory" element={<InventoryPage />} />
-          <Route path="credentials" element={<CredentialsPage />} />
-          <Route path="performance" element={<PerformancePage />} />
-          <Route path="telemetry" element={<TelemetryPage />} />
-          <Route path="alarms" element={<AlarmsPage />} />
-          <Route path="assurance" element={<AssurancePage />} />
-          <Route path="services" element={<ServicesPage />} />
-          <Route path="ai-ops" element={<AIOpsPage />} />
-          <Route path="lab" element={<LabHealthPage />} />
-          <Route path="alarm-rules" element={<AlarmRulesPage />} />
-          <Route path="monitoring-policies" element={<MonitoringPoliciesPage />} />
-          <Route path="topology" element={<TopologyPage />} />
-          <Route path="discovery" element={<DiscoveryPage />} />
-          <Route path="mibs" element={<MIBsPage />} />
-          <Route path="commands" element={<CommandsPage />} />
-          <Route path="ios" element={<IOSPage />} />
-          <Route path="reports" element={<ReportsPage />} />
-          <Route path="settings" element={<Settings />} />
+          <Route index element={<Guarded name="Dashboard"><Dashboard /></Guarded>} />
+          <Route path="devices" element={<Guarded name="Devices"><DevicesPage /></Guarded>} />
+          <Route path="devices/:id" element={<Guarded name="Device Detail"><DeviceDetailPage /></Guarded>} />
+          <Route path="inventory" element={<Guarded name="Inventory"><InventoryPage /></Guarded>} />
+          <Route path="credentials" element={<Guarded name="Credentials"><CredentialsPage /></Guarded>} />
+          <Route path="performance" element={<Guarded name="Performance"><PerformancePage /></Guarded>} />
+          <Route path="telemetry" element={<Guarded name="Telemetry"><TelemetryPage /></Guarded>} />
+          <Route path="alarms" element={<Guarded name="Alarms"><AlarmsPage /></Guarded>} />
+          <Route path="assurance" element={<Guarded name="Assurance"><AssurancePage /></Guarded>} />
+          <Route path="services" element={<Guarded name="Services"><ServicesPage /></Guarded>} />
+          <Route path="ai-ops" element={<Guarded name="AI Ops"><AIOpsPage /></Guarded>} />
+          <Route path="lab" element={<Guarded name="Lab Health"><LabHealthPage /></Guarded>} />
+          <Route path="alarm-rules" element={<Guarded name="Alarm Rules"><AlarmRulesPage /></Guarded>} />
+          <Route path="monitoring-policies" element={<Guarded name="Monitoring Policies"><MonitoringPoliciesPage /></Guarded>} />
+          <Route path="topology" element={<Guarded name="Topology"><TopologyPage /></Guarded>} />
+          <Route path="discovery" element={<Guarded name="Discovery"><DiscoveryPage /></Guarded>} />
+          <Route path="mibs" element={<Guarded name="MIBs"><MIBsPage /></Guarded>} />
+          <Route path="commands" element={<Guarded name="Commands"><CommandsPage /></Guarded>} />
+          <Route path="ios" element={<Guarded name="IOS Versions"><IOSPage /></Guarded>} />
+          <Route path="reports" element={<Guarded name="Reports"><ReportsPage /></Guarded>} />
+          <Route path="settings" element={<Guarded name="Settings"><Settings /></Guarded>} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Route>
