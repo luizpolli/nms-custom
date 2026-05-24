@@ -25,6 +25,7 @@ class CommandCreate(CommandBase):
 
 
 class CommandUpdate(BaseModel):
+    device_id: Optional[uuid.UUID] = None
     name: Optional[str] = Field(None, max_length=255)
     cli_command: Optional[str] = None
     output_path: Optional[str] = None

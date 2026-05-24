@@ -19,7 +19,7 @@ from app.services.snmp.mib_parser import parse_mib_text
 
 router = APIRouter()
 
-MIB_STORAGE_DIR = Path("/data/mibs")
+MIB_STORAGE_DIR = Path(settings.mib_storage_dir)
 
 
 def _safe_mib_filename(filename: str | None) -> str:

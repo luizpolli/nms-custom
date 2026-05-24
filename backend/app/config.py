@@ -99,6 +99,7 @@ class Settings(BaseSettings):
     # Upload limits
     mib_upload_max_bytes: int = 5 * 1024 * 1024
     mib_allowed_extensions: list[str] = Field(default_factory=lambda: [".mib", ".my", ".txt"])
+    mib_storage_dir: str = "data/mibs"
 
     # Command allow-list (comma-separated regex patterns).
     # When non-empty every CLI text submitted for create/update/run must match

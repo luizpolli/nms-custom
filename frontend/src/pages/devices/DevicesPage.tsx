@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Eye, Trash2, Upload } from 'lucide-react';
+import { Plus, Eye, Trash2, Upload, Download } from 'lucide-react';
 import { api } from '../../lib/api';
+import { useAuthStore } from '../../stores/auth';
 import {
   PageHeader,
   Button,
@@ -57,6 +58,9 @@ export function DevicesPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editDevice, setEditDevice] = useState<Device | null>(null);
   const [importOpen, setImportOpen] = useState(false);
+  const [includeCredentials, setIncludeCredentials] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const canExportCredentials = ['root', 'admin'].includes((user?.name || '').toLowerCase());
 
   const queryKey = ['devices', { search, status, vendor, tag }];
 
@@ -98,6 +102,20 @@ export function DevicesPage() {
   const openEdit = (device: Device) => {
     setEditDevice(device);
     setModalOpen(true);
+  };
+
+  const exportCsv = async () => {
+    const response = await api.get('/devices/export', {
+      params: { format: 'csv', include_credentials: includeCredentials && canExportCredentials },
+      responseType: 'blob',
+    });
+    const blob = new Blob([response.data], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = includeCredentials && canExportCredentials ? 'devices_export_with_credentials.csv' : 'devices_export.csv';
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const allDevices = Array.isArray(data) ? data : [];
@@ -151,7 +169,20 @@ export function DevicesPage() {
         title="Devices"
         subtitle={`${total} registered devices`}
         actions={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {canExportCredentials && (
+              <label className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-700 dark:border-gray-600 dark:text-gray-200">
+                <input
+                  type="checkbox"
+                  checked={includeCredentials}
+                  onChange={(e) => setIncludeCredentials(e.target.checked)}
+                />
+                Credentials
+              </label>
+            )}
+            <Button variant="ghost" onClick={exportCsv}>
+              <Download className="w-4 h-4 mr-1" /> Export CSV
+            </Button>
             <Button variant="ghost" onClick={() => setImportOpen(true)}>
               <Upload className="w-4 h-4 mr-1" /> Import CSV
             </Button>

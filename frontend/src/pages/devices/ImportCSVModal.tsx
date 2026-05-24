@@ -14,11 +14,12 @@ interface ParsedRow {
   name: string;
   host: string;
   vendor: string;
-  user: string;
-  password: string;
+  user?: string;
+  password?: string;
   model?: string;
   site?: string;
   tags: string[];
+  [key: string]: string | string[] | undefined;
 }
 
 interface RowState {
@@ -33,13 +34,44 @@ interface BulkResponse {
   failed: { row: number; name: string; error: string }[];
 }
 
-const REQUIRED = ['name', 'host', 'vendor', 'user', 'password'] as const;
+const REQUIRED = ['name/device_name', 'host/ip_address', 'vendor', 'password/snmp credentials'] as const;
 const ALLOWED_VENDORS = ['cisco', 'juniper', 'huawei', 'nokia', 'arista', 'other'];
 
 const TEMPLATE_CSV =
-  'name,host,vendor,model,user,password,site,tags\n' +
-  'MXCMXM01RTDCLFENT11,10.224.18.14,cisco,NCS55A1,CERT_EPNM,MySuperSecretPwd,CMX-DC,core;production\n' +
-  'OTRONCS55A1,10.224.18.15,cisco,ASR920,CERT_EPNM,MySuperSecretPwd,CMX-DC,edge\n';
+  'name,ip_address,vendor,model,device_type,snmp_version,snmp_community,snmp_write_community,snmp_retries,snmp_timeout,snmp_port,protocol,cli_port,cli_username,cli_password,cli_enable_password,cli_timeout,snmpv3_user_name,snmpv3_auth_type,snmpv3_auth_password,snmpv3_privacy_type,snmpv3_privacy_password,credential_profile,location_groupname,user_groupname,region,country,state,city,county,street,building,floor,room,longitude,latitude,altitude,assigned_network_role,tags\n' +
+  'MXCMXM01RTDCLFENT11,10.224.18.14,cisco,NCS55A1,router,v2c,public,private,2,10,161,snmp,22,CERT_EPNM,MySuperSecretPwd,,60,,,,,CMX-DC-RO,CMX-DC,ops,NA,MX,CDMX,CDMX,,Insurgentes,DC1,2,201,-99.1332,19.4326,224,core,core;production\n' +
+  'OTRONCS55A1,10.224.18.15,cisco,ASR920,router,v3,,,2,10,161,snmp,22,CERT_EPNM,MySuperSecretPwd,,60,snmpv3user,HMAC-SHA,AuthSecret,CFB-AES-128,PrivSecret,CMX-DC-V3,CMX-DC,ops,NA,MX,CDMX,CDMX,,Reforma,DC1,1,101,-99.1332,19.4326,224,edge,edge\n';
+
+const HEADER_ALIASES: Record<string, string> = {
+  device_name: 'name',
+  ip: 'host',
+  ip_address: 'host',
+  cli_username: 'user',
+  cli_password: 'password',
+  licencelevel: 'licenceLevel',
+  licence_level: 'licenceLevel',
+  snmpv3_username: 'snmpv3_user_name',
+  snmpv3_auth_password: 'snmpv3_auth_password',
+  snmpv3_privacy_password: 'snmpv3_privacy_password',
+  credential_profile: 'credential_profile',
+};
+
+function normalizeHeader(header: string): string {
+  const normalized = header
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  return HEADER_ALIASES[normalized] || normalized;
+}
+
+function compactRow(raw: Record<string, string>, base: ParsedRow): ParsedRow {
+  const row: ParsedRow = { ...base };
+  Object.entries(raw).forEach(([key, value]) => {
+    if (value && row[key] === undefined) row[key] = value;
+  });
+  return row;
+}
 
 function parseCSVLine(line: string): string[] {
   const out: string[] = [];
@@ -72,7 +104,7 @@ function parseCSVLine(line: string): string[] {
 function parseCSV(text: string): RowState[] {
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
   if (lines.length === 0) return [];
-  const headers = parseCSVLine(lines[0]).map((h) => h.toLowerCase());
+  const headers = parseCSVLine(lines[0]).map(normalizeHeader);
 
   return lines.slice(1).map((line, i) => {
     const cells = parseCSVLine(line);
@@ -81,7 +113,15 @@ function parseCSV(text: string): RowState[] {
       raw[h] = cells[idx] ?? '';
     });
 
-    const missing = REQUIRED.filter((k) => !raw[k]);
+    const hasName = !!raw.name;
+    const hasHost = !!raw.host;
+    const hasSecret = !!(raw.password || raw.snmp_community || raw.snmpv3_auth_password);
+    const missing = [
+      !hasName ? 'name/device_name' : '',
+      !hasHost ? 'host/ip_address' : '',
+      !raw.vendor ? 'vendor' : '',
+      !hasSecret ? 'password/snmp credentials' : '',
+    ].filter(Boolean);
     if (missing.length > 0) {
       return { index: i, raw, error: `missing required: ${missing.join(', ')}` };
     }
@@ -96,16 +136,16 @@ function parseCSV(text: string): RowState[] {
     return {
       index: i,
       raw,
-      parsed: {
+      parsed: compactRow(raw, {
         name: raw.name,
         host: raw.host,
         vendor,
-        user: raw.user,
-        password: raw.password,
+        user: raw.user || undefined,
+        password: raw.password || raw.snmp_community || raw.snmpv3_auth_password || undefined,
         model: raw.model || undefined,
-        site: raw.site || undefined,
+        site: raw.site || raw.location_groupname || undefined,
         tags,
-      },
+      }),
     };
   });
 }
@@ -177,7 +217,8 @@ export function ImportCSVModal({ open, onClose }: ImportCSVModalProps) {
         </div>
 
         <p className="text-xs text-gray-500">
-          Required columns: <code>name, host, vendor, user, password</code>. Optional: <code>model, site, tags</code> (semicolon-separated).
+          Accepts simple CSV (<code>name, host, vendor, user, password</code>) and EPNM-style CSV (<code>name/device_name, ip_address, snmp_*</code>).
+          Required: <code>{REQUIRED.join(', ')}</code>. Optional: EPNM credential, location, role, and <code>tags</code> (semicolon-separated).
           Allowed vendors: {ALLOWED_VENDORS.join(', ')}.
         </p>
 

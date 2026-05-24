@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '../../lib/api';
-import { Modal, Button, Input } from '../../components/ui';
+import { Modal, Button, Input, Select } from '../../components/ui';
 
 interface Command {
   id: string;
@@ -11,7 +11,14 @@ interface Command {
   device_id?: string;
 }
 
+interface Device {
+  id: string;
+  name: string;
+  ip_address?: string;
+}
+
 interface CommandFormData {
+  device_id: string;
   name: string;
   cli_command: string;
   output_path: string;
@@ -23,15 +30,31 @@ interface CommandFormModalProps {
   command?: Command | null;
 }
 
-const EMPTY_FORM: CommandFormData = { name: '', cli_command: '', output_path: '' };
+const EMPTY_FORM: CommandFormData = { device_id: '', name: '', cli_command: '', output_path: '' };
 
 export function CommandFormModal({ open, onClose, command }: CommandFormModalProps) {
   const queryClient = useQueryClient();
   const [form, setForm] = useState<CommandFormData>(EMPTY_FORM);
 
+  const { data: devicesData, isLoading: devicesLoading } = useQuery<Device[] | { items: Device[] }>({
+    queryKey: ['devices-select'],
+    queryFn: () => api.get('/devices', { params: { limit: 200 } }).then((r) => r.data),
+    enabled: open,
+  });
+
+  const devices: Device[] = Array.isArray(devicesData) ? devicesData : (devicesData?.items ?? []);
+  const deviceOptions = [
+    { value: '', label: devicesLoading ? 'Loading devices...' : 'Select device...' },
+    ...devices.map((device) => ({
+      value: device.id,
+      label: device.ip_address ? `${device.name} (${device.ip_address})` : device.name,
+    })),
+  ];
+
   useEffect(() => {
     if (command) {
       setForm({
+        device_id: command.device_id ?? '',
         name: command.name,
         cli_command: command.cli_command,
         output_path: command.output_path,
@@ -66,6 +89,14 @@ export function CommandFormModal({ open, onClose, command }: CommandFormModalPro
   return (
     <Modal open={open} onClose={onClose} title={command ? 'Edit command' : 'Create command'}>
       <form onSubmit={handleSubmit} className="space-y-4">
+        <Select
+          label="Device"
+          value={form.device_id}
+          onChange={(e) => handleSet('device_id', e.target.value)}
+          options={deviceOptions}
+          required
+          disabled={devicesLoading}
+        />
         <Input label="Name" value={form.name} onChange={(e) => handleSet('name', e.target.value)} required />
         <Input
           label="CLI command"
@@ -82,7 +113,7 @@ export function CommandFormModal({ open, onClose, command }: CommandFormModalPro
         />
         <div className="flex justify-end gap-2 pt-2">
           <Button type="button" variant="ghost" onClick={onClose}>Cancel</Button>
-          <Button type="submit" disabled={mutation.isPending}>
+          <Button type="submit" disabled={mutation.isPending || devicesLoading || !form.device_id}>
             {mutation.isPending ? 'Saving...' : 'Save'}
           </Button>
         </div>

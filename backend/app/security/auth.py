@@ -37,6 +37,11 @@ PERM_SETTINGS_ALARMS_EVENTS = "system_settings_submenu_alarm_and_events_alarm_an
 
 # Roles and their granted command permissions (additive).
 _ROLE_COMMAND_PERMS: dict[str, frozenset[str]] = {
+    "root": frozenset({
+        PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,
+        PERM_COMMANDS_DELETE, PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK,
+        PERM_COMMANDS_EXPORT, PERM_COMMANDS_SCHEDULE,
+    }),
     "admin": frozenset({
         PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,
         PERM_COMMANDS_DELETE, PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK,
@@ -55,6 +60,7 @@ _ROLE_COMMAND_PERMS: dict[str, frozenset[str]] = {
 }
 
 _ROLE_SETTINGS_PERMS: dict[str, frozenset[str]] = {
+    "root": frozenset({"*"}),
     "admin": frozenset({"*"}),
     "operator": frozenset(),
     "ai-ops": frozenset(),

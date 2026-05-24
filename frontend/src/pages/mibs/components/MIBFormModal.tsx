@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { clsx } from 'clsx';
+import { api } from '../../../lib/api';
 
 export interface MIB {
   id?: string;
@@ -32,8 +32,8 @@ export function MIBFormModal({ mib, onClose, onSaved }: Props) {
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: () =>
       isEdit
-        ? axios.patch(`/api/mibs/${mib!.id}`, form)
-        : axios.post('/api/mibs', form),
+        ? api.patch(`/mibs/${mib!.id}`, form)
+        : api.post('/mibs', form),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['mibs'] });
       onSaved();

@@ -6,6 +6,7 @@ import {
   Network,
   Package,
   Bell,
+  RadioTower,
   Users,
   ShieldCheck,
   ServerCog,
@@ -26,6 +27,7 @@ import { PageHeader } from '../components/ui/PageHeader';
 import { Select } from '../components/ui/Select';
 import { Button, Input, Badge } from '../components/ui';
 import { api } from '../lib/api';
+import { ForwardingSettings } from './settings/ForwardingSettings';
 
 type CategoryKey =
   | 'general'
@@ -35,6 +37,7 @@ type CategoryKey =
   | 'networkDevices'
   | 'inventory'
   | 'alarmsEvents'
+  | 'eventForwarding'
   | 'integrationsAiOps'
   | 'labOperations';
 
@@ -56,6 +59,7 @@ const CATEGORY_PERMISSIONS: Record<CategoryKey, string[]> = {
   networkDevices: ['administrative_operations_system_settings', 'system_settings_submenu_network_and_device_snmp'],
   inventory: ['administrative_operations_system_settings', 'system_settings_submenu_inventory_inventory'],
   alarmsEvents: ['administrative_operations_system_settings', 'system_settings_submenu_alarm_and_events_alarm_and_events'],
+  eventForwarding: ['administrative_operations_system_settings', 'nbi.write'],
   integrationsAiOps: ['administrative_operations_system_settings'],
   labOperations: ['administrative_operations_system_settings', 'system_settings_submenu_performance_ptp_synce'],
 };
@@ -106,6 +110,11 @@ const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>
     Syslog: ['system_settings_submenu_alarm_and_events_system_event_configuration'],
     'Event retention': ['system_settings_submenu_alarm_and_events_alarm_and_events'],
     Notifications: ['system_settings_submenu_alarm_and_events_alarm_notification_policies'],
+  },
+  eventForwarding: {
+    Targets: ['administrative_operations_system_settings', 'nbi.write'],
+    Testing: ['administrative_operations_system_settings', 'nbi.write'],
+    Filters: ['system_settings_submenu_alarm_and_events_alarm_and_events'],
   },
   integrationsAiOps: {
     'Northbound API': ['nbi.read', 'nbi.write'],
@@ -188,8 +197,17 @@ const CATEGORIES: Category[] = [
     status: 'planned',
   },
   {
-    key: 'integrationsAiOps',
+    key: 'eventForwarding',
     number: 8,
+    title: 'Event Forwarding',
+    description: 'Northbound relay targets for received traps, syslogs, telemetry events, and generated alarms.',
+    icon: <RadioTower className="h-5 w-5" />,
+    submenus: ['Targets', 'Testing', 'Filters'],
+    status: 'live',
+  },
+  {
+    key: 'integrationsAiOps',
+    number: 9,
     title: 'Integrations / AI Ops',
     description: 'Northbound APIs, webhooks, AI Ops recommendations, model/provider knobs, and external tools.',
     icon: <BrainCircuit className="h-5 w-5" />,
@@ -198,7 +216,7 @@ const CATEGORIES: Category[] = [
   },
   {
     key: 'labOperations',
-    number: 9,
+    number: 10,
     title: 'Lab / Operations',
     description: 'Lab health, traffic simulator hooks, maintenance windows, operational runbooks, and PTP/SyncE.',
     icon: <FlaskConical className="h-5 w-5" />,
@@ -1551,6 +1569,8 @@ function CategoryContent({ category }: { category: CategoryKey }) {
       );
     case 'alarmsEvents':
       return <AlarmsEventsPanel />;
+    case 'eventForwarding':
+      return <ForwardingSettings />;
     case 'integrationsAiOps':
       return (
         <PlaceholderPanel
@@ -1582,7 +1602,7 @@ function CategoryContent({ category }: { category: CategoryKey }) {
 
 const SECTION_KEYS = new Set<CategoryKey>([
   'general', 'system', 'security', 'usersRoles', 'networkDevices',
-  'inventory', 'alarmsEvents', 'integrationsAiOps', 'labOperations',
+  'inventory', 'alarmsEvents', 'eventForwarding', 'integrationsAiOps', 'labOperations',
 ]);
 
 function isValidSection(s: string | null): s is CategoryKey {

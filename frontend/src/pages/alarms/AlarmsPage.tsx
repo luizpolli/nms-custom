@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { PageHeader, Card, Select, Button } from '../../components/ui';
+import { ListFilter, Save, Trash2 } from 'lucide-react';
+import { PageHeader, Card, Select, Button, Input, Modal } from '../../components/ui';
 import { api } from '../../lib/api';
 import { useAlarmWebSocket } from '../../lib/ws';
 import { AlarmSummaryStrip } from './components/AlarmSummaryStrip';
@@ -18,22 +19,42 @@ interface AlarmSummary {
 }
 
 interface AlarmFilters {
+  q: string;
   severity: string;
   state: string;
   device_id: string;
+  category: string;
+  event_type: string;
+  source_host: string;
   since: string;
   until: string;
   limit: number;
+  offset: number;
 }
 
 const DEFAULT_FILTERS: AlarmFilters = {
+  q: '',
   severity: '',
   state: '',
   device_id: '',
+  category: '',
+  event_type: '',
+  source_host: '',
   since: '',
   until: '',
   limit: 100,
+  offset: 0,
 };
+
+interface SavedAlarmFilter {
+  id: string;
+  name: string;
+  owner: string;
+  is_public: boolean;
+  filters: Partial<AlarmFilters>;
+  created_at: string;
+  updated_at: string;
+}
 
 async function fetchAlarms(filters: AlarmFilters): Promise<Alarm[]> {
   const params = Object.fromEntries(
@@ -46,6 +67,24 @@ async function fetchAlarms(filters: AlarmFilters): Promise<Alarm[]> {
 async function fetchAlarmSummary(): Promise<AlarmSummary> {
   const { data } = await api.get<AlarmSummary>('/alarms/summary');
   return data;
+}
+
+async function fetchSavedFilters(): Promise<SavedAlarmFilter[]> {
+  const { data } = await api.get<SavedAlarmFilter[]>('/alarms/filters');
+  return data;
+}
+
+async function saveAlarmFilter(name: string, isPublic: boolean, filters: AlarmFilters): Promise<SavedAlarmFilter> {
+  const { data } = await api.post<SavedAlarmFilter>('/alarms/filters', {
+    name,
+    is_public: isPublic,
+    filters,
+  });
+  return data;
+}
+
+async function deleteAlarmFilter(id: string): Promise<void> {
+  await api.delete(`/alarms/filters/${id}`);
 }
 
 async function clearAlarm(id: string): Promise<void> {
@@ -62,8 +101,25 @@ export function AlarmsPage() {
   const [selectedAlarm, setSelectedAlarm] = useState<Alarm | null>(null);
   const [ackAlarmId, setAckAlarmId] = useState<string | null>(null);
   const [suppressAlarmId, setSuppressAlarmId] = useState<string | null>(null);
+  const [saveFilterOpen, setSaveFilterOpen] = useState(false);
+  const [loadFilterOpen, setLoadFilterOpen] = useState(false);
+  const [filterName, setFilterName] = useState('');
+  const [filterIsPublic, setFilterIsPublic] = useState(false);
+  const [savingFilter, setSavingFilter] = useState(false);
 
-  const filtersKey = [filters.severity, filters.state, filters.device_id, filters.since, filters.until, filters.limit];
+  const filtersKey = [
+    filters.q,
+    filters.severity,
+    filters.state,
+    filters.device_id,
+    filters.category,
+    filters.event_type,
+    filters.source_host,
+    filters.since,
+    filters.until,
+    filters.limit,
+    filters.offset,
+  ];
 
   const alarmsQuery = useQuery({
     queryKey: ['alarms', ...filtersKey],
@@ -75,6 +131,12 @@ export function AlarmsPage() {
     queryKey: ['alarms-summary'],
     queryFn: fetchAlarmSummary,
     refetchInterval: 30_000,
+  });
+
+  const savedFiltersQuery = useQuery({
+    queryKey: ['alarm-filters'],
+    queryFn: fetchSavedFilters,
+    retry: false,
   });
 
   useAlarmWebSocket((event) => {
@@ -93,8 +155,38 @@ export function AlarmsPage() {
     }, 2000);
   });
 
-  function setFilter(key: keyof AlarmFilters, value: string) {
+  function setFilter(key: keyof AlarmFilters, value: string | number) {
     setFilters((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function applySavedFilter(savedFilter: SavedAlarmFilter) {
+    setFilters({
+      ...DEFAULT_FILTERS,
+      ...savedFilter.filters,
+      limit: Number(savedFilter.filters.limit ?? DEFAULT_FILTERS.limit),
+      offset: Number(savedFilter.filters.offset ?? DEFAULT_FILTERS.offset),
+    });
+    setLoadFilterOpen(false);
+  }
+
+  async function handleSaveFilter() {
+    const name = filterName.trim();
+    if (!name) return;
+    setSavingFilter(true);
+    try {
+      await saveAlarmFilter(name, filterIsPublic, filters);
+      await queryClient.invalidateQueries({ queryKey: ['alarm-filters'] });
+      setFilterName('');
+      setFilterIsPublic(false);
+      setSaveFilterOpen(false);
+    } finally {
+      setSavingFilter(false);
+    }
+  }
+
+  async function handleDeleteFilter(id: string) {
+    await deleteAlarmFilter(id);
+    await queryClient.invalidateQueries({ queryKey: ['alarm-filters'] });
   }
 
   async function handleClear(id: string) {
@@ -128,6 +220,15 @@ export function AlarmsPage() {
 
       <Card>
         <div className="flex flex-wrap gap-3 items-end mb-4">
+          <div className="flex-[2] min-w-56">
+            <Input
+              label="Search"
+              value={filters.q}
+              onChange={(e) => setFilter('q', e.target.value)}
+              placeholder="Message, source, event, category, correlation"
+              className="py-1.5 text-xs"
+            />
+          </div>
           <div className="flex-1 min-w-36">
             <label className="block text-xs text-gray-500 mb-1">Severity</label>
             <Select
@@ -158,6 +259,24 @@ export function AlarmsPage() {
             />
           </div>
           <div className="flex-1 min-w-36">
+            <Input
+              label="Category"
+              value={filters.category}
+              onChange={(e) => setFilter('category', e.target.value)}
+              placeholder="link"
+              className="py-1.5 text-xs"
+            />
+          </div>
+          <div className="flex-1 min-w-36">
+            <Input
+              label="Source host"
+              value={filters.source_host}
+              onChange={(e) => setFilter('source_host', e.target.value)}
+              placeholder="router01"
+              className="py-1.5 text-xs"
+            />
+          </div>
+          <div className="flex-1 min-w-36">
             <label className="block text-xs text-gray-500 mb-1">From</label>
             <input
               type="datetime-local"
@@ -182,6 +301,67 @@ export function AlarmsPage() {
           >
             Clear filters
           </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            leftIcon={<Save className="h-4 w-4" />}
+            onClick={() => setSaveFilterOpen(true)}
+          >
+            Save Filter
+          </Button>
+          <div className="relative">
+            <Button
+              size="sm"
+              variant="outline"
+              leftIcon={<ListFilter className="h-4 w-4" />}
+              onClick={() => setLoadFilterOpen((open) => !open)}
+            >
+              Load Filter
+            </Button>
+            {loadFilterOpen && (
+              <div className="absolute right-0 z-20 mt-2 w-72 rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900">
+                {savedFiltersQuery.isLoading && (
+                  <div className="px-3 py-2 text-sm text-gray-500">Loading filters...</div>
+                )}
+                {!savedFiltersQuery.isLoading && (savedFiltersQuery.data ?? []).length === 0 && (
+                  <div className="px-3 py-2 text-sm text-gray-500">No saved filters</div>
+                )}
+                {(savedFiltersQuery.data ?? []).map((savedFilter) => {
+                  const canDelete = savedFilter.owner === 'local-dev' || savedFilter.owner === 'api-key';
+                  return (
+                    <div
+                      key={savedFilter.id}
+                      className="flex items-center gap-2 border-b border-gray-100 px-2 py-1 last:border-b-0 dark:border-gray-800"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => applySavedFilter(savedFilter)}
+                        className="min-w-0 flex-1 rounded px-2 py-1.5 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                      >
+                        <span className="block truncate">{savedFilter.name}</span>
+                        <span className="block truncate text-xs text-gray-400">
+                          {savedFilter.is_public ? 'Public' : 'Private'} · {savedFilter.owner}
+                        </span>
+                      </button>
+                      {canDelete && (
+                        <button
+                          type="button"
+                          title="Delete filter"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteFilter(savedFilter.id);
+                          }}
+                          className="rounded p-1.5 hover:bg-red-50 dark:hover:bg-red-950"
+                        >
+                          <Trash2 className="h-4 w-4 text-red-500" />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         {alarmsQuery.isLoading && (
@@ -228,6 +408,34 @@ export function AlarmsPage() {
           onClose={() => setSuppressAlarmId(null)}
         />
       )}
+
+      <Modal open={saveFilterOpen} onClose={() => setSaveFilterOpen(false)} title="Save alarm filter">
+        <div className="space-y-4">
+          <Input
+            label="Filter name"
+            value={filterName}
+            onChange={(e) => setFilterName(e.target.value)}
+            placeholder="Core critical alarms"
+          />
+          <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <input
+              type="checkbox"
+              checked={filterIsPublic}
+              onChange={(e) => setFilterIsPublic(e.target.checked)}
+              className="rounded border-gray-300"
+            />
+            Public filter
+          </label>
+          <div className="flex justify-end gap-2">
+            <Button variant="ghost" onClick={() => setSaveFilterOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSaveFilter} loading={savingFilter} disabled={!filterName.trim()}>
+              Save
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

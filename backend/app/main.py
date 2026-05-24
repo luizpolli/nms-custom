@@ -27,6 +27,7 @@ from app.api.health import router as health_router
 from app.api.settings import router as settings_router
 from app.api.system import router as system_router
 from app.api.telemetry import router as telemetry_router
+from app.api.forwarding import router as forwarding_router
 from app.api.assurance import router as assurance_router
 from app.api.services import router as services_router
 from app.api.metrics import router as metrics_router
@@ -101,6 +102,7 @@ app.include_router(report_schedules_router, prefix="/api/report-schedules", tags
 app.include_router(settings_router, prefix="/api/settings", tags=["settings"], dependencies=_api_auth)
 app.include_router(system_router, prefix="/api/system", tags=["system"], dependencies=_api_auth)
 app.include_router(telemetry_router, prefix="/api/telemetry", tags=["telemetry"], dependencies=_api_auth)
+app.include_router(forwarding_router, prefix="/api/forwarding", tags=["forwarding"], dependencies=_api_auth)
 app.include_router(assurance_router, prefix="/api/assurance", tags=["assurance"], dependencies=_api_auth)
 app.include_router(ai_ops_router, prefix="/api/ai-ops", tags=["ai-ops"], dependencies=_api_auth)
 app.include_router(services_router, prefix="/api/services", tags=["services"], dependencies=_api_auth)

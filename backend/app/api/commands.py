@@ -60,6 +60,7 @@ class CommandCreate(CommandBase):
 
 
 class CommandUpdate(BaseModel):
+    device_id: uuid.UUID | None = None
     name: str | None = None
     cli_command: str | None = Field(None, max_length=512)
     output_path: str | None = None

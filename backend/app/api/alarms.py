@@ -9,12 +9,14 @@ from typing import Annotated, Literal, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect, status
 from pydantic import BaseModel, Field
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import async_session_factory, get_db
 from app.models.alarm import Alarm
+from app.models.alarm_filter import SavedAlarmFilter
 from app.models.audit import AuditLog
+from app.security.auth import Principal, require_api_auth
 from app.services.alarms.correlator import AlarmCorrelator
 
 router = APIRouter()
@@ -75,6 +77,30 @@ class AlarmSummary(BaseModel):
     warning: int
 
 
+class SavedFilterCreate(BaseModel):
+    name: str = Field(..., max_length=128)
+    is_public: bool = False
+    filters: dict = Field(default_factory=dict)
+
+
+class SavedFilterUpdate(BaseModel):
+    name: str | None = Field(default=None, max_length=128)
+    is_public: bool | None = None
+    filters: dict | None = None
+
+
+class SavedFilterRead(BaseModel):
+    model_config = {"from_attributes": True}
+
+    id: uuid.UUID
+    name: str
+    owner: str
+    is_public: bool
+    filters: dict
+    created_at: datetime
+    updated_at: datetime
+
+
 async def _get_or_404(db: AsyncSession, alarm_id: uuid.UUID) -> Alarm:
     result = await db.execute(select(Alarm).where(Alarm.id == alarm_id))
     alarm = result.scalar_one_or_none()
@@ -111,9 +137,14 @@ async def list_alarms(
     device_id: Optional[uuid.UUID] = None,
     severity: Optional[str] = None,
     state: Optional[str] = None,
+    category: Optional[str] = None,
+    event_type: Optional[str] = None,
+    source_host: Optional[str] = None,
+    q: Optional[str] = None,
     since: Optional[datetime] = None,
     until: Optional[datetime] = None,
     limit: int = 100,
+    offset: int = 0,
 ) -> list[AlarmRead]:
     stmt = select(Alarm)
     if device_id:
@@ -122,11 +153,28 @@ async def list_alarms(
         stmt = stmt.where(Alarm.severity == severity)
     if state:
         stmt = stmt.where(Alarm.state == state)
+    if category:
+        stmt = stmt.where(Alarm.category == category)
+    if event_type:
+        stmt = stmt.where(Alarm.event_type == event_type)
+    if source_host:
+        stmt = stmt.where(Alarm.source_host == source_host)
+    if q:
+        pattern = f"%{q}%"
+        stmt = stmt.where(
+            or_(
+                Alarm.message.ilike(pattern),
+                Alarm.source_host.ilike(pattern),
+                Alarm.event_type.ilike(pattern),
+                Alarm.category.ilike(pattern),
+                Alarm.correlation_key.ilike(pattern),
+            )
+        )
     if since:
         stmt = stmt.where(Alarm.first_seen >= since)
     if until:
         stmt = stmt.where(Alarm.first_seen <= until)
-    stmt = stmt.order_by(Alarm.last_seen.desc()).limit(limit)
+    stmt = stmt.order_by(Alarm.last_seen.desc()).offset(offset).limit(limit)
     result = await db.execute(stmt)
     return [AlarmRead.model_validate(a) for a in result.scalars().all()]
 
@@ -178,6 +226,80 @@ async def ingest_alarm_event(body: AlarmEventIngest) -> AlarmRead | None:
             fields=body.fields,
         )
     return AlarmRead.model_validate(alarm) if alarm is not None else None
+
+
+@router.get("/filters", response_model=list[SavedFilterRead])
+async def list_saved_alarm_filters(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    principal: Annotated[Principal, Depends(require_api_auth)],
+    owner: Optional[str] = None,
+) -> list[SavedFilterRead]:
+    stmt = select(SavedAlarmFilter).where(
+        or_(SavedAlarmFilter.is_public.is_(True), SavedAlarmFilter.owner == principal.subject)
+    )
+    if owner:
+        stmt = stmt.where(SavedAlarmFilter.owner == owner)
+    stmt = stmt.order_by(SavedAlarmFilter.name.asc())
+    result = await db.execute(stmt)
+    return [SavedFilterRead.model_validate(item) for item in result.scalars().all()]
+
+
+@router.post("/filters", response_model=SavedFilterRead, status_code=status.HTTP_201_CREATED)
+async def create_saved_alarm_filter(
+    body: SavedFilterCreate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    principal: Annotated[Principal, Depends(require_api_auth)],
+) -> SavedFilterRead:
+    saved_filter = SavedAlarmFilter(
+        name=body.name,
+        owner=principal.subject,
+        is_public=body.is_public,
+        filters=body.filters,
+    )
+    db.add(saved_filter)
+    await db.flush()
+    await db.refresh(saved_filter)
+    return SavedFilterRead.model_validate(saved_filter)
+
+
+@router.patch("/filters/{id}", response_model=SavedFilterRead)
+async def update_saved_alarm_filter(
+    id: uuid.UUID,
+    body: SavedFilterUpdate,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    principal: Annotated[Principal, Depends(require_api_auth)],
+) -> SavedFilterRead:
+    result = await db.execute(select(SavedAlarmFilter).where(SavedAlarmFilter.id == id))
+    saved_filter = result.scalar_one_or_none()
+    if saved_filter is None:
+        raise HTTPException(status_code=404, detail="Saved filter not found")
+    if saved_filter.owner != principal.subject:
+        raise HTTPException(status_code=403, detail="Only the owner can update this saved filter")
+    if body.name is not None:
+        saved_filter.name = body.name
+    if body.is_public is not None:
+        saved_filter.is_public = body.is_public
+    if body.filters is not None:
+        saved_filter.filters = body.filters
+    saved_filter.updated_at = datetime.now()
+    await db.flush()
+    await db.refresh(saved_filter)
+    return SavedFilterRead.model_validate(saved_filter)
+
+
+@router.delete("/filters/{id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_saved_alarm_filter(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    principal: Annotated[Principal, Depends(require_api_auth)],
+) -> None:
+    result = await db.execute(select(SavedAlarmFilter).where(SavedAlarmFilter.id == id))
+    saved_filter = result.scalar_one_or_none()
+    if saved_filter is None:
+        raise HTTPException(status_code=404, detail="Saved filter not found")
+    if saved_filter.owner != principal.subject:
+        raise HTTPException(status_code=403, detail="Only the owner can delete this saved filter")
+    await db.delete(saved_filter)
 
 
 @router.get("/{id}", response_model=AlarmRead)

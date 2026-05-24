@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import { api } from '../../../lib/api';
 
 interface Props {
   onClose: () => void;
@@ -20,7 +20,7 @@ export function MIBUploadModal({ onClose, onUploaded }: Props) {
     mutationFn: (f: File) => {
       const form = new FormData();
       form.append('file', f);
-      return axios.post('/api/mibs/upload', form, {
+      return api.post('/mibs/upload', form, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (e) => {
           if (e.total) setProgress(Math.round((e.loaded / e.total) * 100));
