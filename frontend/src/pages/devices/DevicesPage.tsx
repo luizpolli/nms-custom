@@ -26,6 +26,7 @@ interface Device {
   vendor: string;
   model: string;
   os_type: string;
+  software_version?: string;
   status: string;
   tags: string[];
   device_type: string;
@@ -82,6 +83,12 @@ const ALL_COLUMNS: ColumnDef[] = [
     header: 'OS Type',
     defaultVisible: true,
     render: (_: unknown, row: Device) => row.os_type || '—',
+  },
+  {
+    key: 'software_version',
+    header: 'OS Version',
+    defaultVisible: true,
+    render: (_: unknown, row: Device) => row.software_version || '—',
   },
   {
     key: 'status',

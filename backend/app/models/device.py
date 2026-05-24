@@ -28,6 +28,7 @@ class Device(Base):
     lifecycle_state: Mapped[str] = mapped_column(String(50), nullable=False, default="active")
     platform_family: Mapped[str | None] = mapped_column(String(100), nullable=True, index=True)
     mgmt_vrf: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    software_version: Mapped[str | None] = mapped_column(String(255), nullable=True)
     snmp_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     ssh_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     telemetry_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)

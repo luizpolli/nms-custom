@@ -168,7 +168,7 @@ def _device_export_row(device: Device) -> DeviceExportRow:
         device_type=device.device_type,
         last_inventory_collection_status=_inventory_value(inventory, "collection_status", "status"),
         last_successful_collection_time=_inventory_value(inventory, "last_successful_collection_time", "updated_at"),
-        software_version=_inventory_value(inventory, "software_version", "firmware_version") or _csv_value(device.os_type),
+        software_version=_inventory_value(inventory, "software_version", "firmware_version") or _csv_value(device.software_version) or _csv_value(device.os_type),
         creation_timestamp=_csv_value(device.created_at),
         vendor=_csv_value(device.vendor),
     )

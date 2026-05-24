@@ -16,6 +16,7 @@ class DeviceBase(BaseModel):
     model: Optional[str] = Field(None, max_length=255)
     vendor: Optional[str] = Field(None, max_length=100)
     os_type: Optional[str] = Field(None, max_length=100)
+    software_version: Optional[str] = Field(None, max_length=255)
     status: str = Field("unknown", max_length=20)
     location: Optional[str] = Field(None, max_length=255)
     site_id: Optional[str] = Field(None, max_length=255)
@@ -41,6 +42,7 @@ class DeviceUpdate(BaseModel):
     model: Optional[str] = None
     vendor: Optional[str] = None
     os_type: Optional[str] = None
+    software_version: Optional[str] = None
     status: Optional[str] = None
     location: Optional[str] = None
     site_id: Optional[str] = None
