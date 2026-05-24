@@ -369,7 +369,7 @@ export function DeviceFormModal({ open, onClose, device, initialValues }: Device
               <Field label="Device Type"><Select value={form.device_type} onChange={(e) => set('device_type', e.target.value)} options={deviceTypeOptions} /></Field>
               <Field label="Vendor"><Select value={form.vendor} onChange={(e) => set('vendor', e.target.value)} options={vendorOptions} /></Field>
               <Field label="Model"><Input value={form.model} onChange={(e) => set('model', e.target.value)} /></Field>
-              <Field label="OS Type"><Input value={form.os_type} onChange={(e) => set('os_type', e.target.value)} /></Field>
+
               <Field label="Status"><Select value={form.status} onChange={(e) => set('status', e.target.value)} options={statusOptions} /></Field>
               <Field label="Role"><Select value={form.role} onChange={(e) => set('role', e.target.value)} options={roleOptions} /></Field>
               <Field label="Platform Family"><Input value={form.platform_family} onChange={(e) => set('platform_family', e.target.value)} /></Field>

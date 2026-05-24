@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Eye, Trash2, Upload, Download } from 'lucide-react';
+import { Plus, Eye, Trash2, Upload, Download, Settings2 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { useAuthStore } from '../../stores/auth';
 import {
@@ -31,7 +31,165 @@ interface Device {
   device_type: string;
   location: string;
   credential_id: string;
+  role?: string;
+  lifecycle_state?: string;
+  platform_family?: string;
+  site_id?: string;
+  created_at?: string;
 }
+
+// ---------------------------------------------------------------------------
+// Column definitions
+// ---------------------------------------------------------------------------
+
+interface ColumnDef {
+  key: string;
+  header: string;
+  defaultVisible: boolean;
+  render?: (value: unknown, row: Device) => React.ReactNode;
+}
+
+const STORAGE_KEY = 'nms-device-columns';
+
+function loadVisibleColumns(): Set<string> {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return new Set(JSON.parse(stored) as string[]);
+  } catch { /* ignore */ }
+  return new Set(ALL_COLUMNS.filter((c) => c.defaultVisible).map((c) => c.key));
+}
+
+function saveVisibleColumns(keys: Set<string>) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...keys]));
+}
+
+const ALL_COLUMNS: ColumnDef[] = [
+  { key: 'name', header: 'Name', defaultVisible: true },
+  { key: 'ip_address', header: 'IP Address', defaultVisible: true },
+  { key: 'device_type', header: 'Device Type', defaultVisible: false },
+  {
+    key: 'vendor',
+    header: 'Vendor',
+    defaultVisible: true,
+  },
+  {
+    key: 'model',
+    header: 'Model',
+    defaultVisible: true,
+  },
+  {
+    key: 'os_type',
+    header: 'OS Type',
+    defaultVisible: true,
+    render: (_: unknown, row: Device) => row.os_type || '—',
+  },
+  {
+    key: 'status',
+    header: 'Status',
+    defaultVisible: true,
+    render: (_: unknown, row: Device) => <DeviceStatusBadge status={row.status} />,
+  },
+  {
+    key: 'role',
+    header: 'Role',
+    defaultVisible: false,
+    render: (_: unknown, row: Device) => row.role || '—',
+  },
+  {
+    key: 'lifecycle_state',
+    header: 'Lifecycle',
+    defaultVisible: false,
+    render: (_: unknown, row: Device) => row.lifecycle_state || '—',
+  },
+  {
+    key: 'platform_family',
+    header: 'Platform',
+    defaultVisible: false,
+    render: (_: unknown, row: Device) => row.platform_family || '—',
+  },
+  {
+    key: 'site_id',
+    header: 'Site',
+    defaultVisible: false,
+    render: (_: unknown, row: Device) => row.site_id || row.location || '—',
+  },
+  {
+    key: 'tags',
+    header: 'Tags',
+    defaultVisible: true,
+    render: (_: unknown, row: Device) => <DeviceTagList tags={row.tags} />,
+  },
+  {
+    key: 'created_at',
+    header: 'Created',
+    defaultVisible: false,
+    render: (_: unknown, row: Device) =>
+      row.created_at ? new Date(row.created_at).toLocaleDateString() : '—',
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Column picker popover
+// ---------------------------------------------------------------------------
+
+function ColumnPicker({
+  visible,
+  onChange,
+}: {
+  visible: Set<string>;
+  onChange: (next: Set<string>) => void;
+}) {
+  const [open, setOpen] = useState(false);
+
+  const toggle = (key: string) => {
+    const next = new Set(visible);
+    if (next.has(key)) {
+      if (next.size <= 2) return; // keep at least 2
+      next.delete(key);
+    } else {
+      next.add(key);
+    }
+    onChange(next);
+    saveVisibleColumns(next);
+  };
+
+  return (
+    <div className="relative">
+      <Button variant="ghost" size="sm" onClick={() => setOpen((o) => !o)} title="Customize columns">
+        <Settings2 className="w-4 h-4" />
+      </Button>
+      {open && (
+        <>
+          {/* backdrop */}
+          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 z-20 mt-2 w-56 rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900">
+            <div className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 border-b border-gray-100 dark:border-gray-800">
+              Show / Hide Columns
+            </div>
+            {ALL_COLUMNS.map((col) => (
+              <label
+                key={col.key}
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer dark:text-gray-200 dark:hover:bg-gray-800"
+              >
+                <input
+                  type="checkbox"
+                  checked={visible.has(col.key)}
+                  onChange={() => toggle(col.key)}
+                  className="rounded border-gray-300 dark:border-gray-600"
+                />
+                {col.header}
+              </label>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Main page
+// ---------------------------------------------------------------------------
 
 const LIMIT = 20;
 const VENDOR_OPTIONS = [
@@ -59,6 +217,7 @@ export function DevicesPage() {
   const [editDevice, setEditDevice] = useState<Device | null>(null);
   const [importOpen, setImportOpen] = useState(false);
   const [includeCredentials, setIncludeCredentials] = useState(false);
+  const [visibleCols, setVisibleCols] = useState<Set<string>>(loadVisibleColumns);
   const user = useAuthStore((state) => state.user);
   const canExportCredentials = ['root', 'admin'].includes((user?.name || '').toLowerCase());
 
@@ -89,10 +248,10 @@ export function DevicesPage() {
     },
   });
 
-  const handleDelete = (device: Device) => {
+  const handleDelete = useCallback((device: Device) => {
     if (!window.confirm(`Delete device "${device.name}"?`)) return;
     deleteMutation.mutate(device.id);
-  };
+  }, [deleteMutation]);
 
   const openCreate = () => {
     setEditDevice(null);
@@ -124,25 +283,13 @@ export function DevicesPage() {
   const pages = Math.max(1, Math.ceil(total / LIMIT));
   const currentPage = Math.floor(offset / LIMIT) + 1;
 
+  // Build columns from visible set + always-on actions column
   const columns = [
-    { key: 'name', header: 'Name' },
-    { key: 'ip_address', header: 'IP' },
-    {
-      key: 'vendor_model',
-      header: 'Vendor / Model',
-      render: (_: unknown, row: Device) => `${row.vendor || '—'} / ${row.model || '—'}`,
-    },
-    { key: 'os_type', header: 'OS' },
-    {
-      key: 'status',
-      header: 'Status',
-      render: (_: unknown, row: Device) => <DeviceStatusBadge status={row.status} />,
-    },
-    {
-      key: 'tags',
-      header: 'Tags',
-      render: (_: unknown, row: Device) => <DeviceTagList tags={row.tags} />,
-    },
+    ...ALL_COLUMNS.filter((c) => visibleCols.has(c.key)).map((c) => ({
+      key: c.key,
+      header: c.header,
+      render: c.render,
+    })),
     {
       key: 'actions',
       header: 'Actions',
@@ -193,8 +340,8 @@ export function DevicesPage() {
         }
       />
 
-      {/* Filter bar */}
-      <div className="flex flex-wrap gap-3">
+      {/* Filter bar + column picker */}
+      <div className="flex flex-wrap items-center gap-3">
         <Input
           placeholder="Search by name or IP..."
           value={search}
@@ -217,6 +364,9 @@ export function DevicesPage() {
           onChange={(e) => { setTag(e.target.value); setOffset(0); }}
           className="w-44"
         />
+        <div className="ml-auto">
+          <ColumnPicker visible={visibleCols} onChange={setVisibleCols} />
+        </div>
       </div>
 
       {isLoading && <Spinner />}
