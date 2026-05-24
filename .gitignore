@@ -20,6 +20,11 @@ dist/
 build/
 .next/
 
+# TLS dev certs — generate locally with scripts/gen-dev-certs.sh
+certs/*.key
+certs/*.crt
+certs/*.pem
+
 # IDE
 .vscode/
 .idea/
