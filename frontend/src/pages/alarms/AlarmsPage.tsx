@@ -91,6 +91,14 @@ async function clearAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/clear`);
 }
 
+async function bulkAckAlarms(alarmIds: string[]): Promise<void> {
+  await api.post('/alarms/bulk-ack', { alarm_ids: alarmIds, by_user: 'operator' });
+}
+
+async function bulkClearAlarms(alarmIds: string[]): Promise<void> {
+  await api.post('/alarms/bulk-clear', { alarm_ids: alarmIds });
+}
+
 async function unsuppressAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/unsuppress`, { by_user: 'operator' });
 }
@@ -106,6 +114,8 @@ export function AlarmsPage() {
   const [filterName, setFilterName] = useState('');
   const [filterIsPublic, setFilterIsPublic] = useState(false);
   const [savingFilter, setSavingFilter] = useState(false);
+  const [selectedAlarmIds, setSelectedAlarmIds] = useState<Set<string>>(new Set());
+  const [bulkAction, setBulkAction] = useState<'ack' | 'clear' | null>(null);
 
   const filtersKey = [
     filters.q,
@@ -195,6 +205,42 @@ export function AlarmsPage() {
     queryClient.invalidateQueries({ queryKey: ['alarms-summary'] });
     queryClient.invalidateQueries({ queryKey: ['assurance-summary'] });
     if (selectedAlarm?.id === id) setSelectedAlarm(null);
+  }
+
+  async function invalidateAlarmViews() {
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['alarms'] }),
+      queryClient.invalidateQueries({ queryKey: ['alarms-summary'] }),
+      queryClient.invalidateQueries({ queryKey: ['assurance'] }),
+      queryClient.invalidateQueries({ queryKey: ['assurance-summary'] }),
+    ]);
+  }
+
+  async function handleBulkAck() {
+    const alarmIds = Array.from(selectedAlarmIds);
+    if (alarmIds.length === 0) return;
+    setBulkAction('ack');
+    try {
+      await bulkAckAlarms(alarmIds);
+      setSelectedAlarmIds(new Set());
+      await invalidateAlarmViews();
+    } finally {
+      setBulkAction(null);
+    }
+  }
+
+  async function handleBulkClear() {
+    const alarmIds = Array.from(selectedAlarmIds);
+    if (alarmIds.length === 0) return;
+    setBulkAction('clear');
+    try {
+      await bulkClearAlarms(alarmIds);
+      setSelectedAlarmIds(new Set());
+      await invalidateAlarmViews();
+      if (selectedAlarm && selectedAlarmIds.has(selectedAlarm.id)) setSelectedAlarm(null);
+    } finally {
+      setBulkAction(null);
+    }
   }
 
   async function handleUnsuppress(id: string) {
@@ -297,7 +343,10 @@ export function AlarmsPage() {
           <Button
             size="sm"
             variant="outline"
-            onClick={() => setFilters(DEFAULT_FILTERS)}
+            onClick={() => {
+              setFilters(DEFAULT_FILTERS);
+              setSelectedAlarmIds(new Set());
+            }}
           >
             Clear filters
           </Button>
@@ -373,6 +422,8 @@ export function AlarmsPage() {
         {!alarmsQuery.isLoading && !alarmsQuery.isError && (
           <AlarmTable
             alarms={alarms}
+            selectedIds={selectedAlarmIds}
+            onSelectionChange={setSelectedAlarmIds}
             onView={setSelectedAlarm}
             onAck={setAckAlarmId}
             onClear={handleClear}
@@ -381,6 +432,20 @@ export function AlarmsPage() {
           />
         )}
       </Card>
+
+      {selectedAlarmIds.size > 0 && (
+        <div className="fixed bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+          <span className="whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-200">
+            {selectedAlarmIds.size} selected
+          </span>
+          <Button size="sm" variant="outline" onClick={handleBulkAck} loading={bulkAction === 'ack'}>
+            Ack Selected
+          </Button>
+          <Button size="sm" variant="success" onClick={handleBulkClear} loading={bulkAction === 'clear'}>
+            Clear Selected
+          </Button>
+        </div>
+      )}
 
       {selectedAlarm && (
         <AlarmDetailDrawer

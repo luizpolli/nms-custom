@@ -33,7 +33,7 @@ export function ToastContainer() {
 
   useEffect(() => {
     const add = (msg: ToastMessage) => {
-      setToasts((prev) => [...prev, msg]);
+      setToasts((prev) => [...prev, msg].slice(-3));
       setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== msg.id));
       }, 5_000);
@@ -42,7 +42,9 @@ export function ToastContainer() {
 
     // Listen to api-error events from api.ts interceptor
     const handler = (e: Event) => {
-      pushToast((e as CustomEvent<string>).detail, 'error');
+      const detail = (e as CustomEvent<string | { detail?: string; message?: string }>).detail;
+      const message = typeof detail === 'string' ? detail : detail?.detail ?? detail?.message ?? 'API request failed';
+      pushToast(message, 'error');
     };
     window.addEventListener('api-error', handler);
 

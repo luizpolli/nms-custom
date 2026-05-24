@@ -20,6 +20,8 @@ export interface Alarm {
 
 interface AlarmTableProps {
   alarms: Alarm[];
+  selectedIds: Set<string>;
+  onSelectionChange: (selectedIds: Set<string>) => void;
   onView: (alarm: Alarm) => void;
   onAck: (id: string) => void;
   onClear: (id: string) => void;
@@ -43,7 +45,16 @@ function fmt(ts: string) {
   return new Date(ts).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
 }
 
-export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsuppress }: AlarmTableProps) {
+export function AlarmTable({
+  alarms,
+  selectedIds,
+  onSelectionChange,
+  onView,
+  onAck,
+  onClear,
+  onSuppress,
+  onUnsuppress,
+}: AlarmTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>('last_seen');
   const [sortAsc, setSortAsc] = useState(false);
 
@@ -59,6 +70,25 @@ export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsup
     else cmp = String(a[sortKey]).localeCompare(String(b[sortKey]));
     return sortAsc ? cmp : -cmp;
   });
+
+  const visibleIds = sorted.map((alarm) => alarm.id);
+  const allVisibleSelected = visibleIds.length > 0 && visibleIds.every((id) => selectedIds.has(id));
+
+  function toggleAllVisible(checked: boolean) {
+    const next = new Set(selectedIds);
+    visibleIds.forEach((id) => {
+      if (checked) next.add(id);
+      else next.delete(id);
+    });
+    onSelectionChange(next);
+  }
+
+  function toggleOne(id: string, checked: boolean) {
+    const next = new Set(selectedIds);
+    if (checked) next.add(id);
+    else next.delete(id);
+    onSelectionChange(next);
+  }
 
   function SortTh({ label, col }: { label: string; col: SortKey }) {
     return (
@@ -79,6 +109,15 @@ export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsup
       <table className="min-w-full text-sm">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
+            <th className="w-10 px-3 py-2 text-left">
+              <input
+                type="checkbox"
+                aria-label="Select all visible alarms"
+                checked={allVisibleSelected}
+                onChange={(e) => toggleAllVisible(e.target.checked)}
+                className="rounded border-gray-300"
+              />
+            </th>
             <SortTh label="Severity" col="severity" />
             <SortTh label="State" col="state" />
             <SortTh label="Device" col="source_host" />
@@ -93,7 +132,7 @@ export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsup
         <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
           {sorted.length === 0 && (
             <tr>
-              <td colSpan={9} className="text-center text-gray-400 py-8 text-sm">No alarms.</td>
+              <td colSpan={10} className="text-center text-gray-400 py-8 text-sm">No alarms.</td>
             </tr>
           )}
           {sorted.map((alarm) => (
@@ -104,6 +143,15 @@ export function AlarmTable({ alarms, onView, onAck, onClear, onSuppress, onUnsup
                 alarm._flash && 'animate-pulse bg-yellow-50 dark:bg-yellow-900/20',
               )}
             >
+              <td className="px-3 py-2">
+                <input
+                  type="checkbox"
+                  aria-label={`Select alarm ${alarm.id}`}
+                  checked={selectedIds.has(alarm.id)}
+                  onChange={(e) => toggleOne(alarm.id, e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+              </td>
               <td className="px-3 py-2 whitespace-nowrap">
                 <Badge variant={SEVERITY_BADGE_MAP[alarm.severity] ?? 'default'}>
                   {alarm.severity}

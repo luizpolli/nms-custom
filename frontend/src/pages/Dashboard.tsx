@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { AlertTriangle, Cpu, Server, ShieldCheck } from 'lucide-react';
 import { api } from '../lib/api';
 import { useAlarmWebSocket } from '../lib/ws';
@@ -7,14 +8,14 @@ import { PageHeader } from '../components/ui/PageHeader';
 import { StatCard } from '../components/ui/StatCard';
 import { Badge } from '../components/ui/Badge';
 import { EmptyState } from '../components/ui/EmptyState';
-import type { AlarmSummary, Device, PerformanceSummary } from '../lib/types';
+import type { Alarm, AlarmSummary, Device, DeviceStatus, PerformanceSummary } from '../lib/types';
 
-function useDevicesCount() {
+function useDevices() {
   return useQuery({
-    queryKey: ['devices', 'count'],
+    queryKey: ['devices', 'dashboard-status'],
     queryFn: async () => {
       const { data } = await api.get<Device[]>('/devices', { params: { limit: 1000 } });
-      return data.length;
+      return data;
     },
   });
 }
@@ -41,6 +42,17 @@ function usePerformanceSummary() {
   });
 }
 
+function useRecentAlarms() {
+  return useQuery({
+    queryKey: ['alarms', 'recent'],
+    queryFn: async () => {
+      const { data } = await api.get<Alarm[]>('/alarms', { params: { limit: 5 } });
+      return data;
+    },
+    refetchInterval: 30_000,
+  });
+}
+
 function useAssuranceSummary() {
   return useQuery({
     queryKey: ['assurance', 'summary'],
@@ -53,8 +65,10 @@ function useAssuranceSummary() {
 }
 
 function Dashboard() {
-  const devices = useDevicesCount();
+  const navigate = useNavigate();
+  const devices = useDevices();
   const alarms = useAlarmSummary();
+  const recentAlarms = useRecentAlarms();
   const perf = usePerformanceSummary();
   const assurance = useAssuranceSummary();
   const ws = useAlarmWebSocket();
@@ -76,7 +90,7 @@ function Dashboard() {
         <StatCard
           icon={<Server className="h-5 w-5" />}
           label="Devices"
-          value={devices.data ?? '—'}
+          value={devices.data?.length ?? '—'}
           loading={devices.isLoading}
         />
         <StatCard
@@ -139,6 +153,55 @@ function Dashboard() {
         </Card>
       </div>
 
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <Card>
+          <CardHeader title="Recent Alarms" />
+          {recentAlarms.data?.length ? (
+            <ul className="divide-y divide-gray-200 dark:divide-gray-800">
+              {recentAlarms.data.map((alarm) => (
+                <li key={alarm.id}>
+                  <button
+                    type="button"
+                    onClick={() => navigate('/alarms')}
+                    className="grid w-full grid-cols-[auto,minmax(0,1fr),auto] items-center gap-3 px-4 py-3 text-left text-sm hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                  >
+                    <Badge variant={alarm.severity}>{alarm.severity}</Badge>
+                    <div className="min-w-0">
+                      <div className="truncate font-medium text-gray-800 dark:text-gray-100">
+                        {alarm.source_host ?? alarm.source ?? 'unknown source'}
+                      </div>
+                      <div className="truncate text-xs text-gray-500 dark:text-gray-400">
+                        {alarm.message}
+                      </div>
+                    </div>
+                    <span className="whitespace-nowrap text-xs text-gray-500">
+                      {timeAgo(alarm.last_seen ?? alarm.raised_at)}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <EmptyState message="No alarms recorded yet" />
+          )}
+        </Card>
+
+        <Card>
+          <CardHeader title="Device Status" />
+          {devices.data?.length ? (
+            <div className="flex flex-wrap gap-2 p-4">
+              {deviceStatusRows(devices.data).map(({ status, count }) => (
+                <Badge key={status} variant={deviceStatusVariant(status)} className="capitalize">
+                  {status}: {count}
+                </Badge>
+              ))}
+            </div>
+          ) : (
+            <EmptyState message="No devices discovered yet" />
+          )}
+        </Card>
+      </div>
+
       {ws.lastAlarm && (
         <Card>
           <CardHeader title="Last received alarm" />
@@ -156,6 +219,40 @@ function Dashboard() {
       )}
     </div>
   );
+}
+
+function timeAgo(value?: string) {
+  if (!value) return '—';
+  const ts = new Date(value).getTime();
+  if (Number.isNaN(ts)) return '—';
+  const seconds = Math.max(0, Math.floor((Date.now() - ts) / 1000));
+  if (seconds < 60) return `${seconds}s ago`;
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  return `${Math.floor(hours / 24)}d ago`;
+}
+
+function deviceStatusRows(devices: Device[]) {
+  const counts: Record<DeviceStatus, number> = {
+    reachable: 0,
+    unreachable: 0,
+    unknown: 0,
+    polling: 0,
+  };
+  devices.forEach((device) => {
+    const status = device.status in counts ? device.status : 'unknown';
+    counts[status] += 1;
+  });
+  return (Object.entries(counts) as Array<[DeviceStatus, number]>).map(([status, count]) => ({ status, count }));
+}
+
+function deviceStatusVariant(status: DeviceStatus) {
+  if (status === 'reachable') return 'success';
+  if (status === 'unreachable') return 'danger';
+  if (status === 'polling') return 'info';
+  return 'neutral';
 }
 
 function SeverityRow({
