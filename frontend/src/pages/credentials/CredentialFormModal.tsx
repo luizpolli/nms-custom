@@ -119,6 +119,20 @@ function Field({ label, required, error, children }: { label: string; required?:
   );
 }
 
+function CheckboxField({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
+  return (
+    <label className="flex min-h-[38px] items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="h-4 w-4 rounded border-gray-300"
+      />
+      <span>{label}</span>
+    </label>
+  );
+}
+
 export function CredentialFormModal({ open, onClose, credential }: CredentialFormModalProps) {
   const queryClient = useQueryClient();
   const [form, setForm] = useState<CredentialFormData>(EMPTY_FORM);
@@ -348,21 +362,18 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="TCP Port" required>
             <Input type="number" value={form.http_tcp_port} onChange={(e) => set('http_tcp_port', Number(e.target.value))} />
           </Field>
-          <Field label="Retries">
-            <Input type="number" value={form.http_retries} onChange={(e) => set('http_retries', Number(e.target.value))} />
-          </Field>
           <Field label="Username">
             <Input value={form.http_username} onChange={(e) => set('http_username', e.target.value)} />
           </Field>
-          <div />{/* spacer */}
-          {/* Password row */}
+          <Field label="Retries">
+            <Input type="number" value={form.http_retries} onChange={(e) => set('http_retries', Number(e.target.value))} />
+          </Field>
           <Field label="Password">
             <Input type="password" value={form.http_password} onChange={(e) => set('http_password', e.target.value)} />
           </Field>
           <Field label="Confirm Password" error={mismatches.http_password ? MISMATCH_MSG : undefined}>
             <Input type="password" value={form.http_confirm_password} onChange={(e) => set('http_confirm_password', e.target.value)} className={mismatches.http_password ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
-          {/* Monitor row */}
           <Field label="Monitor Username">
             <Input value={form.http_monitor_username} onChange={(e) => set('http_monitor_username', e.target.value)} />
           </Field>
@@ -377,27 +388,20 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
 
         {/* ── TL1 — password + confirm, proxies side by side ── */}
         <Section title="TL1 Parameters" defaultOpen={false}>
-          <Field label="Enable SSH for TL1">
-            <input type="checkbox" checked={form.tl1_enable_ssh} onChange={(e) => set('tl1_enable_ssh', e.target.checked)} className="rounded border-gray-300" />
-          </Field>
-          <Field label="Enable Single Session TL1">
-            <input type="checkbox" checked={form.tl1_single_session} onChange={(e) => set('tl1_single_session', e.target.checked)} className="rounded border-gray-300" />
+          <CheckboxField label="Enable SSH for TL1" checked={form.tl1_enable_ssh} onChange={(checked) => set('tl1_enable_ssh', checked)} />
+          <CheckboxField label="Enable Single Session TL1" checked={form.tl1_single_session} onChange={(checked) => set('tl1_single_session', checked)} />
+          <Field label="Username">
+            <Input value={form.tl1_username} onChange={(e) => set('tl1_username', e.target.value)} />
           </Field>
           <Field label="Retries">
             <Input type="number" value={form.tl1_retries} onChange={(e) => set('tl1_retries', Number(e.target.value))} />
           </Field>
-          <Field label="Username">
-            <Input value={form.tl1_username} onChange={(e) => set('tl1_username', e.target.value)} />
-          </Field>
-          <div />{/* spacer */}
-          {/* Password row */}
           <Field label="Password">
             <Input type="password" value={form.tl1_password} onChange={(e) => set('tl1_password', e.target.value)} />
           </Field>
           <Field label="Confirm Password" error={mismatches.tl1_password ? MISMATCH_MSG : undefined}>
             <Input type="password" value={form.tl1_confirm_password} onChange={(e) => set('tl1_confirm_password', e.target.value)} className={mismatches.tl1_password ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
-          {/* Proxy row */}
           <Field label="Primary Proxy IP Address">
             <Input value={form.tl1_primary_proxy_ip} onChange={(e) => set('tl1_primary_proxy_ip', e.target.value)} />
           </Field>
