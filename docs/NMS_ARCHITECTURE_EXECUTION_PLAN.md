@@ -84,10 +84,13 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Swagger/OpenAPI docs:** `/api/docs` and `/api/redoc` available in development mode.
 - [x] **Acceptance Test Procedure (ATP):** 19 sections, 100+ test cases covering all GUI features.
 - [x] **OS & Server Hardening Guide:** RHEL, firewall, sysctl, TLS, DB, Redis, Docker, K8s hardening checklists.
-- [ ] **Bulk alarm operations:** bulk ack/clear endpoints and multi-select UI with floating action bar.
-- [ ] **Dashboard real data widgets:** recent alarms, device status breakdown, alarm severity chart.
-- [ ] **Device form EPNM tabs:** General, SNMP, CLI/SSH, Location, Credential tabs in device create/edit modal.
-- [ ] **Global toast notifications:** visible error/success toasts from API responses.
+- [x] **Bulk alarm operations:** bulk ack/clear endpoints and multi-select UI with floating action bar.
+- [x] **Dashboard real data widgets:** recent alarms, device status breakdown, alarm severity chart.
+- [x] **Device form EPNM tabs:** General, SNMP, CLI/SSH, Location tabs + credential profile in General.
+- [x] **Global toast notifications:** visible error/success toasts from API responses.
+- [x] **Customizable device table columns:** show/hide columns via gear picker, persisted in localStorage.
+- [x] **Device software_version field:** OS Version column for upgrade planning and filtering.
+- [ ] **Inventory page:** PENDING FOR TEST — requires live SNMP devices for inventory collection validation. Page structure exists but needs end-to-end verification with real hardware.
 
 ### Settings administration backlog
 
