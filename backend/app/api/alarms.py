@@ -108,6 +108,19 @@ class SavedFilterRead(BaseModel):
     filters: dict
     created_at: datetime
     updated_at: datetime
+    can_update: bool = False
+    can_delete: bool = False
+
+
+def _is_admin_or_root(principal: Principal) -> bool:
+    return principal.role.lower() in {"admin", "root"}
+
+
+def _saved_filter_read(saved_filter: SavedAlarmFilter, principal: Principal) -> SavedFilterRead:
+    payload = SavedFilterRead.model_validate(saved_filter)
+    payload.can_update = saved_filter.owner == principal.subject
+    payload.can_delete = _is_admin_or_root(principal)
+    return payload
 
 
 async def _get_or_404(db: AsyncSession, alarm_id: uuid.UUID) -> Alarm:
@@ -250,7 +263,7 @@ async def list_saved_alarm_filters(
         stmt = stmt.where(SavedAlarmFilter.owner == owner)
     stmt = stmt.order_by(SavedAlarmFilter.name.asc())
     result = await db.execute(stmt)
-    return [SavedFilterRead.model_validate(item) for item in result.scalars().all()]
+    return [_saved_filter_read(item, principal) for item in result.scalars().all()]
 
 
 @router.post("/filters", response_model=SavedFilterRead, status_code=status.HTTP_201_CREATED)
@@ -268,7 +281,7 @@ async def create_saved_alarm_filter(
     db.add(saved_filter)
     await db.flush()
     await db.refresh(saved_filter)
-    return SavedFilterRead.model_validate(saved_filter)
+    return _saved_filter_read(saved_filter, principal)
 
 
 @router.patch("/filters/{id}", response_model=SavedFilterRead)
@@ -293,7 +306,7 @@ async def update_saved_alarm_filter(
     saved_filter.updated_at = datetime.now()
     await db.flush()
     await db.refresh(saved_filter)
-    return SavedFilterRead.model_validate(saved_filter)
+    return _saved_filter_read(saved_filter, principal)
 
 
 @router.delete("/filters/{id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -306,8 +319,8 @@ async def delete_saved_alarm_filter(
     saved_filter = result.scalar_one_or_none()
     if saved_filter is None:
         raise HTTPException(status_code=404, detail="Saved filter not found")
-    if saved_filter.owner != principal.subject:
-        raise HTTPException(status_code=403, detail="Only the owner can delete this saved filter")
+    if not _is_admin_or_root(principal):
+        raise HTTPException(status_code=403, detail="Only admin or root can delete saved filters")
     await db.delete(saved_filter)
 
 

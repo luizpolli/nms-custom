@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { ListFilter, Save, Trash2 } from 'lucide-react';
+import { Globe2, ListFilter, Save, Trash2 } from 'lucide-react';
 import { PageHeader, Card, Select, Button, Input, Modal } from '../../components/ui';
 import { api } from '../../lib/api';
 import { useAlarmWebSocket } from '../../lib/ws';
@@ -54,6 +54,8 @@ interface SavedAlarmFilter {
   filters: Partial<AlarmFilters>;
   created_at: string;
   updated_at: string;
+  can_update: boolean;
+  can_delete: boolean;
 }
 
 async function fetchAlarms(filters: AlarmFilters): Promise<Alarm[]> {
@@ -87,6 +89,11 @@ async function deleteAlarmFilter(id: string): Promise<void> {
   await api.delete(`/alarms/filters/${id}`);
 }
 
+async function publishAlarmFilter(id: string): Promise<SavedAlarmFilter> {
+  const { data } = await api.patch<SavedAlarmFilter>(`/alarms/filters/${id}`, { is_public: true });
+  return data;
+}
+
 async function clearAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/clear`);
 }
@@ -116,6 +123,7 @@ export function AlarmsPage() {
   const [savingFilter, setSavingFilter] = useState(false);
   const [selectedAlarmIds, setSelectedAlarmIds] = useState<Set<string>>(new Set());
   const [bulkAction, setBulkAction] = useState<'ack' | 'clear' | null>(null);
+  const [activeSavedFilter, setActiveSavedFilter] = useState<SavedAlarmFilter | null>(null);
 
   const filtersKey = [
     filters.q,
@@ -176,6 +184,7 @@ export function AlarmsPage() {
       limit: Number(savedFilter.filters.limit ?? DEFAULT_FILTERS.limit),
       offset: Number(savedFilter.filters.offset ?? DEFAULT_FILTERS.offset),
     });
+    setActiveSavedFilter(savedFilter);
     setLoadFilterOpen(false);
   }
 
@@ -188,6 +197,7 @@ export function AlarmsPage() {
       await queryClient.invalidateQueries({ queryKey: ['alarm-filters'] });
       setFilterName('');
       setFilterIsPublic(false);
+      setActiveSavedFilter(null);
       setSaveFilterOpen(false);
     } finally {
       setSavingFilter(false);
@@ -196,6 +206,11 @@ export function AlarmsPage() {
 
   async function handleDeleteFilter(id: string) {
     await deleteAlarmFilter(id);
+    await queryClient.invalidateQueries({ queryKey: ['alarm-filters'] });
+  }
+
+  async function handlePublishFilter(id: string) {
+    await publishAlarmFilter(id);
     await queryClient.invalidateQueries({ queryKey: ['alarm-filters'] });
   }
 
@@ -253,6 +268,8 @@ export function AlarmsPage() {
 
   const alarms = alarmsQuery.data ?? [];
   const summary = summaryQuery.data;
+  const saveNameMatchesReadOnlyPublic =
+    Boolean(activeSavedFilter?.is_public && !activeSavedFilter.can_update && filterName.trim() === activeSavedFilter.name);
 
   return (
     <div className="space-y-6 p-6">
@@ -346,6 +363,7 @@ export function AlarmsPage() {
             onClick={() => {
               setFilters(DEFAULT_FILTERS);
               setSelectedAlarmIds(new Set());
+              setActiveSavedFilter(null);
             }}
           >
             Clear filters
@@ -375,9 +393,7 @@ export function AlarmsPage() {
                 {!savedFiltersQuery.isLoading && (savedFiltersQuery.data ?? []).length === 0 && (
                   <div className="px-3 py-2 text-sm text-gray-500">No saved filters</div>
                 )}
-                {(savedFiltersQuery.data ?? []).map((savedFilter) => {
-                  const canDelete = savedFilter.owner === 'local-dev' || savedFilter.owner === 'api-key';
-                  return (
+                {(savedFiltersQuery.data ?? []).map((savedFilter) => (
                     <div
                       key={savedFilter.id}
                       className="flex items-center gap-2 border-b border-gray-100 px-2 py-1 last:border-b-0 dark:border-gray-800"
@@ -392,7 +408,20 @@ export function AlarmsPage() {
                           {savedFilter.is_public ? 'Public' : 'Private'} · {savedFilter.owner}
                         </span>
                       </button>
-                      {canDelete && (
+                      {!savedFilter.is_public && savedFilter.can_update && (
+                        <button
+                          type="button"
+                          title="Make public"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePublishFilter(savedFilter.id);
+                          }}
+                          className="rounded p-1.5 hover:bg-blue-50 dark:hover:bg-blue-950"
+                        >
+                          <Globe2 className="h-4 w-4 text-blue-500" />
+                        </button>
+                      )}
+                      {savedFilter.can_delete && (
                         <button
                           type="button"
                           title="Delete filter"
@@ -406,8 +435,7 @@ export function AlarmsPage() {
                         </button>
                       )}
                     </div>
-                  );
-                })}
+                ))}
               </div>
             )}
           </div>
@@ -491,11 +519,19 @@ export function AlarmsPage() {
             />
             Public filter
           </label>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            If unchecked, this filter is saved as private. Public filters can be loaded by other users, but only the owner can update them; other users must save changes as a new filter name.
+          </p>
+          {activeSavedFilter?.is_public && !activeSavedFilter.can_update && (
+            <p className="text-xs text-blue-600 dark:text-blue-400">
+              Loaded public filter: {activeSavedFilter.name}. Save your changes with a different name to keep the shared filter unchanged.
+            </p>
+          )}
           <div className="flex justify-end gap-2">
             <Button variant="ghost" onClick={() => setSaveFilterOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={handleSaveFilter} loading={savingFilter} disabled={!filterName.trim()}>
+            <Button onClick={handleSaveFilter} loading={savingFilter} disabled={!filterName.trim() || saveNameMatchesReadOnlyPublic}>
               Save
             </Button>
           </div>

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { X } from 'lucide-react';
 import { Badge, Button } from '../../../components/ui';
 import { api } from '../../../lib/api';
+import type { AlarmSeverity } from '../../../lib/types';
 
 interface Alarm {
   id: string;
@@ -26,13 +27,11 @@ interface AlarmDetailDrawerProps {
   onUnsuppress: (id: string) => void;
 }
 
-const SEVERITY_BADGE_MAP: Record<string, 'danger' | 'warning' | 'default' | 'success'> = {
-  critical: 'danger',
-  major: 'danger',
-  minor: 'warning',
-  warning: 'warning',
-  info: 'default',
-};
+const SEVERITIES = new Set(['critical', 'major', 'minor', 'warning', 'info', 'clear']);
+
+function severityBadgeVariant(severity: string): AlarmSeverity | 'default' {
+  return SEVERITIES.has(severity) ? severity as AlarmSeverity : 'default';
+}
 
 async function clearAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/clear`);
@@ -72,7 +71,7 @@ export function AlarmDetailDrawer({ alarm, filtersKey, onClose, onAck, onSuppres
           <dl>
             <Field label="ID">{alarm.id}</Field>
             <Field label="Severity">
-              <Badge variant={SEVERITY_BADGE_MAP[alarm.severity] ?? 'default'}>
+              <Badge variant={severityBadgeVariant(alarm.severity)}>
                 {alarm.severity}
               </Badge>
             </Field>

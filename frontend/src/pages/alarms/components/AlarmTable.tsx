@@ -2,6 +2,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import { ArrowUpDown } from 'lucide-react';
 import { Badge, Button } from '../../../components/ui';
+import type { AlarmSeverity } from '../../../lib/types';
 
 export interface Alarm {
   id: string;
@@ -31,15 +32,12 @@ interface AlarmTableProps {
 
 type SortKey = keyof Pick<Alarm, 'severity' | 'state' | 'source_host' | 'first_seen' | 'last_seen' | 'occurrence_count'>;
 
-const SEVERITY_BADGE_MAP: Record<string, 'danger' | 'warning' | 'default' | 'success'> = {
-  critical: 'danger',
-  major: 'danger',
-  minor: 'warning',
-  warning: 'warning',
-  info: 'default',
-};
-
 const SEVERITY_ORDER: Record<string, number> = { critical: 0, major: 1, minor: 2, warning: 3, info: 4 };
+const SEVERITIES = new Set(['critical', 'major', 'minor', 'warning', 'info', 'clear']);
+
+function severityBadgeVariant(severity: string): AlarmSeverity | 'default' {
+  return SEVERITIES.has(severity) ? severity as AlarmSeverity : 'default';
+}
 
 function fmt(ts: string) {
   return new Date(ts).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
@@ -153,7 +151,7 @@ export function AlarmTable({
                 />
               </td>
               <td className="px-3 py-2 whitespace-nowrap">
-                <Badge variant={SEVERITY_BADGE_MAP[alarm.severity] ?? 'default'}>
+                <Badge variant={severityBadgeVariant(alarm.severity)}>
                   {alarm.severity}
                 </Badge>
               </td>

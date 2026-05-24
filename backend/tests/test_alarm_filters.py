@@ -92,6 +92,8 @@ async def test_create_saved_alarm_filter_sets_owner_from_principal():
     assert result.owner == "alice"
     assert result.is_public is True
     assert result.filters == {"severity": "major"}
+    assert result.can_update is True
+    assert result.can_delete is True
     assert db.rows[0].owner == "alice"
 
 
@@ -105,6 +107,9 @@ async def test_list_saved_alarm_filters_returns_model_payloads():
 
     assert [item.id for item in result] == [owned.id, public.id]
     assert result[0].filters["q"] == "core"
+    assert result[0].can_update is True
+    assert result[0].can_delete is True
+    assert result[1].can_update is False
 
 
 @pytest.mark.asyncio
@@ -140,11 +145,43 @@ async def test_update_saved_alarm_filter_rejects_non_owner():
 
 
 @pytest.mark.asyncio
-async def test_delete_saved_alarm_filter_owner_only():
-    saved = _saved_filter(owner="noc")
+async def test_update_saved_alarm_filter_owner_can_promote_private_to_public():
+    saved = _saved_filter(owner="noc", public=False)
+    db = FakeDb([saved])
+
+    result = await update_saved_alarm_filter(
+        saved.id,
+        SavedFilterUpdate(is_public=True),
+        db,  # type: ignore[arg-type]
+        _principal("noc"),
+    )
+
+    assert result.is_public is True
+    assert result.can_update is True
+
+
+@pytest.mark.asyncio
+async def test_delete_saved_alarm_filter_admin_can_delete_any_filter():
+    saved = _saved_filter(owner="other", public=True)
     db = FakeDb([saved])
 
     await delete_saved_alarm_filter(saved.id, db, _principal("noc"))  # type: ignore[arg-type]
 
     assert db.deleted == [saved]
     assert db.rows == []
+
+
+@pytest.mark.asyncio
+async def test_delete_saved_alarm_filter_rejects_non_admin():
+    saved = _saved_filter(owner="noc")
+    db = FakeDb([saved])
+
+    with pytest.raises(HTTPException) as exc:
+        await delete_saved_alarm_filter(
+            saved.id,
+            db,  # type: ignore[arg-type]
+            Principal(subject="noc", role="operator"),
+        )
+
+    assert exc.value.status_code == 403
+    assert db.deleted == []

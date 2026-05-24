@@ -11,6 +11,8 @@ node_modules
 # Build output
 dist
 dist-ssr
+test-results
+playwright-report
 *.local
 
 # Editor
