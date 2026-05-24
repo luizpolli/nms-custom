@@ -132,7 +132,9 @@ production release.
 | 7.3 | Node click | Click a device node | Device detail shown or navigates to detail page |
 | 7.4 | Alarm overlay | Alarm on a device | Node shows severity color indicator |
 
-## 8. Performance & Telemetry (P1)
+## 8. Performance & Telemetry (P1) — Performance PENDING FOR TEST
+
+Performance validation requires at least one reachable device with valid SNMP credentials and collected KPI samples. The page and API are present, but KPI charts/summaries should not be marked accepted until tested against real polling data.
 
 | # | Test Case | Steps | Expected Result |
 |---|-----------|-------|-----------------|

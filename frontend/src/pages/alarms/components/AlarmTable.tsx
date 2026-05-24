@@ -19,6 +19,31 @@ export interface Alarm {
   _flash?: boolean;
 }
 
+export type AlarmColumnKey =
+  | 'severity'
+  | 'state'
+  | 'source_host'
+  | 'event_type'
+  | 'message'
+  | 'first_seen'
+  | 'last_seen'
+  | 'occurrence_count';
+
+export const ALARM_COLUMNS: { key: AlarmColumnKey; label: string }[] = [
+  { key: 'severity', label: 'Severity' },
+  { key: 'state', label: 'State' },
+  { key: 'source_host', label: 'Device' },
+  { key: 'event_type', label: 'Type' },
+  { key: 'message', label: 'Message' },
+  { key: 'first_seen', label: 'First seen' },
+  { key: 'last_seen', label: 'Last seen' },
+  { key: 'occurrence_count', label: 'Count' },
+];
+
+export const DEFAULT_VISIBLE_COLUMNS: AlarmColumnKey[] = [
+  'severity', 'state', 'source_host', 'event_type', 'message', 'first_seen', 'last_seen', 'occurrence_count',
+];
+
 interface AlarmTableProps {
   alarms: Alarm[];
   selectedIds: Set<string>;
@@ -28,6 +53,7 @@ interface AlarmTableProps {
   onClear: (id: string) => void;
   onSuppress: (id: string) => void;
   onUnsuppress: (id: string) => void;
+  visibleColumns?: Set<AlarmColumnKey>;
 }
 
 type SortKey = keyof Pick<Alarm, 'severity' | 'state' | 'source_host' | 'first_seen' | 'last_seen' | 'occurrence_count'>;
@@ -52,7 +78,10 @@ export function AlarmTable({
   onClear,
   onSuppress,
   onUnsuppress,
+  visibleColumns,
 }: AlarmTableProps) {
+  const cols = visibleColumns ?? new Set<AlarmColumnKey>(DEFAULT_VISIBLE_COLUMNS);
+  const visibleColCount = ALARM_COLUMNS.filter((c) => cols.has(c.key)).length + 2; // checkbox + actions
   const [sortKey, setSortKey] = useState<SortKey>('last_seen');
   const [sortAsc, setSortAsc] = useState(false);
 
@@ -116,21 +145,25 @@ export function AlarmTable({
                 className="rounded border-gray-300"
               />
             </th>
-            <SortTh label="Severity" col="severity" />
-            <SortTh label="State" col="state" />
-            <SortTh label="Device" col="source_host" />
-            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Type</th>
-            <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Message</th>
-            <SortTh label="First seen" col="first_seen" />
-            <SortTh label="Last seen" col="last_seen" />
-            <SortTh label="Count" col="occurrence_count" />
+            {cols.has('severity') && <SortTh label="Severity" col="severity" />}
+            {cols.has('state') && <SortTh label="State" col="state" />}
+            {cols.has('source_host') && <SortTh label="Device" col="source_host" />}
+            {cols.has('event_type') && (
+              <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Type</th>
+            )}
+            {cols.has('message') && (
+              <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Message</th>
+            )}
+            {cols.has('first_seen') && <SortTh label="First seen" col="first_seen" />}
+            {cols.has('last_seen') && <SortTh label="Last seen" col="last_seen" />}
+            {cols.has('occurrence_count') && <SortTh label="Count" col="occurrence_count" />}
             <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500 dark:text-gray-400">Actions</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
           {sorted.length === 0 && (
             <tr>
-              <td colSpan={10} className="text-center text-gray-400 py-8 text-sm">No alarms.</td>
+              <td colSpan={visibleColCount} className="text-center text-gray-400 py-8 text-sm">No alarms.</td>
             </tr>
           )}
           {sorted.map((alarm) => (
@@ -150,18 +183,34 @@ export function AlarmTable({
                   className="rounded border-gray-300"
                 />
               </td>
-              <td className="px-3 py-2 whitespace-nowrap">
-                <Badge variant={severityBadgeVariant(alarm.severity)}>
-                  {alarm.severity}
-                </Badge>
-              </td>
-              <td className="px-3 py-2 whitespace-nowrap text-gray-700 dark:text-gray-300">{alarm.state}</td>
-              <td className="px-3 py-2 whitespace-nowrap font-mono text-xs text-gray-700 dark:text-gray-300">{alarm.source_host}</td>
-              <td className="px-3 py-2 whitespace-nowrap text-xs text-gray-600 dark:text-gray-400">{alarm.event_type}</td>
-              <td className="px-3 py-2 max-w-xs truncate text-gray-700 dark:text-gray-300" title={alarm.message}>{alarm.message}</td>
-              <td className="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{fmt(alarm.first_seen)}</td>
-              <td className="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{fmt(alarm.last_seen)}</td>
-              <td className="px-3 py-2 text-center text-xs font-mono">{alarm.occurrence_count}</td>
+              {cols.has('severity') && (
+                <td className="px-3 py-2 whitespace-nowrap">
+                  <Badge variant={severityBadgeVariant(alarm.severity)}>
+                    {alarm.severity}
+                  </Badge>
+                </td>
+              )}
+              {cols.has('state') && (
+                <td className="px-3 py-2 whitespace-nowrap text-gray-700 dark:text-gray-300">{alarm.state}</td>
+              )}
+              {cols.has('source_host') && (
+                <td className="px-3 py-2 whitespace-nowrap font-mono text-xs text-gray-700 dark:text-gray-300">{alarm.source_host}</td>
+              )}
+              {cols.has('event_type') && (
+                <td className="px-3 py-2 whitespace-nowrap text-xs text-gray-600 dark:text-gray-400">{alarm.event_type}</td>
+              )}
+              {cols.has('message') && (
+                <td className="px-3 py-2 max-w-xs truncate text-gray-700 dark:text-gray-300" title={alarm.message}>{alarm.message}</td>
+              )}
+              {cols.has('first_seen') && (
+                <td className="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{fmt(alarm.first_seen)}</td>
+              )}
+              {cols.has('last_seen') && (
+                <td className="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{fmt(alarm.last_seen)}</td>
+              )}
+              {cols.has('occurrence_count') && (
+                <td className="px-3 py-2 text-center text-xs font-mono">{alarm.occurrence_count}</td>
+              )}
               <td className="px-3 py-2 whitespace-nowrap">
                 <div className="flex gap-1">
                   <Button size="xs" variant="ghost" onClick={() => onView(alarm)}>View</Button>

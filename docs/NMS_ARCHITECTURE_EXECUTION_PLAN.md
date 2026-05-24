@@ -91,6 +91,7 @@ This is the operator-facing checklist for what is actually done vs. still pendin
 - [x] **Customizable device table columns:** show/hide columns via gear picker, persisted in localStorage.
 - [x] **Device software_version field:** OS Version column for upgrade planning and filtering.
 - [ ] **Inventory page:** PENDING FOR TEST — requires live SNMP devices for inventory collection validation. Page structure exists but needs end-to-end verification with real hardware.
+- [ ] **Performance page:** PENDING FOR TEST — requires at least one live device with valid SNMP credentials and collected KPI samples. UI/API structure exists but charts and summaries need end-to-end validation with real polling data.
 
 ### Settings administration backlog
 

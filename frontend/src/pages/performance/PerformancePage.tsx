@@ -96,7 +96,7 @@ export function PerformancePage() {
   return (
     <div className="space-y-6 p-6">
       <PageHeader
-        title="Performance"
+        title="Performance - PENDING FOR TEST"
         subtitle="Network KPIs — Cisco NMS"
         actions={
           <Button variant="outline" size="sm" onClick={handleRefresh} leftIcon={<RefreshCw size={14} />}>
@@ -104,6 +104,15 @@ export function PerformancePage() {
           </Button>
         }
       />
+
+      <Card>
+        <div className="rounded border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+          <div className="font-semibold">PENDING FOR TEST</div>
+          <p className="mt-1">
+            Performance needs at least one reachable device with valid SNMP credentials and collected KPI samples before the charts and summaries can be accepted end-to-end.
+          </p>
+        </div>
+      </Card>
 
       <StatRow items={statItems} />
 

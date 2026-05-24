@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Globe2, ListFilter, Save, Trash2 } from 'lucide-react';
+import { Columns3, Globe2, ListFilter, Save, Trash2 } from 'lucide-react';
 import { PageHeader, Card, Select, Button, Input, Modal } from '../../components/ui';
 import { api } from '../../lib/api';
 import { useAlarmWebSocket } from '../../lib/ws';
 import { AlarmSummaryStrip } from './components/AlarmSummaryStrip';
-import { AlarmTable, Alarm } from './components/AlarmTable';
+import { AlarmTable, Alarm, AlarmColumnKey, ALARM_COLUMNS, DEFAULT_VISIBLE_COLUMNS } from './components/AlarmTable';
 import { AlarmDetailDrawer } from './components/AlarmDetailDrawer';
 import { AlarmAckModal } from './components/AlarmAckModal';
 import { AlarmSuppressModal } from './components/AlarmSuppressModal';
@@ -110,6 +110,14 @@ async function unsuppressAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/unsuppress`, { by_user: 'operator' });
 }
 
+function isoToLocalInput(iso: string): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 export function AlarmsPage() {
   const queryClient = useQueryClient();
   const [filters, setFilters] = useState<AlarmFilters>(DEFAULT_FILTERS);
@@ -124,6 +132,27 @@ export function AlarmsPage() {
   const [selectedAlarmIds, setSelectedAlarmIds] = useState<Set<string>>(new Set());
   const [bulkAction, setBulkAction] = useState<'ack' | 'clear' | null>(null);
   const [activeSavedFilter, setActiveSavedFilter] = useState<SavedAlarmFilter | null>(null);
+  const [columnsOpen, setColumnsOpen] = useState(false);
+  const [visibleColumns, setVisibleColumns] = useState<Set<AlarmColumnKey>>(() => {
+    try {
+      const raw = localStorage.getItem('alarms.visibleColumns');
+      if (raw) {
+        const parsed = JSON.parse(raw) as AlarmColumnKey[];
+        return new Set(parsed.filter((k) => ALARM_COLUMNS.some((c) => c.key === k)));
+      }
+    } catch { /* ignore */ }
+    return new Set(DEFAULT_VISIBLE_COLUMNS);
+  });
+
+  function toggleColumn(key: AlarmColumnKey) {
+    setVisibleColumns((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      try { localStorage.setItem('alarms.visibleColumns', JSON.stringify([...next])); } catch { /* ignore */ }
+      return next;
+    });
+  }
 
   const filtersKey = [
     filters.q,
@@ -343,7 +372,8 @@ export function AlarmsPage() {
             <label className="block text-xs text-gray-500 mb-1">From</label>
             <input
               type="datetime-local"
-              value={filters.since}
+              step={60}
+              value={isoToLocalInput(filters.since)}
               onChange={(e) => setFilter('since', e.target.value ? new Date(e.target.value).toISOString() : '')}
               className="w-full text-xs border rounded px-2 py-1.5 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 border-gray-300"
             />
@@ -352,7 +382,8 @@ export function AlarmsPage() {
             <label className="block text-xs text-gray-500 mb-1">To</label>
             <input
               type="datetime-local"
-              value={filters.until}
+              step={60}
+              value={isoToLocalInput(filters.until)}
               onChange={(e) => setFilter('until', e.target.value ? new Date(e.target.value).toISOString() : '')}
               className="w-full text-xs border rounded px-2 py-1.5 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 border-gray-300"
             />
@@ -368,6 +399,34 @@ export function AlarmsPage() {
           >
             Clear filters
           </Button>
+          <div className="relative">
+            <Button
+              size="sm"
+              variant="outline"
+              leftIcon={<Columns3 className="h-4 w-4" />}
+              onClick={() => setColumnsOpen((open) => !open)}
+            >
+              Columns
+            </Button>
+            {columnsOpen && (
+              <div className="absolute right-0 z-20 mt-2 w-56 rounded-md border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+                {ALARM_COLUMNS.map((col) => (
+                  <label
+                    key={col.key}
+                    className="flex items-center gap-2 rounded px-2 py-1.5 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={visibleColumns.has(col.key)}
+                      onChange={() => toggleColumn(col.key)}
+                      className="rounded border-gray-300"
+                    />
+                    {col.label}
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
           <Button
             size="sm"
             variant="outline"
@@ -457,6 +516,7 @@ export function AlarmsPage() {
             onClear={handleClear}
             onSuppress={setSuppressAlarmId}
             onUnsuppress={handleUnsuppress}
+            visibleColumns={visibleColumns}
           />
         )}
       </Card>
