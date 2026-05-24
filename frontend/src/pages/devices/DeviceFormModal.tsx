@@ -39,7 +39,7 @@ interface DeviceFormModalProps {
   initialValues?: Partial<DeviceFormData> | null;
 }
 
-type TabKey = 'general' | 'snmp' | 'cli' | 'location' | 'credential';
+type TabKey = 'general' | 'snmp' | 'cli' | 'location';
 type SnmpVersion = 'v1' | 'v2c' | 'v3';
 type CliProtocol = 'SSH' | 'Telnet';
 
@@ -93,7 +93,6 @@ const TABS: Array<{ key: TabKey; label: string }> = [
   { key: 'snmp', label: 'SNMP' },
   { key: 'cli', label: 'CLI / SSH' },
   { key: 'location', label: 'Location' },
-  { key: 'credential', label: 'Credential' },
 ];
 
 const EMPTY_FORM: DeviceFormData = {
@@ -378,11 +377,49 @@ export function DeviceFormModal({ open, onClose, device, initialValues }: Device
               <div className="col-span-2">
                 <Field label="Tags"><Input value={form.tags_input} onChange={(e) => set('tags_input', e.target.value)} placeholder="core, cdmx, production" /></Field>
               </div>
+              <div className="col-span-2 mt-2 border-t border-gray-200 pt-3 dark:border-gray-700">
+                <Field label="Credential Profile">
+                  <Select
+                    value={form.credential_id}
+                    onChange={(e) => set('credential_id', e.target.value)}
+                    options={[{ value: '', label: '— Create from SNMP/CLI tabs —' }, ...credentials.map((c) => ({ value: c.id, label: c.name }))]}
+                  />
+                </Field>
+                {form.credential_id && (
+                  <p className="mt-1 ml-[33.33%] text-xs text-green-600 dark:text-green-400">
+                    ✓ Using existing credential profile. SNMP/CLI tabs are optional.
+                  </p>
+                )}
+                {!form.credential_id && (
+                  <p className="mt-1 ml-[33.33%] text-xs text-gray-500 dark:text-gray-400">
+                    No profile selected — fill SNMP or CLI tab to create one on save.
+                  </p>
+                )}
+              </div>
+              {form.ip_address && (
+                <div className="col-span-2 flex justify-end">
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => verifyMutation.mutate()}
+                    disabled={verifyMutation.isPending}
+                    leftIcon={verifyMutation.isSuccess ? <CheckCircle className="h-4 w-4" /> : <ShieldCheck className="h-4 w-4" />}
+                  >
+                    {verifyMutation.isPending ? 'Verifying...' : 'Verify Credentials'}
+                  </Button>
+                </div>
+              )}
             </section>
           )}
 
           {tab === 'snmp' && (
             <section className="grid grid-cols-2 gap-x-6 gap-y-3">
+              {form.credential_id && (
+                <div className="col-span-2 mb-2 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                  A credential profile is selected. These fields will only be used if you clear the profile in General.
+                </div>
+              )}
               <Field label="SNMP Enabled"><Toggle checked={form.snmp_enabled} onChange={(value) => set('snmp_enabled', value)} /></Field>
               <Field label="SNMP Version"><Select value={form.snmp_version} onChange={(e) => set('snmp_version', e.target.value as SnmpVersion)} options={[{ value: 'v1', label: 'v1' }, { value: 'v2c', label: 'v2c' }, { value: 'v3', label: 'v3' }]} /></Field>
               <Field label="Read Community"><Input type="password" value={form.snmp_read_community} onChange={(e) => set('snmp_read_community', e.target.value)} disabled={!form.snmp_enabled} /></Field>
@@ -404,6 +441,11 @@ export function DeviceFormModal({ open, onClose, device, initialValues }: Device
 
           {tab === 'cli' && (
             <section className="grid grid-cols-2 gap-x-6 gap-y-3">
+              {form.credential_id && (
+                <div className="col-span-2 mb-2 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                  A credential profile is selected. These fields will only be used if you clear the profile in General.
+                </div>
+              )}
               <Field label="SSH Enabled"><Toggle checked={form.ssh_enabled} onChange={(value) => set('ssh_enabled', value)} /></Field>
               <Field label="Protocol"><Select value={form.cli_protocol} onChange={(e) => set('cli_protocol', e.target.value as CliProtocol)} options={[{ value: 'SSH', label: 'SSH' }, { value: 'Telnet', label: 'Telnet' }]} disabled={!form.ssh_enabled} /></Field>
               <Field label="CLI Port"><Input type="number" value={form.cli_port} onChange={(e) => set('cli_port', Number(e.target.value))} disabled={!form.ssh_enabled} /></Field>
@@ -430,29 +472,7 @@ export function DeviceFormModal({ open, onClose, device, initialValues }: Device
             </section>
           )}
 
-          {tab === 'credential' && (
-            <section className="space-y-4">
-              <Field label="Credential Profile">
-                <Select
-                  value={form.credential_id}
-                  onChange={(e) => set('credential_id', e.target.value)}
-                  options={[{ value: '', label: 'Create from SNMP/CLI fields' }, ...credentials.map((c) => ({ value: c.id, label: c.name }))]}
-                />
-              </Field>
-              <div className="rounded-md border border-gray-200 p-4 text-sm text-gray-600 dark:border-gray-700 dark:text-gray-300">
-                Leave the profile empty to create a new credential profile from the SNMP or CLI fields when saving.
-              </div>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => verifyMutation.mutate()}
-                disabled={verifyMutation.isPending}
-                leftIcon={verifyMutation.isSuccess ? <CheckCircle className="h-4 w-4" /> : <ShieldCheck className="h-4 w-4" />}
-              >
-                {verifyMutation.isPending ? 'Verifying...' : 'Verify Credentials'}
-              </Button>
-            </section>
-          )}
+
         </div>
 
         <div className="flex justify-end gap-2 border-t border-gray-200 pt-4 dark:border-gray-700">
