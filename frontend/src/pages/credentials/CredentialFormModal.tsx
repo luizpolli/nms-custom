@@ -101,14 +101,17 @@ function Section({ title, children, defaultOpen = true }: { title: string; child
   );
 }
 
-function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
+function Field({ label, required, error, children }: { label: string; required?: boolean; error?: string; children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-12 items-center gap-2">
-      <label className="col-span-5 text-right text-sm text-gray-700 dark:text-gray-300">
+    <div className="grid grid-cols-12 items-start gap-2">
+      <label className="col-span-5 text-right text-sm text-gray-700 dark:text-gray-300 pt-2">
         {required && <span className="text-red-500 mr-0.5">*</span>}
         {label}
       </label>
-      <div className="col-span-7">{children}</div>
+      <div className="col-span-7">
+        {children}
+        {error && <p className="mt-0.5 text-xs text-red-500">{error}</p>}
+      </div>
     </div>
   );
 }
@@ -125,6 +128,19 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
       setForm(EMPTY_FORM);
     }
   }, [credential, open]);
+
+  // Live confirm-password mismatch detection
+  const mismatches = {
+    read_community: form.confirm_read_community !== '' && form.read_community !== form.confirm_read_community,
+    write_community: form.confirm_write_community !== '' && form.write_community !== form.confirm_write_community,
+    telnet_password: form.telnet_confirm_password !== '' && form.telnet_password !== form.telnet_confirm_password,
+    telnet_enable: form.telnet_confirm_enable_password !== '' && form.telnet_enable_password !== form.telnet_confirm_enable_password,
+    http_password: form.http_confirm_password !== '' && form.http_password !== form.http_confirm_password,
+    http_monitor: form.http_confirm_monitor_password !== '' && form.http_monitor_password !== form.http_confirm_monitor_password,
+    tl1_password: form.tl1_confirm_password !== '' && form.tl1_password !== form.tl1_confirm_password,
+  };
+  const hasMismatch = Object.values(mismatches).some(Boolean);
+  const MISMATCH_MSG = 'Passwords do not match';
 
   const mutation = useMutation({
     mutationFn: (data: CredentialFormData) => {
@@ -246,14 +262,14 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
             <Field label="Read Community" required>
               <Input type="password" value={form.read_community} onChange={(e) => set('read_community', e.target.value)} />
             </Field>
-            <Field label="Confirm Read Community" required>
-              <Input type="password" value={form.confirm_read_community} onChange={(e) => set('confirm_read_community', e.target.value)} />
+            <Field label="Confirm Read Community" required error={mismatches.read_community ? MISMATCH_MSG : undefined}>
+              <Input type="password" value={form.confirm_read_community} onChange={(e) => set('confirm_read_community', e.target.value)} className={mismatches.read_community ? 'border-red-500 focus:ring-red-500' : ''} />
             </Field>
             <Field label="Write Community">
               <Input type="password" value={form.write_community} onChange={(e) => set('write_community', e.target.value)} />
             </Field>
-            <Field label="Confirm Write Community">
-              <Input type="password" value={form.confirm_write_community} onChange={(e) => set('confirm_write_community', e.target.value)} />
+            <Field label="Confirm Write Community" error={mismatches.write_community ? MISMATCH_MSG : undefined}>
+              <Input type="password" value={form.confirm_write_community} onChange={(e) => set('confirm_write_community', e.target.value)} className={mismatches.write_community ? 'border-red-500 focus:ring-red-500' : ''} />
             </Field>
           </>)}
           {form.snmp_version === 'v3' && (<>
@@ -304,15 +320,15 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="Password">
             <Input type="password" value={form.telnet_password} onChange={(e) => set('telnet_password', e.target.value)} />
           </Field>
-          <Field label="Confirm Password">
-            <Input type="password" value={form.telnet_confirm_password} onChange={(e) => set('telnet_confirm_password', e.target.value)} />
+          <Field label="Confirm Password" error={mismatches.telnet_password ? MISMATCH_MSG : undefined}>
+            <Input type="password" value={form.telnet_confirm_password} onChange={(e) => set('telnet_confirm_password', e.target.value)} className={mismatches.telnet_password ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
           {/* Enable password row */}
           <Field label="Enable Password">
             <Input type="password" value={form.telnet_enable_password} onChange={(e) => set('telnet_enable_password', e.target.value)} />
           </Field>
-          <Field label="Confirm Enable Password">
-            <Input type="password" value={form.telnet_confirm_enable_password} onChange={(e) => set('telnet_confirm_enable_password', e.target.value)} />
+          <Field label="Confirm Enable Password" error={mismatches.telnet_enable ? MISMATCH_MSG : undefined}>
+            <Input type="password" value={form.telnet_confirm_enable_password} onChange={(e) => set('telnet_confirm_enable_password', e.target.value)} className={mismatches.telnet_enable ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
         </Section>
 
@@ -333,8 +349,8 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="Password">
             <Input type="password" value={form.http_password} onChange={(e) => set('http_password', e.target.value)} />
           </Field>
-          <Field label="Confirm Password">
-            <Input type="password" value={form.http_confirm_password} onChange={(e) => set('http_confirm_password', e.target.value)} />
+          <Field label="Confirm Password" error={mismatches.http_password ? MISMATCH_MSG : undefined}>
+            <Input type="password" value={form.http_confirm_password} onChange={(e) => set('http_confirm_password', e.target.value)} className={mismatches.http_password ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
           {/* Monitor row */}
           <Field label="Monitor Username">
@@ -344,8 +360,8 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="Monitor Password">
             <Input type="password" value={form.http_monitor_password} onChange={(e) => set('http_monitor_password', e.target.value)} />
           </Field>
-          <Field label="Confirm Monitor Password">
-            <Input type="password" value={form.http_confirm_monitor_password} onChange={(e) => set('http_confirm_monitor_password', e.target.value)} />
+          <Field label="Confirm Monitor Password" error={mismatches.http_monitor ? MISMATCH_MSG : undefined}>
+            <Input type="password" value={form.http_confirm_monitor_password} onChange={(e) => set('http_confirm_monitor_password', e.target.value)} className={mismatches.http_monitor ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
         </Section>
 
@@ -365,8 +381,8 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="Password">
             <Input type="password" value={form.tl1_password} onChange={(e) => set('tl1_password', e.target.value)} />
           </Field>
-          <Field label="Confirm Password">
-            <Input type="password" value={form.tl1_confirm_password} onChange={(e) => set('tl1_confirm_password', e.target.value)} />
+          <Field label="Confirm Password" error={mismatches.tl1_password ? MISMATCH_MSG : undefined}>
+            <Input type="password" value={form.tl1_confirm_password} onChange={(e) => set('tl1_confirm_password', e.target.value)} className={mismatches.tl1_password ? 'border-red-500 focus:ring-red-500' : ''} />
           </Field>
           {/* Proxy row */}
           <Field label="Primary Proxy IP Address">
@@ -379,7 +395,7 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
 
         <div className="flex justify-end gap-2 border-t border-gray-200 dark:border-gray-700 pt-4">
           <Button type="button" variant="ghost" onClick={onClose}>Cancel</Button>
-          <Button type="submit" disabled={mutation.isPending}>
+          <Button type="submit" disabled={mutation.isPending || hasMismatch}>
             {mutation.isPending ? 'Saving...' : 'Save'}
           </Button>
         </div>
