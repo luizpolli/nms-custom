@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import func, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import async_session_factory, get_db
@@ -26,6 +27,18 @@ from app.services.telemetry import TelemetryIngestionService
 router = APIRouter()
 
 
+async def _ensure_unique_collector_name(db: AsyncSession, name: str) -> None:
+    existing = (
+        await db.execute(
+            select(TelemetryCollector.id)
+            .where(TelemetryCollector.name == name)
+            .limit(1)
+        )
+    ).scalar_one_or_none()
+    if existing is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Telemetry collector name already exists")
+
+
 @router.get("/collectors", response_model=list[TelemetryCollectorRead])
 async def list_collectors(db: Annotated[AsyncSession, Depends(get_db)]) -> list[TelemetryCollectorRead]:
     rows = (await db.execute(select(TelemetryCollector).order_by(TelemetryCollector.name))).scalars().all()
@@ -37,9 +50,16 @@ async def create_collector(
     body: TelemetryCollectorCreate,
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> TelemetryCollectorRead:
+    await _ensure_unique_collector_name(db, body.name)
     row = TelemetryCollector(**body.model_dump())
     db.add(row)
-    await db.flush()
+    try:
+        await db.flush()
+    except IntegrityError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Telemetry collector name already exists",
+        ) from exc
     await db.refresh(row)
     return TelemetryCollectorRead.model_validate(row)
 
