@@ -167,14 +167,14 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (checked: b
       aria-checked={checked}
       onClick={() => onChange(!checked)}
       className={clsx(
-        'relative h-6 w-11 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cisco-blue focus:ring-offset-2',
-        checked ? 'bg-cisco-blue' : 'bg-gray-300 dark:bg-gray-700',
+        'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-cisco-blue focus:ring-offset-2',
+        checked ? 'bg-cisco-blue' : 'bg-gray-300 dark:bg-gray-600',
       )}
     >
       <span
         className={clsx(
-          'absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform',
-          checked ? 'translate-x-5' : 'translate-x-0.5',
+          'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow ring-0 transition-transform',
+          checked ? 'translate-x-5' : 'translate-x-0',
         )}
       />
     </button>
@@ -251,16 +251,19 @@ export function DeviceFormModal({ open, onClose, device, initialValues }: Device
         ? data.snmp_v3_auth_password || data.snmp_v3_privacy_password || data.snmp_v3_username
         : data.snmp_read_community;
 
-    const response = await api.post('/credentials', {
-      name: `${data.name || data.ip_address} credential profile`,
+    const credPayload: Record<string, unknown> = {
+      name: `${data.name || data.ip_address}-cred`,
       hostname: data.ip_address,
-      username: data.snmp_version === 'v3' ? data.snmp_v3_username : data.cli_username,
-      secret,
-      enc_secret: data.snmp_version === 'v3' ? data.snmp_v3_privacy_password || undefined : undefined,
+      username: useCli ? (data.cli_username || 'admin') : (data.snmp_version === 'v3' ? (data.snmp_v3_username || 'snmpuser') : 'community'),
+      secret: secret || 'changeme',
       protocol: useCli ? data.cli_protocol.toLowerCase() : 'snmp',
       snmp_version: data.snmp_version,
       port: useCli ? data.cli_port : data.snmp_port,
-    });
+    };
+    if (data.snmp_version === 'v3' && data.snmp_v3_privacy_password) {
+      credPayload.enc_secret = data.snmp_v3_privacy_password;
+    }
+    const response = await api.post('/credentials', credPayload);
     queryClient.invalidateQueries({ queryKey: ['credentials'] });
     return response.data.id as string;
   };
@@ -268,55 +271,25 @@ export function DeviceFormModal({ open, onClose, device, initialValues }: Device
   const mutation = useMutation({
     mutationFn: async (data: DeviceFormData) => {
       const credentialId = await createCredentialFromForm(data);
-      const payload = {
+      const payload: Record<string, unknown> = {
         name: data.name,
         ip_address: data.ip_address,
         device_type: data.device_type,
-        vendor: data.vendor,
-        model: data.model,
-        os_type: data.os_type,
+        vendor: data.vendor || undefined,
+        model: data.model || undefined,
+        os_type: data.os_type || undefined,
         status: data.status,
-        role: data.role,
-        platform_family: data.platform_family,
+        role: data.role || undefined,
+        platform_family: data.platform_family || undefined,
         lifecycle_state: data.lifecycle_state,
-        location: data.site_id,
-        site_id: data.site_id,
-        mgmt_vrf: data.mgmt_vrf,
+        location: data.site_id || undefined,
+        site_id: data.site_id || undefined,
+        mgmt_vrf: data.mgmt_vrf || undefined,
         snmp_enabled: data.snmp_enabled,
         ssh_enabled: data.ssh_enabled,
         tags,
-        credential_id: credentialId,
-        metadata: {
-          region: data.region,
-          country: data.country,
-          state: data.state,
-          city: data.city,
-          building: data.building,
-          floor: data.floor,
-          room: data.room,
-          longitude: data.longitude,
-          latitude: data.latitude,
-          snmp: {
-            enabled: data.snmp_enabled,
-            version: data.snmp_version,
-            read_community: data.snmp_read_community,
-            write_community: data.snmp_write_community,
-            port: data.snmp_port,
-            retries: data.snmp_retries,
-            timeout: data.snmp_timeout,
-            v3_username: data.snmp_v3_username,
-            v3_auth_type: toSnmpAuth(data.snmp_v3_auth_type),
-            v3_priv_type: toSnmpPrivacy(data.snmp_v3_privacy_type),
-          },
-          cli: {
-            enabled: data.ssh_enabled,
-            protocol: data.cli_protocol,
-            port: data.cli_port,
-            username: data.cli_username,
-            timeout: data.cli_timeout,
-          },
-        },
       };
+      if (credentialId) payload.credential_id = credentialId;
       return device ? api.patch(`/devices/${device.id}`, payload) : api.post('/devices', payload);
     },
     onSuccess: () => {
