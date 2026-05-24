@@ -39,6 +39,7 @@ interface CredentialFormData {
   telnet_protocol: 'telnet' | 'ssh2' | 'netconf-ssh2';
   telnet_port: number;
   telnet_timeout: number;
+  telnet_retries: number;
   telnet_username: string;
   telnet_password: string;
   telnet_confirm_password: string;
@@ -46,6 +47,7 @@ interface CredentialFormData {
   telnet_confirm_enable_password: string;
   http_protocol: 'http' | 'https';
   http_tcp_port: number;
+  http_retries: number;
   http_username: string;
   http_password: string;
   http_confirm_password: string;
@@ -54,6 +56,7 @@ interface CredentialFormData {
   http_confirm_monitor_password: string;
   tl1_enable_ssh: boolean;
   tl1_single_session: boolean;
+  tl1_retries: number;
   tl1_username: string;
   tl1_password: string;
   tl1_confirm_password: string;
@@ -73,13 +76,13 @@ const EMPTY_FORM: CredentialFormData = {
   read_community: '', confirm_read_community: '', write_community: '', confirm_write_community: '',
   snmp_v3_username: '', snmp_v3_mode: 'AuthPriv', snmp_v3_auth_type: 'HMAC-SHA',
   snmp_v3_auth_password: '', snmp_v3_priv_type: 'CFB-AES-128', snmp_v3_priv_password: '',
-  telnet_protocol: 'telnet', telnet_port: 23, telnet_timeout: 60,
+  telnet_protocol: 'telnet', telnet_port: 23, telnet_timeout: 60, telnet_retries: 2,
   telnet_username: '', telnet_password: '', telnet_confirm_password: '',
   telnet_enable_password: '', telnet_confirm_enable_password: '',
-  http_protocol: 'http', http_tcp_port: 80,
+  http_protocol: 'http', http_tcp_port: 80, http_retries: 2,
   http_username: '', http_password: '', http_confirm_password: '',
   http_monitor_username: '', http_monitor_password: '', http_confirm_monitor_password: '',
-  tl1_enable_ssh: false, tl1_single_session: false,
+  tl1_enable_ssh: false, tl1_single_session: false, tl1_retries: 2,
   tl1_username: '', tl1_password: '', tl1_confirm_password: '',
   tl1_primary_proxy_ip: '', tl1_secondary_proxy_ip: '',
 };
@@ -313,9 +316,13 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           <Field label="Timeout (secs)" required>
             <Input type="number" value={form.telnet_timeout} onChange={(e) => set('telnet_timeout', Number(e.target.value))} />
           </Field>
+          <Field label="Retries">
+            <Input type="number" value={form.telnet_retries} onChange={(e) => set('telnet_retries', Number(e.target.value))} />
+          </Field>
           <Field label="Username">
             <Input value={form.telnet_username} onChange={(e) => set('telnet_username', e.target.value)} />
           </Field>
+          <div />
           {/* Password row */}
           <Field label="Password">
             <Input type="password" value={form.telnet_password} onChange={(e) => set('telnet_password', e.target.value)} />
@@ -340,6 +347,9 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           </Field>
           <Field label="TCP Port" required>
             <Input type="number" value={form.http_tcp_port} onChange={(e) => set('http_tcp_port', Number(e.target.value))} />
+          </Field>
+          <Field label="Retries">
+            <Input type="number" value={form.http_retries} onChange={(e) => set('http_retries', Number(e.target.value))} />
           </Field>
           <Field label="Username">
             <Input value={form.http_username} onChange={(e) => set('http_username', e.target.value)} />
@@ -372,6 +382,9 @@ export function CredentialFormModal({ open, onClose, credential }: CredentialFor
           </Field>
           <Field label="Enable Single Session TL1">
             <input type="checkbox" checked={form.tl1_single_session} onChange={(e) => set('tl1_single_session', e.target.checked)} className="rounded border-gray-300" />
+          </Field>
+          <Field label="Retries">
+            <Input type="number" value={form.tl1_retries} onChange={(e) => set('tl1_retries', Number(e.target.value))} />
           </Field>
           <Field label="Username">
             <Input value={form.tl1_username} onChange={(e) => set('tl1_username', e.target.value)} />
