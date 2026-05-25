@@ -262,7 +262,26 @@ This manual describes what each major module does, how operators use it, and the
 - Never relax citation enforcement for operational recommendations.
 - Treat redaction as a guardrail, not as permission to send raw secrets to third parties.
 
-## 16. Deployment modes
+## 16. Access control and account audit
+
+**Purpose:** manage who can use the NMS, what each role can do, and review account activity without exposing sysadmin-only filesystem paths in the GUI.
+
+**Core capabilities**
+
+- Use **Settings -> Access Control** for local Web GUI users, NBI users, roles, task permissions, virtual domains, and account audit review.
+- Export account activity as CSV from the GUI for customer-facing review or compliance evidence.
+- Keep identity/RBAC configuration separate from audit evidence in the backend.
+- Use **Settings -> Notifications & Forwarding** for SMTP mail notification settings, mail validation, and event forwarding targets.
+- Event Forwarding targets can subscribe to **Account Audit** events for non-root/non-admin login, logout, and privilege-change alerts.
+
+**Sysadmin audit paths**
+
+- Normal user/API activity is written to `data/audit/account_audit.jsonl` by default.
+- Admin/root activity is also written to `data/audit/privileged_account_audit.jsonl` by default.
+- Override paths with `ACCOUNT_AUDIT_LOG_PATH` and `PRIVILEGED_ACCOUNT_AUDIT_LOG_PATH` when the deployment needs dedicated volumes or external log collection.
+- Treat the privileged audit file as restricted evidence; ship or retain it with stricter access controls than normal operator exports.
+
+## 17. Deployment modes
 
 ### Local Compose
 
@@ -280,7 +299,7 @@ Best target for production-like labs.
 - Values include toggles for auth, HTTPS, ExternalSecret, NetworkPolicy, autoscaling, and PDBs.
 - NetworkPolicy and secret-manager wiring still need environment-specific completion.
 
-## 17. Minimal operating runbook
+## 18. Minimal operating runbook
 
 1. Copy `.env.example` to `.env` and replace every placeholder secret.
 2. Start services with `make up` or `docker compose up --build -d`.

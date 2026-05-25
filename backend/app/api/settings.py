@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import re
+import csv
+import io
 import uuid
+from datetime import datetime
 from typing import Annotated, Literal
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from pydantic import BaseModel, Field, SecretStr, ValidationInfo, field_validator
-from sqlalchemy import select
+from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.permissions_catalog import (
@@ -32,16 +35,23 @@ from app.security.auth import (
     PERM_SETTINGS_USER_ADMIN_USERS_GROUPS,
     PERM_SETTINGS_USERS_GROUPS,
     PERM_SETTINGS_VIEW_AUDIT,
+    Principal,
     require_settings_permission,
 )
 from app.security.passwords import hash_password
+from app.services.account_audit import ACCOUNT_AUDIT_OBJECT_TYPE, record_account_activity
 
 router = APIRouter()
 _SECURITY_KEY = "security"
+_GENERAL_KEY = "general"
 _SYSTEM_KEY = "system"
 _NETWORK_DEVICES_KEY = "network_devices"
+_INVENTORY_KEY = "inventory"
 _ALARMS_EVENTS_KEY = "alarms_events"
-_PROFILE_VERSION = 1
+_INTEGRATIONS_AI_OPS_KEY = "integrations_ai_ops"
+_LAB_OPERATIONS_KEY = "lab_operations"
+_MODULES_KEY = "modules"
+_PROFILE_VERSION = 3
 
 _EMAIL_PATTERN = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 
@@ -104,6 +114,58 @@ class SystemAdminSettings(BaseModel):
     retention: SystemRetentionSettings = Field(default_factory=SystemRetentionSettings)
 
 
+class SettingsTestResult(BaseModel):
+    ok: bool
+    message: str
+    checks: list[str] = Field(default_factory=list)
+
+
+def _test_mail_settings(mail: SystemMailSettings) -> SettingsTestResult:
+    checks = [
+        f"SMTP endpoint parsed: {mail.smtp_host or 'not configured'}:{mail.smtp_port}",
+        f"TLS enabled: {'yes' if mail.smtp_use_tls else 'no'}",
+    ]
+    if mail.smtp_host and not mail.smtp_from:
+        return SettingsTestResult(
+            ok=False,
+            message="SMTP host is configured but the From address is empty.",
+            checks=checks,
+        )
+    return SettingsTestResult(
+        ok=True,
+        message="Mail notification configuration passed validation. No external SMTP delivery was attempted.",
+        checks=checks,
+    )
+
+
+# ---------------------------------------------------------------------------
+# General settings: product identity / support links
+# ---------------------------------------------------------------------------
+
+class GeneralAdminSettings(BaseModel):
+    product_name: str = Field("NMS Custom", min_length=1, max_length=120)
+    deployment_name: str = Field("Lab", max_length=120)
+    default_theme: Literal["system", "light", "dark"] = "system"
+    support_contact_name: str = Field("", max_length=120)
+    support_contact_email: str = Field("", max_length=255)
+    tac_case_url: str = Field("", max_length=512)
+    cisco_account_name: str = Field("", max_length=120)
+
+    @field_validator("support_contact_email")
+    @classmethod
+    def validate_support_email(cls, value: str) -> str:
+        if value and not _EMAIL_PATTERN.match(value):
+            raise ValueError("support_contact_email must be a valid email address")
+        return value
+
+    @field_validator("tac_case_url")
+    @classmethod
+    def validate_tac_url(cls, value: str) -> str:
+        if value and not value.startswith(("https://", "http://")):
+            raise ValueError("tac_case_url must be an HTTP(S) URL")
+        return value
+
+
 # ---------------------------------------------------------------------------
 # Network device settings: CLI / SNMP defaults
 # ---------------------------------------------------------------------------
@@ -128,6 +190,27 @@ class NetworkSnmpSettings(BaseModel):
 class NetworkDeviceAdminSettings(BaseModel):
     cli: NetworkCliSettings = Field(default_factory=NetworkCliSettings)
     snmp: NetworkSnmpSettings = Field(default_factory=NetworkSnmpSettings)
+
+
+# ---------------------------------------------------------------------------
+# Inventory settings: archives / discovery / lifecycle
+# ---------------------------------------------------------------------------
+
+class InventoryAdminSettings(BaseModel):
+    config_archive_enabled: bool = True
+    config_archive_frequency_minutes: int = Field(1440, ge=15, le=10080)
+    config_archive_retention_days: int = Field(90, ge=1, le=3650)
+    image_repository_path: str = Field("", max_length=512)
+    default_discovery_profile: str = Field("snmp-cli", max_length=120)
+    auto_group_by_site: bool = True
+    lifecycle_warning_days: int = Field(180, ge=1, le=3650)
+
+    @field_validator("image_repository_path")
+    @classmethod
+    def validate_repository_path(cls, value: str) -> str:
+        if value and any(ch in value for ch in "\r\n\x00"):
+            raise ValueError("Invalid image repository path")
+        return value
 
 
 # ---------------------------------------------------------------------------
@@ -171,6 +254,72 @@ class AlarmsEventsAdminSettings(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# Integrations / AI Ops settings
+# ---------------------------------------------------------------------------
+
+class IntegrationsAiOpsAdminSettings(BaseModel):
+    nbi_enabled: bool = True
+    webhook_retry_attempts: int = Field(3, ge=0, le=20)
+    webhook_timeout_seconds: int = Field(10, ge=1, le=300)
+    ai_ops_enabled: bool = True
+    ai_recommendation_min_confidence: int = Field(70, ge=0, le=100)
+    llm_provider: Literal["local", "openai", "azure", "custom"] = "local"
+    llm_model: str = Field("", max_length=120)
+    report_export_target_path: str = Field("", max_length=512)
+
+    @field_validator("report_export_target_path")
+    @classmethod
+    def validate_export_path(cls, value: str) -> str:
+        if value and any(ch in value for ch in "\r\n\x00"):
+            raise ValueError("Invalid export target path")
+        return value
+
+
+# ---------------------------------------------------------------------------
+# Lab / Operations settings
+# ---------------------------------------------------------------------------
+
+class LabOperationsAdminSettings(BaseModel):
+    certification_mode_enabled: bool = True
+    traffic_simulator_enabled: bool = False
+    simulator_profile: str = Field("baseline", max_length=120)
+    maintenance_mode_enabled: bool = False
+    maintenance_window: str = Field("", max_length=255)
+    runbook_url: str = Field("", max_length=512)
+    ptp_synce_enabled: bool = False
+
+    @field_validator("runbook_url")
+    @classmethod
+    def validate_runbook_url(cls, value: str) -> str:
+        if value and not value.startswith(("https://", "http://")):
+            raise ValueError("runbook_url must be an HTTP(S) URL")
+        return value
+
+
+# ---------------------------------------------------------------------------
+# Module control settings
+# ---------------------------------------------------------------------------
+
+class ModuleControlSettings(BaseModel):
+    dashboard: bool = True
+    devices: bool = True
+    inventory: bool = True
+    credentials: bool = True
+    performance: bool = True
+    telemetry: bool = True
+    alarms: bool = True
+    assurance: bool = True
+    services: bool = True
+    ai_ops: bool = True
+    monitoring_policies: bool = True
+    topology: bool = True
+    discovery: bool = True
+    commands: bool = True
+    ios: bool = True
+    reports: bool = True
+
+
+# ---------------------------------------------------------------------------
 # Generic DB load/save helpers
 # ---------------------------------------------------------------------------
 
@@ -198,6 +347,29 @@ async def _load_security_settings(db: AsyncSession) -> SecuritySettings:
 
 
 # ---------------------------------------------------------------------------
+# General settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/general", response_model=GeneralAdminSettings)
+async def get_general_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> GeneralAdminSettings:
+    return await _load_setting(db, _GENERAL_KEY, GeneralAdminSettings, GeneralAdminSettings)
+
+
+@router.put("/general", response_model=GeneralAdminSettings)
+async def update_general_settings(
+    body: GeneralAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> GeneralAdminSettings:
+    await _save_setting(db, _GENERAL_KEY, body)
+    _record_settings_audit(db, "settings.general.update", target=_GENERAL_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
 # System settings endpoints
 # ---------------------------------------------------------------------------
 
@@ -218,6 +390,22 @@ async def update_system_settings(
     await _save_setting(db, _SYSTEM_KEY, body)
     _record_settings_audit(db, "settings.system.update", target=_SYSTEM_KEY)
     return body
+
+
+@router.post("/mail/test", response_model=SettingsTestResult)
+async def test_mail_settings(
+    body: SystemMailSettings,
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> SettingsTestResult:
+    return _test_mail_settings(body)
+
+
+@router.post("/system/test", response_model=SettingsTestResult)
+async def test_system_settings(
+    body: SystemAdminSettings,
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> SettingsTestResult:
+    return _test_mail_settings(body.mail)
 
 
 # ---------------------------------------------------------------------------
@@ -244,6 +432,29 @@ async def update_network_device_settings(
 
 
 # ---------------------------------------------------------------------------
+# Inventory settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/inventory", response_model=InventoryAdminSettings)
+async def get_inventory_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> InventoryAdminSettings:
+    return await _load_setting(db, _INVENTORY_KEY, InventoryAdminSettings, InventoryAdminSettings)
+
+
+@router.put("/inventory", response_model=InventoryAdminSettings)
+async def update_inventory_settings(
+    body: InventoryAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> InventoryAdminSettings:
+    await _save_setting(db, _INVENTORY_KEY, body)
+    _record_settings_audit(db, "settings.inventory.update", target=_INVENTORY_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
 # Alarms/Events settings endpoints
 # ---------------------------------------------------------------------------
 
@@ -263,6 +474,90 @@ async def update_alarms_events_settings(
 ) -> AlarmsEventsAdminSettings:
     await _save_setting(db, _ALARMS_EVENTS_KEY, body)
     _record_settings_audit(db, "settings.alarms_events.update", target=_ALARMS_EVENTS_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
+# Integrations / AI Ops settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/integrations-ai-ops", response_model=IntegrationsAiOpsAdminSettings)
+async def get_integrations_ai_ops_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> IntegrationsAiOpsAdminSettings:
+    return await _load_setting(
+        db,
+        _INTEGRATIONS_AI_OPS_KEY,
+        IntegrationsAiOpsAdminSettings,
+        IntegrationsAiOpsAdminSettings,
+    )
+
+
+@router.put("/integrations-ai-ops", response_model=IntegrationsAiOpsAdminSettings)
+async def update_integrations_ai_ops_settings(
+    body: IntegrationsAiOpsAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> IntegrationsAiOpsAdminSettings:
+    await _save_setting(db, _INTEGRATIONS_AI_OPS_KEY, body)
+    _record_settings_audit(db, "settings.integrations_ai_ops.update", target=_INTEGRATIONS_AI_OPS_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
+# Lab / Operations settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/lab-operations", response_model=LabOperationsAdminSettings)
+async def get_lab_operations_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> LabOperationsAdminSettings:
+    return await _load_setting(
+        db,
+        _LAB_OPERATIONS_KEY,
+        LabOperationsAdminSettings,
+        LabOperationsAdminSettings,
+    )
+
+
+@router.put("/lab-operations", response_model=LabOperationsAdminSettings)
+async def update_lab_operations_settings(
+    body: LabOperationsAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> LabOperationsAdminSettings:
+    await _save_setting(db, _LAB_OPERATIONS_KEY, body)
+    _record_settings_audit(db, "settings.lab_operations.update", target=_LAB_OPERATIONS_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
+# Module control settings endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/modules", response_model=ModuleControlSettings)
+async def get_module_control_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> ModuleControlSettings:
+    return await _load_setting(db, _MODULES_KEY, ModuleControlSettings, ModuleControlSettings)
+
+
+@router.put("/modules", response_model=ModuleControlSettings)
+async def update_module_control_settings(
+    body: ModuleControlSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> ModuleControlSettings:
+    await _save_setting(db, _MODULES_KEY, body)
+    _record_settings_audit(
+        db,
+        "settings.modules.update",
+        target=_MODULES_KEY,
+        details={"disabled": [key for key, enabled in body.model_dump().items() if not enabled]},
+    )
     return body
 
 def _validate_permissions(values: dict[str, bool]) -> dict[str, bool]:
@@ -322,10 +617,15 @@ class SecuritySettings(BaseModel):
 
 class SettingsProfile(BaseModel):
     profile_version: int = _PROFILE_VERSION
+    general: GeneralAdminSettings
     security: SecuritySettings
     system: SystemAdminSettings
     network_devices: NetworkDeviceAdminSettings
+    inventory: InventoryAdminSettings
     alarms_events: AlarmsEventsAdminSettings
+    integrations_ai_ops: IntegrationsAiOpsAdminSettings
+    lab_operations: LabOperationsAdminSettings
+    modules: ModuleControlSettings
 
 
 class UserRead(BaseModel):
@@ -427,6 +727,11 @@ class RoleRead(BaseModel):
         )
 
 
+class AccountAuditPaths(BaseModel):
+    user_activity_path: str
+    privileged_activity_path: str
+
+
 class RoleCreate(BaseModel):
     name: str = Field(..., min_length=3, max_length=100, pattern=r"^[A-Za-z0-9_.@-]+$")
     description: str | None = Field(None, max_length=255)
@@ -524,6 +829,7 @@ async def export_settings_profile(
     _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
 ) -> SettingsProfile:
     profile = SettingsProfile(
+        general=await _load_setting(db, _GENERAL_KEY, GeneralAdminSettings, GeneralAdminSettings),
         security=await _load_security_settings(db),
         system=await _load_setting(db, _SYSTEM_KEY, SystemAdminSettings, SystemAdminSettings),
         network_devices=await _load_setting(
@@ -532,11 +838,35 @@ async def export_settings_profile(
             NetworkDeviceAdminSettings,
             NetworkDeviceAdminSettings,
         ),
+        inventory=await _load_setting(
+            db,
+            _INVENTORY_KEY,
+            InventoryAdminSettings,
+            InventoryAdminSettings,
+        ),
         alarms_events=await _load_setting(
             db,
             _ALARMS_EVENTS_KEY,
             AlarmsEventsAdminSettings,
             AlarmsEventsAdminSettings,
+        ),
+        integrations_ai_ops=await _load_setting(
+            db,
+            _INTEGRATIONS_AI_OPS_KEY,
+            IntegrationsAiOpsAdminSettings,
+            IntegrationsAiOpsAdminSettings,
+        ),
+        lab_operations=await _load_setting(
+            db,
+            _LAB_OPERATIONS_KEY,
+            LabOperationsAdminSettings,
+            LabOperationsAdminSettings,
+        ),
+        modules=await _load_setting(
+            db,
+            _MODULES_KEY,
+            ModuleControlSettings,
+            ModuleControlSettings,
         ),
     )
     _record_settings_audit(db, "settings.profile.export", target="settings-profile")
@@ -563,9 +893,14 @@ async def import_settings_profile(
         )
 
     await _save_setting(db, _SECURITY_KEY, body.security)
+    await _save_setting(db, _GENERAL_KEY, body.general)
     await _save_setting(db, _SYSTEM_KEY, body.system)
     await _save_setting(db, _NETWORK_DEVICES_KEY, body.network_devices)
+    await _save_setting(db, _INVENTORY_KEY, body.inventory)
     await _save_setting(db, _ALARMS_EVENTS_KEY, body.alarms_events)
+    await _save_setting(db, _INTEGRATIONS_AI_OPS_KEY, body.integrations_ai_ops)
+    await _save_setting(db, _LAB_OPERATIONS_KEY, body.lab_operations)
+    await _save_setting(db, _MODULES_KEY, body.modules)
     _record_settings_audit(
         db,
         "settings.profile.import",
@@ -589,6 +924,160 @@ async def list_settings_audit(
         .limit(capped_limit)
     )
     return [AuditLogRead.model_validate(row) for row in result.scalars().all()]
+
+
+ACCOUNT_AUDIT_EXPORT_COLUMNS = [
+    "Timestamp",
+    "Actor",
+    "Role",
+    "Action",
+    "Outcome",
+    "Source IP",
+    "Message",
+    "Path",
+    "Method",
+    "Status Code",
+]
+
+
+def _audit_csv_value(value: object) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, datetime):
+        return value.isoformat()
+    return str(value)
+
+
+def _account_audit_stmt(
+    *,
+    actor: str | None = None,
+    action: str | None = None,
+    outcome: str | None = None,
+    role: str | None = None,
+    q: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
+):
+    stmt = select(AuditLog).where(AuditLog.object_type == ACCOUNT_AUDIT_OBJECT_TYPE)
+    if actor:
+        stmt = stmt.where(AuditLog.actor == actor)
+    if action:
+        stmt = stmt.where(AuditLog.action == action)
+    if outcome:
+        stmt = stmt.where(AuditLog.outcome == outcome)
+    if role:
+        stmt = stmt.where(AuditLog.details["role"].as_string() == role.lower())
+    if q:
+        pattern = f"%{q}%"
+        stmt = stmt.where(
+            or_(
+                AuditLog.actor.ilike(pattern),
+                AuditLog.action.ilike(pattern),
+                AuditLog.message.ilike(pattern),
+                AuditLog.object_id.ilike(pattern),
+            )
+        )
+    if since:
+        stmt = stmt.where(AuditLog.timestamp >= since)
+    if until:
+        stmt = stmt.where(AuditLog.timestamp <= until)
+    return stmt
+
+
+@router.get("/account-audit", response_model=list[AuditLogRead])
+async def list_account_audit(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_VIEW_AUDIT, PERM_SETTINGS_AUDIT_TRAILS))],
+    actor: str | None = None,
+    action: str | None = None,
+    outcome: str | None = None,
+    role: str | None = None,
+    q: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
+    limit: int = 100,
+    offset: int = 0,
+) -> list[AuditLogRead]:
+    capped_limit = min(max(limit, 1), 500)
+    result = await db.execute(
+        _account_audit_stmt(
+            actor=actor,
+            action=action,
+            outcome=outcome,
+            role=role,
+            q=q,
+            since=since,
+            until=until,
+        )
+        .order_by(AuditLog.timestamp.desc())
+        .offset(max(offset, 0))
+        .limit(capped_limit)
+    )
+    return [AuditLogRead.model_validate(row) for row in result.scalars().all()]
+
+
+@router.get("/account-audit/export")
+async def export_account_audit(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_VIEW_AUDIT, PERM_SETTINGS_AUDIT_TRAILS))],
+    export_format: str = Query("csv", alias="format", pattern="^csv$"),
+    actor: str | None = None,
+    action: str | None = None,
+    outcome: str | None = None,
+    role: str | None = None,
+    q: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
+) -> Response:
+    del export_format
+    result = await db.execute(
+        _account_audit_stmt(
+            actor=actor,
+            action=action,
+            outcome=outcome,
+            role=role,
+            q=q,
+            since=since,
+            until=until,
+        ).order_by(AuditLog.timestamp.desc())
+    )
+    entries = result.scalars().all()
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=ACCOUNT_AUDIT_EXPORT_COLUMNS)
+    writer.writeheader()
+    for entry in entries:
+        details = entry.details or {}
+        writer.writerow(
+            {
+                "Timestamp": _audit_csv_value(entry.timestamp),
+                "Actor": _audit_csv_value(entry.actor),
+                "Role": _audit_csv_value(details.get("role")),
+                "Action": _audit_csv_value(entry.action),
+                "Outcome": _audit_csv_value(entry.outcome),
+                "Source IP": _audit_csv_value(entry.source_ip),
+                "Message": _audit_csv_value(entry.message),
+                "Path": _audit_csv_value(details.get("path")),
+                "Method": _audit_csv_value(details.get("method")),
+                "Status Code": _audit_csv_value(details.get("status_code")),
+            }
+        )
+
+    return Response(
+        content=output.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": 'attachment; filename="account_audit_export.csv"'},
+    )
+
+
+@router.get("/account-audit/paths", response_model=AccountAuditPaths)
+async def get_account_audit_paths(
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_VIEW_AUDIT, PERM_SETTINGS_AUDIT_TRAILS))],
+) -> AccountAuditPaths:
+    return AccountAuditPaths(
+        user_activity_path=settings.account_audit_log_path,
+        privileged_activity_path=settings.privileged_account_audit_log_path,
+    )
 
 
 @router.get("/users", response_model=list[UserRead])
@@ -700,7 +1189,7 @@ async def delete_role(
 async def create_user(
     body: UserCreate,
     db: Annotated[AsyncSession, Depends(get_db)],
-    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+    _principal: Annotated[Principal, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
 ) -> UserRead:
     existing = await db.execute(select(AppUser).where(AppUser.username == body.username))
     if existing.scalar_one_or_none() is not None:
@@ -725,6 +1214,18 @@ async def create_user(
         target=str(user.id),
         details={"username": user.username, "role": user.role, "user_type": user.user_type},
     )
+    await record_account_activity(
+        db,
+        principal=_principal,
+        action="user.privileges.update",
+        message=f"User privileges created for {user.username}",
+        details={
+            "target_username": user.username,
+            "target_role": user.role,
+            "target_user_type": user.user_type,
+            "change_type": "create_user",
+        },
+    )
     return UserRead.model_validate(user)
 
 
@@ -733,11 +1234,14 @@ async def update_user(
     id: uuid.UUID,
     body: UserUpdate,
     db: Annotated[AsyncSession, Depends(get_db)],
-    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
+    _principal: Annotated[Principal, Depends(require_settings_permission(PERM_SETTINGS_USERS_GROUPS, PERM_SETTINGS_USER_ADMIN_USERS_GROUPS))],
 ) -> UserRead:
     user = await db.get(AppUser, id)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
+    previous_role = user.role
+    previous_user_type = user.user_type
+    previous_permissions = user.custom_permissions or {}
     data = body.model_dump(exclude_unset=True, exclude={"password", "roles"})
     for field, value in data.items():
         setattr(user, field, value)
@@ -753,6 +1257,28 @@ async def update_user(
         target=str(user.id),
         details={"username": user.username, "role": user.role, "user_type": user.user_type},
     )
+    changed_privilege_fields = []
+    if previous_role != user.role:
+        changed_privilege_fields.append("roles")
+    if previous_user_type != user.user_type:
+        changed_privilege_fields.append("user_type")
+    if body.custom_permissions is not None and previous_permissions != (user.custom_permissions or {}):
+        changed_privilege_fields.append("custom_permissions")
+    if changed_privilege_fields:
+        await record_account_activity(
+            db,
+            principal=_principal,
+            action="user.privileges.update",
+            message=f"User privileges changed for {user.username}",
+            details={
+                "target_username": user.username,
+                "target_role": user.role,
+                "previous_role": previous_role,
+                "target_user_type": user.user_type,
+                "previous_user_type": previous_user_type,
+                "changed_fields": changed_privilege_fields,
+            },
+        )
     return UserRead.model_validate(user)
 
 

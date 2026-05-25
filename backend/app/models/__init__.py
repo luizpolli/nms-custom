@@ -15,6 +15,7 @@ from app.models.kpi import KPI
 from app.models.kpi_threshold import KPIThreshold
 from app.models.mib import MIB
 from app.models.monitoring_policy import MonitoringPolicy
+from app.models.physical_inventory import PhysicalInventoryComponent
 from app.models.report_schedule import GeneratedReport, ReportSchedule
 from app.models.service import Service, ServiceDependency, ServiceMember, ServiceScoreSnapshot
 from app.models.topology import TopologyLink, TopologyNode
@@ -44,6 +45,7 @@ __all__ = [
     "KPIThreshold",
     "MIB",
     "MonitoringPolicy",
+    "PhysicalInventoryComponent",
     "GeneratedReport",
     "ReportSchedule",
     "Service",

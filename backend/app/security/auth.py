@@ -251,6 +251,21 @@ async def require_api_auth(conn: HTTPConnection) -> Principal:
             headers={"WWW-Authenticate": "Bearer"},
         )
 
+    return principal_from_presented_key(presented)
+
+
+def principal_from_presented_key(presented: str | None) -> Principal:
+    """Resolve the principal identity from an already-presented API key.
+
+    This is used by request auditing after authentication has run. It never
+    grants access by itself; callers that enforce auth must still use
+    ``require_api_auth`` or one of the permission dependencies.
+    """
+    if not settings.api_auth_enabled:
+        return Principal(subject="local-dev")
+    if not presented:
+        return Principal(subject="anonymous", role="unauthenticated")
+
     # Resolve role. Role-map keys may be plaintext or sha256$ digests; lookup
     # happens only after authentication succeeds.
     role = next(

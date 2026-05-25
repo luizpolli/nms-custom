@@ -1,0 +1,1886 @@
+{
+  "componentsById": {
+    "component-53689809": {
+      "childIds": [
+        "component-53689810"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 2",
+      "displayName": "subslot 0/1 transceiver container 2",
+      "id": "component-53689809",
+      "name": "subslot 0/1 transceiver container 2",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 621,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689809,
+      "type": "Equipment"
+    },
+    "component-53689810": {
+      "childIds": [],
+      "containedPhysicalIndex": 621,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 2",
+      "id": "component-53689810",
+      "name": "subslot 0/1 transceiver 2",
+      "operStatus": "up",
+      "parentId": "component-53689809",
+      "physicalIndex": 622,
+      "ports": [
+        {
+          "id": "65346504",
+          "name": "GigabitEthernet0/1/2",
+          "portId": 65346504
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689810,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689811": {
+      "childIds": [
+        "component-53689812"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 3",
+      "displayName": "subslot 0/1 transceiver container 3",
+      "id": "component-53689811",
+      "name": "subslot 0/1 transceiver container 3",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 635,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689811,
+      "type": "Equipment"
+    },
+    "component-53689812": {
+      "childIds": [],
+      "containedPhysicalIndex": 635,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 3",
+      "id": "component-53689812",
+      "name": "subslot 0/1 transceiver 3",
+      "operStatus": "up",
+      "parentId": "component-53689811",
+      "physicalIndex": 636,
+      "ports": [
+        {
+          "id": "65346505",
+          "name": "GigabitEthernet0/1/3",
+          "portId": 65346505
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689812,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689813": {
+      "childIds": [],
+      "containedPhysicalIndex": 800,
+      "description": "subslot 0/2 transceiver container 2",
+      "displayName": "subslot 0/2 transceiver container 2",
+      "id": "component-53689813",
+      "name": "subslot 0/2 transceiver container 2",
+      "operStatus": "up",
+      "parentId": "component-53689858",
+      "physicalIndex": 871,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689813,
+      "type": "Equipment"
+    },
+    "component-53689814": {
+      "childIds": [],
+      "containedPhysicalIndex": 800,
+      "description": "subslot 0/2 transceiver container 3",
+      "displayName": "subslot 0/2 transceiver container 3",
+      "id": "component-53689814",
+      "name": "subslot 0/2 transceiver container 3",
+      "operStatus": "up",
+      "parentId": "component-53689858",
+      "physicalIndex": 885,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689814,
+      "type": "Equipment"
+    },
+    "component-53689815": {
+      "childIds": [
+        "component-53689816"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 4",
+      "displayName": "subslot 0/1 transceiver container 4",
+      "id": "component-53689815",
+      "name": "subslot 0/1 transceiver container 4",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 649,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689815,
+      "type": "Equipment"
+    },
+    "component-53689816": {
+      "childIds": [],
+      "containedPhysicalIndex": 649,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 4",
+      "id": "component-53689816",
+      "name": "subslot 0/1 transceiver 4",
+      "operStatus": "up",
+      "parentId": "component-53689815",
+      "physicalIndex": 650,
+      "ports": [
+        {
+          "id": "65346502",
+          "name": "GigabitEthernet0/1/4",
+          "portId": 65346502
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689816,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689817": {
+      "childIds": [
+        "component-53689818"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 5",
+      "displayName": "subslot 0/1 transceiver container 5",
+      "id": "component-53689817",
+      "name": "subslot 0/1 transceiver container 5",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 663,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689817,
+      "type": "Equipment"
+    },
+    "component-53689818": {
+      "childIds": [],
+      "containedPhysicalIndex": 663,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 5",
+      "id": "component-53689818",
+      "name": "subslot 0/1 transceiver 5",
+      "operStatus": "up",
+      "parentId": "component-53689817",
+      "physicalIndex": 664,
+      "ports": [
+        {
+          "id": "65346503",
+          "name": "GigabitEthernet0/1/5",
+          "portId": 65346503
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689818,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689819": {
+      "childIds": [],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 6",
+      "displayName": "subslot 0/1 transceiver container 6",
+      "id": "component-53689819",
+      "name": "subslot 0/1 transceiver container 6",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 677,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689819,
+      "type": "Equipment"
+    },
+    "component-53689820": {
+      "childIds": [
+        "component-53689821"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 7",
+      "displayName": "subslot 0/1 transceiver container 7",
+      "id": "component-53689820",
+      "name": "subslot 0/1 transceiver container 7",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 691,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689820,
+      "type": "Equipment"
+    },
+    "component-53689821": {
+      "childIds": [],
+      "containedPhysicalIndex": 691,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 7",
+      "id": "component-53689821",
+      "name": "subslot 0/1 transceiver 7",
+      "operStatus": "up",
+      "parentId": "component-53689820",
+      "physicalIndex": 692,
+      "ports": [
+        {
+          "id": "65346507",
+          "name": "GigabitEthernet0/1/7",
+          "portId": 65346507
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689821,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689822": {
+      "childIds": [
+        "component-53689823"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 0",
+      "displayName": "subslot 0/1 transceiver container 0",
+      "id": "component-53689822",
+      "name": "subslot 0/1 transceiver container 0",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 593,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689822,
+      "type": "Equipment"
+    },
+    "component-53689823": {
+      "childIds": [],
+      "containedPhysicalIndex": 593,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 0",
+      "id": "component-53689823",
+      "name": "subslot 0/1 transceiver 0",
+      "operStatus": "up",
+      "parentId": "component-53689822",
+      "physicalIndex": 594,
+      "ports": [
+        {
+          "id": "65346500",
+          "name": "GigabitEthernet0/1/0",
+          "portId": 65346500
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689823,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689824": {
+      "childIds": [],
+      "containedPhysicalIndex": 10,
+      "description": "ASR 900 550W AC Power Supply",
+      "displayName": "Power Supply Module 0",
+      "id": "component-53689824",
+      "name": "Power Supply Module 0",
+      "operStatus": "on",
+      "parentId": "component-53689825",
+      "physicalIndex": 11,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689824,
+      "type": "Equipment",
+      "typeId": "A900-PWR550-A"
+    },
+    "component-53689825": {
+      "childIds": [
+        "component-53689824"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 0",
+      "id": "component-53689825",
+      "name": "Power Supply Bay 0",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 10,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689825,
+      "type": "Equipment"
+    },
+    "component-53689826": {
+      "childIds": [],
+      "containedPhysicalIndex": 100,
+      "description": "Nile 1",
+      "displayName": "Nile 1",
+      "id": "component-53689826",
+      "name": "Nile 1",
+      "parentId": "component-53689847",
+      "physicalIndex": 129,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689826,
+      "type": "Equipment"
+    },
+    "component-53689827": {
+      "childIds": [],
+      "containedPhysicalIndex": 100,
+      "description": "Nile 0",
+      "displayName": "Nile 0",
+      "id": "component-53689827",
+      "name": "Nile 0",
+      "parentId": "component-53689847",
+      "physicalIndex": 130,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689827,
+      "type": "Equipment"
+    },
+    "component-53689828": {
+      "childIds": [],
+      "containedPhysicalIndex": 100,
+      "description": "CPU 0 of module R0",
+      "displayName": "cpu R0/0",
+      "id": "component-53689828",
+      "name": "cpu R0/0",
+      "parentId": "component-53689847",
+      "physicalIndex": 131,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689828,
+      "type": "Equipment"
+    },
+    "component-53689829": {
+      "childIds": [],
+      "containedPhysicalIndex": 100,
+      "description": "USB Port",
+      "displayName": "usb R0/0",
+      "id": "component-53689829",
+      "name": "usb R0/0",
+      "parentId": "component-53689847",
+      "physicalIndex": 132,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689829,
+      "type": "Equipment"
+    },
+    "component-53689830": {
+      "childIds": [],
+      "containedPhysicalIndex": 100,
+      "description": "USB Port",
+      "displayName": "usb R0/1",
+      "id": "component-53689830",
+      "name": "usb R0/1",
+      "parentId": "component-53689847",
+      "physicalIndex": 134,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689830,
+      "type": "Equipment"
+    },
+    "component-53689831": {
+      "childIds": [],
+      "containedPhysicalIndex": 30,
+      "description": "ASR 900 550W AC Power Supply",
+      "displayName": "Power Supply Module 1",
+      "id": "component-53689831",
+      "name": "Power Supply Module 1",
+      "operStatus": "on",
+      "parentId": "component-53689832",
+      "physicalIndex": 31,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689831,
+      "type": "Equipment",
+      "typeId": "A900-PWR550-A"
+    },
+    "component-53689832": {
+      "childIds": [
+        "component-53689831"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 1",
+      "id": "component-53689832",
+      "name": "Power Supply Bay 1",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 30,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689832,
+      "type": "Equipment"
+    },
+    "component-53689833": {
+      "childIds": [
+        "component-53689834",
+        "component-53689835",
+        "component-53689836",
+        "component-53689837",
+        "component-53689838",
+        "component-53689839",
+        "component-53689840",
+        "component-53689841",
+        "component-53689842",
+        "component-53689843",
+        "component-53689844",
+        "component-53689845"
+      ],
+      "containedPhysicalIndex": 50,
+      "description": "ASR 903 FAN Tray",
+      "displayName": "Fan Tray",
+      "id": "component-53689833",
+      "name": "Fan Tray",
+      "operStatus": "up",
+      "parentId": "component-53689846",
+      "physicalIndex": 51,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689833,
+      "type": "Equipment",
+      "typeId": "A903-FAN"
+    },
+    "component-53689834": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/0",
+      "id": "component-53689834",
+      "name": "Fan 2/0",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 62,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689834,
+      "type": "Equipment"
+    },
+    "component-53689835": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/1",
+      "id": "component-53689835",
+      "name": "Fan 2/1",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 63,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689835,
+      "type": "Equipment"
+    },
+    "component-53689836": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/2",
+      "id": "component-53689836",
+      "name": "Fan 2/2",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 64,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689836,
+      "type": "Equipment"
+    },
+    "component-53689837": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/3",
+      "id": "component-53689837",
+      "name": "Fan 2/3",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 65,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689837,
+      "type": "Equipment"
+    },
+    "component-53689838": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/4",
+      "id": "component-53689838",
+      "name": "Fan 2/4",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 66,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689838,
+      "type": "Equipment"
+    },
+    "component-53689839": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/5",
+      "id": "component-53689839",
+      "name": "Fan 2/5",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 67,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689839,
+      "type": "Equipment"
+    },
+    "component-53689840": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/6",
+      "id": "component-53689840",
+      "name": "Fan 2/6",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 68,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689840,
+      "type": "Equipment"
+    },
+    "component-53689841": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/7",
+      "id": "component-53689841",
+      "name": "Fan 2/7",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 69,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689841,
+      "type": "Equipment"
+    },
+    "component-53689842": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/8",
+      "id": "component-53689842",
+      "name": "Fan 2/8",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 70,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689842,
+      "type": "Equipment"
+    },
+    "component-53689843": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/9",
+      "id": "component-53689843",
+      "name": "Fan 2/9",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 71,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689843,
+      "type": "Equipment"
+    },
+    "component-53689844": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/10",
+      "id": "component-53689844",
+      "name": "Fan 2/10",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 72,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689844,
+      "type": "Equipment"
+    },
+    "component-53689845": {
+      "childIds": [],
+      "containedPhysicalIndex": 51,
+      "description": "Fan",
+      "displayName": "Fan 2/11",
+      "id": "component-53689845",
+      "name": "Fan 2/11",
+      "operStatus": "up",
+      "parentId": "component-53689833",
+      "physicalIndex": 73,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689845,
+      "type": "Equipment"
+    },
+    "component-53689846": {
+      "childIds": [
+        "component-53689833"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Fan Tray Bay",
+      "displayName": "Fan Tray Bay 0",
+      "id": "component-53689846",
+      "name": "Fan Tray Bay 0",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 50,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689846,
+      "type": "Equipment"
+    },
+    "component-53689847": {
+      "childIds": [
+        "component-53689827",
+        "component-53689826",
+        "component-53689828",
+        "component-53689829",
+        "component-53689830"
+      ],
+      "containedPhysicalIndex": 2,
+      "description": "ASR 903 Route Switch Processor 1, Base Scale, 55Gbps",
+      "displayName": "module R0",
+      "id": "component-53689847",
+      "name": "module R0",
+      "operStatus": "up",
+      "parentId": "component-53689853",
+      "physicalIndex": 100,
+      "ports": [
+        {
+          "id": "65346437",
+          "name": "NME R0",
+          "portId": 65346437
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689847,
+      "type": "Module",
+      "typeId": "A903-RSP1A-55"
+    },
+    "component-53689848": {
+      "childIds": [
+        "component-53689822",
+        "component-53689849",
+        "component-53689809",
+        "component-53689811",
+        "component-53689815",
+        "component-53689817",
+        "component-53689819",
+        "component-53689820"
+      ],
+      "containedPhysicalIndex": 5,
+      "description": "8-port Gigabit Ethernet Interface Module",
+      "displayName": "IM subslot 0/1",
+      "id": "component-53689848",
+      "name": "IM subslot 0/1",
+      "operStatus": "up",
+      "parentId": "component-53689856",
+      "physicalIndex": 550,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689848,
+      "type": "Module",
+      "typeId": "A900-IMA8S"
+    },
+    "component-53689849": {
+      "childIds": [
+        "component-53689850"
+      ],
+      "containedPhysicalIndex": 550,
+      "description": "subslot 0/1 transceiver container 1",
+      "displayName": "subslot 0/1 transceiver container 1",
+      "id": "component-53689849",
+      "name": "subslot 0/1 transceiver container 1",
+      "operStatus": "up",
+      "parentId": "component-53689848",
+      "physicalIndex": 607,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689849,
+      "type": "Equipment"
+    },
+    "component-53689850": {
+      "childIds": [],
+      "containedPhysicalIndex": 607,
+      "description": "GE SX",
+      "displayName": "subslot 0/1 transceiver 1",
+      "id": "component-53689850",
+      "name": "subslot 0/1 transceiver 1",
+      "operStatus": "up",
+      "parentId": "component-53689849",
+      "physicalIndex": 608,
+      "ports": [
+        {
+          "id": "65346501",
+          "name": "GigabitEthernet0/1/1",
+          "portId": 65346501
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689850,
+      "type": "Module",
+      "typeId": "GLC-SX-MMD"
+    },
+    "component-53689851": {
+      "childIds": [],
+      "containedPhysicalIndex": 4,
+      "description": "8-port Gigabit Ethernet Interface Module",
+      "displayName": "IM subslot 0/0",
+      "id": "component-53689851",
+      "name": "IM subslot 0/0",
+      "operStatus": "up",
+      "parentId": "component-53689855",
+      "physicalIndex": 300,
+      "ports": [
+        {
+          "id": "65346527",
+          "name": "GigabitEthernet0/0/7",
+          "portId": 65346527
+        },
+        {
+          "id": "65346522",
+          "name": "GigabitEthernet0/0/6",
+          "portId": 65346522
+        },
+        {
+          "id": "65346521",
+          "name": "GigabitEthernet0/0/5",
+          "portId": 65346521
+        },
+        {
+          "id": "65346524",
+          "name": "GigabitEthernet0/0/4",
+          "portId": 65346524
+        },
+        {
+          "id": "65346523",
+          "name": "GigabitEthernet0/0/3",
+          "portId": 65346523
+        },
+        {
+          "id": "65346517",
+          "name": "GigabitEthernet0/0/2",
+          "portId": 65346517
+        },
+        {
+          "id": "65346516",
+          "name": "GigabitEthernet0/0/1",
+          "portId": 65346516
+        },
+        {
+          "id": "65346519",
+          "name": "GigabitEthernet0/0/0",
+          "portId": 65346519
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 53689851,
+      "type": "Module",
+      "typeId": "A900-IMA8T"
+    },
+    "component-53689852": {
+      "childIds": [
+        "component-53689853",
+        "component-53689854",
+        "component-53689855",
+        "component-53689856",
+        "component-53689857",
+        "component-53689861",
+        "component-53689862",
+        "component-53689864",
+        "component-53689846",
+        "component-53689825",
+        "component-53689832"
+      ],
+      "description": "ASR 903 Series Router Chassis",
+      "displayName": "Chassis",
+      "hardwareVersion": "V01",
+      "id": "component-53689852",
+      "isFRUable": "TRUE",
+      "manufacturer": "Cisco Systems Inc",
+      "name": "Chassis",
+      "operStatus": "up",
+      "ports": [],
+      "serialNumber": "FOX1904PC68",
+      "serviceState": "UNKNOWN",
+      "sourceId": 53689852,
+      "type": "Chassis",
+      "typeId": "ASR-903"
+    },
+    "component-53689853": {
+      "childIds": [
+        "component-53689847"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "RSP Slot",
+      "displayName": "slot R0",
+      "id": "component-53689853",
+      "name": "slot R0",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 2,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689853,
+      "type": "Equipment"
+    },
+    "component-53689854": {
+      "childIds": [],
+      "containedPhysicalIndex": 1,
+      "description": "RSP Slot",
+      "displayName": "slot R1",
+      "id": "component-53689854",
+      "name": "slot R1",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 3,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689854,
+      "type": "Equipment"
+    },
+    "component-53689855": {
+      "childIds": [
+        "component-53689851"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "IM Bay",
+      "displayName": "subslot 0/0",
+      "id": "component-53689855",
+      "name": "subslot 0/0",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 4,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689855,
+      "type": "Equipment"
+    },
+    "component-53689856": {
+      "childIds": [
+        "component-53689848"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "IM Bay",
+      "displayName": "subslot 0/1",
+      "id": "component-53689856",
+      "name": "subslot 0/1",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 5,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689856,
+      "type": "Equipment"
+    },
+    "component-53689857": {
+      "childIds": [
+        "component-53689858"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "IM Bay",
+      "displayName": "subslot 0/2",
+      "id": "component-53689857",
+      "name": "subslot 0/2",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 6,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689857,
+      "type": "Equipment"
+    },
+    "component-53689858": {
+      "childIds": [
+        "component-53689859",
+        "component-53689860",
+        "component-53689813",
+        "component-53689814"
+      ],
+      "containedPhysicalIndex": 6,
+      "description": "4 port OC3/1 port OC12 IM",
+      "displayName": "IM subslot 0/2",
+      "id": "component-53689858",
+      "name": "IM subslot 0/2",
+      "operStatus": "up",
+      "parentId": "component-53689857",
+      "physicalIndex": 800,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689858,
+      "type": "Module",
+      "typeId": "A900-IMA4OS"
+    },
+    "component-53689859": {
+      "childIds": [],
+      "containedPhysicalIndex": 800,
+      "description": "subslot 0/2 transceiver container 0",
+      "displayName": "subslot 0/2 transceiver container 0",
+      "id": "component-53689859",
+      "name": "subslot 0/2 transceiver container 0",
+      "operStatus": "up",
+      "parentId": "component-53689858",
+      "physicalIndex": 843,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689859,
+      "type": "Equipment"
+    },
+    "component-53689860": {
+      "childIds": [],
+      "containedPhysicalIndex": 800,
+      "description": "subslot 0/2 transceiver container 1",
+      "displayName": "subslot 0/2 transceiver container 1",
+      "id": "component-53689860",
+      "name": "subslot 0/2 transceiver container 1",
+      "operStatus": "up",
+      "parentId": "component-53689858",
+      "physicalIndex": 857,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689860,
+      "type": "Equipment"
+    },
+    "component-53689861": {
+      "childIds": [],
+      "containedPhysicalIndex": 1,
+      "description": "IM Bay",
+      "displayName": "subslot 0/3",
+      "id": "component-53689861",
+      "name": "subslot 0/3",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 7,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689861,
+      "type": "Equipment"
+    },
+    "component-53689862": {
+      "childIds": [
+        "component-53689863"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "IM Bay",
+      "displayName": "subslot 0/4",
+      "id": "component-53689862",
+      "name": "subslot 0/4",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 8,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689862,
+      "type": "Equipment"
+    },
+    "component-53689863": {
+      "childIds": [],
+      "containedPhysicalIndex": 8,
+      "description": "32 port T1/E1 IM",
+      "displayName": "IM subslot 0/4",
+      "id": "component-53689863",
+      "name": "IM subslot 0/4",
+      "operStatus": "up",
+      "parentId": "component-53689862",
+      "physicalIndex": 1300,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689863,
+      "type": "Module",
+      "typeId": "A900-IMA32D"
+    },
+    "component-53689864": {
+      "childIds": [],
+      "containedPhysicalIndex": 1,
+      "description": "IM Bay",
+      "displayName": "subslot 0/5",
+      "id": "component-53689864",
+      "name": "subslot 0/5",
+      "operStatus": "up",
+      "parentId": "component-53689852",
+      "physicalIndex": 9,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 53689864,
+      "type": "Equipment"
+    }
+  },
+  "deviceId": "sample-asr903",
+  "generatedAt": "2026-05-25T06:52:11.734919+00:00",
+  "physicalIndexToComponentId": {
+    "10": "component-53689825",
+    "100": "component-53689847",
+    "11": "component-53689824",
+    "129": "component-53689826",
+    "130": "component-53689827",
+    "1300": "component-53689863",
+    "131": "component-53689828",
+    "132": "component-53689829",
+    "134": "component-53689830",
+    "2": "component-53689853",
+    "3": "component-53689854",
+    "30": "component-53689832",
+    "300": "component-53689851",
+    "31": "component-53689831",
+    "4": "component-53689855",
+    "5": "component-53689856",
+    "50": "component-53689846",
+    "51": "component-53689833",
+    "550": "component-53689848",
+    "593": "component-53689822",
+    "594": "component-53689823",
+    "6": "component-53689857",
+    "607": "component-53689849",
+    "608": "component-53689850",
+    "62": "component-53689834",
+    "621": "component-53689809",
+    "622": "component-53689810",
+    "63": "component-53689835",
+    "635": "component-53689811",
+    "636": "component-53689812",
+    "64": "component-53689836",
+    "649": "component-53689815",
+    "65": "component-53689837",
+    "650": "component-53689816",
+    "66": "component-53689838",
+    "663": "component-53689817",
+    "664": "component-53689818",
+    "67": "component-53689839",
+    "677": "component-53689819",
+    "68": "component-53689840",
+    "69": "component-53689841",
+    "691": "component-53689820",
+    "692": "component-53689821",
+    "7": "component-53689861",
+    "70": "component-53689842",
+    "71": "component-53689843",
+    "72": "component-53689844",
+    "73": "component-53689845",
+    "8": "component-53689862",
+    "800": "component-53689858",
+    "843": "component-53689859",
+    "857": "component-53689860",
+    "871": "component-53689813",
+    "885": "component-53689814",
+    "9": "component-53689864"
+  },
+  "platform": "Cisco ASR 903 Router",
+  "profileId": "Cisco_ASR_903_Router",
+  "schemaVersion": "nms.chassisView.v1",
+  "source": {
+    "image": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/Cisco_ASR_903_Router/images/ASR-903-Front.svg",
+    "inventory": "applications/storm/chassisview/v2/pidsupport/inventory/asr90xFamily/Cisco_ASR_903_Router/ASR-903_inventory.json",
+    "model": "applications/storm/chassisview/v2/data/Cisco_ASR_903.json",
+    "package": ".local/chassis-assets/figures.tar.gz",
+    "profile": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/Cisco_ASR_903_Router/data/Cisco_ASR_903_Router.json"
+  },
+  "tree": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-53689827",
+                  "id": "component-53689827",
+                  "label": "Nile 0",
+                  "physicalIndex": 130,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689826",
+                  "id": "component-53689826",
+                  "label": "Nile 1",
+                  "physicalIndex": 129,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689828",
+                  "id": "component-53689828",
+                  "label": "cpu R0/0",
+                  "physicalIndex": 131,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689829",
+                  "id": "component-53689829",
+                  "label": "usb R0/0",
+                  "physicalIndex": 132,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689830",
+                  "id": "component-53689830",
+                  "label": "usb R0/1",
+                  "physicalIndex": 134,
+                  "type": "Equipment"
+                }
+              ],
+              "componentId": "component-53689847",
+              "id": "component-53689847",
+              "label": "module R0",
+              "physicalIndex": 100,
+              "type": "Module",
+              "typeId": "A903-RSP1A-55"
+            }
+          ],
+          "componentId": "component-53689853",
+          "id": "component-53689853",
+          "label": "slot R0",
+          "physicalIndex": 2,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-53689854",
+          "id": "component-53689854",
+          "label": "slot R1",
+          "physicalIndex": 3,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-53689851",
+              "id": "component-53689851",
+              "label": "IM subslot 0/0",
+              "physicalIndex": 300,
+              "type": "Module",
+              "typeId": "A900-IMA8T"
+            }
+          ],
+          "componentId": "component-53689855",
+          "id": "component-53689855",
+          "label": "subslot 0/0",
+          "physicalIndex": 4,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689823",
+                      "id": "component-53689823",
+                      "label": "subslot 0/1 transceiver 0",
+                      "physicalIndex": 594,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689822",
+                  "id": "component-53689822",
+                  "label": "subslot 0/1 transceiver container 0",
+                  "physicalIndex": 593,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689850",
+                      "id": "component-53689850",
+                      "label": "subslot 0/1 transceiver 1",
+                      "physicalIndex": 608,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689849",
+                  "id": "component-53689849",
+                  "label": "subslot 0/1 transceiver container 1",
+                  "physicalIndex": 607,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689810",
+                      "id": "component-53689810",
+                      "label": "subslot 0/1 transceiver 2",
+                      "physicalIndex": 622,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689809",
+                  "id": "component-53689809",
+                  "label": "subslot 0/1 transceiver container 2",
+                  "physicalIndex": 621,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689812",
+                      "id": "component-53689812",
+                      "label": "subslot 0/1 transceiver 3",
+                      "physicalIndex": 636,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689811",
+                  "id": "component-53689811",
+                  "label": "subslot 0/1 transceiver container 3",
+                  "physicalIndex": 635,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689816",
+                      "id": "component-53689816",
+                      "label": "subslot 0/1 transceiver 4",
+                      "physicalIndex": 650,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689815",
+                  "id": "component-53689815",
+                  "label": "subslot 0/1 transceiver container 4",
+                  "physicalIndex": 649,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689818",
+                      "id": "component-53689818",
+                      "label": "subslot 0/1 transceiver 5",
+                      "physicalIndex": 664,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689817",
+                  "id": "component-53689817",
+                  "label": "subslot 0/1 transceiver container 5",
+                  "physicalIndex": 663,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689819",
+                  "id": "component-53689819",
+                  "label": "subslot 0/1 transceiver container 6",
+                  "physicalIndex": 677,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-53689821",
+                      "id": "component-53689821",
+                      "label": "subslot 0/1 transceiver 7",
+                      "physicalIndex": 692,
+                      "type": "Module",
+                      "typeId": "GLC-SX-MMD"
+                    }
+                  ],
+                  "componentId": "component-53689820",
+                  "id": "component-53689820",
+                  "label": "subslot 0/1 transceiver container 7",
+                  "physicalIndex": 691,
+                  "type": "Equipment"
+                }
+              ],
+              "componentId": "component-53689848",
+              "id": "component-53689848",
+              "label": "IM subslot 0/1",
+              "physicalIndex": 550,
+              "type": "Module",
+              "typeId": "A900-IMA8S"
+            }
+          ],
+          "componentId": "component-53689856",
+          "id": "component-53689856",
+          "label": "subslot 0/1",
+          "physicalIndex": 5,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-53689859",
+                  "id": "component-53689859",
+                  "label": "subslot 0/2 transceiver container 0",
+                  "physicalIndex": 843,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689860",
+                  "id": "component-53689860",
+                  "label": "subslot 0/2 transceiver container 1",
+                  "physicalIndex": 857,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689813",
+                  "id": "component-53689813",
+                  "label": "subslot 0/2 transceiver container 2",
+                  "physicalIndex": 871,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689814",
+                  "id": "component-53689814",
+                  "label": "subslot 0/2 transceiver container 3",
+                  "physicalIndex": 885,
+                  "type": "Equipment"
+                }
+              ],
+              "componentId": "component-53689858",
+              "id": "component-53689858",
+              "label": "IM subslot 0/2",
+              "physicalIndex": 800,
+              "type": "Module",
+              "typeId": "A900-IMA4OS"
+            }
+          ],
+          "componentId": "component-53689857",
+          "id": "component-53689857",
+          "label": "subslot 0/2",
+          "physicalIndex": 6,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-53689861",
+          "id": "component-53689861",
+          "label": "subslot 0/3",
+          "physicalIndex": 7,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-53689863",
+              "id": "component-53689863",
+              "label": "IM subslot 0/4",
+              "physicalIndex": 1300,
+              "type": "Module",
+              "typeId": "A900-IMA32D"
+            }
+          ],
+          "componentId": "component-53689862",
+          "id": "component-53689862",
+          "label": "subslot 0/4",
+          "physicalIndex": 8,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-53689864",
+          "id": "component-53689864",
+          "label": "subslot 0/5",
+          "physicalIndex": 9,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-53689834",
+                  "id": "component-53689834",
+                  "label": "Fan 2/0",
+                  "physicalIndex": 62,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689835",
+                  "id": "component-53689835",
+                  "label": "Fan 2/1",
+                  "physicalIndex": 63,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689836",
+                  "id": "component-53689836",
+                  "label": "Fan 2/2",
+                  "physicalIndex": 64,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689837",
+                  "id": "component-53689837",
+                  "label": "Fan 2/3",
+                  "physicalIndex": 65,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689838",
+                  "id": "component-53689838",
+                  "label": "Fan 2/4",
+                  "physicalIndex": 66,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689839",
+                  "id": "component-53689839",
+                  "label": "Fan 2/5",
+                  "physicalIndex": 67,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689840",
+                  "id": "component-53689840",
+                  "label": "Fan 2/6",
+                  "physicalIndex": 68,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689841",
+                  "id": "component-53689841",
+                  "label": "Fan 2/7",
+                  "physicalIndex": 69,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689842",
+                  "id": "component-53689842",
+                  "label": "Fan 2/8",
+                  "physicalIndex": 70,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689843",
+                  "id": "component-53689843",
+                  "label": "Fan 2/9",
+                  "physicalIndex": 71,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689844",
+                  "id": "component-53689844",
+                  "label": "Fan 2/10",
+                  "physicalIndex": 72,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-53689845",
+                  "id": "component-53689845",
+                  "label": "Fan 2/11",
+                  "physicalIndex": 73,
+                  "type": "Equipment"
+                }
+              ],
+              "componentId": "component-53689833",
+              "id": "component-53689833",
+              "label": "Fan Tray",
+              "physicalIndex": 51,
+              "type": "Equipment",
+              "typeId": "A903-FAN"
+            }
+          ],
+          "componentId": "component-53689846",
+          "id": "component-53689846",
+          "label": "Fan Tray Bay 0",
+          "physicalIndex": 50,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-53689824",
+              "id": "component-53689824",
+              "label": "Power Supply Module 0",
+              "physicalIndex": 11,
+              "type": "Equipment",
+              "typeId": "A900-PWR550-A"
+            }
+          ],
+          "componentId": "component-53689825",
+          "id": "component-53689825",
+          "label": "Power Supply Bay 0",
+          "physicalIndex": 10,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-53689831",
+              "id": "component-53689831",
+              "label": "Power Supply Module 1",
+              "physicalIndex": 31,
+              "type": "Equipment",
+              "typeId": "A900-PWR550-A"
+            }
+          ],
+          "componentId": "component-53689832",
+          "id": "component-53689832",
+          "label": "Power Supply Bay 1",
+          "physicalIndex": 30,
+          "type": "Equipment"
+        }
+      ],
+      "componentId": "component-53689852",
+      "id": "component-53689852",
+      "label": "Chassis",
+      "physicalIndex": null,
+      "type": "Chassis",
+      "typeId": "ASR-903"
+    }
+  ],
+  "views": [
+    {
+      "height": 381.6,
+      "hotspots": [
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA8T.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA8T.svg",
+            "typeId": "A900-IMA8T"
+          },
+          "bounds": {
+            "h": 57.24,
+            "w": 431.51,
+            "x": 78.95,
+            "y": 314.82
+          },
+          "empty": false,
+          "id": "hotspot-subslot-0",
+          "inventoryId": "component-53689851",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 0,
+            "fillerTypeId": "A900-FILLER-LC",
+            "modelName": "IM subslot 0/0",
+            "modelTypeId": "A900-IMA8S",
+            "sourceName": "IM subslot 0/0",
+            "sourceTypeId": "A900-IMA8T"
+          },
+          "physicalIndex": 300,
+          "slotKey": "subslot/0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA8S.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA8S.svg",
+            "typeId": "A900-IMA8S"
+          },
+          "bounds": {
+            "h": 57.24,
+            "w": 431.51,
+            "x": 78.95,
+            "y": 253.61
+          },
+          "empty": false,
+          "id": "hotspot-subslot-1",
+          "inventoryId": "component-53689848",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "A900-FILLER-LC",
+            "modelName": "IM subslot 0/1",
+            "modelTypeId": "A900-IMA16D",
+            "sourceName": "IM subslot 0/1",
+            "sourceTypeId": "A900-IMA8S"
+          },
+          "physicalIndex": 550,
+          "slotKey": "subslot/1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA4OS.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA4OS.svg",
+            "typeId": "A900-IMA4OS"
+          },
+          "bounds": {
+            "h": 57.24,
+            "w": 431.51,
+            "x": 78.95,
+            "y": 192.39
+          },
+          "empty": false,
+          "id": "hotspot-subslot-2",
+          "inventoryId": "component-53689858",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 2,
+            "fillerTypeId": "A900-FILLER-LC",
+            "modelName": "subslot 0/2",
+            "modelTypeId": null,
+            "sourceName": "IM subslot 0/2",
+            "sourceTypeId": "A900-IMA4OS"
+          },
+          "physicalIndex": 6,
+          "slotKey": "subslot/2"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-FILLER-LC.svg",
+            "typeId": "A900-FILLER-LC"
+          },
+          "bounds": {
+            "h": 57.24,
+            "w": 431.51,
+            "x": 78.95,
+            "y": 131.18
+          },
+          "empty": true,
+          "id": "hotspot-subslot-3",
+          "inventoryId": "component-53689861",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 3,
+            "fillerTypeId": "A900-FILLER-LC",
+            "modelName": "subslot 0/3",
+            "modelTypeId": null,
+            "sourceName": "subslot 0/3",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 7,
+          "slotKey": "subslot/3"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA32D.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA32D.svg",
+            "typeId": "A900-IMA32D"
+          },
+          "bounds": {
+            "h": 57.24,
+            "w": 431.51,
+            "x": 78.95,
+            "y": 69.96
+          },
+          "empty": false,
+          "id": "hotspot-subslot-4",
+          "inventoryId": "component-53689863",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 4,
+            "fillerTypeId": "A900-FILLER-LC",
+            "modelName": "subslot 0/4",
+            "modelTypeId": null,
+            "sourceName": "IM subslot 0/4",
+            "sourceTypeId": "A900-IMA32D"
+          },
+          "physicalIndex": 8,
+          "slotKey": "subslot/4"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-FILLER-LC.svg",
+            "typeId": "A900-FILLER-LC"
+          },
+          "bounds": {
+            "h": 57.24,
+            "w": 431.51,
+            "x": 78.95,
+            "y": 9.54
+          },
+          "empty": true,
+          "id": "hotspot-subslot-5",
+          "inventoryId": "component-53689864",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 5,
+            "fillerTypeId": "A900-FILLER-LC",
+            "modelName": "subslot 0/5",
+            "modelTypeId": null,
+            "sourceName": "subslot 0/5",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 9,
+          "slotKey": "subslot/5"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A903-RSP1A-55.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A903-RSP1A-55.svg",
+            "typeId": "A903-RSP1A-55"
+          },
+          "bounds": {
+            "h": 115.28,
+            "w": 641.01,
+            "x": 534.69,
+            "y": 137.53
+          },
+          "empty": false,
+          "id": "hotspot-slot-R0",
+          "inventoryId": "component-53689847",
+          "label": "Route Processor Slot",
+          "metadata": {
+            "alias": 6,
+            "fillerTypeId": "A900-FILLER-RSP",
+            "modelName": "module R0",
+            "modelTypeId": "A903-RSP1A-55",
+            "sourceName": "module R0",
+            "sourceTypeId": "A903-RSP1A-55"
+          },
+          "physicalIndex": 100,
+          "slotKey": "slot_R0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-FILLER-RSP.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-FILLER-RSP.svg",
+            "typeId": "A900-FILLER-RSP"
+          },
+          "bounds": {
+            "h": 115.28,
+            "w": 641.01,
+            "x": 534.69,
+            "y": 11.13
+          },
+          "empty": true,
+          "id": "hotspot-slot-R1",
+          "inventoryId": "component-53689854",
+          "label": "Route Processor Slot",
+          "metadata": {
+            "alias": 7,
+            "fillerTypeId": "A900-FILLER-RSP",
+            "modelName": "slot R1",
+            "modelTypeId": null,
+            "sourceName": "slot R1",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 3,
+          "slotKey": "slot_R1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-PWR550-A.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-PWR550-A.svg",
+            "typeId": "A900-PWR550-A"
+          },
+          "bounds": {
+            "h": 100.17,
+            "w": 304.87,
+            "x": 536.26,
+            "y": 273.48
+          },
+          "empty": false,
+          "id": "hotspot-Power-Supply-Bay-0",
+          "inventoryId": "component-53689824",
+          "label": "Power Unit Slot",
+          "metadata": {
+            "alias": 8,
+            "fillerTypeId": "A900-FILLER-PT",
+            "modelName": "Power Supply Module 0",
+            "modelTypeId": "A900-PWR550-D",
+            "sourceName": "Power Supply Module 0",
+            "sourceTypeId": "A900-PWR550-A"
+          },
+          "physicalIndex": 11,
+          "slotKey": "Power_Supply_Bay_0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-PWR550-A.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-PWR550-A.svg",
+            "typeId": "A900-PWR550-A"
+          },
+          "bounds": {
+            "h": 100.17,
+            "w": 304.87,
+            "x": 858.32,
+            "y": 273.48
+          },
+          "empty": false,
+          "id": "hotspot-Power-Supply-Bay-1",
+          "inventoryId": "component-53689831",
+          "label": "Power Unit Slot",
+          "metadata": {
+            "alias": 9,
+            "fillerTypeId": "A900-FILLER-PT",
+            "modelName": "Power Supply Bay 1",
+            "modelTypeId": null,
+            "sourceName": "Power Supply Module 1",
+            "sourceTypeId": "A900-PWR550-A"
+          },
+          "physicalIndex": 30,
+          "slotKey": "Power_Supply_Bay_1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr903/A903-FAN.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A903-FAN.svg",
+            "typeId": "A903-FAN"
+          },
+          "bounds": {
+            "h": 364.11,
+            "w": 164.16,
+            "x": 1180.39,
+            "y": 7.95
+          },
+          "empty": false,
+          "id": "hotspot-Fan-Tray-Bay-0",
+          "inventoryId": "component-53689833",
+          "label": "Fan Tray Slot",
+          "metadata": {
+            "alias": 10,
+            "fillerTypeId": "A903-FILLER-FT",
+            "modelName": "Fan Tray",
+            "modelTypeId": "A903-FAN",
+            "sourceName": "Fan Tray",
+            "sourceTypeId": "A903-FAN"
+          },
+          "physicalIndex": 51,
+          "slotKey": "Fan_Tray_Bay_0"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/asr903/ASR-903-Front.svg",
+      "label": "Front View",
+      "sourceHeight": 480,
+      "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/Cisco_ASR_903_Router/images/ASR-903-Front.svg",
+      "sourceWidth": 1750,
+      "width": 1367.999
+    }
+  ]
+}

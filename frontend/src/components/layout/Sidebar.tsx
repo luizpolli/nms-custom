@@ -1,57 +1,28 @@
 import { NavLink } from 'react-router-dom';
 import {
-  LayoutDashboard,
-  Server,
-  Package,
-  KeyRound,
-  Activity,
-  RadioTower,
-  Bell,
-  ShieldCheck,
-  Waypoints,
-  Bot,
-  SlidersHorizontal,
-  ClipboardList,
-  Network,
-  Radar,
-  BookOpen,
-  Terminal,
-  Layers,
-  FileText,
   Settings,
-  FlaskConical,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { MODULES, type ModuleKey } from '../../lib/moduleControls';
+import { useModuleControls } from './ModuleControlProvider';
 
 interface NavItem {
   to: string;
   label: string;
   icon: React.ReactNode;
+  moduleKey?: ModuleKey;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { to: '/', label: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" /> },
-  { to: '/devices', label: 'Devices', icon: <Server className="h-5 w-5" /> },
-  { to: '/inventory', label: 'Inventory', icon: <Package className="h-5 w-5" /> },
-  { to: '/credentials', label: 'Credentials', icon: <KeyRound className="h-5 w-5" /> },
-  { to: '/performance', label: 'Performance', icon: <Activity className="h-5 w-5" /> },
-  { to: '/telemetry', label: 'Telemetry', icon: <RadioTower className="h-5 w-5" /> },
-  { to: '/alarms', label: 'Alarms', icon: <Bell className="h-5 w-5" /> },
-  { to: '/assurance', label: 'Assurance', icon: <ShieldCheck className="h-5 w-5" /> },
-  { to: '/services', label: 'Services', icon: <Waypoints className="h-5 w-5" /> },
-  { to: '/ai-ops', label: 'AI Ops', icon: <Bot className="h-5 w-5" /> },
-  { to: '/lab', label: 'Lab Health', icon: <FlaskConical className="h-5 w-5" /> },
-  { to: '/alarm-rules', label: 'Alarm Rules', icon: <SlidersHorizontal className="h-5 w-5" /> },
-  { to: '/monitoring-policies', label: 'Monitoring Policies', icon: <ClipboardList className="h-5 w-5" /> },
-  { to: '/topology', label: 'Topology', icon: <Network className="h-5 w-5" /> },
-  { to: '/discovery', label: 'Discovery', icon: <Radar className="h-5 w-5" /> },
-  { to: '/mibs', label: 'MIBs', icon: <BookOpen className="h-5 w-5" /> },
-  { to: '/commands', label: 'Commands', icon: <Terminal className="h-5 w-5" /> },
-  { to: '/ios', label: 'IOS Versions', icon: <Layers className="h-5 w-5" /> },
-  { to: '/reports', label: 'Reports', icon: <FileText className="h-5 w-5" /> },
+  ...MODULES.map((module) => ({
+    to: module.route,
+    label: module.label,
+    icon: module.icon,
+    moduleKey: module.key,
+  })),
   { to: '/settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> },
 ];
 
@@ -61,6 +32,9 @@ interface SidebarProps {
 }
 
 export function Sidebar({ collapsed, onToggle }: SidebarProps) {
+  const { isEnabled } = useModuleControls();
+  const visibleItems = NAV_ITEMS.filter((item) => !item.moduleKey || isEnabled(item.moduleKey));
+
   return (
     <aside
       className={twMerge(
@@ -86,7 +60,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
 
       {/* Nav items */}
       <nav className="flex-1 overflow-y-auto py-2">
-        {NAV_ITEMS.map((item) => (
+        {visibleItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}

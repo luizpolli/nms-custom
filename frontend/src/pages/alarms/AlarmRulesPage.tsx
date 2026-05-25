@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { PageHeader, Card, Button, Input, Select, EmptyState } from '../../components/ui';
+import { GitBranch, ListChecks, SlidersHorizontal, TableProperties } from 'lucide-react';
+import { PageHeader, Card, Button, Input, Select, EmptyState, InfoFloat, PageIntroFloat } from '../../components/ui';
 import { api } from '../../lib/api';
 
 type SourceType = 'snmp_trap' | 'syslog' | 'event' | 'any';
@@ -76,6 +77,43 @@ const severityOptions = [
   { value: 'clear', label: 'Clear' },
 ];
 
+const ALARM_RULES_HELP = {
+  overview: 'Alarm rules customize how traps, syslogs, and internal events become alarms. Use them to override severity, category, message text, correlation keys, and auto-clear behavior before events reach the alarm table.',
+  form: 'Create or edit one matching rule. Lower priority numbers run first; the first enabled match wins.',
+  list: 'Review configured rules in execution order. Edit or delete rules here when event normalization needs to change.',
+};
+const ALARM_RULES_INTRO_STORAGE_KEY = 'nms-alarm-rules-intro-dismissed-v2';
+
+function AlarmRulesDiagram() {
+  const nodes = [
+    { icon: <GitBranch className="h-4 w-4 text-cisco-blue" />, title: 'Incoming event', text: 'Trap, syslog, or internal event payload.' },
+    { icon: <SlidersHorizontal className="h-4 w-4 text-amber-500" />, title: 'Match rule', text: 'Source, field, operator, pattern, and priority.' },
+    { icon: <ListChecks className="h-4 w-4 text-emerald-500" />, title: 'Normalize alarm', text: 'Apply severity, category, message, correlation, and auto-clear.' },
+    { icon: <TableProperties className="h-4 w-4 text-indigo-500" />, title: 'Alarm views', text: 'Rules affect Alarms, Assurance, Services, and AI Ops evidence.' },
+  ];
+
+  return (
+    <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-950">
+      <div className="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] md:items-center">
+        {nodes.map((node, index) => (
+          <Fragment key={node.title}>
+            <div className="rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900">
+              <div className="flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                {node.icon}
+                <span>{node.title}</span>
+              </div>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{node.text}</p>
+            </div>
+            {index < nodes.length - 1 && (
+              <div className="hidden text-center text-xl text-gray-400 md:block">-&gt;</div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 async function fetchRules(): Promise<AlarmRule[]> {
   const { data } = await api.get<AlarmRule[]>('/alarm-rules');
   return data;
@@ -92,10 +130,14 @@ function normalizePayload(form: AlarmRuleForm) {
   };
 }
 
-export function AlarmRulesPage() {
+export function AlarmRulesPage({ embedded = false }: { embedded?: boolean }) {
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState<AlarmRule | null>(null);
   const [form, setForm] = useState<AlarmRuleForm>(EMPTY_FORM);
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem(ALARM_RULES_INTRO_STORAGE_KEY) !== 'true';
+  });
 
   const rulesQuery = useQuery({ queryKey: ['alarm-rules'], queryFn: fetchRules });
 
@@ -156,18 +198,47 @@ export function AlarmRulesPage() {
   const rules = rulesQuery.data ?? [];
 
   return (
-    <div className="space-y-6 p-6">
-      <PageHeader
-        title="Alarm Rules"
-        subtitle="Customize severities and auto-clear behavior for traps, syslogs, and events"
-      />
+    <div className={embedded ? 'space-y-6' : 'space-y-6 p-6'}>
+      {!embedded && showIntro && (
+        <PageIntroFloat
+          title="Alarm Rules guide"
+          icon={<SlidersHorizontal className="h-4 w-4 text-cisco-blue" />}
+          onDismiss={({ dontShowAgain }) => {
+            if (dontShowAgain) window.localStorage.setItem(ALARM_RULES_INTRO_STORAGE_KEY, 'true');
+            setShowIntro(false);
+          }}
+        >
+          <p className="mb-3 text-gray-600 dark:text-gray-300">{ALARM_RULES_HELP.overview}</p>
+          <AlarmRulesDiagram />
+        </PageIntroFloat>
+      )}
+
+      {!embedded && (
+        <PageHeader
+          title="Alarm Rules"
+          subtitle="Customize severities and auto-clear behavior for traps, syslogs, and events"
+        />
+      )}
+
+      <Card className="p-4">
+        <div className="flex items-center gap-2">
+          <h2 className="text-sm font-semibold text-gray-900 dark:text-white">Alarm rule flow</h2>
+          <InfoFloat title="Alarm rule flow" description={ALARM_RULES_HELP.overview} />
+        </div>
+        <div className="mt-3">
+          <AlarmRulesDiagram />
+        </div>
+      </Card>
 
       <Card className="p-4">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-gray-900 dark:text-white">
-              {editing ? `Edit ${editing.name}` : 'New customization rule'}
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-white">
+                {editing ? `Edit ${editing.name}` : 'New customization rule'}
+              </h2>
+              <InfoFloat title="New customization rule" description={ALARM_RULES_HELP.form} />
+            </div>
             <p className="text-xs text-gray-500">
               First matching enabled rule wins. Lower priority numbers run first.
             </p>
@@ -267,7 +338,10 @@ export function AlarmRulesPage() {
       </Card>
 
       <Card className="p-4">
-        <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">Configured rules</h2>
+        <div className="mb-3 flex items-center gap-2">
+          <h2 className="text-sm font-semibold text-gray-900 dark:text-white">Configured rules</h2>
+          <InfoFloat title="Configured rules" description={ALARM_RULES_HELP.list} />
+        </div>
         {rulesQuery.isLoading && <p className="py-6 text-center text-sm text-gray-400">Loading rules…</p>}
         {!rulesQuery.isLoading && rules.length === 0 && (
           <EmptyState title="No alarm rules" description="Create a rule to customize trap, syslog, or event severity." />

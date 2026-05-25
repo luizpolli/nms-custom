@@ -10,7 +10,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 ForwardingProtocol = Literal["syslog_udp", "syslog_tcp", "snmp_trap", "http_webhook"]
-ForwardingEventType = Literal["trap", "syslog", "telemetry", "alarm"]
+ForwardingEventType = Literal["trap", "syslog", "telemetry", "alarm", "account_audit"]
 ForwardingSeverity = Literal["critical", "major", "minor", "warning", "info"]
 
 _HOST_PATTERN = re.compile(r"^[A-Za-z0-9_.:-]+$")

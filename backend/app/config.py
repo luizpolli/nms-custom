@@ -78,6 +78,9 @@ class Settings(BaseSettings):
     root_web_login_enabled: bool = False
     max_parallel_sessions: int = 5
     idle_timeout_minutes: int = 30
+    account_audit_enabled: bool = True
+    account_audit_log_path: str = "data/audit/account_audit.jsonl"
+    privileged_account_audit_log_path: str = "data/audit/privileged_account_audit.jsonl"
 
     # HTTPS / TLS
     https_enabled: bool = False

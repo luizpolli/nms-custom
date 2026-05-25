@@ -59,6 +59,23 @@ OID_REGISTRY: dict[str, str] = {
     "ciscoMemoryPoolFree": "1.3.6.1.4.1.9.9.48.1.1.1.6",
     "ciscoMemoryPoolName": "1.3.6.1.4.1.9.9.48.1.1.1.2",
 
+    # --- ENTITY-MIB :: physical inventory ---
+    "entPhysicalDescr": "1.3.6.1.2.1.47.1.1.1.1.2",
+    "entPhysicalVendorType": "1.3.6.1.2.1.47.1.1.1.1.3",
+    "entPhysicalContainedIn": "1.3.6.1.2.1.47.1.1.1.1.4",
+    "entPhysicalClass": "1.3.6.1.2.1.47.1.1.1.1.5",
+    "entPhysicalParentRelPos": "1.3.6.1.2.1.47.1.1.1.1.6",
+    "entPhysicalName": "1.3.6.1.2.1.47.1.1.1.1.7",
+    "entPhysicalHardwareRev": "1.3.6.1.2.1.47.1.1.1.1.8",
+    "entPhysicalFirmwareRev": "1.3.6.1.2.1.47.1.1.1.1.9",
+    "entPhysicalSoftwareRev": "1.3.6.1.2.1.47.1.1.1.1.10",
+    "entPhysicalSerialNum": "1.3.6.1.2.1.47.1.1.1.1.11",
+    "entPhysicalMfgName": "1.3.6.1.2.1.47.1.1.1.1.12",
+    "entPhysicalModelName": "1.3.6.1.2.1.47.1.1.1.1.13",
+    "entPhysicalAlias": "1.3.6.1.2.1.47.1.1.1.1.14",
+    "entPhysicalAssetID": "1.3.6.1.2.1.47.1.1.1.1.15",
+    "entPhysicalIsFRU": "1.3.6.1.2.1.47.1.1.1.1.16",
+
     # --- LLDP-MIB :: discovery (topology) ---
     "lldpRemSysName": "1.0.8802.1.1.2.1.4.1.1.9",
     "lldpRemPortId": "1.0.8802.1.1.2.1.4.1.1.7",

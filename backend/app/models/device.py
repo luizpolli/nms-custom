@@ -41,6 +41,12 @@ class Device(Base):
     credential = relationship("Credential", back_populates="devices", lazy="selectin")
     inventory = relationship("Inventory", back_populates="device", uselist=False, lazy="selectin")
     interfaces = relationship("Interface", back_populates="device", lazy="selectin")
+    physical_inventory = relationship(
+        "PhysicalInventoryComponent",
+        back_populates="device",
+        cascade="all, delete-orphan",
+        lazy="selectin",
+    )
     kpis = relationship("KPI", back_populates="device", lazy="selectin")
     ios_versions = relationship("IOSVersion", back_populates="device", lazy="selectin")
     commands = relationship("Command", back_populates="device", lazy="selectin")

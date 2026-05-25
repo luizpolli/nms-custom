@@ -44,18 +44,18 @@ class NullLLMProvider:
 
     async def complete(self, request: LLMRequest) -> str:
         if not request.evidence:
-            return "No tengo evidencia suficiente para responder con citas."
+            return "I do not have enough evidence to answer with citations."
         lines = [
-            f"Resumen determinístico para: {request.user.strip()[:160]}",
+            f"Deterministic summary for: {request.user.strip()[:160]}",
             "",
-            "Hallazgos:",
+            "Findings:",
         ]
         for item in request.evidence[:10]:
             lines.append(f"- {item.source_type}: {item.label} [{item.citation_id}]")
         lines.append("")
         lines.append(
-            "Recomendación: revisa los elementos citados antes de actuar; este "
-            "resumen es advisory y no confirma causa raíz."
+            "Recommendation: review the cited items before acting; this summary "
+            "is advisory and does not confirm root cause."
         )
         return "\n".join(lines)
 

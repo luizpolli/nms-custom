@@ -72,7 +72,7 @@ def test_validate_answer_rejects_unknown_citation():
 
 
 def test_validate_answer_rejects_missing_citation_when_evidence_exists():
-    res = validate_answer("hola sin citas", _evidence("alarm:1"), GuardrailLimits())
+    res = validate_answer("hello without citations", _evidence("alarm:1"), GuardrailLimits())
     assert not res.ok
 
 
@@ -130,7 +130,7 @@ def test_null_provider_handles_empty_evidence():
     out = asyncio.run(
         NullLLMProvider().complete(LLMRequest(system="s", user="u", evidence=[]))
     )
-    assert "evidencia" in out.lower()
+    assert "evidence" in out.lower()
 
 
 def test_openai_compatible_provider_sends_redacted_prompt_and_parses_answer():
@@ -143,7 +143,7 @@ def test_openai_compatible_provider_sends_redacted_prompt_and_parses_answer():
             200,
             json={
                 "choices": [
-                    {"message": {"content": "Revisa la alarma citada [alarm:1]."}}
+                    {"message": {"content": "Review the cited alarm [alarm:1]."}}
                 ]
             },
         )
@@ -167,7 +167,7 @@ def test_openai_compatible_provider_sends_redacted_prompt_and_parses_answer():
             )
 
     out = asyncio.run(_run())
-    assert out == "Revisa la alarma citada [alarm:1]."
+    assert out == "Review the cited alarm [alarm:1]."
     assert seen["authorization"] == "Bearer secret-key"
     payload = seen["payload"]
     assert isinstance(payload, dict)

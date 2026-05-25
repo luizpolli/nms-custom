@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Activity, GitBranch, Layers3, Plus, Trash2, Waypoints } from 'lucide-react';
-import { Badge, Button, Card, EmptyState, Input, Modal, PageHeader, Select, Spinner, StatCard } from '../../components/ui';
+import { Activity, GitBranch, Info, Layers3, Plus, Trash2, Waypoints } from 'lucide-react';
+import { Badge, Button, Card, EmptyState, InfoFloat, Input, Modal, PageHeader, PageIntroFloat, Select, Spinner, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
 type ServiceDependency = {
@@ -143,9 +143,108 @@ const KIND_OPTIONS = [
   { value: 'other', label: 'Other' },
 ];
 
+const EXAMPLE_SERVICE_NAMES = [
+  'Example - Core Transport',
+  'Example - Customer MPLS ACME',
+  'Example - Internet Edge',
+];
+
+const SERVICES_HELP = {
+  overview: 'Services map technical network objects into logical business or operational services. Add devices/interfaces as members, define dependencies, then Assurance scores each service from alarms, interface health, and propagated dependency impact.',
+  modeled: 'Total logical services configured. A service can represent a customer, transport domain, platform, infrastructure layer, or any operational grouping.',
+  averageScore: 'Average health score across modeled services. Scores are calculated from member health, active alarms, and dependency penalties.',
+  impacted: 'Services with degraded score or impacted members. This is the quick answer to which customer/platform/transport domain is affected.',
+  exampleDiagram: 'A compact map of the sample service relationship. Customer and platform services depend on Core Transport, so transport degradation can propagate impact.',
+  dependencyGraph: 'Directed edges between services. Use this to model blast radius, for example Customer VPN depends on Core Transport.',
+  impactMatrix: 'Operational table that combines configured service metadata with live Assurance impact, score, alarms, and actions.',
+  alerts: 'Services below their target score. If a service has no custom target, the default threshold is 90.',
+  serviceCards: 'Per-service detail cards with trend, dependencies, members, current score, and target threshold.',
+  createService: 'Create a logical service and optionally attach the first device or interface member.',
+  addDependency: 'Declare that this service depends on another service. If the target degrades, the source can receive a propagated penalty.',
+  addMember: 'Attach a device or interface to the service. Members are the actual network objects that drive the service score.',
+};
+const SERVICES_INTRO_STORAGE_KEY = 'nms-services-intro-dismissed-v2';
+
+function PanelTitle({ title, description, icon, right }: { title: string; description: string; icon?: React.ReactNode; right?: React.ReactNode }) {
+  return (
+    <div className="mb-3 flex items-center justify-between gap-3">
+      <div className="flex min-w-0 items-center gap-2">
+        {icon}
+        <h2 className="truncate text-sm font-semibold text-gray-900 dark:text-white">{title}</h2>
+        <InfoFloat title={title} description={description} />
+      </div>
+      {right}
+    </div>
+  );
+}
+
+function InfoStatCard({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+  return (
+    <div className="relative">
+      {children}
+      <div className="absolute right-3 top-3">
+        <InfoFloat title={title} description={description} />
+      </div>
+    </div>
+  );
+}
+
+function ExampleServiceDiagram({ services, impactById, framed = true }: { services: ServiceRecord[]; impactById: Map<string, ServiceImpact>; framed?: boolean }) {
+  const exampleServices = EXAMPLE_SERVICE_NAMES.map((name) => services.find((service) => service.name === name));
+  const [core, customer, internet] = exampleServices;
+  const scoreFor = (service?: ServiceRecord) => service ? (impactById.get(service.id)?.score ?? 100) : null;
+  const content = (
+    <>
+      <PanelTitle title="Example service map" description={SERVICES_HELP.exampleDiagram} icon={<GitBranch className="h-4 w-4" />} />
+      <div className="grid grid-cols-1 items-center gap-3 lg:grid-cols-[1fr_auto_1fr]">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-1">
+          <DiagramNode service={customer} fallback="Example - Customer MPLS ACME" kind="customer" score={scoreFor(customer)} />
+          <DiagramNode service={internet} fallback="Example - Internet Edge" kind="platform" score={scoreFor(internet)} />
+        </div>
+        <div className="flex items-center justify-center text-xs font-semibold uppercase tracking-wide text-gray-400 lg:h-full lg:flex-col">
+          <span className="hidden lg:block">depends on</span>
+          <span className="text-2xl leading-none text-cisco-blue lg:rotate-0">-&gt;</span>
+          <span className="lg:hidden">depends on</span>
+        </div>
+        <DiagramNode service={core} fallback="Example - Core Transport" kind="transport" score={scoreFor(core)} large />
+      </div>
+    </>
+  );
+
+  return framed ? <Card className="p-4">{content}</Card> : <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-950">{content}</div>;
+}
+
+function scoreBadgeTone(score: number | null) {
+  return score == null ? 'default' : score >= 90 ? 'success' : score >= 75 ? 'warning' : 'danger';
+}
+
+function DiagramNode({ service, fallback, kind, score, large = false }: { service?: ServiceRecord; fallback: string; kind: string; score: number | null; large?: boolean }) {
+  return (
+    <div className={`rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900 ${large ? 'min-h-28' : ''}`}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="truncate text-sm font-semibold text-gray-900 dark:text-white">{service?.name ?? fallback}</div>
+          <div className="mt-1 text-xs text-gray-500">{service ? `${service.member_count} member${service.member_count === 1 ? '' : 's'}` : 'not loaded yet'} · {service?.kind ?? kind}</div>
+        </div>
+        <Badge variant={scoreBadgeTone(score) as never}>{score ?? '—'}</Badge>
+      </div>
+      <div className="mt-3 h-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+        <div
+          className={`h-1.5 rounded-full ${score == null ? 'bg-gray-300' : score >= 90 ? 'bg-green-500' : score >= 75 ? 'bg-yellow-500' : 'bg-red-500'}`}
+          style={{ width: `${score ?? 0}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function ServicesPage() {
   const queryClient = useQueryClient();
   const [createOpen, setCreateOpen] = useState(false);
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem(SERVICES_INTRO_STORAGE_KEY) !== 'true';
+  });
   const [memberService, setMemberService] = useState<ServiceRecord | null>(null);
   const [dependencyService, setDependencyService] = useState<ServiceRecord | null>(null);
   const [form, setForm] = useState<ServiceForm>(EMPTY_FORM);
@@ -363,20 +462,41 @@ export function ServicesPage() {
         }
       />
 
+      {showIntro && (
+        <PageIntroFloat
+          title="Services summary"
+          icon={<Info className="h-4 w-4 text-cisco-blue" />}
+          onDismiss={({ dontShowAgain }) => {
+            if (dontShowAgain) window.localStorage.setItem(SERVICES_INTRO_STORAGE_KEY, 'true');
+            setShowIntro(false);
+          }}
+        >
+          <p className="mb-3 text-gray-600 dark:text-gray-300">{SERVICES_HELP.overview}</p>
+          <ExampleServiceDiagram services={services} impactById={impactById} framed={false} />
+        </PageIntroFloat>
+      )}
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <StatCard title="Services modeled" value={services.length} icon={<Layers3 className="h-5 w-5" />} loading={servicesQuery.isLoading} />
-        <StatCard title="Average score" value={impactQuery.isLoading ? '—' : averageScore} icon={<Activity className="h-5 w-5" />} tone={averageScore >= 90 ? 'success' : averageScore >= 75 ? 'warning' : 'danger'} loading={impactQuery.isLoading} />
-        <StatCard title="Impacted services" value={impactedCount} icon={<Waypoints className="h-5 w-5" />} tone={impactedCount ? 'warning' : 'success'} loading={impactQuery.isLoading} />
+        <InfoStatCard title="Services modeled" description={SERVICES_HELP.modeled}>
+          <StatCard title="Services modeled" value={services.length} icon={<Layers3 className="h-5 w-5" />} loading={servicesQuery.isLoading} />
+        </InfoStatCard>
+        <InfoStatCard title="Average score" description={SERVICES_HELP.averageScore}>
+          <StatCard title="Average score" value={impactQuery.isLoading ? '—' : averageScore} icon={<Activity className="h-5 w-5" />} tone={averageScore >= 90 ? 'success' : averageScore >= 75 ? 'warning' : 'danger'} loading={impactQuery.isLoading} />
+        </InfoStatCard>
+        <InfoStatCard title="Impacted services" description={SERVICES_HELP.impacted}>
+          <StatCard title="Impacted services" value={impactedCount} icon={<Waypoints className="h-5 w-5" />} tone={impactedCount ? 'warning' : 'success'} loading={impactQuery.isLoading} />
+        </InfoStatCard>
       </div>
 
+      <ExampleServiceDiagram services={services} impactById={impactById} />
+
       <Card className="p-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <div>
-            <h2 className="flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"><GitBranch className="h-4 w-4" /> Dependency graph</h2>
-            <p className="text-xs text-gray-500">Directed service edges with propagated blast-radius penalties.</p>
-          </div>
-          <Select className="w-40" value={dependencyFilter} onChange={(e) => setDependencyFilter(e.target.value as 'all' | 'impacted' | 'critical')} options={[{ value: 'all', label: 'All edges' }, { value: 'impacted', label: 'Impacted' }, { value: 'critical', label: 'Critical' }]} />
-        </div>
+        <PanelTitle
+          title="Dependency graph"
+          description={SERVICES_HELP.dependencyGraph}
+          icon={<GitBranch className="h-4 w-4" />}
+          right={<Select className="w-40" value={dependencyFilter} onChange={(e) => setDependencyFilter(e.target.value as 'all' | 'impacted' | 'critical')} options={[{ value: 'all', label: 'All edges' }, { value: 'impacted', label: 'Impacted' }, { value: 'critical', label: 'Critical' }]} />}
+        />
         {!dependencyEdges.length ? (
           <EmptyState title="No dependency edges" description="Add dependencies between services to visualize service-to-service blast radius." />
         ) : (
@@ -405,10 +525,11 @@ export function ServicesPage() {
       </Card>
 
       <Card className="p-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-gray-900 dark:text-white">Service impact matrix</h2>
-          {(servicesQuery.isFetching || impactQuery.isFetching) && <Spinner size="sm" />}
-        </div>
+        <PanelTitle
+          title="Service impact matrix"
+          description={SERVICES_HELP.impactMatrix}
+          right={(servicesQuery.isFetching || impactQuery.isFetching) && <Spinner size="sm" />}
+        />
 
         {!services.length ? (
           <EmptyState title="No services modeled" description="Create a service here to group devices and calculate customer, transport, or platform impact." />
@@ -464,6 +585,7 @@ export function ServicesPage() {
           <div className="mb-2 flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm font-semibold text-red-700 dark:text-red-300">
               <Activity className="h-4 w-4" /> {alerts.length} service{alerts.length === 1 ? '' : 's'} below target threshold
+              <InfoFloat title="Service target alerts" description={SERVICES_HELP.alerts} />
             </div>
             <span className="text-xs text-red-600 dark:text-red-400">default target 90 · per-service overrides honored</span>
           </div>
@@ -492,7 +614,10 @@ export function ServicesPage() {
             <Card key={service.id} className={`p-4 ${alert ? 'border-red-200 dark:border-red-900/40' : ''}`}>
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{service.name}</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-semibold text-gray-900 dark:text-white">{service.name}</h3>
+                    <InfoFloat title={service.name} description={SERVICES_HELP.serviceCards} />
+                  </div>
                   <p className="text-xs text-gray-500">{service.kind} · {impact?.health_state ?? 'pending'}{impact?.dependency_penalty ? ` · dependency penalty -${impact.dependency_penalty}` : ''}</p>
                   <button
                     type="button"
@@ -574,6 +699,7 @@ export function ServicesPage() {
 
       <Modal open={createOpen} onClose={() => setCreateOpen(false)} title="Create service" size="lg">
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); createMutation.mutate(form); }}>
+          <PanelTitle title="Create service" description={SERVICES_HELP.createService} />
           <Input label="Name" required value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))} />
           <Select label="Kind" options={KIND_OPTIONS} value={form.kind} onChange={(e) => setForm((prev) => ({ ...prev, kind: e.target.value }))} />
           <Input label="Description" value={form.description} onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))} />
@@ -603,6 +729,7 @@ export function ServicesPage() {
 
       <Modal open={Boolean(dependencyService)} onClose={() => setDependencyService(null)} title={`Add dependency${dependencyService ? ` from ${dependencyService.name}` : ''}`} size="lg">
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); addDependencyMutation.mutate(); }}>
+          <PanelTitle title="Add dependency" description={SERVICES_HELP.addDependency} />
           <Select label="Target service" required options={dependencyTargetOptions} value={dependencyForm.target_service_id} onChange={(e) => setDependencyForm((prev) => ({ ...prev, target_service_id: e.target.value }))} />
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <Input label="Type" value={dependencyForm.dependency_type} onChange={(e) => setDependencyForm((prev) => ({ ...prev, dependency_type: e.target.value }))} />
@@ -622,6 +749,7 @@ export function ServicesPage() {
 
       <Modal open={Boolean(memberService)} onClose={() => setMemberService(null)} title={`Add member${memberService ? ` to ${memberService.name}` : ''}`} size="lg">
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); addMemberMutation.mutate(); }}>
+          <PanelTitle title="Add member" description={SERVICES_HELP.addMember} />
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <Select label="Member type" options={[{ value: 'device', label: 'Device' }, { value: 'interface', label: 'Interface' }]} value={memberForm.member_mode} onChange={(e) => setMemberForm((prev) => ({ ...prev, member_mode: e.target.value as MemberMode, interface_id: '' }))} />
             <Select label="Device" required options={requiredDeviceOptions} value={memberForm.device_id} onChange={(e) => setMemberForm((prev) => ({ ...prev, device_id: e.target.value, interface_id: '' }))} />

@@ -118,7 +118,7 @@ function useLabHealth(scenario: LabScenario) {
   });
 }
 
-export function LabHealthPage() {
+export function LabHealthPage({ embedded = false }: { embedded?: boolean }) {
   const [scenario, setScenario] = useState<LabScenario>({ scenario_label: '', run_id: '', notes: '' });
   const lab = useLabHealth(scenario);
   const data = lab.data;
@@ -127,10 +127,12 @@ export function LabHealthPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Lab Health"
-        subtitle="Mock traffic, EPS, receiver, worker, and event-bus visibility"
-      />
+      {!embedded && (
+        <PageHeader
+          title="Lab Health"
+          subtitle="Mock traffic, EPS, receiver, worker, and event-bus visibility"
+        />
+      )}
 
       <Card padding={false}>
         <CardHeader>

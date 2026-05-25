@@ -1,8 +1,10 @@
 import { lazy, Suspense, type ComponentType } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
+import { useModuleControls } from './components/layout/ModuleControlProvider';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Spinner } from './components/ui/Spinner';
+import { moduleByKey, type ModuleKey } from './lib/moduleControls';
 
 interface PlaceholderProps {
   name: string;
@@ -61,9 +63,9 @@ const AlarmsPage = lazySafe(
   () => import('./pages/alarms/AlarmsPage').then((m) => pickExport(m, 'AlarmsPage')),
   'AlarmsPage',
 );
-const AlarmRulesPage = lazySafe(
-  () => import('./pages/alarms/AlarmRulesPage').then((m) => pickExport(m, 'AlarmRulesPage')),
-  'AlarmRulesPage',
+const AlarmsHistoryPage = lazySafe(
+  () => import('./pages/alarms/AlarmsHistoryPage').then((m) => pickExport(m, 'AlarmsHistoryPage')),
+  'AlarmsHistoryPage',
 );
 const MonitoringPoliciesPage = lazySafe(
   () => import('./pages/monitoring/MonitoringPoliciesPage').then((m) => pickExport(m, 'MonitoringPoliciesPage')),
@@ -83,10 +85,6 @@ const TopologyPage = lazySafe(
 const DiscoveryPage = lazySafe(
   () => import('./pages/discovery/DiscoveryPage').then((m) => pickExport(m, 'DiscoveryPage')),
   'DiscoveryPage',
-);
-const MIBsPage = lazySafe(
-  () => import('./pages/mibs/MIBsPage').then((m) => pickExport(m, 'MIBsPage')),
-  'MIBsPage',
 );
 const CommandsPage = lazySafe(
   () => import('./pages/commands/CommandsPage').then((m) => pickExport(m, 'CommandsPage')),
@@ -116,11 +114,6 @@ const AIOpsPage = lazySafe(
   () => import('./pages/aiops/AIOpsPage').then((m) => pickExport(m, 'AIOpsPage')),
   'AIOpsPage',
 );
-const LabHealthPage = lazySafe(
-  () => import('./pages/lab/LabHealthPage').then((m) => pickExport(m, 'LabHealthPage')),
-  'LabHealthPage',
-);
-
 function PageFallback() {
   return (
     <div className="flex h-full items-center justify-center">
@@ -133,31 +126,70 @@ function Guarded({ children, name }: { children: React.ReactNode; name: string }
   return <ErrorBoundary fallbackTitle={`Error loading ${name}`}>{children}</ErrorBoundary>;
 }
 
+function ModuleDisabled({ moduleKey }: { moduleKey: ModuleKey }) {
+  const module = moduleByKey[moduleKey];
+  return (
+    <div className="flex h-full items-center justify-center">
+      <div className="max-w-lg rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+        <div className="mb-3 flex items-center gap-3 text-gray-900 dark:text-gray-100">
+          <span className="text-cisco-blue">{module.icon}</span>
+          <h2 className="text-lg font-semibold">{module.label} is disabled</h2>
+        </div>
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          This module is currently turned off for this deployment. Enable it from Settings, under Modules / Feature Control.
+        </p>
+        <Link
+          to="/settings?section=modules"
+          className="mt-4 inline-flex rounded-md bg-cisco-blue px-4 py-2 text-sm font-medium text-white hover:bg-cisco-blue-dark"
+        >
+          Open module settings
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function ModuleGate({ moduleKey, children }: { moduleKey: ModuleKey; children: React.ReactNode }) {
+  const { loading, isEnabled } = useModuleControls();
+  if (loading) return <PageFallback />;
+  if (!isEnabled(moduleKey)) return <ModuleDisabled moduleKey={moduleKey} />;
+  return <>{children}</>;
+}
+
+function ModuleRoute({ moduleKey, name, children }: { moduleKey: ModuleKey; name: string; children: React.ReactNode }) {
+  return (
+    <Guarded name={name}>
+      <ModuleGate moduleKey={moduleKey}>{children}</ModuleGate>
+    </Guarded>
+  );
+}
+
 export function AppRouter() {
   return (
     <Suspense fallback={<PageFallback />}>
       <Routes>
         <Route element={<AppShell />}>
-          <Route index element={<Guarded name="Dashboard"><Dashboard /></Guarded>} />
-          <Route path="devices" element={<Guarded name="Devices"><DevicesPage /></Guarded>} />
-          <Route path="devices/:id" element={<Guarded name="Device Detail"><DeviceDetailPage /></Guarded>} />
-          <Route path="inventory" element={<Guarded name="Inventory"><InventoryPage /></Guarded>} />
-          <Route path="credentials" element={<Guarded name="Credentials"><CredentialsPage /></Guarded>} />
-          <Route path="performance" element={<Guarded name="Performance"><PerformancePage /></Guarded>} />
-          <Route path="telemetry" element={<Guarded name="Telemetry"><TelemetryPage /></Guarded>} />
-          <Route path="alarms" element={<Guarded name="Alarms"><AlarmsPage /></Guarded>} />
-          <Route path="assurance" element={<Guarded name="Assurance"><AssurancePage /></Guarded>} />
-          <Route path="services" element={<Guarded name="Services"><ServicesPage /></Guarded>} />
-          <Route path="ai-ops" element={<Guarded name="AI Ops"><AIOpsPage /></Guarded>} />
-          <Route path="lab" element={<Guarded name="Lab Health"><LabHealthPage /></Guarded>} />
-          <Route path="alarm-rules" element={<Guarded name="Alarm Rules"><AlarmRulesPage /></Guarded>} />
-          <Route path="monitoring-policies" element={<Guarded name="Monitoring Policies"><MonitoringPoliciesPage /></Guarded>} />
-          <Route path="topology" element={<Guarded name="Topology"><TopologyPage /></Guarded>} />
-          <Route path="discovery" element={<Guarded name="Discovery"><DiscoveryPage /></Guarded>} />
-          <Route path="mibs" element={<Guarded name="MIBs"><MIBsPage /></Guarded>} />
-          <Route path="commands" element={<Guarded name="Commands"><CommandsPage /></Guarded>} />
-          <Route path="ios" element={<Guarded name="IOS Versions"><IOSPage /></Guarded>} />
-          <Route path="reports" element={<Guarded name="Reports"><ReportsPage /></Guarded>} />
+          <Route index element={<ModuleRoute moduleKey="dashboard" name="Dashboard"><Dashboard /></ModuleRoute>} />
+          <Route path="devices" element={<ModuleRoute moduleKey="devices" name="Devices"><DevicesPage /></ModuleRoute>} />
+          <Route path="devices/:id" element={<ModuleRoute moduleKey="devices" name="Device Detail"><DeviceDetailPage /></ModuleRoute>} />
+          <Route path="inventory" element={<ModuleRoute moduleKey="inventory" name="Inventory"><InventoryPage /></ModuleRoute>} />
+          <Route path="credentials" element={<ModuleRoute moduleKey="credentials" name="Credentials"><CredentialsPage /></ModuleRoute>} />
+          <Route path="performance" element={<ModuleRoute moduleKey="performance" name="Performance"><PerformancePage /></ModuleRoute>} />
+          <Route path="telemetry" element={<ModuleRoute moduleKey="telemetry" name="Telemetry"><TelemetryPage /></ModuleRoute>} />
+          <Route path="alarms" element={<ModuleRoute moduleKey="alarms" name="Alarms"><AlarmsPage /></ModuleRoute>} />
+          <Route path="alarms/history" element={<ModuleRoute moduleKey="alarms" name="Alarms History"><AlarmsHistoryPage /></ModuleRoute>} />
+          <Route path="assurance" element={<ModuleRoute moduleKey="assurance" name="Assurance"><AssurancePage /></ModuleRoute>} />
+          <Route path="services" element={<ModuleRoute moduleKey="services" name="Services"><ServicesPage /></ModuleRoute>} />
+          <Route path="ai-ops" element={<ModuleRoute moduleKey="ai_ops" name="AI Ops"><AIOpsPage /></ModuleRoute>} />
+          <Route path="lab" element={<Navigate to="/settings?section=labOperations" replace />} />
+          <Route path="alarm-rules" element={<Navigate to="/settings?section=alarmsEvents" replace />} />
+          <Route path="monitoring-policies" element={<ModuleRoute moduleKey="monitoring_policies" name="Monitoring Policies"><MonitoringPoliciesPage /></ModuleRoute>} />
+          <Route path="topology" element={<ModuleRoute moduleKey="topology" name="Topology"><TopologyPage /></ModuleRoute>} />
+          <Route path="discovery" element={<ModuleRoute moduleKey="discovery" name="Discovery"><DiscoveryPage /></ModuleRoute>} />
+          <Route path="mibs" element={<Navigate to="/settings?section=networkDevices" replace />} />
+          <Route path="commands" element={<ModuleRoute moduleKey="commands" name="Commands"><CommandsPage /></ModuleRoute>} />
+          <Route path="ios" element={<ModuleRoute moduleKey="ios" name="IOS Versions"><IOSPage /></ModuleRoute>} />
+          <Route path="reports" element={<ModuleRoute moduleKey="reports" name="Reports"><ReportsPage /></ModuleRoute>} />
           <Route path="settings" element={<Guarded name="Settings"><Settings /></Guarded>} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />

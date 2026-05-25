@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
-import uuid
+import copy
 import csv
 import io
+import json
+import uuid
 from datetime import datetime
-from typing import Annotated, Optional
+from pathlib import Path
+from typing import Annotated, Any, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from loguru import logger
@@ -21,6 +24,7 @@ from app.models.credential import Credential
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.inventory import Inventory
+from app.models.physical_inventory import PhysicalInventoryComponent
 from app.schemas.device import DeviceCreate, DeviceRead, DeviceUpdate
 from app.schemas.interface import InterfaceRead as ManagedInterfaceRead
 from app.security.auth import PERM_COMMANDS_EXPORT, Principal, require_command_permission
@@ -31,6 +35,15 @@ from app.services.kpi.engine import KPIEngine
 
 router = APIRouter()
 settings = Settings()
+
+CHASSIS_PROFILE_FILES = {
+    "asr903": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr903" / "normalized.json",
+    "asr9006": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr9006" / "normalized.json",
+    "asr920": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr920" / "normalized.json",
+    "ncs55a1": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1" / "normalized.json",
+    "ncs560": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs560" / "normalized.json",
+    "ncs540": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540" / "normalized.json",
+}
 
 
 async def _get_device_or_404(db: AsyncSession, device_id: uuid.UUID) -> Device:
@@ -150,6 +163,277 @@ def _inventory_value(inventory: Inventory | None, *keys: str) -> str:
         if value:
             return _csv_value(value)
     return ""
+
+
+def _device_inventory_terms(device: Device, inventory: Inventory | None) -> str:
+    values: list[str] = [
+        device.name,
+        device.device_type,
+        device.model or "",
+        device.platform_family or "",
+        device.vendor or "",
+    ]
+    if inventory:
+        values.extend([inventory.hardware_model or "", inventory.serial_number or ""])
+        info = inventory.additional_info or {}
+        for key in ("model", "platform", "platformId", "device_type", "product_name", "chassis_model"):
+            value = info.get(key)
+            if value:
+                values.append(str(value))
+    return " ".join(values).lower().replace("-", " ").replace("_", " ")
+
+
+def _chassis_profile_for_device(device: Device, inventory: Inventory | None) -> str | None:
+    terms = _device_inventory_terms(device, inventory)
+    compact_terms = terms.replace(" ", "")
+    if "ncs55a1" in compact_terms:
+        return "ncs55a1"
+    if "ncs560" in compact_terms:
+        return "ncs560"
+    if "ncs540" in compact_terms or "n540" in compact_terms:
+        return "ncs540"
+    if "asr" in terms and "920" in terms:
+        return "asr920"
+    if "asr" in terms and "903" in terms:
+        return "asr903"
+    if "asr" in terms and "9006" in terms:
+        return "asr9006"
+    return None
+
+
+def _load_chassis_profile(profile: str) -> dict[str, Any]:
+    path = CHASSIS_PROFILE_FILES.get(profile)
+    if path is None or not path.exists():
+        raise HTTPException(status_code=404, detail="Chassis profile is not available")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _first_live_inventory_value(item: dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        value = item.get(key)
+        if value not in (None, ""):
+            return value
+    return None
+
+
+def _normalize_physical_inventory_items(inventory: Inventory | None) -> list[dict[str, Any]]:
+    if inventory is None or not inventory.additional_info:
+        return []
+
+    info = inventory.additional_info
+    raw = (
+        info.get("physical_inventory")
+        or info.get("physicalInventory")
+        or info.get("entity_mib")
+        or info.get("entityMib")
+        or []
+    )
+    if isinstance(raw, dict):
+        raw_items = raw.values()
+    elif isinstance(raw, list):
+        raw_items = raw
+    else:
+        return []
+
+    normalized: list[dict[str, Any]] = []
+    for item in raw_items:
+        if not isinstance(item, dict):
+            continue
+        physical_index = _first_live_inventory_value(
+            item,
+            "physicalIndex",
+            "physical_index",
+            "entPhysicalIndex",
+            "index",
+        )
+        if physical_index is None:
+            continue
+        normalized.append({**item, "physicalIndex": str(physical_index)})
+    return normalized
+
+
+def _physical_component_to_chassis_item(component: PhysicalInventoryComponent) -> dict[str, Any]:
+    return {
+        "physicalIndex": str(component.physical_index),
+        "description": component.description,
+        "vendorType": component.vendor_type,
+        "containedPhysicalIndex": component.contained_physical_index,
+        "physicalClass": component.physical_class,
+        "parentRelPos": component.parent_rel_pos,
+        "name": component.name,
+        "hardwareVersion": component.hardware_version,
+        "firmwareVersion": component.firmware_version,
+        "softwareVersion": component.software_version,
+        "serialNumber": component.serial_number,
+        "manufacturer": component.manufacturer,
+        "modelName": component.model_name,
+        "alias": component.alias,
+        "assetId": component.asset_id,
+        "isFRUable": component.is_fru,
+    }
+
+
+def _physical_components_to_chassis_items(
+    components: list[PhysicalInventoryComponent] | None,
+) -> list[dict[str, Any]]:
+    if not components:
+        return []
+    return [_physical_component_to_chassis_item(component) for component in components]
+
+
+def _apply_physical_inventory_to_chassis(
+    chassis: dict[str, Any],
+    inventory: Inventory | None,
+    physical_components: list[PhysicalInventoryComponent] | None = None,
+) -> dict[str, int]:
+    physical_inventory = _physical_components_to_chassis_items(physical_components)
+    if not physical_inventory:
+        physical_inventory = _normalize_physical_inventory_items(inventory)
+    if not physical_inventory:
+        return {"available": 0, "matched": 0, "unmatched": 0}
+
+    live_by_index = {str(item["physicalIndex"]): item for item in physical_inventory}
+    physical_index_map = chassis.get("physicalIndexToComponentId") or {}
+    components = chassis.get("componentsById") or {}
+    matched = 0
+
+    for physical_index, component_id in physical_index_map.items():
+        live_item = live_by_index.get(str(physical_index))
+        component = components.get(component_id)
+        if not live_item or not isinstance(component, dict):
+            continue
+
+        display_name = _first_live_inventory_value(live_item, "name", "displayName", "description")
+        description = _first_live_inventory_value(live_item, "description", "descr")
+        model_name = _first_live_inventory_value(live_item, "modelName", "model", "typeId", "pid")
+        serial_number = _first_live_inventory_value(live_item, "serialNumber", "serial_number", "serial")
+        manufacturer = _first_live_inventory_value(live_item, "manufacturer", "mfgName", "vendor")
+        hardware_version = _first_live_inventory_value(live_item, "hardwareVersion", "hardware_rev", "hwRev")
+        contained_in = _first_live_inventory_value(
+            live_item,
+            "containedPhysicalIndex",
+            "contained_in",
+            "entPhysicalContainedIn",
+        )
+
+        if display_name:
+            component["name"] = str(display_name)
+            component["displayName"] = str(display_name)
+        if description:
+            component["description"] = str(description)
+        if model_name:
+            component["typeId"] = str(model_name)
+        if serial_number:
+            component["serialNumber"] = str(serial_number)
+        if manufacturer:
+            component["manufacturer"] = str(manufacturer)
+        if hardware_version:
+            component["hardwareVersion"] = str(hardware_version)
+        if contained_in is not None:
+            component["containedPhysicalIndex"] = contained_in
+        if "isFRUable" in live_item:
+            component["isFRUable"] = bool(live_item["isFRUable"])
+
+        component["source"] = {
+            **(component.get("source") or {}),
+            "type": "entity-mib",
+            "physicalIndex": physical_index,
+        }
+        matched += 1
+
+    return {
+        "available": len(physical_inventory),
+        "matched": matched,
+        "unmatched": max(len(physical_inventory) - matched, 0),
+    }
+
+
+def _customize_chassis_model(
+    model: dict[str, Any],
+    device: Device,
+    inventory: Inventory | None,
+    profile: str,
+    physical_components: list[PhysicalInventoryComponent] | None = None,
+) -> dict[str, Any]:
+    chassis = copy.deepcopy(model)
+    chassis["deviceId"] = str(device.id)
+    if inventory and inventory.hardware_model:
+        chassis["platform"] = inventory.hardware_model
+    elif device.model:
+        chassis["platform"] = device.model
+
+    live_inventory = _apply_physical_inventory_to_chassis(chassis, inventory, physical_components)
+    source_type = "static-profile"
+    if live_inventory["matched"]:
+        source_type = "static-profile+entity-mib"
+
+    chassis["source"] = {
+        **(chassis.get("source") or {}),
+        "type": source_type,
+        "profile": profile,
+        "deviceId": str(device.id),
+        "deviceName": device.name,
+        "physicalInventory": live_inventory,
+    }
+
+    root = chassis.get("tree", [{}])[0]
+    component_id = root.get("componentId")
+    if component_id and component_id in chassis.get("componentsById", {}):
+        component = chassis["componentsById"][component_id]
+        component["name"] = device.name
+        component["displayName"] = device.name
+        root["label"] = device.name
+
+    return chassis
+
+
+def _physical_row_payload(row: Any, collected_at: datetime) -> dict[str, Any]:
+    return {
+        "description": row.description,
+        "vendor_type": row.vendor_type,
+        "contained_physical_index": row.contained_in,
+        "physical_class": row.physical_class,
+        "parent_rel_pos": row.parent_rel_pos,
+        "name": row.name,
+        "hardware_version": row.hardware_rev,
+        "firmware_version": row.firmware_rev,
+        "software_version": row.software_rev,
+        "serial_number": row.serial_number,
+        "manufacturer": row.manufacturer,
+        "model_name": row.model_name,
+        "alias": row.alias,
+        "asset_id": row.asset_id,
+        "is_fru": row.is_fru,
+        "metadata_json": {
+            "vendorType": row.vendor_type,
+            "source": "entity-mib",
+        },
+        "collected_at": collected_at,
+    }
+
+
+async def _upsert_physical_inventory_components(
+    db: AsyncSession,
+    device_id: uuid.UUID,
+    rows: dict[int, Any],
+    collected_at: datetime,
+) -> list[PhysicalInventoryComponent]:
+    result = await db.execute(
+        select(PhysicalInventoryComponent).where(PhysicalInventoryComponent.device_id == device_id)
+    )
+    existing = {component.physical_index: component for component in result.scalars().all()}
+    touched: list[PhysicalInventoryComponent] = []
+
+    for physical_index, row in rows.items():
+        component = existing.get(physical_index)
+        if component is None:
+            component = PhysicalInventoryComponent(device_id=device_id, physical_index=physical_index)
+            db.add(component)
+        for key, value in _physical_row_payload(row, collected_at).items():
+            setattr(component, key, value)
+        touched.append(component)
+
+    return sorted(touched, key=lambda item: item.physical_index)
 
 
 def _decrypt_or_blank(vault: CredentialVault, ciphertext: str | None, record_id: bytes) -> str:
@@ -618,6 +902,77 @@ async def get_managed_interfaces(
         .order_by(Interface.if_index.asc().nullslast(), Interface.name)
     )
     return [ManagedInterfaceRead.model_validate(interface) for interface in result.scalars().all()]
+
+
+@router.post("/{id}/chassis/collect")
+async def collect_device_chassis_inventory(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> dict[str, Any]:
+    """Collect ENTITY-MIB physical inventory and persist it for chassis-view enrichment."""
+    device = await _get_device_or_404(db, id)
+    snmp_cred = _build_snmp_cred(device)
+    snmp = SNMPEngine()
+    rows = await snmp.get_physical_inventory(device.ip_address, snmp_cred)
+    collected_at = datetime.now()
+
+    result = await db.execute(select(Inventory).where(Inventory.device_id == id))
+    inventory = result.scalar_one_or_none()
+    if inventory is None:
+        inventory = Inventory(device_id=id)
+        db.add(inventory)
+
+    physical_components = await _upsert_physical_inventory_components(db, id, rows, collected_at)
+
+    additional_info = dict(inventory.additional_info or {})
+    physical_inventory = [row.to_chassis_inventory() for row in sorted(rows.values(), key=lambda item: item.physical_index)]
+    additional_info["physical_inventory"] = physical_inventory
+    additional_info["physical_inventory_source"] = "entity-mib"
+    additional_info["physical_inventory_collected_at"] = collected_at.isoformat()
+    inventory.additional_info = additional_info
+    await db.flush()
+
+    return {
+        "deviceId": str(id),
+        "source": "entity-mib",
+        "components": len(physical_inventory),
+        "tableComponents": len(physical_components),
+        "persisted": True,
+    }
+
+
+@router.get("/{id}/chassis")
+async def get_device_chassis(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> dict[str, Any]:
+    """Return a normalized chassis-view model for a supported device."""
+    result = await db.execute(
+        select(Device)
+        .options(selectinload(Device.inventory))
+        .where(Device.id == id)
+    )
+    device = result.scalar_one_or_none()
+    if device is None:
+        raise HTTPException(status_code=404, detail="Device not found")
+
+    profile = _chassis_profile_for_device(device, device.inventory)
+    if profile is None:
+        raise HTTPException(status_code=404, detail="No chassis profile is available for this device")
+
+    physical_result = await db.execute(
+        select(PhysicalInventoryComponent)
+        .where(PhysicalInventoryComponent.device_id == id)
+        .order_by(PhysicalInventoryComponent.physical_index.asc())
+    )
+    physical_components = list(physical_result.scalars().all())
+    return _customize_chassis_model(
+        _load_chassis_profile(profile),
+        device,
+        device.inventory,
+        profile,
+        physical_components,
+    )
 
 
 @router.get("/{id}/interfaces", response_model=list[InterfaceRead])

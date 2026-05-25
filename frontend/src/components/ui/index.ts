@@ -23,3 +23,7 @@ export { EmptyState } from './EmptyState';
 export { PageHeader } from './PageHeader';
 
 export { StatCard } from './StatCard';
+
+export { InfoFloat } from './InfoFloat';
+
+export { PageIntroFloat } from './PageIntroFloat';

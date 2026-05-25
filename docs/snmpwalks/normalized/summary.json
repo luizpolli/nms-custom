@@ -1,0 +1,3311 @@
+{
+  "devices": [
+    {
+      "model": "NCS540",
+      "path": "docs/snmpwalks/normalized/ncs540-entity-mib.json",
+      "summary": {
+        "classCounts": {
+          "chassis": 1,
+          "container": 33,
+          "fan": 5,
+          "module": 56,
+          "port": 34,
+          "powerSupply": 2,
+          "sensor": 129
+        },
+        "componentCount": 260,
+        "fruCandidateCount": 131,
+        "hotspotCandidateCount": 71,
+        "model": "NCS540",
+        "portCandidateCount": 48,
+        "sampleFruCandidates": [
+          {
+            "containedPhysicalIndex": 8384612,
+            "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+            "isFRUable": 1,
+            "name": "0/RP0/CPU0",
+            "physicalIndex": 1,
+            "slotKey": "0/RP0/CPU0",
+            "type": "module",
+            "typeId": "N540X-12Z16G-SYS-D"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Optics Controller FPGA Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Optics Controller 0",
+            "physicalIndex": 2,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-MB IDPROM",
+            "physicalIndex": 7,
+            "type": "module",
+            "typeId": "N540X-12Z16G-SYS-D"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "Acadia Mother Board",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Mother Board",
+            "physicalIndex": 30,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Storage Module - EMMC",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Disk0",
+            "physicalIndex": 145,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "OBFL Memory Module - Flash",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-OBFL Flash",
+            "physicalIndex": 147,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "USB Port",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-USB Port 0",
+            "physicalIndex": 148,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Processor Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Intel 4 Core CPU Complex",
+            "physicalIndex": 150,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-DDR4 DIMM 0",
+            "physicalIndex": 158,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-DDR4 DIMM 1",
+            "physicalIndex": 159,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Slice 0 QumranAx",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 QumranAx",
+            "physicalIndex": 300,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 0",
+            "physicalIndex": 451,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 1",
+            "physicalIndex": 452,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 2",
+            "physicalIndex": 453,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 3",
+            "physicalIndex": 454,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 4",
+            "physicalIndex": 455,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 5",
+            "physicalIndex": 456,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 6",
+            "physicalIndex": 457,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 7",
+            "physicalIndex": 458,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 8",
+            "physicalIndex": 459,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 9",
+            "physicalIndex": 460,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 10",
+            "physicalIndex": 461,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 11",
+            "physicalIndex": 462,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 12",
+            "physicalIndex": 463,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 13",
+            "physicalIndex": 464,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 14",
+            "physicalIndex": 465,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 15",
+            "physicalIndex": 466,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 16",
+            "physicalIndex": 467,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 17",
+            "physicalIndex": 468,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2,
+            "description": "Optics Port Module",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Slice 0 Qumran Port Module 18",
+            "physicalIndex": 469,
+            "type": "module",
+            "typeId": "N/A"
+          }
+        ],
+        "sampleHotspotCandidates": [
+          {
+            "containedPhysicalIndex": 8384612,
+            "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+            "isFRUable": 1,
+            "name": "0/RP0/CPU0",
+            "physicalIndex": 1,
+            "slotKey": "0/RP0/CPU0",
+            "type": "module",
+            "typeId": "N540X-12Z16G-SYS-D"
+          },
+          {
+            "containedPhysicalIndex": 451,
+            "description": "Fixed Port Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 0",
+            "physicalIndex": 801,
+            "slotKey": "SFP bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 452,
+            "description": "Fixed Port Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 1",
+            "physicalIndex": 802,
+            "slotKey": "SFP bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 453,
+            "description": "Fixed Port Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 2",
+            "physicalIndex": 803,
+            "slotKey": "SFP bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 454,
+            "description": "Fixed Port Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 3",
+            "physicalIndex": 804,
+            "slotKey": "SFP bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 455,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 4",
+            "physicalIndex": 805,
+            "slotKey": "SFP bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 456,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 5",
+            "physicalIndex": 806,
+            "slotKey": "SFP bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 457,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 6",
+            "physicalIndex": 807,
+            "slotKey": "SFP bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 458,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 7",
+            "physicalIndex": 808,
+            "slotKey": "SFP bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 459,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 8",
+            "physicalIndex": 809,
+            "slotKey": "SFP bay 8",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 460,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 9",
+            "physicalIndex": 810,
+            "slotKey": "SFP bay 9",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 461,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 10",
+            "physicalIndex": 811,
+            "slotKey": "SFP bay 10",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 462,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 11",
+            "physicalIndex": 812,
+            "slotKey": "SFP bay 11",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 463,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 12",
+            "physicalIndex": 813,
+            "slotKey": "SFP bay 12",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 464,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 13",
+            "physicalIndex": 814,
+            "slotKey": "SFP bay 13",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 465,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 14",
+            "physicalIndex": 815,
+            "slotKey": "SFP bay 14",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 466,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 15",
+            "physicalIndex": 816,
+            "slotKey": "SFP bay 15",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 467,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 16",
+            "physicalIndex": 817,
+            "slotKey": "SFP bay 16",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 468,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 17",
+            "physicalIndex": 818,
+            "slotKey": "SFP bay 17",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 469,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 18",
+            "physicalIndex": 819,
+            "slotKey": "SFP bay 18",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 470,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 19",
+            "physicalIndex": 820,
+            "slotKey": "SFP bay 19",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 471,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 20",
+            "physicalIndex": 821,
+            "slotKey": "SFP bay 20",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 472,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 21",
+            "physicalIndex": 822,
+            "slotKey": "SFP bay 21",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 473,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 22",
+            "physicalIndex": 823,
+            "slotKey": "SFP bay 22",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 474,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 23",
+            "physicalIndex": 824,
+            "slotKey": "SFP bay 23",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 475,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 24",
+            "physicalIndex": 825,
+            "slotKey": "SFP bay 24",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 476,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 25",
+            "physicalIndex": 826,
+            "slotKey": "SFP bay 25",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 477,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 26",
+            "physicalIndex": 827,
+            "slotKey": "SFP bay 26",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 478,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-SFP bay 27",
+            "physicalIndex": 828,
+            "slotKey": "SFP bay 27",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 467,
+            "description": "10GE Port 16",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/16",
+            "physicalIndex": 3100,
+            "slotKey": "TenGigE0/0/0/16",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 468,
+            "description": "10GE Port 17",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/17",
+            "physicalIndex": 3101,
+            "slotKey": "TenGigE0/0/0/17",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 469,
+            "description": "10GE Port 18",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/18",
+            "physicalIndex": 3102,
+            "slotKey": "TenGigE0/0/0/18",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 470,
+            "description": "10GE Port 19",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/19",
+            "physicalIndex": 3103,
+            "slotKey": "TenGigE0/0/0/19",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 471,
+            "description": "10GE Port 20",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/20",
+            "physicalIndex": 3104,
+            "slotKey": "TenGigE0/0/0/20",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 472,
+            "description": "10GE Port 21",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/21",
+            "physicalIndex": 3105,
+            "slotKey": "TenGigE0/0/0/21",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 473,
+            "description": "10GE Port 22",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/22",
+            "physicalIndex": 3106,
+            "slotKey": "TenGigE0/0/0/22",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 474,
+            "description": "10GE Port 23",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/23",
+            "physicalIndex": 3107,
+            "slotKey": "TenGigE0/0/0/23",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 475,
+            "description": "10GE Port 24",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/24",
+            "physicalIndex": 3108,
+            "slotKey": "TenGigE0/0/0/24",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 476,
+            "description": "10GE Port 25",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/25",
+            "physicalIndex": 3109,
+            "slotKey": "TenGigE0/0/0/25",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 477,
+            "description": "10GE Port 26",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/26",
+            "physicalIndex": 3110,
+            "slotKey": "TenGigE0/0/0/26",
+            "type": "port",
+            "typeId": "N/A"
+          }
+        ],
+        "samplePortCandidates": [
+          {
+            "containedPhysicalIndex": 30,
+            "description": "USB Port",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-USB Port 0",
+            "physicalIndex": 148,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-Mgmt Ethernet Port",
+            "physicalIndex": 784,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "External Alarm 1",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-External Alarm1",
+            "physicalIndex": 785,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "External Alarm 2",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-External Alarm2",
+            "physicalIndex": 786,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "External Alarm 3",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-External Alarm3",
+            "physicalIndex": 787,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "External Alarm 4",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-External Alarm4",
+            "physicalIndex": 788,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 467,
+            "description": "10GE Port 16",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/16",
+            "physicalIndex": 3100,
+            "slotKey": "TenGigE0/0/0/16",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 468,
+            "description": "10GE Port 17",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/17",
+            "physicalIndex": 3101,
+            "slotKey": "TenGigE0/0/0/17",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 469,
+            "description": "10GE Port 18",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/18",
+            "physicalIndex": 3102,
+            "slotKey": "TenGigE0/0/0/18",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 470,
+            "description": "10GE Port 19",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/19",
+            "physicalIndex": 3103,
+            "slotKey": "TenGigE0/0/0/19",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 471,
+            "description": "10GE Port 20",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/20",
+            "physicalIndex": 3104,
+            "slotKey": "TenGigE0/0/0/20",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 472,
+            "description": "10GE Port 21",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/21",
+            "physicalIndex": 3105,
+            "slotKey": "TenGigE0/0/0/21",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 473,
+            "description": "10GE Port 22",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/22",
+            "physicalIndex": 3106,
+            "slotKey": "TenGigE0/0/0/22",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 474,
+            "description": "10GE Port 23",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/23",
+            "physicalIndex": 3107,
+            "slotKey": "TenGigE0/0/0/23",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 475,
+            "description": "10GE Port 24",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/24",
+            "physicalIndex": 3108,
+            "slotKey": "TenGigE0/0/0/24",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 476,
+            "description": "10GE Port 25",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/25",
+            "physicalIndex": 3109,
+            "slotKey": "TenGigE0/0/0/25",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 477,
+            "description": "10GE Port 26",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/26",
+            "physicalIndex": 3110,
+            "slotKey": "TenGigE0/0/0/26",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 478,
+            "description": "10GE Port 27",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-TenGigE0/0/0/27",
+            "physicalIndex": 3111,
+            "slotKey": "TenGigE0/0/0/27",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 451,
+            "description": "1GE Port 0",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/0",
+            "physicalIndex": 3200,
+            "slotKey": "GigabitEthernet0/0/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 452,
+            "description": "1GE Port 1",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/1",
+            "physicalIndex": 3201,
+            "slotKey": "GigabitEthernet0/0/0/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 453,
+            "description": "1GE Port 2",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/2",
+            "physicalIndex": 3202,
+            "slotKey": "GigabitEthernet0/0/0/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 454,
+            "description": "1GE Port 3",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/3",
+            "physicalIndex": 3203,
+            "slotKey": "GigabitEthernet0/0/0/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 455,
+            "description": "1GE Port 4",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/4",
+            "physicalIndex": 3204,
+            "slotKey": "GigabitEthernet0/0/0/4",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 456,
+            "description": "1GE Port 5",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/5",
+            "physicalIndex": 3205,
+            "slotKey": "GigabitEthernet0/0/0/5",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 457,
+            "description": "1GE Port 6",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/6",
+            "physicalIndex": 3206,
+            "slotKey": "GigabitEthernet0/0/0/6",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 458,
+            "description": "1GE Port 7",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/7",
+            "physicalIndex": 3207,
+            "slotKey": "GigabitEthernet0/0/0/7",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 459,
+            "description": "1GE Port 8",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/8",
+            "physicalIndex": 3208,
+            "slotKey": "GigabitEthernet0/0/0/8",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 460,
+            "description": "1GE Port 9",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/9",
+            "physicalIndex": 3209,
+            "slotKey": "GigabitEthernet0/0/0/9",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 461,
+            "description": "1GE Port 10",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/10",
+            "physicalIndex": 3210,
+            "slotKey": "GigabitEthernet0/0/0/10",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 462,
+            "description": "1GE Port 11",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/11",
+            "physicalIndex": 3211,
+            "slotKey": "GigabitEthernet0/0/0/11",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 463,
+            "description": "1GE Port 12",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/12",
+            "physicalIndex": 3212,
+            "slotKey": "GigabitEthernet0/0/0/12",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 464,
+            "description": "1GE Port 13",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/13",
+            "physicalIndex": 3213,
+            "slotKey": "GigabitEthernet0/0/0/13",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 465,
+            "description": "1GE Port 14",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/14",
+            "physicalIndex": 3214,
+            "slotKey": "GigabitEthernet0/0/0/14",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 466,
+            "description": "1GE Port 15",
+            "isFRUable": 2,
+            "name": "0/RP0/CPU0-GigabitEthernet0/0/0/15",
+            "physicalIndex": 3215,
+            "slotKey": "GigabitEthernet0/0/0/15",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 817,
+            "description": "Cisco SFP+ 10G LR Pluggable Optics Module",
+            "isFRUable": 1,
+            "name": "TenGigE0/0/0/16",
+            "physicalIndex": 2523137,
+            "slotKey": "TenGigE0/0/0/16",
+            "type": "module",
+            "typeId": "SFP-10G-LR-S"
+          },
+          {
+            "containedPhysicalIndex": 2523137,
+            "description": "Cisco SFP+ 10G LR Pluggable Optics Module",
+            "isFRUable": 2,
+            "name": "TenGigE0/0/0/16-IDPROM",
+            "physicalIndex": 2523143,
+            "slotKey": "TenGigE0/0/0/16-IDPROM",
+            "type": "module",
+            "typeId": "SFP-10G-LR-S"
+          },
+          {
+            "containedPhysicalIndex": 2523137,
+            "description": "Voltage Sensor",
+            "isFRUable": 2,
+            "name": "TenGigE0/0/0/16-Voltage Sensor",
+            "physicalIndex": 2523376,
+            "slotKey": "TenGigE0/0/0/16-Voltage",
+            "type": "sensor",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2523137,
+            "description": "Current Sensor",
+            "isFRUable": 2,
+            "name": "TenGigE0/0/0/16-Laser Bias Current",
+            "physicalIndex": 2523386,
+            "slotKey": "TenGigE0/0/0/16-Laser",
+            "type": "sensor",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2523137,
+            "description": "Power Sensor",
+            "isFRUable": 2,
+            "name": "TenGigE0/0/0/16-Tx Power",
+            "physicalIndex": 2523406,
+            "slotKey": "TenGigE0/0/0/16-Tx",
+            "type": "sensor",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 2523137,
+            "description": "Power Sensor",
+            "isFRUable": 2,
+            "name": "TenGigE0/0/0/16-Rx Power",
+            "physicalIndex": 2523418,
+            "slotKey": "TenGigE0/0/0/16-Rx",
+            "type": "sensor",
+            "typeId": "N/A"
+          }
+        ],
+        "topLevelComponents": [
+          {
+            "children": 5,
+            "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+            "name": "Rack 0",
+            "physicalIndex": 8384513,
+            "type": "chassis"
+          }
+        ]
+      }
+    },
+    {
+      "model": "NCS55A1",
+      "path": "docs/snmpwalks/normalized/ncs55a1-entity-mib.json",
+      "summary": {
+        "classCounts": {
+          "chassis": 1,
+          "container": 44,
+          "fan": 19,
+          "module": 162,
+          "port": 70,
+          "powerSupply": 2,
+          "sensor": 506
+        },
+        "componentCount": 804,
+        "fruCandidateCount": 298,
+        "hotspotCandidateCount": 176,
+        "model": "NCS55A1",
+        "portCandidateCount": 422,
+        "sampleFruCandidates": [
+          {
+            "containedPhysicalIndex": 8384602,
+            "description": "NCS55A1 Fixed 36x100G Scale Route Processor Card",
+            "isFRUable": 1,
+            "name": "0/RP0",
+            "physicalIndex": 1,
+            "slotKey": "0/RP0",
+            "type": "module",
+            "typeId": "NCS-55A1-36H-SE-S"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-CPU-IOFPGA",
+            "physicalIndex": 2,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Bootloader",
+            "physicalIndex": 3,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-MB-IOFPGA",
+            "physicalIndex": 6,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "NCS55A1 Fixed 36x100G Scale Route Processor Card",
+            "isFRUable": 2,
+            "name": "0/RP0-MB-IDPROM",
+            "physicalIndex": 7,
+            "type": "module",
+            "typeId": "NCS-55A1-36H-SE-S"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Virtual Processor Module for Admin VM",
+            "isFRUable": 2,
+            "name": "0/RP0-Virtual processor for admin",
+            "physicalIndex": 11,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Virtual Processor Module for RP-XR VM",
+            "isFRUable": 2,
+            "name": "0/RP0-Virtual processor for RP XR",
+            "physicalIndex": 13,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-MB-MIFPGA",
+            "physicalIndex": 14,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "Motherboard Module Base Board",
+            "isFRUable": 2,
+            "name": "0/RP0-Motherboard",
+            "physicalIndex": 29,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0",
+            "physicalIndex": 30,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1",
+            "physicalIndex": 31,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2",
+            "physicalIndex": 32,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3",
+            "physicalIndex": 33,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-SATA",
+            "physicalIndex": 101,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "Daughterboard Module CPU Board",
+            "isFRUable": 2,
+            "name": "0/RP0-Daughterboard",
+            "physicalIndex": 140,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Processor Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Intel 8 Core CPU Complex",
+            "physicalIndex": 142,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Storage Module - SSD",
+            "isFRUable": 2,
+            "name": "0/RP0-Disk0",
+            "physicalIndex": 145,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Storage Module - NVRAM",
+            "isFRUable": 2,
+            "name": "0/RP0-NVRAM",
+            "physicalIndex": 146,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "USB Module",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 0",
+            "physicalIndex": 148,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 148,
+            "description": "USB Container",
+            "isFRUable": 2,
+            "name": "0/RP0-USB container",
+            "physicalIndex": 149,
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Storage Module - SPI",
+            "isFRUable": 2,
+            "name": "0/RP0-DB IOFPGA SPI Flash 0",
+            "physicalIndex": 156,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Storage Module - SPI",
+            "isFRUable": 2,
+            "name": "0/RP0-DB IOFPGA SPI Flash 1",
+            "physicalIndex": 157,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0-DDR4 DIMM 0",
+            "physicalIndex": 158,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0-DDR4 DIMM 1",
+            "physicalIndex": 159,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0-DDR4 DIMM 2",
+            "physicalIndex": 160,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 140,
+            "description": "Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0-DDR4 DIMM 3",
+            "physicalIndex": 161,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "Cave Creek Processor Controller Hub Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Processor Controller Hub",
+            "physicalIndex": 164,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "I350 Ethernet Controller Module",
+            "isFRUable": 2,
+            "name": "0/RP0-NIC",
+            "physicalIndex": 224,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "SFE ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-FE3600 ASIC 0(FE_0)",
+            "physicalIndex": 230,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "PSE ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 JerichoPlus",
+            "physicalIndex": 300,
+            "type": "module",
+            "typeId": "N/A"
+          }
+        ],
+        "sampleHotspotCandidates": [
+          {
+            "containedPhysicalIndex": 8384602,
+            "description": "NCS55A1 Fixed 36x100G Scale Route Processor Card",
+            "isFRUable": 1,
+            "name": "0/RP0",
+            "physicalIndex": 1,
+            "slotKey": "0/RP0",
+            "type": "module",
+            "typeId": "NCS-55A1-36H-SE-S"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP0/CPU0/0",
+            "physicalIndex": 784,
+            "slotKey": "MgmtEth0/RP0/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 400,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 0",
+            "physicalIndex": 800,
+            "slotKey": "QSFP28 bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 401,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 1",
+            "physicalIndex": 801,
+            "slotKey": "QSFP28 bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 402,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 2",
+            "physicalIndex": 802,
+            "slotKey": "QSFP28 bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 403,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 3",
+            "physicalIndex": 803,
+            "slotKey": "QSFP28 bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 404,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 4",
+            "physicalIndex": 804,
+            "slotKey": "QSFP28 bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 405,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 5",
+            "physicalIndex": 805,
+            "slotKey": "QSFP28 bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 406,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 6",
+            "physicalIndex": 806,
+            "slotKey": "QSFP28 bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 407,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 7",
+            "physicalIndex": 807,
+            "slotKey": "QSFP28 bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 408,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 QSFP28 bay 8",
+            "physicalIndex": 808,
+            "slotKey": "QSFP28 bay 8",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 409,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 0",
+            "physicalIndex": 809,
+            "slotKey": "QSFP28 bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 410,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 1",
+            "physicalIndex": 810,
+            "slotKey": "QSFP28 bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 411,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 2",
+            "physicalIndex": 811,
+            "slotKey": "QSFP28 bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 412,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 3",
+            "physicalIndex": 812,
+            "slotKey": "QSFP28 bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 413,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 4",
+            "physicalIndex": 813,
+            "slotKey": "QSFP28 bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 414,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 5",
+            "physicalIndex": 814,
+            "slotKey": "QSFP28 bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 415,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 6",
+            "physicalIndex": 815,
+            "slotKey": "QSFP28 bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 416,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 7",
+            "physicalIndex": 816,
+            "slotKey": "QSFP28 bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 417,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 1 QSFP28 bay 8",
+            "physicalIndex": 817,
+            "slotKey": "QSFP28 bay 8",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 418,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 0",
+            "physicalIndex": 818,
+            "slotKey": "QSFP28 bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 419,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 1",
+            "physicalIndex": 819,
+            "slotKey": "QSFP28 bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 420,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 2",
+            "physicalIndex": 820,
+            "slotKey": "QSFP28 bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 421,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 3",
+            "physicalIndex": 821,
+            "slotKey": "QSFP28 bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 422,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 4",
+            "physicalIndex": 822,
+            "slotKey": "QSFP28 bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 423,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 5",
+            "physicalIndex": 823,
+            "slotKey": "QSFP28 bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 424,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 6",
+            "physicalIndex": 824,
+            "slotKey": "QSFP28 bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 425,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 7",
+            "physicalIndex": 825,
+            "slotKey": "QSFP28 bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 426,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 2 QSFP28 bay 8",
+            "physicalIndex": 826,
+            "slotKey": "QSFP28 bay 8",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 427,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 0",
+            "physicalIndex": 827,
+            "slotKey": "QSFP28 bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 428,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 1",
+            "physicalIndex": 828,
+            "slotKey": "QSFP28 bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 429,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 2",
+            "physicalIndex": 829,
+            "slotKey": "QSFP28 bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 430,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 3",
+            "physicalIndex": 830,
+            "slotKey": "QSFP28 bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 431,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 4",
+            "physicalIndex": 831,
+            "slotKey": "QSFP28 bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 432,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 5",
+            "physicalIndex": 832,
+            "slotKey": "QSFP28 bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 433,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 6",
+            "physicalIndex": 833,
+            "slotKey": "QSFP28 bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 434,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 7",
+            "physicalIndex": 834,
+            "slotKey": "QSFP28 bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 435,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 3 QSFP28 bay 8",
+            "physicalIndex": 835,
+            "slotKey": "QSFP28 bay 8",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 400,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/0",
+            "physicalIndex": 1000,
+            "slotKey": "HundredGigE0/0/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 401,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/1/0",
+            "physicalIndex": 1011,
+            "slotKey": "TwentyFiveGigE0/0/0/1/0",
+            "type": "port",
+            "typeId": "N/A"
+          }
+        ],
+        "samplePortCandidates": [
+          {
+            "containedPhysicalIndex": 140,
+            "description": "USB Module",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 0",
+            "physicalIndex": 148,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29,
+            "description": "Console Port",
+            "isFRUable": 2,
+            "name": "0/RP0-CON0",
+            "physicalIndex": 444,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "Alarm Port",
+            "isFRUable": 2,
+            "name": "0/RP0-Alarm",
+            "physicalIndex": 783,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP0/CPU0/0",
+            "physicalIndex": 784,
+            "slotKey": "MgmtEth0/RP0/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 400,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/0",
+            "physicalIndex": 1000,
+            "slotKey": "HundredGigE0/0/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 401,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/1/0",
+            "physicalIndex": 1011,
+            "slotKey": "TwentyFiveGigE0/0/0/1/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 401,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/1/1",
+            "physicalIndex": 1012,
+            "slotKey": "TwentyFiveGigE0/0/0/1/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 401,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/1/2",
+            "physicalIndex": 1013,
+            "slotKey": "TwentyFiveGigE0/0/0/1/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 401,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/1/3",
+            "physicalIndex": 1014,
+            "slotKey": "TwentyFiveGigE0/0/0/1/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 402,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/2/0",
+            "physicalIndex": 1021,
+            "slotKey": "TwentyFiveGigE0/0/0/2/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 402,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/2/1",
+            "physicalIndex": 1022,
+            "slotKey": "TwentyFiveGigE0/0/0/2/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 402,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/2/2",
+            "physicalIndex": 1023,
+            "slotKey": "TwentyFiveGigE0/0/0/2/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 402,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/2/3",
+            "physicalIndex": 1024,
+            "slotKey": "TwentyFiveGigE0/0/0/2/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 403,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/3",
+            "physicalIndex": 1030,
+            "slotKey": "HundredGigE0/0/0/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 404,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/4",
+            "physicalIndex": 1040,
+            "slotKey": "HundredGigE0/0/0/4",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 405,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/5",
+            "physicalIndex": 1050,
+            "slotKey": "HundredGigE0/0/0/5",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 406,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/6",
+            "physicalIndex": 1060,
+            "slotKey": "HundredGigE0/0/0/6",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 407,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/7",
+            "physicalIndex": 1070,
+            "slotKey": "HundredGigE0/0/0/7",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 408,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/8",
+            "physicalIndex": 1080,
+            "slotKey": "HundredGigE0/0/0/8",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 409,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/9",
+            "physicalIndex": 1090,
+            "slotKey": "HundredGigE0/0/0/9",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 410,
+            "description": "100GE Port",
+            "isFRUable": 2,
+            "name": "0/RP0-HundredGigE0/0/0/10",
+            "physicalIndex": 1100,
+            "slotKey": "HundredGigE0/0/0/10",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 411,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/11/0",
+            "physicalIndex": 1111,
+            "slotKey": "TwentyFiveGigE0/0/0/11/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 411,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/11/1",
+            "physicalIndex": 1112,
+            "slotKey": "TwentyFiveGigE0/0/0/11/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 411,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/11/2",
+            "physicalIndex": 1113,
+            "slotKey": "TwentyFiveGigE0/0/0/11/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 411,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/11/3",
+            "physicalIndex": 1114,
+            "slotKey": "TwentyFiveGigE0/0/0/11/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 412,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/12/0",
+            "physicalIndex": 1121,
+            "slotKey": "TwentyFiveGigE0/0/0/12/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 412,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/12/1",
+            "physicalIndex": 1122,
+            "slotKey": "TwentyFiveGigE0/0/0/12/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 412,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/12/2",
+            "physicalIndex": 1123,
+            "slotKey": "TwentyFiveGigE0/0/0/12/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 412,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/12/3",
+            "physicalIndex": 1124,
+            "slotKey": "TwentyFiveGigE0/0/0/12/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 413,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/13/0",
+            "physicalIndex": 1131,
+            "slotKey": "TwentyFiveGigE0/0/0/13/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 413,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/13/1",
+            "physicalIndex": 1132,
+            "slotKey": "TwentyFiveGigE0/0/0/13/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 413,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/13/2",
+            "physicalIndex": 1133,
+            "slotKey": "TwentyFiveGigE0/0/0/13/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 413,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/13/3",
+            "physicalIndex": 1134,
+            "slotKey": "TwentyFiveGigE0/0/0/13/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 414,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/14/0",
+            "physicalIndex": 1141,
+            "slotKey": "TwentyFiveGigE0/0/0/14/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 414,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/14/1",
+            "physicalIndex": 1142,
+            "slotKey": "TwentyFiveGigE0/0/0/14/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 414,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/14/2",
+            "physicalIndex": 1143,
+            "slotKey": "TwentyFiveGigE0/0/0/14/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 414,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/14/3",
+            "physicalIndex": 1144,
+            "slotKey": "TwentyFiveGigE0/0/0/14/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 415,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/15/0",
+            "physicalIndex": 1151,
+            "slotKey": "TwentyFiveGigE0/0/0/15/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 415,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/15/1",
+            "physicalIndex": 1152,
+            "slotKey": "TwentyFiveGigE0/0/0/15/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 415,
+            "description": "25GE Breakout Port",
+            "isFRUable": 2,
+            "name": "0/RP0-TwentyFiveGigE0/0/0/15/2",
+            "physicalIndex": 1153,
+            "slotKey": "TwentyFiveGigE0/0/0/15/2",
+            "type": "port",
+            "typeId": "N/A"
+          }
+        ],
+        "topLevelComponents": [
+          {
+            "children": 7,
+            "description": "NCS55A1 Fixed 36x100G Scale Chassis",
+            "name": "Rack 0",
+            "physicalIndex": 8384513,
+            "type": "chassis"
+          }
+        ]
+      }
+    },
+    {
+      "model": "NCS560",
+      "path": "docs/snmpwalks/normalized/ncs560-entity-mib.json",
+      "summary": {
+        "classCounts": {
+          "chassis": 1,
+          "container": 61,
+          "fan": 13,
+          "module": 119,
+          "port": 52,
+          "powerSupply": 2,
+          "sensor": 170
+        },
+        "componentCount": 418,
+        "fruCandidateCount": 248,
+        "hotspotCandidateCount": 130,
+        "model": "NCS560",
+        "portCandidateCount": 108,
+        "sampleFruCandidates": [
+          {
+            "containedPhysicalIndex": 8384602,
+            "description": "Cisco NCS560 Route Switch Processor 4-800G, XL Scale",
+            "isFRUable": 1,
+            "name": "0/RP0",
+            "physicalIndex": 1,
+            "slotKey": "0/RP0",
+            "type": "module",
+            "typeId": "N560-4-RSP4E"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-IOFPGA",
+            "physicalIndex": 2,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-PRIMARY-BIOS",
+            "physicalIndex": 3,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-ADM",
+            "physicalIndex": 4,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP0-SATA",
+            "physicalIndex": 6,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "Cisco NCS560 Route Switch Processor 4-800G, XL Scale",
+            "isFRUable": 2,
+            "name": "0/RP0-MB-IDPROM",
+            "physicalIndex": 7,
+            "type": "module",
+            "typeId": "N560-4-RSP4E"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Virtual Processor Module for Admin VM",
+            "isFRUable": 2,
+            "name": "0/RP0-Virtual processor for admin",
+            "physicalIndex": 11,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Virtual Processor Module for RP-XR VM",
+            "isFRUable": 2,
+            "name": "0/RP0-Virtual processor for RP XR",
+            "physicalIndex": 13,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 Motherboard Module Base Board",
+            "isFRUable": 2,
+            "name": "0/RP0-Motherboard ",
+            "physicalIndex": 30,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0",
+            "physicalIndex": 34,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Processor Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Broadwell 4 Core CPU Complex",
+            "physicalIndex": 142,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Storage Module - SSD",
+            "isFRUable": 2,
+            "name": "0/RP0-Disk0",
+            "physicalIndex": 145,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Storage Module - NVRAM",
+            "isFRUable": 2,
+            "name": "0/RP0-NVRAM",
+            "physicalIndex": 146,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 USB Module",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 0 ",
+            "physicalIndex": 148,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 148,
+            "description": "NCS560 USB Container",
+            "isFRUable": 2,
+            "name": "0/RP0-USB container",
+            "physicalIndex": 149,
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "USB Module",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 1",
+            "physicalIndex": 150,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 150,
+            "description": "USB Container",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 1 container",
+            "physicalIndex": 151,
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0-DDR4 DIMM 0",
+            "physicalIndex": 158,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Dual Inline Memory Module - DIMM",
+            "isFRUable": 2,
+            "name": "0/RP0-DDR4 DIMM 1",
+            "physicalIndex": 159,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 I350 Ethernet Controller Module",
+            "isFRUable": 2,
+            "name": "0/RP0-NIC",
+            "physicalIndex": 224,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 34,
+            "description": "NCS560 PSE ASIC Module",
+            "isFRUable": 2,
+            "name": "0/RP0-Slice 0 Qumran",
+            "physicalIndex": 330,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Console Port",
+            "isFRUable": 2,
+            "name": "0/RP0-CON0 ",
+            "physicalIndex": 444,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Storage Module - SPI",
+            "isFRUable": 2,
+            "name": "0/RP0-MB IOFPGA SPI Flash 0",
+            "physicalIndex": 570,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Storage Module - SPI",
+            "isFRUable": 2,
+            "name": "0/RP0-MB IOFPGA SPI Flash 1",
+            "physicalIndex": 571,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 Alarm Port",
+            "isFRUable": 2,
+            "name": "0/RP0-Alarm ",
+            "physicalIndex": 783,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP0/CPU0/0",
+            "physicalIndex": 784,
+            "slotKey": "MgmtEth0/RP0/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 330,
+            "description": "NCS560 TCAM",
+            "isFRUable": 2,
+            "name": "0/RP0-TCAM 0",
+            "physicalIndex": 1660,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 8384603,
+            "description": "Cisco NCS560 Route Switch Processor 4-800G, XL Scale",
+            "isFRUable": 1,
+            "name": "0/RP1",
+            "physicalIndex": 4097,
+            "slotKey": "0/RP1",
+            "type": "module",
+            "typeId": "N560-4-RSP4E"
+          },
+          {
+            "containedPhysicalIndex": 4126,
+            "description": "NCS560 FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP1-IOFPGA",
+            "physicalIndex": 4098,
+            "type": "module",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 4126,
+            "description": "NCS560 FPD Module",
+            "isFRUable": 2,
+            "name": "0/RP1-PRIMARY-BIOS",
+            "physicalIndex": 4099,
+            "type": "module",
+            "typeId": "N/A"
+          }
+        ],
+        "sampleHotspotCandidates": [
+          {
+            "containedPhysicalIndex": 8384602,
+            "description": "Cisco NCS560 Route Switch Processor 4-800G, XL Scale",
+            "isFRUable": 1,
+            "name": "0/RP0",
+            "physicalIndex": 1,
+            "slotKey": "0/RP0",
+            "type": "module",
+            "typeId": "N560-4-RSP4E"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP0/CPU0/0",
+            "physicalIndex": 784,
+            "slotKey": "MgmtEth0/RP0/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 8384603,
+            "description": "Cisco NCS560 Route Switch Processor 4-800G, XL Scale",
+            "isFRUable": 1,
+            "name": "0/RP1",
+            "physicalIndex": 4097,
+            "slotKey": "0/RP1",
+            "type": "module",
+            "typeId": "N560-4-RSP4E"
+          },
+          {
+            "containedPhysicalIndex": 4097,
+            "description": "NCS560 Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP1/CPU0/0",
+            "physicalIndex": 4880,
+            "slotKey": "MgmtEth0/RP1/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 8384554,
+            "description": "ASR 900 8 port 10GE SFP+ Interface Module",
+            "isFRUable": 1,
+            "name": "0/2",
+            "physicalIndex": 16385,
+            "slotKey": "0/2",
+            "type": "module",
+            "typeId": "A900-IMA8Z"
+          },
+          {
+            "containedPhysicalIndex": 16834,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 0",
+            "physicalIndex": 17184,
+            "slotKey": "QSFP bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16835,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 1",
+            "physicalIndex": 17185,
+            "slotKey": "QSFP bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16836,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 2",
+            "physicalIndex": 17186,
+            "slotKey": "QSFP bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16837,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 3",
+            "physicalIndex": 17187,
+            "slotKey": "QSFP bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16838,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 4",
+            "physicalIndex": 17188,
+            "slotKey": "QSFP bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16839,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 5",
+            "physicalIndex": 17189,
+            "slotKey": "QSFP bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16840,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 6",
+            "physicalIndex": 17190,
+            "slotKey": "QSFP bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16841,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/2-QSFP bay 7",
+            "physicalIndex": 17191,
+            "slotKey": "QSFP bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16834,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/0",
+            "physicalIndex": 17444,
+            "slotKey": "TenGigE0/2/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16835,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/1",
+            "physicalIndex": 17445,
+            "slotKey": "TenGigE0/2/0/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16836,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/2",
+            "physicalIndex": 17446,
+            "slotKey": "TenGigE0/2/0/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16837,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/3",
+            "physicalIndex": 17447,
+            "slotKey": "TenGigE0/2/0/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16838,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/4",
+            "physicalIndex": 17448,
+            "slotKey": "TenGigE0/2/0/4",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16839,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/5",
+            "physicalIndex": 17449,
+            "slotKey": "TenGigE0/2/0/5",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16840,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/6",
+            "physicalIndex": 17450,
+            "slotKey": "TenGigE0/2/0/6",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16841,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/7",
+            "physicalIndex": 17451,
+            "slotKey": "TenGigE0/2/0/7",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 8384556,
+            "description": "ASR 900 16 port GE C-SFP + 1 port SFP+ IM with MACsec",
+            "isFRUable": 1,
+            "name": "0/4",
+            "physicalIndex": 24577,
+            "slotKey": "0/4",
+            "type": "module",
+            "typeId": "A900-IMA8CS1Z-M"
+          },
+          {
+            "containedPhysicalIndex": 25026,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 0",
+            "physicalIndex": 25376,
+            "slotKey": "QSFP bay 0",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25027,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 1",
+            "physicalIndex": 25377,
+            "slotKey": "QSFP bay 1",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25028,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 2",
+            "physicalIndex": 25378,
+            "slotKey": "QSFP bay 2",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25029,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 3",
+            "physicalIndex": 25379,
+            "slotKey": "QSFP bay 3",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25030,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 4",
+            "physicalIndex": 25380,
+            "slotKey": "QSFP bay 4",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25031,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 5",
+            "physicalIndex": 25381,
+            "slotKey": "QSFP bay 5",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25032,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 6",
+            "physicalIndex": 25382,
+            "slotKey": "QSFP bay 6",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25033,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 7",
+            "physicalIndex": 25383,
+            "slotKey": "QSFP bay 7",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25034,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 8",
+            "physicalIndex": 25384,
+            "slotKey": "QSFP bay 8",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25035,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 9",
+            "physicalIndex": 25385,
+            "slotKey": "QSFP bay 9",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25036,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 10",
+            "physicalIndex": 25386,
+            "slotKey": "QSFP bay 10",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25037,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 11",
+            "physicalIndex": 25387,
+            "slotKey": "QSFP bay 11",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25038,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 12",
+            "physicalIndex": 25388,
+            "slotKey": "QSFP bay 12",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25039,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 13",
+            "physicalIndex": 25389,
+            "slotKey": "QSFP bay 13",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25040,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 14",
+            "physicalIndex": 25390,
+            "slotKey": "QSFP bay 14",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25041,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 15",
+            "physicalIndex": 25391,
+            "slotKey": "QSFP bay 15",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25042,
+            "description": "Pluggable Optical Module Container",
+            "isFRUable": 2,
+            "name": "0/4-QSFP bay 16",
+            "physicalIndex": 25392,
+            "slotKey": "QSFP bay 16",
+            "type": "container",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25026,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/0",
+            "physicalIndex": 25585,
+            "slotKey": "GigabitEthernet0/4/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          }
+        ],
+        "samplePortCandidates": [
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 USB Module",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 0 ",
+            "physicalIndex": 148,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "USB Module",
+            "isFRUable": 2,
+            "name": "0/RP0-USB 1",
+            "physicalIndex": 150,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 30,
+            "description": "NCS560 Console Port",
+            "isFRUable": 2,
+            "name": "0/RP0-CON0 ",
+            "physicalIndex": 444,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 Alarm Port",
+            "isFRUable": 2,
+            "name": "0/RP0-Alarm ",
+            "physicalIndex": 783,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 1,
+            "description": "NCS560 Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP0/CPU0/0",
+            "physicalIndex": 784,
+            "slotKey": "MgmtEth0/RP0/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 4097,
+            "description": "NCS560 USB Module",
+            "isFRUable": 2,
+            "name": "0/RP1-USB 0 ",
+            "physicalIndex": 4244,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 4097,
+            "description": "USB Module",
+            "isFRUable": 2,
+            "name": "0/RP1-USB 1",
+            "physicalIndex": 4246,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 4126,
+            "description": "NCS560 Console Port",
+            "isFRUable": 2,
+            "name": "0/RP1-CON0 ",
+            "physicalIndex": 4540,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 4097,
+            "description": "NCS560 Alarm Port",
+            "isFRUable": 2,
+            "name": "0/RP1-Alarm ",
+            "physicalIndex": 4879,
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 4097,
+            "description": "NCS560 Fixed Mgmt Port",
+            "isFRUable": 2,
+            "name": "MgmtEth0/RP1/CPU0/0",
+            "physicalIndex": 4880,
+            "slotKey": "MgmtEth0/RP1/CPU0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16834,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/0",
+            "physicalIndex": 17444,
+            "slotKey": "TenGigE0/2/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16835,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/1",
+            "physicalIndex": 17445,
+            "slotKey": "TenGigE0/2/0/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16836,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/2",
+            "physicalIndex": 17446,
+            "slotKey": "TenGigE0/2/0/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16837,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/3",
+            "physicalIndex": 17447,
+            "slotKey": "TenGigE0/2/0/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16838,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/4",
+            "physicalIndex": 17448,
+            "slotKey": "TenGigE0/2/0/4",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16839,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/5",
+            "physicalIndex": 17449,
+            "slotKey": "TenGigE0/2/0/5",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16840,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/6",
+            "physicalIndex": 17450,
+            "slotKey": "TenGigE0/2/0/6",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 16841,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/2-TenGigE0/2/0/7",
+            "physicalIndex": 17451,
+            "slotKey": "TenGigE0/2/0/7",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25026,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/0",
+            "physicalIndex": 25585,
+            "slotKey": "GigabitEthernet0/4/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25027,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/1",
+            "physicalIndex": 25586,
+            "slotKey": "GigabitEthernet0/4/0/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25028,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/2",
+            "physicalIndex": 25587,
+            "slotKey": "GigabitEthernet0/4/0/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25029,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/3",
+            "physicalIndex": 25588,
+            "slotKey": "GigabitEthernet0/4/0/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25030,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/4",
+            "physicalIndex": 25589,
+            "slotKey": "GigabitEthernet0/4/0/4",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25031,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/5",
+            "physicalIndex": 25590,
+            "slotKey": "GigabitEthernet0/4/0/5",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25032,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/6",
+            "physicalIndex": 25591,
+            "slotKey": "GigabitEthernet0/4/0/6",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25033,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/7",
+            "physicalIndex": 25592,
+            "slotKey": "GigabitEthernet0/4/0/7",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25034,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/8",
+            "physicalIndex": 25593,
+            "slotKey": "GigabitEthernet0/4/0/8",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25035,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/9",
+            "physicalIndex": 25594,
+            "slotKey": "GigabitEthernet0/4/0/9",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25036,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/10",
+            "physicalIndex": 25595,
+            "slotKey": "GigabitEthernet0/4/0/10",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25037,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/11",
+            "physicalIndex": 25596,
+            "slotKey": "GigabitEthernet0/4/0/11",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25038,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/12",
+            "physicalIndex": 25597,
+            "slotKey": "GigabitEthernet0/4/0/12",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25039,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/13",
+            "physicalIndex": 25598,
+            "slotKey": "GigabitEthernet0/4/0/13",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25040,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/14",
+            "physicalIndex": 25599,
+            "slotKey": "GigabitEthernet0/4/0/14",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25041,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/4-GigabitEthernet0/4/0/15",
+            "physicalIndex": 25600,
+            "slotKey": "GigabitEthernet0/4/0/15",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 25042,
+            "description": "10GE Port",
+            "isFRUable": 2,
+            "name": "0/4-TenGigE0/4/0/16",
+            "physicalIndex": 25644,
+            "slotKey": "TenGigE0/4/0/16",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29122,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/5-GigabitEthernet0/5/0/0",
+            "physicalIndex": 29681,
+            "slotKey": "GigabitEthernet0/5/0/0",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29123,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/5-GigabitEthernet0/5/0/1",
+            "physicalIndex": 29682,
+            "slotKey": "GigabitEthernet0/5/0/1",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29124,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/5-GigabitEthernet0/5/0/2",
+            "physicalIndex": 29683,
+            "slotKey": "GigabitEthernet0/5/0/2",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29125,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/5-GigabitEthernet0/5/0/3",
+            "physicalIndex": 29684,
+            "slotKey": "GigabitEthernet0/5/0/3",
+            "type": "port",
+            "typeId": "N/A"
+          },
+          {
+            "containedPhysicalIndex": 29126,
+            "description": "1GE Port",
+            "isFRUable": 2,
+            "name": "0/5-GigabitEthernet0/5/0/4",
+            "physicalIndex": 29685,
+            "slotKey": "GigabitEthernet0/5/0/4",
+            "type": "port",
+            "typeId": "N/A"
+          }
+        ],
+        "topLevelComponents": [
+          {
+            "children": 15,
+            "description": "N560 4RU Chassis",
+            "name": "Rack 0",
+            "physicalIndex": 8384513,
+            "type": "chassis"
+          }
+        ]
+      }
+    }
+  ],
+  "generatedAt": "2026-05-25T18:42:43.191455+00:00",
+  "inputDir": "docs/snmpwalks/sanitized",
+  "outputDir": "docs/snmpwalks/normalized",
+  "schemaVersion": "nms.entityMibWalkSummary.v1"
+}

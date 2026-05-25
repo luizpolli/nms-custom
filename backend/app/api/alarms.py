@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import asyncio
+import csv
+import io
 import uuid
 from datetime import datetime
 from typing import Annotated, Literal, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Response, WebSocket, WebSocketDisconnect, status
 from pydantic import BaseModel, Field
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,7 +28,7 @@ _ws_clients: set[WebSocket] = set()
 
 
 class AlarmRead(BaseModel):
-    model_config = {"from_attributes": True}
+    model_config = {"from_attributes": True, "populate_by_name": True}
     id: uuid.UUID
     device_id: uuid.UUID | None = None
     source_host: str
@@ -40,9 +42,20 @@ class AlarmRead(BaseModel):
     first_seen: datetime
     last_seen: datetime
     cleared_at: datetime | None = None
-    ack_by: str | None = None
+    acknowledged_by: str | None = Field(default=None, validation_alias="ack_by")
     occurrence_count: int
     raw_varbinds: dict | None = None
+
+
+class AlarmHistoryEntry(BaseModel):
+    model_config = {"from_attributes": True}
+    id: uuid.UUID
+    timestamp: datetime
+    actor: str | None = None
+    action: str
+    outcome: str
+    message: str | None = None
+    details: dict | None = None
 
 
 class AlarmAck(BaseModel):
@@ -84,6 +97,8 @@ class AlarmSummary(BaseModel):
     major: int
     minor: int
     warning: int
+    info: int = 0
+    clear: int = 0
 
 
 class SavedFilterCreate(BaseModel):
@@ -110,6 +125,24 @@ class SavedFilterRead(BaseModel):
     updated_at: datetime
     can_update: bool = False
     can_delete: bool = False
+
+
+ALARM_EXPORT_COLUMNS = [
+    "Alarm ID",
+    "Severity",
+    "State",
+    "Source Host",
+    "Category",
+    "Event Type",
+    "Message",
+    "Trap OID",
+    "Correlation Key",
+    "First Seen",
+    "Last Seen",
+    "Cleared At",
+    "Acknowledged By",
+    "Occurrences",
+]
 
 
 def _is_admin_or_root(principal: Principal) -> bool:
@@ -153,24 +186,38 @@ async def _audit_alarm_action(
     )
 
 
-@router.get("", response_model=list[AlarmRead])
-async def list_alarms(
-    db: Annotated[AsyncSession, Depends(get_db)],
-    device_id: Optional[uuid.UUID] = None,
-    severity: Optional[str] = None,
-    state: Optional[str] = None,
-    category: Optional[str] = None,
-    event_type: Optional[str] = None,
-    source_host: Optional[str] = None,
-    q: Optional[str] = None,
-    since: Optional[datetime] = None,
-    until: Optional[datetime] = None,
-    limit: int = 100,
-    offset: int = 0,
-) -> list[AlarmRead]:
+def _csv_value(value: object) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, datetime):
+        return value.isoformat()
+    return str(value)
+
+
+def _alarm_filters_stmt(
+    *,
+    alarm_ids: list[uuid.UUID] | None = None,
+    device_id: uuid.UUID | None = None,
+    object_type: str | None = None,
+    object_id: str | None = None,
+    severity: str | None = None,
+    state: str | None = None,
+    category: str | None = None,
+    event_type: str | None = None,
+    source_host: str | None = None,
+    q: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
+):
     stmt = select(Alarm)
+    if alarm_ids:
+        stmt = stmt.where(Alarm.id.in_(alarm_ids))
     if device_id:
         stmt = stmt.where(Alarm.device_id == device_id)
+    if object_type:
+        stmt = stmt.where(Alarm.object_type == object_type)
+    if object_id:
+        stmt = stmt.where(Alarm.object_id == object_id)
     if severity:
         stmt = stmt.where(Alarm.severity == severity)
     if state:
@@ -196,9 +243,109 @@ async def list_alarms(
         stmt = stmt.where(Alarm.first_seen >= since)
     if until:
         stmt = stmt.where(Alarm.first_seen <= until)
+    return stmt
+
+
+@router.get("", response_model=list[AlarmRead])
+async def list_alarms(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    device_id: Optional[uuid.UUID] = None,
+    object_type: Optional[str] = None,
+    object_id: Optional[str] = None,
+    severity: Optional[str] = None,
+    state: Optional[str] = None,
+    category: Optional[str] = None,
+    event_type: Optional[str] = None,
+    source_host: Optional[str] = None,
+    q: Optional[str] = None,
+    since: Optional[datetime] = None,
+    until: Optional[datetime] = None,
+    limit: int = 100,
+    offset: int = 0,
+) -> list[AlarmRead]:
+    stmt = _alarm_filters_stmt(
+        device_id=device_id,
+        object_type=object_type,
+        object_id=object_id,
+        severity=severity,
+        state=state,
+        category=category,
+        event_type=event_type,
+        source_host=source_host,
+        q=q,
+        since=since,
+        until=until,
+    )
     stmt = stmt.order_by(Alarm.last_seen.desc()).offset(offset).limit(limit)
     result = await db.execute(stmt)
     return [AlarmRead.model_validate(a) for a in result.scalars().all()]
+
+
+@router.get("/export")
+async def export_alarms(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    export_format: str = Query("csv", alias="format", pattern="^csv$"),
+    alarm_ids: list[uuid.UUID] | None = Query(None),
+    device_id: Optional[uuid.UUID] = None,
+    object_type: Optional[str] = None,
+    object_id: Optional[str] = None,
+    severity: Optional[str] = None,
+    state: Optional[str] = None,
+    category: Optional[str] = None,
+    event_type: Optional[str] = None,
+    source_host: Optional[str] = None,
+    q: Optional[str] = None,
+    since: Optional[datetime] = None,
+    until: Optional[datetime] = None,
+) -> Response:
+    """Export selected alarms or all alarms matching the current filters."""
+    del export_format
+    stmt = _alarm_filters_stmt(
+        alarm_ids=alarm_ids,
+        device_id=device_id,
+        object_type=object_type,
+        object_id=object_id,
+        severity=severity,
+        state=state,
+        category=category,
+        event_type=event_type,
+        source_host=source_host,
+        q=q,
+        since=since,
+        until=until,
+    ).order_by(Alarm.last_seen.desc())
+    result = await db.execute(stmt)
+    alarms = result.scalars().all()
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=ALARM_EXPORT_COLUMNS)
+    writer.writeheader()
+    for alarm in alarms:
+        writer.writerow(
+            {
+                "Alarm ID": _csv_value(alarm.id),
+                "Severity": _csv_value(alarm.severity),
+                "State": _csv_value(alarm.state),
+                "Source Host": _csv_value(alarm.source_host),
+                "Category": _csv_value(alarm.category),
+                "Event Type": _csv_value(alarm.event_type),
+                "Message": _csv_value(alarm.message),
+                "Trap OID": _csv_value(alarm.trap_oid),
+                "Correlation Key": _csv_value(alarm.correlation_key),
+                "First Seen": _csv_value(alarm.first_seen),
+                "Last Seen": _csv_value(alarm.last_seen),
+                "Cleared At": _csv_value(alarm.cleared_at),
+                "Acknowledged By": _csv_value(alarm.ack_by),
+                "Occurrences": _csv_value(alarm.occurrence_count),
+            }
+        )
+
+    filename = "alarms_selected_export.csv" if alarm_ids else "alarms_export.csv"
+    return Response(
+        content=output.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @router.get("/summary", response_model=AlarmSummary)
@@ -217,9 +364,12 @@ async def alarm_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> AlarmSu
     major = await _count(Alarm.severity == "major")
     minor = await _count(Alarm.severity == "minor")
     warning = await _count(Alarm.severity == "warning")
+    info = await _count(Alarm.severity == "info")
+    clear_count = await _count(Alarm.severity == "clear")
     return AlarmSummary(
         total=total, active=active, cleared=cleared, acknowledged=acknowledged,
         critical=critical, major=major, minor=minor, warning=warning,
+        info=info, clear=clear_count,
     )
 
 
@@ -331,6 +481,23 @@ async def get_alarm(
 ) -> AlarmRead:
     alarm = await _get_or_404(db, id)
     return AlarmRead.model_validate(alarm)
+
+
+@router.get("/{id}/history", response_model=list[AlarmHistoryEntry])
+async def get_alarm_history(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    limit: int = 200,
+) -> list[AlarmHistoryEntry]:
+    await _get_or_404(db, id)
+    stmt = (
+        select(AuditLog)
+        .where(AuditLog.object_type == "alarm", AuditLog.object_id == str(id))
+        .order_by(AuditLog.timestamp.desc())
+        .limit(limit)
+    )
+    result = await db.execute(stmt)
+    return [AlarmHistoryEntry.model_validate(row) for row in result.scalars().all()]
 
 
 @router.post("/bulk-ack")

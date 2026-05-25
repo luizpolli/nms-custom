@@ -5,7 +5,7 @@ import { Badge, Button, Card, CardHeader, Input, Modal, Select, pushToast } from
 import { api } from '../../lib/api';
 
 type ForwardingProtocol = 'syslog_udp' | 'syslog_tcp' | 'snmp_trap' | 'http_webhook';
-type EventType = 'trap' | 'syslog' | 'telemetry' | 'alarm';
+type EventType = 'trap' | 'syslog' | 'telemetry' | 'alarm' | 'account_audit';
 type Severity = 'critical' | 'major' | 'minor' | 'warning' | 'info';
 
 interface ForwardingTarget {
@@ -41,6 +41,7 @@ const EVENT_TYPES: Array<{ value: EventType; label: string }> = [
   { value: 'syslog', label: 'Syslogs' },
   { value: 'telemetry', label: 'Telemetry' },
   { value: 'alarm', label: 'Alarms' },
+  { value: 'account_audit', label: 'Account Audit' },
 ];
 
 const PROTOCOLS: Array<{ value: ForwardingProtocol; label: string; defaultPort: number }> = [

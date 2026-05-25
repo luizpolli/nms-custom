@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Pencil, Play, Trash2 } from 'lucide-react';
 import { Card, Button, EmptyState, Input, PageHeader, Select } from '../../components/ui';
 import { api } from '../../lib/api';
 
@@ -87,8 +89,13 @@ function formatInterval(seconds: number) {
 
 export function MonitoringPoliciesPage() {
   const qc = useQueryClient();
+  const [searchParams] = useSearchParams();
+  const queryString = searchParams.toString();
   const [editing, setEditing] = useState<MonitoringPolicy | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const chassisParams = new URLSearchParams(queryString);
+  const chassisInterface = chassisParams.get('interface') ?? '';
+  const chassisDeviceId = chassisParams.get('device_id') ?? '';
 
   const policiesQuery = useQuery({
     queryKey: ['monitoring-policies'],
@@ -116,6 +123,20 @@ export function MonitoringPoliciesPage() {
       oidText: metricsToOidText(editing.metric_oids ?? []),
     });
   }, [editing]);
+
+  useEffect(() => {
+    if (!chassisInterface && !chassisDeviceId) return;
+    if (editing) return;
+    const targetName = chassisInterface || 'selected interface';
+    setForm((prev) => ({
+      ...prev,
+      name: prev.name || `Interface health - ${targetName}`,
+      description: prev.description || `Created from Chassis View context for ${targetName}.`,
+      policy_type: 'interface_health',
+      target_all_devices: !chassisDeviceId,
+      device_ids: chassisDeviceId ? [chassisDeviceId] : [],
+    }));
+  }, [chassisDeviceId, chassisInterface, editing]);
 
   const saveMutation = useMutation({
     mutationFn: () => {
@@ -192,6 +213,24 @@ export function MonitoringPoliciesPage() {
           </label>
         </div>
 
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-[16rem_1fr]">
+          <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <input
+              type="checkbox"
+              checked={form.target_all_devices}
+              onChange={(e) => set('target_all_devices', e.target.checked)}
+            />
+            Target all devices
+          </label>
+          <Input
+            label="Target device IDs"
+            value={form.device_ids.join(', ')}
+            onChange={(e) => set('device_ids', e.target.value.split(',').map((item) => item.trim()).filter(Boolean))}
+            disabled={form.target_all_devices}
+            hint={chassisInterface ? `Chassis context: ${chassisInterface}` : undefined}
+          />
+        </div>
+
         <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-2">
           <div>
             <label className="mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300">Description</label>
@@ -232,10 +271,35 @@ export function MonitoringPoliciesPage() {
                     <td className="px-4 py-2 text-xs">{policy.next_run_at ? new Date(policy.next_run_at).toLocaleString() : '—'}</td>
                     <td className="px-4 py-2">{policy.enabled ? (policy.last_status ?? 'enabled') : 'disabled'}</td>
                     <td className="px-4 py-2">
-                      <div className="flex gap-3">
-                        <button className="text-xs text-blue-600 hover:underline" onClick={() => setEditing(policy)}>Edit</button>
-                        <button className="text-xs text-green-600 hover:underline" onClick={() => runMutation.mutate(policy.id)}>Run now</button>
-                        <button className="text-xs text-red-500 hover:underline" onClick={() => deleteMutation.mutate(policy.id)}>Delete</button>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          title="Edit"
+                          aria-label="Edit policy"
+                          className="rounded p-1.5 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                          onClick={() => setEditing(policy)}
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          title="Run now"
+                          aria-label="Run policy now"
+                          className="rounded p-1.5 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 disabled:opacity-50"
+                          onClick={() => runMutation.mutate(policy.id)}
+                          disabled={runMutation.isPending}
+                        >
+                          <Play className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          title="Delete"
+                          aria-label="Delete policy"
+                          className="rounded p-1.5 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+                          onClick={() => deleteMutation.mutate(policy.id)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>

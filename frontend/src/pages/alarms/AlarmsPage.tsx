@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Columns3, Globe2, ListFilter, Save, Trash2 } from 'lucide-react';
+import { Columns3, Download, Globe2, History, ListFilter, Save, Trash2 } from 'lucide-react';
 import { PageHeader, Card, Select, Button, Input, Modal } from '../../components/ui';
 import { api } from '../../lib/api';
 import { useAlarmWebSocket } from '../../lib/ws';
@@ -16,6 +17,7 @@ interface AlarmSummary {
   minor: number;
   warning: number;
   info: number;
+  clear: number;
 }
 
 interface AlarmFilters {
@@ -23,6 +25,8 @@ interface AlarmFilters {
   severity: string;
   state: string;
   device_id: string;
+  object_type: string;
+  object_id: string;
   category: string;
   event_type: string;
   source_host: string;
@@ -37,6 +41,8 @@ const DEFAULT_FILTERS: AlarmFilters = {
   severity: '',
   state: '',
   device_id: '',
+  object_type: '',
+  object_id: '',
   category: '',
   event_type: '',
   source_host: '',
@@ -110,6 +116,33 @@ async function unsuppressAlarm(id: string): Promise<void> {
   await api.post(`/alarms/${id}/unsuppress`, { by_user: 'operator' });
 }
 
+function alarmExportParams(filters: AlarmFilters, alarmIds?: string[]): URLSearchParams {
+  const params = new URLSearchParams({ format: 'csv' });
+  if (alarmIds?.length) {
+    alarmIds.forEach((id) => params.append('alarm_ids', id));
+    return params;
+  }
+  Object.entries(filters).forEach(([key, value]) => {
+    if (key === 'limit' || key === 'offset') return;
+    if (value !== '' && value !== 0) params.append(key, String(value));
+  });
+  return params;
+}
+
+async function exportAlarmCsv(filters: AlarmFilters, alarmIds?: string[]) {
+  const params = alarmExportParams(filters, alarmIds);
+  const response = await api.get(`/alarms/export?${params.toString()}`, {
+    responseType: 'blob',
+  });
+  const blob = new Blob([response.data], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = alarmIds?.length ? 'alarms_selected_export.csv' : 'alarms_export.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function isoToLocalInput(iso: string): string {
   if (!iso) return '';
   const d = new Date(iso);
@@ -118,8 +151,74 @@ function isoToLocalInput(iso: string): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
+function localDateTimeToIso(value: string): string {
+  if (!value) return '';
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? '' : d.toISOString();
+}
+
+function todayDateInput(): string {
+  return isoToLocalInput(new Date().toISOString()).slice(0, 10);
+}
+
+const TIME_OPTIONS = Array.from({ length: 96 }, (_, index) => {
+  const hours = String(Math.floor(index / 4)).padStart(2, '0');
+  const minutes = String((index % 4) * 15).padStart(2, '0');
+  const value = `${hours}:${minutes}`;
+  return { value, label: value };
+});
+
+interface DateTimeFilterInputProps {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+function DateTimeFilterInput({ label, value, onChange }: DateTimeFilterInputProps) {
+  const localValue = isoToLocalInput(value);
+  const dateValue = localValue.slice(0, 10);
+  const timeValue = localValue.slice(11, 16);
+  const timeOptions = timeValue && !TIME_OPTIONS.some((option) => option.value === timeValue)
+    ? [{ value: timeValue, label: timeValue }, ...TIME_OPTIONS]
+    : TIME_OPTIONS;
+
+  function update(nextDate: string, nextTime: string) {
+    if (!nextDate && !nextTime) {
+      onChange('');
+      return;
+    }
+    const resolvedDate = nextDate || todayDateInput();
+    const resolvedTime = nextTime || '00:00';
+    onChange(localDateTimeToIso(`${resolvedDate}T${resolvedTime}`));
+  }
+
+  return (
+    <div className="flex-1 min-w-[17rem]">
+      <label className="block text-xs text-gray-500 mb-1">{label}</label>
+      <div className="grid grid-cols-[minmax(0,1fr)_6.5rem] gap-2">
+        <input
+          type="date"
+          value={dateValue}
+          onChange={(e) => update(e.target.value, timeValue)}
+          className="w-full text-xs border rounded px-2 py-1.5 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 border-gray-300"
+          aria-label={`${label} date`}
+        />
+        <Select
+          value={timeValue}
+          onChange={(e) => update(dateValue, e.target.value)}
+          options={[{ value: '', label: 'Time' }, ...timeOptions]}
+          className="w-full py-1.5 px-2 text-xs"
+          aria-label={`${label} time`}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function AlarmsPage() {
   const queryClient = useQueryClient();
+  const [searchParams] = useSearchParams();
+  const queryString = searchParams.toString();
   const [filters, setFilters] = useState<AlarmFilters>(DEFAULT_FILTERS);
   const [selectedAlarm, setSelectedAlarm] = useState<Alarm | null>(null);
   const [ackAlarmId, setAckAlarmId] = useState<string | null>(null);
@@ -131,6 +230,7 @@ export function AlarmsPage() {
   const [savingFilter, setSavingFilter] = useState(false);
   const [selectedAlarmIds, setSelectedAlarmIds] = useState<Set<string>>(new Set());
   const [bulkAction, setBulkAction] = useState<'ack' | 'clear' | null>(null);
+  const [exportScope, setExportScope] = useState<'all' | 'selected' | null>(null);
   const [activeSavedFilter, setActiveSavedFilter] = useState<SavedAlarmFilter | null>(null);
   const [columnsOpen, setColumnsOpen] = useState(false);
   const [visibleColumns, setVisibleColumns] = useState<Set<AlarmColumnKey>>(() => {
@@ -143,6 +243,21 @@ export function AlarmsPage() {
     } catch { /* ignore */ }
     return new Set(DEFAULT_VISIBLE_COLUMNS);
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(queryString);
+    const deviceId = params.get('device_id') ?? '';
+    const objectType = params.get('object_type') ?? '';
+    const objectId = params.get('object_id') ?? '';
+    if (!deviceId && !objectType && !objectId) return;
+    setFilters((prev) => ({
+      ...prev,
+      device_id: deviceId || prev.device_id,
+      object_type: objectType || prev.object_type,
+      object_id: objectId || prev.object_id,
+      offset: 0,
+    }));
+  }, [queryString]);
 
   function toggleColumn(key: AlarmColumnKey) {
     setVisibleColumns((prev) => {
@@ -159,6 +274,8 @@ export function AlarmsPage() {
     filters.severity,
     filters.state,
     filters.device_id,
+    filters.object_type,
+    filters.object_id,
     filters.category,
     filters.event_type,
     filters.source_host,
@@ -287,6 +404,26 @@ export function AlarmsPage() {
     }
   }
 
+  async function handleExportAll() {
+    setExportScope('all');
+    try {
+      await exportAlarmCsv(filters);
+    } finally {
+      setExportScope(null);
+    }
+  }
+
+  async function handleExportSelected() {
+    const alarmIds = Array.from(selectedAlarmIds);
+    if (alarmIds.length === 0) return;
+    setExportScope('selected');
+    try {
+      await exportAlarmCsv(filters, alarmIds);
+    } finally {
+      setExportScope(null);
+    }
+  }
+
   async function handleUnsuppress(id: string) {
     await unsuppressAlarm(id);
     queryClient.invalidateQueries({ queryKey: ['alarms', ...filtersKey] });
@@ -302,11 +439,31 @@ export function AlarmsPage() {
 
   return (
     <div className="space-y-6 p-6">
-      <PageHeader title="Alarms" subtitle="Real-time monitoring — Cisco NMS" />
+      <PageHeader
+        title="Alarms"
+        subtitle="Real-time monitoring — Cisco NMS"
+        actions={
+          <Link
+            to="/alarms/history"
+            className="inline-flex items-center gap-1.5 rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800"
+          >
+            <History className="h-4 w-4" />
+            History
+          </Link>
+        }
+      />
 
       {summary && (
         <Card>
-          <AlarmSummaryStrip summary={summary} />
+          <AlarmSummaryStrip
+            summary={summary}
+            activeSeverity={filters.severity}
+            onSelect={(sev) => setFilters((prev) => ({
+              ...prev,
+              severity: prev.severity === sev ? '' : sev,
+              offset: 0,
+            }))}
+          />
         </Card>
       )}
 
@@ -361,6 +518,24 @@ export function AlarmsPage() {
           </div>
           <div className="flex-1 min-w-36">
             <Input
+              label="Object type"
+              value={filters.object_type}
+              onChange={(e) => setFilter('object_type', e.target.value)}
+              placeholder="interface"
+              className="py-1.5 text-xs"
+            />
+          </div>
+          <div className="flex-1 min-w-44">
+            <Input
+              label="Object ID"
+              value={filters.object_id}
+              onChange={(e) => setFilter('object_id', e.target.value)}
+              placeholder="interface UUID"
+              className="py-1.5 text-xs"
+            />
+          </div>
+          <div className="flex-1 min-w-36">
+            <Input
               label="Source host"
               value={filters.source_host}
               onChange={(e) => setFilter('source_host', e.target.value)}
@@ -368,26 +543,8 @@ export function AlarmsPage() {
               className="py-1.5 text-xs"
             />
           </div>
-          <div className="flex-1 min-w-36">
-            <label className="block text-xs text-gray-500 mb-1">From</label>
-            <input
-              type="datetime-local"
-              step={60}
-              value={isoToLocalInput(filters.since)}
-              onChange={(e) => setFilter('since', e.target.value ? new Date(e.target.value).toISOString() : '')}
-              className="w-full text-xs border rounded px-2 py-1.5 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 border-gray-300"
-            />
-          </div>
-          <div className="flex-1 min-w-36">
-            <label className="block text-xs text-gray-500 mb-1">To</label>
-            <input
-              type="datetime-local"
-              step={60}
-              value={isoToLocalInput(filters.until)}
-              onChange={(e) => setFilter('until', e.target.value ? new Date(e.target.value).toISOString() : '')}
-              className="w-full text-xs border rounded px-2 py-1.5 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 border-gray-300"
-            />
-          </div>
+          <DateTimeFilterInput label="From" value={filters.since} onChange={(value) => setFilter('since', value)} />
+          <DateTimeFilterInput label="To" value={filters.until} onChange={(value) => setFilter('until', value)} />
           <Button
             size="sm"
             variant="outline"
@@ -434,6 +591,15 @@ export function AlarmsPage() {
             onClick={() => setSaveFilterOpen(true)}
           >
             Save Filter
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            leftIcon={<Download className="h-4 w-4" />}
+            onClick={handleExportAll}
+            loading={exportScope === 'all'}
+          >
+            Export All
           </Button>
           <div className="relative">
             <Button
@@ -531,6 +697,15 @@ export function AlarmsPage() {
           </Button>
           <Button size="sm" variant="success" onClick={handleBulkClear} loading={bulkAction === 'clear'}>
             Clear Selected
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            leftIcon={<Download className="h-4 w-4" />}
+            onClick={handleExportSelected}
+            loading={exportScope === 'selected'}
+          >
+            Export Selected
           </Button>
         </div>
       )}

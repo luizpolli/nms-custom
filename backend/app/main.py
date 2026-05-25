@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 from app.config import Settings
-from app.database import engine, init_db
+from app.database import async_session_factory, engine, init_db
 from app.api.devices import router as devices_router
 from app.api.credentials import router as credentials_router
 from app.api.performance import router as performance_router
@@ -33,8 +33,9 @@ from app.api.services import router as services_router
 from app.api.metrics import router as metrics_router
 from app.api.lab import router as lab_router
 from app.workers import WorkerSupervisor
-from app.security.auth import require_api_auth
+from app.security.auth import principal_from_presented_key, require_api_auth
 from app.security.redaction import configure_log_redaction
+from app.services.account_audit import record_account_activity
 from app.services.observability.metrics import observe_request
 
 settings = Settings()
@@ -81,6 +82,51 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.middleware("http")(observe_request)
+
+
+def _audit_excluded_path(path: str) -> bool:
+    return (
+        path in {"/api/health", "/health/live", "/health/ready", "/metrics"}
+        or path.startswith("/api/docs")
+        or path.startswith("/api/openapi")
+        or path.startswith("/api/settings/account-audit")
+    )
+
+
+@app.middleware("http")
+async def account_activity_audit(request, call_next):
+    response = await call_next(request)
+    if (
+        settings.account_audit_enabled
+        and settings.app_env != "test"
+        and request.url.path.startswith("/api/")
+        and not _audit_excluded_path(request.url.path)
+    ):
+        presented = request.headers.get("x-api-key")
+        auth_header = request.headers.get("authorization", "")
+        if not presented and auth_header.lower().startswith("bearer "):
+            presented = auth_header[7:].strip()
+        principal = principal_from_presented_key(presented)
+        if response.status_code == 401:
+            principal = principal_from_presented_key(None)
+        async with async_session_factory() as session:
+            await record_account_activity(
+                session,
+                principal=principal,
+                action=f"api.{request.method.lower()}",
+                source_ip=request.client.host if request.client else None,
+                outcome="success" if response.status_code < 400 else "failure",
+                message=f"{request.method} {request.url.path}",
+                details={
+                    "method": request.method,
+                    "path": request.url.path,
+                    "query": str(request.url.query),
+                    "status_code": response.status_code,
+                },
+            )
+            await session.commit()
+    return response
+
 # Add TrustedHost last so it is the outermost middleware and rejects bad Host
 # headers before request metrics or route handling.
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.allowed_hosts)

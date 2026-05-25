@@ -3,12 +3,15 @@ import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
 import { ToastContainer } from '../ui/Toast';
+import { RouteGuideFloat } from './RouteGuideFloat';
+import { ModuleControlProvider } from './ModuleControlProvider';
 
 export function AppShell() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
+    <ModuleControlProvider>
     <div className="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-950">
       {/* Mobile overlay */}
       {mobileSidebarOpen && (
@@ -41,7 +44,9 @@ export function AppShell() {
         </main>
       </div>
 
+      <RouteGuideFloat />
       <ToastContainer />
     </div>
+    </ModuleControlProvider>
   );
 }

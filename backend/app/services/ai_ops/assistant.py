@@ -30,11 +30,11 @@ from .guardrails import (
 from .providers import LLMProvider, LLMRequest, NullLLMProvider
 
 _SYSTEM_PROMPT = (
-    "Eres un asistente operativo de un NMS. Sólo puedes afirmar lo que esté "
-    "respaldado por la evidencia entregada. Cada afirmación material debe "
-    "incluir una cita en el formato [citation_id]. Si no hay evidencia "
-    "suficiente, responde explícitamente que faltan datos. Nunca inventes "
-    "hostnames, IPs ni recomendaciones de cambio de configuración."
+    "You are an operational assistant for an NMS. You may only state what is "
+    "supported by the provided evidence. Every material claim must include a "
+    "citation in [citation_id] format. If there is not enough evidence, state "
+    "explicitly that data is missing. Never invent hostnames, IPs, or "
+    "configuration-change recommendations."
 )
 
 
@@ -72,7 +72,7 @@ async def _retrieve_kpis(db: AsyncSession, hours: int, limit: int) -> list[KPI]:
 def _build_evidence(alarms: list[Alarm], kpis: list[KPI]) -> list[EvidenceItem]:
     out: list[EvidenceItem] = []
     for a in alarms:
-        label = redact_text(a.message or "alarma sin mensaje")
+        label = redact_text(a.message or "alarm without message")
         detail = redact_text(
             f"severity={a.severity} state={a.state} category={a.category}"
         )
@@ -97,13 +97,13 @@ def _build_evidence(alarms: list[Alarm], kpis: list[KPI]) -> list[EvidenceItem]:
 
 
 def _render_user_prompt(question: str, evidence: list[EvidenceItem]) -> str:
-    body = ["Pregunta:", question.strip(), "", "Evidencia disponible:"]
+    body = ["Question:", question.strip(), "", "Available evidence:"]
     for e in evidence:
         body.append(f"- [{e.citation_id}] {e.source_type}: {e.label}")
     body.append("")
     body.append(
-        "Responde en español usando sólo esta evidencia. Cita cada afirmación "
-        "con el formato [citation_id]."
+        "Answer in English using only this evidence. Cite every material claim "
+        "with [citation_id] format."
     )
     return "\n".join(body)
 

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Play, Plus, Trash2, Layers } from 'lucide-react';
 import { api } from '../../lib/api';
@@ -24,6 +25,8 @@ interface Command {
 
 interface RunResult {
   output: string;
+  stdout?: string | null;
+  stderr?: string | null;
 }
 
 type Tab = 'commands' | 'history' | 'schedules';
@@ -36,6 +39,8 @@ const TABS: { id: Tab; label: string }[] = [
 
 export function CommandsPage() {
   const queryClient = useQueryClient();
+  const [searchParams] = useSearchParams();
+  const queryString = searchParams.toString();
   const [activeTab, setActiveTab] = useState<Tab>('commands');
   const [modalOpen, setModalOpen] = useState(false);
   const [editCommand, setEditCommand] = useState<Command | null>(null);
@@ -44,6 +49,21 @@ export function CommandsPage() {
 
   const [adHocDeviceId, setAdHocDeviceId] = useState('');
   const [adHocCli, setAdHocCli] = useState('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(queryString);
+    const deviceId = params.get('device_id');
+    const cli = params.get('command');
+    const tab = params.get('tab') as Tab | null;
+    if (tab && TABS.some((item) => item.id === tab)) {
+      setActiveTab(tab);
+    }
+    if (deviceId || cli) {
+      setActiveTab('commands');
+      if (deviceId) setAdHocDeviceId(deviceId);
+      if (cli) setAdHocCli(cli);
+    }
+  }, [queryString]);
 
   const { data: commandsData, isLoading, isError } = useQuery<Command[]>({
     queryKey: ['commands'],
@@ -87,7 +107,7 @@ export function CommandsPage() {
     mutationFn: () =>
       api.post<RunResult>('/commands/run-ad-hoc', { device_id: adHocDeviceId, cli: adHocCli }).then((r) => r.data),
     onSuccess: (data) => {
-      setOutputModal({ title: `Ad-hoc: ${adHocCli}`, output: data.output });
+      setOutputModal({ title: `Ad-hoc: ${adHocCli}`, output: data.output ?? data.stdout ?? data.stderr ?? '' });
     },
     onError: (err) => {
       console.error('Ad-hoc run failed', err);
@@ -189,7 +209,14 @@ export function CommandsPage() {
           )}
 
           <div className="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-            <h3 className="font-semibold text-gray-700 dark:text-gray-300">Run ad-hoc command</h3>
+            <div>
+              <h3 className="font-semibold text-gray-700 dark:text-gray-300">Run ad-hoc command</h3>
+              {searchParams.get('interface') && (
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Chassis context: {searchParams.get('interface')}
+                </p>
+              )}
+            </div>
             <div className="flex flex-wrap gap-3 items-end">
               <Select
                 label="Device"

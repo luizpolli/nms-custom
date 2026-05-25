@@ -1,0 +1,1522 @@
+{
+  "componentsById": {
+    "component-4636959": {
+      "childIds": [],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Route/Switch Processor Module Container",
+      "displayName": "slot 0/RSP1",
+      "id": "component-4636959",
+      "name": "slot 0/RSP1",
+      "parentId": "component-4636990",
+      "physicalIndex": 44869298,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636959,
+      "type": "Equipment"
+    },
+    "component-4636963": {
+      "childIds": [],
+      "containedPhysicalIndex": 62482494,
+      "description": "Line Card host",
+      "displayName": "module 0/0/CPU0",
+      "id": "component-4636963",
+      "name": "module 0/0/CPU0",
+      "operStatus": "unknown",
+      "parentId": "component-4636992",
+      "physicalIndex": 18788073,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636963,
+      "type": "Module"
+    },
+    "component-4636965": {
+      "childIds": [
+        "component-4636966"
+      ],
+      "containedPhysicalIndex": 62482494,
+      "description": "Ethernet Plug Bay",
+      "displayName": "subslot 0/0/0",
+      "id": "component-4636965",
+      "name": "subslot 0/0/0",
+      "parentId": "component-4636992",
+      "physicalIndex": 55552156,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636965,
+      "type": "Equipment"
+    },
+    "component-4636966": {
+      "childIds": [],
+      "containedPhysicalIndex": 55552156,
+      "description": "ASR 9000 20-port 1GE Modular Port Adapter",
+      "displayName": "module 0/0/0",
+      "id": "component-4636966",
+      "name": "module 0/0/0",
+      "operStatus": "enabled",
+      "parentId": "component-4636965",
+      "physicalIndex": 14585855,
+      "ports": [
+        {
+          "id": "4615328",
+          "name": "GigabitEthernet0/0/0/5",
+          "portId": 4615328
+        },
+        {
+          "id": "4615329",
+          "name": "GigabitEthernet0/0/0/6",
+          "portId": 4615329
+        },
+        {
+          "id": "4615331",
+          "name": "GigabitEthernet0/0/0/7",
+          "portId": 4615331
+        },
+        {
+          "id": "4615332",
+          "name": "GigabitEthernet0/0/0/8",
+          "portId": 4615332
+        },
+        {
+          "id": "4615326",
+          "name": "GigabitEthernet0/0/0/9",
+          "portId": 4615326
+        },
+        {
+          "id": "4615301",
+          "name": "GigabitEthernet0/0/0/13",
+          "portId": 4615301
+        },
+        {
+          "id": "4615302",
+          "name": "GigabitEthernet0/0/0/12",
+          "portId": 4615302
+        },
+        {
+          "id": "4615303",
+          "name": "GigabitEthernet0/0/0/11",
+          "portId": 4615303
+        },
+        {
+          "id": "4615304",
+          "name": "GigabitEthernet0/0/0/10",
+          "portId": 4615304
+        },
+        {
+          "id": "4615340",
+          "name": "GigabitEthernet0/0/0/0",
+          "portId": 4615340
+        },
+        {
+          "id": "4615335",
+          "name": "GigabitEthernet0/0/0/1",
+          "portId": 4615335
+        },
+        {
+          "id": "4615336",
+          "name": "GigabitEthernet0/0/0/2",
+          "portId": 4615336
+        },
+        {
+          "id": "4615337",
+          "name": "GigabitEthernet0/0/0/3",
+          "portId": 4615337
+        },
+        {
+          "id": "4615338",
+          "name": "GigabitEthernet0/0/0/4",
+          "portId": 4615338
+        },
+        {
+          "id": "4615310",
+          "name": "GigabitEthernet0/0/0/19",
+          "portId": 4615310
+        },
+        {
+          "id": "4615311",
+          "name": "GigabitEthernet0/0/0/18",
+          "portId": 4615311
+        },
+        {
+          "id": "4615305",
+          "name": "GigabitEthernet0/0/0/17",
+          "portId": 4615305
+        },
+        {
+          "id": "4615306",
+          "name": "GigabitEthernet0/0/0/16",
+          "portId": 4615306
+        },
+        {
+          "id": "4615307",
+          "name": "GigabitEthernet0/0/0/15",
+          "portId": 4615307
+        },
+        {
+          "id": "4615308",
+          "name": "GigabitEthernet0/0/0/14",
+          "portId": 4615308
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 4636966,
+      "type": "Module",
+      "typeId": "A9K-MPA-20X1GE"
+    },
+    "component-4636970": {
+      "childIds": [],
+      "containedPhysicalIndex": 38645760,
+      "description": "RSP Card host",
+      "displayName": "module 0/RSP0/CPU0",
+      "id": "component-4636970",
+      "name": "module 0/RSP0/CPU0",
+      "operStatus": "unknown",
+      "parentId": "component-4636977",
+      "physicalIndex": 52690955,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636970,
+      "type": "Module"
+    },
+    "component-4636973": {
+      "childIds": [
+        "component-4636974"
+      ],
+      "containedPhysicalIndex": 38645760,
+      "description": "Compact Flash Card Container",
+      "displayName": "slot compact-flash 0/RSP0/CPU0",
+      "id": "component-4636973",
+      "name": "slot compact-flash 0/RSP0/CPU0",
+      "parentId": "component-4636977",
+      "physicalIndex": 19137381,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636973,
+      "type": "Equipment"
+    },
+    "component-4636974": {
+      "childIds": [],
+      "containedPhysicalIndex": 19137381,
+      "description": "CompactFlash",
+      "displayName": "module compact-flash 0/RSP0/CPU0",
+      "id": "component-4636974",
+      "name": "module compact-flash 0/RSP0/CPU0",
+      "operStatus": "enabled",
+      "parentId": "component-4636973",
+      "physicalIndex": 55826880,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636974,
+      "type": "Module",
+      "typeId": "cFLASH"
+    },
+    "component-4636976": {
+      "childIds": [
+        "component-4636977"
+      ],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Route/Switch Processor Module Container",
+      "displayName": "slot 0/RSP0",
+      "id": "component-4636976",
+      "name": "slot 0/RSP0",
+      "parentId": "component-4636990",
+      "physicalIndex": 28091685,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636976,
+      "type": "Equipment"
+    },
+    "component-4636977": {
+      "childIds": [
+        "component-4636978",
+        "component-4636970",
+        "component-4636973"
+      ],
+      "containedPhysicalIndex": 28091685,
+      "description": "ASR9K Fabric, Controller, 8G memory",
+      "displayName": "module 0/RSP0/CPU0",
+      "id": "component-4636977",
+      "name": "module 0/RSP0/CPU0",
+      "operStatus": "enabled",
+      "parentId": "component-4636976",
+      "physicalIndex": 38645760,
+      "ports": [
+        {
+          "id": "4615319",
+          "name": "MgmtEth0/RSP0/CPU0/0",
+          "portId": 4615319
+        },
+        {
+          "id": "4615320",
+          "name": "MgmtEth0/RSP0/CPU0/1",
+          "portId": 4615320
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 4636977,
+      "type": "Module",
+      "typeId": "A9K-RSP-8G"
+    },
+    "component-4636978": {
+      "childIds": [],
+      "containedPhysicalIndex": 38645760,
+      "description": "CPU",
+      "displayName": "cpu 0/RSP0/CPU0",
+      "id": "component-4636978",
+      "name": "cpu 0/RSP0/CPU0",
+      "parentId": "component-4636977",
+      "physicalIndex": 2359704,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636978,
+      "type": "Equipment"
+    },
+    "component-4636980": {
+      "childIds": [],
+      "containedPhysicalIndex": 62482494,
+      "description": "Modular Linecard Daughter board",
+      "displayName": "daughtercard 0/0/CPU0",
+      "id": "component-4636980",
+      "name": "daughtercard 0/0/CPU0",
+      "operStatus": "unknown",
+      "parentId": "component-4636992",
+      "physicalIndex": 22001758,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636980,
+      "type": "Module",
+      "typeId": "A9K-MOD80-TR"
+    },
+    "component-4636985": {
+      "childIds": [],
+      "containedPhysicalIndex": 62482494,
+      "description": "CPU",
+      "displayName": "cpu 0/0/CPU0",
+      "id": "component-4636985",
+      "name": "cpu 0/0/CPU0",
+      "parentId": "component-4636992",
+      "physicalIndex": 35565686,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636985,
+      "type": "Equipment"
+    },
+    "component-4636990": {
+      "childIds": [
+        "component-4636991",
+        "component-8104537",
+        "component-8104544",
+        "component-8104538",
+        "component-8104540",
+        "component-8104529",
+        "component-8104527",
+        "component-8104543",
+        "component-8104539",
+        "component-4636976",
+        "component-4636959"
+      ],
+      "description": "ASR-9006 AC Chassis",
+      "displayName": "chassis ASR-9006-AC",
+      "hardwareVersion": "V02",
+      "id": "component-4636990",
+      "isFRUable": "TRUE",
+      "manufacturer": "Cisco Systems Inc.",
+      "name": "chassis ASR-9006-AC",
+      "operStatus": "enabled",
+      "ports": [],
+      "serialNumber": "FOX1715G752",
+      "serviceState": "UNKNOWN",
+      "sourceId": 4636990,
+      "type": "Chassis",
+      "typeId": "ASR-9006-AC"
+    },
+    "component-4636991": {
+      "childIds": [
+        "component-4636992"
+      ],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Line Card Module Container",
+      "displayName": "slot 0/0",
+      "id": "component-4636991",
+      "name": "slot 0/0",
+      "parentId": "component-4636990",
+      "physicalIndex": 26947585,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636991,
+      "type": "Equipment"
+    },
+    "component-4636992": {
+      "childIds": [
+        "component-4636985",
+        "component-4636965",
+        "component-4636993",
+        "component-4636963",
+        "component-4636980"
+      ],
+      "containedPhysicalIndex": 26947585,
+      "description": "80G Modular Linecard, Packet Transport Optimized",
+      "displayName": "module 0/0/CPU0",
+      "id": "component-4636992",
+      "name": "module 0/0/CPU0",
+      "operStatus": "enabled",
+      "parentId": "component-4636991",
+      "physicalIndex": 62482494,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636992,
+      "type": "Module",
+      "typeId": "A9K-MOD80-TR"
+    },
+    "component-4636993": {
+      "childIds": [],
+      "containedPhysicalIndex": 62482494,
+      "description": "Ethernet Plug Bay",
+      "displayName": "subslot 0/0/1",
+      "id": "component-4636993",
+      "name": "subslot 0/0/1",
+      "parentId": "component-4636992",
+      "physicalIndex": 38774543,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4636993,
+      "type": "Equipment"
+    },
+    "component-8104518": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan5 0/FT0/SP",
+      "id": "component-8104518",
+      "name": "fan5 0/FT0/SP",
+      "operStatus": "up",
+      "parentId": "component-8104520",
+      "physicalIndex": 7357110,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104518,
+      "type": "Equipment"
+    },
+    "component-8104519": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan2 0/FT1/SP",
+      "id": "component-8104519",
+      "name": "fan2 0/FT1/SP",
+      "operStatus": "up",
+      "parentId": "component-8104530",
+      "physicalIndex": 18859810,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104519,
+      "type": "Equipment"
+    },
+    "component-8104520": {
+      "childIds": [
+        "component-8104523",
+        "component-8104521",
+        "component-8104525",
+        "component-8104524",
+        "component-8104522",
+        "component-8104518",
+        "component-8104526"
+      ],
+      "containedPhysicalIndex": 45832162,
+      "description": "ASR-9006 Fan Tray",
+      "displayName": "fantray 0/FT0/SP",
+      "id": "component-8104520",
+      "name": "fantray 0/FT0/SP",
+      "parentId": "component-8104540",
+      "physicalIndex": 59316821,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104520,
+      "type": "Equipment",
+      "typeId": "ASR-9006-FAN"
+    },
+    "component-8104521": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan1 0/FT0/SP",
+      "id": "component-8104521",
+      "name": "fan1 0/FT0/SP",
+      "operStatus": "up",
+      "parentId": "component-8104520",
+      "physicalIndex": 7358666,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104521,
+      "type": "Equipment"
+    },
+    "component-8104522": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan4 0/FT0/SP",
+      "id": "component-8104522",
+      "name": "fan4 0/FT0/SP",
+      "operStatus": "up",
+      "parentId": "component-8104520",
+      "physicalIndex": 24133071,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104522,
+      "type": "Equipment"
+    },
+    "component-8104523": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan0 0/FT0/SP",
+      "id": "component-8104523",
+      "name": "fan0 0/FT0/SP",
+      "operStatus": "up",
+      "parentId": "component-8104520",
+      "physicalIndex": 24134659,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104523,
+      "type": "Equipment"
+    },
+    "component-8104524": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan3 0/FT0/SP",
+      "id": "component-8104524",
+      "name": "fan3 0/FT0/SP",
+      "operStatus": "up",
+      "parentId": "component-8104520",
+      "physicalIndex": 40910684,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104524,
+      "type": "Equipment"
+    },
+    "component-8104525": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan2 0/FT0/SP",
+      "id": "component-8104525",
+      "name": "fan2 0/FT0/SP",
+      "operStatus": "up",
+      "parentId": "component-8104520",
+      "physicalIndex": 57689981,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104525,
+      "type": "Equipment"
+    },
+    "component-8104526": {
+      "childIds": [],
+      "containedPhysicalIndex": 59316821,
+      "description": "Fan-Tray host",
+      "displayName": "module 0/FT0/SP",
+      "id": "component-8104526",
+      "name": "module 0/FT0/SP",
+      "operStatus": "unknown",
+      "parentId": "component-8104520",
+      "physicalIndex": 40912272,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104526,
+      "type": "Module"
+    },
+    "component-8104527": {
+      "childIds": [
+        "component-8104528"
+      ],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K AC Power Entry Module Container",
+      "displayName": "slot 0/PM0",
+      "id": "component-8104527",
+      "name": "slot 0/PM0",
+      "parentId": "component-4636990",
+      "physicalIndex": 43665869,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104527,
+      "type": "Equipment"
+    },
+    "component-8104528": {
+      "childIds": [],
+      "containedPhysicalIndex": 43665869,
+      "description": "3kW AC Power Module",
+      "displayName": "power-module 0/PM0/SP",
+      "id": "component-8104528",
+      "name": "power-module 0/PM0/SP",
+      "parentId": "component-8104527",
+      "physicalIndex": 66531208,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104528,
+      "type": "Equipment",
+      "typeId": "A9K-3KW-AC"
+    },
+    "component-8104529": {
+      "childIds": [
+        "component-8104530"
+      ],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K FanTray Container",
+      "displayName": "slot 0/FT1",
+      "id": "component-8104529",
+      "name": "slot 0/FT1",
+      "parentId": "component-4636990",
+      "physicalIndex": 29054485,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104529,
+      "type": "Equipment"
+    },
+    "component-8104530": {
+      "childIds": [
+        "component-8104535",
+        "component-8104532",
+        "component-8104519",
+        "component-8104533",
+        "component-8104534",
+        "component-8104531",
+        "component-8104536"
+      ],
+      "containedPhysicalIndex": 29054485,
+      "description": "ASR-9006 Fan Tray",
+      "displayName": "fantray 0/FT1/SP",
+      "id": "component-8104530",
+      "name": "fantray 0/FT1/SP",
+      "parentId": "component-8104529",
+      "physicalIndex": 25315280,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104530,
+      "type": "Equipment",
+      "typeId": "ASR-9006-FAN"
+    },
+    "component-8104531": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan5 0/FT1/SP",
+      "id": "component-8104531",
+      "name": "fan5 0/FT1/SP",
+      "operStatus": "up",
+      "parentId": "component-8104530",
+      "physicalIndex": 2080513,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104531,
+      "type": "Equipment"
+    },
+    "component-8104532": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan1 0/FT1/SP",
+      "id": "component-8104532",
+      "name": "fan1 0/FT1/SP",
+      "operStatus": "up",
+      "parentId": "component-8104530",
+      "physicalIndex": 2082133,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104532,
+      "type": "Equipment"
+    },
+    "component-8104533": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan3 0/FT1/SP",
+      "id": "component-8104533",
+      "name": "fan3 0/FT1/SP",
+      "operStatus": "up",
+      "parentId": "component-8104530",
+      "physicalIndex": 35634215,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104533,
+      "type": "Equipment"
+    },
+    "component-8104534": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan4 0/FT1/SP",
+      "id": "component-8104534",
+      "name": "fan4 0/FT1/SP",
+      "operStatus": "up",
+      "parentId": "component-8104530",
+      "physicalIndex": 52411828,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104534,
+      "type": "Equipment"
+    },
+    "component-8104535": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "ASR9K Generic Fan",
+      "displayName": "fan0 0/FT1/SP",
+      "id": "component-8104535",
+      "name": "fan0 0/FT1/SP",
+      "operStatus": "up",
+      "parentId": "component-8104530",
+      "physicalIndex": 52413384,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104535,
+      "type": "Equipment"
+    },
+    "component-8104536": {
+      "childIds": [],
+      "containedPhysicalIndex": 25315280,
+      "description": "Fan-Tray host",
+      "displayName": "module 0/FT1/SP",
+      "id": "component-8104536",
+      "name": "module 0/FT1/SP",
+      "operStatus": "unknown",
+      "parentId": "component-8104530",
+      "physicalIndex": 35635835,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104536,
+      "type": "Module"
+    },
+    "component-8104537": {
+      "childIds": [],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Line Card Module Container",
+      "displayName": "slot 0/1",
+      "id": "component-8104537",
+      "name": "slot 0/1",
+      "parentId": "component-4636990",
+      "physicalIndex": 43725294,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104537,
+      "type": "Equipment"
+    },
+    "component-8104538": {
+      "childIds": [],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Line Card Module Container",
+      "displayName": "slot 0/3",
+      "id": "component-8104538",
+      "name": "slot 0/3",
+      "parentId": "component-4636990",
+      "physicalIndex": 10170036,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104538,
+      "type": "Equipment"
+    },
+    "component-8104539": {
+      "childIds": [],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Power Module Container",
+      "displayName": "slot 0/PM2",
+      "id": "component-8104539",
+      "name": "slot 0/PM2",
+      "parentId": "component-4636990",
+      "physicalIndex": 10110611,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104539,
+      "type": "Equipment"
+    },
+    "component-8104540": {
+      "childIds": [
+        "component-8104520"
+      ],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K FanTray Container",
+      "displayName": "slot 0/FT0",
+      "id": "component-8104540",
+      "name": "slot 0/FT0",
+      "parentId": "component-4636990",
+      "physicalIndex": 45832162,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104540,
+      "type": "Equipment"
+    },
+    "component-8104541": {
+      "childIds": [
+        "component-8104542"
+      ],
+      "containedPhysicalIndex": 60443482,
+      "description": "3kW AC Power Module",
+      "displayName": "power-module 0/PM1/SP",
+      "id": "component-8104541",
+      "name": "power-module 0/PM1/SP",
+      "parentId": "component-8104543",
+      "physicalIndex": 21657197,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104541,
+      "type": "Equipment",
+      "typeId": "A9K-3KW-AC"
+    },
+    "component-8104542": {
+      "childIds": [],
+      "containedPhysicalIndex": 21657197,
+      "description": "Power-Module host",
+      "displayName": "module 0/PM1/SP",
+      "id": "component-8104542",
+      "name": "module 0/PM1/SP",
+      "operStatus": "unknown",
+      "parentId": "component-8104541",
+      "physicalIndex": 2237736,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104542,
+      "type": "Module"
+    },
+    "component-8104543": {
+      "childIds": [
+        "component-8104541"
+      ],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K AC Power Entry Module Container",
+      "displayName": "slot 0/PM1",
+      "id": "component-8104543",
+      "name": "slot 0/PM1",
+      "parentId": "component-4636990",
+      "physicalIndex": 60443482,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104543,
+      "type": "Equipment"
+    },
+    "component-8104544": {
+      "childIds": [],
+      "containedPhysicalIndex": 24555730,
+      "description": "Cisco ASR9K Line Card Module Container",
+      "displayName": "slot 0/2",
+      "id": "component-8104544",
+      "name": "slot 0/2",
+      "parentId": "component-4636990",
+      "physicalIndex": 60501287,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 8104544,
+      "type": "Equipment"
+    }
+  },
+  "deviceId": "sample-asr9006",
+  "generatedAt": "2026-05-25T06:52:39.184975+00:00",
+  "physicalIndexToComponentId": {
+    "10110611": "component-8104539",
+    "10170036": "component-8104538",
+    "14585855": "component-4636966",
+    "18788073": "component-4636963",
+    "18859810": "component-8104519",
+    "19137381": "component-4636973",
+    "2080513": "component-8104531",
+    "2082133": "component-8104532",
+    "21657197": "component-8104541",
+    "22001758": "component-4636980",
+    "2237736": "component-8104542",
+    "2359704": "component-4636978",
+    "24133071": "component-8104522",
+    "24134659": "component-8104523",
+    "25315280": "component-8104530",
+    "26947585": "component-4636991",
+    "28091685": "component-4636976",
+    "29054485": "component-8104529",
+    "35565686": "component-4636985",
+    "35634215": "component-8104533",
+    "35635835": "component-8104536",
+    "38645760": "component-4636977",
+    "38774543": "component-4636993",
+    "40910684": "component-8104524",
+    "40912272": "component-8104526",
+    "43665869": "component-8104527",
+    "43725294": "component-8104537",
+    "44869298": "component-4636959",
+    "45832162": "component-8104540",
+    "52411828": "component-8104534",
+    "52413384": "component-8104535",
+    "52690955": "component-4636970",
+    "55552156": "component-4636965",
+    "55826880": "component-4636974",
+    "57689981": "component-8104525",
+    "59316821": "component-8104520",
+    "60443482": "component-8104543",
+    "60501287": "component-8104544",
+    "62482494": "component-4636992",
+    "66531208": "component-8104528",
+    "7357110": "component-8104518",
+    "7358666": "component-8104521"
+  },
+  "platform": "Cisco ASR 9006 Router",
+  "profileId": "Cisco_ASR_9006_Router",
+  "schemaVersion": "nms.chassisView.v1",
+  "source": {
+    "image": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/Cisco_ASR_9006_Router/images/ASR-9006-AC-Front.svg",
+    "inventory": "applications/storm/chassisview/v2/pidsupport/inventory/ASR9K-IOSXR/Cisco_ASR_9006_Router/ASR-9006-AC_inventory.json",
+    "package": ".local/chassis-assets/figures.tar.gz",
+    "profile": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/Cisco_ASR_9006_Router/data/Cisco_ASR_9006_Router.json"
+  },
+  "tree": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-4636985",
+                  "id": "component-4636985",
+                  "label": "cpu 0/0/CPU0",
+                  "physicalIndex": 35565686,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-4636966",
+                      "id": "component-4636966",
+                      "label": "module 0/0/0",
+                      "physicalIndex": 14585855,
+                      "type": "Module",
+                      "typeId": "A9K-MPA-20X1GE"
+                    }
+                  ],
+                  "componentId": "component-4636965",
+                  "id": "component-4636965",
+                  "label": "subslot 0/0/0",
+                  "physicalIndex": 55552156,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-4636993",
+                  "id": "component-4636993",
+                  "label": "subslot 0/0/1",
+                  "physicalIndex": 38774543,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-4636963",
+                  "id": "component-4636963",
+                  "label": "module 0/0/CPU0",
+                  "physicalIndex": 18788073,
+                  "type": "Module"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-4636980",
+                  "id": "component-4636980",
+                  "label": "daughtercard 0/0/CPU0",
+                  "physicalIndex": 22001758,
+                  "type": "Module",
+                  "typeId": "A9K-MOD80-TR"
+                }
+              ],
+              "componentId": "component-4636992",
+              "id": "component-4636992",
+              "label": "module 0/0/CPU0",
+              "physicalIndex": 62482494,
+              "type": "Module",
+              "typeId": "A9K-MOD80-TR"
+            }
+          ],
+          "componentId": "component-4636991",
+          "id": "component-4636991",
+          "label": "slot 0/0",
+          "physicalIndex": 26947585,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-8104537",
+          "id": "component-8104537",
+          "label": "slot 0/1",
+          "physicalIndex": 43725294,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-8104544",
+          "id": "component-8104544",
+          "label": "slot 0/2",
+          "physicalIndex": 60501287,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-8104538",
+          "id": "component-8104538",
+          "label": "slot 0/3",
+          "physicalIndex": 10170036,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-8104523",
+                  "id": "component-8104523",
+                  "label": "fan0 0/FT0/SP",
+                  "physicalIndex": 24134659,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104521",
+                  "id": "component-8104521",
+                  "label": "fan1 0/FT0/SP",
+                  "physicalIndex": 7358666,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104525",
+                  "id": "component-8104525",
+                  "label": "fan2 0/FT0/SP",
+                  "physicalIndex": 57689981,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104524",
+                  "id": "component-8104524",
+                  "label": "fan3 0/FT0/SP",
+                  "physicalIndex": 40910684,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104522",
+                  "id": "component-8104522",
+                  "label": "fan4 0/FT0/SP",
+                  "physicalIndex": 24133071,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104518",
+                  "id": "component-8104518",
+                  "label": "fan5 0/FT0/SP",
+                  "physicalIndex": 7357110,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104526",
+                  "id": "component-8104526",
+                  "label": "module 0/FT0/SP",
+                  "physicalIndex": 40912272,
+                  "type": "Module"
+                }
+              ],
+              "componentId": "component-8104520",
+              "id": "component-8104520",
+              "label": "fantray 0/FT0/SP",
+              "physicalIndex": 59316821,
+              "type": "Equipment",
+              "typeId": "ASR-9006-FAN"
+            }
+          ],
+          "componentId": "component-8104540",
+          "id": "component-8104540",
+          "label": "slot 0/FT0",
+          "physicalIndex": 45832162,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-8104535",
+                  "id": "component-8104535",
+                  "label": "fan0 0/FT1/SP",
+                  "physicalIndex": 52413384,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104532",
+                  "id": "component-8104532",
+                  "label": "fan1 0/FT1/SP",
+                  "physicalIndex": 2082133,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104519",
+                  "id": "component-8104519",
+                  "label": "fan2 0/FT1/SP",
+                  "physicalIndex": 18859810,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104533",
+                  "id": "component-8104533",
+                  "label": "fan3 0/FT1/SP",
+                  "physicalIndex": 35634215,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104534",
+                  "id": "component-8104534",
+                  "label": "fan4 0/FT1/SP",
+                  "physicalIndex": 52411828,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104531",
+                  "id": "component-8104531",
+                  "label": "fan5 0/FT1/SP",
+                  "physicalIndex": 2080513,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-8104536",
+                  "id": "component-8104536",
+                  "label": "module 0/FT1/SP",
+                  "physicalIndex": 35635835,
+                  "type": "Module"
+                }
+              ],
+              "componentId": "component-8104530",
+              "id": "component-8104530",
+              "label": "fantray 0/FT1/SP",
+              "physicalIndex": 25315280,
+              "type": "Equipment",
+              "typeId": "ASR-9006-FAN"
+            }
+          ],
+          "componentId": "component-8104529",
+          "id": "component-8104529",
+          "label": "slot 0/FT1",
+          "physicalIndex": 29054485,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-8104528",
+              "id": "component-8104528",
+              "label": "power-module 0/PM0/SP",
+              "physicalIndex": 66531208,
+              "type": "Equipment",
+              "typeId": "A9K-3KW-AC"
+            }
+          ],
+          "componentId": "component-8104527",
+          "id": "component-8104527",
+          "label": "slot 0/PM0",
+          "physicalIndex": 43665869,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-8104542",
+                  "id": "component-8104542",
+                  "label": "module 0/PM1/SP",
+                  "physicalIndex": 2237736,
+                  "type": "Module"
+                }
+              ],
+              "componentId": "component-8104541",
+              "id": "component-8104541",
+              "label": "power-module 0/PM1/SP",
+              "physicalIndex": 21657197,
+              "type": "Equipment",
+              "typeId": "A9K-3KW-AC"
+            }
+          ],
+          "componentId": "component-8104543",
+          "id": "component-8104543",
+          "label": "slot 0/PM1",
+          "physicalIndex": 60443482,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-8104539",
+          "id": "component-8104539",
+          "label": "slot 0/PM2",
+          "physicalIndex": 10110611,
+          "type": "Equipment"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-4636978",
+                  "id": "component-4636978",
+                  "label": "cpu 0/RSP0/CPU0",
+                  "physicalIndex": 2359704,
+                  "type": "Equipment"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-4636970",
+                  "id": "component-4636970",
+                  "label": "module 0/RSP0/CPU0",
+                  "physicalIndex": 52690955,
+                  "type": "Module"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-4636974",
+                      "id": "component-4636974",
+                      "label": "module compact-flash 0/RSP0/CPU0",
+                      "physicalIndex": 55826880,
+                      "type": "Module",
+                      "typeId": "cFLASH"
+                    }
+                  ],
+                  "componentId": "component-4636973",
+                  "id": "component-4636973",
+                  "label": "slot compact-flash 0/RSP0/CPU0",
+                  "physicalIndex": 19137381,
+                  "type": "Equipment"
+                }
+              ],
+              "componentId": "component-4636977",
+              "id": "component-4636977",
+              "label": "module 0/RSP0/CPU0",
+              "physicalIndex": 38645760,
+              "type": "Module",
+              "typeId": "A9K-RSP-8G"
+            }
+          ],
+          "componentId": "component-4636976",
+          "id": "component-4636976",
+          "label": "slot 0/RSP0",
+          "physicalIndex": 28091685,
+          "type": "Equipment"
+        },
+        {
+          "children": [],
+          "componentId": "component-4636959",
+          "id": "component-4636959",
+          "label": "slot 0/RSP1",
+          "physicalIndex": 44869298,
+          "type": "Equipment"
+        }
+      ],
+      "componentId": "component-4636990",
+      "id": "component-4636990",
+      "label": "chassis ASR-9006-AC",
+      "physicalIndex": null,
+      "type": "Chassis",
+      "typeId": "ASR-9006-AC"
+    }
+  ],
+  "views": [
+    {
+      "height": 3150.8112,
+      "hotspots": [
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-MOD80-TR.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-MOD80-TR.svg",
+            "typeId": "A9K-MOD80-TR"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 2748.43,
+            "x": 398.32,
+            "y": 1724.97
+          },
+          "empty": false,
+          "id": "hotspot-0",
+          "inventoryId": "component-4636992",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 0,
+            "fillerTypeId": "A9K-FILLER-LC",
+            "sourceName": "module 0/0/CPU0",
+            "sourceTypeId": "A9K-MOD80-TR"
+          },
+          "physicalIndex": 62482494,
+          "slotKey": "0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
+            "typeId": "A9K-FILLER-LC"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 2748.43,
+            "x": 398.32,
+            "y": 1395.93
+          },
+          "empty": true,
+          "id": "hotspot-1",
+          "inventoryId": "component-8104537",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "A9K-FILLER-LC",
+            "sourceName": "slot 0/1",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 43725294,
+          "slotKey": "1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
+            "typeId": "A9K-FILLER-LC"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 2748.43,
+            "x": 398.32,
+            "y": 1066.89
+          },
+          "empty": true,
+          "id": "hotspot-2",
+          "inventoryId": "component-8104544",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 2,
+            "fillerTypeId": "A9K-FILLER-LC",
+            "sourceName": "slot 0/2",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 60501287,
+          "slotKey": "2"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
+            "typeId": "A9K-FILLER-LC"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 2748.43,
+            "x": 398.32,
+            "y": 737.85
+          },
+          "empty": true,
+          "id": "hotspot-3",
+          "inventoryId": "component-8104538",
+          "label": "Line Card Slot",
+          "metadata": {
+            "alias": 3,
+            "fillerTypeId": "A9K-FILLER-LC",
+            "sourceName": "slot 0/3",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 10170036,
+          "slotKey": "3"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-RSP-4G.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-RSP-4G.svg",
+            "typeId": "A9K-RSP-4G"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 2748.43,
+            "x": 398.32,
+            "y": 2383.05
+          },
+          "empty": false,
+          "id": "hotspot-RSP0",
+          "inventoryId": "component-4636977",
+          "label": "Route Processor Slot",
+          "metadata": {
+            "alias": 4,
+            "fillerTypeId": "A9K-FILLER-LC",
+            "sourceName": "module 0/RSP0/CPU0",
+            "sourceTypeId": "A9K-RSP-8G"
+          },
+          "physicalIndex": 38645760,
+          "slotKey": "RSP0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
+            "typeId": "A9K-FILLER-LC"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 2748.43,
+            "x": 398.32,
+            "y": 2054.01
+          },
+          "empty": true,
+          "id": "hotspot-RSP1",
+          "inventoryId": "component-4636959",
+          "label": "Route Processor Slot",
+          "metadata": {
+            "alias": 5,
+            "fillerTypeId": "A9K-FILLER-LC",
+            "sourceName": "slot 0/RSP1",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 44869298,
+          "slotKey": "RSP1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/ASR-9006-FAN-V2.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/ASR-9006-FAN-V2.svg",
+            "typeId": "ASR-9006-FAN-V2"
+          },
+          "bounds": {
+            "h": 638.14,
+            "w": 537.74,
+            "x": 458.07,
+            "y": 79.77
+          },
+          "empty": false,
+          "id": "hotspot-FT0",
+          "inventoryId": "component-8104520",
+          "label": "Fan Unit Slot",
+          "metadata": {
+            "alias": 10,
+            "fillerTypeId": null,
+            "sourceName": "fantray 0/FT0/SP",
+            "sourceTypeId": "ASR-9006-FAN"
+          },
+          "physicalIndex": 59316821,
+          "slotKey": "FT0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/ASR-9006-FAN-V2.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/ASR-9006-FAN-V2.svg",
+            "typeId": "ASR-9006-FAN-V2"
+          },
+          "bounds": {
+            "h": 638.14,
+            "w": 537.74,
+            "x": 995.81,
+            "y": 79.77
+          },
+          "empty": false,
+          "id": "hotspot-FT1",
+          "inventoryId": "component-8104530",
+          "label": "Pan Unit Slot",
+          "metadata": {
+            "alias": 11,
+            "fillerTypeId": null,
+            "sourceName": "fantray 0/FT1/SP",
+            "sourceTypeId": "ASR-9006-FAN"
+          },
+          "physicalIndex": 25315280,
+          "slotKey": "FT1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-3KW-AC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-3KW-AC.svg",
+            "typeId": "A9K-3KW-AC"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 995.81,
+            "x": 219.08,
+            "y": 2712.09
+          },
+          "empty": false,
+          "id": "hotspot-PS0-M0",
+          "inventoryId": "component-8104528",
+          "label": "Power Unit Slot",
+          "metadata": {
+            "alias": 6,
+            "fillerTypeId": "A9006-FILLER-PT",
+            "sourceName": "power-module 0/PM0/SP",
+            "sourceTypeId": "A9K-3KW-AC"
+          },
+          "physicalIndex": 66531208,
+          "slotKey": "PS0/M0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9K-3KW-AC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-3KW-AC.svg",
+            "typeId": "A9K-3KW-AC"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 995.81,
+            "x": 1214.89,
+            "y": 2712.09
+          },
+          "empty": false,
+          "id": "hotspot-PS0-M1",
+          "inventoryId": "component-8104541",
+          "label": "Power Unit Slot",
+          "metadata": {
+            "alias": 7,
+            "fillerTypeId": "A9006-FILLER-PT",
+            "sourceName": "power-module 0/PM1/SP",
+            "sourceTypeId": "A9K-3KW-AC"
+          },
+          "physicalIndex": 21657197,
+          "slotKey": "PS0/M1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr9006/A9006-FILLER-PT.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9006-FILLER-PT.svg",
+            "typeId": "A9006-FILLER-PT"
+          },
+          "bounds": {
+            "h": 319.07,
+            "w": 995.81,
+            "x": 2210.7,
+            "y": 2712.09
+          },
+          "empty": true,
+          "id": "hotspot-PS0-M2",
+          "inventoryId": "component-8104539",
+          "label": "Power Unit Slot",
+          "metadata": {
+            "alias": 8,
+            "fillerTypeId": "A9006-FILLER-PT",
+            "sourceName": "slot 0/PM2",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 10110611,
+          "slotKey": "PS0/M2"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/asr9006/ASR-9006-AC-Front.svg",
+      "label": "Front View",
+      "sourceHeight": 158.0,
+      "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/Cisco_ASR_9006_Router/images/ASR-9006-AC-Front.svg",
+      "sourceWidth": 173.0,
+      "width": 3445.5
+    }
+  ]
+}

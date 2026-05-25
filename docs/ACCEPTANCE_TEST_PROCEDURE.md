@@ -171,7 +171,7 @@ Performance validation requires at least one reachable device with valid SNMP cr
 | 11.1 | Settings navigation | Open Settings, click each submenu | All sections accessible |
 | 11.2 | Deep link | Navigate to `/settings?section=security` | Correct section opens |
 | 11.3 | Search | Type in settings search bar | Matching submenus highlighted |
-| 11.4 | System mail settings | Edit SMTP host/port/from, save | Settings persisted |
+| 11.4 | Mail notification settings | Open Settings -> Notifications & Forwarding, edit SMTP host/port/from, save | Settings persisted |
 | 11.5 | System job settings | Edit concurrency/retries, save | Settings persisted |
 | 11.6 | System retention | Edit alarm/event/KPI retention days, save | Settings persisted |
 | 11.7 | Network SNMP defaults | Edit community/version/timeout, save | Settings persisted |
@@ -182,8 +182,8 @@ Performance validation requires at least one reachable device with valid SNMP cr
 | 11.12 | Profile export | Click Export Settings Profile | JSON file downloaded |
 | 11.13 | Profile import | Upload exported JSON profile | Settings restored |
 | 11.14 | Audit trail | View Settings audit log | Recent changes listed with timestamps |
-| 11.15 | Event forwarding | Add forwarding target (IP + port) | Target saved |
-| 11.16 | Event forwarding test | Click Test on forwarding target | Test event sent, result shown |
+| 11.15 | Mail notification test | Click Test Mail Notification under Notifications & Forwarding | SMTP settings validated and result shown |
+| 11.16 | Event forwarding | Add forwarding target (IP + port) | Target saved |
 | 11.17 | Forwarding enable/disable | Toggle forwarding target on/off | State persisted |
 
 ## 12. Event Forwarding (P0)
@@ -199,6 +199,7 @@ Performance validation requires at least one reachable device with valid SNMP cr
 | 12.7 | Enable/disable | Toggle target off | Events no longer forwarded to that target |
 | 12.8 | Edit target | Modify host/port, save | Changes persisted |
 | 12.9 | Delete target | Delete a forwarding target | Removed from list |
+| 12.10 | Account audit forwarding | Add target with Account Audit event type, change a non-admin user's roles | External collector receives account_audit event |
 
 ## 13. Lab Health & Monitoring (P1)
 

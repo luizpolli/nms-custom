@@ -89,6 +89,55 @@ def _make_client(store: dict) -> TestClient:
 
 
 # ---------------------------------------------------------------------------
+# General settings tests
+# ---------------------------------------------------------------------------
+
+class TestGeneralSettings:
+    def setup_method(self):
+        self.store: dict = {}
+        self.client = _make_client(self.store)
+
+    def teardown_method(self):
+        app.dependency_overrides.pop(get_db, None)
+
+    def test_get_returns_defaults(self):
+        resp = self.client.get("/api/settings/general")
+        assert resp.status_code == 200
+        body = resp.json()
+        assert body["product_name"] == "NMS Custom"
+        assert body["default_theme"] == "system"
+
+    def test_put_persists_and_audits(self):
+        payload = {
+            "product_name": "NMS Custom Lab",
+            "deployment_name": "Certification",
+            "default_theme": "dark",
+            "support_contact_name": "NOC",
+            "support_contact_email": "noc@example.com",
+            "tac_case_url": "https://cisco.com/tac",
+            "cisco_account_name": "lab-account",
+        }
+        resp = self.client.put("/api/settings/general", json=payload)
+        assert resp.status_code == 200
+        assert resp.json()["deployment_name"] == "Certification"
+        assert self.store["__audit__"][-1].action == "settings.general.update"
+        assert self.store["__audit__"][-1].object_id == "general"
+
+    def test_put_invalid_support_email_rejected(self):
+        payload = {
+            "product_name": "NMS Custom",
+            "deployment_name": "",
+            "default_theme": "system",
+            "support_contact_name": "",
+            "support_contact_email": "bad-email",
+            "tac_case_url": "",
+            "cisco_account_name": "",
+        }
+        resp = self.client.put("/api/settings/general", json=payload)
+        assert resp.status_code == 422
+
+
+# ---------------------------------------------------------------------------
 # System settings tests
 # ---------------------------------------------------------------------------
 
@@ -185,6 +234,27 @@ class TestSystemSettings:
         body = resp.json()
         assert body["mail"]["smtp_host"] == "relay.corp"
         assert body["retention"]["alarm_retention_days"] == 45
+
+    def test_test_configuration_validates_current_payload(self):
+        payload = self.client.get("/api/settings/system").json()["mail"]
+        payload["smtp_host"] = "smtp.example.com"
+        payload["smtp_from"] = ""
+
+        resp = self.client.post("/api/settings/mail/test", json=payload)
+
+        assert resp.status_code == 200
+        assert resp.json()["ok"] is False
+        assert "From address" in resp.json()["message"]
+
+    def test_legacy_system_test_still_validates_mail_payload(self):
+        payload = self.client.get("/api/settings/system").json()
+        payload["mail"]["smtp_host"] = "smtp.example.com"
+        payload["mail"]["smtp_from"] = ""
+
+        resp = self.client.post("/api/settings/system/test", json=payload)
+
+        assert resp.status_code == 200
+        assert resp.json()["ok"] is False
 
 
 # ---------------------------------------------------------------------------
@@ -321,6 +391,105 @@ class TestAlarmsEventsSettings:
 
 
 # ---------------------------------------------------------------------------
+# Inventory / integrations / lab settings tests
+# ---------------------------------------------------------------------------
+
+class TestAdditionalSettingsSections:
+    def setup_method(self):
+        self.store: dict = {}
+        self.client = _make_client(self.store)
+
+    def teardown_method(self):
+        app.dependency_overrides.pop(get_db, None)
+
+    def test_inventory_put_persists(self):
+        payload = {
+            "config_archive_enabled": True,
+            "config_archive_frequency_minutes": 720,
+            "config_archive_retention_days": 120,
+            "image_repository_path": "/var/lib/nms/images",
+            "default_discovery_profile": "snmp-v3",
+            "auto_group_by_site": False,
+            "lifecycle_warning_days": 90,
+        }
+        resp = self.client.put("/api/settings/inventory", json=payload)
+        assert resp.status_code == 200
+        assert resp.json()["default_discovery_profile"] == "snmp-v3"
+        assert self.client.get("/api/settings/inventory").json()["config_archive_retention_days"] == 120
+        assert self.store["__audit__"][-1].action == "settings.inventory.update"
+
+    def test_inventory_invalid_archive_frequency_rejected(self):
+        payload = self.client.get("/api/settings/inventory").json()
+        payload["config_archive_frequency_minutes"] = 1
+        resp = self.client.put("/api/settings/inventory", json=payload)
+        assert resp.status_code == 422
+
+    def test_integrations_ai_ops_put_persists(self):
+        payload = {
+            "nbi_enabled": True,
+            "webhook_retry_attempts": 5,
+            "webhook_timeout_seconds": 30,
+            "ai_ops_enabled": True,
+            "ai_recommendation_min_confidence": 85,
+            "llm_provider": "custom",
+            "llm_model": "local-model",
+            "report_export_target_path": "/exports/reports",
+        }
+        resp = self.client.put("/api/settings/integrations-ai-ops", json=payload)
+        assert resp.status_code == 200
+        assert resp.json()["ai_recommendation_min_confidence"] == 85
+        assert self.store["__audit__"][-1].action == "settings.integrations_ai_ops.update"
+
+    def test_integrations_invalid_confidence_rejected(self):
+        payload = self.client.get("/api/settings/integrations-ai-ops").json()
+        payload["ai_recommendation_min_confidence"] = 101
+        resp = self.client.put("/api/settings/integrations-ai-ops", json=payload)
+        assert resp.status_code == 422
+
+    def test_lab_operations_put_persists(self):
+        payload = {
+            "certification_mode_enabled": True,
+            "traffic_simulator_enabled": True,
+            "simulator_profile": "trap-storm",
+            "maintenance_mode_enabled": False,
+            "maintenance_window": "Sunday 01:00-03:00",
+            "runbook_url": "https://example.com/runbook",
+            "ptp_synce_enabled": True,
+        }
+        resp = self.client.put("/api/settings/lab-operations", json=payload)
+        assert resp.status_code == 200
+        assert resp.json()["simulator_profile"] == "trap-storm"
+        assert self.client.get("/api/settings/lab-operations").json()["ptp_synce_enabled"] is True
+        assert self.store["__audit__"][-1].action == "settings.lab_operations.update"
+
+    def test_lab_operations_invalid_runbook_rejected(self):
+        payload = self.client.get("/api/settings/lab-operations").json()
+        payload["runbook_url"] = "ftp://example.com/runbook"
+        resp = self.client.put("/api/settings/lab-operations", json=payload)
+        assert resp.status_code == 422
+
+    def test_modules_put_persists_and_audits(self):
+        payload = self.client.get("/api/settings/modules").json()
+        payload["telemetry"] = False
+        payload["commands"] = False
+
+        resp = self.client.put("/api/settings/modules", json=payload)
+
+        assert resp.status_code == 200
+        assert self.client.get("/api/settings/modules").json()["telemetry"] is False
+        assert self.client.get("/api/settings/modules").json()["commands"] is False
+        assert self.store["__audit__"][-1].action == "settings.modules.update"
+        assert sorted(self.store["__audit__"][-1].details["disabled"]) == ["commands", "telemetry"]
+
+    def test_account_audit_paths_returns_cli_targets(self):
+        resp = self.client.get("/api/settings/account-audit/paths")
+        assert resp.status_code == 200
+        body = resp.json()
+        assert body["user_activity_path"].endswith("account_audit.jsonl")
+        assert body["privileged_activity_path"].endswith("privileged_account_audit.jsonl")
+
+
+# ---------------------------------------------------------------------------
 # Settings profile import/export tests
 # ---------------------------------------------------------------------------
 
@@ -337,27 +506,42 @@ class TestSettingsProfile:
         assert resp.status_code == 200
         body = resp.json()
 
-        assert body["profile_version"] == 1
+        assert body["profile_version"] == 3
+        assert body["general"]["product_name"] == "NMS Custom"
         assert body["security"]["tls_min_version"] in {"TLSv1.2", "TLSv1.3"}
         assert body["system"]["mail"]["smtp_port"] == 587
         assert body["network_devices"]["snmp"]["snmp_port"] == 161
+        assert body["inventory"]["config_archive_retention_days"] == 90
         assert body["alarms_events"]["notifications"]["min_severity_to_notify"] == "major"
+        assert body["integrations_ai_ops"]["llm_provider"] == "local"
+        assert body["lab_operations"]["certification_mode_enabled"] is True
+        assert body["modules"]["telemetry"] is True
         assert self.store["__audit__"][-1].action == "settings.profile.export"
 
     def test_import_profile_persists_all_sections(self):
         payload = self.client.get("/api/settings/profile").json()
         payload["security"]["api_auth_enabled"] = True
+        payload["general"]["deployment_name"] = "Profile import"
         payload["system"]["mail"]["smtp_host"] = "smtp.profile.local"
         payload["network_devices"]["cli"]["ssh_timeout_seconds"] = 75
+        payload["inventory"]["default_discovery_profile"] = "profile-discovery"
         payload["alarms_events"]["suppression"]["suppression_window_minutes"] = 22
+        payload["integrations_ai_ops"]["ai_recommendation_min_confidence"] = 88
+        payload["lab_operations"]["simulator_profile"] = "profile-sim"
+        payload["modules"]["telemetry"] = False
 
         resp = self.client.put("/api/settings/profile", json=payload)
         assert resp.status_code == 200
 
         assert self.client.get("/api/settings/security").json()["api_auth_enabled"] is True
+        assert self.client.get("/api/settings/general").json()["deployment_name"] == "Profile import"
         assert self.client.get("/api/settings/system").json()["mail"]["smtp_host"] == "smtp.profile.local"
         assert self.client.get("/api/settings/network-devices").json()["cli"]["ssh_timeout_seconds"] == 75
+        assert self.client.get("/api/settings/inventory").json()["default_discovery_profile"] == "profile-discovery"
         assert self.client.get("/api/settings/alarms-events").json()["suppression"]["suppression_window_minutes"] == 22
+        assert self.client.get("/api/settings/integrations-ai-ops").json()["ai_recommendation_min_confidence"] == 88
+        assert self.client.get("/api/settings/lab-operations").json()["simulator_profile"] == "profile-sim"
+        assert self.client.get("/api/settings/modules").json()["telemetry"] is False
         assert any(entry.action == "settings.profile.import" for entry in self.store["__audit__"])
 
     def test_import_profile_rejects_unknown_version(self):

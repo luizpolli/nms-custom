@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   Settings as SettingsIcon,
   Network,
-  Package,
   Bell,
   RadioTower,
   Users,
@@ -13,21 +11,28 @@ import {
   BrainCircuit,
   FlaskConical,
   ChevronRight,
-  Info,
   CheckCircle2,
   XCircle,
   Search,
   X,
   Lock,
+  ToggleLeft,
+  FileSearch,
+  Download,
 } from 'lucide-react';
 import { useThemeStore, type Theme } from '../stores/theme';
 import { useAuthStore } from '../stores/auth';
 import { Card, CardHeader } from '../components/ui/Card';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Select } from '../components/ui/Select';
-import { Button, Input, Badge } from '../components/ui';
+import { Button, Input, Badge, InfoFloat, PageIntroFloat } from '../components/ui';
 import { api } from '../lib/api';
 import { ForwardingSettings } from './settings/ForwardingSettings';
+import { AlarmRulesPage } from './alarms/AlarmRulesPage';
+import { MIBsPage } from './mibs/MIBsPage';
+import { LabHealthPage } from './lab/LabHealthPage';
+import { MODULES, MODULE_DEFAULTS, type ModuleControlSettings, type ModuleKey } from '../lib/moduleControls';
+import { useModuleControls } from '../components/layout/ModuleControlProvider';
 
 type CategoryKey =
   | 'general'
@@ -38,6 +43,7 @@ type CategoryKey =
   | 'inventory'
   | 'alarmsEvents'
   | 'eventForwarding'
+  | 'modules'
   | 'integrationsAiOps'
   | 'labOperations';
 
@@ -55,11 +61,12 @@ const CATEGORY_PERMISSIONS: Record<CategoryKey, string[]> = {
   general: ['administrative_operations_system_settings'],
   system: ['administrative_operations_system_settings'],
   security: ['administrative_operations_system_settings'],
-  usersRoles: ['administrative_operations_users_and_groups', 'user_administration_users_and_groups'],
+  usersRoles: ['administrative_operations_users_and_groups', 'user_administration_users_and_groups', 'administrative_operations_view_audit_logs_access', 'administrative_operations_audit_trails'],
   networkDevices: ['administrative_operations_system_settings', 'system_settings_submenu_network_and_device_snmp'],
   inventory: ['administrative_operations_system_settings', 'system_settings_submenu_inventory_inventory'],
   alarmsEvents: ['administrative_operations_system_settings', 'system_settings_submenu_alarm_and_events_alarm_and_events'],
   eventForwarding: ['administrative_operations_system_settings', 'nbi.write'],
+  modules: ['administrative_operations_system_settings'],
   integrationsAiOps: ['administrative_operations_system_settings'],
   labOperations: ['administrative_operations_system_settings', 'system_settings_submenu_performance_ptp_synce'],
 };
@@ -68,13 +75,11 @@ const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>
   general: {
     Appearance: ['administrative_operations_user_preferences'],
     'Polling summary': ['administrative_operations_system_settings'],
-    'cisco.com / TAC': ['feedback_and_support_tac_case_management_tool'],
   },
   system: {
     'Server tuning': ['system_settings_submenu_general_server'],
     Database: ['administrative_operations_system_settings'],
     Jobs: ['system_settings_submenu_general_job_approval', 'job_management_view_job'],
-    'Mail notifications': ['system_settings_submenu_mail_notification_mail_server_configuration'],
     Backups: ['administrative_operations_system_settings'],
     'Software updates': ['system_settings_submenu_general_software_update'],
   },
@@ -89,10 +94,18 @@ const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>
     Roles: ['administrative_operations_users_and_groups', 'user_administration_users_and_groups'],
     'Task permissions': ['administrative_operations_users_and_groups'],
     'Virtual domains': ['administrative_operations_virtual_domain_management', 'user_administration_virtual_domain_management'],
+    'Account audit': ['administrative_operations_view_audit_logs_access', 'administrative_operations_audit_trails'],
+    'CSV export': ['administrative_operations_view_audit_logs_access', 'administrative_operations_audit_trails'],
   },
   networkDevices: {
     'CLI session': ['administrative_operations_device_console_config'],
     'SNMP defaults': ['system_settings_submenu_network_and_device_snmp'],
+    'MIB catalog': ['system_settings_submenu_network_and_device_snmp'],
+    'Config archives': ['system_settings_submenu_inventory_configuration_archive'],
+    'Image management': ['system_settings_submenu_inventory_software_image_management'],
+    Discovery: ['system_settings_submenu_inventory_network_discovery'],
+    'Device groups': ['groups_management_modify_groups'],
+    Lifecycle: ['system_settings_submenu_inventory_inventory'],
     'Credentials policy': ['network_configuration_credential_profile_view_access'],
     'Plug & Play': ['network_configuration_auto_provisioning'],
     'Controller upgrades': ['software_image_management_swim_access_privilege'],
@@ -105,6 +118,7 @@ const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>
     Lifecycle: ['system_settings_submenu_inventory_inventory'],
   },
   alarmsEvents: {
+    'Alarm rules': ['system_settings_submenu_alarm_and_events_alarm_severity_and_auto_clear'],
     'Severity mapping': ['system_settings_submenu_alarm_and_events_alarm_severity_and_auto_clear'],
     'Trap storage': ['system_settings_submenu_alarm_and_events_alarm_and_events'],
     Syslog: ['system_settings_submenu_alarm_and_events_system_event_configuration'],
@@ -112,9 +126,15 @@ const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>
     Notifications: ['system_settings_submenu_alarm_and_events_alarm_notification_policies'],
   },
   eventForwarding: {
+    'Mail notifications': ['system_settings_submenu_mail_notification_mail_server_configuration'],
     Targets: ['administrative_operations_system_settings', 'nbi.write'],
     Testing: ['administrative_operations_system_settings', 'nbi.write'],
     Filters: ['system_settings_submenu_alarm_and_events_alarm_and_events'],
+  },
+  modules: {
+    'Module catalog': ['administrative_operations_system_settings'],
+    'Customer deployment profile': ['administrative_operations_system_settings'],
+    'Route visibility': ['administrative_operations_system_settings'],
   },
   integrationsAiOps: {
     'Northbound API': ['nbi.read', 'nbi.write'],
@@ -137,19 +157,19 @@ const CATEGORIES: Category[] = [
     key: 'general',
     number: 1,
     title: 'General',
-    description: 'Global UI preferences, product identity, support metadata, and TAC/cisco.com placeholders.',
+    description: 'Global UI preferences, product identity, and runtime polling summary.',
     icon: <SettingsIcon className="h-5 w-5" />,
-    submenus: ['Appearance', 'Polling summary', 'cisco.com / TAC'],
-    status: 'partial',
+    submenus: ['Appearance', 'Polling summary'],
+    status: 'live',
   },
   {
     key: 'system',
     number: 2,
     title: 'System',
-    description: 'Server, database, jobs, mail, backups, software updates, and runtime tuning.',
+    description: 'Server, database, scheduled jobs, retention, backups, software updates, and runtime tuning.',
     icon: <ServerCog className="h-5 w-5" />,
-    submenus: ['Server tuning', 'Database', 'Jobs', 'Mail notifications', 'Backups', 'Software updates'],
-    status: 'planned',
+    submenus: ['Server tuning', 'Database', 'Jobs', 'Backups', 'Software updates'],
+    status: 'live',
   },
   {
     key: 'security',
@@ -163,46 +183,46 @@ const CATEGORIES: Category[] = [
   {
     key: 'usersRoles',
     number: 4,
-    title: 'Users / Roles',
-    description: 'Local Web GUI and NBI users, Cisco-style built-in roles, custom roles, and task permissions.',
+    title: 'Access Control',
+    description: 'Local Web GUI and NBI users, Cisco-style roles, task permissions, virtual domains, and account audit review.',
     icon: <Users className="h-5 w-5" />,
-    submenus: ['Users', 'Roles', 'Task permissions', 'Virtual domains'],
+    submenus: ['Users', 'Roles', 'Task permissions', 'Virtual domains', 'Account audit', 'CSV export'],
     status: 'live',
   },
   {
     key: 'networkDevices',
     number: 5,
-    title: 'Network Devices',
-    description: 'Device access defaults, CLI/SNMP behavior, Plug & Play onboarding, and controller upgrades.',
+    title: 'Network Devices & Inventory',
+    description: 'Device access defaults, CLI/SNMP behavior, MIB catalog, configuration archives, discovery, groups, lifecycle, and software images.',
     icon: <Network className="h-5 w-5" />,
-    submenus: ['CLI session', 'SNMP defaults', 'Credentials policy', 'Plug & Play', 'Controller upgrades'],
-    status: 'planned',
-  },
-  {
-    key: 'inventory',
-    number: 6,
-    title: 'Inventory',
-    description: 'Configuration archives, image management, discovery defaults, groups, and lifecycle settings.',
-    icon: <Package className="h-5 w-5" />,
-    submenus: ['Config archives', 'Image management', 'Discovery', 'Device groups', 'Lifecycle'],
-    status: 'planned',
+    submenus: ['CLI session', 'SNMP defaults', 'MIB catalog', 'Config archives', 'Image management', 'Discovery', 'Device groups', 'Lifecycle', 'Credentials policy', 'Plug & Play', 'Controller upgrades'],
+    status: 'live',
   },
   {
     key: 'alarmsEvents',
-    number: 7,
+    number: 6,
     title: 'Alarms / Events',
-    description: 'Severity mappings, trap/syslog intake, event retention, notification rules, and suppression defaults.',
+    description: 'Alarm rules, severity mappings, trap/syslog intake, event retention, notification rules, and suppression defaults.',
     icon: <Bell className="h-5 w-5" />,
-    submenus: ['Severity mapping', 'Trap storage', 'Syslog', 'Event retention', 'Notifications'],
-    status: 'planned',
+    submenus: ['Alarm rules', 'Severity mapping', 'Trap storage', 'Syslog', 'Event retention', 'Notifications'],
+    status: 'live',
   },
   {
     key: 'eventForwarding',
-    number: 8,
-    title: 'Event Forwarding',
-    description: 'Northbound relay targets for received traps, syslogs, telemetry events, and generated alarms.',
+    number: 7,
+    title: 'Notifications & Forwarding',
+    description: 'SMTP notification settings and northbound relay targets for traps, syslogs, telemetry events, generated alarms, and account audit events.',
     icon: <RadioTower className="h-5 w-5" />,
-    submenus: ['Targets', 'Testing', 'Filters'],
+    submenus: ['Mail notifications', 'Targets', 'Testing', 'Filters'],
+    status: 'live',
+  },
+  {
+    key: 'modules',
+    number: 8,
+    title: 'Modules / Feature Control',
+    description: 'Enable or disable operational modules per customer deployment, hiding unused pages and blocking direct route access.',
+    icon: <ToggleLeft className="h-5 w-5" />,
+    submenus: ['Module catalog', 'Customer deployment profile', 'Route visibility'],
     status: 'live',
   },
   {
@@ -218,25 +238,140 @@ const CATEGORIES: Category[] = [
     key: 'labOperations',
     number: 10,
     title: 'Lab / Operations',
-    description: 'Lab health, traffic simulator hooks, maintenance windows, operational runbooks, and PTP/SyncE.',
+    description: 'Certification readiness, lab health, traffic simulator hooks, maintenance windows, operational runbooks, and PTP/SyncE.',
     icon: <FlaskConical className="h-5 w-5" />,
     submenus: ['Lab health', 'Traffic simulator', 'Maintenance', 'Runbooks', 'PTP / SyncE'],
-    status: 'planned',
+    status: 'live',
   },
 ];
+const SETTINGS_SECTION_INTRO_STORAGE_PREFIX = 'nms-settings-section-intro-v2';
+
+function useSettingsResource<T>(endpoint: string, defaults: T) {
+  const [cfg, setCfg] = useState<T>(defaults);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    setLoading(true);
+    api.get(endpoint)
+      .then((r) => {
+        if (mounted) setCfg(r.data);
+      })
+      .catch(() => {
+        if (mounted) setError('Settings could not be loaded.');
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+    return () => {
+      mounted = false;
+    };
+  }, [endpoint]);
+
+  const save = async () => {
+    setSaving(true);
+    setSaved(false);
+    setError(null);
+    try {
+      const r = await api.put(endpoint, cfg);
+      setCfg(r.data);
+      setSaved(true);
+      return r.data as T;
+    } catch {
+      setError('Save failed. Check field values and try again.');
+      return null;
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return { cfg, setCfg, loading, saving, saved, error, save };
+}
+
+function SettingsSaveBar({
+  label,
+  loading,
+  saving,
+  saved,
+  error,
+  onSave,
+}: {
+  label: string;
+  loading?: boolean;
+  saving: boolean;
+  saved: boolean;
+  error: string | null;
+  onSave: () => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <Button onClick={onSave} disabled={saving || loading}>{saving ? 'Saving...' : label}</Button>
+      {loading && <span className="text-sm text-gray-500">Loading settings...</span>}
+      {saved && <span className="text-sm text-green-600">Saved.</span>}
+      {error && <span className="text-sm text-red-600">{error}</span>}
+    </div>
+  );
+}
+
+function SettingsHint({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-xs text-blue-900 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-200">
+      {children}
+    </div>
+  );
+}
+
+interface GeneralAdminSettings {
+  product_name: string;
+  deployment_name: string;
+  default_theme: Theme;
+  support_contact_name: string;
+  support_contact_email: string;
+  tac_case_url: string;
+  cisco_account_name: string;
+}
+
+const GENERAL_DEFAULTS: GeneralAdminSettings = {
+  product_name: 'NMS Custom',
+  deployment_name: 'Lab',
+  default_theme: 'system',
+  support_contact_name: '',
+  support_contact_email: '',
+  tac_case_url: '',
+  cisco_account_name: '',
+};
 
 function GeneralPanel() {
   const { theme, setTheme } = useThemeStore();
+  const { cfg, setCfg, loading, saving, saved, error, save } = useSettingsResource('/settings/general', GENERAL_DEFAULTS);
+  const setGeneral = <K extends keyof GeneralAdminSettings>(k: K, v: GeneralAdminSettings[K]) =>
+    setCfg((p) => ({ ...p, [k]: v }));
+
   return (
     <div className="space-y-6">
       <Card>
-        <CardHeader title="Appearance" />
-        <div className="space-y-4 p-4">
+        <CardHeader title="Product Identity and Appearance" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          <label className="block">
+            <span className="mb-1 block font-medium">Product display name</span>
+            <Input value={cfg.product_name} onChange={(e) => setGeneral('product_name', e.target.value)} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Deployment name</span>
+            <Input value={cfg.deployment_name} onChange={(e) => setGeneral('deployment_name', e.target.value)} placeholder="Production, Lab, Certification" />
+          </label>
           <label className="block">
             <span className="mb-1 block text-sm font-medium">Theme</span>
             <Select
               value={theme}
-              onChange={(e) => setTheme(e.target.value as Theme)}
+              onChange={(e) => {
+                const next = e.target.value as Theme;
+                setTheme(next);
+                setGeneral('default_theme', next);
+              }}
               className="max-w-xs"
             >
               <option value="system">System</option>
@@ -244,10 +379,13 @@ function GeneralPanel() {
               <option value="dark">Dark</option>
             </Select>
           </label>
+          <SettingsHint>
+            The active browser theme applies immediately. The saved default records the deployment preference.
+          </SettingsHint>
         </div>
       </Card>
       <Card>
-        <CardHeader title="Polling (read-only)" />
+        <CardHeader title="Runtime Polling Summary" />
         <dl className="grid grid-cols-1 gap-3 p-4 text-sm sm:grid-cols-2">
           <div>
             <dt className="text-gray-500">KPI poll interval</dt>
@@ -267,12 +405,7 @@ function GeneralPanel() {
           </div>
         </dl>
       </Card>
-      <Card>
-        <CardHeader title="cisco.com / TAC" />
-        <p className="p-4 text-sm text-gray-500">
-          Coming soon: cisco.com credentials, software update channel, TAC contact information.
-        </p>
-      </Card>
+      <SettingsSaveBar label="Save General Settings" loading={loading} saving={saving} saved={saved} error={error} onSave={save} />
     </div>
   );
 }
@@ -330,7 +463,10 @@ interface SettingsAuditLog {
   actor?: string | null;
   action: string;
   object_id?: string | null;
+  source_ip?: string | null;
+  message?: string | null;
   outcome: string;
+  details?: Record<string, unknown> | null;
 }
 
 const EMPTY_USER_FORM = {
@@ -445,55 +581,6 @@ function PasswordPolicyFloat({ user, visible }: { user: NewUserForm; visible: bo
         Security tip: do not reuse device, TACACS/RADIUS, or personal account passwords.
       </div>
     </div>
-  );
-}
-
-function InfoFloat({ title, description }: { title: string; description?: string }) {
-  const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, left: 0 });
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-  const show = () => {
-    const rect = buttonRef.current?.getBoundingClientRect();
-    if (rect) {
-      setPos({
-        top: Math.min(rect.top, window.innerHeight - 160),
-        left: Math.min(rect.right + 8, window.innerWidth - 304),
-      });
-    }
-    setOpen(true);
-  };
-
-  return (
-    <span className="inline-block">
-      <button
-        ref={buttonRef}
-        type="button"
-        onMouseEnter={show}
-        onMouseLeave={() => setOpen(false)}
-        onFocus={show}
-        onBlur={() => setOpen(false)}
-        onClick={() => (open ? setOpen(false) : show())}
-        className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-cisco-blue/10 text-cisco-blue hover:bg-cisco-blue/20"
-        aria-label={`Info about ${title}`}
-      >
-        <Info className="h-3 w-3" />
-      </button>
-      {open && createPortal(
-        <span
-          className="fixed z-[9999] w-72 rounded-lg border border-gray-200 bg-white p-3 text-xs shadow-xl dark:border-gray-700 dark:bg-gray-900"
-          style={{ top: pos.top, left: pos.left }}
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
-        >
-          <span className="block font-semibold text-gray-900 dark:text-gray-100">{title}</span>
-          <span className="mt-1 block text-gray-600 dark:text-gray-300">
-            {description || 'No description provided.'}
-          </span>
-        </span>,
-        document.body,
-      )}
-    </span>
   );
 }
 
@@ -1157,8 +1244,6 @@ function SystemPanel() {
     api.get('/settings/system').then((r) => setCfg(r.data)).catch(() => {});
   }, []);
 
-  const setMail = <K extends keyof SystemMailCfg>(k: K, v: SystemMailCfg[K]) =>
-    setCfg((p) => ({ ...p, mail: { ...p.mail, [k]: v } }));
   const setJobs = <K extends keyof SystemJobsCfg>(k: K, v: SystemJobsCfg[K]) =>
     setCfg((p) => ({ ...p, jobs: { ...p.jobs, [k]: v } }));
   const setRetention = <K extends keyof SystemRetentionCfg>(k: K, v: SystemRetentionCfg[K]) =>
@@ -1175,32 +1260,6 @@ function SystemPanel() {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader title="Mail Notifications (SMTP)" />
-        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
-          <label className="block">
-            <span className="mb-1 block font-medium">SMTP host</span>
-            <Input value={cfg.mail.smtp_host} onChange={(e) => setMail('smtp_host', e.target.value)} placeholder="smtp.example.com" />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">SMTP port</span>
-            <Input type="number" value={cfg.mail.smtp_port} onChange={(e) => setMail('smtp_port', Number(e.target.value))} />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">From address</span>
-            <Input type="email" value={cfg.mail.smtp_from} onChange={(e) => setMail('smtp_from', e.target.value)} placeholder="nms@example.com" />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Username</span>
-            <Input value={cfg.mail.smtp_username} onChange={(e) => setMail('smtp_username', e.target.value)} placeholder="optional" />
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" checked={cfg.mail.smtp_use_tls} onChange={(e) => setMail('smtp_use_tls', e.target.checked)} />
-            Use TLS / STARTTLS
-          </label>
-        </div>
-      </Card>
-
       <Card>
         <CardHeader title="Scheduled Jobs" />
         <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
@@ -1242,6 +1301,83 @@ function SystemPanel() {
         {error && <span className="text-sm text-red-600">{error}</span>}
       </div>
     </div>
+  );
+}
+
+function MailNotificationPanel() {
+  const [cfg, setCfg] = useState<SystemAdminSettings>(SYSTEM_DEFAULTS);
+  const [saving, setSaving] = useState(false);
+  const [testing, setTesting] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [testResult, setTestResult] = useState<{ ok: boolean; message: string; checks: string[] } | null>(null);
+
+  useEffect(() => {
+    api.get('/settings/system').then((r) => setCfg(r.data)).catch(() => {});
+  }, []);
+
+  const setMail = <K extends keyof SystemMailCfg>(k: K, v: SystemMailCfg[K]) =>
+    setCfg((p) => ({ ...p, mail: { ...p.mail, [k]: v } }));
+
+  const save = async () => {
+    setSaving(true); setSaved(false); setError(null);
+    try {
+      const r = await api.put('/settings/system', cfg);
+      setCfg(r.data); setSaved(true);
+    } catch { setError('Save failed — check field values.'); }
+    finally { setSaving(false); }
+  };
+
+  const testMail = async () => {
+    setTesting(true); setTestResult(null); setError(null);
+    try {
+      const r = await api.post('/settings/mail/test', cfg.mail);
+      setTestResult(r.data);
+    } catch { setError('Mail test failed — check SMTP field values.'); }
+    finally { setTesting(false); }
+  };
+
+  return (
+    <Card>
+      <CardHeader title="Mail Notifications (SMTP)" />
+      <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+        <label className="block">
+          <span className="mb-1 block font-medium">SMTP host</span>
+          <Input value={cfg.mail.smtp_host} onChange={(e) => setMail('smtp_host', e.target.value)} placeholder="smtp.example.com" />
+        </label>
+        <label className="block">
+          <span className="mb-1 block font-medium">SMTP port</span>
+          <Input type="number" value={cfg.mail.smtp_port} onChange={(e) => setMail('smtp_port', Number(e.target.value))} />
+        </label>
+        <label className="block">
+          <span className="mb-1 block font-medium">From address</span>
+          <Input type="email" value={cfg.mail.smtp_from} onChange={(e) => setMail('smtp_from', e.target.value)} placeholder="nms@example.com" />
+        </label>
+        <label className="block">
+          <span className="mb-1 block font-medium">Username</span>
+          <Input value={cfg.mail.smtp_username} onChange={(e) => setMail('smtp_username', e.target.value)} placeholder="optional" />
+        </label>
+        <label className="flex items-center gap-2">
+          <input type="checkbox" checked={cfg.mail.smtp_use_tls} onChange={(e) => setMail('smtp_use_tls', e.target.checked)} />
+          Use TLS / STARTTLS
+        </label>
+      </div>
+      <div className="flex flex-wrap items-center gap-3 border-t border-gray-200 p-4 dark:border-gray-700">
+        <Button onClick={save} disabled={saving}>{saving ? 'Saving...' : 'Save Mail Notification Settings'}</Button>
+        <Button variant="outline" onClick={testMail} disabled={testing}>{testing ? 'Testing...' : 'Test Mail Notification'}</Button>
+        {saved && <span className="text-sm text-green-600">Saved.</span>}
+        {error && <span className="text-sm text-red-600">{error}</span>}
+      </div>
+      {testResult && (
+        <div className="space-y-2 border-t border-gray-200 p-4 text-sm dark:border-gray-700">
+          <Badge variant={testResult.ok ? 'success' : 'danger'}>{testResult.ok ? 'Passed' : 'Failed'}</Badge>
+          <p className="text-gray-700 dark:text-gray-200">{testResult.message}</p>
+          <ul className="list-disc space-y-1 pl-5 text-xs text-gray-500 dark:text-gray-400">
+            {testResult.checks.map((check) => <li key={check}>{check}</li>)}
+          </ul>
+        </div>
+      )}
+    </Card>
   );
 }
 
@@ -1343,6 +1479,8 @@ function NetworkDevicesPanel() {
         </div>
       </Card>
 
+      <MIBsPage embedded />
+
       <div className="flex items-center gap-3">
         <Button onClick={save} disabled={saving}>{saving ? 'Saving...' : 'Save Network Device Settings'}</Button>
         {saved && <span className="text-sm text-green-600">Saved.</span>}
@@ -1395,6 +1533,8 @@ function AlarmsEventsPanel() {
 
   return (
     <div className="space-y-6">
+      <AlarmRulesPage embedded />
+
       <Card>
         <CardHeader title="Severity OID Value Mapping" />
         <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
@@ -1517,23 +1657,476 @@ function SettingsAuditPanel() {
   );
 }
 
-function PlaceholderPanel({ title, summary, items }: { title: string; summary?: string; items: string[] }) {
+function AccountAuditPanel() {
+  const [entries, setEntries] = useState<SettingsAuditLog[]>([]);
+  const [filters, setFilters] = useState({ q: '', actor: '', action: '', role: '', outcome: '', since: '', until: '' });
+  const [loading, setLoading] = useState(false);
+  const [exporting, setExporting] = useState(false);
+
+  const queryParams = () => {
+    const params = new URLSearchParams({ limit: '100' });
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    return params;
+  };
+
+  const loadAudit = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get(`/settings/account-audit?${queryParams().toString()}`);
+      setEntries(response.data);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void loadAudit();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const setFilter = (key: keyof typeof filters, value: string) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const exportCsv = async () => {
+    setExporting(true);
+    try {
+      const params = queryParams();
+      params.set('format', 'csv');
+      params.delete('limit');
+      const response = await api.get(`/settings/account-audit/export?${params.toString()}`, { responseType: 'blob' });
+      const blob = new Blob([response.data], { type: 'text/csv;charset=utf-8' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'account_audit_export.csv';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } finally {
+      setExporting(false);
+    }
+  };
+
+  const detailText = (entry: SettingsAuditLog, key: string) => {
+    const value = entry.details?.[key];
+    return typeof value === 'string' || typeof value === 'number' ? String(value) : '-';
+  };
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="Account Activity" />
+        <div className="space-y-4 p-4">
+          <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-4">
+            <Input placeholder="Search actor, action, path..." value={filters.q} onChange={(e) => setFilter('q', e.target.value)} />
+            <Input placeholder="Actor" value={filters.actor} onChange={(e) => setFilter('actor', e.target.value)} />
+            <Input placeholder="Action" value={filters.action} onChange={(e) => setFilter('action', e.target.value)} />
+            <Select value={filters.role} onChange={(e) => setFilter('role', e.target.value)}>
+              <option value="">Any role</option>
+              <option value="root">Root</option>
+              <option value="admin">Admin</option>
+              <option value="operator">Operator</option>
+              <option value="viewer">Viewer</option>
+              <option value="ai-ops">AI Ops</option>
+            </Select>
+            <Select value={filters.outcome} onChange={(e) => setFilter('outcome', e.target.value)}>
+              <option value="">Any outcome</option>
+              <option value="success">Success</option>
+              <option value="failure">Failure</option>
+            </Select>
+            <Input type="datetime-local" value={filters.since} onChange={(e) => setFilter('since', e.target.value)} />
+            <Input type="datetime-local" value={filters.until} onChange={(e) => setFilter('until', e.target.value)} />
+            <div className="flex gap-2">
+              <Button variant="secondary" onClick={loadAudit} loading={loading}>Apply</Button>
+              <Button variant="outline" onClick={exportCsv} loading={exporting} leftIcon={<Download className="h-4 w-4" />}>Export</Button>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+            <table className="min-w-full text-sm">
+              <thead className="bg-gray-50 text-xs uppercase text-gray-500 dark:bg-gray-800">
+                <tr>
+                  {['Time', 'Actor', 'Role', 'Action', 'Outcome', 'Source IP', 'Path'].map((header) => (
+                    <th key={header} className="px-3 py-2 text-left">{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                {entries.map((entry) => (
+                  <tr key={entry.id}>
+                    <td className="px-3 py-2 text-gray-500">{new Date(entry.timestamp).toLocaleString()}</td>
+                    <td className="px-3 py-2 font-medium">{entry.actor || '-'}</td>
+                    <td className="px-3 py-2">{detailText(entry, 'role')}</td>
+                    <td className="px-3 py-2">{entry.action}</td>
+                    <td className="px-3 py-2"><Badge variant={entry.outcome === 'success' ? 'success' : 'danger'}>{entry.outcome}</Badge></td>
+                    <td className="px-3 py-2">{entry.source_ip || '-'}</td>
+                    <td className="px-3 py-2">{detailText(entry, 'path')}</td>
+                  </tr>
+                ))}
+                {entries.length === 0 && (
+                  <tr><td className="px-3 py-4 text-gray-500" colSpan={7}>No account audit events match the current filters.</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+interface InventoryAdminSettings {
+  config_archive_enabled: boolean;
+  config_archive_frequency_minutes: number;
+  config_archive_retention_days: number;
+  image_repository_path: string;
+  default_discovery_profile: string;
+  auto_group_by_site: boolean;
+  lifecycle_warning_days: number;
+}
+
+const INVENTORY_DEFAULTS: InventoryAdminSettings = {
+  config_archive_enabled: true,
+  config_archive_frequency_minutes: 1440,
+  config_archive_retention_days: 90,
+  image_repository_path: '',
+  default_discovery_profile: 'snmp-cli',
+  auto_group_by_site: true,
+  lifecycle_warning_days: 180,
+};
+
+function InventorySettingsPanel() {
+  const { cfg, setCfg, loading, saving, saved, error, save } = useSettingsResource('/settings/inventory', INVENTORY_DEFAULTS);
+  const setInventory = <K extends keyof InventoryAdminSettings>(k: K, v: InventoryAdminSettings[K]) =>
+    setCfg((p) => ({ ...p, [k]: v }));
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="Configuration Archives" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
+          <label className="flex items-center gap-2 md:col-span-3">
+            <input type="checkbox" checked={cfg.config_archive_enabled} onChange={(e) => setInventory('config_archive_enabled', e.target.checked)} />
+            Enable scheduled configuration archives
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Archive frequency (minutes)</span>
+            <Input type="number" value={cfg.config_archive_frequency_minutes} onChange={(e) => setInventory('config_archive_frequency_minutes', Number(e.target.value))} disabled={!cfg.config_archive_enabled} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Archive retention (days)</span>
+            <Input type="number" value={cfg.config_archive_retention_days} onChange={(e) => setInventory('config_archive_retention_days', Number(e.target.value))} disabled={!cfg.config_archive_enabled} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Lifecycle warning (days)</span>
+            <Input type="number" value={cfg.lifecycle_warning_days} onChange={(e) => setInventory('lifecycle_warning_days', Number(e.target.value))} />
+          </label>
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="Image Management and Discovery Defaults" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+          <label className="block">
+            <span className="mb-1 block font-medium">Image repository path</span>
+            <Input value={cfg.image_repository_path} onChange={(e) => setInventory('image_repository_path', e.target.value)} placeholder="/var/lib/nms/images" />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Default discovery profile</span>
+            <Input value={cfg.default_discovery_profile} onChange={(e) => setInventory('default_discovery_profile', e.target.value)} placeholder="snmp-cli" />
+          </label>
+          <label className="flex items-center gap-2 md:col-span-2">
+            <input type="checkbox" checked={cfg.auto_group_by_site} onChange={(e) => setInventory('auto_group_by_site', e.target.checked)} />
+            Automatically group discovered devices by site metadata when available
+          </label>
+        </div>
+      </Card>
+
+      <SettingsSaveBar label="Save Inventory Settings" loading={loading} saving={saving} saved={saved} error={error} onSave={save} />
+    </div>
+  );
+}
+
+function ModuleControlSettingsPanel() {
+  const moduleControls = useModuleControls();
+  const { cfg, setCfg, loading, saving, saved, error, save } = useSettingsResource('/settings/modules', MODULE_DEFAULTS);
+  const disabledCount = Object.values(cfg).filter((enabled) => !enabled).length;
+  const groups = Array.from(new Set(MODULES.map((module) => module.group)));
+
+  const setModule = (key: ModuleKey, enabled: boolean) => {
+    setCfg((prev) => ({ ...prev, [key]: enabled }));
+  };
+
+  const setAll = (enabled: boolean) => {
+    setCfg(MODULES.reduce((acc, module) => ({ ...acc, [module.key]: enabled }), {} as ModuleControlSettings));
+  };
+
+  const saveModules = async () => {
+    const savedModules = await save();
+    if (savedModules) {
+      window.dispatchEvent(new CustomEvent('nms-modules-updated', { detail: savedModules }));
+      await moduleControls.refresh();
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="Customer Module Catalog" />
+        <div className="space-y-4 p-4 text-sm">
+          <SettingsHint>
+            Disable modules a customer does not use. Disabled modules are removed from the sidebar and direct URL access shows a disabled-module screen. Settings remains always available so admins can re-enable modules.
+          </SettingsHint>
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-950">
+            <div>
+              <div className="font-semibold text-gray-900 dark:text-gray-100">Deployment profile</div>
+              <div className="text-xs text-gray-500">
+                {MODULES.length - disabledCount} enabled, {disabledCount} disabled
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="secondary" size="sm" onClick={() => setAll(true)}>Enable all</Button>
+              <Button variant="outline" size="sm" onClick={() => setAll(false)}>Disable all operational modules</Button>
+            </div>
+          </div>
+
+          {groups.map((group) => (
+            <div key={group} className="rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="border-b border-gray-200 bg-gray-50 px-3 py-2 text-xs font-semibold uppercase text-gray-500 dark:border-gray-700 dark:bg-gray-800">
+                {group}
+              </div>
+              <div className="divide-y divide-gray-100 dark:divide-gray-800">
+                {MODULES.filter((module) => module.group === group).map((module) => {
+                  const enabled = cfg[module.key] !== false;
+                  return (
+                    <div key={module.key} className="flex flex-col gap-3 px-3 py-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex min-w-0 items-start gap-3">
+                        <span className={`mt-0.5 ${enabled ? 'text-cisco-blue' : 'text-gray-400'}`}>{module.icon}</span>
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="font-medium text-gray-900 dark:text-gray-100">{module.label}</span>
+                            <Badge variant={enabled ? 'success' : 'neutral'}>{enabled ? 'Enabled' : 'Disabled'}</Badge>
+                            <span className="text-xs text-gray-400">{module.route}</span>
+                          </div>
+                          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{module.description}</p>
+                        </div>
+                      </div>
+                      <label className="inline-flex shrink-0 items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={enabled}
+                          onChange={(event) => setModule(module.key, event.target.checked)}
+                        />
+                        <span>{enabled ? 'On' : 'Off'}</span>
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <SettingsSaveBar label="Save Module Controls" loading={loading} saving={saving || moduleControls.loading} saved={saved} error={error} onSave={saveModules} />
+    </div>
+  );
+}
+
+interface IntegrationsAiOpsAdminSettings {
+  nbi_enabled: boolean;
+  webhook_retry_attempts: number;
+  webhook_timeout_seconds: number;
+  ai_ops_enabled: boolean;
+  ai_recommendation_min_confidence: number;
+  llm_provider: 'local' | 'openai' | 'azure' | 'custom';
+  llm_model: string;
+  report_export_target_path: string;
+}
+
+const INTEGRATIONS_DEFAULTS: IntegrationsAiOpsAdminSettings = {
+  nbi_enabled: true,
+  webhook_retry_attempts: 3,
+  webhook_timeout_seconds: 10,
+  ai_ops_enabled: true,
+  ai_recommendation_min_confidence: 70,
+  llm_provider: 'local',
+  llm_model: '',
+  report_export_target_path: '',
+};
+
+function IntegrationsAiOpsSettingsPanel() {
+  const { cfg, setCfg, loading, saving, saved, error, save } = useSettingsResource('/settings/integrations-ai-ops', INTEGRATIONS_DEFAULTS);
+  const setIntegration = <K extends keyof IntegrationsAiOpsAdminSettings>(k: K, v: IntegrationsAiOpsAdminSettings[K]) =>
+    setCfg((p) => ({ ...p, [k]: v }));
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader title="Northbound API and Webhooks" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
+          <label className="flex items-center gap-2 md:col-span-3">
+            <input type="checkbox" checked={cfg.nbi_enabled} onChange={(e) => setIntegration('nbi_enabled', e.target.checked)} />
+            Enable northbound API access
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Webhook retries</span>
+            <Input type="number" value={cfg.webhook_retry_attempts} onChange={(e) => setIntegration('webhook_retry_attempts', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Webhook timeout (seconds)</span>
+            <Input type="number" value={cfg.webhook_timeout_seconds} onChange={(e) => setIntegration('webhook_timeout_seconds', Number(e.target.value))} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Report export target path</span>
+            <Input value={cfg.report_export_target_path} onChange={(e) => setIntegration('report_export_target_path', e.target.value)} placeholder="/exports/reports" />
+          </label>
+        </div>
+      </Card>
+
+      <Card>
+        <CardHeader title="AI Ops and LLM Provider" />
+        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
+          <label className="flex items-center gap-2 md:col-span-3">
+            <input type="checkbox" checked={cfg.ai_ops_enabled} onChange={(e) => setIntegration('ai_ops_enabled', e.target.checked)} />
+            Enable AI Ops recommendations
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Minimum confidence (%)</span>
+            <Input type="number" value={cfg.ai_recommendation_min_confidence} onChange={(e) => setIntegration('ai_recommendation_min_confidence', Number(e.target.value))} disabled={!cfg.ai_ops_enabled} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">LLM provider</span>
+            <Select value={cfg.llm_provider} onChange={(e) => setIntegration('llm_provider', e.target.value as IntegrationsAiOpsAdminSettings['llm_provider'])} disabled={!cfg.ai_ops_enabled}>
+              <option value="local">Local</option>
+              <option value="openai">OpenAI</option>
+              <option value="azure">Azure OpenAI</option>
+              <option value="custom">Custom</option>
+            </Select>
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Model name</span>
+            <Input value={cfg.llm_model} onChange={(e) => setIntegration('llm_model', e.target.value)} placeholder="optional" disabled={!cfg.ai_ops_enabled} />
+          </label>
+          <div className="md:col-span-3">
+            <SettingsHint>API keys and tokens should stay in environment variables or secret stores. This screen saves provider references and behavior knobs only.</SettingsHint>
+          </div>
+        </div>
+      </Card>
+
+      <SettingsSaveBar label="Save Integrations / AI Ops Settings" loading={loading} saving={saving} saved={saved} error={error} onSave={save} />
+    </div>
+  );
+}
+
+interface LabOperationsAdminSettings {
+  certification_mode_enabled: boolean;
+  traffic_simulator_enabled: boolean;
+  simulator_profile: string;
+  maintenance_mode_enabled: boolean;
+  maintenance_window: string;
+  runbook_url: string;
+  ptp_synce_enabled: boolean;
+}
+
+const LAB_OPERATIONS_DEFAULTS: LabOperationsAdminSettings = {
+  certification_mode_enabled: true,
+  traffic_simulator_enabled: false,
+  simulator_profile: 'baseline',
+  maintenance_mode_enabled: false,
+  maintenance_window: '',
+  runbook_url: '',
+  ptp_synce_enabled: false,
+};
+
+function LabOperationsSettingsPanel() {
+  const { cfg, setCfg, loading, saving, saved, error, save } = useSettingsResource('/settings/lab-operations', LAB_OPERATIONS_DEFAULTS);
+  const setLab = <K extends keyof LabOperationsAdminSettings>(k: K, v: LabOperationsAdminSettings[K]) =>
+    setCfg((p) => ({ ...p, [k]: v }));
+
   return (
     <Card>
-      <CardHeader title={title} />
-      <div className="p-4 text-sm">
-        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
-          <div className="font-semibold">Phase 1 placeholder</div>
-          <p className="mt-1 text-xs">{summary || 'This submenu is intentionally visible now so the Settings IA matches an EPNM-style administrator map before backend forms are added.'}</p>
+      <CardHeader title="Certification and Operations Controls" />
+      <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+        <label className="flex items-center gap-2">
+          <input type="checkbox" checked={cfg.certification_mode_enabled} onChange={(e) => setLab('certification_mode_enabled', e.target.checked)} />
+          Certification readiness mode
+        </label>
+        <label className="flex items-center gap-2">
+          <input type="checkbox" checked={cfg.ptp_synce_enabled} onChange={(e) => setLab('ptp_synce_enabled', e.target.checked)} />
+          Enable PTP / SyncE validation checks
+        </label>
+        <label className="flex items-center gap-2">
+          <input type="checkbox" checked={cfg.traffic_simulator_enabled} onChange={(e) => setLab('traffic_simulator_enabled', e.target.checked)} />
+          Traffic simulator hooks
+        </label>
+        <label className="block">
+          <span className="mb-1 block font-medium">Simulator profile</span>
+          <Input value={cfg.simulator_profile} onChange={(e) => setLab('simulator_profile', e.target.value)} disabled={!cfg.traffic_simulator_enabled} />
+        </label>
+        <label className="flex items-center gap-2">
+          <input type="checkbox" checked={cfg.maintenance_mode_enabled} onChange={(e) => setLab('maintenance_mode_enabled', e.target.checked)} />
+          Maintenance mode
+        </label>
+        <label className="block">
+          <span className="mb-1 block font-medium">Maintenance window</span>
+          <Input value={cfg.maintenance_window} onChange={(e) => setLab('maintenance_window', e.target.value)} placeholder="Sunday 01:00-03:00" disabled={!cfg.maintenance_mode_enabled} />
+        </label>
+        <label className="block md:col-span-2">
+          <span className="mb-1 block font-medium">Runbook URL</span>
+          <Input value={cfg.runbook_url} onChange={(e) => setLab('runbook_url', e.target.value)} placeholder="https://..." />
+        </label>
+        <div className="md:col-span-2">
+          <SettingsSaveBar label="Save Lab / Operations Settings" loading={loading} saving={saving} saved={saved} error={error} onSave={save} />
         </div>
-        <p className="mb-3 text-gray-500">Planned administration functions:</p>
-        <ul className="grid grid-cols-1 gap-2 text-gray-700 dark:text-gray-300 md:grid-cols-2">
-          {items.map((item) => (
-            <li key={item} className="rounded border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">{item}</li>
-          ))}
-        </ul>
       </div>
     </Card>
+  );
+}
+
+function AccessControlPanel() {
+  type AccessControlTab = 'usersRoles' | 'accountAudit';
+  const [tab, setTab] = useState<AccessControlTab>('usersRoles');
+  const tabs: Array<{ key: AccessControlTab; label: string; icon: React.ReactNode }> = [
+    { key: 'usersRoles', label: 'Users & Roles', icon: <Users className="h-4 w-4" /> },
+    { key: 'accountAudit', label: 'Account Audit', icon: <FileSearch className="h-4 w-4" /> },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <Card>
+        <div className="flex flex-wrap gap-2 p-3">
+          {tabs.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              onClick={() => setTab(item.key)}
+              className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
+                tab === item.key
+                  ? 'border-cisco-blue bg-cisco-blue text-white'
+                  : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800'
+              }`}
+            >
+              {item.icon}
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </Card>
+      {tab === 'usersRoles' ? <ClientsUsersPanel mode="users" /> : <AccountAuditPanel />}
+    </div>
+  );
+}
+
+function NotificationsForwardingPanel() {
+  return (
+    <div className="space-y-6">
+      <MailNotificationPanel />
+      <ForwardingSettings />
+    </div>
   );
 }
 
@@ -1551,62 +2144,51 @@ function CategoryContent({ category }: { category: CategoryKey }) {
     case 'security':
       return <ClientsUsersPanel mode="security" />;
     case 'usersRoles':
-      return <ClientsUsersPanel mode="users" />;
+      return <AccessControlPanel />;
     case 'networkDevices':
-      return <NetworkDevicesPanel />;
+      return (
+        <div className="space-y-6">
+          <NetworkDevicesPanel />
+          <InventorySettingsPanel />
+        </div>
+      );
     case 'inventory':
       return (
-        <PlaceholderPanel
-          title="Inventory Administration"
-          items={[
-            'Configuration archive frequency and retention',
-            'Golden image and software image management',
-            'Discovery defaults and scope controls',
-            'Device group management policies',
-            'Lifecycle and compliance metadata',
-          ]}
-        />
+        <div className="space-y-6">
+          <NetworkDevicesPanel />
+          <InventorySettingsPanel />
+        </div>
       );
     case 'alarmsEvents':
       return <AlarmsEventsPanel />;
     case 'eventForwarding':
-      return <ForwardingSettings />;
+      return <NotificationsForwardingPanel />;
+    case 'modules':
+      return <ModuleControlSettingsPanel />;
     case 'integrationsAiOps':
-      return (
-        <PlaceholderPanel
-          title="Integrations and AI Ops"
-          items={[
-            'Northbound API keys and access profiles',
-            'Webhook targets and retry policy',
-            'AI Ops recommendation thresholds',
-            'LLM/model provider settings',
-            'Export targets for reports and assurance signals',
-          ]}
-        />
-      );
+      return <IntegrationsAiOpsSettingsPanel />;
     case 'labOperations':
       return (
-        <PlaceholderPanel
-          title="Lab and Operations"
-          items={[
-            'Lab health defaults and thresholds',
-            'Traffic simulator integration hooks',
-            'Maintenance windows and blackout calendars',
-            'Operational runbook links',
-            'PTP / SyncE service settings',
-          ]}
-        />
+        <div className="space-y-6">
+          <LabHealthPage embedded />
+          <LabOperationsSettingsPanel />
+        </div>
       );
   }
 }
 
 const SECTION_KEYS = new Set<CategoryKey>([
   'general', 'system', 'security', 'usersRoles', 'networkDevices',
-  'inventory', 'alarmsEvents', 'eventForwarding', 'integrationsAiOps', 'labOperations',
+  'inventory', 'alarmsEvents', 'eventForwarding', 'modules', 'integrationsAiOps', 'labOperations',
 ]);
 
 function isValidSection(s: string | null): s is CategoryKey {
   return s !== null && SECTION_KEYS.has(s as CategoryKey);
+}
+
+function normalizeSection(s: string | null): CategoryKey {
+  if (s === 'inventory') return 'networkDevices';
+  return isValidSection(s) ? s : 'general';
 }
 
 function settingsSearchText(category: Category): string {
@@ -1618,6 +2200,53 @@ function settingsSearchText(category: Category): string {
   ].join(' ').toLowerCase();
 }
 
+function SettingsSectionDiagram({ category, submenus }: { category: Category; submenus: string[] }) {
+  const primary = submenus.slice(0, 4);
+  return (
+    <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-950">
+      <div className="grid gap-3 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:items-center">
+        <div className="rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900">
+          <div className="flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100">
+            <span className="text-cisco-blue">{category.icon}</span>
+            <span>{category.title}</span>
+          </div>
+          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{category.description}</p>
+        </div>
+        <div className="hidden text-center text-xl text-gray-400 lg:block">-&gt;</div>
+        <div className="rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900">
+          <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">Choose a function</div>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {primary.map((submenu) => (
+              <span key={submenu} className="rounded bg-cisco-blue/10 px-2 py-1 text-xs text-cisco-blue dark:bg-cisco-blue/20">
+                {submenu}
+              </span>
+            ))}
+            {submenus.length > primary.length && (
+              <span className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-500 dark:bg-gray-800">+{submenus.length - primary.length}</span>
+            )}
+          </div>
+        </div>
+        <div className="hidden text-center text-xl text-gray-400 lg:block">-&gt;</div>
+        <div className="rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900">
+          <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">Apply and validate</div>
+          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+            Update settings, save when available, then validate the related operational page.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SettingsSectionIntro({ category, submenus, onDismiss }: { category: Category; submenus: string[]; onDismiss: (options: { dontShowAgain: boolean }) => void }) {
+  return (
+    <PageIntroFloat title={`${category.title} guide`} icon={category.icon} onDismiss={onDismiss}>
+      <p className="mb-3 text-gray-600 dark:text-gray-300">{category.description}</p>
+      <SettingsSectionDiagram category={category} submenus={submenus} />
+    </PageIntroFloat>
+  );
+}
+
 function Settings() {
   const authUser = useAuthStore((state) => state.user);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -1626,8 +2255,9 @@ function Settings() {
   const [navUsers, setNavUsers] = useState<AppUser[]>([]);
   const [navRoles, setNavRoles] = useState<AppRole[]>([]);
   const [active, setActive] = useState<CategoryKey>(
-    isValidSection(sectionParam) ? sectionParam : 'general',
+    normalizeSection(sectionParam),
   );
+  const [showSectionIntro, setShowSectionIntro] = useState(false);
   const normalizedSearch = settingsSearch.trim().toLowerCase();
 
   useEffect(() => {
@@ -1682,10 +2312,18 @@ function Settings() {
     setSearchParams({ section: key }, { replace: true });
   };
 
+  const activeCategory = CATEGORIES.find((cat) => cat.key === active) ?? CATEGORIES[0];
+  const activeSubmenus = visibleSubmenus(activeCategory);
+  const dismissSectionIntro = ({ dontShowAgain }: { dontShowAgain: boolean }) => {
+    if (dontShowAgain) window.localStorage.setItem(`${SETTINGS_SECTION_INTRO_STORAGE_PREFIX}-${active}`, 'true');
+    setShowSectionIntro(false);
+  };
+
   // Sync if URL param changes externally (e.g. back/forward navigation).
   useEffect(() => {
     const s = searchParams.get('section');
-    if (isValidSection(s) && s !== active) setActive(s);
+    const normalized = normalizeSection(s);
+    if (normalized !== active) setActive(normalized);
   }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -1693,6 +2331,11 @@ function Settings() {
       handleSelect(accessibleCategories[0].key);
     }
   }, [active, accessibleCategories.length]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setShowSectionIntro(window.localStorage.getItem(`${SETTINGS_SECTION_INTRO_STORAGE_PREFIX}-${active}`) !== 'true');
+  }, [active]);
 
   return (
     <div className="p-6 space-y-6">
@@ -1702,6 +2345,9 @@ function Settings() {
       />
 
       <div className="grid grid-cols-12 gap-6">
+        {showSectionIntro && activeCategory && (
+          <SettingsSectionIntro category={activeCategory} submenus={activeSubmenus} onDismiss={dismissSectionIntro} />
+        )}
         <aside className="col-span-12 md:col-span-4 lg:col-span-3 space-y-2">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-gray-400" />

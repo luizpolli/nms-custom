@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, Network, RefreshCw } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Button, Card, StatCard, Spinner, EmptyState, PageHeader } from '../../components/ui';
+import { ChassisView } from '../inventory/chassis/ChassisView';
 import { DeviceStatusBadge } from './components/DeviceStatusBadge';
 import { DeviceTagList } from './components/DeviceTagList';
 
@@ -52,7 +53,7 @@ interface InterfaceRow {
   phys_address?: string | null;
 }
 
-type Tab = 'overview' | 'inventory' | 'interfaces' | 'ios' | 'kpis';
+type Tab = 'overview' | 'chassis' | 'inventory' | 'interfaces' | 'ios' | 'kpis';
 
 export function DeviceDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -99,16 +100,18 @@ export function DeviceDetailPage() {
     },
   });
 
+  if (isLoading) return <Spinner />;
+  if (!device) return <p className="p-6 text-red-500">Device not found.</p>;
+  const supportsChassisView = isSupportedChassisDevice(device);
+
   const TABS: { key: Tab; label: string }[] = [
     { key: 'overview', label: 'Overview' },
+    ...(supportsChassisView ? [{ key: 'chassis' as Tab, label: 'Chassis' }] : []),
     { key: 'inventory', label: 'Inventory' },
     { key: 'interfaces', label: 'Interfaces' },
     { key: 'ios', label: 'IOS Versions' },
     { key: 'kpis', label: 'Recent KPIs' },
   ];
-
-  if (isLoading) return <Spinner />;
-  if (!device) return <p className="p-6 text-red-500">Device not found.</p>;
 
   return (
     <div className="p-6 space-y-6">
@@ -174,8 +177,12 @@ export function DeviceDetailPage() {
         </Card>
       )}
 
+      {activeTab === 'chassis' && supportsChassisView && (
+        <ChassisView deviceName={device.name} deviceId={device.id} />
+      )}
+
       {activeTab === 'inventory' && (
-        <div>
+        <div className="space-y-4">
           {!inventory && <Spinner />}
           {inventory && inventory.length === 0 && (
             <EmptyState title="No inventory" description="No inventory data is available for this device." />
@@ -303,6 +310,17 @@ export function DeviceDetailPage() {
       )}
     </div>
   );
+}
+
+function isSupportedChassisDevice(device: Device): boolean {
+  const searchable = [
+    device.vendor,
+    device.model,
+    device.device_type,
+    device.os_type,
+    device.name,
+  ].join(' ');
+  return /cisco/i.test(searchable) && (/(?:asr[\s-]?(903|920|9006)|ncs[\s-]?55a1)/i.test(searchable));
 }
 
 function StatusPill({ value }: { value?: number | null }) {

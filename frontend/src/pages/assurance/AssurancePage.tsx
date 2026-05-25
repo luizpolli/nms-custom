@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AlertTriangle, GitBranch, HeartPulse, Network, ShieldCheck, Target, Waypoints } from 'lucide-react';
-import { Badge, Button, Card, EmptyState, PageHeader, StatCard } from '../../components/ui';
+import { Badge, Button, Card, EmptyState, InfoFloat, PageHeader, StatCard } from '../../components/ui';
 import { api } from '../../lib/api';
 
 type ImpactedDevice = {
@@ -102,6 +102,41 @@ type NetworkScorePoint = {
   service_count: number;
 };
 
+const ASSURANCE_HELP = {
+  networkScore: 'Composite health from active alarms, correlated groups, impacted devices/interfaces, and service impact. Higher is healthier.',
+  healthState: 'Text health state derived from the network score and active impact signals.',
+  activeGroups: 'Number of active root-cause correlation groups. A group collapses related alarms into one operational problem.',
+  impactedInterfaces: 'Interfaces with active alarm signals, down/lower-layer state, or KPI baseline breaches.',
+  trend: '24-hour network score history sampled in 15-minute buckets. Use it to spot degradation or recovery over time.',
+  rootGroups: 'Related alarms grouped by correlation key or group id. Use this to work the root cause instead of individual symptoms.',
+  impactedDevices: 'Devices or sources with the largest health-score penalty from active alarms and severity.',
+  serviceImpact: 'Logical services scored from member devices/interfaces, alarm severity, and interface health.',
+  impactedInterfaceList: 'Interfaces with degraded health, active interface alarms, operational status issues, or KPI baseline breaches.',
+  topologyImpact: 'Downstream topology blast radius from the selected/root node. Shows which nodes may be affected by the root issue.',
+  eventTimeline: 'Recent assurance events and alarms in chronological context, including severity, source, and correlation key.',
+};
+
+function PanelTitle({ title, description, icon }: { title: string; description: string; icon?: React.ReactNode }) {
+  return (
+    <div className="mb-3 flex items-center gap-2">
+      {icon}
+      <h2 className="text-sm font-semibold text-gray-900 dark:text-white">{title}</h2>
+      <InfoFloat title={title} description={description} />
+    </div>
+  );
+}
+
+function InfoStatCard({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+  return (
+    <div className="relative">
+      {children}
+      <div className="absolute right-3 top-3">
+        <InfoFloat title={title} description={description} />
+      </div>
+    </div>
+  );
+}
+
 function NetworkScoreSparkline() {
   const historyQuery = useQuery({
     queryKey: ['assurance-network-history'],
@@ -195,19 +230,28 @@ export function AssurancePage() {
       <PageHeader title="Assurance" subtitle="Root-cause groups, health scoring, impacted entities, and event timeline" />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        <StatCard title="Network score" value={summary?.network_score ?? '—'} icon={<ShieldCheck className="h-5 w-5" />} tone={scoreTone} loading={summaryQuery.isLoading} />
-        <StatCard title="Health state" value={summary?.health_state ?? '—'} icon={<HeartPulse className="h-5 w-5" />} loading={summaryQuery.isLoading} />
-        <StatCard title="Active groups" value={summary?.active_group_count ?? 0} icon={<GitBranch className="h-5 w-5" />} tone={(summary?.active_group_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
-        <StatCard title="Impacted interfaces" value={summary?.impacted_interface_count ?? 0} icon={<Target className="h-5 w-5" />} tone={(summary?.impacted_interface_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
+        <InfoStatCard title="Network score" description={ASSURANCE_HELP.networkScore}>
+          <StatCard title="Network score" value={summary?.network_score ?? '—'} icon={<ShieldCheck className="h-5 w-5" />} tone={scoreTone} loading={summaryQuery.isLoading} />
+        </InfoStatCard>
+        <InfoStatCard title="Health state" description={ASSURANCE_HELP.healthState}>
+          <StatCard title="Health state" value={summary?.health_state ?? '—'} icon={<HeartPulse className="h-5 w-5" />} loading={summaryQuery.isLoading} />
+        </InfoStatCard>
+        <InfoStatCard title="Active groups" description={ASSURANCE_HELP.activeGroups}>
+          <StatCard title="Active groups" value={summary?.active_group_count ?? 0} icon={<GitBranch className="h-5 w-5" />} tone={(summary?.active_group_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
+        </InfoStatCard>
+        <InfoStatCard title="Impacted interfaces" description={ASSURANCE_HELP.impactedInterfaces}>
+          <StatCard title="Impacted interfaces" value={summary?.impacted_interface_count ?? 0} icon={<Target className="h-5 w-5" />} tone={(summary?.impacted_interface_count ?? 0) > 0 ? 'warning' : 'success'} loading={summaryQuery.isLoading} />
+        </InfoStatCard>
       </div>
 
       <Card className="p-4">
+        <PanelTitle title="Network score trend" description={ASSURANCE_HELP.trend} />
         <NetworkScoreSparkline />
       </Card>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">Root-cause correlation groups</h2>
+          <PanelTitle title="Root-cause correlation groups" description={ASSURANCE_HELP.rootGroups} />
           {!summary?.top_groups?.length ? <EmptyState title="No active groups" description="Related alarms will collapse here by correlation key or group id." /> : (
             <div className="space-y-3">
               {summary.top_groups.map((group) => (
@@ -238,7 +282,7 @@ export function AssurancePage() {
         </Card>
 
         <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">Top impacted devices</h2>
+          <PanelTitle title="Top impacted devices" description={ASSURANCE_HELP.impactedDevices} />
           {!summary?.top_impacted_devices?.length ? <EmptyState title="No impacted devices" description="Health scores will drop as active alarms or KPI quality breaches appear." /> : (
             <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
               <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
@@ -254,7 +298,7 @@ export function AssurancePage() {
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <Card className="p-4">
-          <div className="mb-3 flex items-center gap-2"><Waypoints className="h-5 w-5 text-cisco-blue" /><h2 className="text-sm font-semibold text-gray-900 dark:text-white">Service impact</h2></div>
+          <PanelTitle title="Service impact" description={ASSURANCE_HELP.serviceImpact} icon={<Waypoints className="h-5 w-5 text-cisco-blue" />} />
           {!serviceImpactQuery.data?.length ? <EmptyState title="No services modeled" description="Create logical services to score customer, transport, or platform impact from member alarms and interface health." /> : (
             <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
               <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
@@ -268,7 +312,7 @@ export function AssurancePage() {
         </Card>
 
         <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">Top impacted interfaces</h2>
+          <PanelTitle title="Top impacted interfaces" description={ASSURANCE_HELP.impactedInterfaceList} />
           {!summary?.top_impacted_interfaces?.length ? <EmptyState title="No impacted interfaces" description="Interface alarms, link state, and KPI quality breaches will appear here." /> : (
             <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
               <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
@@ -282,7 +326,7 @@ export function AssurancePage() {
         </Card>
 
         <Card className="p-4">
-          <div className="mb-3 flex items-center gap-2"><Network className="h-5 w-5 text-cisco-blue" /><h2 className="text-sm font-semibold text-gray-900 dark:text-white">Topology downstream impact</h2></div>
+          <PanelTitle title="Topology downstream impact" description={ASSURANCE_HELP.topologyImpact} icon={<Network className="h-5 w-5 text-cisco-blue" />} />
           {!impactQuery.data?.root ? <EmptyState title="No topology impact" description="Build topology to calculate downstream impacted nodes." /> : (
             <div className="space-y-3 text-sm">
               <div className="rounded-lg bg-gray-50 p-3 dark:bg-gray-800"><span className="text-gray-500">Root:</span> <span className="font-medium text-gray-900 dark:text-white">{impactQuery.data.root.label}</span></div>
@@ -298,7 +342,7 @@ export function AssurancePage() {
       </div>
 
       <Card className="p-4">
-        <div className="mb-3 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-cisco-blue" /><h2 className="text-sm font-semibold text-gray-900 dark:text-white">Event timeline</h2></div>
+        <PanelTitle title="Event timeline" description={ASSURANCE_HELP.eventTimeline} icon={<AlertTriangle className="h-5 w-5 text-cisco-blue" />} />
         {!timelineQuery.data?.length ? <EmptyState title="No recent events" /> : (
           <div className="space-y-2">
             {timelineQuery.data.map((event) => (

@@ -11,6 +11,7 @@ from fastapi import HTTPException
 from app.api.alarms import (
     SavedFilterCreate,
     SavedFilterUpdate,
+    _alarm_filters_stmt,
     create_saved_alarm_filter,
     delete_saved_alarm_filter,
     list_saved_alarm_filters,
@@ -78,6 +79,15 @@ def _saved_filter(owner: str = "noc", public: bool = False) -> SavedAlarmFilter:
         created_at=now,
         updated_at=now,
     )
+
+
+def test_alarm_filters_stmt_supports_interface_object_context():
+    stmt = _alarm_filters_stmt(object_type="interface", object_id="iface-123")
+
+    sql = str(stmt.whereclause)
+
+    assert "object_type" in sql
+    assert "object_id" in sql
 
 
 @pytest.mark.asyncio

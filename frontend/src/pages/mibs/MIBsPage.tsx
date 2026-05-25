@@ -21,7 +21,7 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-export default function MIBsPage() {
+export function MIBsPage({ embedded = false }: { embedded?: boolean }) {
   const [showUpload, setShowUpload] = useState(false);
   const [editMib, setEditMib] = useState<MIBRecord | null>(null);
   const [showForm, setShowForm] = useState(false);
@@ -52,17 +52,21 @@ export default function MIBsPage() {
   };
 
   return (
-    <div className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div className={embedded ? 'space-y-6' : 'min-h-screen bg-gray-50 p-6 dark:bg-gray-900'}>
       {toast && (
         <div className="fixed top-4 right-4 z-50 rounded-md bg-green-600 px-4 py-2 text-sm text-white shadow-lg">
           {toast}
         </div>
       )}
 
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-white">MIBs</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">System MIB file management</p>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
+            {embedded ? 'MIB catalog / SNMP objects' : 'MIBs'}
+          </h1>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Upload, register, and manage MIB definitions used by SNMP polling, custom KPIs, inventory enrichment, and trap OID context.
+          </p>
         </div>
         <div className="flex gap-2">
           <button
@@ -174,3 +178,5 @@ export default function MIBsPage() {
     </div>
   );
 }
+
+export default MIBsPage;

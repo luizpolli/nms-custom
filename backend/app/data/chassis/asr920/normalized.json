@@ -1,0 +1,2212 @@
+{
+  "componentsById": {
+    "component-1": {
+      "childIds": [
+        "component-10",
+        "component-100",
+        "component-101",
+        "component-102",
+        "component-103",
+        "component-104",
+        "component-105",
+        "component-106",
+        "component-107",
+        "component-108",
+        "component-109",
+        "component-110",
+        "component-111",
+        "component-112",
+        "component-113",
+        "component-114",
+        "component-115",
+        "component-116",
+        "component-117",
+        "component-118",
+        "component-119",
+        "component-150",
+        "component-151",
+        "component-152",
+        "component-153",
+        "component-20",
+        "component-21"
+      ],
+      "description": "Cisco ASR-920-20SZ-M Router Chassis",
+      "displayName": "Chassis",
+      "hardwareVersion": "V01",
+      "id": "component-1",
+      "isFRUable": "TRUE",
+      "manufacturer": "Cisco Systems Inc",
+      "name": "Chassis",
+      "physicalIndex": 1,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 1,
+      "type": "Chassis",
+      "typeId": "ASR-920-20SZ-M"
+    },
+    "component-10": {
+      "childIds": [
+        "component-11"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Route Processor",
+      "displayName": "module 0/RP0/CPU0",
+      "id": "component-10",
+      "name": "module 0/RP0/CPU0",
+      "operStatus": "up",
+      "parentId": "component-1",
+      "physicalIndex": 10,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 10,
+      "type": "Module",
+      "typeId": "ASR-920-20SZ-M-RP"
+    },
+    "component-100": {
+      "childIds": [
+        "component-300"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 0",
+      "id": "component-100",
+      "name": "subslot 0/0 transceiver container 0",
+      "parentId": "component-1",
+      "physicalIndex": 100,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 100,
+      "type": "Equipment"
+    },
+    "component-101": {
+      "childIds": [
+        "component-301"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 1",
+      "id": "component-101",
+      "name": "subslot 0/0 transceiver container 1",
+      "parentId": "component-1",
+      "physicalIndex": 101,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 101,
+      "type": "Equipment"
+    },
+    "component-102": {
+      "childIds": [
+        "component-302"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 2",
+      "id": "component-102",
+      "name": "subslot 0/0 transceiver container 2",
+      "parentId": "component-1",
+      "physicalIndex": 102,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 102,
+      "type": "Equipment"
+    },
+    "component-103": {
+      "childIds": [
+        "component-303"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 3",
+      "id": "component-103",
+      "name": "subslot 0/0 transceiver container 3",
+      "parentId": "component-1",
+      "physicalIndex": 103,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 103,
+      "type": "Equipment"
+    },
+    "component-104": {
+      "childIds": [
+        "component-304"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 4",
+      "id": "component-104",
+      "name": "subslot 0/0 transceiver container 4",
+      "parentId": "component-1",
+      "physicalIndex": 104,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 104,
+      "type": "Equipment"
+    },
+    "component-105": {
+      "childIds": [
+        "component-305"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 5",
+      "id": "component-105",
+      "name": "subslot 0/0 transceiver container 5",
+      "parentId": "component-1",
+      "physicalIndex": 105,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 105,
+      "type": "Equipment"
+    },
+    "component-106": {
+      "childIds": [
+        "component-306"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 6",
+      "id": "component-106",
+      "name": "subslot 0/0 transceiver container 6",
+      "parentId": "component-1",
+      "physicalIndex": 106,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 106,
+      "type": "Equipment"
+    },
+    "component-107": {
+      "childIds": [
+        "component-307"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 7",
+      "id": "component-107",
+      "name": "subslot 0/0 transceiver container 7",
+      "parentId": "component-1",
+      "physicalIndex": 107,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 107,
+      "type": "Equipment"
+    },
+    "component-108": {
+      "childIds": [
+        "component-308"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 8",
+      "id": "component-108",
+      "name": "subslot 0/0 transceiver container 8",
+      "parentId": "component-1",
+      "physicalIndex": 108,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 108,
+      "type": "Equipment"
+    },
+    "component-109": {
+      "childIds": [
+        "component-309"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 9",
+      "id": "component-109",
+      "name": "subslot 0/0 transceiver container 9",
+      "parentId": "component-1",
+      "physicalIndex": 109,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 109,
+      "type": "Equipment"
+    },
+    "component-11": {
+      "childIds": [],
+      "containedPhysicalIndex": 10,
+      "description": "Management Ethernet",
+      "displayName": "MgmtEth0/RP0/CPU0/0",
+      "id": "component-11",
+      "name": "MgmtEth0/RP0/CPU0/0",
+      "operStatus": "up",
+      "parentId": "component-10",
+      "physicalIndex": 11,
+      "ports": [
+        {
+          "id": "11",
+          "name": "MgmtEth0/RP0/CPU0/0",
+          "portId": 11
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 11,
+      "type": "Module",
+      "typeId": "RJ45"
+    },
+    "component-110": {
+      "childIds": [
+        "component-310"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 10",
+      "id": "component-110",
+      "name": "subslot 0/0 transceiver container 10",
+      "parentId": "component-1",
+      "physicalIndex": 110,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 110,
+      "type": "Equipment"
+    },
+    "component-111": {
+      "childIds": [
+        "component-311"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 11",
+      "id": "component-111",
+      "name": "subslot 0/0 transceiver container 11",
+      "parentId": "component-1",
+      "physicalIndex": 111,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 111,
+      "type": "Equipment"
+    },
+    "component-112": {
+      "childIds": [
+        "component-312"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 12",
+      "id": "component-112",
+      "name": "subslot 0/0 transceiver container 12",
+      "parentId": "component-1",
+      "physicalIndex": 112,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 112,
+      "type": "Equipment"
+    },
+    "component-113": {
+      "childIds": [
+        "component-313"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 13",
+      "id": "component-113",
+      "name": "subslot 0/0 transceiver container 13",
+      "parentId": "component-1",
+      "physicalIndex": 113,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 113,
+      "type": "Equipment"
+    },
+    "component-114": {
+      "childIds": [
+        "component-314"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 14",
+      "id": "component-114",
+      "name": "subslot 0/0 transceiver container 14",
+      "parentId": "component-1",
+      "physicalIndex": 114,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 114,
+      "type": "Equipment"
+    },
+    "component-115": {
+      "childIds": [
+        "component-315"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 15",
+      "id": "component-115",
+      "name": "subslot 0/0 transceiver container 15",
+      "parentId": "component-1",
+      "physicalIndex": 115,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 115,
+      "type": "Equipment"
+    },
+    "component-116": {
+      "childIds": [
+        "component-316"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 16",
+      "id": "component-116",
+      "name": "subslot 0/0 transceiver container 16",
+      "parentId": "component-1",
+      "physicalIndex": 116,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 116,
+      "type": "Equipment"
+    },
+    "component-117": {
+      "childIds": [
+        "component-317"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 17",
+      "id": "component-117",
+      "name": "subslot 0/0 transceiver container 17",
+      "parentId": "component-1",
+      "physicalIndex": 117,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 117,
+      "type": "Equipment"
+    },
+    "component-118": {
+      "childIds": [
+        "component-318"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 18",
+      "id": "component-118",
+      "name": "subslot 0/0 transceiver container 18",
+      "parentId": "component-1",
+      "physicalIndex": 118,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 118,
+      "type": "Equipment"
+    },
+    "component-119": {
+      "childIds": [
+        "component-319"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 19",
+      "id": "component-119",
+      "name": "subslot 0/0 transceiver container 19",
+      "parentId": "component-1",
+      "physicalIndex": 119,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 119,
+      "type": "Equipment"
+    },
+    "component-150": {
+      "childIds": [
+        "component-350"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP+ cage",
+      "displayName": "subslot 0/0 transceiver container 20",
+      "id": "component-150",
+      "name": "subslot 0/0 transceiver container 20",
+      "parentId": "component-1",
+      "physicalIndex": 150,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 150,
+      "type": "Equipment"
+    },
+    "component-151": {
+      "childIds": [
+        "component-351"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP+ cage",
+      "displayName": "subslot 0/0 transceiver container 21",
+      "id": "component-151",
+      "name": "subslot 0/0 transceiver container 21",
+      "parentId": "component-1",
+      "physicalIndex": 151,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 151,
+      "type": "Equipment"
+    },
+    "component-152": {
+      "childIds": [
+        "component-352"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP+ cage",
+      "displayName": "subslot 0/0 transceiver container 22",
+      "id": "component-152",
+      "name": "subslot 0/0 transceiver container 22",
+      "parentId": "component-1",
+      "physicalIndex": 152,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 152,
+      "type": "Equipment"
+    },
+    "component-153": {
+      "childIds": [
+        "component-353"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "SFP+ cage",
+      "displayName": "subslot 0/0 transceiver container 23",
+      "id": "component-153",
+      "name": "subslot 0/0 transceiver container 23",
+      "parentId": "component-1",
+      "physicalIndex": 153,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 153,
+      "type": "Equipment"
+    },
+    "component-20": {
+      "childIds": [
+        "component-22"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 0",
+      "id": "component-20",
+      "name": "Power Supply Bay 0",
+      "parentId": "component-1",
+      "physicalIndex": 20,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 20,
+      "type": "Equipment"
+    },
+    "component-21": {
+      "childIds": [
+        "component-23"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 1",
+      "id": "component-21",
+      "name": "Power Supply Bay 1",
+      "parentId": "component-1",
+      "physicalIndex": 21,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 21,
+      "type": "Equipment"
+    },
+    "component-22": {
+      "childIds": [],
+      "containedPhysicalIndex": 20,
+      "description": "ASR 920 250W AC Power Supply",
+      "displayName": "Power Supply Module 0",
+      "id": "component-22",
+      "name": "Power Supply Module 0",
+      "operStatus": "on",
+      "parentId": "component-20",
+      "physicalIndex": 22,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 22,
+      "type": "Equipment",
+      "typeId": "ASR-920-PWR-A"
+    },
+    "component-23": {
+      "childIds": [],
+      "containedPhysicalIndex": 21,
+      "description": "ASR 920 250W AC Power Supply",
+      "displayName": "Power Supply Module 1",
+      "id": "component-23",
+      "name": "Power Supply Module 1",
+      "operStatus": "on",
+      "parentId": "component-21",
+      "physicalIndex": 23,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 23,
+      "type": "Equipment",
+      "typeId": "ASR-920-PWR-A"
+    },
+    "component-300": {
+      "childIds": [],
+      "containedPhysicalIndex": 100,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/0",
+      "id": "component-300",
+      "name": "GigabitEthernet0/0/0",
+      "operStatus": "down",
+      "parentId": "component-100",
+      "physicalIndex": 300,
+      "ports": [
+        {
+          "id": "300",
+          "name": "GigabitEthernet0/0/0",
+          "portId": 300
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 300,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-301": {
+      "childIds": [],
+      "containedPhysicalIndex": 101,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/1",
+      "id": "component-301",
+      "name": "GigabitEthernet0/0/1",
+      "operStatus": "down",
+      "parentId": "component-101",
+      "physicalIndex": 301,
+      "ports": [
+        {
+          "id": "301",
+          "name": "GigabitEthernet0/0/1",
+          "portId": 301
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 301,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-302": {
+      "childIds": [],
+      "containedPhysicalIndex": 102,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/2",
+      "id": "component-302",
+      "name": "GigabitEthernet0/0/2",
+      "operStatus": "down",
+      "parentId": "component-102",
+      "physicalIndex": 302,
+      "ports": [
+        {
+          "id": "302",
+          "name": "GigabitEthernet0/0/2",
+          "portId": 302
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 302,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-303": {
+      "childIds": [],
+      "containedPhysicalIndex": 103,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/3",
+      "id": "component-303",
+      "name": "GigabitEthernet0/0/3",
+      "operStatus": "down",
+      "parentId": "component-103",
+      "physicalIndex": 303,
+      "ports": [
+        {
+          "id": "303",
+          "name": "GigabitEthernet0/0/3",
+          "portId": 303
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 303,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-304": {
+      "childIds": [],
+      "containedPhysicalIndex": 104,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/4",
+      "id": "component-304",
+      "name": "GigabitEthernet0/0/4",
+      "operStatus": "down",
+      "parentId": "component-104",
+      "physicalIndex": 304,
+      "ports": [
+        {
+          "id": "304",
+          "name": "GigabitEthernet0/0/4",
+          "portId": 304
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 304,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-305": {
+      "childIds": [],
+      "containedPhysicalIndex": 105,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/5",
+      "id": "component-305",
+      "name": "GigabitEthernet0/0/5",
+      "operStatus": "down",
+      "parentId": "component-105",
+      "physicalIndex": 305,
+      "ports": [
+        {
+          "id": "305",
+          "name": "GigabitEthernet0/0/5",
+          "portId": 305
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 305,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-306": {
+      "childIds": [],
+      "containedPhysicalIndex": 106,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/6",
+      "id": "component-306",
+      "name": "GigabitEthernet0/0/6",
+      "operStatus": "down",
+      "parentId": "component-106",
+      "physicalIndex": 306,
+      "ports": [
+        {
+          "id": "306",
+          "name": "GigabitEthernet0/0/6",
+          "portId": 306
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 306,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-307": {
+      "childIds": [],
+      "containedPhysicalIndex": 107,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/7",
+      "id": "component-307",
+      "name": "GigabitEthernet0/0/7",
+      "operStatus": "down",
+      "parentId": "component-107",
+      "physicalIndex": 307,
+      "ports": [
+        {
+          "id": "307",
+          "name": "GigabitEthernet0/0/7",
+          "portId": 307
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 307,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-308": {
+      "childIds": [],
+      "containedPhysicalIndex": 108,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/8",
+      "id": "component-308",
+      "name": "GigabitEthernet0/0/8",
+      "operStatus": "down",
+      "parentId": "component-108",
+      "physicalIndex": 308,
+      "ports": [
+        {
+          "id": "308",
+          "name": "GigabitEthernet0/0/8",
+          "portId": 308
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 308,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-309": {
+      "childIds": [],
+      "containedPhysicalIndex": 109,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/9",
+      "id": "component-309",
+      "name": "GigabitEthernet0/0/9",
+      "operStatus": "down",
+      "parentId": "component-109",
+      "physicalIndex": 309,
+      "ports": [
+        {
+          "id": "309",
+          "name": "GigabitEthernet0/0/9",
+          "portId": 309
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 309,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-310": {
+      "childIds": [],
+      "containedPhysicalIndex": 110,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/10",
+      "id": "component-310",
+      "name": "GigabitEthernet0/0/10",
+      "operStatus": "down",
+      "parentId": "component-110",
+      "physicalIndex": 310,
+      "ports": [
+        {
+          "id": "310",
+          "name": "GigabitEthernet0/0/10",
+          "portId": 310
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 310,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-311": {
+      "childIds": [],
+      "containedPhysicalIndex": 111,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/11",
+      "id": "component-311",
+      "name": "GigabitEthernet0/0/11",
+      "operStatus": "down",
+      "parentId": "component-111",
+      "physicalIndex": 311,
+      "ports": [
+        {
+          "id": "311",
+          "name": "GigabitEthernet0/0/11",
+          "portId": 311
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 311,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-312": {
+      "childIds": [],
+      "containedPhysicalIndex": 112,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/12",
+      "id": "component-312",
+      "name": "GigabitEthernet0/0/12",
+      "operStatus": "down",
+      "parentId": "component-112",
+      "physicalIndex": 312,
+      "ports": [
+        {
+          "id": "312",
+          "name": "GigabitEthernet0/0/12",
+          "portId": 312
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 312,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-313": {
+      "childIds": [],
+      "containedPhysicalIndex": 113,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/13",
+      "id": "component-313",
+      "name": "GigabitEthernet0/0/13",
+      "operStatus": "down",
+      "parentId": "component-113",
+      "physicalIndex": 313,
+      "ports": [
+        {
+          "id": "313",
+          "name": "GigabitEthernet0/0/13",
+          "portId": 313
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 313,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-314": {
+      "childIds": [],
+      "containedPhysicalIndex": 114,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/14",
+      "id": "component-314",
+      "name": "GigabitEthernet0/0/14",
+      "operStatus": "down",
+      "parentId": "component-114",
+      "physicalIndex": 314,
+      "ports": [
+        {
+          "id": "314",
+          "name": "GigabitEthernet0/0/14",
+          "portId": 314
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 314,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-315": {
+      "childIds": [],
+      "containedPhysicalIndex": 115,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/15",
+      "id": "component-315",
+      "name": "GigabitEthernet0/0/15",
+      "operStatus": "down",
+      "parentId": "component-115",
+      "physicalIndex": 315,
+      "ports": [
+        {
+          "id": "315",
+          "name": "GigabitEthernet0/0/15",
+          "portId": 315
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 315,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-316": {
+      "childIds": [],
+      "containedPhysicalIndex": 116,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/16",
+      "id": "component-316",
+      "name": "GigabitEthernet0/0/16",
+      "operStatus": "down",
+      "parentId": "component-116",
+      "physicalIndex": 316,
+      "ports": [
+        {
+          "id": "316",
+          "name": "GigabitEthernet0/0/16",
+          "portId": 316
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 316,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-317": {
+      "childIds": [],
+      "containedPhysicalIndex": 117,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/17",
+      "id": "component-317",
+      "name": "GigabitEthernet0/0/17",
+      "operStatus": "down",
+      "parentId": "component-117",
+      "physicalIndex": 317,
+      "ports": [
+        {
+          "id": "317",
+          "name": "GigabitEthernet0/0/17",
+          "portId": 317
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 317,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-318": {
+      "childIds": [],
+      "containedPhysicalIndex": 118,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/18",
+      "id": "component-318",
+      "name": "GigabitEthernet0/0/18",
+      "operStatus": "down",
+      "parentId": "component-118",
+      "physicalIndex": 318,
+      "ports": [
+        {
+          "id": "318",
+          "name": "GigabitEthernet0/0/18",
+          "portId": 318
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 318,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-319": {
+      "childIds": [],
+      "containedPhysicalIndex": 119,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/19",
+      "id": "component-319",
+      "name": "GigabitEthernet0/0/19",
+      "operStatus": "down",
+      "parentId": "component-119",
+      "physicalIndex": 319,
+      "ports": [
+        {
+          "id": "319",
+          "name": "GigabitEthernet0/0/19",
+          "portId": 319
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 319,
+      "type": "Module",
+      "typeId": "SFP-GE-T"
+    },
+    "component-350": {
+      "childIds": [],
+      "containedPhysicalIndex": 150,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/20",
+      "id": "component-350",
+      "name": "TenGigabitEthernet0/0/20",
+      "operStatus": "down",
+      "parentId": "component-150",
+      "physicalIndex": 350,
+      "ports": [
+        {
+          "id": "350",
+          "name": "TenGigabitEthernet0/0/20",
+          "portId": 350
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 350,
+      "type": "Module",
+      "typeId": "SFP-10G-SR"
+    },
+    "component-351": {
+      "childIds": [],
+      "containedPhysicalIndex": 151,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/21",
+      "id": "component-351",
+      "name": "TenGigabitEthernet0/0/21",
+      "operStatus": "down",
+      "parentId": "component-151",
+      "physicalIndex": 351,
+      "ports": [
+        {
+          "id": "351",
+          "name": "TenGigabitEthernet0/0/21",
+          "portId": 351
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 351,
+      "type": "Module",
+      "typeId": "SFP-10G-SR"
+    },
+    "component-352": {
+      "childIds": [],
+      "containedPhysicalIndex": 152,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/22",
+      "id": "component-352",
+      "name": "TenGigabitEthernet0/0/22",
+      "operStatus": "down",
+      "parentId": "component-152",
+      "physicalIndex": 352,
+      "ports": [
+        {
+          "id": "352",
+          "name": "TenGigabitEthernet0/0/22",
+          "portId": 352
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 352,
+      "type": "Module",
+      "typeId": "SFP-10G-SR"
+    },
+    "component-353": {
+      "childIds": [],
+      "containedPhysicalIndex": 153,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/23",
+      "id": "component-353",
+      "name": "TenGigabitEthernet0/0/23",
+      "operStatus": "down",
+      "parentId": "component-153",
+      "physicalIndex": 353,
+      "ports": [
+        {
+          "id": "353",
+          "name": "TenGigabitEthernet0/0/23",
+          "portId": 353
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 353,
+      "type": "Module",
+      "typeId": "SFP-10G-SR"
+    }
+  },
+  "deviceId": "sample-asr920",
+  "generatedAt": "2026-05-25T19:28:01.102904+00:00",
+  "model": "ASR-920-20SZ-M",
+  "physicalIndexToComponentId": {
+    "1": "component-1",
+    "10": "component-10",
+    "100": "component-100",
+    "101": "component-101",
+    "102": "component-102",
+    "103": "component-103",
+    "104": "component-104",
+    "105": "component-105",
+    "106": "component-106",
+    "107": "component-107",
+    "108": "component-108",
+    "109": "component-109",
+    "11": "component-11",
+    "110": "component-110",
+    "111": "component-111",
+    "112": "component-112",
+    "113": "component-113",
+    "114": "component-114",
+    "115": "component-115",
+    "116": "component-116",
+    "117": "component-117",
+    "118": "component-118",
+    "119": "component-119",
+    "150": "component-150",
+    "151": "component-151",
+    "152": "component-152",
+    "153": "component-153",
+    "20": "component-20",
+    "21": "component-21",
+    "22": "component-22",
+    "23": "component-23",
+    "300": "component-300",
+    "301": "component-301",
+    "302": "component-302",
+    "303": "component-303",
+    "304": "component-304",
+    "305": "component-305",
+    "306": "component-306",
+    "307": "component-307",
+    "308": "component-308",
+    "309": "component-309",
+    "310": "component-310",
+    "311": "component-311",
+    "312": "component-312",
+    "313": "component-313",
+    "314": "component-314",
+    "315": "component-315",
+    "316": "component-316",
+    "317": "component-317",
+    "318": "component-318",
+    "319": "component-319",
+    "350": "component-350",
+    "351": "component-351",
+    "352": "component-352",
+    "353": "component-353"
+  },
+  "platform": "Cisco ASR-920-20SZ-M Router",
+  "profileId": "Cisco_ASR_920_20SZ_M_Router",
+  "schemaVersion": "nms.chassisView.v1",
+  "source": {
+    "image": "applications/storm/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR-920-20SZ-M_Router/images/ASR-920-20SZ-M-Front-Core.svg",
+    "package": ".local/chassis-assets/figures.tar.gz",
+    "profile": "applications/storm/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR-920-20SZ-M_Router/data/Cisco_ASR-920-20SZ-M_Router.json",
+    "type": "hand-curated-static-profile"
+  },
+  "tree": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-11",
+              "id": "component-11",
+              "label": "MgmtEth0/RP0/CPU0/0",
+              "physicalIndex": 11,
+              "type": "Module",
+              "typeId": "RJ45"
+            }
+          ],
+          "componentId": "component-10",
+          "id": "component-10",
+          "label": "module 0/RP0/CPU0",
+          "physicalIndex": 10,
+          "type": "Module",
+          "typeId": "ASR-920-20SZ-M-RP"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-300",
+              "id": "component-300",
+              "label": "GigabitEthernet0/0/0",
+              "physicalIndex": 300,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-100",
+          "id": "component-100",
+          "label": "subslot 0/0 transceiver container 0",
+          "physicalIndex": 100,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-301",
+              "id": "component-301",
+              "label": "GigabitEthernet0/0/1",
+              "physicalIndex": 301,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-101",
+          "id": "component-101",
+          "label": "subslot 0/0 transceiver container 1",
+          "physicalIndex": 101,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-302",
+              "id": "component-302",
+              "label": "GigabitEthernet0/0/2",
+              "physicalIndex": 302,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-102",
+          "id": "component-102",
+          "label": "subslot 0/0 transceiver container 2",
+          "physicalIndex": 102,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-303",
+              "id": "component-303",
+              "label": "GigabitEthernet0/0/3",
+              "physicalIndex": 303,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-103",
+          "id": "component-103",
+          "label": "subslot 0/0 transceiver container 3",
+          "physicalIndex": 103,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-304",
+              "id": "component-304",
+              "label": "GigabitEthernet0/0/4",
+              "physicalIndex": 304,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-104",
+          "id": "component-104",
+          "label": "subslot 0/0 transceiver container 4",
+          "physicalIndex": 104,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-305",
+              "id": "component-305",
+              "label": "GigabitEthernet0/0/5",
+              "physicalIndex": 305,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-105",
+          "id": "component-105",
+          "label": "subslot 0/0 transceiver container 5",
+          "physicalIndex": 105,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-306",
+              "id": "component-306",
+              "label": "GigabitEthernet0/0/6",
+              "physicalIndex": 306,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-106",
+          "id": "component-106",
+          "label": "subslot 0/0 transceiver container 6",
+          "physicalIndex": 106,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-307",
+              "id": "component-307",
+              "label": "GigabitEthernet0/0/7",
+              "physicalIndex": 307,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-107",
+          "id": "component-107",
+          "label": "subslot 0/0 transceiver container 7",
+          "physicalIndex": 107,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-308",
+              "id": "component-308",
+              "label": "GigabitEthernet0/0/8",
+              "physicalIndex": 308,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-108",
+          "id": "component-108",
+          "label": "subslot 0/0 transceiver container 8",
+          "physicalIndex": 108,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-309",
+              "id": "component-309",
+              "label": "GigabitEthernet0/0/9",
+              "physicalIndex": 309,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-109",
+          "id": "component-109",
+          "label": "subslot 0/0 transceiver container 9",
+          "physicalIndex": 109,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-310",
+              "id": "component-310",
+              "label": "GigabitEthernet0/0/10",
+              "physicalIndex": 310,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-110",
+          "id": "component-110",
+          "label": "subslot 0/0 transceiver container 10",
+          "physicalIndex": 110,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-311",
+              "id": "component-311",
+              "label": "GigabitEthernet0/0/11",
+              "physicalIndex": 311,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-111",
+          "id": "component-111",
+          "label": "subslot 0/0 transceiver container 11",
+          "physicalIndex": 111,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-312",
+              "id": "component-312",
+              "label": "GigabitEthernet0/0/12",
+              "physicalIndex": 312,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-112",
+          "id": "component-112",
+          "label": "subslot 0/0 transceiver container 12",
+          "physicalIndex": 112,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-313",
+              "id": "component-313",
+              "label": "GigabitEthernet0/0/13",
+              "physicalIndex": 313,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-113",
+          "id": "component-113",
+          "label": "subslot 0/0 transceiver container 13",
+          "physicalIndex": 113,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-314",
+              "id": "component-314",
+              "label": "GigabitEthernet0/0/14",
+              "physicalIndex": 314,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-114",
+          "id": "component-114",
+          "label": "subslot 0/0 transceiver container 14",
+          "physicalIndex": 114,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-315",
+              "id": "component-315",
+              "label": "GigabitEthernet0/0/15",
+              "physicalIndex": 315,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-115",
+          "id": "component-115",
+          "label": "subslot 0/0 transceiver container 15",
+          "physicalIndex": 115,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-316",
+              "id": "component-316",
+              "label": "GigabitEthernet0/0/16",
+              "physicalIndex": 316,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-116",
+          "id": "component-116",
+          "label": "subslot 0/0 transceiver container 16",
+          "physicalIndex": 116,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-317",
+              "id": "component-317",
+              "label": "GigabitEthernet0/0/17",
+              "physicalIndex": 317,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-117",
+          "id": "component-117",
+          "label": "subslot 0/0 transceiver container 17",
+          "physicalIndex": 117,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-318",
+              "id": "component-318",
+              "label": "GigabitEthernet0/0/18",
+              "physicalIndex": 318,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-118",
+          "id": "component-118",
+          "label": "subslot 0/0 transceiver container 18",
+          "physicalIndex": 118,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-319",
+              "id": "component-319",
+              "label": "GigabitEthernet0/0/19",
+              "physicalIndex": 319,
+              "type": "Module",
+              "typeId": "SFP-GE-T"
+            }
+          ],
+          "componentId": "component-119",
+          "id": "component-119",
+          "label": "subslot 0/0 transceiver container 19",
+          "physicalIndex": 119,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-350",
+              "id": "component-350",
+              "label": "TenGigabitEthernet0/0/20",
+              "physicalIndex": 350,
+              "type": "Module",
+              "typeId": "SFP-10G-SR"
+            }
+          ],
+          "componentId": "component-150",
+          "id": "component-150",
+          "label": "subslot 0/0 transceiver container 20",
+          "physicalIndex": 150,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-351",
+              "id": "component-351",
+              "label": "TenGigabitEthernet0/0/21",
+              "physicalIndex": 351,
+              "type": "Module",
+              "typeId": "SFP-10G-SR"
+            }
+          ],
+          "componentId": "component-151",
+          "id": "component-151",
+          "label": "subslot 0/0 transceiver container 21",
+          "physicalIndex": 151,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-352",
+              "id": "component-352",
+              "label": "TenGigabitEthernet0/0/22",
+              "physicalIndex": 352,
+              "type": "Module",
+              "typeId": "SFP-10G-SR"
+            }
+          ],
+          "componentId": "component-152",
+          "id": "component-152",
+          "label": "subslot 0/0 transceiver container 22",
+          "physicalIndex": 152,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-353",
+              "id": "component-353",
+              "label": "TenGigabitEthernet0/0/23",
+              "physicalIndex": 353,
+              "type": "Module",
+              "typeId": "SFP-10G-SR"
+            }
+          ],
+          "componentId": "component-153",
+          "id": "component-153",
+          "label": "subslot 0/0 transceiver container 23",
+          "physicalIndex": 153,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-22",
+              "id": "component-22",
+              "label": "Power Supply Module 0",
+              "physicalIndex": 22,
+              "type": "Equipment",
+              "typeId": "ASR-920-PWR-A"
+            }
+          ],
+          "componentId": "component-20",
+          "id": "component-20",
+          "label": "Power Supply Bay 0",
+          "physicalIndex": 20,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-23",
+              "id": "component-23",
+              "label": "Power Supply Module 1",
+              "physicalIndex": 23,
+              "type": "Equipment",
+              "typeId": "ASR-920-PWR-A"
+            }
+          ],
+          "componentId": "component-21",
+          "id": "component-21",
+          "label": "Power Supply Bay 1",
+          "physicalIndex": 21,
+          "type": "Equipment",
+          "typeId": null
+        }
+      ],
+      "componentId": "component-1",
+      "id": "component-1",
+      "label": "Chassis",
+      "physicalIndex": null,
+      "type": "Chassis",
+      "typeId": "ASR-920-20SZ-M"
+    }
+  ],
+  "views": [
+    {
+      "height": 165,
+      "hotspots": [
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-0",
+          "inventoryId": "component-300",
+          "label": "Gi0/0/0",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/0",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 300,
+          "slotKey": "subslot/0/0/0"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-1",
+          "inventoryId": "component-301",
+          "label": "Gi0/0/1",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/1",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 301,
+          "slotKey": "subslot/0/0/1"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-2",
+          "inventoryId": "component-302",
+          "label": "Gi0/0/2",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/2",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 302,
+          "slotKey": "subslot/0/0/2"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-3",
+          "inventoryId": "component-303",
+          "label": "Gi0/0/3",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/3",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 303,
+          "slotKey": "subslot/0/0/3"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-4",
+          "inventoryId": "component-304",
+          "label": "Gi0/0/4",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/4",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 304,
+          "slotKey": "subslot/0/0/4"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-5",
+          "inventoryId": "component-305",
+          "label": "Gi0/0/5",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/5",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 305,
+          "slotKey": "subslot/0/0/5"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 524,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-6",
+          "inventoryId": "component-306",
+          "label": "Gi0/0/6",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/6",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 306,
+          "slotKey": "subslot/0/0/6"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 578,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-7",
+          "inventoryId": "component-307",
+          "label": "Gi0/0/7",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/7",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 307,
+          "slotKey": "subslot/0/0/7"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 632,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-8",
+          "inventoryId": "component-308",
+          "label": "Gi0/0/8",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/8",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 308,
+          "slotKey": "subslot/0/0/8"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 686,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-9",
+          "inventoryId": "component-309",
+          "label": "Gi0/0/9",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/9",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 309,
+          "slotKey": "subslot/0/0/9"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-10",
+          "inventoryId": "component-310",
+          "label": "Gi0/0/10",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/10",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 310,
+          "slotKey": "subslot/0/0/10"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-11",
+          "inventoryId": "component-311",
+          "label": "Gi0/0/11",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/11",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 311,
+          "slotKey": "subslot/0/0/11"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-12",
+          "inventoryId": "component-312",
+          "label": "Gi0/0/12",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/12",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 312,
+          "slotKey": "subslot/0/0/12"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-13",
+          "inventoryId": "component-313",
+          "label": "Gi0/0/13",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/13",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 313,
+          "slotKey": "subslot/0/0/13"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-14",
+          "inventoryId": "component-314",
+          "label": "Gi0/0/14",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/14",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 314,
+          "slotKey": "subslot/0/0/14"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-15",
+          "inventoryId": "component-315",
+          "label": "Gi0/0/15",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/15",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 315,
+          "slotKey": "subslot/0/0/15"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 524,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-16",
+          "inventoryId": "component-316",
+          "label": "Gi0/0/16",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/16",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 316,
+          "slotKey": "subslot/0/0/16"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 578,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-17",
+          "inventoryId": "component-317",
+          "label": "Gi0/0/17",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/17",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 317,
+          "slotKey": "subslot/0/0/17"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 632,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-18",
+          "inventoryId": "component-318",
+          "label": "Gi0/0/18",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/18",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 318,
+          "slotKey": "subslot/0/0/18"
+        },
+        {
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 686,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-19",
+          "inventoryId": "component-319",
+          "label": "Gi0/0/19",
+          "metadata": {
+            "modelName": "SFP Gigabit Ethernet",
+            "modelTypeId": "SFP-GE-T",
+            "sourceName": "Gi0/0/19",
+            "sourceTypeId": "SFP-GE-T"
+          },
+          "physicalIndex": 319,
+          "slotKey": "subslot/0/0/19"
+        },
+        {
+          "bounds": {
+            "h": 48,
+            "w": 56,
+            "x": 1132,
+            "y": 56
+          },
+          "empty": false,
+          "id": "hotspot-uplink-20",
+          "inventoryId": "component-350",
+          "label": "Te0/0/20",
+          "metadata": {
+            "modelName": "SFP+ 10G uplink",
+            "modelTypeId": "SFP-10G-SR",
+            "sourceName": "Te0/0/20",
+            "sourceTypeId": "SFP-10G-SR"
+          },
+          "physicalIndex": 350,
+          "slotKey": "subslot/0/0/20"
+        },
+        {
+          "bounds": {
+            "h": 48,
+            "w": 56,
+            "x": 1196,
+            "y": 56
+          },
+          "empty": false,
+          "id": "hotspot-uplink-21",
+          "inventoryId": "component-351",
+          "label": "Te0/0/21",
+          "metadata": {
+            "modelName": "SFP+ 10G uplink",
+            "modelTypeId": "SFP-10G-SR",
+            "sourceName": "Te0/0/21",
+            "sourceTypeId": "SFP-10G-SR"
+          },
+          "physicalIndex": 351,
+          "slotKey": "subslot/0/0/21"
+        },
+        {
+          "bounds": {
+            "h": 48,
+            "w": 56,
+            "x": 1260,
+            "y": 56
+          },
+          "empty": false,
+          "id": "hotspot-uplink-22",
+          "inventoryId": "component-352",
+          "label": "Te0/0/22",
+          "metadata": {
+            "modelName": "SFP+ 10G uplink",
+            "modelTypeId": "SFP-10G-SR",
+            "sourceName": "Te0/0/22",
+            "sourceTypeId": "SFP-10G-SR"
+          },
+          "physicalIndex": 352,
+          "slotKey": "subslot/0/0/22"
+        },
+        {
+          "bounds": {
+            "h": 48,
+            "w": 56,
+            "x": 1324,
+            "y": 56
+          },
+          "empty": false,
+          "id": "hotspot-uplink-23",
+          "inventoryId": "component-353",
+          "label": "Te0/0/23",
+          "metadata": {
+            "modelName": "SFP+ 10G uplink",
+            "modelTypeId": "SFP-10G-SR",
+            "sourceName": "Te0/0/23",
+            "sourceTypeId": "SFP-10G-SR"
+          },
+          "physicalIndex": 353,
+          "slotKey": "subslot/0/0/23"
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 70,
+            "x": 60,
+            "y": 56
+          },
+          "empty": false,
+          "id": "hotspot-mgmt",
+          "inventoryId": "component-11",
+          "label": "MgmtEth",
+          "metadata": {
+            "modelName": "Management Ethernet",
+            "modelTypeId": "RJ45",
+            "sourceName": "MgmtEth",
+            "sourceTypeId": "RJ45"
+          },
+          "physicalIndex": 11,
+          "slotKey": "mgmt0"
+        },
+        {
+          "bounds": {
+            "h": 98,
+            "w": 138,
+            "x": 1390,
+            "y": 34
+          },
+          "empty": false,
+          "id": "hotspot-psu-0",
+          "inventoryId": "component-22",
+          "label": "PSU 0",
+          "metadata": {
+            "modelName": "ASR 920 250W AC PSU",
+            "modelTypeId": "ASR-920-PWR-A",
+            "sourceName": "PSU 0",
+            "sourceTypeId": "ASR-920-PWR-A"
+          },
+          "physicalIndex": 22,
+          "slotKey": "Power_Supply_Bay_0"
+        },
+        {
+          "bounds": {
+            "h": 98,
+            "w": 138,
+            "x": 1542,
+            "y": 34
+          },
+          "empty": false,
+          "id": "hotspot-psu-1",
+          "inventoryId": "component-23",
+          "label": "PSU 1",
+          "metadata": {
+            "modelName": "ASR 920 250W AC PSU",
+            "modelTypeId": "ASR-920-PWR-A",
+            "sourceName": "PSU 1",
+            "sourceTypeId": "ASR-920-PWR-A"
+          },
+          "physicalIndex": 23,
+          "slotKey": "Power_Supply_Bay_1"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/asr920/ASR-920-Front.svg",
+      "label": "Front View",
+      "sourceHeight": 165,
+      "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR-920-20SZ-M_Router/images/ASR-920-20SZ-M-Front-Core.svg",
+      "sourceWidth": 1680,
+      "width": 1680
+    }
+  ]
+}

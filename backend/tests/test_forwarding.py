@@ -71,6 +71,13 @@ def _payload(name: str = "noc-upstream") -> dict:
     }
 
 
+def _account_audit_payload(name: str = "secops-upstream") -> dict:
+    payload = _payload(name)
+    payload["event_types"] = ["account_audit"]
+    payload["severity_filter"] = None
+    return payload
+
+
 def test_forwarding_crud(client: TestClient) -> None:
     create = client.post("/api/forwarding/targets", json=_payload())
     assert create.status_code == 201
@@ -114,6 +121,12 @@ def test_test_endpoint_sends_udp_probe(client: TestClient, mock_udp_socket: Magi
     payload, destination = mock_udp_socket.sendto.call_args.args
     assert b"NMS Custom forwarding test event" in payload
     assert destination == ("127.0.0.1", 5514)
+
+
+def test_account_audit_event_type_is_valid(client: TestClient) -> None:
+    response = client.post("/api/forwarding/targets", json=_account_audit_payload())
+    assert response.status_code == 201
+    assert response.json()["event_types"] == ["account_audit"]
 
 
 def test_invalid_port_and_host_validation(client: TestClient) -> None:

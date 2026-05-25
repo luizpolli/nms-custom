@@ -40,6 +40,7 @@ certs/*.pem
 .env.production
 backend/.env
 frontend/.env
+.local/
 
 # Docker
 *.pid

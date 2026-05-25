@@ -49,20 +49,20 @@ class AdvisoryResponse(BaseModel):
 _SEVERITY_RANK = {"critical": 5, "major": 4, "minor": 3, "warning": 2, "info": 1, "clear": 0}
 _RUNBOOKS = {
     "link": [
-        "Verifica estado físico/óptico del enlace y errores CRC/discards en ambos extremos.",
-        "Confirma si hay alarmas espejo en el vecino antes de cambiar configuración.",
+        "Verify physical/optical link state and CRC/discard counters on both ends.",
+        "Confirm whether the neighbor has mirrored alarms before changing configuration.",
     ],
     "device": [
-        "Revisa disponibilidad, CPU/memoria y último reboot del equipo.",
-        "Valida energía/ambiente antes de asumir falla lógica.",
+        "Review device reachability, CPU/memory, and last reboot time.",
+        "Validate power and environmental signals before assuming a logical fault.",
     ],
     "auth": [
-        "Revisa credenciales/perfiles SNMP/SSH y cambios recientes de RBAC.",
-        "Confirma que la falla no sea por rotación pendiente de secretos.",
+        "Review SNMP/SSH credentials, profiles, and recent RBAC changes.",
+        "Confirm the issue is not caused by pending secret rotation.",
     ],
     "telemetry": [
-        "Compara muestras SNMP vs telemetry para descartar problema de collector.",
-        "Revisa lag, drops y last_seen del collector/subscription.",
+        "Compare SNMP and telemetry samples to rule out a collector-side issue.",
+        "Review collector/subscription lag, drops, and last_seen timestamps.",
     ],
 }
 
@@ -92,14 +92,14 @@ async def alarm_group_summary(
     alarms = [a for a in result.scalars().all() if (a.correlation_group_id and f"group:{a.correlation_group_id}" == group_key) or a.dedup_key == group_key or a.correlation_key == group_key]
     worst = _worst_alarm(alarms)
     if not worst:
-        return AdvisoryResponse(advisory_type="alarm_group_summary", title="Sin datos para el grupo", summary="No encontré alarmas activas/ack/suprimidas con esa llave.")
+        return AdvisoryResponse(advisory_type="alarm_group_summary", title="No data for this group", summary="No active, acknowledged, or suppressed alarms were found for this key.")
     impacted = sorted({a.source_host for a in alarms if a.source_host})
     category = worst.category or "other"
     return AdvisoryResponse(
         advisory_type="alarm_group_summary",
-        title=f"Grupo {group_key}: {worst.severity} / {category}",
-        summary=f"Hay {len(alarms)} alarma(s) relacionadas; peor severidad {worst.severity}. Impacto observado en: {', '.join(impacted) or 'sin host identificado'}.",
-        recommendations=_RUNBOOKS.get(category, ["Revisa timeline, topología e interfaces relacionadas antes de ejecutar cambios."]),
+        title=f"Group {group_key}: {worst.severity} / {category}",
+        summary=f"Found {len(alarms)} related alarm(s); worst severity is {worst.severity}. Observed impact on: {', '.join(impacted) or 'no identified host'}.",
+        recommendations=_RUNBOOKS.get(category, ["Review the timeline, topology, and related interfaces before executing changes."]),
         citations=[_alarm_citation(a) for a in alarms[:10]],
     )
 
@@ -118,15 +118,15 @@ async def kpi_anomaly_explanation(
     result = await db.execute(stmt)
     kpis = list(result.scalars().all())
     if not kpis:
-        return AdvisoryResponse(advisory_type="kpi_anomaly_explanation", title="Sin anomalías KPI recientes", summary="No hay muestras KPI non-good en la ventana solicitada.")
+        return AdvisoryResponse(advisory_type="kpi_anomaly_explanation", title="No recent KPI anomalies", summary="No non-good KPI samples were found in the requested window.")
     paths = sorted({k.metric_name or k.kpi_type for k in kpis})
     return AdvisoryResponse(
         advisory_type="kpi_anomaly_explanation",
-        title=f"{len(kpis)} anomalía(s) KPI recientes",
-        summary=f"Las métricas afectadas incluyen: {', '.join(paths[:8])}. Esto sugiere degradación observable, no causa raíz confirmada.",
+        title=f"{len(kpis)} recent KPI {'anomaly' if len(kpis) == 1 else 'anomalies'}",
+        summary=f"Affected metrics include: {', '.join(paths[:8])}. This suggests observable degradation, not a confirmed root cause.",
         recommendations=[
-            "Correlaciona estas muestras con alarmas activas y cambios recientes.",
-            "Valida si la anomalía aparece en SNMP y telemetry antes de escalar.",
+            "Correlate these samples with active alarms and recent changes.",
+            "Validate whether the anomaly appears in both SNMP and telemetry before escalation.",
         ],
         citations=[
             AdvisoryCitation(
@@ -157,11 +157,11 @@ async def runbook_suggestions(
     for cat in categories or ([category] if category else []):
         recommendations.extend(_RUNBOOKS.get(cat or "", []))
     if not recommendations:
-        recommendations = ["No hay runbook específico; usa timeline, topología, KPIs y auditoría para acotar causa antes de tocar producción."]
+        recommendations = ["No specific runbook is available; use the timeline, topology, KPIs, and audit data to narrow cause before touching production."]
     return AdvisoryResponse(
         advisory_type="runbook_suggestion",
-        title="Sugerencias de runbook",
-        summary=f"Sugerencias basadas en {len(alarms)} alarma(s) activa(s) y categoría(s): {', '.join(categories) or category or 'general'}.",
+        title="Runbook suggestions",
+        summary=f"Suggestions based on {len(alarms)} active alarm(s) and category set: {', '.join(categories) or category or 'general'}.",
         recommendations=list(dict.fromkeys(recommendations)),
         citations=[_alarm_citation(a) for a in alarms[:10]],
     )
@@ -173,15 +173,15 @@ async def report_narrative(db: Annotated[AsyncSession, Depends(get_db)], hours: 
     alarms = list((await db.execute(select(Alarm).where(Alarm.last_seen >= since).order_by(Alarm.last_seen.desc()).limit(50))).scalars().all())
     kpis = list((await db.execute(select(KPI).where(KPI.timestamp >= since, KPI.quality != "good").order_by(KPI.timestamp.desc()).limit(50))).scalars().all())
     worst = _worst_alarm(alarms)
-    title = "Narrativa operacional"
-    summary = f"En las últimas {hours}h: {len(alarms)} alarma(s) y {len(kpis)} KPI(s) non-good."
+    title = "Operational narrative"
+    summary = f"In the last {hours}h: {len(alarms)} alarm(s) and {len(kpis)} non-good KPI(s)."
     if worst:
-        summary += f" Peor alarma: {worst.severity} en {worst.source_host}: {worst.message}."
+        summary += f" Worst alarm: {worst.severity} on {worst.source_host}: {worst.message}."
     return AdvisoryResponse(
         advisory_type="report_narrative",
         title=title,
         summary=summary,
-        recommendations=["Usa esta narrativa como borrador; confirma con datos crudos antes de enviarla a clientes."],
+        recommendations=["Use this narrative as a draft; confirm against raw data before sending it to customers."],
         citations=[_alarm_citation(a) for a in alarms[:5]] + [
             AdvisoryCitation(source_type="kpi", object_id=str(k.id), label=k.metric_name or k.kpi_type, timestamp=k.timestamp, detail=f"quality={k.quality} value={k.value}")
             for k in kpis[:5]
