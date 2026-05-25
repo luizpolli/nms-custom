@@ -89,6 +89,7 @@ export type AlarmSummary = {
   major: number;
   minor: number;
   warning: number;
+  info: number;
   total: number;
 };
 
