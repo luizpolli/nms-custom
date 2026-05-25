@@ -342,6 +342,184 @@ async def test_chassis_endpoint_returns_asr9006_profile_for_supported_device():
     assert len(chassis["views"][0]["hotspots"]) == 11
 
 
+# ---------------------------------------------------------------------------
+# Profile detection — NCS560
+# ---------------------------------------------------------------------------
+
+
+def test_chassis_profile_detects_ncs560_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs560-pe01",
+        ip_address="10.0.0.50",
+        device_type="router",
+        model="Cisco NCS-560-28GT-400G",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs560"
+
+
+def test_chassis_profile_detects_ncs560_no_dash_variant():
+    """Model string without dash — 'NCS560' — must also resolve to ncs560."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs560-pe02",
+        ip_address="10.0.0.51",
+        device_type="router",
+        model="Cisco NCS560",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs560"
+
+
+# ---------------------------------------------------------------------------
+# Profile detection — NCS540
+# ---------------------------------------------------------------------------
+
+
+def test_chassis_profile_detects_ncs540_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-pe01",
+        ip_address="10.0.0.55",
+        device_type="router",
+        model="Cisco NCS-540-24Z8Q2C-SYS",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540"
+
+
+def test_chassis_profile_detects_ncs540_from_n540_shortname():
+    """Short-form 'N540' alias must also resolve to ncs540."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-pe02",
+        ip_address="10.0.0.56",
+        device_type="router",
+        model="Cisco N540-24Z8Q2C-M",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540"
+
+
+# ---------------------------------------------------------------------------
+# Profile detection — ASR9010
+# ---------------------------------------------------------------------------
+
+
+def test_chassis_profile_detects_asr9010_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-asr9010",
+        ip_address="10.0.0.60",
+        device_type="router",
+        model="Cisco ASR 9010",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "asr9010"
+
+
+def test_chassis_profile_detects_asr9010_dash_variant():
+    """Model 'ASR-9010' (with dash) must also resolve to asr9010."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-asr9010-b",
+        ip_address="10.0.0.61",
+        device_type="router",
+        model="Cisco ASR-9010-AC",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "asr9010"
+
+
+def test_chassis_profile_asr9010_does_not_match_asr9006():
+    """Ensure asr9010 and asr9006 detection rules do not cross-match."""
+    device9006 = Device(
+        id=uuid.uuid4(),
+        name="core-asr9006",
+        ip_address="10.0.0.20",
+        device_type="router",
+        model="Cisco ASR 9006",
+        vendor="Cisco",
+    )
+    device9010 = Device(
+        id=uuid.uuid4(),
+        name="core-asr9010",
+        ip_address="10.0.0.21",
+        device_type="router",
+        model="Cisco ASR 9010",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device9006, None) == "asr9006"
+    assert _chassis_profile_for_device(device9010, None) == "asr9010"
+
+
+# ---------------------------------------------------------------------------
+# Edge cases
+# ---------------------------------------------------------------------------
+
+
+def test_chassis_profile_returns_none_for_device_with_no_model_and_no_inventory():
+    device = Device(
+        id=uuid.uuid4(),
+        name="unknown-device",
+        ip_address="10.0.0.99",
+        device_type="unknown",
+        vendor="Unknown",
+    )
+
+    assert _chassis_profile_for_device(device, None) is None
+
+
+def test_chassis_profile_returns_none_for_unsupported_platform():
+    """A Cisco Nexus 9000 string should not match any chassis profile."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="nexus-sw01",
+        ip_address="10.0.0.100",
+        device_type="switch",
+        model="Cisco Nexus 9000",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) is None
+
+
+def test_chassis_profile_is_case_insensitive_for_ncs55a1():
+    """Both lowercase and uppercase model strings must match ncs55a1."""
+    device_lower = Device(
+        id=uuid.uuid4(),
+        name="ncs55a1-lower",
+        ip_address="10.0.0.32",
+        device_type="router",
+        model="cisco ncs-55a1-36h-se-s",
+        vendor="Cisco",
+    )
+    device_upper = Device(
+        id=uuid.uuid4(),
+        name="ncs55a1-upper",
+        ip_address="10.0.0.33",
+        device_type="router",
+        model="CISCO NCS-55A1-36H-SE-S",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device_lower, None) == "ncs55a1"
+    assert _chassis_profile_for_device(device_upper, None) == "ncs55a1"
+
+
+# ---------------------------------------------------------------------------
+# Endpoint tests — NCS55A1 (kept in original position below)
+# ---------------------------------------------------------------------------
+
+
 @pytest.mark.asyncio
 async def test_chassis_endpoint_returns_ncs55a1_profile_for_supported_device():
     device_id = uuid.uuid4()
@@ -361,3 +539,66 @@ async def test_chassis_endpoint_returns_ncs55a1_profile_for_supported_device():
     assert chassis["deviceId"] == str(device_id)
     assert chassis["tree"][0]["label"] == "ncs55a1-mx01"
     assert len(chassis["views"][0]["hotspots"]) == 44
+
+
+@pytest.mark.asyncio
+async def test_chassis_endpoint_returns_ncs560_profile_for_supported_device():
+    device_id = uuid.uuid4()
+    device = Device(
+        id=device_id,
+        name="ncs560-pe01",
+        ip_address="10.0.0.52",
+        device_type="router",
+        model="Cisco NCS-560-28GT-400G",
+        vendor="Cisco",
+    )
+
+    chassis = await get_device_chassis(device_id, _FakeSession(device))  # type: ignore[arg-type]
+
+    assert chassis["schemaVersion"] == "nms.chassisView.v1"
+    assert chassis["profileId"] == "Cisco_NCS560"
+    assert chassis["deviceId"] == str(device_id)
+    assert chassis["tree"][0]["label"] == "ncs560-pe01"
+    assert len(chassis["views"][0]["hotspots"]) == 55
+
+
+@pytest.mark.asyncio
+async def test_chassis_endpoint_returns_ncs540_profile_for_supported_device():
+    device_id = uuid.uuid4()
+    device = Device(
+        id=device_id,
+        name="ncs540-pe01",
+        ip_address="10.0.0.57",
+        device_type="router",
+        model="Cisco NCS-540-24Z8Q2C-SYS",
+        vendor="Cisco",
+    )
+
+    chassis = await get_device_chassis(device_id, _FakeSession(device))  # type: ignore[arg-type]
+
+    assert chassis["schemaVersion"] == "nms.chassisView.v1"
+    assert chassis["profileId"] == "Cisco_NCS540"
+    assert chassis["deviceId"] == str(device_id)
+    assert chassis["tree"][0]["label"] == "ncs540-pe01"
+    assert len(chassis["views"][0]["hotspots"]) == 33
+
+
+@pytest.mark.asyncio
+async def test_chassis_endpoint_returns_asr9010_profile_for_supported_device():
+    device_id = uuid.uuid4()
+    device = Device(
+        id=device_id,
+        name="core-asr9010-mx01",
+        ip_address="10.0.0.62",
+        device_type="router",
+        model="Cisco ASR 9010",
+        vendor="Cisco",
+    )
+
+    chassis = await get_device_chassis(device_id, _FakeSession(device))  # type: ignore[arg-type]
+
+    assert chassis["schemaVersion"] == "nms.chassisView.v1"
+    assert chassis["profileId"] == "Cisco_ASR_9010_Router"
+    assert chassis["deviceId"] == str(device_id)
+    assert chassis["tree"][0]["label"] == "core-asr9010-mx01"
+    assert len(chassis["views"][0]["hotspots"]) == 18
