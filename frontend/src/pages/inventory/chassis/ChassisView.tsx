@@ -5,6 +5,7 @@ import { Activity, Bell, CheckCircle2, Info, Maximize2, Minus, Plus, TerminalSqu
 import { api } from '../../../lib/api';
 import { Badge, Button, Card, Spinner } from '../../../components/ui';
 import type { ChassisComponent, ChassisComponentPort, ChassisHotspot, ChassisTreeNode, ChassisViewModel, ChassisViewImage, ComponentAlarmInfo } from './chassisTypes';
+import { PortDetailPanel } from './PortDetailPanel';
 
 interface ChassisViewProps {
   deviceName: string;
@@ -133,6 +134,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   const defaultSelection = useMemo(() => (data ? firstSelectableNode(data.tree) : null), [data]);
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [selectedPortId, setSelectedPortId] = useState<string | null>(null);
+  const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
   const effectiveSelection = selectedComponentId ?? defaultSelection;
 
   if (isLoading) {
@@ -166,7 +168,12 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
     setSelectedPortId(null);
   };
 
+  const handleHotspotDetail = (physicalIndex: number) => {
+    setPortDetailPhysicalIndex(physicalIndex);
+  };
+
   return (
+    <>
     <Card className="space-y-4">
       <div className="overflow-hidden rounded-lg border border-gray-300 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
         <div className="flex flex-col gap-3 border-b border-gray-200 px-4 py-3 dark:border-gray-700 lg:flex-row lg:items-center lg:justify-between">
@@ -203,6 +210,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                   model={data}
                   selectedComponentId={effectiveSelection}
                   onSelect={handleComponentSelect}
+                  onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
                 />
               </div>
             </div>
@@ -228,7 +236,15 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
         </div>
       </div>
     </Card>
-  );
+
+    {deviceId && portDetailPhysicalIndex != null && (
+      <PortDetailPanel
+        deviceId={deviceId}
+        physicalIndex={portDetailPhysicalIndex}
+        onClose={() => setPortDetailPhysicalIndex(null)}
+      />
+    )}
+  </>);
 }
 
 function DiscoveredElementsTree({
@@ -365,10 +381,12 @@ function ChassisCanvas({
   model,
   selectedComponentId,
   onSelect,
+  onHotspotDetail,
 }: {
   model: ChassisViewModel;
   selectedComponentId: string | null;
   onSelect: (componentId: string) => void;
+  onHotspotDetail?: (physicalIndex: number) => void;
 }) {
   const view = model.views[0];
   const frameRef = useRef<HTMLDivElement | null>(null);
@@ -476,6 +494,9 @@ function ChassisCanvas({
                     return;
                   }
                   if (hotspot.inventoryId) onSelect(hotspot.inventoryId);
+                  if (onHotspotDetail && hotspot.physicalIndex != null) {
+                    onHotspotDetail(Number(hotspot.physicalIndex));
+                  }
                 }}
                 className={`absolute rounded-sm border-2 transition ${
                   selected
