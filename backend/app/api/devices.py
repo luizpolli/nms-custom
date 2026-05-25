@@ -14,7 +14,7 @@ from typing import Annotated, Any, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from loguru import logger
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field, model_validator
-from sqlalchemy import select
+from sqlalchemy import case, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -24,6 +24,7 @@ from app.models.credential import Credential
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.inventory import Inventory
+from app.models.alarm import Alarm
 from app.models.physical_inventory import PhysicalInventoryComponent
 from app.schemas.device import DeviceCreate, DeviceRead, DeviceUpdate
 from app.schemas.interface import InterfaceRead as ManagedInterfaceRead
@@ -43,6 +44,7 @@ CHASSIS_PROFILE_FILES = {
     "ncs55a1": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1" / "normalized.json",
     "ncs560": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs560" / "normalized.json",
     "ncs540": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540" / "normalized.json",
+    "asr9010": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr9010" / "normalized.json",
 }
 
 
@@ -198,6 +200,8 @@ def _chassis_profile_for_device(device: Device, inventory: Inventory | None) -> 
         return "asr903"
     if "asr" in terms and "9006" in terms:
         return "asr9006"
+    if "asr" in terms and "9010" in terms:
+        return "asr9010"
     return None
 
 
@@ -966,13 +970,68 @@ async def get_device_chassis(
         .order_by(PhysicalInventoryComponent.physical_index.asc())
     )
     physical_components = list(physical_result.scalars().all())
-    return _customize_chassis_model(
+    chassis_model = _customize_chassis_model(
         _load_chassis_profile(profile),
         device,
         device.inventory,
         profile,
         physical_components,
     )
+
+    # ── Alarm overlay ────────────────────────────────────────────────────────
+    alarm_result = await db.execute(
+        select(Alarm)
+        .where(Alarm.device_id == id, Alarm.state == "active")
+    )
+    active_alarms = list(alarm_result.scalars().all())
+
+    SEVERITY_RANK: dict[str, int] = {
+        "critical": 5,
+        "major": 4,
+        "minor": 3,
+        "warning": 2,
+        "info": 1,
+    }
+
+    alarms_by_component: dict[str, dict] = {}
+    alarm_summary: dict[str, int] = {"critical": 0, "major": 0, "minor": 0, "warning": 0, "total": 0}
+    phys_idx_map: dict[str, str] = chassis_model.get("physicalIndexToComponentId", {})
+
+    for alarm in active_alarms:
+        sev = (alarm.severity or "info").lower()
+        # count toward summary regardless of component match
+        if sev in alarm_summary:
+            alarm_summary[sev] = alarm_summary[sev] + 1
+        alarm_summary["total"] = alarm_summary["total"] + 1
+
+        obj_id = alarm.object_id or ""
+        component_id: str | None = None
+
+        # Try matching by physicalIndex stored in object_id
+        if obj_id and obj_id in phys_idx_map:
+            component_id = phys_idx_map[obj_id]
+
+        # Fallback: scan componentsById for a name/displayName match
+        if component_id is None and obj_id:
+            obj_id_lower = obj_id.lower()
+            for cid, comp in chassis_model.get("componentsById", {}).items():
+                comp_name = (comp.get("name") or "").lower()
+                comp_display = (comp.get("displayName") or "").lower()
+                if obj_id_lower in (comp_name, comp_display):
+                    component_id = cid
+                    break
+
+        if component_id is None:
+            continue
+
+        entry = alarms_by_component.setdefault(component_id, {"maxSeverity": "info", "count": 0})
+        entry["count"] += 1
+        if SEVERITY_RANK.get(sev, 0) > SEVERITY_RANK.get(entry["maxSeverity"], 0):
+            entry["maxSeverity"] = sev
+
+    chassis_model["alarmsByComponentId"] = alarms_by_component
+    chassis_model["alarmSummary"] = alarm_summary
+    return chassis_model
 
 
 @router.get("/{id}/interfaces", response_model=list[InterfaceRead])
@@ -1013,3 +1072,114 @@ async def get_inventory(
     result = await db.execute(select(Inventory).where(Inventory.device_id == id))
     inv = result.scalar_one_or_none()
     return inv
+
+
+@router.get("/{id}/chassis/ports/{physical_index}")
+async def get_chassis_port_detail(
+    id: uuid.UUID,
+    physical_index: int,
+    db: Annotated[AsyncSession, Depends(get_db)],
+) -> dict[str, Any]:
+    """Return component, interface, and active alarm data for a chassis port."""
+    device = await _get_device_or_404(db, id)
+
+    # 1. Look up the physical inventory component
+    comp_result = await db.execute(
+        select(PhysicalInventoryComponent).where(
+            PhysicalInventoryComponent.device_id == id,
+            PhysicalInventoryComponent.physical_index == physical_index,
+        )
+    )
+    component = comp_result.scalar_one_or_none()
+    if component is None:
+        raise HTTPException(status_code=404, detail="Physical inventory component not found")
+
+    # 2. Find matching Interface — try by if_index from metadata, then by name match
+    iface_result = await db.execute(
+        select(Interface).where(
+            Interface.device_id == id,
+            or_(
+                Interface.name == component.name,
+                Interface.alias == component.name,
+                Interface.description == component.name,
+            ),
+        ).limit(1)
+    )
+    interface = iface_result.scalar_one_or_none()
+
+    # 3. Active alarms for this device, limited to 10 ordered by severity then last_seen
+    severity_rank = case(
+        {"critical": 0, "major": 1, "minor": 2, "warning": 3, "info": 4},
+        value=Alarm.severity,
+        else_=5,
+    )
+    alarms_result = await db.execute(
+        select(Alarm)
+        .where(
+            Alarm.device_id == id,
+            Alarm.state == "active",
+        )
+        .order_by(severity_rank.asc(), Alarm.last_seen.desc())
+        .limit(10)
+    )
+    alarms = alarms_result.scalars().all()
+
+    # Build response
+    component_data: dict[str, Any] = {
+        "physicalIndex": component.physical_index,
+        "name": component.name,
+        "description": component.description,
+        "modelName": component.model_name,
+        "serialNumber": component.serial_number,
+        "hardwareVersion": component.hardware_version,
+        "firmwareVersion": component.firmware_version,
+        "softwareVersion": component.software_version,
+        "manufacturer": component.manufacturer,
+        "alias": component.alias,
+        "isFru": component.is_fru,
+        "physicalClass": component.physical_class,
+    }
+
+    interface_data: dict[str, Any] | None = None
+    if interface is not None:
+        interface_data = {
+            "id": str(interface.id),
+            "name": interface.name,
+            "alias": interface.alias,
+            "adminStatus": interface.admin_status,
+            "operStatus": interface.oper_status,
+            "speedBps": interface.speed_bps,
+            "description": interface.description,
+            "macAddress": interface.mac_address,
+            "role": interface.role,
+        }
+        # Counters may be stored in metadata_json
+        meta = interface.metadata_json or {}
+        interface_data["inOctets"] = meta.get("in_octets")
+        interface_data["outOctets"] = meta.get("out_octets")
+        interface_data["inErrors"] = meta.get("in_errors")
+        interface_data["outErrors"] = meta.get("out_errors")
+
+    alarms_data = [
+        {
+            "id": str(alarm.id),
+            "severity": alarm.severity,
+            "category": alarm.category,
+            "eventType": alarm.event_type,
+            "message": alarm.message,
+            "state": alarm.state,
+            "lastSeen": alarm.last_seen.isoformat() if alarm.last_seen else None,
+            "firstSeen": alarm.first_seen.isoformat() if alarm.first_seen else None,
+            "occurrenceCount": alarm.occurrence_count,
+            "ackBy": alarm.ack_by,
+        }
+        for alarm in alarms
+    ]
+
+    return {
+        "deviceId": str(id),
+        "physicalIndex": physical_index,
+        "component": component_data,
+        "interface": interface_data,
+        "alarms": alarms_data,
+    }

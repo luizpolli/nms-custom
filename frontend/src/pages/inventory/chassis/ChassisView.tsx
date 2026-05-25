@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Activity, Bell, CheckCircle2, Info, Maximize2, Minus, Plus, TerminalSquare } from 'lucide-react';
 import { api } from '../../../lib/api';
 import { Badge, Button, Card, Spinner } from '../../../components/ui';
-import type { ChassisComponent, ChassisComponentPort, ChassisHotspot, ChassisTreeNode, ChassisViewModel, ChassisViewImage } from './chassisTypes';
+import type { ChassisComponent, ChassisComponentPort, ChassisHotspot, ChassisTreeNode, ChassisViewModel, ChassisViewImage, ComponentAlarmInfo } from './chassisTypes';
 
 interface ChassisViewProps {
   deviceName: string;
@@ -337,6 +337,30 @@ function clampPan(pan: { x: number; y: number }, zoom: number, frame: { width: n
   };
 }
 
+const ALARM_DOT_STYLES: Record<ComponentAlarmInfo['maxSeverity'], string> = {
+  critical: 'bg-red-500 animate-pulse',
+  major: 'bg-orange-500',
+  minor: 'bg-yellow-400',
+  warning: 'bg-blue-400',
+  info: 'bg-gray-400',
+};
+
+function AlarmDot({ severity }: { severity: ComponentAlarmInfo['maxSeverity'] }) {
+  return (
+    <span
+      aria-label={`${severity} alarm`}
+      className={`pointer-events-none absolute right-0.5 top-0.5 h-2 w-2 rounded-full ring-1 ring-white/60 ${ALARM_DOT_STYLES[severity]}`}
+    />
+  );
+}
+
+const ALARM_LEGEND_ITEMS: { severity: ComponentAlarmInfo['maxSeverity']; label: string; color: string }[] = [
+  { severity: 'critical', label: 'Critical', color: 'bg-red-500' },
+  { severity: 'major',    label: 'Major',    color: 'bg-orange-500' },
+  { severity: 'minor',    label: 'Minor',    color: 'bg-yellow-400' },
+  { severity: 'warning',  label: 'Warning',  color: 'bg-blue-400' },
+];
+
 function ChassisCanvas({
   model,
   selectedComponentId,
@@ -434,6 +458,8 @@ function ChassisCanvas({
           {view.hotspots.map((hotspot) => {
             const selected = containsComponent(model.componentsById, hotspot.inventoryId, selectedComponentId);
             const canSelect = Boolean(hotspot.inventoryId);
+            const alarmInfo: ComponentAlarmInfo | undefined =
+              hotspot.inventoryId ? model.alarmsByComponentId?.[hotspot.inventoryId] : undefined;
             return (
               <button
                 key={hotspot.id}
@@ -459,11 +485,25 @@ function ChassisCanvas({
                       : 'border-gray-400/40 bg-gray-500/10'
                 }`}
                 style={percentBounds(hotspot, view)}
-              />
+              >
+                {alarmInfo && <AlarmDot severity={alarmInfo.maxSeverity} />}
+              </button>
             );
           })}
         </div>
       </div>
+      {model.alarmSummary && model.alarmSummary.total > 0 && (
+        <div className="absolute left-4 top-4 flex flex-col gap-1 rounded-md bg-white/95 px-2 py-1.5 shadow ring-1 ring-gray-300 dark:bg-gray-900/95 dark:ring-gray-700">
+          <span className="mb-0.5 text-[9px] font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Alarms</span>
+          {ALARM_LEGEND_ITEMS.filter(({ severity }) => (model.alarmSummary?.[severity] ?? 0) > 0).map(({ severity, label, color }) => (
+            <div key={severity} className="flex items-center gap-1.5">
+              <span className={`h-2 w-2 rounded-full ring-1 ring-white/60 ${color}${severity === 'critical' ? ' animate-pulse' : ''}`} />
+              <span className="text-[10px] text-gray-700 dark:text-gray-300">{label}</span>
+              <span className="ml-auto text-[10px] font-mono font-semibold text-gray-800 dark:text-gray-200">{model.alarmSummary?.[severity]}</span>
+            </div>
+          ))}
+        </div>
+      )}
       <div className="absolute right-4 top-4 flex flex-col gap-1 rounded-md bg-white/95 p-1 shadow ring-1 ring-gray-300 dark:bg-gray-900/95 dark:ring-gray-700">
         <button
           type="button"

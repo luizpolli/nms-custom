@@ -79,6 +79,19 @@ export type ChassisViewImage = {
   hotspots: ChassisHotspot[];
 };
 
+export type ComponentAlarmInfo = {
+  maxSeverity: 'critical' | 'major' | 'minor' | 'warning' | 'info';
+  count: number;
+};
+
+export type AlarmSummary = {
+  critical: number;
+  major: number;
+  minor: number;
+  warning: number;
+  total: number;
+};
+
 export type ChassisViewModel = {
   schemaVersion: "nms.chassisView.v1";
   generatedAt: string;
@@ -89,6 +102,8 @@ export type ChassisViewModel = {
   tree: ChassisTreeNode[];
   componentsById: Record<string, ChassisComponent>;
   physicalIndexToComponentId: Record<string, string>;
+  alarmsByComponentId?: Record<string, ComponentAlarmInfo>;
+  alarmSummary?: AlarmSummary;
   source?: {
     type?: string;
     profile?: string;
