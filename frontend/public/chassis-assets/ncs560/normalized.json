@@ -13626,9 +13626,9 @@
           "physicalIndex": 1,
           "slotKey": "0/RP0",
           "asset": {
-            "typeId": "NCS560-4-FILLER-RSP",
-            "image": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg"
+            "typeId": "N560-4-RSP4E",
+            "image": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg"
           }
         },
         {
@@ -13671,9 +13671,9 @@
           "physicalIndex": 4097,
           "slotKey": "0/RP1",
           "asset": {
-            "typeId": "NCS560-4-FILLER-RSP",
-            "image": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg"
+            "typeId": "N560-4-RSP4E",
+            "image": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg"
           }
         },
         {
@@ -13716,9 +13716,9 @@
           "physicalIndex": 16385,
           "slotKey": "0/2",
           "asset": {
-            "typeId": "NCS560-FILLER-LC",
-            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg"
+            "typeId": "A900-IMA8Z",
+            "image": "/chassis-assets/ncs560/modules/A900-IMA8Z.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-IMA8Z.svg"
           }
         },
         {
@@ -13741,9 +13741,9 @@
           "physicalIndex": 24577,
           "slotKey": "0/4",
           "asset": {
-            "typeId": "NCS560-FILLER-LC",
-            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg"
+            "typeId": "A900-IMA8CS1Z-M",
+            "image": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg"
           }
         },
         {
@@ -13766,9 +13766,9 @@
           "physicalIndex": 28673,
           "slotKey": "0/5",
           "asset": {
-            "typeId": "NCS560-FILLER-LC",
-            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg"
+            "typeId": "A900-IMA8CS1Z-M",
+            "image": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg"
           }
         },
         {
@@ -14631,9 +14631,9 @@
           "physicalIndex": 73729,
           "slotKey": "0/FT0",
           "asset": {
-            "typeId": "N560-4-PWR-FAN_Filler",
-            "image": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN_Filler.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN_Filler.svg"
+            "typeId": "N560-4-PWR-FAN",
+            "image": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN.svg"
           }
         },
         {
@@ -14656,9 +14656,9 @@
           "physicalIndex": 77825,
           "slotKey": "0/FT1",
           "asset": {
-            "typeId": "N560-4-FAN-H_Filler",
-            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg"
+            "typeId": "N560-4-FAN-H",
+            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg"
           }
         },
         {
@@ -14681,9 +14681,9 @@
           "physicalIndex": 81921,
           "slotKey": "0/FT2",
           "asset": {
-            "typeId": "N560-4-FAN-H_Filler",
-            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg"
+            "typeId": "N560-4-FAN-H",
+            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg"
           }
         },
         {
@@ -14706,9 +14706,9 @@
           "physicalIndex": 86017,
           "slotKey": "0/PM0",
           "asset": {
-            "typeId": "NCS560-FILLER-PT",
-            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg"
+            "typeId": "A900-PWR1200-D",
+            "image": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg"
           }
         },
         {
@@ -14731,9 +14731,9 @@
           "physicalIndex": 90113,
           "slotKey": "0/PM1",
           "asset": {
-            "typeId": "NCS560-FILLER-PT",
-            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg"
+            "typeId": "A900-PWR1200-D",
+            "image": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg"
           }
         },
         {
