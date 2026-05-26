@@ -13624,7 +13624,12 @@
             "sourceTypeId": "N560-4-RSP4E"
           },
           "physicalIndex": 1,
-          "slotKey": "0/RP0"
+          "slotKey": "0/RP0",
+          "asset": {
+            "typeId": "NCS560-4-FILLER-RSP",
+            "image": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg"
+          }
         },
         {
           "bounds": {
@@ -13664,7 +13669,12 @@
             "sourceTypeId": "N560-4-RSP4E"
           },
           "physicalIndex": 4097,
-          "slotKey": "0/RP1"
+          "slotKey": "0/RP1",
+          "asset": {
+            "typeId": "NCS560-4-FILLER-RSP",
+            "image": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-4-FILLER-RSP.svg"
+          }
         },
         {
           "bounds": {
@@ -13704,7 +13714,12 @@
             "sourceTypeId": "A900-IMA8Z"
           },
           "physicalIndex": 16385,
-          "slotKey": "0/2"
+          "slotKey": "0/2",
+          "asset": {
+            "typeId": "NCS560-FILLER-LC",
+            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg"
+          }
         },
         {
           "bounds": {
@@ -13724,7 +13739,12 @@
             "sourceTypeId": "A900-IMA8CS1Z-M"
           },
           "physicalIndex": 24577,
-          "slotKey": "0/4"
+          "slotKey": "0/4",
+          "asset": {
+            "typeId": "NCS560-FILLER-LC",
+            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg"
+          }
         },
         {
           "bounds": {
@@ -13744,7 +13764,12 @@
             "sourceTypeId": "A900-IMA8CS1Z-M"
           },
           "physicalIndex": 28673,
-          "slotKey": "0/5"
+          "slotKey": "0/5",
+          "asset": {
+            "typeId": "NCS560-FILLER-LC",
+            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-LC.svg"
+          }
         },
         {
           "bounds": {
@@ -14604,7 +14629,12 @@
             "sourceTypeId": "N560-4-PWR-FAN"
           },
           "physicalIndex": 73729,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "N560-4-PWR-FAN_Filler",
+            "image": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN_Filler.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN_Filler.svg"
+          }
         },
         {
           "bounds": {
@@ -14624,7 +14654,12 @@
             "sourceTypeId": "N560-4-FAN-H"
           },
           "physicalIndex": 77825,
-          "slotKey": "0/FT1"
+          "slotKey": "0/FT1",
+          "asset": {
+            "typeId": "N560-4-FAN-H_Filler",
+            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg"
+          }
         },
         {
           "bounds": {
@@ -14644,7 +14679,12 @@
             "sourceTypeId": "N560-4-FAN-H"
           },
           "physicalIndex": 81921,
-          "slotKey": "0/FT2"
+          "slotKey": "0/FT2",
+          "asset": {
+            "typeId": "N560-4-FAN-H_Filler",
+            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H_Filler.svg"
+          }
         },
         {
           "bounds": {
@@ -14664,7 +14704,12 @@
             "sourceTypeId": "A900-PWR1200-D"
           },
           "physicalIndex": 86017,
-          "slotKey": "0/PM0"
+          "slotKey": "0/PM0",
+          "asset": {
+            "typeId": "NCS560-FILLER-PT",
+            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg"
+          }
         },
         {
           "bounds": {
@@ -14684,7 +14729,12 @@
             "sourceTypeId": "A900-PWR1200-D"
           },
           "physicalIndex": 90113,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "NCS560-FILLER-PT",
+            "image": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/NCS560-FILLER-PT.svg"
+          }
         },
         {
           "bounds": {
