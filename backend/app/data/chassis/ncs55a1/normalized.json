@@ -25891,14 +25891,14 @@
   ],
   "views": [
     {
-      "height": 430,
+      "height": 165,
       "hotspots": [
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 270,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 310,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-0",
@@ -25915,10 +25915,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 337,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 384,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-1",
@@ -25935,10 +25935,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 404,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 458,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-2",
@@ -25955,10 +25955,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 471,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 532,
+            "y": 25
           },
           "empty": true,
           "id": "hotspot-qsfp28-3",
@@ -25975,10 +25975,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 538,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 606,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-4",
@@ -25995,10 +25995,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 605,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 680,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-5",
@@ -26015,10 +26015,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 672,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 754,
+            "y": 25
           },
           "empty": true,
           "id": "hotspot-qsfp28-6",
@@ -26035,10 +26035,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 739,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 828,
+            "y": 25
           },
           "empty": true,
           "id": "hotspot-qsfp28-7",
@@ -26055,10 +26055,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 806,
-            "y": 86
+            "h": 50,
+            "w": 72,
+            "x": 902,
+            "y": 25
           },
           "empty": true,
           "id": "hotspot-qsfp28-8",
@@ -26075,10 +26075,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 270,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 976,
+            "y": 25
           },
           "empty": true,
           "id": "hotspot-qsfp28-9",
@@ -26095,10 +26095,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 337,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1050,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-10",
@@ -26115,10 +26115,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 404,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1124,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-11",
@@ -26135,10 +26135,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 471,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1198,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-12",
@@ -26155,10 +26155,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 538,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1272,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-13",
@@ -26175,10 +26175,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 605,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1346,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-14",
@@ -26195,10 +26195,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 672,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1420,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-15",
@@ -26215,10 +26215,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 739,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1494,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-16",
@@ -26235,10 +26235,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 806,
-            "y": 134
+            "h": 50,
+            "w": 72,
+            "x": 1568,
+            "y": 25
           },
           "empty": false,
           "id": "hotspot-qsfp28-17",
@@ -26255,10 +26255,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 270,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 310,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-18",
@@ -26275,10 +26275,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 337,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 384,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-19",
@@ -26295,10 +26295,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 404,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 458,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-20",
@@ -26315,10 +26315,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 471,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 532,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-21",
@@ -26335,10 +26335,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 538,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 606,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-22",
@@ -26355,10 +26355,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 605,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 680,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-23",
@@ -26375,10 +26375,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 672,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 754,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-24",
@@ -26395,10 +26395,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 739,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 828,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-25",
@@ -26415,10 +26415,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 806,
-            "y": 182
+            "h": 50,
+            "w": 72,
+            "x": 902,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-26",
@@ -26435,10 +26435,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 270,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 976,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-27",
@@ -26455,10 +26455,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 337,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1050,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-28",
@@ -26475,10 +26475,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 404,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1124,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-29",
@@ -26495,10 +26495,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 471,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1198,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-30",
@@ -26515,10 +26515,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 538,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1272,
+            "y": 87
           },
           "empty": true,
           "id": "hotspot-qsfp28-31",
@@ -26535,10 +26535,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 605,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1346,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-32",
@@ -26555,10 +26555,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 672,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1420,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-33",
@@ -26575,10 +26575,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 739,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1494,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-34",
@@ -26595,10 +26595,10 @@
         },
         {
           "bounds": {
-            "h": 34,
-            "w": 58,
-            "x": 806,
-            "y": 230
+            "h": 50,
+            "w": 72,
+            "x": 1568,
+            "y": 87
           },
           "empty": false,
           "id": "hotspot-qsfp28-35",
@@ -26615,10 +26615,10 @@
         },
         {
           "bounds": {
-            "h": 58,
-            "w": 150,
-            "x": 270,
-            "y": 310
+            "h": 6,
+            "w": 60,
+            "x": 4,
+            "y": 157
           },
           "empty": false,
           "id": "hotspot-0-PM0",
@@ -26635,10 +26635,10 @@
         },
         {
           "bounds": {
-            "h": 58,
-            "w": 150,
-            "x": 450,
-            "y": 310
+            "h": 6,
+            "w": 60,
+            "x": 72,
+            "y": 157
           },
           "empty": false,
           "id": "hotspot-0-PM1",
@@ -26655,10 +26655,10 @@
         },
         {
           "bounds": {
-            "h": 62,
-            "w": 170,
-            "x": 960,
-            "y": 88
+            "h": 6,
+            "w": 60,
+            "x": 140,
+            "y": 157
           },
           "empty": false,
           "id": "hotspot-0-FT0",
@@ -26675,10 +26675,10 @@
         },
         {
           "bounds": {
-            "h": 62,
-            "w": 170,
-            "x": 960,
-            "y": 178
+            "h": 6,
+            "w": 60,
+            "x": 208,
+            "y": 157
           },
           "empty": false,
           "id": "hotspot-0-FT1",
@@ -26695,10 +26695,10 @@
         },
         {
           "bounds": {
-            "h": 62,
-            "w": 170,
-            "x": 960,
-            "y": 268
+            "h": 6,
+            "w": 60,
+            "x": 276,
+            "y": 157
           },
           "empty": false,
           "id": "hotspot-0-FT2",
@@ -26715,10 +26715,10 @@
         },
         {
           "bounds": {
-            "h": 184,
-            "w": 156,
-            "x": 54,
-            "y": 86
+            "h": 157,
+            "w": 1656,
+            "x": 4,
+            "y": 4
           },
           "empty": false,
           "id": "hotspot-1",
@@ -26735,10 +26735,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 100,
-            "x": 70,
-            "y": 296
+            "h": 38,
+            "w": 55,
+            "x": 195,
+            "y": 60
           },
           "empty": false,
           "id": "hotspot-784",
@@ -26755,10 +26755,10 @@
         },
         {
           "bounds": {
-            "h": 330,
-            "w": 1110,
-            "x": 38,
-            "y": 52
+            "h": 165,
+            "w": 1664,
+            "x": 0,
+            "y": 0
           },
           "empty": false,
           "id": "hotspot-8384513",
@@ -26777,9 +26777,142 @@
       "id": "front",
       "image": "/chassis-assets/ncs55a1/NCS55A1-Front.svg",
       "label": "Front View",
-      "sourceHeight": 430,
-      "sourceWidth": 1280,
-      "width": 1280
+      "sourceHeight": 165,
+      "sourceImage": "NCS-55A1-36H-S_Front.svg",
+      "sourceWidth": 1664,
+      "width": 1664
+    },
+    {
+      "height": 165,
+      "hotspots": [
+        {
+          "bounds": {
+            "h": 67,
+            "w": 319,
+            "x": 0,
+            "y": 44
+          },
+          "empty": false,
+          "id": "hotspot-0-PM0",
+          "inventoryId": "component-4097",
+          "label": "Power Module",
+          "metadata": {
+            "modelName": "NC55-2KW-DCFW",
+            "modelTypeId": "NC55-2KW-DCFW",
+            "sourceName": "0/PM0",
+            "sourceTypeId": "NC55-2KW-DCFW"
+          },
+          "physicalIndex": 4097,
+          "slotKey": "0/PM0"
+        },
+        {
+          "bounds": {
+            "h": 67,
+            "w": 319,
+            "x": 323,
+            "y": 44
+          },
+          "empty": false,
+          "id": "hotspot-0-PM1",
+          "inventoryId": "component-8193",
+          "label": "Power Module",
+          "metadata": {
+            "modelName": "NC55-2KW-DCFW",
+            "modelTypeId": "NC55-2KW-DCFW",
+            "sourceName": "0/PM1",
+            "sourceTypeId": "NC55-2KW-DCFW"
+          },
+          "physicalIndex": 8193,
+          "slotKey": "0/PM1"
+        },
+        {
+          "bounds": {
+            "h": 67,
+            "w": 319,
+            "x": 657,
+            "y": 44
+          },
+          "empty": false,
+          "id": "hotspot-0-FT0",
+          "inventoryId": "component-20481",
+          "label": "Fan Tray",
+          "metadata": {
+            "modelName": "NC55-A1-FAN-FW",
+            "modelTypeId": "NC55-A1-FAN-FW",
+            "sourceName": "0/FT0",
+            "sourceTypeId": "NC55-A1-FAN-FW"
+          },
+          "physicalIndex": 20481,
+          "slotKey": "0/FT0"
+        },
+        {
+          "bounds": {
+            "h": 67,
+            "w": 319,
+            "x": 989,
+            "y": 44
+          },
+          "empty": false,
+          "id": "hotspot-0-FT1",
+          "inventoryId": "component-24577",
+          "label": "Fan Tray",
+          "metadata": {
+            "modelName": "NC55-A1-FAN-FW",
+            "modelTypeId": "NC55-A1-FAN-FW",
+            "sourceName": "0/FT1",
+            "sourceTypeId": "NC55-A1-FAN-FW"
+          },
+          "physicalIndex": 24577,
+          "slotKey": "0/FT1"
+        },
+        {
+          "bounds": {
+            "h": 67,
+            "w": 319,
+            "x": 1315,
+            "y": 44
+          },
+          "empty": false,
+          "id": "hotspot-0-FT2",
+          "inventoryId": "component-28673",
+          "label": "Fan Tray",
+          "metadata": {
+            "modelName": "NC55-A1-FAN-FW",
+            "modelTypeId": "NC55-A1-FAN-FW",
+            "sourceName": "0/FT2",
+            "sourceTypeId": "NC55-A1-FAN-FW"
+          },
+          "physicalIndex": 28673,
+          "slotKey": "0/FT2"
+        },
+        {
+          "bounds": {
+            "h": 165,
+            "w": 1660,
+            "x": 0,
+            "y": 0
+          },
+          "empty": false,
+          "id": "hotspot-8384513-rear",
+          "inventoryId": "component-8384513",
+          "label": "Chassis",
+          "metadata": {
+            "modelName": "NCS-55A1-36H-SE-S",
+            "modelTypeId": "NCS-55A1-36H-SE-S",
+            "sourceName": "Rack 0",
+            "sourceTypeId": "NCS-55A1-36H-SE-S"
+          },
+          "physicalIndex": 8384513,
+          "slotKey": "Rack 0"
+        }
+      ],
+      "id": "rear",
+      "image": "/chassis-assets/ncs55a1/NCS55A1-Rear.svg",
+      "label": "Rear View",
+      "sourceHeight": 165,
+      "sourceImage": "NCS-55A1-36H-S_Rear_core.svg",
+      "sourceWidth": 1660,
+      "width": 1660
     }
   ]
 }

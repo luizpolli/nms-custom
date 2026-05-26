@@ -56,3 +56,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+# EPNM chassis source figures (~400MB, not for git — use local copy for migrations)
+docs/chassisview_figures/
+# Runtime audit logs
+backend/data/audit/
