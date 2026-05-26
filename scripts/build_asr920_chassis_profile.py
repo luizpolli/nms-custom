@@ -121,6 +121,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
         type_: str,
         parent_index: int | None,
         type_id: str | None = None,
+        model_name: str | None = None,
         ports: list[dict[str, Any]] | None = None,
         child_indices: list[int] | None = None,
         oper_status: str | None = None,
@@ -143,6 +144,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
             component["containedPhysicalIndex"] = parent_index
         if type_id:
             component["typeId"] = type_id
+        component["modelName"] = model_name or description
         if oper_status:
             component["operStatus"] = oper_status
         components[comp_id] = component
@@ -162,6 +164,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
             type_="Module",
             parent_index=bay_idx,
             type_id="SFP-GE-T",
+            model_name="SFP Gigabit Ethernet",
             oper_status="down",
             ports=[{"id": str(port_idx), "name": port_name, "portId": port_idx}],
         )
@@ -189,6 +192,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
             type_="Module",
             parent_index=bay_idx,
             type_id="SFP-10G-SR",
+            model_name="SFP+ 10G uplink",
             oper_status="down",
             ports=[{"id": str(port_idx), "name": port_name, "portId": port_idx}],
         )
@@ -210,6 +214,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
         type_="Module",
         parent_index=PIDX_RP,
         type_id="RJ45",
+        model_name="Management Ethernet",
         oper_status="up",
         ports=[{"id": str(PIDX_MGMT), "name": "MgmtEth0/RP0/CPU0/0", "portId": PIDX_MGMT}],
     )
@@ -222,6 +227,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
         type_="Module",
         parent_index=PIDX_CHASSIS,
         type_id="ASR-920-20SZ-M-RP",
+        model_name="Route Processor",
         oper_status="up",
         child_indices=[PIDX_MGMT],
     )
@@ -235,6 +241,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
             type_="Equipment",
             parent_index=bay_idx,
             type_id="ASR-920-PWR-A",
+            model_name="ASR 920 250W AC PSU",
             oper_status="on",
         )
         add(
@@ -260,6 +267,7 @@ def build_components() -> tuple[dict[str, dict[str, Any]], dict[str, str], list[
         type_="Chassis",
         parent_index=None,
         type_id="ASR-920-20SZ-M",
+        model_name="ASR-920-20SZ-M",
         child_indices=chassis_children,
     )
     chassis["manufacturer"] = "Cisco Systems Inc"

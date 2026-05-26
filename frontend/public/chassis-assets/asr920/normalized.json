@@ -36,6 +36,7 @@
       "id": "component-1",
       "isFRUable": "TRUE",
       "manufacturer": "Cisco Systems Inc",
+      "modelName": "ASR-920-20SZ-M",
       "name": "Chassis",
       "physicalIndex": 1,
       "ports": [],
@@ -52,6 +53,7 @@
       "description": "Route Processor",
       "displayName": "module 0/RP0/CPU0",
       "id": "component-10",
+      "modelName": "Route Processor",
       "name": "module 0/RP0/CPU0",
       "operStatus": "up",
       "parentId": "component-1",
@@ -70,6 +72,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 0",
       "id": "component-100",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 0",
       "parentId": "component-1",
       "physicalIndex": 100,
@@ -86,6 +89,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 1",
       "id": "component-101",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 1",
       "parentId": "component-1",
       "physicalIndex": 101,
@@ -102,6 +106,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 2",
       "id": "component-102",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 2",
       "parentId": "component-1",
       "physicalIndex": 102,
@@ -118,6 +123,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 3",
       "id": "component-103",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 3",
       "parentId": "component-1",
       "physicalIndex": 103,
@@ -134,6 +140,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 4",
       "id": "component-104",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 4",
       "parentId": "component-1",
       "physicalIndex": 104,
@@ -150,6 +157,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 5",
       "id": "component-105",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 5",
       "parentId": "component-1",
       "physicalIndex": 105,
@@ -166,6 +174,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 6",
       "id": "component-106",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 6",
       "parentId": "component-1",
       "physicalIndex": 106,
@@ -182,6 +191,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 7",
       "id": "component-107",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 7",
       "parentId": "component-1",
       "physicalIndex": 107,
@@ -198,6 +208,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 8",
       "id": "component-108",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 8",
       "parentId": "component-1",
       "physicalIndex": 108,
@@ -214,6 +225,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 9",
       "id": "component-109",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 9",
       "parentId": "component-1",
       "physicalIndex": 109,
@@ -228,6 +240,7 @@
       "description": "Management Ethernet",
       "displayName": "MgmtEth0/RP0/CPU0/0",
       "id": "component-11",
+      "modelName": "Management Ethernet",
       "name": "MgmtEth0/RP0/CPU0/0",
       "operStatus": "up",
       "parentId": "component-10",
@@ -252,6 +265,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 10",
       "id": "component-110",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 10",
       "parentId": "component-1",
       "physicalIndex": 110,
@@ -268,6 +282,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 11",
       "id": "component-111",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 11",
       "parentId": "component-1",
       "physicalIndex": 111,
@@ -284,6 +299,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 12",
       "id": "component-112",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 12",
       "parentId": "component-1",
       "physicalIndex": 112,
@@ -300,6 +316,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 13",
       "id": "component-113",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 13",
       "parentId": "component-1",
       "physicalIndex": 113,
@@ -316,6 +333,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 14",
       "id": "component-114",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 14",
       "parentId": "component-1",
       "physicalIndex": 114,
@@ -332,6 +350,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 15",
       "id": "component-115",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 15",
       "parentId": "component-1",
       "physicalIndex": 115,
@@ -348,6 +367,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 16",
       "id": "component-116",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 16",
       "parentId": "component-1",
       "physicalIndex": 116,
@@ -364,6 +384,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 17",
       "id": "component-117",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 17",
       "parentId": "component-1",
       "physicalIndex": 117,
@@ -380,6 +401,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 18",
       "id": "component-118",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 18",
       "parentId": "component-1",
       "physicalIndex": 118,
@@ -396,6 +418,7 @@
       "description": "SFP cage",
       "displayName": "subslot 0/0 transceiver container 19",
       "id": "component-119",
+      "modelName": "SFP cage",
       "name": "subslot 0/0 transceiver container 19",
       "parentId": "component-1",
       "physicalIndex": 119,
@@ -412,6 +435,7 @@
       "description": "SFP+ cage",
       "displayName": "subslot 0/0 transceiver container 20",
       "id": "component-150",
+      "modelName": "SFP+ cage",
       "name": "subslot 0/0 transceiver container 20",
       "parentId": "component-1",
       "physicalIndex": 150,
@@ -428,6 +452,7 @@
       "description": "SFP+ cage",
       "displayName": "subslot 0/0 transceiver container 21",
       "id": "component-151",
+      "modelName": "SFP+ cage",
       "name": "subslot 0/0 transceiver container 21",
       "parentId": "component-1",
       "physicalIndex": 151,
@@ -444,6 +469,7 @@
       "description": "SFP+ cage",
       "displayName": "subslot 0/0 transceiver container 22",
       "id": "component-152",
+      "modelName": "SFP+ cage",
       "name": "subslot 0/0 transceiver container 22",
       "parentId": "component-1",
       "physicalIndex": 152,
@@ -460,6 +486,7 @@
       "description": "SFP+ cage",
       "displayName": "subslot 0/0 transceiver container 23",
       "id": "component-153",
+      "modelName": "SFP+ cage",
       "name": "subslot 0/0 transceiver container 23",
       "parentId": "component-1",
       "physicalIndex": 153,
@@ -476,6 +503,7 @@
       "description": "Power Supply Bay",
       "displayName": "Power Supply Bay 0",
       "id": "component-20",
+      "modelName": "Power Supply Bay",
       "name": "Power Supply Bay 0",
       "parentId": "component-1",
       "physicalIndex": 20,
@@ -492,6 +520,7 @@
       "description": "Power Supply Bay",
       "displayName": "Power Supply Bay 1",
       "id": "component-21",
+      "modelName": "Power Supply Bay",
       "name": "Power Supply Bay 1",
       "parentId": "component-1",
       "physicalIndex": 21,
@@ -506,6 +535,7 @@
       "description": "ASR 920 250W AC Power Supply",
       "displayName": "Power Supply Module 0",
       "id": "component-22",
+      "modelName": "ASR 920 250W AC PSU",
       "name": "Power Supply Module 0",
       "operStatus": "on",
       "parentId": "component-20",
@@ -522,6 +552,7 @@
       "description": "ASR 920 250W AC Power Supply",
       "displayName": "Power Supply Module 1",
       "id": "component-23",
+      "modelName": "ASR 920 250W AC PSU",
       "name": "Power Supply Module 1",
       "operStatus": "on",
       "parentId": "component-21",
@@ -538,6 +569,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/0",
       "id": "component-300",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/0",
       "operStatus": "down",
       "parentId": "component-100",
@@ -560,6 +592,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/1",
       "id": "component-301",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/1",
       "operStatus": "down",
       "parentId": "component-101",
@@ -582,6 +615,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/2",
       "id": "component-302",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/2",
       "operStatus": "down",
       "parentId": "component-102",
@@ -604,6 +638,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/3",
       "id": "component-303",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/3",
       "operStatus": "down",
       "parentId": "component-103",
@@ -626,6 +661,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/4",
       "id": "component-304",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/4",
       "operStatus": "down",
       "parentId": "component-104",
@@ -648,6 +684,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/5",
       "id": "component-305",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/5",
       "operStatus": "down",
       "parentId": "component-105",
@@ -670,6 +707,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/6",
       "id": "component-306",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/6",
       "operStatus": "down",
       "parentId": "component-106",
@@ -692,6 +730,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/7",
       "id": "component-307",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/7",
       "operStatus": "down",
       "parentId": "component-107",
@@ -714,6 +753,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/8",
       "id": "component-308",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/8",
       "operStatus": "down",
       "parentId": "component-108",
@@ -736,6 +776,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/9",
       "id": "component-309",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/9",
       "operStatus": "down",
       "parentId": "component-109",
@@ -758,6 +799,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/10",
       "id": "component-310",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/10",
       "operStatus": "down",
       "parentId": "component-110",
@@ -780,6 +822,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/11",
       "id": "component-311",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/11",
       "operStatus": "down",
       "parentId": "component-111",
@@ -802,6 +845,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/12",
       "id": "component-312",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/12",
       "operStatus": "down",
       "parentId": "component-112",
@@ -824,6 +868,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/13",
       "id": "component-313",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/13",
       "operStatus": "down",
       "parentId": "component-113",
@@ -846,6 +891,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/14",
       "id": "component-314",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/14",
       "operStatus": "down",
       "parentId": "component-114",
@@ -868,6 +914,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/15",
       "id": "component-315",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/15",
       "operStatus": "down",
       "parentId": "component-115",
@@ -890,6 +937,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/16",
       "id": "component-316",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/16",
       "operStatus": "down",
       "parentId": "component-116",
@@ -912,6 +960,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/17",
       "id": "component-317",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/17",
       "operStatus": "down",
       "parentId": "component-117",
@@ -934,6 +983,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/18",
       "id": "component-318",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/18",
       "operStatus": "down",
       "parentId": "component-118",
@@ -956,6 +1006,7 @@
       "description": "GE SFP port",
       "displayName": "GigabitEthernet0/0/19",
       "id": "component-319",
+      "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/19",
       "operStatus": "down",
       "parentId": "component-119",
@@ -978,6 +1029,7 @@
       "description": "10GE SFP+ uplink",
       "displayName": "TenGigabitEthernet0/0/20",
       "id": "component-350",
+      "modelName": "SFP+ 10G uplink",
       "name": "TenGigabitEthernet0/0/20",
       "operStatus": "down",
       "parentId": "component-150",
@@ -1000,6 +1052,7 @@
       "description": "10GE SFP+ uplink",
       "displayName": "TenGigabitEthernet0/0/21",
       "id": "component-351",
+      "modelName": "SFP+ 10G uplink",
       "name": "TenGigabitEthernet0/0/21",
       "operStatus": "down",
       "parentId": "component-151",
@@ -1022,6 +1075,7 @@
       "description": "10GE SFP+ uplink",
       "displayName": "TenGigabitEthernet0/0/22",
       "id": "component-352",
+      "modelName": "SFP+ 10G uplink",
       "name": "TenGigabitEthernet0/0/22",
       "operStatus": "down",
       "parentId": "component-152",
@@ -1044,6 +1098,7 @@
       "description": "10GE SFP+ uplink",
       "displayName": "TenGigabitEthernet0/0/23",
       "id": "component-353",
+      "modelName": "SFP+ 10G uplink",
       "name": "TenGigabitEthernet0/0/23",
       "operStatus": "down",
       "parentId": "component-153",
@@ -1062,7 +1117,7 @@
     }
   },
   "deviceId": "sample-asr920",
-  "generatedAt": "2026-05-25T19:28:01.102904+00:00",
+  "generatedAt": "2026-05-26T23:16:59.441417+00:00",
   "model": "ASR-920-20SZ-M",
   "physicalIndexToComponentId": {
     "1": "component-1",
@@ -1661,10 +1716,10 @@
       "hotspots": [
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 643,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-0",
@@ -1681,10 +1736,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 643,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-1",
@@ -1701,10 +1756,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 698,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-2",
@@ -1721,10 +1776,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 698,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-3",
@@ -1741,10 +1796,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 752,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-4",
@@ -1761,10 +1816,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 752,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-5",
@@ -1781,10 +1836,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 804,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 524,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-6",
@@ -1801,10 +1856,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 804,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 578,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-7",
@@ -1821,10 +1876,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 857,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 632,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-8",
@@ -1841,10 +1896,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 857,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 686,
+            "y": 36
           },
           "empty": false,
           "id": "hotspot-sfp-9",
@@ -1861,10 +1916,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 910,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-10",
@@ -1881,10 +1936,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 910,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-11",
@@ -1901,10 +1956,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 989,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-12",
@@ -1921,10 +1976,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 989,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-13",
@@ -1941,10 +1996,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1042,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-14",
@@ -1961,10 +2016,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1042,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-15",
@@ -1981,10 +2036,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1094,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 524,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-16",
@@ -2001,10 +2056,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1094,
-            "y": 46
+            "h": 38,
+            "w": 46,
+            "x": 578,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-17",
@@ -2021,10 +2076,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1147,
-            "y": 97
+            "h": 38,
+            "w": 46,
+            "x": 632,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-18",
@@ -2041,10 +2096,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1147,
-            "y": 45
+            "h": 38,
+            "w": 46,
+            "x": 686,
+            "y": 86
           },
           "empty": false,
           "id": "hotspot-sfp-19",
@@ -2061,10 +2116,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1203,
-            "y": 97
+            "h": 48,
+            "w": 56,
+            "x": 1132,
+            "y": 56
           },
           "empty": false,
           "id": "hotspot-uplink-20",
@@ -2081,10 +2136,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1203,
-            "y": 45
+            "h": 48,
+            "w": 56,
+            "x": 1196,
+            "y": 56
           },
           "empty": false,
           "id": "hotspot-uplink-21",
@@ -2101,10 +2156,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1256,
-            "y": 97
+            "h": 48,
+            "w": 56,
+            "x": 1260,
+            "y": 56
           },
           "empty": false,
           "id": "hotspot-uplink-22",
@@ -2121,10 +2176,10 @@
         },
         {
           "bounds": {
-            "h": 32,
-            "w": 58,
-            "x": 1256,
-            "y": 45
+            "h": 48,
+            "w": 56,
+            "x": 1324,
+            "y": 56
           },
           "empty": false,
           "id": "hotspot-uplink-23",
@@ -2141,10 +2196,10 @@
         },
         {
           "bounds": {
-            "h": 30,
-            "w": 32,
-            "x": 560,
-            "y": 34
+            "h": 50,
+            "w": 70,
+            "x": 60,
+            "y": 56
           },
           "empty": false,
           "id": "hotspot-mgmt",
@@ -2161,10 +2216,10 @@
         },
         {
           "bounds": {
-            "h": 147,
-            "w": 202,
-            "x": 31,
-            "y": 9
+            "h": 98,
+            "w": 138,
+            "x": 1390,
+            "y": 34
           },
           "empty": false,
           "id": "hotspot-psu-0",
@@ -2181,10 +2236,10 @@
         },
         {
           "bounds": {
-            "h": 147,
-            "w": 202,
-            "x": 219,
-            "y": 9
+            "h": 98,
+            "w": 138,
+            "x": 1542,
+            "y": 34
           },
           "empty": false,
           "id": "hotspot-psu-1",
@@ -2204,7 +2259,7 @@
       "image": "/chassis-assets/asr920/ASR-920-Front.svg",
       "label": "Front View",
       "sourceHeight": 165,
-      "sourceImage": "asr901Family/Cisco_ASR-920-20SZ-M_Router/images/ASR-920-20SZ-M-Front-Core.svg",
+      "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR-920-20SZ-M_Router/images/ASR-920-20SZ-M-Front-Core.svg",
       "sourceWidth": 1680,
       "width": 1680
     }
