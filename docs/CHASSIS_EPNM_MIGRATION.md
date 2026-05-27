@@ -34,10 +34,18 @@ docs/chassisview_figures/
 | asr903 | EPNM real | ✅ OK |
 | asr9006 | EPNM real | ✅ OK |
 | asr9010 | EPNM real (78KB match) | ✅ OK |
-| asr920 | Generated simple | ⚠️ Needs EPNM SVG |
-| ncs55a1 | Generated simple (13KB vs 930KB real) | ⚠️ Needs EPNM SVG |
-| ncs560 | Generated simple | ⚠️ Needs EPNM SVG |
-| ncs540 | Generated simple | ⚠️ Needs EPNM SVG |
+| asr920 | EPNM real | ✅ OK |
+| ncs55a1 | EPNM real | ✅ OK |
+| ncs560 | EPNM real | ✅ OK |
+| ncs540 | EPNM real | ✅ OK |
+| ncs540l (NCS540L_CE family) | Pending — multiple sub-models | ⏳ Queued |
+
+### NCS540L_CE family — pending sub-models
+Priority sub-models confirmed available (Front SVG + JSON profile):
+- `Cisco_NCS_540X-12Z16G-SYS-D_Router` → `N540X-12Z16G-SYS-D_Front_core.svg` (Front only)
+- `Cisco_NCS_540X-16Z4G8Q2C-D_Router` → `N540X-16Z4G8Q2C-D_Front_core.svg` (Front only)
+
+Other NCS540L_CE variants available in `docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS540L_CE/` (NCS 540 large, NCS 57xx, Cisco 8000 series) — see `EPNM_CHASSIS_CATALOG.md` §"NCS 540L / Cisco 8000".
 
 ## Plan de migración
 
@@ -100,7 +108,10 @@ docs/chassisview_figures/
 - **Muchos más modelos** — NCS5501, NCS5508, ASR9901/9902/9903, Cat6500, NCS1001, etc.
 
 ## Prioridad
-1. NCS55A1 (equipo principal del usuario)
-2. NCS560
-3. NCS540
-4. ASR920
+1. NCS55A1 (equipo principal del usuario) — ✅ done
+2. NCS560 — ✅ done
+3. NCS540 — ✅ done
+4. ASR920 — ✅ done
+5. **NCS540L_CE family** — ⏳ pending (start with `NCS_540X-12Z16G-SYS-D` and `NCS_540X-16Z4G8Q2C-D`)
+6. ASR9010 — ⏳ pending
+7. NCS55A1 additional variants — ⏳ pending
