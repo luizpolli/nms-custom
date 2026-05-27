@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   version="1.1"
+   viewBox="0 0 127 78"
+   width="127"
+   height="78"
+   sodipodi:docname="N540X-16Z8Q2C-D_front_dcpowersupply.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata69">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1315"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplynamedview67"
+     showgrid="false"
+     inkscape:zoom="3.025641"
+     inkscape:cx="63.5"
+     inkscape:cy="39"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="N540X-16Z8Q2C-D_front_dcpowersupplydefs4">
+    <style
+       id="N540X-16Z8Q2C-D_front_dcpowersupplystyle2">.cls-1{fill:#999}.cls-2{fill:#666}.cls-3{fill:#ccc}.cls-4{fill:#b3b3b3}.cls-5{fill:#e6e6e6}.cls-6{fill:#d9d9d9;fill-rule:evenodd}.cls-7{fill:#4d4d4d}</style>
+  </defs>
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect6"
+     fill="#999"
+     d="M10.152.5h107v77h-107z" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M116.652 1v76h-106V1h106m1-1h-108v78h108z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath8"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M21.652 39a11 11 0 00-4-8.49V5a2 2 0 00-2-2h-5v72h5a2 2 0 002-2V47.49a11 11 0 004-8.49z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath10"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M105.652 39a11 11 0 014-8.49V5a2 2 0 012-2h5v72h-5a2 2 0 01-2-2V47.49a11 11 0 01-4-8.49z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath12"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect14"
+     fill="#ccc"
+     d="M69.932 42.5h15v33h-15z" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M84.432 43v32h-14V43h14m1-1h-16v34h16z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath16"
+     fill="#999" />
+  <rect
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     x="65.412"
+     y="46.5"
+     width="23.25"
+     height="25.25"
+     rx="1.5"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect18"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M66.912 46v1h20.25a1 1 0 011 1v22.25a1 1 0 01-1 1h-20.25a1 1 0 01-1-1V48a1 1 0 011-1v-1m0 0a2 2 0 00-2 2v22.25a2 2 0 002 2h20.25a2 2 0 002-2V48a2 2 0 00-2-2z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath20"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M81.722 72.4a1.3 1.3 0 01-1.12-.65l-.72-1.24a2.3 2.3 0 00-2-1.15h-1.7a2.3 2.3 0 00-2 1.15l-.72 1.24a1.3 1.3 0 01-1.12.65h-4.26a1.3 1.3 0 01-1.29-1.3 1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-6.2a1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-.16a1.3 1.3 0 011.29-1.3h4.28a1.3 1.3 0 011.12.65l.72 1.24a2.3 2.3 0 002 1.15h1.7a2.3 2.3 0 002-1.15l.72-1.24a1.3 1.3 0 011.12-.65h4.26a1.3 1.3 0 011.29 1.3v.16a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19v6.2a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19 1.3 1.3 0 01-1.29 1.3z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath22"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M86.002 46.34a.8.8 0 01.79.8v.16a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75v6.2a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75.8.8 0 01-.79.8h-4.28a.79.79 0 01-.69-.4l-.72-1.24a2.79 2.79 0 00-2.42-1.4h-1.7a2.82 2.82 0 00-2.43 1.4l-.71 1.24a.79.79 0 01-.69.4h-4.28a.79.79 0 01-.79-.8.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.51-.75v-6.2a.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.51-.75v-.16a.79.79 0 01.79-.8h4.28a.82.82 0 01.69.4l.71 1.26a2.82 2.82 0 002.43 1.4h1.7a2.79 2.79 0 002.42-1.4l.69-1.26a.82.82 0 01.69-.4h4.31m0-1h-4.28a1.82 1.82 0 00-1.56.9l-.71 1.24a1.8 1.8 0 01-1.56.9h-1.7a1.79 1.79 0 01-1.56-.9l-.72-1.24a1.8 1.8 0 00-1.55-.9h-4.28a1.8 1.8 0 00-1.79 1.8v.16a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63v6.2a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63 1.8 1.8 0 001.79 1.8h4.28a1.78 1.78 0 001.55-.9l.72-1.24a1.81 1.81 0 011.56-.9h1.7a1.82 1.82 0 011.56.9l.71 1.24a1.8 1.8 0 001.56.9h4.28a1.8 1.8 0 001.79-1.8 1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-6.2a1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-.16a1.8 1.8 0 00-1.79-1.8z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath24"
+     fill="#999" />
+  <circle
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-4"
+     cx="77.042"
+     cy="59.12"
+     r="8"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplycircle26"
+     fill="#b3b3b3" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M77.002 51.62a7.5 7.5 0 11-7.5 7.5 7.52 7.52 0 017.5-7.5m0-1a8.5 8.5 0 108.5 8.5 8.51 8.51 0 00-8.5-8.5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath28"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M77.002 64.15a5 5 0 115-5 5 5 0 01-5 5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath30"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M77.002 54.6a4.53 4.53 0 11-4.53 4.52 4.53 4.53 0 014.53-4.52m0-1a5.53 5.53 0 105.52 5.52 5.53 5.53 0 00-5.52-5.52z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath32"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-5"
+     d="M76.482 61.6v-1.84a.5.5 0 00-.5-.5h-3.98V59h4a.5.5 0 00.5-.5v-1.85h1.1v1.83a.5.5 0 00.5.5h4v.28h-4a.5.5 0 00-.5.5v1.84z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath34"
+     fill="#e6e6e6" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M77.102 57.15v1.33a1 1 0 00.23.64 1 1 0 00-.23.64v1.34h-.1v-1.34a1 1 0 00-.23-.64 1 1 0 00.23-.64v-1.33h.12m1-1h-2.12v2.33h-4.49v1.28h4.49v2.34h2.1v-2.34h4.46v-1.28h-4.46v-2.33z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath36"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect38"
+     fill="#ccc"
+     d="M23.672 42.5h15v33h-15z" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M38.172 43v32h-14V43h14m1-1h-16v34h16z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath40"
+     fill="#999" />
+  <rect
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     x="19.152"
+     y="46.5"
+     width="23.25"
+     height="25.25"
+     rx="1.5"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect42"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M20.652 46v1h20.25a1 1 0 011 1v22.25a1 1 0 01-1 1h-20.25a1 1 0 01-1-1V48a1 1 0 011-1v-1m0 0a2 2 0 00-2 2v22.25a2 2 0 002 2h20.25a2 2 0 002-2V48a2 2 0 00-2-2z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath44"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M35.462 72.4a1.3 1.3 0 01-1.12-.65l-.72-1.24a2.3 2.3 0 00-2-1.15h-1.7a2.3 2.3 0 00-2 1.15l-.72 1.24a1.3 1.3 0 01-1.12.65h-4.26a1.3 1.3 0 01-1.29-1.3 1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-6.2a1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-.16a1.3 1.3 0 011.29-1.3h4.28a1.3 1.3 0 011.12.65l.72 1.24a2.3 2.3 0 002 1.15h1.7a2.3 2.3 0 002-1.15l.72-1.24a1.3 1.3 0 011.12-.65h4.28a1.3 1.3 0 011.24 1.3v.16a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19v6.2a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19 1.3 1.3 0 01-1.29 1.3z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath46"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M39.742 46.34a.8.8 0 01.79.8v.16a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75v6.2a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75.8.8 0 01-.79.8h-4.28a.79.79 0 01-.69-.4l-.72-1.24a2.79 2.79 0 00-2.42-1.4h-1.7a2.82 2.82 0 00-2.43 1.4l-.71 1.24a.79.79 0 01-.69.4h-4.28a.79.79 0 01-.79-.8.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.54-.75v-6.2a.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.51-.75v-.16a.79.79 0 01.79-.8h4.31a.82.82 0 01.69.4l.71 1.26a2.82 2.82 0 002.43 1.4h1.7a2.79 2.79 0 002.42-1.4l.72-1.24a.82.82 0 01.69-.4h4.28m0-1h-4.28a1.82 1.82 0 00-1.56.9l-.71 1.24a1.8 1.8 0 01-1.56.9h-1.7a1.79 1.79 0 01-1.56-.9l-.72-1.24a1.8 1.8 0 00-1.55-.9h-4.28a1.8 1.8 0 00-1.82 1.78v.16a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63v6.2a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63 1.8 1.8 0 001.79 1.8h4.31a1.78 1.78 0 001.55-.9l.72-1.24a1.81 1.81 0 011.56-.9h1.7a1.82 1.82 0 011.56.9l.71 1.24a1.8 1.8 0 001.56.9h4.28a1.8 1.8 0 001.79-1.8 1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-6.2a1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-.16a1.8 1.8 0 00-1.79-1.8z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath48"
+     fill="#999" />
+  <circle
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-4"
+     cx="30.782"
+     cy="59.12"
+     r="8"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplycircle50"
+     fill="#b3b3b3" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M30.782 51.62a7.5 7.5 0 11-7.5 7.5 7.52 7.52 0 017.5-7.5m0-1a8.5 8.5 0 108.5 8.5 8.51 8.51 0 00-8.5-8.5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath52"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M30.782 64.15a5 5 0 115-5 5 5 0 01-5 5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath54"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M30.782 54.6a4.53 4.53 0 11-4.53 4.52 4.53 4.53 0 014.53-4.52m0-1a5.53 5.53 0 105.52 5.52 5.53 5.53 0 00-5.52-5.52z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath56"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-5"
+     d="M30.222 61.6v-1.84a.5.5 0 00-.5-.5h-4V59h4a.5.5 0 00.5-.5v-1.85h1.12v1.83a.5.5 0 00.5.5h4v.28h-4a.5.5 0 00-.5.5v1.84z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath58"
+     fill="#e6e6e6" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M30.842 57.15v1.33a1 1 0 00.23.64 1 1 0 00-.23.64v1.34h-.12v-1.34a1 1 0 00-.23-.64 1 1 0 00.23-.64v-1.33h.12m1-1h-2.12v2.33h-4.47v1.28h4.47v2.34h2.12v-2.34h4.46v-1.28h-4.46z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath60"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect62"
+     fill="#ccc"
+     d="M89.932 1.5h15v33h-15z" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M104.432 2v32h-14V2h14m1-1h-16v34h16z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath64"
+     fill="#999" />
+  <rect
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     x="85.412"
+     y="5.5"
+     width="23.25"
+     height="25.25"
+     rx="1.5"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect66"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M107.162 6a1 1 0 011 1v22.25a1 1 0 01-1 1h-20.25a1 1 0 01-1-1V7a1 1 0 011-1h20.25m0-1h-20.25a2 2 0 00-2 2v22.25a2 2 0 002 2h20.25a2 2 0 002-2V7a2 2 0 00-2-2z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath68"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M101.722 31.4a1.3 1.3 0 01-1.12-.65l-.72-1.24a2.3 2.3 0 00-2-1.15h-1.7a2.3 2.3 0 00-2 1.15l-.72 1.24a1.3 1.3 0 01-1.12.65h-4.26a1.3 1.3 0 01-1.29-1.3 1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-6.2a1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-.16a1.3 1.3 0 011.29-1.3h4.28a1.3 1.3 0 011.12.65l.72 1.24a2.3 2.3 0 002 1.15h1.7a2.3 2.3 0 002-1.15l.72-1.24a1.3 1.3 0 011.12-.65h4.26a1.3 1.3 0 011.29 1.3v.16a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19v6.2a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19 1.3 1.3 0 01-1.29 1.3z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath70"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M106.002 5.34a.8.8 0 01.79.8v.16a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75v6.2a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75.8.8 0 01-.79.8h-4.28a.79.79 0 01-.69-.4l-.72-1.24a2.79 2.79 0 00-2.42-1.4h-1.7a2.82 2.82 0 00-2.43 1.4l-.71 1.24a.79.79 0 01-.69.4h-4.28a.79.79 0 01-.79-.8.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.51-.75v-6.2a.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.51-.75v-.16a.79.79 0 01.79-.8h4.28a.82.82 0 01.69.4l.71 1.26a2.82 2.82 0 002.43 1.4h1.7a2.79 2.79 0 002.42-1.4l.69-1.26a.82.82 0 01.69-.4h4.31m0-1h-4.28a1.82 1.82 0 00-1.56.9l-.71 1.24a1.8 1.8 0 01-1.56.9h-1.7a1.79 1.79 0 01-1.56-.9l-.72-1.24a1.8 1.8 0 00-1.55-.9h-4.28a1.8 1.8 0 00-1.79 1.8v.16a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63v6.2a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63 1.8 1.8 0 001.79 1.8h4.28a1.78 1.78 0 001.55-.9l.72-1.24a1.81 1.81 0 011.56-.9h1.7a1.82 1.82 0 011.56.9l.71 1.24a1.8 1.8 0 001.56.9h4.28a1.8 1.8 0 001.79-1.8 1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-6.2a1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-.16a1.8 1.8 0 00-1.79-1.8z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath72"
+     fill="#999" />
+  <circle
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-4"
+     cx="97.042"
+     cy="18.12"
+     r="8"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplycircle74"
+     fill="#b3b3b3" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M97.002 10.62a7.5 7.5 0 11-7.5 7.5 7.52 7.52 0 017.5-7.5m0-1a8.5 8.5 0 108.5 8.5 8.51 8.51 0 00-8.5-8.5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath76"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M97.002 23.15a5 5 0 115-5 5 5 0 01-5 5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath78"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M97.002 13.6a4.53 4.53 0 11-4.53 4.52 4.53 4.53 0 014.53-4.52m0-1a5.53 5.53 0 105.52 5.52 5.53 5.53 0 00-5.52-5.52z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath80"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-5"
+     d="M96.482 20.6v-1.84a.5.5 0 00-.5-.5h-3.98V18h4a.5.5 0 00.5-.5v-1.85h1.1v1.83a.5.5 0 00.5.5h4v.28h-4a.5.5 0 00-.5.5v1.84z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath82"
+     fill="#e6e6e6" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M97.102 16.15v1.33a1 1 0 00.23.64 1 1 0 00-.23.64v1.34h-.1v-1.34a1 1 0 00-.23-.64 1 1 0 00.23-.64v-1.33h.12m1-1h-2.12v2.33h-4.49v1.28h4.49v2.34h2.1v-2.34h4.46v-1.28h-4.46v-2.33z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath84"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect86"
+     fill="#ccc"
+     d="M43.672 1.5h15v33h-15z" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M58.172 2v32h-14V2h14m1-1h-16v34h16z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath88"
+     fill="#999" />
+  <rect
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     x="39.152"
+     y="5.5"
+     width="23.25"
+     height="25.25"
+     rx="1.5"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplyrect90"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M60.902 6a1 1 0 011 1v22.25a1 1 0 01-1 1h-20.25a1 1 0 01-1-1V7a1 1 0 011-1h20.25m0-1h-20.25a2 2 0 00-2 2v22.25a2 2 0 002 2h20.25a2 2 0 002-2V7a2 2 0 00-2-2z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath92"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     d="M55.462 31.4a1.3 1.3 0 01-1.12-.65l-.72-1.24a2.3 2.3 0 00-2-1.15h-1.7a2.3 2.3 0 00-2 1.15l-.72 1.24a1.3 1.3 0 01-1.12.65h-4.26a1.3 1.3 0 01-1.29-1.3 1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-6.2a1.35 1.35 0 01.78-1.19 3.6 3.6 0 000-6.42 1.35 1.35 0 01-.78-1.19v-.16a1.3 1.3 0 011.29-1.3h4.28a1.3 1.3 0 011.12.65l.72 1.24a2.3 2.3 0 002 1.15h1.7a2.3 2.3 0 002-1.15l.72-1.24a1.3 1.3 0 011.12-.65h4.28a1.3 1.3 0 011.24 1.3v.16a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19v6.2a1.34 1.34 0 01-.79 1.19 3.61 3.61 0 000 6.42 1.34 1.34 0 01.79 1.19 1.3 1.3 0 01-1.29 1.3z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath94"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-1"
+     d="M59.742 5.34a.8.8 0 01.79.8v.16a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75v6.2a.87.87 0 01-.51.75 4.09 4.09 0 000 7.3.87.87 0 01.51.75.8.8 0 01-.79.8h-4.28a.79.79 0 01-.69-.4l-.72-1.24a2.79 2.79 0 00-2.42-1.4h-1.7a2.82 2.82 0 00-2.43 1.4l-.71 1.24a.79.79 0 01-.69.4h-4.28a.79.79 0 01-.79-.8.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.54-.75v-6.2a.87.87 0 01.51-.75 4.09 4.09 0 000-7.3.87.87 0 01-.51-.75v-.16a.79.79 0 01.79-.8h4.31a.82.82 0 01.69.4l.71 1.26a2.82 2.82 0 002.43 1.4h1.7a2.79 2.79 0 002.42-1.4l.72-1.24a.82.82 0 01.69-.4h4.28m0-1h-4.28a1.82 1.82 0 00-1.56.9l-.71 1.24a1.8 1.8 0 01-1.56.9h-1.7a1.79 1.79 0 01-1.56-.9l-.72-1.24a1.8 1.8 0 00-1.55-.9h-4.28a1.8 1.8 0 00-1.82 1.78v.16a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63v6.2a1.85 1.85 0 001.06 1.64 3.11 3.11 0 010 5.53 1.85 1.85 0 00-1.06 1.63 1.8 1.8 0 001.79 1.8h4.31a1.78 1.78 0 001.55-.9l.72-1.24a1.81 1.81 0 011.56-.9h1.7a1.82 1.82 0 011.56.9l.71 1.24a1.8 1.8 0 001.56.9h4.28a1.8 1.8 0 001.79-1.8 1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-6.2a1.85 1.85 0 00-1.06-1.63 3.11 3.11 0 010-5.53 1.85 1.85 0 001.06-1.64v-.16a1.8 1.8 0 00-1.79-1.8z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath96"
+     fill="#999" />
+  <circle
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-4"
+     cx="50.782"
+     cy="18.12"
+     r="8"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplycircle98"
+     fill="#b3b3b3" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M50.782 10.62a7.5 7.5 0 11-7.5 7.5 7.52 7.52 0 017.5-7.5m0-1a8.5 8.5 0 108.5 8.5 8.51 8.51 0 00-8.5-8.5z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath100"
+     fill="#666" />
+  <circle
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-3"
+     cx="50.782"
+     cy="18.12"
+     r="5.02"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplycircle102"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M50.782 13.6a4.53 4.53 0 11-4.53 4.52 4.53 4.53 0 014.53-4.52m0-1a5.53 5.53 0 105.52 5.52 5.53 5.53 0 00-5.52-5.52z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath104"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-5"
+     d="M50.222 20.6v-1.84a.5.5 0 00-.5-.5h-4V18h4a.5.5 0 00.5-.5v-1.85h1.12v1.83a.5.5 0 00.5.5h4v.28h-4a.5.5 0 00-.5.5v1.84z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath106"
+     fill="#e6e6e6" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-2"
+     d="M50.842 16.15v1.33a1 1 0 00.23.64 1 1 0 00-.23.64v1.34h-.12v-1.34a1 1 0 00-.23-.64 1 1 0 00.23-.64v-1.33h.12m1-1h-2.12v2.33h-4.47v1.28h4.47v2.34h2.12v-2.34h4.46v-1.28h-4.46z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath108"
+     fill="#666" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-6"
+     d="M117.002 48.5a9.49 9.49 0 116.72-2.78 9.45 9.45 0 01-6.72 2.78z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath110"
+     fill="#d9d9d9"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-7"
+     d="M117.002 30a9 9 0 11-6.37 2.63 8.94 8.94 0 016.37-2.63m0-1a10 10 0 107.07 2.93 10 10 0 00-7.07-2.93z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath112"
+     fill="#4d4d4d" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-6"
+     d="M117.002 46.83a7.82 7.82 0 115.54-2.29 7.78 7.78 0 01-5.54 2.29z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath114"
+     fill="#d9d9d9"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-7"
+     d="M117.002 31.67a7.33 7.33 0 11-5.19 2.14 7.32 7.32 0 015.19-2.14m0-1a8.33 8.33 0 105.89 2.44 8.28 8.28 0 00-5.89-2.44z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath116"
+     fill="#4d4d4d" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-7"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypolygon118"
+     transform="translate(.002)"
+     fill="#4d4d4d"
+     d="M118.25 33.58h-2.5v4.17h-4.17v2.5h4.17v4.17h2.5v-4.17h4.17v-2.5h-4.17z" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-6"
+     d="M10.002 48.5a9.5 9.5 0 116.72-2.78 9.45 9.45 0 01-6.72 2.78z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath120"
+     fill="#d9d9d9"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-7"
+     d="M10.002 30a9 9 0 11-6.37 2.63 8.94 8.94 0 016.37-2.63m0-1a10 10 0 107.07 2.93 10 10 0 00-7.07-2.93z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath122"
+     fill="#4d4d4d" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-6"
+     d="M10.002 46.83a7.82 7.82 0 115.54-2.29 7.78 7.78 0 01-5.54 2.29z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath124"
+     fill="#d9d9d9"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-7"
+     d="M10.002 31.67a7.33 7.33 0 11-5.19 2.14 7.32 7.32 0 015.19-2.14m0-1a8.33 8.33 0 105.89 2.44 8.28 8.28 0 00-5.89-2.44z"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypath126"
+     fill="#4d4d4d" />
+  <path
+     class="N540X-16Z8Q2C-D_front_dcpowersupplycls-7"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplypolygon128"
+     transform="translate(.002)"
+     fill="#4d4d4d"
+     d="M11.25 33.58h-2.5v4.17H4.58v2.5h4.17v4.17h2.5v-4.17h4.17v-2.5h-4.17z" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="56.847458"
+     y="63.457626"
+     id="N540X-16Z8Q2C-D_front_dcpowersupplytext73"><tspan
+       sodipodi:role="line"
+       id="N540X-16Z8Q2C-D_front_dcpowersupplytspan71"
+       x="56.847458"
+       y="99.950836" /></text>
+</svg>

@@ -9005,7 +9005,12 @@
             "sourceTypeId": "N540-FAN"
           },
           "physicalIndex": 4097,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "N540-FAN",
+            "image": "/chassis-assets/ncs540/modules/N540-24Q8L2DD-SYS_rear_fans.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/N540-24Q8L2DD-SYS_rear_fans.svg"
+          }
         },
         {
           "bounds": {
@@ -9025,7 +9030,12 @@
             "sourceTypeId": "N540-PSU-FIXED-D"
           },
           "physicalIndex": 8982,
-          "slotKey": "0/PM0"
+          "slotKey": "0/PM0",
+          "asset": {
+            "typeId": "N540-PSU-FIXED-D",
+            "image": "/chassis-assets/ncs540/modules/N540X-16Z8Q2C-D_front_dcpowersupply.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/N540X-16Z8Q2C-D_front_dcpowersupply.svg"
+          }
         },
         {
           "bounds": {
@@ -9045,7 +9055,12 @@
             "sourceTypeId": "N540-PSU-FIXED-D"
           },
           "physicalIndex": 13078,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "N540-PSU-FIXED-D",
+            "image": "/chassis-assets/ncs540/modules/N540X-16Z8Q2C-D_front_dcpowersupply.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/N540X-16Z8Q2C-D_front_dcpowersupply.svg"
+          }
         },
         {
           "bounds": {
