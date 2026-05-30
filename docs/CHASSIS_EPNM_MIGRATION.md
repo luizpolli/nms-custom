@@ -38,23 +38,48 @@ docs/chassisview_figures/
 | ncs55a1 | EPNM real | ✅ OK |
 | ncs560 | EPNM real | ✅ OK |
 | ncs540 | EPNM real | ✅ OK |
-| ncs540-16z4 (N540X-16Z4G8Q2C-D) | EPNM real — 4 hotspots (fan, RP, PM0, PM1) | ✅ Done |
-| ncs540-12z16g (N540X-12Z16G-SYS-D) | EPNM real — 3 hotspots (RP, PM0, PM1) | ✅ Done |
+| ncs540-16z4 (N540X-16Z4G8Q2C-D, -A) | EPNM real — 4 hotspots (fan, RP, PM0, PM1) | ✅ Done |
+| ncs540-12z16g (N540X-12Z16G-SYS-D, -A) | EPNM real — 3 hotspots (RP, PM0, PM1) | ✅ Done |
+| ncs540-28z4c (N540-28Z4C-SYS-D, -A) | EPNM real — 3 hotspots (RP, PM0, PM1) | ✅ Done |
+| ncs540-12z20g (N540-12Z20G-SYS-D, -A) | EPNM real — 4 hotspots (fan, RP, PM0, PM1) | ✅ Done |
+| ncs540-fh-agg (N540-FH-AGG-SYS) | EPNM real — 4 hotspots (PSU0, PSU1, RP, fan) | ✅ Done |
+| ncs540-fh-csr (N540-FH-CSR-SYS) | EPNM real — 4 hotspots (PSU0, PSU1, fan, RP) | ✅ Done |
+| ncs540x-4z14g2q (N540X-4Z14G2Q-D, -A) | EPNM real — 3 hotspots (PM0, PM1, RP) | ✅ Done |
 
 ### NCS540L_CE family — completed sub-models
 
-| Profile key | Model | Build script | Hotspots | Notes |
+| Profile key | Model(s) | Build script | Hotspots | Notes |
 |---|---|---|---|---|
-| `ncs540-16z4` | N540X-16Z4G8Q2C-D | `scripts/build_ncs540_16z4_chassis_profile.py` | 4 (fan, RP, PM0, PM1) | SNMP walk: `ncs540-16z4-entity-mib.json` |
-| `ncs540-12z16g` | N540X-12Z16G-SYS-D | `scripts/build_ncs540_12z16g_chassis_profile.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540`; no separate SNMP walk; fan slot not in EPNM front view |
+| `ncs540-16z4` | N540X-16Z4G8Q2C-D, **-A** alias | `scripts/build_ncs540_16z4_chassis_profile.py` | 4 (fan, RP, PM0, PM1) | SNMP walk: `ncs540-16z4-entity-mib.json` |
+| `ncs540-12z16g` | N540X-12Z16G-SYS-D, **-A** alias | `scripts/build_ncs540_12z16g_chassis_profile.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540`; fan slot not in EPNM front view |
+| `ncs540-28z4c` | N540-28Z4C-SYS-D, **-A** alias | `scripts/build_ncs540_remaining_variants.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540` |
+| `ncs540-12z20g` | N540-12Z20G-SYS-D, **-A** alias | `scripts/build_ncs540_remaining_variants.py` | 4 (fan, RP, PM0, PM1) | Component data reused from `ncs540` |
+| `ncs540-fh-agg` | N540-FH-AGG-SYS | `scripts/build_ncs540_remaining_variants.py` | 4 (PSU0, PSU1, RP, fan) | Component data reused from `ncs540` |
+| `ncs540-fh-csr` | N540-FH-CSR-SYS | `scripts/build_ncs540_remaining_variants.py` | 4 (PSU0, PSU1, fan, RP) | Component data reused from `ncs540` |
+| `ncs540x-4z14g2q` | N540X-4Z14G2Q-D, **-A** alias | `scripts/build_ncs540_remaining_variants.py` | 3 (PM0, PM1, RP) | Component data reused from `ncs540` |
 
-Detection rules added to `backend/app/api/devices.py::_chassis_profile_for_device`:
-- `"16z4" in compact_terms and "540x" in compact_terms` → `ncs540-16z4`
-- `"12z16g" in compact_terms and "540x" in compact_terms` → `ncs540-12z16g`
-- Both checked before generic `ncs540` fallback.
+Detection rules in `backend/app/api/devices.py::_chassis_profile_for_device`:
+- `"16z4" in compact_terms and "540x" in compact_terms` → `ncs540-16z4` (D + A variants)
+- `"12z16g" in compact_terms and "540x" in compact_terms` → `ncs540-12z16g` (D + A variants)
+- `"28z4c" in compact_terms and "n540" in compact_terms` → `ncs540-28z4c` (D + A variants)
+- `"12z20g" in compact_terms and "n540" in compact_terms` → `ncs540-12z20g` (D + A variants)
+- `"fhagg" in compact_terms and "n540" in compact_terms` → `ncs540-fh-agg`
+- `"fhcsr" in compact_terms and "n540" in compact_terms` → `ncs540-fh-csr`
+- `"4z14g2q" in compact_terms and "540x" in compact_terms` → `ncs540x-4z14g2q` (D + A variants)
+- Generic `ncs540` fallback for all other N540/NCS540 strings.
 
-### NCS540L_CE family — remaining sub-models (not yet migrated)
-Other NCS540L_CE variants available in `docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS540L_CE/` (NCS 540 large, NCS 57xx, Cisco 8000 series) — see `EPNM_CHASSIS_CATALOG.md` §"NCS 540L / Cisco 8000".
+### NCS540L_CE family — not migrated (no usable EPNM slot data)
+
+| Model | Reason |
+|---|---|
+| N540-24Q2C2DD-SYS | EPNM JSON has no slot definitions; no SVG slot coordinates |
+| N540-6Z18G-SYS-A/D | EPNM JSON has no `svgImageId` or slot defs (only SVG file present) |
+| N540X-16Z8Q2C-D | EPNM JSON has no slot definitions |
+| N540X-6Z14S-SYS-D | EPNM JSON has no slot definitions |
+| N540-24Q8L2DD-SYS-A | EPNM slot data present but no matching pluggable SVGs; deferred |
+| N540X-6Z18G-SYS-D/A, N540X-8Z16G-SYS-D/A | Same SVG layout as 4Z14G2Q; fall back to generic `ncs540` |
+| NCS-57B1/57C1/57D2 (NCS57xx) | Different family — out of NCS540L_CE migration scope |
+| Cisco 8000 series (17 models) | Different family — out of NCS540L_CE migration scope |
 
 ## Plan de migración
 
@@ -121,6 +146,6 @@ Other NCS540L_CE variants available in `docs/chassisview_figures/chassisview/com
 2. NCS560 — ✅ done
 3. NCS540 — ✅ done
 4. ASR920 — ✅ done
-5. **NCS540L_CE family** — ✅ done (`ncs540-16z4` + `ncs540-12z16g`; other variants still available)
-6. ASR9010 — ⏳ pending
+5. **NCS540L_CE family** — ✅ done (7 profiles: `ncs540-16z4`, `ncs540-12z16g`, `ncs540-28z4c`, `ncs540-12z20g`, `ncs540-fh-agg`, `ncs540-fh-csr`, `ncs540x-4z14g2q`; variants without EPNM slot data fall back to generic `ncs540`)
+6. ASR9010 — ✅ done
 7. NCS55A1 additional variants — ⏳ pending

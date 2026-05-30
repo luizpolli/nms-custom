@@ -46,6 +46,11 @@ CHASSIS_PROFILE_FILES = {
     # NCS540L_CE sub-model profiles (checked before generic ncs540 fallback)
     "ncs540-16z4": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-16z4" / "normalized.json",
     "ncs540-12z16g": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-12z16g" / "normalized.json",
+    "ncs540-28z4c": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-28z4c" / "normalized.json",
+    "ncs540-12z20g": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-12z20g" / "normalized.json",
+    "ncs540-fh-agg": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-fh-agg" / "normalized.json",
+    "ncs540-fh-csr": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-fh-csr" / "normalized.json",
+    "ncs540x-4z14g2q": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540x-4z14g2q" / "normalized.json",
     "ncs540": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540" / "normalized.json",
     "asr9010": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr9010" / "normalized.json",
 }
@@ -196,13 +201,29 @@ def _chassis_profile_for_device(device: Device, inventory: Inventory | None) -> 
     if "ncs560" in compact_terms:
         return "ncs560"
     # NCS540L_CE sub-models: check specific variants before the generic ncs540 fallback.
-    # compact_terms for N540X-16Z4G8Q2C-D  → "n540x16z4g8q2cd"    (n540x + 16z4)
-    # compact_terms for NCS_540X-12Z16G-SYS-D → "ncs540x12z16gsysd"  (540x + 12z16g)
-    # Use "540x" as the shared anchor so both N540X and NCS_540X forms match.
+    # Use compact_terms (spaces/dashes/underscores removed, lowercased) for matching.
+    #
+    # N540X-16Z4G8Q2C-D/A  → "n540x16z4g8q2cd" / "...a"   (540x + 16z4)
+    # N540X-12Z16G-SYS-D/A → "ncs540x12z16gsysd" / "...a" (540x + 12z16g)
+    # N540-28Z4C-SYS-D/A   → "n54028z4csysd" / "...a"     (n540 + 28z4c, no 540x)
+    # N540-12Z20G-SYS-D/A  → "n54012z20gsysd" / "...a"    (n540 + 12z20g)
+    # N540-FH-AGG-SYS      → "n540fhaggsys"              (n540 + fhagg)
+    # N540-FH-CSR-SYS      → "n540fhcsrsys"              (n540 + fhcsr)
+    # N540X-4Z14G2Q-D/A    → "n540x4z14g2qd" / "...a"    (540x + 4z14g2q)
     if "16z4" in compact_terms and "540x" in compact_terms:
         return "ncs540-16z4"
     if "12z16g" in compact_terms and "540x" in compact_terms:
         return "ncs540-12z16g"
+    if "28z4c" in compact_terms and "n540" in compact_terms:
+        return "ncs540-28z4c"
+    if "12z20g" in compact_terms and "n540" in compact_terms:
+        return "ncs540-12z20g"
+    if "fhagg" in compact_terms and "n540" in compact_terms:
+        return "ncs540-fh-agg"
+    if "fhcsr" in compact_terms and "n540" in compact_terms:
+        return "ncs540-fh-csr"
+    if "4z14g2q" in compact_terms and "540x" in compact_terms:
+        return "ncs540x-4z14g2q"
     if "ncs540" in compact_terms or "n540" in compact_terms:
         return "ncs540"
     if "asr" in terms and "920" in terms:

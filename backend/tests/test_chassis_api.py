@@ -490,6 +490,151 @@ def test_chassis_profile_ncs540_generic_not_stolen_by_submodels():
 
 
 # ---------------------------------------------------------------------------
+# Profile detection — NCS540L_CE additional sub-models (Phase 2)
+# ---------------------------------------------------------------------------
+
+
+def test_chassis_profile_detects_ncs540_28z4c_from_device_model():
+    """N540-28Z4C-SYS-D must resolve to ncs540-28z4c."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-28z4c-pe01",
+        ip_address="10.0.1.1",
+        device_type="router",
+        model="Cisco N540-28Z4C-SYS-D",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-28z4c"
+
+
+def test_chassis_profile_detects_ncs540_28z4c_ac_variant():
+    """N540-28Z4C-SYS-A (AC power) must also resolve to ncs540-28z4c."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-28z4c-ac-pe01",
+        ip_address="10.0.1.2",
+        device_type="router",
+        model="Cisco N540-28Z4C-SYS-A",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-28z4c"
+
+
+def test_chassis_profile_detects_ncs540_12z20g_from_device_model():
+    """N540-12Z20G-SYS-D must resolve to ncs540-12z20g."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-12z20g-pe01",
+        ip_address="10.0.1.3",
+        device_type="router",
+        model="Cisco N540-12Z20G-SYS-D",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-12z20g"
+
+
+def test_chassis_profile_detects_ncs540_12z20g_ac_variant():
+    """N540-12Z20G-SYS-A (AC power) must also resolve to ncs540-12z20g."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-12z20g-ac-pe01",
+        ip_address="10.0.1.4",
+        device_type="router",
+        model="Cisco N540-12Z20G-SYS-A",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-12z20g"
+
+
+def test_chassis_profile_detects_ncs540_fh_agg():
+    """N540-FH-AGG-SYS must resolve to ncs540-fh-agg."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-fhagg-pe01",
+        ip_address="10.0.1.5",
+        device_type="router",
+        model="Cisco N540-FH-AGG-SYS",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-fh-agg"
+
+
+def test_chassis_profile_detects_ncs540_fh_csr():
+    """N540-FH-CSR-SYS must resolve to ncs540-fh-csr."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-fhcsr-pe01",
+        ip_address="10.0.1.6",
+        device_type="router",
+        model="Cisco N540-FH-CSR-SYS",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-fh-csr"
+
+
+def test_chassis_profile_detects_ncs540x_4z14g2q_from_device_model():
+    """N540X-4Z14G2Q-D must resolve to ncs540x-4z14g2q."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540x-4z14g2q-pe01",
+        ip_address="10.0.1.7",
+        device_type="router",
+        model="Cisco N540X-4Z14G2Q-D",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540x-4z14g2q"
+
+
+def test_chassis_profile_detects_ncs540x_4z14g2q_ac_variant():
+    """N540X-4Z14G2Q-A (AC power) must also resolve to ncs540x-4z14g2q."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540x-4z14g2q-ac-pe01",
+        ip_address="10.0.1.8",
+        device_type="router",
+        model="Cisco N540X-4Z14G2Q-A",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540x-4z14g2q"
+
+
+def test_chassis_profile_ncs540_16z4_detects_ac_variant():
+    """N540X-16Z4G8Q2C-A (AC power) must map to ncs540-16z4 (same layout as -D)."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-16z4a-pe01",
+        ip_address="10.0.1.9",
+        device_type="router",
+        model="Cisco N540X-16Z4G8Q2C-A",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-16z4"
+
+
+def test_chassis_profile_ncs540_12z16g_detects_ac_variant():
+    """N540X-12Z16G-SYS-A (AC power) must map to ncs540-12z16g (same layout as -D)."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-12z16ga-pe01",
+        ip_address="10.0.1.10",
+        device_type="router",
+        model="Cisco N540X-12Z16G-SYS-A",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-12z16g"
+
+
+# ---------------------------------------------------------------------------
 # Profile detection — ASR9010
 # ---------------------------------------------------------------------------
 

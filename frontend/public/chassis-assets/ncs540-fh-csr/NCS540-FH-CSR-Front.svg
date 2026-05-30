@@ -1,0 +1,2282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1680"
+   height="165"
+   viewBox="0 0 1680 165"
+   version="1.1"
+   id="svg830"
+   sodipodi:docname="N540-FH-CSR-SYS_Front_Core.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata836">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="N540-FH-CSR-SYS_Front_Coredefs834" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1315"
+     id="N540-FH-CSR-SYS_Front_Corenamedview832"
+     showgrid="false"
+     inkscape:zoom="0.3172619"
+     inkscape:cx="840"
+     inkscape:cy="82.5"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg830" />
+  <path
+     d="M.5.5h1679.01v164.01H.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath2" />
+  <path
+     d="M1679 1v163H1V1h1678m1-1H0v165h1680z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath4" />
+  <path
+     fill="#1a1a1a"
+     d="M0 0h462.53v165H0z"
+     id="N540-FH-CSR-SYS_Front_Corepath6" />
+  <path
+     d="M6 3.5a1.5 1.5 0 010-3h1668a1.5 1.5 0 010 3z"
+     fill="#b3b3b3"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath8" />
+  <path
+     d="M1674 1a1 1 0 010 2H6a1 1 0 010-2h1668m0-1H6a2 2 0 000 4h1668a2 2 0 000-4z"
+     fill="#999"
+     id="N540-FH-CSR-SYS_Front_Corepath10" />
+  <path
+     d="M2 164.5A1.5 1.5 0 01.5 163V2a1.5 1.5 0 013 0v161a1.5 1.5 0 01-1.5 1.5z"
+     fill="#b3b3b3"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath12" />
+  <path
+     d="M2 1a1 1 0 011 1v161a1 1 0 01-2 0V2a1 1 0 011-1m0-1a2 2 0 00-2 2v161a2 2 0 004 0V2a2 2 0 00-2-2z"
+     fill="#999"
+     id="N540-FH-CSR-SYS_Front_Corepath14" />
+  <path
+     d="M1678 164.5a1.5 1.5 0 01-1.5-1.5V2a1.5 1.5 0 013 0v161a1.5 1.5 0 01-1.5 1.5z"
+     fill="#b3b3b3"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath16" />
+  <path
+     d="M1678 1a1 1 0 011 1v161a1 1 0 01-2 0V2a1 1 0 011-1m0-1a2 2 0 00-2 2v161a2 2 0 004 0V2a2 2 0 00-2-2z"
+     fill="#999"
+     id="N540-FH-CSR-SYS_Front_Corepath18" />
+  <path
+     d="M6 164.5a1.5 1.5 0 010-3h1668a1.5 1.5 0 010 3z"
+     fill="#b3b3b3"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath20" />
+  <path
+     d="M1674 162a1 1 0 010 2H6a1 1 0 010-2h1668m0-1H6a2 2 0 000 4h1668a2 2 0 000-4z"
+     fill="#999"
+     id="N540-FH-CSR-SYS_Front_Corepath22" />
+  <path
+     d="M463 160h1208a4 4 0 004-4V9.27a4 4 0 00-4-4h-118.2V16H603.23V5H463z"
+     stroke-miterlimit="10"
+     fill="#b3b3b3"
+     fill-rule="evenodd"
+     stroke="#999"
+     stroke-width=".99"
+     id="N540-FH-CSR-SYS_Front_Corepath24" />
+  <path
+     fill="#333"
+     d="M1647.53 19.38h1.41v5.63h-1.41z"
+     id="N540-FH-CSR-SYS_Front_Corepath26" />
+  <path
+     d="M1660.37 21a4.48 4.48 0 00-1.24-.17 1.43 1.43 0 00-1.58 1.4 1.59 1.59 0 001.58 1.59 2.42 2.42 0 001.24-.36V25a10.52 10.52 0 01-1.24.17 3 3 0 01-3-3 2.82 2.82 0 013-2.81 10 10 0 011.24.18zM1645.6 21a2.69 2.69 0 00-1.06-.17 1.43 1.43 0 00-1.58 1.4 1.48 1.48 0 001.58 1.59 2.21 2.21 0 001.06-.36V25a6.54 6.54 0 01-1.23.17 3 3 0 01-3-3 2.82 2.82 0 013-2.81 4.22 4.22 0 011.23.18zM1667.75 22.19a3 3 0 01-6 0 3 3 0 016 0zm-3-1.4a1.39 1.39 0 00-1.41 1.4 1.42 1.42 0 102.82 0 1.39 1.39 0 00-1.41-1.4zM1654.39 20.79a6.21 6.21 0 00-1.06-.18c-.7 0-.88.18-.88.35a.57.57 0 00.53.53l.35.17c1.06.36 1.41.88 1.41 1.59a2 2 0 01-2.29 1.93 14.24 14.24 0 01-1.58-.17V23.6a2.25 2.25 0 001.41.35c.7 0 1-.35 1-.53 0-.35-.35-.52-.7-.52 0-.18-.18-.18-.35-.18a1.69 1.69 0 01-1.41-1.58c0-1.06.88-1.76 2.11-1.76a6.6 6.6 0 011.41.18v1.23zM1640 13.4a.71.71 0 00-1.41 0V15a.71.71 0 101.41 0zM1643.84 11.47a.76.76 0 00-.71-.71.65.65 0 00-.7.71V15a.65.65 0 00.7.71.76.76 0 00.71-.71zM1647.53 8.83a.64.64 0 00-.7-.7.76.76 0 00-.71.7v7.56c0 .35.36.53.71.53.52 0 .7-.18.7-.53zM1651.4 11.47a.71.71 0 10-1.41 0V15a.71.71 0 101.41 0zM1655.27 13.4a.76.76 0 00-.71-.7.75.75 0 00-.7.7V15a.76.76 0 00.7.71.77.77 0 00.71-.71zM1659.13 11.47a.7.7 0 10-1.4 0V15a.7.7 0 101.4 0zM1663 8.83a.7.7 0 00-1.4 0v7.56c0 .35.35.53.7.53s.7-.18.7-.53zM1666.87 11.47a.76.76 0 00-.7-.71.65.65 0 00-.71.71V15a.65.65 0 00.71.71.76.76 0 00.7-.71zM1670.56 13.4a.64.64 0 00-.7-.7.75.75 0 00-.7.7V15a.76.76 0 00.7.71.65.65 0 00.7-.71z"
+     fill="#333"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath28" />
+  <rect
+     x="1634.34"
+     y="91.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect30" />
+  <path
+     d="M1641.84 92.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath32" />
+  <rect
+     x="1634.34"
+     y="77.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect34" />
+  <path
+     d="M1641.84 78.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath36" />
+  <rect
+     x="1634.34"
+     y="63.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect38" />
+  <path
+     d="M1641.84 64.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath40" />
+  <rect
+     x="1634.34"
+     y="105.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect42" />
+  <path
+     d="M1641.84 106.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath44" />
+  <rect
+     x="1649.17"
+     y="91.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect46" />
+  <path
+     d="M1656.67 92.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath48" />
+  <rect
+     x="1649.17"
+     y="77.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect50" />
+  <path
+     d="M1656.67 78.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath52" />
+  <rect
+     x="1649.17"
+     y="63.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect54" />
+  <path
+     d="M1656.67 64.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath56" />
+  <rect
+     x="1649.17"
+     y="105.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect58" />
+  <path
+     d="M1656.67 106.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath60" />
+  <rect
+     x="1634.34"
+     y="49.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect62" />
+  <path
+     d="M1641.84 50.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath64" />
+  <rect
+     x="1634.34"
+     y="35.92"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect66" />
+  <path
+     d="M1641.84 36.42a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath68" />
+  <rect
+     x="1649.17"
+     y="49.96"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect70" />
+  <path
+     d="M1656.67 50.46a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath72" />
+  <rect
+     x="1649.17"
+     y="35.92"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect74" />
+  <path
+     d="M1656.67 36.42a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath76" />
+  <circle
+     cx="1641.84"
+     cy="127.74"
+     r="7.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle78" />
+  <path
+     d="M1641.84 120.74a7 7 0 11-7 7 7 7 0 017-7m0-1a8 8 0 108 8 8 8 0 00-8-8z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath80" />
+  <path
+     d="M1641.84 131.43a3.69 3.69 0 113.69-3.69 3.69 3.69 0 01-3.69 3.69z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath82" />
+  <path
+     d="M1641.84 124.55a3.19 3.19 0 11-3.19 3.19 3.19 3.19 0 013.19-3.19m0-1a4.19 4.19 0 104.19 4.19 4.18 4.18 0 00-4.19-4.19z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath84" />
+  <ellipse
+     cx="1641.84"
+     cy="126.21"
+     rx="1.52"
+     ry=".76"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse86" />
+  <text
+     font-size="10"
+     font-weight="700"
+     x="1651.4"
+     y="131.15"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext88">SW</text>
+  <text
+     transform="rotate(-90)"
+     font-size="9"
+     font-weight="700"
+     x="-116.83"
+     y="1672.29"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext90">N540-FH-CSR-SYS</text>
+  <rect
+     x="1620.66"
+     y="142.16"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect92" />
+  <path
+     d="M1628.16 142.66a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath94" />
+  <rect
+     x="1635.2"
+     y="142.16"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect96" />
+  <path
+     d="M1642.7 142.66a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath98" />
+  <rect
+     x="1649.73"
+     y="142.16"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect100" />
+  <path
+     d="M1657.23 142.66a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath102" />
+  <rect
+     x="1594.42"
+     y="7.15"
+     width="8"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect104" />
+  <path
+     d="M1600.92 7.65a1 1 0 011 1v5a1 1 0 01-1 1h-5a1 1 0 01-1-1v-5a1 1 0 011-1h5m0-1h-5a2 2 0 00-2 2v5a2 2 0 002 2h5a2 2 0 002-2v-5a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath106" />
+  <rect
+     x="1607.5"
+     y="7.15"
+     width="8"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect108" />
+  <path
+     d="M1614 7.65a1 1 0 011 1v5a1 1 0 01-1 1h-5a1 1 0 01-1-1v-5a1 1 0 011-1h5m0-1h-5a2 2 0 00-2 2v5a2 2 0 002 2h5a2 2 0 002-2v-5a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath110" />
+  <rect
+     x="1620.58"
+     y="7.15"
+     width="8"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect112" />
+  <path
+     d="M1627.08 7.65a1 1 0 011 1v5a1 1 0 01-1 1h-5a1 1 0 01-1-1v-5a1 1 0 011-1h5m0-1h-5a2 2 0 00-2 2v5a2 2 0 002 2h5a2 2 0 002-2v-5a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath114" />
+  <rect
+     x="1568.26"
+     y="7.15"
+     width="8"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect116" />
+  <path
+     d="M1574.76 7.65a1 1 0 011 1v5a1 1 0 01-1 1h-5a1 1 0 01-1-1v-5a1 1 0 011-1h5m0-1h-5a2 2 0 00-2 2v5a2 2 0 002 2h5a2 2 0 002-2v-5a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath118" />
+  <rect
+     x="1581.34"
+     y="7.15"
+     width="8"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect120" />
+  <path
+     d="M1587.84 7.65a1 1 0 011 1v5a1 1 0 01-1 1h-5a1 1 0 01-1-1v-5a1 1 0 011-1h5m0-1h-5a2 2 0 00-2 2v5a2 2 0 002 2h5a2 2 0 002-2v-5a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath122" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1129.42"
+     y="26.72"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext124">TSN</text>
+  <path
+     fill="#333"
+     d="M605.53 30.25h118v98h-118z"
+     id="N540-FH-CSR-SYS_Front_Corepath126" />
+  <path
+     d="M722.36 125.24c0 1.05-1.54 1.91-3.42 1.91h-109c-1.87 0-3.41-.86-3.41-1.91V33.06c0-1.05 1.54-1.91 3.41-1.91h109.17c1.88 0 3.42.86 3.42 1.91v92.18z"
+     stroke-miterlimit="10"
+     fill="#c2c2c2"
+     stroke="#000"
+     id="N540-FH-CSR-SYS_Front_Corepath128" />
+  <path
+     fill="#505050"
+     d="M678.93 43.55v-5.9h4.9v-3.9h15.8v3.9h3.9v5.9h11.8v26.5h-47.2v-26.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath130" />
+  <path
+     d="M699.13 34.25v3.9H703v5.9h11.8v25.5h-46.2v-25.5h10.8v-5.9h4.9v-3.9h14.8m1-1h-16.7v3.9h-4.9v5.9h-10.8v27.5h48.2v-27.5H704v-5.9h-3.9z"
+     id="N540-FH-CSR-SYS_Front_Corepath132" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     d="M678.43 67.65v-10.8M682.43 67.65v-10.8M686.33 67.65v-10.8M690.23 67.65v-10.8M694.23 67.65v-10.8M698.13 67.65v-10.8M702.03 67.65v-10.8M705.93 67.65v-10.8"
+     id="N540-FH-CSR-SYS_Front_Corepath134" />
+  <path
+     fill="#505050"
+     d="M678.93 121.15v-5.9h-10.8v-26.5h47.2v26.5h-11.8v5.9h-3.9v3.9h-15.8v-3.9z"
+     id="N540-FH-CSR-SYS_Front_Corepath136" />
+  <path
+     d="M714.83 89.25v25.5H703v5.9h-3.9v3.9h-14.7v-3.9h-4.9v-5.9h-10.8v-25.5h46.1m1-1h-48.2v27.5h10.8v5.9h4.9v3.9H700v-3.9h3.9v-5.9h11.8v-27.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath138" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     d="M678.43 91.15v10.8M682.43 91.15v10.8M686.33 91.15v10.8M690.23 91.15v10.8M694.23 91.15v10.8M698.13 91.15v10.8M702.03 91.15v10.8M705.93 91.15v10.8"
+     id="N540-FH-CSR-SYS_Front_Corepath140" />
+  <path
+     fill="#505050"
+     d="M623.93 43.55v-5.9h4.9v-3.9h15.8v3.9h3.9v5.9h11.8v26.5h-47.2v-26.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath142" />
+  <path
+     d="M644.13 34.25v3.9H648v5.9h11.8v25.5h-46.2v-25.5h10.8v-5.9h4.9v-3.9h14.8m1-1h-16.7v3.9h-4.9v5.9h-10.8v27.5h48.2v-27.5H649v-5.9h-3.9z"
+     id="N540-FH-CSR-SYS_Front_Corepath144" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     d="M623.43 67.65v-10.8M627.43 67.65v-10.8M631.33 67.65v-10.8M635.23 67.65v-10.8M639.23 67.65v-10.8M643.13 67.65v-10.8M647.03 67.65v-10.8M650.93 67.65v-10.8"
+     id="N540-FH-CSR-SYS_Front_Corepath146" />
+  <path
+     fill="#505050"
+     d="M623.93 121.15v-5.9h-10.8v-26.5h47.2v26.5h-11.8v5.9h-3.9v3.9h-15.8v-3.9z"
+     id="N540-FH-CSR-SYS_Front_Corepath148" />
+  <path
+     d="M659.83 89.25v25.5H648v5.9h-3.9v3.9h-14.7v-3.9h-4.9v-5.9h-10.8v-25.5h46.1m1-1h-48.2v27.5h10.8v5.9h4.9v3.9H645v-3.9h3.9v-5.9h11.8v-27.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath150" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     d="M623.43 91.15v10.8M627.43 91.15v10.8M631.33 91.15v10.8M635.23 91.15v10.8M639.23 91.15v10.8M643.13 91.15v10.8M647.03 91.15v10.8M650.93 91.15v10.8"
+     id="N540-FH-CSR-SYS_Front_Corepath152" />
+  <path
+     d="M625.85 27.28l3.2-6.3h-6.4zM633.35 20.58l-3.2 6.4h6.4zM607.26 22.37h-1.73v-.92h4.58v.92h-1.75v5.14h-1.1zM614.47 25.28a2.17 2.17 0 01-2.25 2.33 2.11 2.11 0 01-2.22-2.26 2.16 2.16 0 012.3-2.35 2.1 2.1 0 012.17 2.28zm-3.3 0c0 .84.41 1.48 1.09 1.48.68 0 1.07-.62 1.07-1.5 0-.68-.3-1.47-1.06-1.47s-1.1.81-1.1 1.54zM615.65 21.53a11.35 11.35 0 011.77-.13 3.73 3.73 0 012.47.7 2.72 2.72 0 011 2.24 3.12 3.12 0 01-1 2.41 4 4 0 01-2.74.83 13.31 13.31 0 01-1.5-.08zm1.11 5.14a3.7 3.7 0 00.61 0 2.09 2.09 0 002.3-2.33 1.92 1.92 0 00-2.15-2.1 3.36 3.36 0 00-.76.06zM638.66 21.53a9.42 9.42 0 011.62-.13 2.85 2.85 0 011.73.39 1.27 1.27 0 01.63 1.13 1.42 1.42 0 01-1 1.32 1.53 1.53 0 011.23 1.5 1.55 1.55 0 01-.59 1.25 3.35 3.35 0 01-2.25.57 12.14 12.14 0 01-1.36-.08zm1.1 2.39h.57c.76 0 1.2-.36 1.2-.87s-.44-.83-1.14-.83a2.76 2.76 0 00-.63.05zm0 2.79a3.28 3.28 0 00.59 0c.71 0 1.34-.27 1.34-1s-.61-1-1.38-1h-.55zM645.18 21.45v6.06h-1.11v-6.06zM647.84 22.37h-1.73v-.92h4.58v.92h-1.75v5.14h-1.1zM651.52 26.31a3.07 3.07 0 001.47.39c.71 0 1.11-.34 1.11-.83 0-.49-.31-.73-1.08-1-1-.36-1.64-.89-1.64-1.77s.83-1.74 2.14-1.74a3.22 3.22 0 011.46.3l-.27.9a2.5 2.5 0 00-1.2-.29c-.71 0-1 .38-1 .73s.35.68 1.16 1c1.05.39 1.56.92 1.56 1.8s-.73 1.82-2.3 1.82a3.57 3.57 0 01-1.64-.38zM693.37 26.88l3.2-6.3h-6.4zM700.87 20.18l-3.2 6.4h6.4zM673.29 27.33a3.73 3.73 0 01-1.57.28 2.86 2.86 0 01-3.09-3.06 3 3 0 013.24-3.2 3.38 3.38 0 011.47.27l-.24.88a2.88 2.88 0 00-1.19-.23 2 2 0 00-2.12 2.23 2 2 0 002.11 2.19 3 3 0 001.21-.23zM678.44 25.28a2.17 2.17 0 01-2.25 2.33 2.12 2.12 0 01-2.2-2.26 2.16 2.16 0 012.27-2.35 2.11 2.11 0 012.18 2.28zm-3.31 0c0 .84.42 1.48 1.09 1.48.67 0 1.07-.62 1.07-1.5 0-.68-.3-1.47-1.06-1.47s-1.1.81-1.1 1.54zM679.57 24.44v-1.31h1v.66A1.58 1.58 0 01682 23c.77 0 1.56.5 1.56 1.88v2.6h-1.11V25c0-.63-.23-1.11-.84-1.11a.93.93 0 00-.86.65 1.32 1.32 0 000 .36v2.57h-1.12zM684.89 26.5a2.5 2.5 0 001.12.31c.49 0 .71-.2.71-.48 0-.28-.18-.45-.72-.64-.86-.3-1.22-.77-1.21-1.28a1.47 1.47 0 011.66-1.41 2.65 2.65 0 011.16.26l-.22.79a2 2 0 00-.93-.26c-.39 0-.61.19-.61.46s.21.42.77.62c.79.28 1.16.69 1.17 1.34.01.65-.62 1.37-1.79 1.37a2.84 2.84 0 01-1.33-.31zM709.88 25.8l-.52 1.71h-1.14l1.94-6.06h1.41l2 6.06h-1.19l-.55-1.71zm1.74-.84l-.48-1.5c-.11-.37-.21-.78-.3-1.13-.09.35-.18.77-.29 1.13l-.47 1.5zM714.53 21.12h1.11v6.39h-1.11zM717.06 24.44v-1.31h1v.65a1.54 1.54 0 011.34-.78 1.28 1.28 0 011.22.81 1.67 1.67 0 01.54-.55 1.46 1.46 0 01.88-.26c.73 0 1.47.5 1.47 1.9v2.58h-1.08v-2.39c0-.73-.25-1.16-.79-1.16a.85.85 0 00-.77.59 1.44 1.44 0 000 .37v2.62h-1.08V25c0-.62-.25-1.05-.76-1.05a.87.87 0 00-.79.63.89.89 0 00-.07.36v2.59h-1.08zM690.74 142.18a3.41 3.41 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2s.92-1.94 2.38-1.94a3.56 3.56 0 011.62.34l-.3 1a2.85 2.85 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4.14 4.14 0 01-1.82-.42zM697.49 143.51v-2.8l-2.13-3.93h1.4l.81 1.73c.23.5.4.88.58 1.34.17-.43.36-.85.59-1.34l.81-1.73H701l-2.24 3.9v2.83zM701.58 143.51v-6.73H703l1.74 2.89a18.54 18.54 0 011.15 2.26c-.08-.9-.11-1.77-.11-2.8v-2.35h1.14v6.73h-1.27l-1.76-3a22.28 22.28 0 01-1.21-2.32c.05.87.06 1.76.06 2.87v2.4zM713.17 143.32a4.26 4.26 0 01-1.74.3 3.18 3.18 0 01-3.44-3.39 3.39 3.39 0 013.6-3.56 3.87 3.87 0 011.64.3l-.27 1a3.27 3.27 0 00-1.32-.26 2.24 2.24 0 00-2.36 2.48 2.21 2.21 0 002.35 2.43 3.44 3.44 0 001.34-.25zM617.64 142.18a3.41 3.41 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2s.92-1.94 2.38-1.94a3.56 3.56 0 011.62.34l-.3 1a2.85 2.85 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4.14 4.14 0 01-1.82-.42zM624.15 137.81h-1.92v-1h5.09v1h-1.94v5.7h-1.23zM628 142.18a3.41 3.41 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2s.92-1.94 2.38-1.94a3.56 3.56 0 011.62.34l-.3 1a2.85 2.85 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4.14 4.14 0 01-1.82-.42zM655 152.68l-.52 1.72h-1.14l1.94-6.07h1.41l2 6.07h-1.19l-.55-1.72zm1.74-.84l-.48-1.49c-.11-.37-.21-.79-.3-1.14-.09.35-.18.78-.29 1.14l-.47 1.49zM659.74 148.33h1.1v5.14h2.5v.93h-3.6zM669.52 151.92c0-.78-.08-1.73-.07-2.56-.2.75-.45 1.57-.72 2.34l-.88 2.63H667l-.81-2.6c-.23-.77-.45-1.6-.61-2.37 0 .81-.06 1.77-.1 2.6l-.14 2.44h-1l.4-6.07h1.46l.79 2.44c.22.71.41 1.43.56 2.11.16-.66.36-1.41.6-2.12l.84-2.43h1.44l.35 6.07h-1.08z"
+     id="N540-FH-CSR-SYS_Front_Corepath154" />
+  <circle
+     cx="662.03"
+     cy="139.83"
+     r="6.56"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle156" />
+  <path
+     d="M662 133.7a6.13 6.13 0 11-6.13 6.13 6.13 6.13 0 016.13-6.13m0-.87a7 7 0 107 7 7 7 0 00-7-7z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath158" />
+  <path
+     d="M662 143.06a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath160" />
+  <path
+     d="M662 137a2.79 2.79 0 11-2.79 2.79A2.79 2.79 0 01662 137m0-.88a3.67 3.67 0 103.66 3.67 3.67 3.67 0 00-3.66-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath162" />
+  <ellipse
+     cx="662.03"
+     cy="138.5"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse164" />
+  <circle
+     cx="682.03"
+     cy="139.83"
+     r="6.56"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle166" />
+  <path
+     d="M682 133.7a6.13 6.13 0 11-6.13 6.13 6.13 6.13 0 016.13-6.13m0-.87a7 7 0 107 7 7 7 0 00-7-7z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath168" />
+  <path
+     d="M682 143.06a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath170" />
+  <path
+     d="M682 137a2.79 2.79 0 11-2.79 2.79A2.79 2.79 0 01682 137m0-.88a3.67 3.67 0 103.66 3.67 3.67 3.67 0 00-3.66-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath172" />
+  <ellipse
+     cx="682.03"
+     cy="138.5"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse174" />
+  <circle
+     cx="642.03"
+     cy="139.83"
+     r="6.56"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle176" />
+  <path
+     d="M642 133.7a6.13 6.13 0 11-6.13 6.13 6.13 6.13 0 016.13-6.13m0-.87a7 7 0 107 7 7 7 0 00-7-7z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath178" />
+  <path
+     d="M642 143.06a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath180" />
+  <path
+     d="M642 137a2.79 2.79 0 11-2.79 2.79A2.79 2.79 0 01642 137m0-.88a3.67 3.67 0 103.66 3.67 3.67 3.67 0 00-3.66-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath182" />
+  <ellipse
+     cx="642.03"
+     cy="138.5"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse184" />
+  <rect
+     x="1085.28"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect186" />
+  <path
+     d="M1092.78 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath188" />
+  <rect
+     x="1099.81"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect190" />
+  <path
+     d="M1107.31 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath192" />
+  <rect
+     x="1095.78"
+     y="121.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect194" />
+  <path
+     d="M1103.28 122.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath196" />
+  <rect
+     x="1095.78"
+     y="107.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect198" />
+  <path
+     d="M1103.28 108.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath200" />
+  <rect
+     x="1095.78"
+     y="93.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect202" />
+  <path
+     d="M1103.28 94.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath204" />
+  <rect
+     x="1095.78"
+     y="65.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect206" />
+  <path
+     d="M1103.28 66.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath208" />
+  <rect
+     x="1095.78"
+     y="51.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect210" />
+  <path
+     d="M1103.28 52.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath212" />
+  <rect
+     x="1095.78"
+     y="37.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect214" />
+  <path
+     d="M1103.28 38.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath216" />
+  <rect
+     x="1172.08"
+     y="121.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect218" />
+  <path
+     d="M1179.58 122.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath220" />
+  <rect
+     x="1172.08"
+     y="107.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect222" />
+  <path
+     d="M1179.58 108.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath224" />
+  <rect
+     x="1172.08"
+     y="93.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect226" />
+  <path
+     d="M1179.58 94.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath228" />
+  <rect
+     x="1172.08"
+     y="65.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect230" />
+  <path
+     d="M1179.58 66.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath232" />
+  <rect
+     x="1172.08"
+     y="51.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect234" />
+  <path
+     d="M1179.58 52.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath236" />
+  <rect
+     x="1172.08"
+     y="37.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect238" />
+  <path
+     d="M1179.58 38.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath240" />
+  <rect
+     x="606.31"
+     y="143.18"
+     width="7.79"
+     height="7.79"
+     rx="1.3"
+     id="N540-FH-CSR-SYS_Front_Corerect242" />
+  <path
+     d="M612.8 143.62a.87.87 0 01.87.86v5.19a.87.87 0 01-.87.87h-5.19a.87.87 0 01-.87-.87v-5.19a.87.87 0 01.87-.86h5.19m0-.87h-5.19a1.73 1.73 0 00-1.73 1.73v5.19a1.73 1.73 0 001.73 1.74h5.19a1.73 1.73 0 001.73-1.74v-5.19a1.73 1.73 0 00-1.73-1.73z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath244" />
+  <rect
+     x="595.78"
+     y="143.18"
+     width="7.79"
+     height="7.79"
+     rx="1.3"
+     id="N540-FH-CSR-SYS_Front_Corerect246" />
+  <path
+     d="M602.27 143.62a.87.87 0 01.86.86v5.19a.87.87 0 01-.86.87h-5.2a.87.87 0 01-.86-.87v-5.19a.87.87 0 01.86-.86h5.2m0-.87h-5.2a1.74 1.74 0 00-1.73 1.73v5.19a1.74 1.74 0 001.73 1.74h5.2a1.74 1.74 0 001.73-1.74v-5.19a1.74 1.74 0 00-1.73-1.73z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath248" />
+  <rect
+     x="716.42"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect250" />
+  <path
+     d="M723.92 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath252" />
+  <rect
+     x="729.45"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect254" />
+  <path
+     d="M737 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath256" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#000"
+     d="M741.77 29.75V23h151.9M1089.28 29.75V23H937.66"
+     id="N540-FH-CSR-SYS_Front_Corepath258" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="904.78"
+     y="26.72"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext260">CPRI</text>
+  <circle
+     cx="870.6"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle262" />
+  <path
+     d="M870.6 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath264" />
+  <path
+     d="M870.6 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath266" />
+  <path
+     d="M870.6 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath268" />
+  <ellipse
+     cx="870.6"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse270" />
+  <circle
+     cx="896.6"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle272" />
+  <path
+     d="M896.6 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath274" />
+  <circle
+     cx="896.6"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle276" />
+  <path
+     d="M896.6 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath278" />
+  <ellipse
+     cx="896.6"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse280" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="858.17"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext282">4</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="884.19"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext284">5</text>
+  <path
+     fill-rule="evenodd"
+     d="M886.48 147.25l3.19 5h-6.37zM860.48 152.25l3.19-5h-6.37zM944.92 147.25l3.2 5h-6.37zM918.92 152.25l3.2-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath286" />
+  <circle
+     cx="929.05"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle288" />
+  <path
+     d="M929.05 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath290" />
+  <path
+     d="M929.05 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath292" />
+  <path
+     d="M929.05 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath294" />
+  <ellipse
+     cx="929.05"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse296" />
+  <circle
+     cx="955.05"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle298" />
+  <path
+     d="M955.05 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath300" />
+  <circle
+     cx="955.05"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle302" />
+  <path
+     d="M955.05 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath304" />
+  <ellipse
+     cx="955.05"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse306" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="916.61"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext308">6</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="942.64"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext310">7</text>
+  <circle
+     cx="812.18"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle312" />
+  <path
+     d="M812.18 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath314" />
+  <path
+     d="M812.18 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath316" />
+  <path
+     d="M812.18 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath318" />
+  <ellipse
+     cx="812.18"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse320" />
+  <circle
+     cx="838.18"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle322" />
+  <path
+     d="M838.18 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath324" />
+  <circle
+     cx="838.18"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle326" />
+  <path
+     d="M838.18 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath328" />
+  <ellipse
+     cx="838.18"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse330" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="799.74"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext332">2</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="825.77"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext334">3</text>
+  <path
+     fill-rule="evenodd"
+     d="M828.03 147.25l3.2 5h-6.37zM802.03 152.25l3.2-5h-6.37zM1003.35 147.25l3.19 5h-6.37zM977.35 152.25l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath336" />
+  <circle
+     cx="987.49"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle338" />
+  <path
+     d="M987.49 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath340" />
+  <path
+     d="M987.49 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath342" />
+  <path
+     d="M987.49 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath344" />
+  <ellipse
+     cx="987.49"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse346" />
+  <circle
+     cx="1013.49"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle348" />
+  <path
+     d="M1013.49 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath350" />
+  <circle
+     cx="1013.49"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle352" />
+  <path
+     d="M1013.49 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath354" />
+  <ellipse
+     cx="1013.49"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse356" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="975.06"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext358">8</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1001.08"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext360">9</text>
+  <circle
+     cx="753.71"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle362" />
+  <path
+     d="M753.71 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath364" />
+  <path
+     d="M753.71 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath366" />
+  <path
+     d="M753.71 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath368" />
+  <ellipse
+     cx="753.71"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse370" />
+  <circle
+     cx="779.71"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle372" />
+  <path
+     d="M779.71 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath374" />
+  <circle
+     cx="779.71"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle376" />
+  <path
+     d="M779.71 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath378" />
+  <ellipse
+     cx="779.71"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse380" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="741.27"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext382">0</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="767.3"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext384">1</text>
+  <path
+     fill-rule="evenodd"
+     d="M769.59 147.25l3.19 5h-6.37zM743.59 152.25l3.19-5h-6.37zM1064.95 147.25l3.19 5h-6.37zM1038.95 152.25l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath386" />
+  <circle
+     cx="1050.94"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle388" />
+  <path
+     d="M1050.94 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath390" />
+  <path
+     d="M1050.94 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath392" />
+  <path
+     d="M1050.94 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath394" />
+  <ellipse
+     cx="1050.94"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse396" />
+  <circle
+     cx="1076.94"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle398" />
+  <path
+     d="M1076.94 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath400" />
+  <circle
+     cx="1076.94"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle402" />
+  <path
+     d="M1076.94 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath404" />
+  <ellipse
+     cx="1076.94"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse406" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1033.5"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext408">10</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1060.02"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext410">11</text>
+  <path
+     fill="#1a1a1a"
+     d="M739.53 29.5h352v99h-352z"
+     id="N540-FH-CSR-SYS_Front_Corepath412" />
+  <path
+     d="M1091 30v98H740V30h351m1-1H739v100h353z"
+     fill="#666"
+     id="N540-FH-CSR-SYS_Front_Corepath414" />
+  <circle
+     cx="1320.92"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle416" />
+  <path
+     d="M1320.92 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath418" />
+  <path
+     d="M1320.92 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath420" />
+  <path
+     d="M1320.92 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath422" />
+  <ellipse
+     cx="1320.92"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse424" />
+  <circle
+     cx="1346.92"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle426" />
+  <path
+     d="M1346.92 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath428" />
+  <circle
+     cx="1346.92"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle430" />
+  <path
+     d="M1346.92 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath432" />
+  <ellipse
+     cx="1346.92"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse434" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1303.47"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext436">18</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1329.5"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext438">19</text>
+  <path
+     fill-rule="evenodd"
+     d="M1334.18 147.25l3.19 5H1331zM1308.18 152.25l3.19-5H1305zM1392.63 147.25l3.19 5h-6.37zM1366.63 152.25l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath440" />
+  <circle
+     cx="1379.36"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle442" />
+  <path
+     d="M1379.36 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath444" />
+  <path
+     d="M1379.36 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath446" />
+  <path
+     d="M1379.36 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath448" />
+  <ellipse
+     cx="1379.36"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse450" />
+  <circle
+     cx="1405.36"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle452" />
+  <path
+     d="M1405.36 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath454" />
+  <circle
+     cx="1405.36"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle456" />
+  <path
+     d="M1405.36 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath458" />
+  <ellipse
+     cx="1405.36"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse460" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1361.92"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext462">20</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1387.95"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext464">21</text>
+  <circle
+     cx="1262.47"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle466" />
+  <path
+     d="M1262.47 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath468" />
+  <path
+     d="M1262.47 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath470" />
+  <path
+     d="M1262.47 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath472" />
+  <ellipse
+     cx="1262.47"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse474" />
+  <circle
+     cx="1288.47"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle476" />
+  <path
+     d="M1288.47 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath478" />
+  <circle
+     cx="1288.47"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle480" />
+  <path
+     d="M1288.47 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath482" />
+  <ellipse
+     cx="1288.47"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse484" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1245.03"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext486">16</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1271.06"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext488">17</text>
+  <path
+     fill-rule="evenodd"
+     d="M1275.72 147.25l3.19 5h-6.37zM1249.72 152.25l3.19-5h-6.37zM1451.05 147.25l3.19 5h-6.37zM1425.05 152.25l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath490" />
+  <circle
+     cx="1437.81"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle492" />
+  <path
+     d="M1437.81 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath494" />
+  <path
+     d="M1437.81 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath496" />
+  <path
+     d="M1437.81 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath498" />
+  <ellipse
+     cx="1437.81"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse500" />
+  <circle
+     cx="1463.81"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle502" />
+  <path
+     d="M1463.81 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath504" />
+  <circle
+     cx="1463.81"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle506" />
+  <path
+     d="M1463.81 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath508" />
+  <ellipse
+     cx="1463.81"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse510" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1420.36"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext512">22</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1446.39"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext514">23</text>
+  <ellipse
+     cx="1225.02"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse516" />
+  <circle
+     cx="1204.53"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle518" />
+  <path
+     d="M1204.53 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath520" />
+  <path
+     d="M1204.53 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath522" />
+  <path
+     d="M1204.53 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath524" />
+  <ellipse
+     cx="1204.53"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse526" />
+  <circle
+     cx="1230.53"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle528" />
+  <path
+     d="M1230.53 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath530" />
+  <circle
+     cx="1230.53"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle532" />
+  <path
+     d="M1230.53 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath534" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1187.08"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext536">14</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1213.11"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext538">15</text>
+  <path
+     fill-rule="evenodd"
+     d="M1217.79 147.25l3.19 5h-6.37zM1191.79 152.25l3.19-5h-6.37zM1510.26 147.25l3.19 5h-6.37zM1484.26 152.25l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath540" />
+  <circle
+     cx="1496.25"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle542" />
+  <path
+     d="M1496.25 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath544" />
+  <path
+     d="M1496.25 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath546" />
+  <path
+     d="M1496.25 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath548" />
+  <ellipse
+     cx="1496.25"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse550" />
+  <circle
+     cx="1522.25"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle552" />
+  <path
+     d="M1522.25 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath554" />
+  <circle
+     cx="1522.25"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle556" />
+  <path
+     d="M1522.25 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath558" />
+  <ellipse
+     cx="1522.25"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse560" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1478.81"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext562">24</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1504.84"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext564">25</text>
+  <path
+     fill="#1a1a1a"
+     d="M1184.84 29.5h352v99h-352z"
+     id="N540-FH-CSR-SYS_Front_Corepath566" />
+  <path
+     d="M1536.34 30v98h-351V30h351m1-1h-353v100h353z"
+     fill="#666"
+     id="N540-FH-CSR-SYS_Front_Corepath568" />
+  <path
+     fill="#999"
+     d="M1420.36 17.38h114.73V28.1h-114.73z"
+     id="N540-FH-CSR-SYS_Front_Corepath570" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1452.21"
+     y="26.19"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext572">1G/10G/25G</text>
+  <path
+     fill="#999"
+     d="M1186.58 17.38h231.62V28.1h-231.62z"
+     id="N540-FH-CSR-SYS_Front_Corepath574" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1286.63"
+     y="26.19"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext576">1G/10G</text>
+  <rect
+     x="726.77"
+     y="121.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect578" />
+  <path
+     d="M734.27 122.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath580" />
+  <rect
+     x="726.77"
+     y="107.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect582" />
+  <path
+     d="M734.27 108.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath584" />
+  <rect
+     x="726.77"
+     y="93.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect586" />
+  <path
+     d="M734.27 94.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath588" />
+  <rect
+     x="726.77"
+     y="65.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect590" />
+  <path
+     d="M734.27 66.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath592" />
+  <rect
+     x="726.77"
+     y="51.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect594" />
+  <path
+     d="M734.27 52.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath596" />
+  <rect
+     x="726.77"
+     y="37.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect598" />
+  <path
+     d="M734.27 38.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath600" />
+  <rect
+     x="1540.59"
+     y="121.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect602" />
+  <path
+     d="M1548.09 122.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath604" />
+  <rect
+     x="1540.59"
+     y="107.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect606" />
+  <path
+     d="M1548.09 108.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath608" />
+  <rect
+     x="1540.59"
+     y="93.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect610" />
+  <path
+     d="M1548.09 94.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath612" />
+  <rect
+     x="1540.59"
+     y="65.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect614" />
+  <path
+     d="M1548.09 66.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath616" />
+  <rect
+     x="1540.59"
+     y="51.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect618" />
+  <path
+     d="M1548.09 52.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath620" />
+  <rect
+     x="1540.59"
+     y="37.83"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect622" />
+  <path
+     d="M1548.09 38.33a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath624" />
+  <path
+     fill-rule="evenodd"
+     d="M1141.73 147.25l3.19 5h-6.37zM1115.73 152.25l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath626" />
+  <circle
+     cx="1127.72"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle628" />
+  <path
+     d="M1127.72 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath630" />
+  <path
+     d="M1127.72 142.49a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath632" />
+  <path
+     d="M1127.72 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath634" />
+  <ellipse
+     cx="1127.72"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse636" />
+  <circle
+     cx="1153.72"
+     cy="139.26"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle638" />
+  <path
+     d="M1153.72 134.26a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath640" />
+  <circle
+     cx="1153.72"
+     cy="139.26"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle642" />
+  <path
+     d="M1153.72 136.47a2.79 2.79 0 11-2.79 2.79 2.78 2.78 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath644" />
+  <ellipse
+     cx="1153.72"
+     cy="137.93"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse646" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1110.28"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext648">12</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1136.31"
+     y="142.43"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext650">13</text>
+  <path
+     fill="#1a1a1a"
+     d="M1108.52 29.5h59.79v99h-59.79z"
+     id="N540-FH-CSR-SYS_Front_Corepath652" />
+  <path
+     d="M1167.82 30v98H1109V30h58.8m1-1H1108v100h60.8z"
+     fill="#666"
+     id="N540-FH-CSR-SYS_Front_Corepath654" />
+  <path
+     fill-rule="evenodd"
+     d="M1599.05 146.17l3.19 5h-6.37zM1563.05 151.17l3.19-5h-6.37z"
+     id="N540-FH-CSR-SYS_Front_Corepath656" />
+  <circle
+     cx="1574.79"
+     cy="138.17"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle658" />
+  <path
+     d="M1574.79 133.17a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath660" />
+  <path
+     d="M1574.79 141.4a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath662" />
+  <path
+     d="M1574.79 135.38a2.79 2.79 0 11-2.79 2.79 2.79 2.79 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.68 3.68 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath664" />
+  <ellipse
+     cx="1574.79"
+     cy="136.84"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse666" />
+  <circle
+     cx="1610.79"
+     cy="138.17"
+     r="5.5"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle668" />
+  <path
+     d="M1610.79 133.17a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath670" />
+  <circle
+     cx="1610.79"
+     cy="138.17"
+     r="3.23"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle672" />
+  <path
+     d="M1610.79 135.38a2.79 2.79 0 11-2.79 2.79 2.79 2.79 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.68 3.68 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath674" />
+  <ellipse
+     cx="1610.79"
+     cy="136.84"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse676" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1557.34"
+     y="141.34"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext678">26</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1593.37"
+     y="141.34"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext680">27</text>
+  <path
+     fill="#999"
+     d="M1552.84 17.38h76V28.1h-76z"
+     id="N540-FH-CSR-SYS_Front_Corepath682" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="1579.83"
+     y="26.19"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext684">100G</text>
+  <path
+     fill="#1a1a1a"
+     d="M1553.34 30.92h77v97h-77z"
+     id="N540-FH-CSR-SYS_Front_Corepath686" />
+  <path
+     d="M1629.84 31.42v96h-76v-96h76m1-1h-78v98h78z"
+     fill="#666"
+     id="N540-FH-CSR-SYS_Front_Corepath688" />
+  <path
+     d="M466.16 8.23l-.87.44-.16-.67 1.15-.57h.72v4.75h-.87zM472 9.77c0 1.52-.6 2.48-1.73 2.48s-1.68-1-1.69-2.44c-.01-1.44.63-2.47 1.74-2.47 1.11 0 1.68 1.02 1.68 2.43zm-2.51 0c0 1.15.31 1.75.81 1.75s.8-.64.8-1.78c0-1.14-.24-1.74-.78-1.74s-.82.62-.81 1.81zM478.45 10.16c0-.64-.06-1.4-.06-2.07-.16.6-.36 1.27-.58 1.89l-.72 2.13h-.69l-.66-2.1c-.19-.63-.36-1.3-.49-1.92 0 .65 0 1.43-.09 2.1l-.11 2h-.84l.33-4.92h1.19l.64 2c.17.57.33 1.16.45 1.7.13-.53.3-1.14.49-1.71l.68-2h1.17l.28 4.92h-.87zM481.24 7.25v2h2.08v-2h.89v4.92h-.89V10h-2.08v2.17h-.9V7.25zM484.92 11.65l1.34-1.71c.18-.22.34-.39.53-.6h-1.73v-.73h2.82v.55l-1.31 1.67c-.17.21-.34.42-.52.61h1.87v.72h-3z"
+     id="N540-FH-CSR-SYS_Front_Corepath690" />
+  <circle
+     cx="503.38"
+     cy="147.25"
+     r="6.56"
+     fill="#333"
+     id="N540-FH-CSR-SYS_Front_Corecircle692" />
+  <path
+     d="M503.38 141.12a6.13 6.13 0 11-6.12 6.13 6.14 6.14 0 016.12-6.13m0-.87a7 7 0 107 7 7 7 0 00-7-7z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath694" />
+  <path
+     d="M503.38 150.48a3.23 3.23 0 113.23-3.23 3.23 3.23 0 01-3.23 3.23z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-CSR-SYS_Front_Corepath696" />
+  <path
+     d="M503.38 144.46a2.79 2.79 0 11-2.79 2.79 2.8 2.8 0 012.79-2.79m0-.88a3.67 3.67 0 103.67 3.67 3.66 3.66 0 00-3.67-3.67z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath698" />
+  <ellipse
+     cx="503.38"
+     cy="145.92"
+     rx="1.33"
+     ry=".67"
+     fill="#f2f2f2"
+     id="N540-FH-CSR-SYS_Front_Coreellipse700" />
+  <path
+     d="M478 151.85a7 7 0 01-2.17.38 3.63 3.63 0 01-2.64-.9 3.28 3.28 0 01-.94-2.48 3.42 3.42 0 013.32-3.52 3.17 3.17 0 01.43 0 4.4 4.4 0 011.79.32l-.27 1a3.53 3.53 0 00-1.53-.29 2.26 2.26 0 00-2.45 2.05 2.29 2.29 0 000 .37 2.23 2.23 0 002 2.43h.34a2.48 2.48 0 00.93-.14v-1.69h-1.21v-1h2.4zM479.24 152.16v-6.74h1.43l1.74 2.89a20 20 0 011.15 2.26c-.08-.9-.11-1.77-.11-2.8v-2.35h1.14v6.74h-1.27l-1.76-3a21.32 21.32 0 01-1.21-2.32c0 .87.06 1.76.06 2.87v2.45zM486 150.82a3.5 3.5 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2a2.15 2.15 0 012.38-1.94 3.53 3.53 0 011.62.34l-.3 1a2.76 2.76 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4.06 4.06 0 01-1.82-.43zM491.16 150.82a3.5 3.5 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2a2.15 2.15 0 012.38-1.94 3.53 3.53 0 011.62.34l-.3 1a2.76 2.76 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4.06 4.06 0 01-1.82-.43z"
+     id="N540-FH-CSR-SYS_Front_Corepath702" />
+  <circle
+     cx="494.38"
+     cy="69.31"
+     r="15"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle704" />
+  <circle
+     cx="494.38"
+     cy="69.31"
+     r="12"
+     fill="#d1a05e"
+     id="N540-FH-CSR-SYS_Front_Corecircle706" />
+  <path
+     d="M494.38 57.81a11.5 11.5 0 11-11.5 11.5 11.57 11.57 0 0111.5-11.5m0-1a12.5 12.5 0 1012.5 12.5 12.5 12.5 0 00-12.5-12.5z"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corepath708" />
+  <circle
+     cx="494.38"
+     cy="69.31"
+     r="10.5"
+     fill="#9c5c1e"
+     id="N540-FH-CSR-SYS_Front_Corecircle710" />
+  <circle
+     cx="494.38"
+     cy="69.31"
+     r="6.5"
+     fill="#d1a05e"
+     id="N540-FH-CSR-SYS_Front_Corecircle712" />
+  <circle
+     cx="494.38"
+     cy="69.31"
+     r="5"
+     fill="#885f38"
+     id="N540-FH-CSR-SYS_Front_Corecircle714" />
+  <path
+     d="M494.38 64.81a4.5 4.5 0 11-4.5 4.5 4.48 4.48 0 014.5-4.5m0-1a5.5 5.5 0 105.5 5.5 5.55 5.55 0 00-5.5-5.5z"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corepath716" />
+  <circle
+     cx="494.38"
+     cy="69.31"
+     r="1.5"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corecircle718" />
+  <circle
+     cx="494.38"
+     cy="27.67"
+     r="15"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle720" />
+  <circle
+     cx="494.38"
+     cy="27.67"
+     r="12"
+     fill="#d1a05e"
+     id="N540-FH-CSR-SYS_Front_Corecircle722" />
+  <path
+     d="M494.38 16.07a11.5 11.5 0 11-11.5 11.5 11.57 11.57 0 0111.5-11.5m0-1a12.5 12.5 0 1012.5 12.5 12.5 12.5 0 00-12.5-12.5z"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corepath724" />
+  <circle
+     cx="494.38"
+     cy="27.67"
+     r="10.5"
+     fill="#9c5c1e"
+     id="N540-FH-CSR-SYS_Front_Corecircle726" />
+  <circle
+     cx="494.38"
+     cy="27.67"
+     r="6.5"
+     fill="#d1a05e"
+     id="N540-FH-CSR-SYS_Front_Corecircle728" />
+  <circle
+     cx="494.38"
+     cy="27.67"
+     r="5"
+     fill="#885f38"
+     id="N540-FH-CSR-SYS_Front_Corecircle730" />
+  <path
+     d="M494.38 23.07a4.5 4.5 0 11-4.5 4.5 4.48 4.48 0 014.5-4.5m0-1a5.5 5.5 0 105.5 5.5 5.55 5.55 0 00-5.5-5.5z"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corepath732" />
+  <circle
+     cx="494.38"
+     cy="27.67"
+     r="1.5"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corecircle734" />
+  <path
+     d="M465.13 67a7.35 7.35 0 011.35-.1 2.2 2.2 0 011.43.4 1.37 1.37 0 01.47 1.07 1.41 1.41 0 01-.42 1.09 2.09 2.09 0 01-1.53.52 2.72 2.72 0 01-.43 0v1.83h-.87zm.87 2.26a1.76 1.76 0 00.43 0c.66 0 1.07-.32 1.07-.89 0-.57-.38-.82-1-.82a2.72 2.72 0 00-.51 0zM469.14 67a7.51 7.51 0 011.35-.1 2.16 2.16 0 011.43.4 1.34 1.34 0 01.48 1.07 1.45 1.45 0 01-.42 1.09 2.09 2.09 0 01-1.53.52 2.72 2.72 0 01-.43 0v1.83h-.88zm.88 2.26a1.76 1.76 0 00.43 0c.66 0 1.06-.32 1.06-.89 0-.57-.37-.82-1-.82a2.63 2.63 0 00-.51 0zM473.14 70.77a2.52 2.52 0 001.17.3c.57 0 .88-.26.88-.66s-.24-.58-.86-.8c-.79-.29-1.31-.71-1.31-1.41s.67-1.39 1.71-1.39a2.56 2.56 0 011.17.24l-.22.71a2.08 2.08 0 00-1-.23c-.56 0-.8.3-.8.58 0 .28.28.55.92.8.84.32 1.25.74 1.25 1.44s-.59 1.46-1.84 1.46a2.79 2.79 0 01-1.3-.31z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath736" />
+  <path
+     d="M486.52 130.07l-1.48-.69v.92h-12.93a7.22 7.22 0 00.91-.92 9.78 9.78 0 011-1.14 3.31 3.31 0 01.8-.69.39.39 0 00.23-.11h2.17a1.49 1.49 0 001.38 1 1.38 1.38 0 10-1.38-1.72h-2.17c-1.14.23-1.83 1.49-2.63 2.29a16.83 16.83 0 01-1.37 1 2.69 2.69 0 01-.58.34h-1.14a2.09 2.09 0 00-2.06-1.72 2.18 2.18 0 000 4.35 2 2 0 002.06-1.71h4.12a2.89 2.89 0 011.37.57 7.34 7.34 0 011.6 1.71 3.07 3.07 0 002.06 1.49h1.95v1h2.86v-2.86h-2.86v1.15h-2.03a10 10 0 01-1.26-1.15c-.23-.34-.69-.91-1.14-1.49a1.62 1.62 0 01-.46-.45h9.61v.91l1.49-.69 1.49-.68z"
+     id="N540-FH-CSR-SYS_Front_Corepath738" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#000"
+     stroke-width=".25"
+     d="M471.98 130.93h40.98v-15.28h6.21"
+     id="N540-FH-CSR-SYS_Front_Corepath740" />
+  <path
+     d="M518.8 114.4v2.49l2.16-1.24zM505.43 44.46v2.27h-3.23v-2.27h3.23m.73-.74h-4.69v3.74h4.69zM502.5 51v2.28h-3.23V51h3.23m.73-.73h-4.69V54h4.69v-3.75zM508.73 51v2.28h-3.23V51h3.23m.73-.73h-4.69V54h4.69v-3.75z"
+     id="N540-FH-CSR-SYS_Front_Corepath742" />
+  <path
+     fill="none"
+     stroke="#000"
+     stroke-width=".85"
+     stroke-linejoin="round"
+     d="M498.46 48.93h11M503.82 47.02v1.91M500.81 48.64v1.83M507.12 48.64v1.83"
+     id="N540-FH-CSR-SYS_Front_Corepath744" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#000"
+     stroke-width=".25"
+     d="M512.96 50.46h6.21"
+     id="N540-FH-CSR-SYS_Front_Corepath746" />
+  <path
+     d="M518.8 49.21v2.49l2.16-1.24zM507.86 88.86l-1.49-.68v.91h-12.93a6.55 6.55 0 00.92-.91 9.92 9.92 0 011-1.15 3.84 3.84 0 01.8-.69.43.43 0 00.23-.11h2.17a1.49 1.49 0 001.38 1 1.38 1.38 0 10-1.38-1.72h-2.17c-1.15.23-1.83 1.49-2.63 2.29a13.39 13.39 0 01-1.38 1 2.08 2.08 0 01-.57.34h-1.11a2.09 2.09 0 00-2.06-1.71 2.18 2.18 0 100 4.35 2 2 0 002.06-1.72h4.12a2.93 2.93 0 011.37.57 7.6 7.6 0 011.6 1.72 3.11 3.11 0 002.06 1.49h1.95v1h2.86v-2.77h-2.86v1.14h-2.06a10.68 10.68 0 01-1.26-1.14c-.23-.35-.69-.92-1.15-1.49-.11-.12-.34-.23-.45-.46h9.61V91l1.49-.69 1.48-.69z"
+     id="N540-FH-CSR-SYS_Front_Corepath748" />
+  <path
+     stroke-miterlimit="10"
+     fill="none"
+     stroke="#000"
+     stroke-width=".25"
+     d="M512.96 89.72h6.21"
+     id="N540-FH-CSR-SYS_Front_Corepath750" />
+  <path
+     d="M518.8 88.47v2.5l2.16-1.25z"
+     id="N540-FH-CSR-SYS_Front_Corepath752" />
+  <circle
+     cx="494.38"
+     cy="112.63"
+     r="17"
+     fill="#ccc"
+     id="N540-FH-CSR-SYS_Front_Corecircle754" />
+  <path
+     stroke-miterlimit="10"
+     fill="#c69c6d"
+     stroke="#4c1800"
+     d="M479.38 112.63l7.5 12.99h15l7.5-12.99-7.5-12.99h-15z"
+     id="N540-FH-CSR-SYS_Front_Corepath756" />
+  <circle
+     cx="494.38"
+     cy="112.63"
+     r="13.6"
+     fill="#d1a05e"
+     id="N540-FH-CSR-SYS_Front_Corecircle758" />
+  <path
+     d="M494.38 99.63a13 13 0 11-13 13 13 13 0 0113-13m0-1.14a14.17 14.17 0 1014.17 14.17 14.16 14.16 0 00-14.17-14.17z"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corepath760" />
+  <circle
+     cx="494.38"
+     cy="112.63"
+     r="11.9"
+     fill="#e6e6e6"
+     id="N540-FH-CSR-SYS_Front_Corecircle762" />
+  <circle
+     cx="494.38"
+     cy="112.63"
+     r="7.37"
+     fill="#d1a05e"
+     id="N540-FH-CSR-SYS_Front_Corecircle764" />
+  <circle
+     cx="494.38"
+     cy="112.63"
+     r="5.67"
+     fill="#885f38"
+     id="N540-FH-CSR-SYS_Front_Corecircle766" />
+  <path
+     d="M494.38 107.53a5.1 5.1 0 11-5.1 5.1 5.08 5.08 0 015.06-5.1m0-1.13a6.23 6.23 0 106.23 6.23 6.27 6.27 0 00-6.19-6.23z"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corepath768" />
+  <circle
+     cx="494.38"
+     cy="112.63"
+     r="1.7"
+     fill="#4c1800"
+     id="N540-FH-CSR-SYS_Front_Corecircle770" />
+  <text
+     font-size="6"
+     font-weight="700"
+     x="485.72"
+     y="137.24"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext772">CONS</text>
+  <path
+     d="M23.52 7.53v149.93a3 3 0 00-3 3h-13a3 3 0 00-3-3V7.53a3 3 0 003-3h13a3 3 0 003 3z"
+     stroke-miterlimit="10"
+     fill="#ccc"
+     stroke="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath774" />
+  <path
+     fill="#231f20"
+     d="M7.05 94.55V79.76l14.23 7.39z"
+     id="N540-FH-CSR-SYS_Front_Corepath776" />
+  <text
+     transform="scale(.9798 1.02062)"
+     font-size="6.819"
+     font-weight="700"
+     x="6.91"
+     y="74.876"
+     font-family="Arial-BoldMT,Arial"
+     stroke-width=".98"
+     id="N540-FH-CSR-SYS_Front_Coretext778">PM0</text>
+  <rect
+     x="1532.32"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect780" />
+  <path
+     d="M1539.82 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath782" />
+  <rect
+     x="1546.86"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect784" />
+  <path
+     d="M1554.36 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath786" />
+  <rect
+     x="1161.82"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect788" />
+  <path
+     d="M1169.32 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath790" />
+  <rect
+     x="1176.35"
+     y="141.91"
+     width="9"
+     height="9"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Corerect792" />
+  <path
+     d="M1183.85 142.41a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1v-6a1 1 0 011-1h6m0-1h-6a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-6a2 2 0 00-2-2z"
+     fill="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath794" />
+  <path
+     d="M252.52 7.53v149.93a3 3 0 00-3 3h-13a3 3 0 00-3-3V7.53a3 3 0 003-3h13a3 3 0 003 3z"
+     stroke-miterlimit="10"
+     fill="#ccc"
+     stroke="#1a1a1a"
+     id="N540-FH-CSR-SYS_Front_Corepath796" />
+  <path
+     fill="#231f20"
+     d="M238.62 93.81v-9.16l8.81 4.58z"
+     id="N540-FH-CSR-SYS_Front_Corepath798" />
+  <text
+     transform="scale(.9798 1.02062)"
+     font-size="6.819"
+     font-weight="700"
+     x="240.479"
+     y="80.431"
+     font-family="Arial-BoldMT,Arial"
+     stroke-width=".98"
+     id="N540-FH-CSR-SYS_Front_Coretext800">PM1</text>
+  <path
+     fill="#1a1a1a"
+     d="M522.46 13.17h72v117h-72z"
+     id="N540-FH-CSR-SYS_Front_Corepath802" />
+  <path
+     d="M594 13.67v116h-71v-116h71m1-1h-73v118h73z"
+     fill="#666"
+     id="N540-FH-CSR-SYS_Front_Corepath804" />
+  <text
+     font-size="9"
+     font-weight="700"
+     x="575.96"
+     y="145.92"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext806">FAN</text>
+  <text
+     font-size="9"
+     font-weight="700"
+     x="520.96"
+     y="145.92"
+     font-family="Arial-BoldMT,Arial"
+     id="N540-FH-CSR-SYS_Front_Coretext808">PWR</text>
+  <path
+     fill="#333"
+     d="M543.48 139.81h13.5v5.89h-13.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath810" />
+  <path
+     d="M556.73 140.06v5.38h-13v-5.38h13m.5-.5h-14v6.38h14z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath812" />
+  <path
+     fill="#ccc"
+     d="M544.39 141.13h11.68v3.24h-11.68z"
+     id="N540-FH-CSR-SYS_Front_Corepath814" />
+  <path
+     d="M555.87 141.33v2.84h-11.28v-2.84h11.28m.4-.4h-12.08v3.64h12.08z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath816" />
+  <path
+     fill="#f2f2f2"
+     d="M549.03 141.67h2.41v1.08h-2.41z"
+     id="N540-FH-CSR-SYS_Front_Corepath818" />
+  <path
+     fill="#333"
+     d="M561.06 139.81h13.5v5.89h-13.5z"
+     id="N540-FH-CSR-SYS_Front_Corepath820" />
+  <path
+     d="M574.31 140.06v5.38h-13v-5.38h13m.5-.5h-14v6.38h14z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath822" />
+  <path
+     fill="#ccc"
+     d="M561.97 141.13h11.68v3.24h-11.68z"
+     id="N540-FH-CSR-SYS_Front_Corepath824" />
+  <path
+     d="M573.45 141.33v2.84h-11.28v-2.84h11.28m.4-.4h-12.08v3.64h12.08z"
+     fill="gray"
+     id="N540-FH-CSR-SYS_Front_Corepath826" />
+  <path
+     fill="#f2f2f2"
+     d="M566.61 141.67h2.41v1.08h-2.41z"
+     id="N540-FH-CSR-SYS_Front_Corepath828" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="141.83865"
+     y="101.9606"
+     id="N540-FH-CSR-SYS_Front_Coretext840"><tspan
+       sodipodi:role="line"
+       id="N540-FH-CSR-SYS_Front_Coretspan838"
+       x="141.83865"
+       y="138.45381" /></text>
+</svg>
