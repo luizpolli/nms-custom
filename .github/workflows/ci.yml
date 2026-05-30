@@ -7,7 +7,78 @@ on:
     branches: [main]
 
 jobs:
+  # ---------------------------------------------------------------------------
+  # Backend: tests, lint, typecheck, migrations.
+  # Lint and migrations are hard gates; mypy is informational (warns only) until
+  # the codebase finishes the type-coverage push tracked in P1.10.
+  # ---------------------------------------------------------------------------
   backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: timescale/timescaledb:latest-pg16
+        env:
+          POSTGRES_USER: nms
+          POSTGRES_PASSWORD: nms_secret
+          POSTGRES_DB: nms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U nms"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install backend dependencies (runtime + dev)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Dev extras: ruff/mypy/types-redis/pytest-cov. Kept aligned with
+          # pyproject.toml [project.optional-dependencies.dev].
+          pip install "ruff>=0.8" "mypy>=1.13" "types-redis>=4.6" "pytest-cov>=6.0"
+      - name: Ruff lint
+        run: ruff check app
+      - name: Run backend tests
+        env:
+          DATABASE_URL: postgresql+asyncpg://nms:nms_secret@localhost:5432/nms
+          CREDENTIAL_ENCRYPTION_KEY: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+        run: |
+          mkdir -p pytest-reports
+          python -m pytest tests --junitxml=pytest-reports/backend.xml -q
+      - name: Compile backend modules
+        run: python -m compileall -q app
+      # Mypy is informational while the codebase finishes type coverage (P1.10).
+      # `continue-on-error` keeps it visible in PR checks without blocking merges.
+      - name: Mypy (informational)
+        continue-on-error: true
+        run: |
+          mypy app \
+            --ignore-missing-imports \
+            --no-warn-unused-ignores \
+            --check-untyped-defs \
+            --no-strict-optional || true
+      - name: Upload backend test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-reports
+          path: backend/pytest-reports/
+
+  # ---------------------------------------------------------------------------
+  # Migrations: ensure alembic upgrade head succeeds against a clean database.
+  # Catches missing-down-revision and broken upgrade chains before they reach
+  # production. (P1.8 — moved up since it shares the Postgres service.)
+  # ---------------------------------------------------------------------------
+  migrations:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -37,22 +108,20 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run backend tests
+      - name: Run alembic upgrade head on empty database
         env:
+          # Alembic env.py reads DATABASE_URL. Use the sync psycopg-style URL
+          # since alembic still drives DDL synchronously.
           DATABASE_URL: postgresql+asyncpg://nms:nms_secret@localhost:5432/nms
           CREDENTIAL_ENCRYPTION_KEY: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
         run: |
-          mkdir -p pytest-reports
-          python -m pytest tests --junitxml=pytest-reports/backend.xml -q
-      - name: Compile backend modules
-        run: python -m compileall -q app
-      - name: Upload backend test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-test-reports
-          path: pytest-reports/
+          python -m alembic upgrade head
 
+  # ---------------------------------------------------------------------------
+  # Frontend: install, lint, typecheck, build.
+  # All three are hard gates — the codebase passes them today and we want to
+  # keep it that way.
+  # ---------------------------------------------------------------------------
   frontend:
     runs-on: ubuntu-latest
     defaults:
@@ -67,6 +136,10 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
       - name: Install frontend dependencies
         run: npm ci
+      - name: ESLint
+        run: npm run lint
+      - name: TypeScript typecheck
+        run: npm run typecheck
       - name: Build frontend
         run: npm run build
       - name: Upload frontend build
