@@ -77,7 +77,7 @@ async def _forward_sensitive_account_event(db: AsyncSession, payload: dict[str, 
     for target in targets:
         try:
             await ForwardingEngine.send_to_target(target, event, timeout_seconds=3.0)
-        except Exception:
+        except Exception:  # noqa: BLE001 # nosec B112
             # The account audit record must not fail because an external collector is down.
             continue
 

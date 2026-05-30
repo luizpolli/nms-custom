@@ -156,7 +156,7 @@ class _RedisStore:
             return
         try:
             await self._client.close()
-        except Exception:  # noqa: BLE001 -- best-effort shutdown
+        except Exception:  # noqa: BLE001 -- best-effort shutdown # nosec B110
             pass
         self._client = None
 
