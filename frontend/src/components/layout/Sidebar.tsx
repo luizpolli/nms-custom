@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import {
+  LayoutGrid,
   Settings,
   ChevronLeft,
   ChevronRight,
@@ -23,6 +24,7 @@ const NAV_ITEMS: NavItem[] = [
     icon: module.icon,
     moduleKey: module.key,
   })),
+  { to: '/dashboard/custom', label: 'Custom Dashboard', icon: <LayoutGrid className="h-5 w-5" /> },
   { to: '/settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> },
 ];
 

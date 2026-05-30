@@ -44,6 +44,10 @@ const NOCBoard = lazySafe(
   () => import('./pages/NOCBoard').then((m) => pickExport(m, 'NOCBoard')),
   'NOCBoard',
 );
+const CustomDashboardPage = lazySafe(
+  () => import('./pages/dashboard/CustomDashboardPage').then((m) => pickExport(m, 'CustomDashboardPage')),
+  'CustomDashboardPage',
+);
 const NotFound = lazySafe(() => import('./pages/NotFound'), 'NotFound');
 const Settings = lazySafe(() => import('./pages/Settings'), 'Settings');
 
@@ -191,6 +195,7 @@ export function AppRouter() {
           <Route path="assurance" element={<ModuleRoute moduleKey="assurance" name="Assurance"><AssurancePage /></ModuleRoute>} />
           <Route path="services" element={<ModuleRoute moduleKey="services" name="Services"><ServicesPage /></ModuleRoute>} />
           <Route path="ai-ops" element={<ModuleRoute moduleKey="ai_ops" name="AI Ops"><AIOpsPage /></ModuleRoute>} />
+          <Route path="dashboard/custom" element={<Guarded name="Custom Dashboard"><CustomDashboardPage /></Guarded>} />
           <Route path="lab" element={<Navigate to="/settings?section=labOperations" replace />} />
           <Route path="alarm-rules" element={<Navigate to="/settings?section=alarmsEvents" replace />} />
           <Route path="monitoring-policies" element={<ModuleRoute moduleKey="monitoring_policies" name="Monitoring Policies"><MonitoringPoliciesPage /></ModuleRoute>} />
