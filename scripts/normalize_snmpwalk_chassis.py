@@ -46,7 +46,7 @@ PHYSICAL_CLASS_LABELS = {
 }
 
 OID_RE = re.compile(r"(?:SNMPv2-SMI::)?mib-2\.47\.1\.1\.1\.1\.(?P<column>\d+)\.(?P<index>\d+)\s+=\s+(?P<type>[^:]+):?\s*(?P<value>.*)$")
-MODEL_RE = re.compile(r"(NCS55A1|NCS560|NCS540)", re.IGNORECASE)
+MODEL_RE = re.compile(r"(NCS55A1|NCS560|NCS540-16Z4|NCS540|ASR9010)", re.IGNORECASE)
 PORT_NAME_RE = re.compile(
     r"\b(?:FourHundredGigE|HundredGigE|FortyGigE|TwentyFiveGigE|TenGigE|GigabitEthernet|MgmtEth|Optics)\S+"
 )

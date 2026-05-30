@@ -17751,7 +17751,7 @@
       "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
     }
   },
-  "generatedAt": "2026-05-25T18:42:43.180580+00:00",
+  "generatedAt": "2026-05-27T17:17:09.225532+00:00",
   "model": "NCS55A1",
   "physicalIndexToComponentId": {
     "1": "component-1",

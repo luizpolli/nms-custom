@@ -15,12 +15,9 @@ from __future__ import annotations
 import time
 from collections import deque
 from collections.abc import Callable
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 from loguru import logger
-
-if TYPE_CHECKING:
-    from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 SessionFactory = Callable[[], Any]
 

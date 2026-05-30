@@ -34,7 +34,7 @@ GET, HEAD, OPTIONS, DELETE requests without a body are always exempt.
 
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 from fastapi import Request
 from fastapi.responses import JSONResponse

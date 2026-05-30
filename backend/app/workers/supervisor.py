@@ -146,8 +146,8 @@ class WorkerSupervisor:
                 )
                 correlator = AlarmCorrelator(async_session_factory)
 
-                async def _trap_handler(event: TrapEvent) -> None:  # noqa: F841
-                    await correlator.handle_trap(event)
+                async def _trap_handler(event: TrapEvent, _c: AlarmCorrelator = correlator) -> None:  # noqa: F841
+                    await _c.handle_trap(event)
 
                 receiver.on_trap(_trap_handler)
                 await receiver.start()

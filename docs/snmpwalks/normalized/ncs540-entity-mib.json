@@ -5667,7 +5667,7 @@
       "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.6.712"
     }
   },
-  "generatedAt": "2026-05-25T18:42:43.167936+00:00",
+  "generatedAt": "2026-05-27T17:17:09.203628+00:00",
   "model": "NCS540",
   "physicalIndexToComponentId": {
     "1": "component-1",

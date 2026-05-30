@@ -26,7 +26,6 @@ from app.security.audit import audit
 from app.security.auth import principal_from_presented_key
 from app.services.snmp.mib_parser import parse_mib_text
 
-
 router = APIRouter()
 
 MIB_STORAGE_DIR = Path(settings.mib_storage_dir)
@@ -235,8 +234,9 @@ async def upload_mib(
     if checksum_warning:
         # We return a Response with the header set; since FastAPI serialises
         # the response_model for us, we attach the warning via a custom response.
-        from fastapi.responses import JSONResponse  # noqa: PLC0415
         import json  # noqa: PLC0415
+
+        from fastapi.responses import JSONResponse  # noqa: PLC0415
         resp = JSONResponse(
             content=json.loads(read_response.model_dump_json()),
             status_code=status.HTTP_201_CREATED,
