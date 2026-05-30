@@ -145,7 +145,7 @@ async def _resolve_device_ids(db: AsyncSession, body: BulkRunRequest) -> list[uu
     """Resolve explicit device_ids + optional tag filter into a deduplicated list."""
     ids: set[uuid.UUID] = set(body.device_ids)
     if body.tag:
-        stmt = select(Device.id).where(Device.tags.any(body.tag))
+        stmt = select(Device.id).where(Device.tags.any(body.tag))  # type: ignore[arg-type]  # ARRAY.any(str) is valid Postgres SQL
         rows = await db.execute(stmt)
         ids.update(r for (r,) in rows.fetchall())
     if not ids:
@@ -243,11 +243,11 @@ async def run_command(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
     _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_RUN))],
-) -> dict:
+) -> dict[str, object]:
     runner = CommandRunner(session_factory=async_session_factory)
-    result = await runner.run_saved_command(id)
-    audit("command.run_saved", target=str(id), exit_status=result.exit_status)
-    return result.__dict__ if hasattr(result, "__dict__") else result
+    raw = await runner.run_saved_command(id)
+    audit("command.run_saved", target=str(id), exit_status=raw.exit_status)
+    return vars(raw)
 
 
 @router.post("/run-ad-hoc")
@@ -255,12 +255,12 @@ async def run_ad_hoc(
     body: AdHocRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
     _: Annotated[Principal, Depends(require_command_permission(PERM_COMMANDS_RUN))],
-) -> dict:
+) -> dict[str, object]:
     assert_command_allowed(body.cli)
     runner = CommandRunner(session_factory=async_session_factory)
-    result = await runner.run_ad_hoc(device_id=body.device_id, cli=body.cli)
-    audit("command.run_ad_hoc", target=str(body.device_id), exit_status=result.exit_status)
-    return result.__dict__ if hasattr(result, "__dict__") else result
+    raw = await runner.run_ad_hoc(device_id=body.device_id, cli=body.cli)
+    audit("command.run_ad_hoc", target=str(body.device_id), exit_status=raw.exit_status)
+    return vars(raw)
 
 
 @router.post("/{id}/run-bulk", response_model=list[BulkRunResult])

@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.config import settings
 from app.database import get_db
 from app.models.mib import MIB
-from app.schemas.mib import MIBCreate, MIBRead, MIBSummaryRead, MIBUpdate
+from app.schemas.mib import MIBCreate, MIBNotificationRead, MIBRead, MIBSummaryRead, MIBUpdate
 from app.security.audit import audit
 from app.services.snmp.mib_parser import parse_mib_text
 
@@ -84,7 +84,7 @@ async def get_mib_summary(
     return MIBSummaryRead(
         module_name=summary.module_name,
         module_identity_oid=summary.module_identity_oid,
-        notifications=[n.__dict__ for n in summary.notifications],
+        notifications=[MIBNotificationRead(**n.__dict__) for n in summary.notifications],
     )
 
 

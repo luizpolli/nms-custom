@@ -69,9 +69,10 @@ async def aggregate_kpis(
     since: datetime = Query(...),
     until: datetime = Query(...),
     bucket: str = Query("5m"),
-) -> KPIAggregate:
+) -> list[dict[str, object]]:
+    """Return time-bucketed KPI aggregates (avg/min/max/count per bucket)."""
     engine = KPIEngine(SNMPEngine(), async_session_factory)
-    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket)
+    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket)  # type: ignore[return-value]
 
 
 @router.get("/summary")

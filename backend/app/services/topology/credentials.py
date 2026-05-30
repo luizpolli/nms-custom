@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import uuid
+from collections.abc import Sequence
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -30,7 +31,7 @@ def _to_snmp_credential(credential: Credential, vault: CredentialVault) -> SNMPC
 
 async def build_credentials_map(
     session: AsyncSession,
-    devices: list[Device],
+    devices: Sequence[Device],
     settings: Settings | None = None,
 ) -> dict[uuid.UUID, SNMPCredential]:
     """Return SNMP credentials keyed by both device ID and credential ID."""

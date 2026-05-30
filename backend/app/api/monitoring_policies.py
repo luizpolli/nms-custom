@@ -43,7 +43,7 @@ async def _get_or_404(db: AsyncSession, policy_id: uuid.UUID) -> MonitoringPolic
 
 @router.get("/presets", response_model=list[MonitoringPolicyPreset])
 async def list_policy_presets() -> list[MonitoringPolicyPreset]:
-    return [MonitoringPolicyPreset(**preset) for preset in POLICY_PRESETS]
+    return [MonitoringPolicyPreset.model_validate(preset) for preset in POLICY_PRESETS]
 
 
 @router.get("", response_model=list[MonitoringPolicyRead])

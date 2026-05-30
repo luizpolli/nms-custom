@@ -10,7 +10,7 @@ topology_nodes / topology_links tables.
 from __future__ import annotations
 
 import uuid
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 
 from loguru import logger
 from sqlalchemy import select
@@ -84,13 +84,13 @@ class TopologyBuilder:
 
     async def build_full(
         self,
-        devices: list[Device],
+        devices: Sequence[Device],
         credentials_map: dict[uuid.UUID, SNMPCredential],
-    ) -> dict:
+    ) -> dict[str, object]:
         """Run discovery for all devices; bidirectional link dedup is automatic."""
         total_nodes = total_links = 0
         for dev in devices:
-            cred = credentials_map.get(dev.id) or credentials_map.get(dev.credential_id)
+            cred = credentials_map.get(dev.id) or (credentials_map.get(dev.credential_id) if dev.credential_id else None)  # type: ignore[arg-type]
             if cred is None:
                 logger.warning("No credential for device {}; skipping", dev.name)
                 continue

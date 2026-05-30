@@ -22,7 +22,7 @@ from app.services.alarms.correlator import AlarmCorrelator
 
 SessionFactory = Callable[[], AsyncSession]
 
-_OPERATORS = {
+_OPERATORS: dict[str, Callable[[float, float], bool]] = {
     "gt": lambda value, target: value > target,
     "gte": lambda value, target: value >= target,
     "lt": lambda value, target: value < target,

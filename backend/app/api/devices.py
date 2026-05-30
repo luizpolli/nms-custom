@@ -244,7 +244,7 @@ def _normalize_physical_inventory_items(inventory: Inventory | None) -> list[dic
         or []
     )
     if isinstance(raw, dict):
-        raw_items = raw.values()
+        raw_items: list[Any] = list(raw.values())
     elif isinstance(raw, list):
         raw_items = raw
     else:
@@ -579,7 +579,7 @@ async def list_devices(
     if vendor:
         stmt = stmt.where(Device.vendor == vendor)
     if tag:
-        stmt = stmt.where(Device.tags.any(tag))
+        stmt = stmt.where(Device.tags.any(tag))  # type: ignore[arg-type]  # ARRAY.any(str) valid for Postgres
     stmt = stmt.offset(offset).limit(limit)
     result = await db.execute(stmt)
     devices = result.scalars().all()

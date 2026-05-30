@@ -15,9 +15,12 @@ from __future__ import annotations
 import time
 from collections import deque
 from collections.abc import Callable
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from loguru import logger
+
+if TYPE_CHECKING:
+    from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 SessionFactory = Callable[[], Any]
 
@@ -111,7 +114,7 @@ class DiscoveryRefreshOrchestrator:
             from app.services.discovery.engine import DiscoveryEngine
             from app.services.snmp.engine import SNMPEngine
 
-            engine = DiscoveryEngine(SNMPEngine(), self._sf)
+            engine = DiscoveryEngine(SNMPEngine(), self._sf)  # type: ignore[arg-type]
             discovered = await engine.scan_subnet(device.ip_address + "/32", ["public"])
             if discovered:
                 await engine.persist(discovered)

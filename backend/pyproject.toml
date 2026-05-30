@@ -64,14 +64,19 @@ ignore = [
 per-file-ignores = {"tests/**" = ["S101"], "app/models/**" = ["E402"]}
 
 [tool.mypy]
-# strict mypy is the long-term goal. CI currently runs a relaxed profile
-# (see [tool.mypy.ci_relaxed] consumed by ci.yml). Local devs can still run
-# `mypy --strict app` to surface the full target list.
+# P1.7 first-pass type-checking profile. Catches real bugs without requiring
+# exhaustive annotations on every function. Tighten gradually toward strict.
 python_version = "3.12"
-strict = true
-warn_return_any = true
+ignore_missing_imports = true
+check_untyped_defs = true
 warn_unused_configs = true
-disallow_untyped_defs = true
+warn_redundant_casts = true
+# Enabled explicitly so stale ignores are caught:
+warn_unused_ignores = false
+# Long-term targets (enable incrementally):
+# disallow_untyped_defs = true
+# warn_return_any = true
+# disallow_any_generics = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

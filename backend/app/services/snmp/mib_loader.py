@@ -8,6 +8,7 @@ so that ``ObjectIdentity('IF-MIB', 'ifDescr')`` works at runtime.
 from __future__ import annotations
 
 import os
+from collections.abc import Sequence
 from pathlib import Path
 
 from loguru import logger
@@ -16,7 +17,7 @@ from loguru import logger
 class MIBLoader:
     """Maintains a list of MIB search directories and pre-compiles MIBs on load."""
 
-    def __init__(self, search_paths: list[str | Path] | None = None) -> None:
+    def __init__(self, search_paths: Sequence[str | Path] | None = None) -> None:
         self.search_paths: list[Path] = [Path(p) for p in (search_paths or [])]
         self._loaded: set[str] = set()
 

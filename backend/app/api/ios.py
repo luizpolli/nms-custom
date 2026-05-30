@@ -10,7 +10,11 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db
+from fastapi import HTTPException
+
+from app.database import async_session_factory, get_db
+from app.models.credential import Credential
+from app.models.device import Device
 from app.models.ios_version import IOSVersion
 from app.services.ios.version_manager import IOSVersionManager
 
@@ -42,10 +46,26 @@ async def list_versions(
 async def detect_version(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
-) -> dict:
-    manager = IOSVersionManager(db=db)
-    result = await manager.detect_version(device_id=id)
-    return result if isinstance(result, dict) else {"result": result}
+) -> dict[str, object]:
+    """Trigger live IOS version detection for a device via SSH."""
+    device = await db.get(Device, id)
+    if device is None:
+        raise HTTPException(status_code=404, detail="Device not found")
+    if device.credential_id is None:
+        raise HTTPException(status_code=422, detail="Device has no credential assigned")
+    credential = await db.get(Credential, device.credential_id)
+    if credential is None:
+        raise HTTPException(status_code=422, detail="Credential not found for device")
+    manager = IOSVersionManager(session_factory=async_session_factory)
+    ios_version = await manager.detect_version(device=device, credential=credential)
+    return {
+        "id": str(ios_version.id),
+        "device_id": str(ios_version.device_id),
+        "version": ios_version.version,
+        "platform": ios_version.platform,
+        "is_eol": ios_version.is_eol,
+        "is_eos": ios_version.is_eos,
+    }
 
 
 @router.get("/eol-report", response_model=list[IOSVersionRead])

@@ -354,13 +354,13 @@ class ExcelReporter:
                     bucketed[(dev, kpi.kpi_type, idx)].append(kpi.value)
                     break
 
-        pairs = {(dev, kpi) for (dev, kpi, _) in bucketed}
-        for dev, kpi in sorted(pairs):
+        pairs = {(dev, kpi_type) for (dev, kpi_type, _) in bucketed}
+        for dev, kpi_type in sorted(pairs):
             for stat in ("avg", "p95"):
-                row: list = [dev, kpi, stat]
+                row: list = [dev, kpi_type, stat]
                 values_per_period: list[float | None] = []
                 for idx, _ in enumerate(windows):
-                    samples = bucketed.get((dev, kpi, idx), [])
+                    samples = bucketed.get((dev, kpi_type, idx), [])
                     if not samples:
                         values_per_period.append(None)
                     elif stat == "avg":

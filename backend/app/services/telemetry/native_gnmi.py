@@ -82,7 +82,7 @@ class StubNativeGnmiAdapter:
         self, config: GnmiSubscriptionConfig
     ) -> AsyncIterator[TelemetrySampleIngest]:
         for u in self._updates:
-            yield TelemetrySampleIngest(
+            yield TelemetrySampleIngest(  # type: ignore[call-arg]  # pydantic v2 stub issue with Field() defaults
                 device_id=config.device_id,
                 path=u.path,
                 value=u.value,

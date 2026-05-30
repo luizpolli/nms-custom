@@ -52,4 +52,4 @@ def configure_log_redaction() -> None:
     def _patch(record: dict) -> None:
         record["message"] = str(redact(record.get("message", "")))
 
-    logger.configure(patcher=_patch)
+    logger.configure(patcher=_patch)  # type: ignore[arg-type]  # dict[Any,Any] is compatible with Record at runtime

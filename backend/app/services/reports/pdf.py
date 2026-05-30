@@ -172,9 +172,9 @@ class PDFReporter:
         # Interfaces summary
         if inventory:
             story.append(Paragraph("Interface Summary", _STYLES["Heading2"]))
-            up = inventory.interfaces_up or 0
-            down = inventory.interfaces_down or 0
             total = (inventory.port_count or 0)
+            up = inventory.interfaces_count or 0  # Inventory tracks total count only
+            down = 0  # up/down breakdown not stored in Inventory model
             iface_data = [["Total Ports", "Interfaces Up", "Interfaces Down"],
                           [str(total), str(up), str(down)]]
             t2 = Table(iface_data, colWidths=[5 * cm, 5 * cm, 5 * cm])

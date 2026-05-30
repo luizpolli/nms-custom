@@ -19,7 +19,7 @@ try:
     from asyncssh import SSHClientConnection, SSHCompletedProcess
 except ImportError:  # pragma: no cover
     asyncssh = None  # type: ignore[assignment]
-    SSHClientConnection = SSHCompletedProcess = None  # type: ignore[assignment]
+    SSHClientConnection = SSHCompletedProcess = None  # type: ignore[misc,assignment]
 
 if TYPE_CHECKING:
     pass
@@ -117,8 +117,8 @@ class SSHClient:
                 self._cred.host,
             )
             return CommandResult(
-                stdout=result.stdout or "",
-                stderr=result.stderr or "",
+                stdout=str(result.stdout or ""),
+                stderr=str(result.stderr or ""),
                 exit_status=result.exit_status if result.exit_status is not None else -1,
                 duration_ms=duration_ms,
                 command=command,

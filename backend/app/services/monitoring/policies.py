@@ -160,7 +160,7 @@ class MonitoringPolicyRunner:
         result = await session.execute(stmt)
         devices = list(result.scalars().all())
         shard = normalize_shard_config(self._settings.worker_shard_id, self._settings.worker_shard_count)
-        return filter_for_shard(devices, shard)
+        return filter_for_shard(devices, shard)  # type: ignore[type-var]  # Device.id is Mapped[UUID], satisfies Shardable at runtime
 
     async def _execute(self, policy: MonitoringPolicy, devices: list[Device]) -> dict[str, int]:
         if policy.policy_type == "syslog":

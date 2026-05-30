@@ -51,7 +51,7 @@ async def enforce_retention(session: AsyncSession, policies: tuple[RetentionPoli
             text(_RETENTION_DELETE_SQL[policy.table]),
             {"days": policy.keep_days},
         )
-        deleted[policy.table] = int(result.rowcount or 0)
+        deleted[policy.table] = int(result.rowcount or 0)  # type: ignore[attr-defined]  # rowcount on CursorResult
     return deleted
 
 

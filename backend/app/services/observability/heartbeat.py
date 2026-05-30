@@ -138,7 +138,7 @@ class WorkerHeartbeat:
         if self._redis is None:
             return
         try:
-            await self._redis.aclose()
+            await self._redis.aclose()  # type: ignore[attr-defined]
         except Exception as exc:
             logger.debug("Heartbeat redis close failed for {}: {}", self.kind, exc)
         self._redis = None
@@ -196,7 +196,7 @@ async def get_all_worker_status(kinds: Iterable[str] = WORKER_KINDS) -> list[Wor
             out.append(_parse_status(kind, raw))
     finally:
         try:
-            await client.aclose()
+            await client.aclose()  # type: ignore[attr-defined]
         except Exception as exc:
             logger.debug("get_all_worker_status: redis close failed: {}", exc)
     return out

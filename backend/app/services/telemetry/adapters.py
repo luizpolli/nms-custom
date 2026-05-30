@@ -65,7 +65,7 @@ def _value_from_update(update: dict[str, Any]) -> float:
                     return float(value["digits"]) / (10**precision)
                 break
     try:
-        return float(value)
+        return float(value)  # type: ignore[arg-type]  # value narrowed by runtime dict traversal
     except (TypeError, ValueError) as exc:
         raise TelemetryAdapterError(f"Telemetry update value is not numeric: {value!r}") from exc
 

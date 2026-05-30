@@ -72,7 +72,7 @@ async def _event_queue_depth() -> int:
         try:
             return int(await client.xlen(settings.event_stream_name))
         finally:
-            await client.aclose()
+            await client.aclose()  # type: ignore[attr-defined]  # aclose exists at runtime, missing from stubs
     except Exception as exc:  # noqa: BLE001 -- metrics path must not break scrapes
         # Logged at debug because Prometheus scrapes every 15s and a Redis blip
         # would otherwise spam logs. Surfaced when a developer enables debug.

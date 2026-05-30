@@ -132,7 +132,7 @@ class WorkerSupervisor:
 
     async def _run_trap_receiver_loop(self) -> None:
         from app.services.alarms.correlator import AlarmCorrelator
-        from app.services.snmp.trap_receiver import SNMPTrapReceiver
+        from app.services.snmp.trap_receiver import SNMPTrapReceiver, TrapEvent
 
         trap_port = int(os.environ.get("TRAP_PORT", "162"))
         backoff = 10
@@ -145,7 +145,11 @@ class WorkerSupervisor:
                     bind_port=trap_port,
                 )
                 correlator = AlarmCorrelator(async_session_factory)
-                receiver.on_trap(correlator.handle_trap)
+
+                async def _trap_handler(event: TrapEvent) -> None:  # noqa: F841
+                    await correlator.handle_trap(event)
+
+                receiver.on_trap(_trap_handler)
                 await receiver.start()
                 await beat.success()
                 # Long-lived receiver: refresh heartbeat periodically so the

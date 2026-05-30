@@ -7,7 +7,8 @@ import io
 import re
 import uuid
 from datetime import datetime
-from typing import Annotated, Literal
+from collections.abc import Callable
+from typing import Annotated, Literal, TypeVar
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from pydantic import BaseModel, Field, SecretStr, ValidationInfo, field_validator
@@ -40,6 +41,8 @@ from app.security.auth import (
 )
 from app.security.passwords import hash_password
 from app.services.account_audit import ACCOUNT_AUDIT_OBJECT_TYPE, record_account_activity
+
+_S = TypeVar("_S", bound=BaseModel)
 
 router = APIRouter()
 _SECURITY_KEY = "security"
@@ -109,9 +112,9 @@ class SystemRetentionSettings(BaseModel):
 
 
 class SystemAdminSettings(BaseModel):
-    mail: SystemMailSettings = Field(default_factory=SystemMailSettings)
-    jobs: SystemJobSettings = Field(default_factory=SystemJobSettings)
-    retention: SystemRetentionSettings = Field(default_factory=SystemRetentionSettings)
+    mail: SystemMailSettings = Field(default_factory=SystemMailSettings)  # type: ignore[arg-type]
+    jobs: SystemJobSettings = Field(default_factory=SystemJobSettings)  # type: ignore[arg-type]
+    retention: SystemRetentionSettings = Field(default_factory=SystemRetentionSettings)  # type: ignore[arg-type]
 
 
 class SettingsTestResult(BaseModel):
@@ -188,8 +191,8 @@ class NetworkSnmpSettings(BaseModel):
 
 
 class NetworkDeviceAdminSettings(BaseModel):
-    cli: NetworkCliSettings = Field(default_factory=NetworkCliSettings)
-    snmp: NetworkSnmpSettings = Field(default_factory=NetworkSnmpSettings)
+    cli: NetworkCliSettings = Field(default_factory=NetworkCliSettings)  # type: ignore[arg-type]
+    snmp: NetworkSnmpSettings = Field(default_factory=NetworkSnmpSettings)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------------------
@@ -248,9 +251,9 @@ class AlarmSuppressionSettings(BaseModel):
 
 
 class AlarmsEventsAdminSettings(BaseModel):
-    severity_mapping: AlarmSeverityMapping = Field(default_factory=AlarmSeverityMapping)
-    notifications: AlarmNotificationSettings = Field(default_factory=AlarmNotificationSettings)
-    suppression: AlarmSuppressionSettings = Field(default_factory=AlarmSuppressionSettings)
+    severity_mapping: AlarmSeverityMapping = Field(default_factory=AlarmSeverityMapping)  # type: ignore[arg-type]
+    notifications: AlarmNotificationSettings = Field(default_factory=AlarmNotificationSettings)  # type: ignore[arg-type]
+    suppression: AlarmSuppressionSettings = Field(default_factory=AlarmSuppressionSettings)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------------------
@@ -323,7 +326,12 @@ class ModuleControlSettings(BaseModel):
 # Generic DB load/save helpers
 # ---------------------------------------------------------------------------
 
-async def _load_setting(db: AsyncSession, key: str, model_cls: type, defaults_fn) -> BaseModel:
+async def _load_setting(
+    db: AsyncSession,
+    key: str,
+    model_cls: type[_S],
+    defaults_fn: type[_S] | Callable[[], _S],
+) -> _S:
     row = await db.get(SystemSetting, key)
     if not row:
         return defaults_fn()
@@ -759,7 +767,7 @@ def _defaults() -> SecuritySettings:
     return SecuritySettings(
         https_enabled=settings.https_enabled,
         https_redirect_enabled=settings.https_redirect_enabled,
-        tls_min_version=settings.tls_min_version,
+        tls_min_version=settings.tls_min_version,  # type: ignore[arg-type]  # validated in Settings.validate()
         tls_cert_file=settings.tls_cert_file,
         tls_key_file=settings.tls_key_file,
         tls_ca_file=settings.tls_ca_file,

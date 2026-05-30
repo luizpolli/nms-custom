@@ -40,7 +40,7 @@ async def health_ready(db: Annotated[AsyncSession, Depends(get_db)]) -> JSONResp
         settings = Settings()
         r = aioredis.from_url(settings.redis_url, socket_timeout=2)
         await r.ping()
-        await r.aclose()
+        await r.aclose()  # type: ignore[attr-defined]  # aclose exists at runtime, missing from stubs
     except ImportError:
         pass  # redis.asyncio not installed; skip
     except Exception as exc:

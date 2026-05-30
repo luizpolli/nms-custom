@@ -198,7 +198,7 @@ async def lab_health(
     mock_devices = (
         await db.execute(
             select(Device)
-            .where(Device.tags.any("mock"))
+            .where(Device.tags.any("mock"))  # type: ignore[arg-type]  # ARRAY.any(str) valid for Postgres
             .order_by(Device.updated_at.desc().nullslast(), Device.created_at.desc())
             .limit(25)
         )
