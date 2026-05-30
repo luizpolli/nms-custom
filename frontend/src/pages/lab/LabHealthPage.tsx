@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Activity, Bell, Download, RadioTower, Server, Workflow } from 'lucide-react';
+import { Activity, Bell, Download, RadioTower, Server, TrendingUp, Workflow } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
@@ -145,16 +145,27 @@ export function LabHealthPage({ embedded = false }: { embedded?: boolean }) {
                   : 'Waiting for lab health data'}
               </p>
             </div>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              leftIcon={<Download className="h-4 w-4" />}
-              disabled={!data}
-              onClick={() => data && downloadLabHealthSnapshot(withScenarioDraft(data, scenario))}
-            >
-              Export JSON
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                leftIcon={<Download className="h-4 w-4" />}
+                disabled={!data}
+                onClick={() => data && downloadLabHealthSnapshot(withScenarioDraft(data, scenario))}
+              >
+                Export JSON
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                leftIcon={<TrendingUp className="h-4 w-4" />}
+                onClick={() => downloadTrendExport(scenario)}
+              >
+                Export Trend
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <div className="grid gap-3 border-t border-gray-100 p-4 dark:border-gray-800 sm:grid-cols-3">
@@ -505,6 +516,27 @@ function withScenarioDraft(data: LabHealth, scenario: LabScenario): LabHealth {
       annotated_at: annotated ? (data.scenario.annotated_at ?? data.generated_at) : null,
     },
   };
+}
+
+async function downloadTrendExport(scenario: LabScenario) {
+  const params = new URLSearchParams({ window_minutes: '60' });
+  if (scenario.scenario_label) params.set('scenario_label', scenario.scenario_label);
+  if (scenario.run_id) params.set('run_id', scenario.run_id);
+  if (scenario.notes) params.set('notes', scenario.notes);
+  try {
+    const response = await api.get(`/lab/health/export?${params.toString()}`, { responseType: 'blob' });
+    const disposition: string = (response.headers as Record<string, string>)['content-disposition'] ?? '';
+    const match = /filename="([^"]+)"/.exec(disposition);
+    const filename = match ? match[1] : `lab-health-trend-${new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)}.json`;
+    const url = URL.createObjectURL(new Blob([response.data as BlobPart], { type: 'application/json' }));
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = filename;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  } catch {
+    // silently ignore — backend may not be reachable in offline mode
+  }
 }
 
 function downloadLabHealthSnapshot(data: LabHealth) {

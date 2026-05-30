@@ -5,7 +5,10 @@ from __future__ import annotations
 from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any
 
+import json
+
 from fastapi import APIRouter, Depends, Query
+from fastapi.responses import Response
 from sqlalchemy import case, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -183,15 +186,14 @@ async def _event_bus_summary(since: datetime) -> dict[str, Any]:
     }
 
 
-@router.get("/health")
-async def lab_health(
-    db: Annotated[AsyncSession, Depends(get_db)],
-    window_minutes: int = Query(default=15, ge=1, le=1440),
-    scenario_label: str | None = Query(default=None, max_length=120),
-    run_id: str | None = Query(default=None, max_length=80),
-    notes: str | None = Query(default=None, max_length=500),
+async def _compute_lab_health(
+    db: AsyncSession,
+    window_minutes: int,
+    scenario_label: str | None,
+    run_id: str | None,
+    notes: str | None,
 ) -> dict[str, Any]:
-    """Return compact local lab visibility for mock traffic and EPS checks."""
+    """Core lab health computation shared by the health and export endpoints."""
     now = _now()
     since = now - timedelta(minutes=window_minutes)
 
@@ -326,3 +328,52 @@ async def lab_health(
             "event_bus_pending": event_bus.get("pending_total", 0),
         },
     }
+
+
+@router.get("/health")
+async def lab_health(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    window_minutes: int = Query(default=15, ge=1, le=1440),
+    scenario_label: str | None = Query(default=None, max_length=120),
+    run_id: str | None = Query(default=None, max_length=80),
+    notes: str | None = Query(default=None, max_length=500),
+) -> dict[str, Any]:
+    """Return compact local lab visibility for mock traffic and EPS checks."""
+    return await _compute_lab_health(db, window_minutes, scenario_label, run_id, notes)
+
+
+@router.get("/health/export")
+async def lab_health_export(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    window_minutes: int = Query(
+        default=60,
+        ge=1,
+        le=1440,
+        description="Time window for the exported trend snapshot (1–1440 minutes).",
+    ),
+    scenario_label: str | None = Query(default=None, max_length=120),
+    run_id: str | None = Query(default=None, max_length=80),
+    notes: str | None = Query(default=None, max_length=500),
+) -> Response:
+    """Export a lab health trend snapshot as a timestamped JSON download.
+
+    The response includes EPS distributions, alarm counts, telemetry metrics,
+    worker heartbeats, and event-bus state for the requested window. Useful for
+    offline trend analysis and scenario comparison.
+    """
+    data = await _compute_lab_health(db, window_minutes, scenario_label, run_id, notes)
+
+    # Build a filename-safe timestamp from generated_at.
+    generated_at_str: str = data.get("generated_at") or _iso(_now()) or "export"
+    stamp = generated_at_str[:19].replace(":", "-")  # e.g. 2026-05-30T14-22-05
+    label_slug = ""
+    if scenario_label:
+        import re  # noqa: PLC0415
+        label_slug = "-" + re.sub(r"[^A-Za-z0-9_-]", "_", scenario_label.strip())[:32]
+    filename = f"lab-health-trend{label_slug}-{stamp}.json"
+
+    return Response(
+        content=json.dumps(data, indent=2),
+        media_type="application/json",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
