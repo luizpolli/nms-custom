@@ -73,7 +73,10 @@ async def _event_queue_depth() -> int:
             return int(await client.xlen(settings.event_stream_name))
         finally:
             await client.aclose()
-    except Exception:
+    except Exception as exc:  # noqa: BLE001 -- metrics path must not break scrapes
+        # Logged at debug because Prometheus scrapes every 15s and a Redis blip
+        # would otherwise spam logs. Surfaced when a developer enables debug.
+        logger.debug("event queue depth lookup skipped: {}", exc)
         return 0
 
 

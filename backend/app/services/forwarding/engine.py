@@ -110,7 +110,10 @@ class ForwardingEngine:
         try:
             await cls.send_to_target(target, cls.test_event(), timeout_seconds=timeout_seconds)
             return True, "Test event sent"
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 -- error string is returned to caller
+            # Caller (UI) shows the message to the operator; we also log so
+            # the failure is visible in server logs for incident triage.
+            logger.warning("Forwarding target {} test failed: {}", target.name, exc)
             return False, str(exc)
 
     @staticmethod

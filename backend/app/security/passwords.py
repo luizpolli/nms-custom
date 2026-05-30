@@ -30,5 +30,11 @@ def verify_password(password: str, encoded: str) -> bool:
         expected = base64.b64decode(digest_b64)
         actual = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, int(iter_s))
         return hmac.compare_digest(actual, expected)
-    except Exception:
+    except Exception as exc:  # noqa: BLE001 -- intentional: never leak password material
+        # Logged at debug to keep the surface noiseless under traffic but
+        # still let operators see corrupted hash payloads when debugging.
+        # The encoded value is not logged; only the exception type.
+        from loguru import logger
+
+        logger.debug("verify_password: malformed encoded value ({})", type(exc).__name__)
         return False

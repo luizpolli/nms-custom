@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from string import Formatter
 from typing import Any
 
+from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -112,7 +113,11 @@ def _render_template(template: str, data: dict[str, Any]) -> str:
             values[field_name] = "{" + field_name + "}"
     try:
         return template.format_map(values)
-    except Exception:
+    except Exception as exc:  # noqa: BLE001 -- defensive: bad template must not break alarms
+        logger.warning(
+            "alarm rule template render failed ({}); returning raw template",
+            type(exc).__name__,
+        )
         return template
 
 

@@ -111,7 +111,8 @@ class SNMPTrapReceiver:
         try:
             transport = snmp_engine.msg_and_pdu_dsp.get_transport_info(state_reference)  # type: ignore[attr-defined]
             host, port = (transport[1] if transport else ("?", 0))
-        except Exception:  # noqa: BLE001
+        except Exception as exc:  # noqa: BLE001 -- pysnmp internals shift; fall back gracefully
+            logger.debug("trap transport lookup failed: {}", exc)
             host, port = ("?", 0)
 
         vb_map: dict[str, str] = {}

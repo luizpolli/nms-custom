@@ -190,7 +190,8 @@ async def get_all_worker_status(kinds: Iterable[str] = WORKER_KINDS) -> list[Wor
         for kind in kinds:
             try:
                 raw = await client.hgetall(_key(kind))
-            except Exception:
+            except Exception as exc:  # noqa: BLE001 -- per-kind read must not break status page
+                logger.debug("heartbeat hgetall failed for {}: {}", kind, exc)
                 raw = None
             out.append(_parse_status(kind, raw))
     finally:
