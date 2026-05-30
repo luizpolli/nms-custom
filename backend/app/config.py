@@ -1,9 +1,9 @@
 """Application settings loaded from environment / .env file."""
 
-from pydantic import Field, model_validator
-from pydantic_settings import BaseSettings
 from typing import Any
 
+from pydantic import Field, model_validator
+from pydantic_settings import BaseSettings
 
 DEFAULT_ALLOWED_HOSTS = ["localhost", "127.0.0.1", "::1", "testserver", "app", "backend"]
 

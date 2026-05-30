@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import re
 import csv
 import io
+import re
 import uuid
 from datetime import datetime
 from typing import Annotated, Literal
@@ -713,7 +713,7 @@ class RoleRead(BaseModel):
     editable: bool = True
 
     @classmethod
-    def from_role(cls, role: AppRole) -> "RoleRead":
+    def from_role(cls, role: AppRole) -> RoleRead:
         meta = BUILT_IN_ROLES.get(role.name, {})
         return cls(
             id=role.id,

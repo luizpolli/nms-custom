@@ -4,22 +4,22 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Annotated, Literal
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import get_db, async_session_factory
+from app.database import async_session_factory, get_db
 from app.models.command_schedule import CommandSchedule
 from app.security.audit import audit
 from app.security.auth import (
-    Principal,
-    require_command_permission,
+    PERM_COMMANDS_DELETE,
     PERM_COMMANDS_READ,
     PERM_COMMANDS_SCHEDULE,
-    PERM_COMMANDS_DELETE,
+    Principal,
+    require_command_permission,
 )
 from app.services.ssh.command_runner import CommandRunner
 

@@ -3,9 +3,10 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import String, DateTime, BigInteger, Float, JSON, ForeignKey, Index
+from sqlalchemy import JSON, BigInteger, DateTime, Float, ForeignKey, Index, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.database import Base
 
 

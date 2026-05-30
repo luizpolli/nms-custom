@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from loguru import logger
 from sqlalchemy import text
@@ -84,7 +84,7 @@ async def ensure_timescale_schema(session: AsyncSession) -> dict[str, str]:
     without a planned migration. Failures are reported as status strings instead
     of breaking startup.
     """
-    status: dict[str, str] = {"checked_at": datetime.now(timezone.utc).isoformat()}
+    status: dict[str, str] = {"checked_at": datetime.now(UTC).isoformat()}
     try:
         await session.execute(text("CREATE EXTENSION IF NOT EXISTS timescaledb"))
         await session.commit()

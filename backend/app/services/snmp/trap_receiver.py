@@ -13,15 +13,15 @@ The handler receives a :class:`TrapEvent` instance.
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Awaitable, Callable
+from datetime import UTC, datetime
 
 from loguru import logger
 
 try:
-    from pysnmp.entity import config, engine
     from pysnmp.carrier.asyncio.dgram import udp
+    from pysnmp.entity import config, engine
     from pysnmp.entity.rfc3413 import ntfrcv
 except ImportError:  # pragma: no cover
     config = engine = udp = ntfrcv = None  # type: ignore[assignment]
@@ -39,7 +39,7 @@ class TrapEvent:
     community: str | None
     trap_oid: str | None
     varbinds: dict[str, str] = field(default_factory=dict)
-    received_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    received_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 class SNMPTrapReceiver:

@@ -9,7 +9,7 @@ import json
 import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Annotated, Any, Optional
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from loguru import logger
@@ -20,19 +20,19 @@ from sqlalchemy.orm import selectinload
 
 from app.config import Settings
 from app.database import async_session_factory, get_db
+from app.models.alarm import Alarm
 from app.models.credential import Credential
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.inventory import Inventory
-from app.models.alarm import Alarm
 from app.models.physical_inventory import PhysicalInventoryComponent
 from app.schemas.device import DeviceCreate, DeviceRead, DeviceUpdate
 from app.schemas.interface import InterfaceRead as ManagedInterfaceRead
 from app.security.auth import PERM_COMMANDS_EXPORT, Principal, require_command_permission
 from app.security.crypto import CredentialVault
+from app.services.kpi.engine import KPIEngine
 from app.services.snmp.engine import SNMPEngine
 from app.services.snmp.poller import SNMPCredential, SNMPPoller
-from app.services.kpi.engine import KPIEngine
 
 router = APIRouter()
 settings = Settings()
@@ -76,17 +76,17 @@ def _build_snmp_cred(device: Device) -> SNMPCredential:
 
 class InterfaceRead(BaseModel):
     if_index: int
-    descr: Optional[str] = None
-    type: Optional[int] = None
-    speed: Optional[int] = None
-    admin_status: Optional[int] = None
-    oper_status: Optional[int] = None
-    in_octets: Optional[int] = None
-    out_octets: Optional[int] = None
-    in_errors: Optional[int] = None
-    out_errors: Optional[int] = None
-    alias: Optional[str] = None
-    phys_address: Optional[str] = None
+    descr: str | None = None
+    type: int | None = None
+    speed: int | None = None
+    admin_status: int | None = None
+    oper_status: int | None = None
+    in_octets: int | None = None
+    out_octets: int | None = None
+    in_errors: int | None = None
+    out_errors: int | None = None
+    alias: str | None = None
+    phys_address: str | None = None
 
 
 EPNM_EXPORT_COLUMNS = [
@@ -553,10 +553,10 @@ async def export_devices(
 @router.get("", response_model=list[DeviceRead])
 async def list_devices(
     db: Annotated[AsyncSession, Depends(get_db)],
-    q: Optional[str] = None,
-    status: Optional[str] = None,
-    vendor: Optional[str] = None,
-    tag: Optional[str] = None,
+    q: str | None = None,
+    status: str | None = None,
+    vendor: str | None = None,
+    tag: str | None = None,
     limit: int = Query(100, ge=1, le=1000),
     offset: int = Query(0, ge=0),
 ) -> list[DeviceRead]:
@@ -590,58 +590,58 @@ async def create_device(
 class BulkDeviceRow(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
-    name: Optional[str] = Field(None, max_length=255, validation_alias=AliasChoices("name", "device_name"))
-    host: Optional[str] = Field(None, max_length=45, validation_alias=AliasChoices("host", "ip_address"))
+    name: str | None = Field(None, max_length=255, validation_alias=AliasChoices("name", "device_name"))
+    host: str | None = Field(None, max_length=45, validation_alias=AliasChoices("host", "ip_address"))
     vendor: str = Field("cisco", max_length=100)
-    user: Optional[str] = Field(None, max_length=255, validation_alias=AliasChoices("user", "cli_username"))
-    password: Optional[str] = Field(None, validation_alias=AliasChoices("password", "cli_password", "snmp_community"))
-    model: Optional[str] = Field(None, max_length=255)
-    site: Optional[str] = Field(None, max_length=255)
+    user: str | None = Field(None, max_length=255, validation_alias=AliasChoices("user", "cli_username"))
+    password: str | None = Field(None, validation_alias=AliasChoices("password", "cli_password", "snmp_community"))
+    model: str | None = Field(None, max_length=255)
+    site: str | None = Field(None, max_length=255)
     tags: list[str] = Field(default_factory=list)
-    device_type: Optional[str] = Field(None, max_length=50)
-    licenceLevel: Optional[str] = Field(None, validation_alias=AliasChoices("licenceLevel", "licencelevel", "licence_level"))
-    snmp_version: Optional[str] = Field(None, max_length=5)
-    snmp_community: Optional[str] = None
-    snmp_write_community: Optional[str] = None
-    snmp_retries: Optional[int] = None
-    snmp_timeout: Optional[int] = None
-    snmp_port: Optional[int] = Field(None, ge=1, le=65535)
-    protocol: Optional[str] = Field(None, max_length=10)
-    cli_port: Optional[int] = Field(None, ge=1, le=65535)
-    cli_username: Optional[str] = None
-    cli_password: Optional[str] = None
-    cli_enable_password: Optional[str] = None
-    cli_timeout: Optional[int] = None
-    snmpv3_user_name: Optional[str] = Field(None, validation_alias=AliasChoices("snmpv3_user_name", "snmpv3_username"))
-    snmpv3_auth_type: Optional[str] = None
-    snmpv3_auth_password: Optional[str] = None
-    snmpv3_privacy_type: Optional[str] = None
-    snmpv3_privacy_password: Optional[str] = None
-    http_server: Optional[str] = None
-    http_port: Optional[int] = Field(None, ge=1, le=65535)
-    http_config_username: Optional[str] = None
-    http_config_password: Optional[str] = None
-    http_monitor_username: Optional[str] = None
-    http_monitor_password: Optional[str] = None
-    credential_profile: Optional[str] = Field(None, max_length=255)
-    location_groupname: Optional[str] = Field(None, max_length=255)
-    user_groupname: Optional[str] = None
-    region: Optional[str] = None
-    country: Optional[str] = None
-    state: Optional[str] = None
-    city: Optional[str] = None
-    county: Optional[str] = None
-    street: Optional[str] = None
-    building: Optional[str] = None
-    floor: Optional[str] = None
-    room: Optional[str] = None
-    longitude: Optional[str] = None
-    latitude: Optional[str] = None
-    altitude: Optional[str] = None
-    assigned_network_role: Optional[str] = Field(None, max_length=100)
+    device_type: str | None = Field(None, max_length=50)
+    licenceLevel: str | None = Field(None, validation_alias=AliasChoices("licenceLevel", "licencelevel", "licence_level"))
+    snmp_version: str | None = Field(None, max_length=5)
+    snmp_community: str | None = None
+    snmp_write_community: str | None = None
+    snmp_retries: int | None = None
+    snmp_timeout: int | None = None
+    snmp_port: int | None = Field(None, ge=1, le=65535)
+    protocol: str | None = Field(None, max_length=10)
+    cli_port: int | None = Field(None, ge=1, le=65535)
+    cli_username: str | None = None
+    cli_password: str | None = None
+    cli_enable_password: str | None = None
+    cli_timeout: int | None = None
+    snmpv3_user_name: str | None = Field(None, validation_alias=AliasChoices("snmpv3_user_name", "snmpv3_username"))
+    snmpv3_auth_type: str | None = None
+    snmpv3_auth_password: str | None = None
+    snmpv3_privacy_type: str | None = None
+    snmpv3_privacy_password: str | None = None
+    http_server: str | None = None
+    http_port: int | None = Field(None, ge=1, le=65535)
+    http_config_username: str | None = None
+    http_config_password: str | None = None
+    http_monitor_username: str | None = None
+    http_monitor_password: str | None = None
+    credential_profile: str | None = Field(None, max_length=255)
+    location_groupname: str | None = Field(None, max_length=255)
+    user_groupname: str | None = None
+    region: str | None = None
+    country: str | None = None
+    state: str | None = None
+    city: str | None = None
+    county: str | None = None
+    street: str | None = None
+    building: str | None = None
+    floor: str | None = None
+    room: str | None = None
+    longitude: str | None = None
+    latitude: str | None = None
+    altitude: str | None = None
+    assigned_network_role: str | None = Field(None, max_length=100)
 
     @model_validator(mode="after")
-    def validate_required_identity(self) -> "BulkDeviceRow":
+    def validate_required_identity(self) -> BulkDeviceRow:
         if not self.name:
             raise ValueError("name or device_name is required")
         if not self.host:
@@ -651,18 +651,18 @@ class BulkDeviceRow(BaseModel):
         return self
 
 
-def _first_present(*values: Optional[str]) -> Optional[str]:
+def _first_present(*values: str | None) -> str | None:
     for value in values:
         if value is not None and str(value).strip():
             return str(value).strip()
     return None
 
 
-def _row_location(row: BulkDeviceRow) -> Optional[str]:
+def _row_location(row: BulkDeviceRow) -> str | None:
     return _first_present(row.site, row.location_groupname, row.room, row.floor, row.building, row.street, row.city, row.state, row.country, row.region)
 
 
-def _row_site(row: BulkDeviceRow) -> Optional[str]:
+def _row_site(row: BulkDeviceRow) -> str | None:
     return _first_present(row.location_groupname, row.site, row.city, row.region)
 
 
@@ -764,18 +764,18 @@ async def bulk_import_devices(
 class VerifyCredentialsRequest(BaseModel):
     """Loose payload — only the SNMP block is required to attempt reachability."""
 
-    ip_address: Optional[str] = None
-    dns_name: Optional[str] = None
-    identification: Optional[str] = None
-    snmp: Optional[dict] = None
-    telnet_ssh: Optional[dict] = None
-    http: Optional[dict] = None
+    ip_address: str | None = None
+    dns_name: str | None = None
+    identification: str | None = None
+    snmp: dict | None = None
+    telnet_ssh: dict | None = None
+    http: dict | None = None
 
 
 class VerifyCredentialsResponse(BaseModel):
     ok: bool
-    sys_descr: Optional[str] = None
-    error: Optional[str] = None
+    sys_descr: str | None = None
+    error: str | None = None
 
 
 def _snmp_priv_protocol(value: object) -> str | None:

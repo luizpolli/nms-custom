@@ -8,8 +8,9 @@ fixed buckets and to compute summary statistics for trending/top-N/baseline view
 from __future__ import annotations
 
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
-from typing import Iterable, Literal
+from collections.abc import Iterable
+from datetime import UTC, datetime, timedelta
+from typing import Literal
 
 ConsolidationFn = Literal["avg", "min", "max", "last", "first", "sum", "p95", "p99"]
 BucketSize = Literal["raw", "5min", "15min", "1h", "1d", "1w"]
@@ -62,7 +63,7 @@ def consolidate(values: list[float], fn: ConsolidationFn) -> float | None:
 
 
 def _as_utc(value: datetime) -> datetime:
-    return value if value.tzinfo is not None else value.replace(tzinfo=timezone.utc)
+    return value if value.tzinfo is not None else value.replace(tzinfo=UTC)
 
 
 def floor_bucket(ts: datetime, bucket: BucketSize) -> datetime:
@@ -73,7 +74,7 @@ def floor_bucket(ts: datetime, bucket: BucketSize) -> datetime:
     aware = _as_utc(ts)
     epoch = int(aware.timestamp())
     floored = epoch - (epoch % secs)
-    return datetime.fromtimestamp(floored, tz=timezone.utc)
+    return datetime.fromtimestamp(floored, tz=UTC)
 
 
 def bucketize(

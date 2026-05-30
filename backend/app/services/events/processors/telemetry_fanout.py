@@ -13,8 +13,9 @@ Rule matching is intentionally lean: severity prefix, kpi_type glob, device tag 
 from __future__ import annotations
 
 import fnmatch
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any
 
 from loguru import logger
 

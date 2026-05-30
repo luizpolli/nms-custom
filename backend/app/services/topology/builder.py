@@ -10,7 +10,7 @@ topology_nodes / topology_links tables.
 from __future__ import annotations
 
 import uuid
-from typing import Callable
+from collections.abc import Callable
 
 from loguru import logger
 from sqlalchemy import select

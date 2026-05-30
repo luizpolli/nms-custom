@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from datetime import datetime
-from typing import Callable
 
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.security.redaction import redact
 from app.services.reports.excel import ExcelReporter
 from app.services.reports.pdf import PDFReporter
-from app.security.redaction import redact
 
 _REPORTS = [
     {"name": "device_inventory", "format": "xlsx", "description": "Device, inventory and IOS version details"},

@@ -7,10 +7,11 @@ Errors are caught at every public method boundary; callers receive a
 from __future__ import annotations
 
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from loguru import logger
+
 from app.config import settings
 
 try:

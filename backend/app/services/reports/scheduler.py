@@ -8,8 +8,8 @@ for power-users that want frequent automatic exports.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timedelta, timezone
-from typing import Callable
+from collections.abc import Callable
+from datetime import UTC, datetime, timedelta
 
 from loguru import logger
 from sqlalchemy import delete, select
@@ -40,7 +40,7 @@ def cadence_delta(cadence: str) -> timedelta:
 
 
 def _as_aware(value: datetime) -> datetime:
-    return value if value.tzinfo is not None else value.replace(tzinfo=timezone.utc)
+    return value if value.tzinfo is not None else value.replace(tzinfo=UTC)
 
 
 def is_due(schedule: ReportSchedule, now: datetime) -> bool:
@@ -89,7 +89,7 @@ class ReportScheduleRunner:
         self._registry = ReportRegistry(session_factory)
 
     async def run_due(self) -> int:
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         async with self._sf() as session:
             schedules = (
                 await session.execute(
@@ -103,7 +103,7 @@ class ReportScheduleRunner:
         return len(due)
 
     async def run_schedule(self, schedule_id: uuid.UUID) -> GeneratedReport | None:
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         async with self._sf() as session:
             schedule = await session.get(ReportSchedule, schedule_id)
             if schedule is None:

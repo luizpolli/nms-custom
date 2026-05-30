@@ -26,12 +26,11 @@ Design notes
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import time
 from collections import defaultdict, deque
 from dataclasses import dataclass
-from typing import Any, Iterable
-
-import hashlib
+from typing import Any
 
 from fastapi import Request
 from fastapi.responses import JSONResponse
@@ -41,7 +40,6 @@ from starlette.types import ASGIApp
 
 from app.config import settings
 from app.security.auth import configured_api_keys, verify_api_key
-
 
 # ---------------------------------------------------------------------------
 # Rule parsing
@@ -57,7 +55,7 @@ class RateLimitRule:
     window_seconds: int
 
     @classmethod
-    def parse(cls, name: str, raw: str) -> "RateLimitRule":
+    def parse(cls, name: str, raw: str) -> RateLimitRule:
         try:
             count_str, window_str = raw.split("/", 1)
             limit = int(count_str.strip())

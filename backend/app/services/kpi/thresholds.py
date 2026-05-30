@@ -8,8 +8,8 @@ customer alarm rules, autoclear and dedup behaviour continue to apply.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
-from typing import Callable, Iterable
+from collections.abc import Callable, Iterable
+from datetime import UTC, datetime
 
 from loguru import logger
 from sqlalchemy import select
@@ -175,4 +175,4 @@ async def evaluate_since(session_factory: SessionFactory, since: datetime) -> in
 
 
 def now_utc() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)

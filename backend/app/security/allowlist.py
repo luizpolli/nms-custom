@@ -46,5 +46,5 @@ def assert_command_allowed(cli: str) -> None:
             return
     raise HTTPException(
         status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
-        detail=f"CLI command is not permitted by the server allow-list",
+        detail="CLI command is not permitted by the server allow-list",
     )

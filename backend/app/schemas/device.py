@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -13,22 +12,22 @@ class DeviceBase(BaseModel):
     name: str = Field(..., max_length=255)
     ip_address: str = Field(..., max_length=45)
     device_type: str = Field(..., max_length=50)
-    model: Optional[str] = Field(None, max_length=255)
-    vendor: Optional[str] = Field(None, max_length=100)
-    os_type: Optional[str] = Field(None, max_length=100)
-    software_version: Optional[str] = Field(None, max_length=255)
+    model: str | None = Field(None, max_length=255)
+    vendor: str | None = Field(None, max_length=100)
+    os_type: str | None = Field(None, max_length=100)
+    software_version: str | None = Field(None, max_length=255)
     status: str = Field("unknown", max_length=20)
-    location: Optional[str] = Field(None, max_length=255)
-    site_id: Optional[str] = Field(None, max_length=255)
-    role: Optional[str] = Field(None, max_length=100)
+    location: str | None = Field(None, max_length=255)
+    site_id: str | None = Field(None, max_length=255)
+    role: str | None = Field(None, max_length=100)
     lifecycle_state: str = Field("active", max_length=50)
-    platform_family: Optional[str] = Field(None, max_length=100)
-    mgmt_vrf: Optional[str] = Field(None, max_length=100)
+    platform_family: str | None = Field(None, max_length=100)
+    mgmt_vrf: str | None = Field(None, max_length=100)
     snmp_enabled: bool = True
     ssh_enabled: bool = False
     telemetry_enabled: bool = False
-    tags: List[str] = Field(default_factory=list)
-    credential_id: Optional[uuid.UUID] = None
+    tags: list[str] = Field(default_factory=list)
+    credential_id: uuid.UUID | None = None
 
 
 class DeviceCreate(DeviceBase):
@@ -36,25 +35,25 @@ class DeviceCreate(DeviceBase):
 
 
 class DeviceUpdate(BaseModel):
-    name: Optional[str] = Field(None, max_length=255)
-    ip_address: Optional[str] = Field(None, max_length=45)
-    device_type: Optional[str] = Field(None, max_length=50)
-    model: Optional[str] = None
-    vendor: Optional[str] = None
-    os_type: Optional[str] = None
-    software_version: Optional[str] = None
-    status: Optional[str] = None
-    location: Optional[str] = None
-    site_id: Optional[str] = None
-    role: Optional[str] = None
-    lifecycle_state: Optional[str] = None
-    platform_family: Optional[str] = None
-    mgmt_vrf: Optional[str] = None
-    snmp_enabled: Optional[bool] = None
-    ssh_enabled: Optional[bool] = None
-    telemetry_enabled: Optional[bool] = None
-    tags: Optional[List[str]] = None
-    credential_id: Optional[uuid.UUID] = None
+    name: str | None = Field(None, max_length=255)
+    ip_address: str | None = Field(None, max_length=45)
+    device_type: str | None = Field(None, max_length=50)
+    model: str | None = None
+    vendor: str | None = None
+    os_type: str | None = None
+    software_version: str | None = None
+    status: str | None = None
+    location: str | None = None
+    site_id: str | None = None
+    role: str | None = None
+    lifecycle_state: str | None = None
+    platform_family: str | None = None
+    mgmt_vrf: str | None = None
+    snmp_enabled: bool | None = None
+    ssh_enabled: bool | None = None
+    telemetry_enabled: bool | None = None
+    tags: list[str] | None = None
+    credential_id: uuid.UUID | None = None
 
 
 class DeviceRead(DeviceBase):

@@ -6,14 +6,14 @@ import asyncio
 import ipaddress
 import uuid
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import Sequence
+from datetime import UTC, datetime
 
 from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from app.config import Settings, settings as default_settings
+from app.config import Settings
+from app.config import settings as default_settings
 from app.models.device import Device
 from app.services.snmp.engine import SNMPEngine
 from app.services.snmp.poller import SNMPCredential
@@ -174,7 +174,7 @@ async def _upsert_device(session: AsyncSession, dev: DiscoveredDevice) -> int:
     if existing:
         existing.vendor = dev.vendor
         existing.os_type = dev.os_type
-        existing.updated_at = datetime.now(timezone.utc)
+        existing.updated_at = datetime.now(UTC)
         if dev.sys_name and existing.name == existing.ip_address:
             existing.name = dev.sys_name
         return 0

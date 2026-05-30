@@ -35,6 +35,7 @@ async def health_ready(db: Annotated[AsyncSession, Depends(get_db)]) -> JSONResp
 
     try:
         import redis.asyncio as aioredis
+
         from app.config import Settings
         settings = Settings()
         r = aioredis.from_url(settings.redis_url, socket_timeout=2)

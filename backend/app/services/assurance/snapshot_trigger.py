@@ -20,7 +20,6 @@ from app.models.alarm import Alarm
 from app.models.interface import Interface
 from app.models.service import Service, ServiceScoreSnapshot
 
-
 # Severities that warrant an immediate snapshot. Lower-severity churn keeps
 # riding the 60s throttled path to avoid write amplification.
 SNAPSHOT_SEVERITIES: frozenset[str] = frozenset({"critical", "major", "clear"})

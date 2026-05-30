@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field, SecretStr
 
@@ -25,18 +24,18 @@ class CredentialBase(BaseModel):
 
 class CredentialCreate(CredentialBase):
     secret: SecretStr = Field(..., description="Plaintext credential; will be encrypted at rest.")
-    enc_secret: Optional[SecretStr] = Field(None, description="Optional enc key (SNMPv3).")
+    enc_secret: SecretStr | None = Field(None, description="Optional enc key (SNMPv3).")
 
 
 class CredentialUpdate(BaseModel):
-    name: Optional[str] = Field(None, max_length=255)
-    hostname: Optional[str] = Field(None, max_length=255)
-    username: Optional[str] = Field(None, max_length=255)
-    protocol: Optional[str] = None
-    snmp_version: Optional[str] = None
-    port: Optional[int] = Field(None, ge=1, le=65535)
-    secret: Optional[SecretStr] = Field(None, description="New plaintext secret; triggers re-encryption.")
-    enc_secret: Optional[SecretStr] = None
+    name: str | None = Field(None, max_length=255)
+    hostname: str | None = Field(None, max_length=255)
+    username: str | None = Field(None, max_length=255)
+    protocol: str | None = None
+    snmp_version: str | None = None
+    port: int | None = Field(None, ge=1, le=65535)
+    secret: SecretStr | None = Field(None, description="New plaintext secret; triggers re-encryption.")
+    enc_secret: SecretStr | None = None
 
 
 class CredentialRead(CredentialBase):

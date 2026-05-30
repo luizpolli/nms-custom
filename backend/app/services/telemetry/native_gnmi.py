@@ -8,10 +8,11 @@ implements this contract.
 from __future__ import annotations
 
 import uuid as _uuid
+from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import AsyncIterator, Protocol
+from typing import Protocol
 
 from app.schemas.telemetry import TelemetrySampleIngest
 
@@ -113,7 +114,7 @@ def build_stub_from_paths(
     step: float = 1.0,
 ) -> StubNativeGnmiAdapter:
     """Construct a stub adapter with one update per requested path."""
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     updates = [
         GnmiUpdate(path=p, value=start_value + i * step, timestamp=now)
         for i, p in enumerate(paths)

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -93,7 +93,7 @@ async def record_account_activity(
     details: dict[str, Any] | None = None,
 ) -> None:
     """Persist account activity to DB and the CLI-friendly JSONL path."""
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     role = principal.role.lower()
     path = account_audit_path(principal)
     actor = f"{principal.subject}:{role}"

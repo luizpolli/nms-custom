@@ -9,8 +9,8 @@ service layout.
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -59,7 +59,7 @@ class TelemetryReceiver:
         while not stop_event.is_set():
             try:
                 await asyncio.wait_for(stop_event.wait(), timeout=self.config.idle_heartbeat_seconds)
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 logger.debug("Telemetry receiver idle heartbeat transport={}", self.config.transport)
 
     async def _run_json_line_server(self, stop_event: asyncio.Event) -> None:
@@ -83,11 +83,11 @@ class TelemetryReceiver:
                     samples = parse_gnmi_json_frame(line)
                     for sample in samples:
                         await self.ingestion.ingest_sample(sample)
-                    writer.write(f"OK {len(samples)}\n".encode("utf-8"))
+                    writer.write(f"OK {len(samples)}\n".encode())
                     await writer.drain()
                 except TelemetryAdapterError as exc:
                     logger.warning("Telemetry adapter rejected frame from {}: {}", peer, exc)
-                    writer.write(f"ERR {exc}\n".encode("utf-8"))
+                    writer.write(f"ERR {exc}\n".encode())
                     await writer.drain()
         finally:
             writer.close()

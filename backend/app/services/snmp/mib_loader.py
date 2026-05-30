@@ -75,7 +75,7 @@ class MIBLoader:
             return False
 
     @classmethod
-    def from_env(cls) -> "MIBLoader":
+    def from_env(cls) -> MIBLoader:
         """Build from ``NMS_MIB_PATH`` env var (colon-separated dirs)."""
         raw = os.environ.get("NMS_MIB_PATH", "")
         paths = [p for p in raw.split(":") if p]

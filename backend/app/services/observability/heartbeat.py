@@ -8,9 +8,10 @@ failures must never break the worker.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
-from datetime import datetime, timezone
-from typing import Any, Iterable
+from collections.abc import Iterable
+from dataclasses import asdict, dataclass
+from datetime import UTC, datetime
+from typing import Any
 
 from loguru import logger
 
@@ -34,7 +35,7 @@ def _key(kind: str) -> str:
 
 
 def _now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 @dataclass
@@ -67,6 +68,7 @@ class WorkerHeartbeat:
             return self._redis
         try:
             import redis.asyncio as aioredis
+
             from app.config import settings
 
             self._redis = aioredis.from_url(
@@ -152,7 +154,7 @@ def _parse_status(kind: str, raw: dict[str, str] | None) -> WorkerStatus:
     if last_run_at and expected_i:
         try:
             ts = datetime.fromisoformat(last_run_at)
-            age_s = (datetime.now(timezone.utc) - ts).total_seconds()
+            age_s = (datetime.now(UTC) - ts).total_seconds()
             is_stale = age_s > expected_i * 3
         except ValueError:
             is_stale = False
@@ -175,6 +177,7 @@ async def get_all_worker_status(kinds: Iterable[str] = WORKER_KINDS) -> list[Wor
     """Fetch heartbeat status for every known worker. Best-effort."""
     try:
         import redis.asyncio as aioredis
+
         from app.config import settings
 
         client = aioredis.from_url(settings.redis_url, socket_timeout=2, decode_responses=True)

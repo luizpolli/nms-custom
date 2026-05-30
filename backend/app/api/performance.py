@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, Query
-from sqlalchemy import select, func, text
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import async_session_factory, get_db
@@ -44,9 +44,9 @@ def _kpi_to_read(kpi: KPI) -> KPIRead:
 async def list_kpis(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
-    kpi_type: Optional[str] = None,
-    since: Optional[datetime] = None,
-    until: Optional[datetime] = None,
+    kpi_type: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
     limit: int = Query(1000, ge=1, le=10000),
 ) -> list[KPIRead]:
     stmt = select(KPI).where(KPI.device_id == id)

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import uuid
 import ipaddress
+import uuid
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -11,8 +11,7 @@ from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
-from app.database import get_db
-from app.database import async_session_factory
+from app.database import async_session_factory, get_db
 from app.services.discovery.engine import DiscoveryEngine
 from app.services.snmp.engine import SNMPEngine
 

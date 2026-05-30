@@ -3,13 +3,23 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
-from sqlalchemy import JSON, Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -29,17 +39,17 @@ class Service(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now, onupdate=datetime.now)
 
-    members: Mapped[list["ServiceMember"]] = relationship(
+    members: Mapped[list[ServiceMember]] = relationship(
         "ServiceMember", back_populates="service", cascade="all, delete-orphan", lazy="selectin"
     )
-    upstream_dependencies: Mapped[list["ServiceDependency"]] = relationship(
+    upstream_dependencies: Mapped[list[ServiceDependency]] = relationship(
         "ServiceDependency",
         foreign_keys="ServiceDependency.source_service_id",
         back_populates="source_service",
         cascade="all, delete-orphan",
         lazy="selectin",
     )
-    downstream_dependencies: Mapped[list["ServiceDependency"]] = relationship(
+    downstream_dependencies: Mapped[list[ServiceDependency]] = relationship(
         "ServiceDependency",
         foreign_keys="ServiceDependency.target_service_id",
         back_populates="target_service",

@@ -101,10 +101,11 @@ class WorkerSupervisor:
 
     async def _run_topology_rebuilder_loop(self) -> None:
         from sqlalchemy import select
+
         from app.models.device import Device
         from app.services.snmp.engine import SNMPEngine
-        from app.services.topology.credentials import build_credentials_map
         from app.services.topology.builder import TopologyBuilder
+        from app.services.topology.credentials import build_credentials_map
 
         backoff = 10
         beat = WorkerHeartbeat("topology", settings.topology_poll_interval)
@@ -130,8 +131,8 @@ class WorkerSupervisor:
         await beat.close()
 
     async def _run_trap_receiver_loop(self) -> None:
-        from app.services.snmp.trap_receiver import SNMPTrapReceiver
         from app.services.alarms.correlator import AlarmCorrelator
+        from app.services.snmp.trap_receiver import SNMPTrapReceiver
 
         trap_port = int(os.environ.get("TRAP_PORT", "162"))
         backoff = 10
@@ -153,7 +154,7 @@ class WorkerSupervisor:
                     try:
                         await asyncio.wait_for(self._stop_event.wait(), timeout=30)
                         break
-                    except asyncio.TimeoutError:
+                    except TimeoutError:
                         await beat.success()
                 await receiver.stop()
             except asyncio.CancelledError:
@@ -212,7 +213,7 @@ class WorkerSupervisor:
                 while not self._stop_event.is_set() and not receiver_task.done():
                     try:
                         await asyncio.wait_for(self._stop_event.wait(), timeout=30)
-                    except asyncio.TimeoutError:
+                    except TimeoutError:
                         await beat.success()
                 if not receiver_task.done():
                     receiver_task.cancel()
@@ -274,7 +275,7 @@ class WorkerSupervisor:
                     try:
                         await asyncio.wait_for(self._stop_event.wait(), timeout=30)
                         break
-                    except asyncio.TimeoutError:
+                    except TimeoutError:
                         await beat.success()
                 await receiver.stop()
             except asyncio.CancelledError:

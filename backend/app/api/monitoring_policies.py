@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -18,7 +18,11 @@ from app.schemas.monitoring_policy import (
     MonitoringPolicyRead,
     MonitoringPolicyUpdate,
 )
-from app.services.monitoring.policies import MonitoringPolicyRunner, POLICY_PRESETS, ensure_default_policy_suite
+from app.services.monitoring.policies import (
+    POLICY_PRESETS,
+    MonitoringPolicyRunner,
+    ensure_default_policy_suite,
+)
 
 router = APIRouter()
 
@@ -88,7 +92,7 @@ async def update_monitoring_policy(
     policy = await _get_or_404(db, id)
     for key, value in _to_model_data(body).items():
         setattr(policy, key, value)
-    policy.updated_at = datetime.now(timezone.utc)
+    policy.updated_at = datetime.now(UTC)
     await db.flush()
     await db.refresh(policy)
     return MonitoringPolicyRead.model_validate(policy)

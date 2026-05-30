@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -13,9 +12,9 @@ class CommandBase(BaseModel):
     device_id: uuid.UUID
     name: str = Field(..., max_length=255)
     cli_command: str
-    output_path: Optional[str] = Field(None, max_length=500)
-    last_output: Optional[str] = None
-    meta: Optional[dict] = Field(None, alias="metadata")
+    output_path: str | None = Field(None, max_length=500)
+    last_output: str | None = None
+    meta: dict | None = Field(None, alias="metadata")
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -25,12 +24,12 @@ class CommandCreate(CommandBase):
 
 
 class CommandUpdate(BaseModel):
-    device_id: Optional[uuid.UUID] = None
-    name: Optional[str] = Field(None, max_length=255)
-    cli_command: Optional[str] = None
-    output_path: Optional[str] = None
-    last_output: Optional[str] = None
-    meta: Optional[dict] = Field(None, alias="metadata")
+    device_id: uuid.UUID | None = None
+    name: str | None = Field(None, max_length=255)
+    cli_command: str | None = None
+    output_path: str | None = None
+    last_output: str | None = None
+    meta: dict | None = Field(None, alias="metadata")
 
     model_config = ConfigDict(populate_by_name=True)
 

@@ -1,43 +1,45 @@
 """NMS Custom — FastAPI Application Entry Point."""
 
 from contextlib import asynccontextmanager
+
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
-from app.config import Settings
-from app.database import async_session_factory, engine, init_db
-from app.api.devices import router as devices_router
-from app.api.credentials import router as credentials_router
-from app.api.performance import router as performance_router
-from app.api.mibs import router as mibs_router
-from app.api.monitoring_policies import router as monitoring_policies_router
-from app.api.discovery import router as discovery_router
-from app.api.commands import router as commands_router
-from app.api.command_schedules import router as command_schedules_router
-from app.api.ios import router as ios_router
-from app.api.topology import router as topology_router
-from app.api.alarms import router as alarms_router
+
 from app.api.ai_ops import router as ai_ops_router
 from app.api.alarm_rules import router as alarm_rules_router
-from app.api.kpi_thresholds import router as kpi_thresholds_router
-from app.api.reports import router as reports_router
-from app.api.report_schedules import router as report_schedules_router
+from app.api.alarms import router as alarms_router
+from app.api.assurance import router as assurance_router
+from app.api.command_schedules import router as command_schedules_router
+from app.api.commands import router as commands_router
+from app.api.credentials import router as credentials_router
+from app.api.devices import router as devices_router
+from app.api.discovery import router as discovery_router
+from app.api.forwarding import router as forwarding_router
 from app.api.health import router as health_router
+from app.api.ios import router as ios_router
+from app.api.kpi_thresholds import router as kpi_thresholds_router
+from app.api.lab import router as lab_router
+from app.api.metrics import router as metrics_router
+from app.api.mibs import router as mibs_router
+from app.api.monitoring_policies import router as monitoring_policies_router
+from app.api.performance import router as performance_router
+from app.api.report_schedules import router as report_schedules_router
+from app.api.reports import router as reports_router
+from app.api.services import router as services_router
 from app.api.settings import router as settings_router
 from app.api.system import router as system_router
 from app.api.telemetry import router as telemetry_router
-from app.api.forwarding import router as forwarding_router
-from app.api.assurance import router as assurance_router
-from app.api.services import router as services_router
-from app.api.metrics import router as metrics_router
-from app.api.lab import router as lab_router
-from app.workers import WorkerSupervisor
+from app.api.topology import router as topology_router
+from app.config import Settings
+from app.database import async_session_factory, init_db
 from app.security.auth import principal_from_presented_key, require_api_auth
 from app.security.rate_limit import RateLimitMiddleware
 from app.security.redaction import configure_log_redaction
 from app.services.account_audit import record_account_activity
 from app.services.observability.metrics import observe_request
+from app.workers import WorkerSupervisor
 
 settings = Settings()
 configure_log_redaction()

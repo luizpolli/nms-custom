@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from app.schemas.telemetry import TelemetrySampleIngest
@@ -21,7 +21,7 @@ class TelemetryAdapterError(ValueError):
 
 def _parse_timestamp(value: Any) -> datetime:
     if value is None:
-        return datetime.now(timezone.utc)
+        return datetime.now(UTC)
     if isinstance(value, (int, float)):
         # gNMI often emits nanoseconds; accept seconds/ms/ns safely.
         numeric = float(value)
@@ -29,9 +29,9 @@ def _parse_timestamp(value: Any) -> datetime:
             numeric = numeric / 1_000_000_000
         elif numeric > 10_000_000_000:
             numeric = numeric / 1_000
-        return datetime.fromtimestamp(numeric, tz=timezone.utc)
+        return datetime.fromtimestamp(numeric, tz=UTC)
     if isinstance(value, datetime):
-        return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
+        return value if value.tzinfo else value.replace(tzinfo=UTC)
     if isinstance(value, str):
         return datetime.fromisoformat(value.replace("Z", "+00:00"))
     raise TelemetryAdapterError(f"Unsupported timestamp: {value!r}")

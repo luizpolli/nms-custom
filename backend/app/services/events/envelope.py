@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 
 def _now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def _new_id() -> str:
@@ -43,7 +43,7 @@ class EventEnvelope:
         return asdict(self)
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "EventEnvelope":
+    def from_dict(cls, data: dict[str, Any]) -> EventEnvelope:
         return cls(
             event_id=str(data.get("event_id") or _new_id()),
             event_type=str(data.get("event_type") or "unknown"),

@@ -12,10 +12,10 @@ reimplement discovery logic.
 
 from __future__ import annotations
 
-import asyncio
 import time
 from collections import deque
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from loguru import logger
 
@@ -93,7 +93,6 @@ class DiscoveryRefreshOrchestrator:
         Skeletons when no SNMP credentials are available; this is expected in
         test/simulation environments where SNMPEngine is not wired.
         """
-        from sqlalchemy import select
 
         from app.models.device import Device
 

@@ -12,7 +12,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.alarm_rule import AlarmRule
 
-
 _SEVERITY_ALIASES = {
     # RFC 5424 syslog severities mapped into the app alarm scale.
     "0": "critical",

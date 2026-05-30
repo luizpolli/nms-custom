@@ -7,9 +7,18 @@ import csv
 import io
 import uuid
 from datetime import datetime
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response, WebSocket, WebSocketDisconnect, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    Query,
+    Response,
+    WebSocket,
+    WebSocketDisconnect,
+    status,
+)
 from pydantic import BaseModel, Field
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -249,17 +258,17 @@ def _alarm_filters_stmt(
 @router.get("", response_model=list[AlarmRead])
 async def list_alarms(
     db: Annotated[AsyncSession, Depends(get_db)],
-    device_id: Optional[uuid.UUID] = None,
-    object_type: Optional[str] = None,
-    object_id: Optional[str] = None,
-    severity: Optional[str] = None,
-    state: Optional[str] = None,
-    category: Optional[str] = None,
-    event_type: Optional[str] = None,
-    source_host: Optional[str] = None,
-    q: Optional[str] = None,
-    since: Optional[datetime] = None,
-    until: Optional[datetime] = None,
+    device_id: uuid.UUID | None = None,
+    object_type: str | None = None,
+    object_id: str | None = None,
+    severity: str | None = None,
+    state: str | None = None,
+    category: str | None = None,
+    event_type: str | None = None,
+    source_host: str | None = None,
+    q: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
     limit: int = 100,
     offset: int = 0,
 ) -> list[AlarmRead]:
@@ -286,17 +295,17 @@ async def export_alarms(
     db: Annotated[AsyncSession, Depends(get_db)],
     export_format: str = Query("csv", alias="format", pattern="^csv$"),
     alarm_ids: list[uuid.UUID] | None = Query(None),
-    device_id: Optional[uuid.UUID] = None,
-    object_type: Optional[str] = None,
-    object_id: Optional[str] = None,
-    severity: Optional[str] = None,
-    state: Optional[str] = None,
-    category: Optional[str] = None,
-    event_type: Optional[str] = None,
-    source_host: Optional[str] = None,
-    q: Optional[str] = None,
-    since: Optional[datetime] = None,
-    until: Optional[datetime] = None,
+    device_id: uuid.UUID | None = None,
+    object_type: str | None = None,
+    object_id: str | None = None,
+    severity: str | None = None,
+    state: str | None = None,
+    category: str | None = None,
+    event_type: str | None = None,
+    source_host: str | None = None,
+    q: str | None = None,
+    since: datetime | None = None,
+    until: datetime | None = None,
 ) -> Response:
     """Export selected alarms or all alarms matching the current filters."""
     del export_format
@@ -404,7 +413,7 @@ async def ingest_alarm_event(body: AlarmEventIngest) -> AlarmRead | None:
 async def list_saved_alarm_filters(
     db: Annotated[AsyncSession, Depends(get_db)],
     principal: Annotated[Principal, Depends(require_api_auth)],
-    owner: Optional[str] = None,
+    owner: str | None = None,
 ) -> list[SavedFilterRead]:
     stmt = select(SavedAlarmFilter).where(
         or_(SavedAlarmFilter.is_public.is_(True), SavedAlarmFilter.owner == principal.subject)
@@ -661,7 +670,7 @@ async def alarm_websocket(ws: WebSocket) -> None:
             try:
                 # Wait up to 30s for a client message; if none, loop sends heartbeat
                 await asyncio.wait_for(ws.receive_text(), timeout=30.0)
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 pass
     except WebSocketDisconnect:
         pass

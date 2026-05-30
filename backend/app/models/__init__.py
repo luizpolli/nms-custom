@@ -8,8 +8,8 @@ from app.models.command import Command
 from app.models.credential import Credential, CredentialAssignment
 from app.models.device import Device
 from app.models.forwarding import ForwardingTarget
-from app.models.inventory import Inventory
 from app.models.interface import Interface
+from app.models.inventory import Inventory
 from app.models.ios_version import IOSVersion
 from app.models.kpi import KPI
 from app.models.kpi_threshold import KPIThreshold
@@ -18,7 +18,6 @@ from app.models.monitoring_policy import MonitoringPolicy
 from app.models.physical_inventory import PhysicalInventoryComponent
 from app.models.report_schedule import GeneratedReport, ReportSchedule
 from app.models.service import Service, ServiceDependency, ServiceMember, ServiceScoreSnapshot
-from app.models.topology import TopologyLink, TopologyNode
 from app.models.system import AppRole, AppUser, SystemSetting
 from app.models.telemetry import (
     TelemetryCollector,
@@ -27,6 +26,7 @@ from app.models.telemetry import (
     TelemetrySensorPath,
     TelemetrySubscription,
 )
+from app.models.topology import TopologyLink, TopologyNode
 
 __all__ = [
     "Alarm",

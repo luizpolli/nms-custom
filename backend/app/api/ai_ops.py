@@ -8,7 +8,7 @@ uncited operational claims.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -43,7 +43,7 @@ class AdvisoryResponse(BaseModel):
     recommendations: list[str] = Field(default_factory=list)
     citations: list[AdvisoryCitation] = Field(default_factory=list)
     advisory_only: bool = True
-    generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    generated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 _SEVERITY_RANK = {"critical": 5, "major": 4, "minor": 3, "warning": 2, "info": 1, "clear": 0}
@@ -111,7 +111,7 @@ async def kpi_anomaly_explanation(
     hours: int = 24,
     limit: int = 20,
 ) -> AdvisoryResponse:
-    since = datetime.now(timezone.utc) - timedelta(hours=max(1, min(hours, 168)))
+    since = datetime.now(UTC) - timedelta(hours=max(1, min(hours, 168)))
     stmt = select(KPI).where(KPI.timestamp >= since, KPI.quality != "good").order_by(KPI.timestamp.desc()).limit(min(limit, 100))
     if device_id:
         stmt = stmt.where(KPI.device_id == device_id)
@@ -169,7 +169,7 @@ async def runbook_suggestions(
 
 @router.get("/reports/narrative", response_model=AdvisoryResponse)
 async def report_narrative(db: Annotated[AsyncSession, Depends(get_db)], hours: int = 24) -> AdvisoryResponse:
-    since = datetime.now(timezone.utc) - timedelta(hours=max(1, min(hours, 168)))
+    since = datetime.now(UTC) - timedelta(hours=max(1, min(hours, 168)))
     alarms = list((await db.execute(select(Alarm).where(Alarm.last_seen >= since).order_by(Alarm.last_seen.desc()).limit(50))).scalars().all())
     kpis = list((await db.execute(select(KPI).where(KPI.timestamp >= since, KPI.quality != "good").order_by(KPI.timestamp.desc()).limit(50))).scalars().all())
     worst = _worst_alarm(alarms)
@@ -201,7 +201,7 @@ class AssistantAnswerResponse(BaseModel):
     provider: str
     advisory_only: bool = True
     rejected_reason: str | None = None
-    generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    generated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 _ASSISTANT_ROLES = roles_from_setting(

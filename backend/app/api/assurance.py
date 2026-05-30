@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import uuid
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -18,7 +18,7 @@ from app.models.audit import AuditLog
 from app.models.device import Device
 from app.models.interface import Interface
 from app.models.kpi import KPI
-from app.models.service import Service, ServiceDependency, ServiceMember, ServiceScoreSnapshot
+from app.models.service import Service, ServiceDependency, ServiceScoreSnapshot
 from app.models.topology import TopologyLink, TopologyNode
 from app.services.assurance import clamp_score, severity_penalty
 from app.services.assurance.topology_impact import compute_topology_blast_radius
@@ -329,7 +329,7 @@ async def assurance_summary(db: Annotated[AsyncSession, Depends(get_db)]) -> Ass
     else:
         network_score = clamp_score(100 - sum(severity_penalty(a.severity, a.occurrence_count) for a in alarms))
 
-    since = datetime.now(timezone.utc) - timedelta(hours=24)
+    since = datetime.now(UTC) - timedelta(hours=24)
     baseline_result = await db.execute(
         select(func.count()).select_from(KPI).where(KPI.quality != "good", KPI.timestamp >= since)
     )
@@ -403,7 +403,7 @@ async def suppress_group(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> GroupLifecycleResponse:
     alarms = await _alarms_for_group(db, group_key)
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     for alarm in alarms:
         raw = dict(alarm.raw_varbinds or {})
         raw["_group_suppression"] = {"by": body.by_user, "reason": body.reason, "suppressed_at": now.isoformat()}
@@ -431,7 +431,7 @@ async def unsuppress_group(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> GroupLifecycleResponse:
     alarms = await _alarms_for_group(db, group_key)
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     for alarm in alarms:
         raw = dict(alarm.raw_varbinds or {})
         raw.pop("_group_suppression", None)
@@ -740,7 +740,7 @@ async def _persist_service_score_snapshots(
     if not impacts:
         return
 
-    cutoff = datetime.now(timezone.utc) - timedelta(seconds=throttle_seconds)
+    cutoff = datetime.now(UTC) - timedelta(seconds=throttle_seconds)
     latest_result = await db.execute(
         select(ServiceScoreSnapshot.service_id, func.max(ServiceScoreSnapshot.captured_at))
         .where(ServiceScoreSnapshot.service_id.in_([i.service_id for i in impacts]))
@@ -753,7 +753,7 @@ async def _persist_service_score_snapshots(
         last = latest.get(impact.service_id)
         if last is not None:
             if last.tzinfo is None:
-                last = last.replace(tzinfo=timezone.utc)
+                last = last.replace(tzinfo=UTC)
             if last >= cutoff:
                 continue
         fresh.append(
@@ -888,7 +888,7 @@ def _bucket_snapshots(
     for s in snapshots:
         ts = s.captured_at
         if ts.tzinfo is None:
-            ts = ts.replace(tzinfo=timezone.utc)
+            ts = ts.replace(tzinfo=UTC)
         offset = ts.timestamp() - since_ts
         key = int(offset // bucket_secs)
         buckets.setdefault(key, []).append((s.service_id, s.score))
@@ -897,7 +897,7 @@ def _bucket_snapshots(
     for key in sorted(buckets):
         entries = buckets[key]
         scores = [e[1] for e in entries]
-        bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=timezone.utc)
+        bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=UTC)
         result.append(
             NetworkScorePoint(
                 bucket_start=bucket_start,
@@ -919,7 +919,7 @@ async def assurance_network_history(
 ) -> list[NetworkScorePoint]:
     hours = max(1, min(hours, 720))
     bucket_minutes = max(1, min(bucket_minutes, 1440))
-    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+    since = datetime.now(UTC) - timedelta(hours=hours)
 
     result = await db.execute(
         select(ServiceScoreSnapshot)
@@ -944,7 +944,7 @@ async def assurance_service_history(
 
     hours = max(1, min(hours, 24 * 30))
     limit = max(1, min(limit, 5000))
-    since = datetime.now(timezone.utc) - timedelta(hours=hours)
+    since = datetime.now(UTC) - timedelta(hours=hours)
 
     result = await db.execute(
         select(ServiceScoreSnapshot)

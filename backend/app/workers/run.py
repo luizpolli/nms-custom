@@ -23,7 +23,6 @@ from loguru import logger
 from app.database import init_db
 from app.workers.supervisor import WorkerSupervisor
 
-
 WORKER_METHODS = {
     "monitoring-policies": "_run_monitoring_policy_loop",
     "poller": "_run_monitoring_policy_loop",

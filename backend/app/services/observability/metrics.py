@@ -7,14 +7,21 @@ from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 
 from loguru import logger
-from prometheus_client import CONTENT_TYPE_LATEST, CollectorRegistry, Counter, Gauge, Histogram, REGISTRY, generate_latest
+from prometheus_client import (
+    CONTENT_TYPE_LATEST,
+    REGISTRY,
+    CollectorRegistry,
+    Counter,
+    Gauge,
+    Histogram,
+    generate_latest,
+)
 from sqlalchemy import func, select
 
 from app.database import async_session_factory
 from app.models.kpi import KPI
 from app.models.telemetry import TelemetryIngestionStat, TelemetryRawSample
 from app.services.observability.heartbeat import get_all_worker_status
-
 
 REQUEST_COUNT = Counter(
     "nms_api_requests_total",
@@ -58,6 +65,7 @@ async def observe_request(request, call_next: Callable[..., Awaitable]):
 async def _event_queue_depth() -> int:
     try:
         import redis.asyncio as aioredis
+
         from app.config import settings
 
         client = aioredis.from_url(settings.redis_url, socket_timeout=2, decode_responses=True)

@@ -4,13 +4,14 @@ from __future__ import annotations
 
 import asyncio
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from app.config import Settings, settings as default_settings
+from app.config import Settings
+from app.config import settings as default_settings
 from app.models.device import Device
 from app.models.kpi import KPI
 from app.models.monitoring_policy import MonitoringPolicy
@@ -108,7 +109,7 @@ class MonitoringPolicyRunner:
 
     async def run_due(self) -> int:
         await ensure_default_policy_suite(self._sf)
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         async with self._sf() as session:
             result = await session.execute(select(MonitoringPolicy).where(MonitoringPolicy.enabled.is_(True)))
             policies = [p for p in result.scalars().all() if _is_due(p, now)]
@@ -130,7 +131,7 @@ class MonitoringPolicyRunner:
                 return {}
             devices = await self._target_devices(session, policy)
 
-        started = datetime.now(timezone.utc)
+        started = datetime.now(UTC)
         try:
             counts = await self._execute(policy, devices)
             status = "success"
@@ -148,7 +149,7 @@ class MonitoringPolicyRunner:
                 policy.next_run_at = started + timedelta(seconds=policy.interval_seconds)
                 policy.last_status = status
                 policy.last_error = error
-                policy.updated_at = datetime.now(timezone.utc)
+                policy.updated_at = datetime.now(UTC)
                 await session.commit()
         return counts
 
@@ -170,7 +171,7 @@ class MonitoringPolicyRunner:
 
     async def _poll_custom_oids(self, policy: MonitoringPolicy, devices: list[Device]) -> dict[str, int]:
         counts: dict[str, int] = {}
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         async with self._sf() as session:
             for device in devices:
                 cred = _build_credential(device, self._settings)
@@ -221,7 +222,7 @@ def _is_due(policy: MonitoringPolicy, now: datetime) -> bool:
 
 
 def _as_aware(value: datetime) -> datetime:
-    return value if value.tzinfo is not None else value.replace(tzinfo=timezone.utc)
+    return value if value.tzinfo is not None else value.replace(tzinfo=UTC)
 
 
 async def ensure_default_policy_suite(session_factory: async_sessionmaker[AsyncSession]) -> None:

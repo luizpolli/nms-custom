@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Query
@@ -22,7 +22,7 @@ router = APIRouter()
 
 
 def _now() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def _iso(value: datetime | None) -> str | None:
@@ -32,8 +32,8 @@ def _iso(value: datetime | None) -> str | None:
 def _as_utc(value: datetime) -> datetime:
     """Normalize DB timestamps so SQLite/PG timezone behavior does not break comparisons."""
     if value.tzinfo is None:
-        return value.replace(tzinfo=timezone.utc)
-    return value.astimezone(timezone.utc)
+        return value.replace(tzinfo=UTC)
+    return value.astimezone(UTC)
 
 
 def _histogram_bucket_seconds(window_minutes: int) -> int:

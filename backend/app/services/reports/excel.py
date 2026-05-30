@@ -7,23 +7,23 @@ All public methods are async and return raw bytes ready for HTTP streaming.
 from __future__ import annotations
 
 import io
-from datetime import datetime, timezone
-from typing import Callable, Sequence
 from collections import defaultdict
+from collections.abc import Callable, Sequence
+from datetime import UTC, datetime
 
 import openpyxl
-from openpyxl.styles import Font, PatternFill, Alignment
+from loguru import logger
+from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
-from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.models.alarm import Alarm
 from app.models.device import Device
 from app.models.inventory import Inventory
 from app.models.ios_version import IOSVersion
 from app.models.kpi import KPI
-from app.models.alarm import Alarm
 from app.models.kpi_threshold import KPIThreshold
 from app.models.monitoring_policy import MonitoringPolicy
 from app.models.service import Service, ServiceScoreSnapshot
@@ -347,9 +347,9 @@ class ExcelReporter:
             dev = device_names.get(kpi.device_id, str(kpi.device_id))
             ts = kpi.timestamp
             for idx, (a, b) in enumerate(windows):
-                a_aware = a if a.tzinfo else a.replace(tzinfo=timezone.utc)
-                b_aware = b if b.tzinfo else b.replace(tzinfo=timezone.utc)
-                ts_aware = ts if ts.tzinfo else ts.replace(tzinfo=timezone.utc)
+                a_aware = a if a.tzinfo else a.replace(tzinfo=UTC)
+                b_aware = b if b.tzinfo else b.replace(tzinfo=UTC)
+                ts_aware = ts if ts.tzinfo else ts.replace(tzinfo=UTC)
                 if a_aware <= ts_aware <= b_aware:
                     bucketed[(dev, kpi.kpi_type, idx)].append(kpi.value)
                     break
@@ -542,8 +542,8 @@ class ExcelReporter:
         """
         if bucket_minutes < 1:
             bucket_minutes = 1
-        since_aware = since if since.tzinfo else since.replace(tzinfo=timezone.utc)
-        until_aware = until if until.tzinfo else until.replace(tzinfo=timezone.utc)
+        since_aware = since if since.tzinfo else since.replace(tzinfo=UTC)
+        until_aware = until if until.tzinfo else until.replace(tzinfo=UTC)
 
         async with self._sf() as session:
             snapshots = (
@@ -563,7 +563,7 @@ class ExcelReporter:
         per_bucket: dict[int, list[tuple]] = defaultdict(list)
         for snap in snapshots:
             ts = snap.captured_at
-            ts_aware = ts if ts.tzinfo else ts.replace(tzinfo=timezone.utc)
+            ts_aware = ts if ts.tzinfo else ts.replace(tzinfo=UTC)
             offset = ts_aware.timestamp() - since_ts
             key = int(offset // bucket_secs)
             per_bucket[key].append((snap.service_id, snap.score, snap.health_state))
@@ -578,7 +578,7 @@ class ExcelReporter:
         for key in sorted(per_bucket):
             entries = per_bucket[key]
             scores = [e[1] for e in entries]
-            bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=timezone.utc)
+            bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=UTC)
             summary_ws.append([
                 bucket_start.isoformat(),
                 round(sum(scores) / len(scores), 2),
@@ -596,7 +596,7 @@ class ExcelReporter:
         ])
         _severity_rank = {"healthy": 0, "degraded": 1, "critical": 2, "down": 3}
         for key in sorted(per_bucket):
-            bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=timezone.utc)
+            bucket_start = datetime.fromtimestamp(since_ts + key * bucket_secs, tz=UTC)
             per_service: dict = defaultdict(list)
             for sid, score, state in per_bucket[key]:
                 per_service[sid].append((score, state))
@@ -628,8 +628,8 @@ class ExcelReporter:
         service_ids: list | None = None,
     ) -> bytes:
         """Per-service score trend: one sheet per service with raw snapshots."""
-        since_aware = since if since.tzinfo else since.replace(tzinfo=timezone.utc)
-        until_aware = until if until.tzinfo else until.replace(tzinfo=timezone.utc)
+        since_aware = since if since.tzinfo else since.replace(tzinfo=UTC)
+        until_aware = until if until.tzinfo else until.replace(tzinfo=UTC)
 
         async with self._sf() as session:
             q = (

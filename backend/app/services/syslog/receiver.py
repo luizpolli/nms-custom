@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import asyncio
 import re
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Awaitable, Callable
+from datetime import UTC, datetime
 
 from loguru import logger
 
@@ -47,7 +47,7 @@ class SyslogEvent:
     msg_id: str | None = None
     structured_data: str | None = None
     raw: str = ""
-    received_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    received_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 SyslogHandler = Callable[[SyslogEvent], Awaitable[None] | None]
@@ -98,7 +98,7 @@ def parse_syslog(payload: bytes, source_host: str, source_port: int) -> SyslogEv
 
 
 class _SyslogProtocol(asyncio.DatagramProtocol):
-    def __init__(self, receiver: "SyslogReceiver") -> None:
+    def __init__(self, receiver: SyslogReceiver) -> None:
         self.receiver = receiver
 
     def datagram_received(self, data: bytes, addr: tuple[str, int]) -> None:

@@ -4,14 +4,15 @@ from __future__ import annotations
 
 import asyncio
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from loguru import logger
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from app.config import Settings, settings as default_settings
+from app.config import Settings
+from app.config import settings as default_settings
 from app.models.device import Device
 from app.models.kpi import KPI
 from app.services.kpi.mapper import (
@@ -42,7 +43,7 @@ class KPIEngine:
     async def poll_device(self, device: Device, credential: SNMPCredential) -> list[KPI]:
         """Poll one device, map results to KPI rows, persist, return saved rows."""
         host = device.ip_address
-        ts = datetime.now(timezone.utc)
+        ts = datetime.now(UTC)
         records: list[KPIRecord] = []
 
         try:

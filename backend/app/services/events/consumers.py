@@ -9,9 +9,9 @@ from __future__ import annotations
 import asyncio
 import socket
 import uuid
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Callable
+from datetime import UTC, datetime
 
 from loguru import logger
 from sqlalchemy import or_, select
@@ -135,7 +135,7 @@ class EventConsumer:
             if self.stats.seen == before:
                 try:
                     await asyncio.wait_for(stop_event.wait(), timeout=idle_sleep_s)
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     pass
 
     async def close(self) -> None:
@@ -281,7 +281,7 @@ class DiscoveryEventConsumer(EventConsumer):
                 return None, False
             prev_status = str(device.status) if device.status else None
             device.status = str(status)
-            device.updated_at = datetime.now(timezone.utc)
+            device.updated_at = datetime.now(UTC)
             await session.commit()
             return prev_status, True
 

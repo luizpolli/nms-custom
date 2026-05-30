@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import io
 from collections import defaultdict
+from collections.abc import Callable
 from datetime import datetime
-from typing import Callable
 
 from loguru import logger
 from reportlab.graphics.charts.lineplots import LinePlot

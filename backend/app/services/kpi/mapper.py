@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
 from loguru import logger
@@ -47,7 +47,7 @@ class InterfaceSnapshot:
     in_octets: int | None
     out_octets: int | None
     in_errors: int | None
-    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    timestamp: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 def _delta_rate(new: int | None, prev: int | None, elapsed: float, prev_val: int | None) -> float | None:
@@ -69,7 +69,7 @@ def map_cpu_memory(
     timestamp: datetime | None = None,
 ) -> list[KPIRecord]:
     """Map get_cpu_memory() result into KPIRecords."""
-    ts = timestamp or datetime.now(timezone.utc)
+    ts = timestamp or datetime.now(UTC)
     records: list[KPIRecord] = []
 
     mappings: list[tuple[str, str, str | None, str | None]] = [
@@ -96,7 +96,7 @@ def map_cpu_memory(
 
 def map_interfaces(
     device_id: uuid.UUID,
-    interfaces: dict[int, "InterfaceRow"],
+    interfaces: dict[int, InterfaceRow],
     timestamp: datetime | None = None,
     previous_snapshot: dict[int, InterfaceSnapshot] | None = None,
 ) -> tuple[list[KPIRecord], dict[int, InterfaceSnapshot]]:
@@ -105,7 +105,7 @@ def map_interfaces(
     Returns (records, new_snapshot). When previous_snapshot is None, counter-based
     KPIs are stored as raw snapshots (kpi_type ending in _raw) instead of rates.
     """
-    ts = timestamp or datetime.now(timezone.utc)
+    ts = timestamp or datetime.now(UTC)
     records: list[KPIRecord] = []
     new_snapshot: dict[int, InterfaceSnapshot] = {}
 

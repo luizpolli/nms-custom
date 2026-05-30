@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from pydantic import BaseModel, Field
 
@@ -76,7 +76,7 @@ class TelemetrySampleIngest(BaseModel):
     object_id: str | None = Field(None, max_length=255)
     labels: dict | None = None
     raw_payload: dict | None = None
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class TelemetryIngestResult(BaseModel):

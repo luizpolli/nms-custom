@@ -7,7 +7,7 @@ import json
 import logging
 import socket
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 import httpx
@@ -102,7 +102,7 @@ class ForwardingEngine:
             "severity": "warning",
             "source": "nms-custom",
             "message": "NMS Custom forwarding test event",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
 
     @classmethod
@@ -118,7 +118,7 @@ class ForwardingEngine:
         severity = str(event.get("severity") or "info").lower()
         severity_code = {"critical": 2, "major": 3, "minor": 4, "warning": 4, "info": 6}.get(severity, 6)
         pri = 16 * 8 + severity_code
-        timestamp = datetime.now(timezone.utc).isoformat()
+        timestamp = datetime.now(UTC).isoformat()
         msg = str(event.get("message") or json.dumps(event, separators=(",", ":")))
         event_type = str(event.get("event_type") or event.get("type") or "event")
         return f"<{pri}>1 {timestamp} nms-custom nms-custom - - [nms event_type=\"{event_type}\" severity=\"{severity}\"] {msg}\n".encode()

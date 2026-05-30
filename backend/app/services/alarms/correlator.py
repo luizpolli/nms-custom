@@ -7,8 +7,9 @@ and acknowledgement.  All DB access is async through the session factory.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
-from typing import Any, Callable
+from collections.abc import Callable
+from datetime import UTC, datetime
+from typing import Any
 
 from loguru import logger
 from sqlalchemy import select
@@ -16,7 +17,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.alarm import Alarm
 from app.models.device import Device
-from app.services.alarms.rules import AlarmRuleContext, apply_rule, find_matching_rule, normalize_alarm_severity
+from app.services.alarms.rules import (
+    AlarmRuleContext,
+    apply_rule,
+    find_matching_rule,
+    normalize_alarm_severity,
+)
 from app.services.assurance.snapshot_trigger import maybe_snapshot_for_alarm
 from app.services.events import EventEnvelope, publish_event
 from app.services.snmp.trap_receiver import TrapEvent
@@ -205,7 +211,7 @@ class AlarmCorrelator:
         cls: dict[str, Any],
     ) -> Alarm | None:
         """Apply customer rules and maintain the alarm table for any event source."""
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
 
         async with self._sf() as session:
             ctx = AlarmRuleContext(
@@ -315,7 +321,7 @@ class AlarmCorrelator:
                 raise ValueError(f"Alarm {alarm_id} not found")
             alarm.state = "acknowledged"
             alarm.ack_by = by_user
-            alarm.last_seen = datetime.now(timezone.utc)
+            alarm.last_seen = datetime.now(UTC)
             await session.commit()
             return alarm
 
@@ -325,7 +331,7 @@ class AlarmCorrelator:
             alarm = await session.get(Alarm, alarm_id)
             if alarm is None:
                 raise ValueError(f"Alarm {alarm_id} not found")
-            now = datetime.now(timezone.utc)
+            now = datetime.now(UTC)
             alarm.state = "cleared"
             alarm.cleared_at = now
             alarm.last_seen = now

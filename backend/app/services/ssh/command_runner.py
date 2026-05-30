@@ -5,17 +5,16 @@ from __future__ import annotations
 import asyncio
 import uuid
 from datetime import datetime
-from typing import AsyncGenerator
 
 from loguru import logger
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
+from app.config import settings
 from app.models.command import Command
 from app.models.command_run import CommandRun
 from app.models.credential import Credential
 from app.models.device import Device
-from app.config import settings
 from app.security.allowlist import assert_command_allowed
 from app.security.crypto import CredentialVault
 from app.services.ssh.client import CommandResult, SSHClient, SSHCredential

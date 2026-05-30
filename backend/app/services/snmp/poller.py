@@ -72,15 +72,15 @@ def _auth_data(cred: SNMPCredential) -> Any:
 
     # Lazy import to avoid hard-coding protocol OIDs at module import
     from pysnmp.hlapi.v3arch.asyncio import (
-        usmHMACMD5AuthProtocol,
-        usmHMACSHAAuthProtocol,
-        usmHMAC128SHA224AuthProtocol,  # noqa: F401
-        usmHMAC192SHA256AuthProtocol,
-        usmHMAC384SHA512AuthProtocol,
-        usmDESPrivProtocol,
         usmAesCfb128Protocol,
         usmAesCfb192Protocol,
         usmAesCfb256Protocol,
+        usmDESPrivProtocol,
+        usmHMAC128SHA224AuthProtocol,  # noqa: F401
+        usmHMAC192SHA256AuthProtocol,
+        usmHMAC384SHA512AuthProtocol,
+        usmHMACMD5AuthProtocol,
+        usmHMACSHAAuthProtocol,
         usmNoAuthProtocol,
         usmNoPrivProtocol,
     )

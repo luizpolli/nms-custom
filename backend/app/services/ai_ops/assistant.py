@@ -11,7 +11,7 @@ and never accepts an answer that fails citation validation.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -59,7 +59,7 @@ async def _retrieve_alarms(db: AsyncSession, limit: int) -> list[Alarm]:
 
 
 async def _retrieve_kpis(db: AsyncSession, hours: int, limit: int) -> list[KPI]:
-    since = datetime.now(timezone.utc) - timedelta(hours=max(1, min(hours, 168)))
+    since = datetime.now(UTC) - timedelta(hours=max(1, min(hours, 168)))
     stmt = (
         select(KPI)
         .where(KPI.timestamp >= since, KPI.quality != "good")

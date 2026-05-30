@@ -13,13 +13,12 @@ from datetime import datetime
 
 import httpx
 from loguru import logger
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
+from app.config import settings
 from app.models.credential import Credential
 from app.models.device import Device
 from app.models.ios_version import IOSVersion
-from app.config import settings
 from app.services.ssh.client import SSHClient, SSHCredential
 
 # ---------------------------------------------------------------------------

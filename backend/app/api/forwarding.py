@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -84,7 +84,7 @@ async def update_forwarding_target(
         await _ensure_unique_name(db, data["name"], current_id=id)
     for key, value in data.items():
         setattr(target, key, value)
-    target.updated_at = datetime.now(timezone.utc)
+    target.updated_at = datetime.now(UTC)
     try:
         await db.flush()
     except IntegrityError as exc:

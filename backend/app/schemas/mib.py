@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
 class MIBBase(BaseModel):
     name: str = Field(..., max_length=255)
-    oid_root: Optional[str] = Field(None, max_length=100)
-    description: Optional[str] = None
-    file_path: Optional[str] = Field(None, max_length=500)
+    oid_root: str | None = Field(None, max_length=100)
+    description: str | None = None
+    file_path: str | None = Field(None, max_length=500)
     status: str = Field("active", max_length=20)
 
 
@@ -22,11 +21,11 @@ class MIBCreate(MIBBase):
 
 
 class MIBUpdate(BaseModel):
-    name: Optional[str] = Field(None, max_length=255)
-    oid_root: Optional[str] = None
-    description: Optional[str] = None
-    file_path: Optional[str] = None
-    status: Optional[str] = None
+    name: str | None = Field(None, max_length=255)
+    oid_root: str | None = None
+    description: str | None = None
+    file_path: str | None = None
+    status: str | None = None
 
 
 class MIBRead(MIBBase):
@@ -39,12 +38,12 @@ class MIBRead(MIBBase):
 
 class MIBNotificationRead(BaseModel):
     name: str
-    oid: Optional[str] = None
+    oid: str | None = None
     objects: list[str] = Field(default_factory=list)
-    description: Optional[str] = None
+    description: str | None = None
 
 
 class MIBSummaryRead(BaseModel):
-    module_name: Optional[str] = None
-    module_identity_oid: Optional[str] = None
+    module_name: str | None = None
+    module_identity_oid: str | None = None
     notifications: list[MIBNotificationRead] = Field(default_factory=list)
