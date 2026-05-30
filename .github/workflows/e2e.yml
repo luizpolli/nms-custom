@@ -60,7 +60,14 @@ jobs:
         # the app over plain HTTP in CI. Detached start + custom polling
         # below sidesteps that mismatch without rewriting the production
         # healthcheck.
-        run: docker compose up -d --no-deps postgres redis app frontend
+        # --no-deps so docker doesn't try to honour the frontend->app
+        # depends_on healthcheck (which is HTTPS-only). --wait is omitted
+        # because depends_on conditions would still apply otherwise; we run
+        # our own host-side reachability poll below.
+        run: |
+          docker compose up -d --no-deps postgres redis
+          docker compose up -d --no-deps app
+          docker compose up -d --no-deps frontend
 
       - name: Wait for app + frontend to be reachable
         run: |
