@@ -56,16 +56,10 @@ jobs:
           python -m pytest tests --junitxml=pytest-reports/backend.xml -q
       - name: Compile backend modules
         run: python -m compileall -q app
-      # Mypy is informational while the codebase finishes type coverage (P1.10).
-      # `continue-on-error` keeps it visible in PR checks without blocking merges.
-      - name: Mypy (informational)
-        continue-on-error: true
-        run: |
-          mypy app \
-            --ignore-missing-imports \
-            --no-warn-unused-ignores \
-            --check-untyped-defs \
-            --no-strict-optional || true
+      # Mypy is a required gate: the codebase reached 0 errors in P1.7 and this
+      # step prevents regressions.  Config lives in pyproject.toml [tool.mypy].
+      - name: Mypy type check
+        run: mypy app
       - name: Upload backend test reports
         if: always()
         uses: actions/upload-artifact@v4

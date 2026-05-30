@@ -10,6 +10,11 @@ from datetime import UTC, datetime
 
 from loguru import logger
 
+# RFC 5425 (TLS transport) recommends an 8192-byte maximum for syslog messages
+# sent over a reliable transport.  We apply the same cap to UDP datagrams to
+# guard against amplification and parser-abuse scenarios.
+MAX_SYSLOG_PAYLOAD_BYTES: int = 8192
+
 SYSLOG_SEVERITIES = {
     0: "emerg",
     1: "alert",
@@ -135,6 +140,15 @@ class SyslogReceiver:
             self._transport = None
 
     def _handle_datagram(self, data: bytes, addr: tuple[str, int]) -> None:
+        if len(data) > MAX_SYSLOG_PAYLOAD_BYTES:
+            logger.warning(
+                "Syslog datagram from {}:{} exceeds {} bytes ({} bytes) — dropped",
+                addr[0],
+                addr[1],
+                MAX_SYSLOG_PAYLOAD_BYTES,
+                len(data),
+            )
+            return
         event = parse_syslog(data, addr[0], addr[1])
         logger.debug("Syslog received from {} severity={} msg_id={}", event.source_host, event.severity, event.msg_id)
         try:
