@@ -37,6 +37,19 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
+      # Install frontend deps FIRST, while ./frontend is still owned by
+      # the GHA runner user. Once docker-compose's frontend container
+      # mounts ./frontend:/app and writes into node_modules/ as UID 1000,
+      # the runner user (UID 1001) loses write access and any subsequent
+      # 'npm ci' on the host fails with EACCES under node_modules/.
+      - name: Install frontend dependencies (before compose up)
+        working-directory: frontend
+        run: npm ci
+
+      - name: Install Playwright browsers (Chromium only)
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+
       - name: Prepare .env (HTTPS off for CI)
         run: |
           cp .env.example .env
@@ -101,14 +114,6 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends postgresql-client
           psql --version
-
-      - name: Install frontend dependencies
-        working-directory: frontend
-        run: npm ci
-
-      - name: Install Playwright browsers (Chromium only)
-        working-directory: frontend
-        run: npx playwright install --with-deps chromium
 
       - name: Run Playwright E2E tests
         working-directory: frontend
