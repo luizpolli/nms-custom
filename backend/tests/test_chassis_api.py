@@ -830,3 +830,143 @@ async def test_chassis_endpoint_returns_asr9010_profile_for_supported_device():
     assert chassis["deviceId"] == str(device_id)
     assert chassis["tree"][0]["label"] == "core-asr9010-mx01"
     assert len(chassis["views"][0]["hotspots"]) == 18
+
+
+# ── NCS55A1 variant detection ─────────────────────────────────────────────────
+
+def test_chassis_profile_detects_ncs55a1_48q6h_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs55a1-48q6h",
+        ip_address="10.0.0.70",
+        device_type="router",
+        model="NCS-55A1-48Q6H",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs55a1-48q6h"
+
+
+def test_chassis_profile_detects_ncs55a1_24q6h_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs55a1-24q6h",
+        ip_address="10.0.0.71",
+        device_type="router",
+        model="NCS-55A1-24Q6H-S",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs55a1-24q6h"
+
+
+def test_chassis_profile_detects_ncs55a1_24q6h_ss_variant():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs55a1-24q6h-ss",
+        ip_address="10.0.0.72",
+        device_type="router",
+        model="NCS-55A1-24Q6H-SS",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs55a1-24q6h"
+
+
+def test_chassis_profile_detects_ncs55a1_24h_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs55a1-24h",
+        ip_address="10.0.0.73",
+        device_type="router",
+        model="NCS-55A1-24H",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs55a1-24h"
+
+
+def test_chassis_profile_ncs55a1_36h_falls_back_to_generic():
+    """NCS-55A1-36H-S / 36H-SE-S should use the generic ncs55a1 profile."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs55a1-36h",
+        ip_address="10.0.0.74",
+        device_type="router",
+        model="NCS-55A1-36H-SE-S",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs55a1"
+
+
+# ── NCS5500 fixed-port router detection ───────────────────────────────────────
+
+def test_chassis_profile_detects_ncs5501_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs5501",
+        ip_address="10.0.0.75",
+        device_type="router",
+        model="NCS-5501",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs5501"
+
+
+def test_chassis_profile_detects_ncs5501_se_variant():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs5501-se",
+        ip_address="10.0.0.76",
+        device_type="router",
+        model="NCS-5501-SE",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs5501"
+
+
+def test_chassis_profile_detects_ncs5502_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs5502",
+        ip_address="10.0.0.77",
+        device_type="router",
+        model="NCS-5502",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs5502"
+
+
+def test_chassis_profile_detects_ncs5502_se_variant():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs5502-se",
+        ip_address="10.0.0.78",
+        device_type="router",
+        model="NCS-5502-SE",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs5502"
+
+
+def test_chassis_profile_detects_ncs5508_from_device_model():
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs5508",
+        ip_address="10.0.0.79",
+        device_type="router",
+        model="NCS-5508",
+        vendor="Cisco",
+    )
+    assert _chassis_profile_for_device(device, None) == "ncs5508"
+
+
+def test_chassis_profile_ncs5501_not_confused_with_ncs55a1():
+    """Ensure NCS5501 does not accidentally match the ncs55a1 profile."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="core-ncs5501-check",
+        ip_address="10.0.0.80",
+        device_type="router",
+        model="Cisco NCS 5501",
+        vendor="Cisco",
+    )
+    profile = _chassis_profile_for_device(device, None)
+    assert profile == "ncs5501"
+    assert profile != "ncs55a1"

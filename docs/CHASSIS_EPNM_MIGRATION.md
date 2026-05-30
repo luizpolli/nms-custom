@@ -148,4 +148,47 @@ Detection rules in `backend/app/api/devices.py::_chassis_profile_for_device`:
 4. ASR920 — ✅ done
 5. **NCS540L_CE family** — ✅ done (7 profiles: `ncs540-16z4`, `ncs540-12z16g`, `ncs540-28z4c`, `ncs540-12z20g`, `ncs540-fh-agg`, `ncs540-fh-csr`, `ncs540x-4z14g2q`; variants without EPNM slot data fall back to generic `ncs540`)
 6. ASR9010 — ✅ done
-7. NCS55A1 additional variants — ⏳ pending
+7. NCS55A1 additional variants — ✅ done (see below)
+8. NCS5500 fixed-port family — ✅ done (NCS-5501, NCS-5502, NCS-5508)
+
+---
+
+## NCS55A1 Additional Variants (added 2026-05-30)
+
+Static visual profiles — front + rear views — for NCS55A1 sub-models without dedicated SNMP walk data. Slots shown are based on EPNM SVG assets and slot coordinates from `NCS55XX_CE/js/ChassisViewMetaDataV2.js`.
+
+| Profile | Models | Front SVG | Rear SVG | Notes |
+|---|---|---|---|---|
+| `ncs55a1-24h` | NCS-55A1-24H | `NCS-55A1-24H_Front.svg` | `NCS-55A1-24H_Rear_core.svg` | 1RU, 2 PSU + 2 FT rear |
+| `ncs55a1-24q6h` | NCS-55A1-24Q6H-S, NCS-55A1-24Q6H-SS | `NCS-55A1-24Q6H-S-Front_core.svg` | `NCS-55A1-24Q6H-S-Rear_core.svg` | 1RU, 2 PSU + 2 FT rear |
+| `ncs55a1-48q6h` | NCS-55A1-48Q6H | `NCS-55A1-48Q6H-Front_core.svg` | `NCS-55A1-48Q6H-Rear_core.svg` | 1RU, 2 PSU + 2 FT rear |
+
+Detection rules:
+- `"48q6h" in compact_terms and "ncs55a1" in compact_terms` → `ncs55a1-48q6h`
+- `"24q6h" in compact_terms and "ncs55a1" in compact_terms` → `ncs55a1-24q6h`
+- `"24h" in compact_terms and "ncs55a1" in compact_terms` → `ncs55a1-24h`
+- Generic `ncs55a1` fallback for 36H-S, 36H-SE-S and any other NCS-55A1 model.
+
+---
+
+## NCS5500 Fixed-Port Router Family (added 2026-05-30)
+
+| Profile | Models | Front SVG | Rear SVG | Form Factor |
+|---|---|---|---|---|
+| `ncs5501` | NCS-5501, NCS-5501-SE | `NCS-5501-Front-core.svg` | `NCS-5501_Rear_core.svg` | 1RU |
+| `ncs5502` | NCS-5502, NCS-5502-SE | `NCS-5502_Front_core.svg` | `NCS-5502-Rear-core.svg` | 2RU |
+| `ncs5508` | NCS-5508 | `NCS-5508-Front_b.svg` | `NCS-5508-Rear_b.svg` | Modular (8-slot) |
+
+Detection rules (all checked before `ncs55a1`):
+- `"ncs5508" in compact_terms` → `ncs5508`
+- `"ncs5516" in compact_terms` → `ncs5516` *(profile not yet created, returns None)*
+- `"ncs5502" in compact_terms` → `ncs5502`
+- `"ncs5501" in compact_terms` → `ncs5501`
+
+---
+
+## Front/Rear View Switcher (Frontend)
+
+`ChassisView.tsx` was updated to support multi-view profiles. When `data.views.length > 1`, a **Front View / Rear View** toggle appears above the chassis diagram. Both the header display and the `ChassisCanvas` component respect the selected view id.
+
+All existing single-view profiles (`asr9006`, `asr9010`, etc.) are unaffected — the toggle only appears when there are multiple views.

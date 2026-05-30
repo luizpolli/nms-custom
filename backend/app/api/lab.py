@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
+import json
 from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any
-
-import json
 
 from fastapi import APIRouter, Depends, Query
 from fastapi.responses import Response

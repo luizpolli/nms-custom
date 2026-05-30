@@ -36,6 +36,14 @@ function lazySafe(
 }
 
 const Dashboard = lazySafe(() => import('./pages/Dashboard'), 'Dashboard');
+const DashboardExecutive = lazySafe(
+  () => import('./pages/DashboardExecutive').then((m) => pickExport(m, 'DashboardExecutive')),
+  'DashboardExecutive',
+);
+const NOCBoard = lazySafe(
+  () => import('./pages/NOCBoard').then((m) => pickExport(m, 'NOCBoard')),
+  'NOCBoard',
+);
 const NotFound = lazySafe(() => import('./pages/NotFound'), 'NotFound');
 const Settings = lazySafe(() => import('./pages/Settings'), 'Settings');
 
@@ -170,6 +178,8 @@ export function AppRouter() {
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<ModuleRoute moduleKey="dashboard" name="Dashboard"><Dashboard /></ModuleRoute>} />
+          <Route path="dashboard/executive" element={<ModuleRoute moduleKey="dashboard" name="Executive Summary"><DashboardExecutive /></ModuleRoute>} />
+          <Route path="dashboard/noc" element={<ModuleRoute moduleKey="dashboard" name="NOC Board"><NOCBoard /></ModuleRoute>} />
           <Route path="devices" element={<ModuleRoute moduleKey="devices" name="Devices"><DevicesPage /></ModuleRoute>} />
           <Route path="devices/:id" element={<ModuleRoute moduleKey="devices" name="Device Detail"><DeviceDetailPage /></ModuleRoute>} />
           <Route path="inventory" element={<ModuleRoute moduleKey="inventory" name="Inventory"><InventoryPage /></ModuleRoute>} />
