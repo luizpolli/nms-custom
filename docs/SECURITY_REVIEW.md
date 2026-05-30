@@ -37,6 +37,15 @@ NMS_Custom is still lab/development-friendly by default, but the main production
    - The server can generate a development self-signed cert when files are missing. That is useful for lab bootstrapping, not production trust.
    - Mount a real certificate/key pair and keep `TLS_MIN_VERSION=TLSv1.3` unless legacy clients force TLS 1.2.
 
+5. **Rate limiting (enabled by default).**
+   - `app.security.rate_limit.RateLimitMiddleware` enforces sliding-window limits on every `/api/*` request. Backed by Redis (ZSET sliding window) with a transparent in-process fallback if Redis is unreachable.
+   - Identity bucket: hashed API key when the presented key matches a configured one; otherwise the source IP. Garbage keys do NOT promote a client into the authenticated bucket and cannot dodge limits by rotation.
+   - Buckets and defaults (configurable, see `.env.example`):
+     - `RATE_LIMIT_DEFAULT=120/60` — authenticated `/api/*` requests.
+     - `RATE_LIMIT_SENSITIVE=20/60` — `/api/commands`, `/api/command-schedules`, `/api/credentials`, `/api/settings/{users,roles,api-keys,account-audit}`, `/api/ai-ops`, `/api/mibs`, and any unauthenticated write.
+     - `RATE_LIMIT_ANONYMOUS=30/60` — unauthenticated reads.
+   - Health, metrics, and docs paths are exempt. `APP_ENV=test` and `RATE_LIMIT_ENABLED=false` disable the middleware. Blocked requests respond with HTTP 429, a JSON body, and `Retry-After`/`X-RateLimit-*` headers.
+
 ### P1 — Recommended hardening next
 
 1. **Keep command execution least-privilege.**

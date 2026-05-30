@@ -136,6 +136,15 @@ def _configured_keys() -> list[str]:
     return [str(item).strip() for item in raw if str(item).strip()]
 
 
+def configured_api_keys() -> list[str]:
+    """Public accessor for callers outside this module (e.g. rate-limit).
+
+    Returns the configured API keys as a list of stripped, non-empty strings.
+    Mirrors the internal ``_configured_keys`` helper.
+    """
+    return _configured_keys()
+
+
 def _role_map() -> dict[str, str]:
     raw = getattr(settings, "api_key_roles", "") or ""
     out: dict[str, str] = {}

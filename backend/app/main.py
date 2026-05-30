@@ -34,6 +34,7 @@ from app.api.metrics import router as metrics_router
 from app.api.lab import router as lab_router
 from app.workers import WorkerSupervisor
 from app.security.auth import principal_from_presented_key, require_api_auth
+from app.security.rate_limit import RateLimitMiddleware
 from app.security.redaction import configure_log_redaction
 from app.services.account_audit import record_account_activity
 from app.services.observability.metrics import observe_request
@@ -126,6 +127,12 @@ async def account_activity_audit(request, call_next):
             )
             await session.commit()
     return response
+
+# Rate limit is added before TrustedHost so the limit response still returns
+# a fast 429 even for hosts that pass TrustedHost. APP_ENV=test and
+# RATE_LIMIT_ENABLED=false short-circuit inside the middleware.
+if settings.rate_limit_enabled and settings.app_env != "test":
+    app.add_middleware(RateLimitMiddleware)
 
 # Add TrustedHost last so it is the outermost middleware and rejects bad Host
 # headers before request metrics or route handling.

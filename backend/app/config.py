@@ -199,6 +199,28 @@ class Settings(BaseSettings):
     lldp_interval: int = 120
     cdp_interval: int = 120
 
+    # ---- Rate limiting --------------------------------------------------
+    # Toggle the request rate-limit middleware. Defaults to on; tests
+    # disable it via APP_ENV=test (handled in the middleware).
+    rate_limit_enabled: bool = True
+    # Storage backend. "auto" tries Redis (using REDIS_URL) and falls back to
+    # in-process memory if Redis is unreachable. "redis" forces Redis; "memory"
+    # forces the in-process limiter (only safe for single-worker deployments).
+    rate_limit_backend: str = "auto"
+    # Default bucket applied to /api/* paths that don't match a more specific
+    # rule. Format: "<count>/<window-seconds>".
+    rate_limit_default: str = "120/60"
+    # Tight bucket for high-risk endpoints (auth, command exec, credential
+    # writes). Counted per-principal when an API key is present, otherwise
+    # per source IP.
+    rate_limit_sensitive: str = "20/60"
+    # Burst bucket for unauthenticated requests. Keeps the front door from
+    # being a free-for-all even before auth runs.
+    rate_limit_anonymous: str = "30/60"
+    # Comma-separated path prefixes that bypass rate limiting entirely
+    # (health, metrics, docs). Operators can extend this list without code.
+    rate_limit_exempt_paths: str = "/api/health,/health,/metrics,/api/docs,/api/openapi,/api/redoc"
+
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",
