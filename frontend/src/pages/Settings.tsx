@@ -861,7 +861,9 @@ interface IntegrationsAiOpsAdminSettings {
   ai_ops_enabled: boolean;
   ai_recommendation_min_confidence: number;
   llm_provider: 'local' | 'openai' | 'azure' | 'custom';
+  llm_base_url: string;
   llm_model: string;
+  llm_timeout_seconds: number;
   report_export_target_path: string;
 }
 
@@ -872,7 +874,9 @@ const INTEGRATIONS_DEFAULTS: IntegrationsAiOpsAdminSettings = {
   ai_ops_enabled: true,
   ai_recommendation_min_confidence: 70,
   llm_provider: 'local',
+  llm_base_url: '',
   llm_model: '',
+  llm_timeout_seconds: 30,
   report_export_target_path: '',
 };
 
@@ -913,24 +917,41 @@ function IntegrationsAiOpsSettingsPanel() {
             Enable AI Ops recommendations
           </label>
           <label className="block">
-            <span className="mb-1 block font-medium">Minimum confidence (%)</span>
-            <Input type="number" value={cfg.ai_recommendation_min_confidence} onChange={(e) => setIntegration('ai_recommendation_min_confidence', Number(e.target.value))} disabled={!cfg.ai_ops_enabled} />
-          </label>
-          <label className="block">
             <span className="mb-1 block font-medium">LLM provider</span>
             <Select value={cfg.llm_provider} onChange={(e) => setIntegration('llm_provider', e.target.value as IntegrationsAiOpsAdminSettings['llm_provider'])} disabled={!cfg.ai_ops_enabled}>
-              <option value="local">Local</option>
+              <option value="local">Local (no external API)</option>
               <option value="openai">OpenAI</option>
               <option value="azure">Azure OpenAI</option>
-              <option value="custom">Custom</option>
+              <option value="custom">Custom / OpenAI-compatible</option>
             </Select>
           </label>
           <label className="block">
             <span className="mb-1 block font-medium">Model name</span>
-            <Input value={cfg.llm_model} onChange={(e) => setIntegration('llm_model', e.target.value)} placeholder="optional" disabled={!cfg.ai_ops_enabled} />
+            <Input value={cfg.llm_model} onChange={(e) => setIntegration('llm_model', e.target.value)} placeholder="e.g. gpt-4o, llama3" disabled={!cfg.ai_ops_enabled} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Timeout (seconds)</span>
+            <Input type="number" value={cfg.llm_timeout_seconds} onChange={(e) => setIntegration('llm_timeout_seconds', Number(e.target.value))} disabled={!cfg.ai_ops_enabled} />
+          </label>
+          <label className="block md:col-span-2">
+            <span className="mb-1 block font-medium">Base URL</span>
+            <Input
+              value={cfg.llm_base_url}
+              onChange={(e) => setIntegration('llm_base_url', e.target.value)}
+              placeholder={cfg.llm_provider === 'custom' ? 'https://my-llm-proxy.example.com/v1' : 'Leave empty for provider default'}
+              disabled={!cfg.ai_ops_enabled}
+            />
+          </label>
+          <label className="block">
+            <span className="mb-1 block font-medium">Minimum confidence (%)</span>
+            <Input type="number" value={cfg.ai_recommendation_min_confidence} onChange={(e) => setIntegration('ai_recommendation_min_confidence', Number(e.target.value))} disabled={!cfg.ai_ops_enabled} />
           </label>
           <div className="md:col-span-3">
-            <SettingsHint>API keys and tokens should stay in environment variables or secret stores. This screen saves provider references and behavior knobs only.</SettingsHint>
+            <SettingsHint>
+              API keys and tokens must be configured via environment variables or a secret store — never entered here.
+              This panel stores only provider references, model selection, and behaviour knobs.
+              The Base URL field accepts any OpenAI-compatible endpoint (e.g. a local Ollama proxy or a self-hosted vLLM instance).
+            </SettingsHint>
           </div>
         </div>
       </Card>
