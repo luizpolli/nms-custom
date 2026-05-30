@@ -1,0 +1,35 @@
+# Gitleaks config for nms-custom.
+#
+# We extend the default ruleset and only add an allowlist for known
+# false-positive paths. New true findings still fail CI as expected.
+#
+# Reference: https://github.com/gitleaks/gitleaks#configuration
+
+title = "nms-custom gitleaks config"
+
+[extend]
+useDefault = true
+
+# ----------------------------------------------------------------------------
+# Path-based allowlist
+# ----------------------------------------------------------------------------
+#
+# Chassis profile JSON files are bulk-generated from EPNM SVG assets and SNMP
+# walks. Their `slotKey` / `displayName` / `vendorType` fields embed Cisco
+# interface names like "TwentyFiveGigE0/0/0/26" and OIDs like
+# "SNMPv2-SMI::enterprises.9.12.3.1.10.359" that the generic-api-key rule
+# routinely flags as high-entropy secrets. They are network-equipment
+# identifiers, not credentials.
+#
+# Sanitized SNMP walks live under docs/snmpwalks/sanitized/ and have already
+# had real device IPs / sysContact / community strings stripped by
+# scripts/normalize_snmpwalk_chassis.py — they're safe to ship as test
+# fixtures.
+[allowlist]
+description = "Allowlist generated chassis profile data and sanitized snmp walks"
+paths = [
+  '''^backend/app/data/chassis/.*\.json$''',
+  '''^frontend/public/chassis-assets/.*\.json$''',
+  '''^docs/snmpwalks/sanitized/.*''',
+  '''^docs/snmpwalks/normalized/.*\.json$''',
+]
