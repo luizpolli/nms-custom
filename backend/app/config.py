@@ -7,6 +7,39 @@ from typing import Any
 
 DEFAULT_ALLOWED_HOSTS = ["localhost", "127.0.0.1", "::1", "testserver", "app", "backend"]
 
+# --- Production guard ----------------------------------------------------------
+# Values that ship as development placeholders and MUST be replaced before any
+# production deployment. The guard in Settings._enforce_production_safety()
+# refuses to boot when APP_ENV="production" and any of these are still present.
+_UNSAFE_PLACEHOLDER_FRAGMENTS = (
+    "change-me",
+    "change\u2026",  # the .env.example uses an ellipsis: change…-key, change…-hex
+)
+_UNSAFE_DEFAULT_SECRETS = {
+    "secret_key": {"change-me-to-a-real-secret-key"},
+    "postgres_password": {"nms_secret", "***", ""},
+    "snmp_default_community": {"public", "private", ""},
+}
+# Minimum entropy length expected from secrets in production. Short strings are
+# rejected even if they avoid the placeholder fragments above.
+_MIN_SECRET_LENGTH = 16
+
+
+class ProductionSafetyError(RuntimeError):
+    """Raised when APP_ENV=production is set but unsafe defaults remain.
+
+    Carries the full list of issues so operators see every blocker at once
+    instead of fixing one, restarting, and discovering the next.
+    """
+
+    def __init__(self, issues: list[str]) -> None:
+        self.issues = list(issues)
+        bullet = "\n  - "
+        super().__init__(
+            "Refusing to start with APP_ENV=production while unsafe defaults "
+            "remain. Fix every item below and restart:" + bullet + bullet.join(self.issues)
+        )
+
 
 def _parse_list_setting(value: str | list[str]) -> list[str]:
     """Parse JSON/Python-list or comma-separated environment list settings."""
@@ -198,6 +231,136 @@ class Settings(BaseSettings):
             self.allowed_hosts = DEFAULT_ALLOWED_HOSTS.copy()
         if isinstance(self.mib_allowed_extensions, str):
             self.mib_allowed_extensions = [x.strip().lower() for x in self.mib_allowed_extensions.split(",") if x.strip()]
+        # Fail-fast on unsafe production config. Runs after list normalization
+        # so checks see the same values the app will use.
+        self._enforce_production_safety()
+
+    # -- production safety --------------------------------------------------
+
+    def _enforce_production_safety(self) -> None:
+        """Refuse to boot when APP_ENV=production but unsafe defaults remain.
+
+        Collects every issue first, then raises a single ProductionSafetyError
+        listing all of them. Skips when APP_ENV is anything other than
+        ``production`` (notably ``development`` and ``test``).
+        """
+        if (self.app_env or "").strip().lower() != "production":
+            return
+
+        issues: list[str] = []
+
+        def _looks_like_placeholder(value: str) -> bool:
+            v = value.lower()
+            return any(frag in v for frag in _UNSAFE_PLACEHOLDER_FRAGMENTS)
+
+        # 1) Known dev-default values for sensitive secrets.
+        for field, bad_values in _UNSAFE_DEFAULT_SECRETS.items():
+            current = getattr(self, field, "")
+            if not isinstance(current, str):
+                continue
+            if current in bad_values or _looks_like_placeholder(current):
+                issues.append(
+                    f"{field.upper()} is still set to an unsafe default "
+                    f"({current!r}). Replace it with a strong, unique value."
+                )
+
+        # 2) Minimum entropy for secrets that must be operator-supplied.
+        for field in ("secret_key", "postgres_password"):
+            value = getattr(self, field, "")
+            if (
+                isinstance(value, str)
+                and value
+                and not _looks_like_placeholder(value)
+                and value not in _UNSAFE_DEFAULT_SECRETS.get(field, set())
+                and len(value) < _MIN_SECRET_LENGTH
+            ):
+                issues.append(
+                    f"{field.upper()} is shorter than {_MIN_SECRET_LENGTH} "
+                    "characters. Use a high-entropy secret."
+                )
+
+        # 3) Credential vault keys must be present (hex-encoded by crypto.py).
+        if not self.credential_encryption_key:
+            issues.append(
+                "CREDENTIAL_ENCRYPTION_KEY is empty. Generate a 32-byte key "
+                "and provide it as hex/base64 (see docs/SECURITY_REVIEW.md)."
+            )
+        elif _looks_like_placeholder(self.credential_encryption_key):
+            issues.append(
+                "CREDENTIAL_ENCRYPTION_KEY still contains a placeholder. "
+                "Generate a fresh 32-byte key."
+            )
+        if not self.credential_encryption_iv:
+            issues.append(
+                "CREDENTIAL_ENCRYPTION_IV is empty. Provide a 16-byte IV "
+                "(see docs/SECURITY_REVIEW.md)."
+            )
+        elif _looks_like_placeholder(self.credential_encryption_iv):
+            issues.append(
+                "CREDENTIAL_ENCRYPTION_IV still contains a placeholder. "
+                "Generate a fresh 16-byte IV."
+            )
+
+        # 4) API auth must be on; debug mode must be off.
+        if not self.api_auth_enabled:
+            issues.append(
+                "API_AUTH_ENABLED=false in production. Set it to true and "
+                "provide API_KEYS with strong unique values."
+            )
+        else:
+            keys_raw = self.api_keys
+            keys: list[str]
+            if isinstance(keys_raw, list):
+                keys = [k.strip() for k in keys_raw if k and k.strip()]
+            else:
+                keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
+            if not keys:
+                issues.append(
+                    "API_AUTH_ENABLED is true but API_KEYS is empty. "
+                    "Provide at least one key."
+                )
+            else:
+                for k in keys:
+                    # Allow pre-hashed `sha256$<hex>` entries (see auth.py).
+                    body = k.split("$", 1)[1] if k.startswith("sha256$") else k
+                    if _looks_like_placeholder(body):
+                        issues.append(
+                            "API_KEYS contains a placeholder value "
+                            f"({k!r}). Rotate to a strong unique key."
+                        )
+                        break
+                    if len(body) < _MIN_SECRET_LENGTH:
+                        issues.append(
+                            "API_KEYS contains a value shorter than "
+                            f"{_MIN_SECRET_LENGTH} characters. Use "
+                            "high-entropy keys."
+                        )
+                        break
+
+        if self.debug:
+            issues.append("DEBUG=true is not allowed in production.")
+
+        # 5) Transport hardening.
+        if not self.https_enabled:
+            issues.append(
+                "HTTPS_ENABLED=false in production. Enable TLS or terminate "
+                "TLS at an upstream ingress and document it."
+            )
+        if self.tls_min_version not in {"TLSv1.2", "TLSv1.3"}:
+            issues.append(
+                f"TLS_MIN_VERSION={self.tls_min_version!r} is not supported. "
+                "Use TLSv1.2 or TLSv1.3."
+            )
+
+        # 6) SSH host-key checking must stay on in production.
+        if self.ssh_disable_host_key_checking:
+            issues.append(
+                "SSH_DISABLE_HOST_KEY_CHECKING=true in production. "
+                "Remove it and provide a populated known_hosts file."
+            )
+
+        if issues:
+            raise ProductionSafetyError(issues)
 
 
 settings = Settings()

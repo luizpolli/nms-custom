@@ -23,6 +23,7 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 1. **Replace all development defaults before deployment.**
    - Defaults such as `SECRET_KEY=change-me-to-a-real-secret-key`, `POSTGRES_PASSWORD=nms_secret`, `SNMP_DEFAULT_COMMUNITY=public`, and placeholder credential encryption material are unsafe outside local labs.
    - Set `APP_ENV=production`, `DEBUG=false`, `API_AUTH_ENABLED=true`, strong `API_KEYS`, strong role mappings, and generated encryption keys.
+   - **Enforced at boot.** When `APP_ENV=production`, `app.config.Settings` now runs a fail-fast guard (`ProductionSafetyError`) that refuses to start while any of these defaults remain. It collects every issue first and reports the full list, so operators do not fix one, restart, and find the next. Checks cover: dev-default secrets, low-entropy secrets (<16 chars), empty/placeholder credential vault keys/IVs, `API_AUTH_ENABLED=false`, empty or placeholder `API_KEYS` (including `sha256$...` hashed entries), `DEBUG=true`, `HTTPS_ENABLED=false`, unsupported `TLS_MIN_VERSION`, and `SSH_DISABLE_HOST_KEY_CHECKING=true`. Test/dev environments are unaffected. See `tests/security/test_production_safety.py`.
 
 2. **Do not expose data stores directly.**
    - Compose publishes Postgres `5432` and Redis `6379` by default for local convenience.
