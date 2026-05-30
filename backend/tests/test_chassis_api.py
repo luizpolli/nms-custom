@@ -407,6 +407,89 @@ def test_chassis_profile_detects_ncs540_from_n540_shortname():
 
 
 # ---------------------------------------------------------------------------
+# Profile detection — NCS540L_CE sub-models (ncs540-16z4, ncs540-12z16g)
+# ---------------------------------------------------------------------------
+
+
+def test_chassis_profile_detects_ncs540_16z4_from_device_model():
+    """N540X-16Z4G8Q2C-D must resolve to ncs540-16z4 (not generic ncs540)."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-16z4-pe01",
+        ip_address="10.0.0.57",
+        device_type="router",
+        model="Cisco N540X-16Z4G8Q2C-D",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-16z4"
+
+
+def test_chassis_profile_detects_ncs540_16z4_from_inventory_model():
+    """Detection via Inventory.hardware_model string for N540X-16Z4G8Q2C-D."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-16z4-pe02",
+        ip_address="10.0.0.58",
+        device_type="router",
+        vendor="Cisco",
+    )
+    inventory = Inventory(
+        id=uuid.uuid4(),
+        device_id=device.id,
+        hardware_model="N540X-16Z4G8Q2C-D",
+    )
+
+    assert _chassis_profile_for_device(device, inventory) == "ncs540-16z4"
+
+
+def test_chassis_profile_detects_ncs540_12z16g_from_device_model():
+    """NCS_540X-12Z16G-SYS-D must resolve to ncs540-12z16g (not generic ncs540)."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-12z16g-pe01",
+        ip_address="10.0.0.59",
+        device_type="router",
+        model="Cisco NCS_540X-12Z16G-SYS-D",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540-12z16g"
+
+
+def test_chassis_profile_detects_ncs540_12z16g_from_inventory_model():
+    """Detection via Inventory.hardware_model string for N540X-12Z16G-SYS-D."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-12z16g-pe02",
+        ip_address="10.0.0.60",
+        device_type="router",
+        vendor="Cisco",
+    )
+    inventory = Inventory(
+        id=uuid.uuid4(),
+        device_id=device.id,
+        hardware_model="N540X-12Z16G-SYS-D",
+    )
+
+    assert _chassis_profile_for_device(device, inventory) == "ncs540-12z16g"
+
+
+def test_chassis_profile_ncs540_generic_not_stolen_by_submodels():
+    """A generic NCS-540 model (no 16Z4 / 12Z16G tokens) must still resolve to ncs540."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="ncs540-generic-pe01",
+        ip_address="10.0.0.61",
+        device_type="router",
+        model="Cisco NCS-540-24Z8Q2C-SYS",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs540"
+
+
+# ---------------------------------------------------------------------------
 # Profile detection — ASR9010
 # ---------------------------------------------------------------------------
 

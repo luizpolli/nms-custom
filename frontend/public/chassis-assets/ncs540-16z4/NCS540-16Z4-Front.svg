@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="N540X-16Z4G8Q2C-D_Front_coreLayer_1"
+   data-name="Layer 1"
+   version="1.1"
+   width="1680"
+   height="168"
+   viewBox="0 0 1680 168"
+   sodipodi:docname="N540X-16Z4G8Q2C-D_Front_core.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata303">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     id="namedview301"
+     showgrid="false"
+     inkscape:zoom="0.80178571"
+     inkscape:cx="840"
+     inkscape:cy="84"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="N540X-16Z4G8Q2C-D_Front_coreLayer_1" />
+  <defs
+     id="N540X-16Z4G8Q2C-D_Front_coredefs4">
+    <style
+       id="N540X-16Z4G8Q2C-D_Front_corestyle2" />
+  </defs>
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corerect6"
+     d="M.5.5h1679v167H.5z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-1"
+     d="M1679 1v166H1V1h1678m1-1H0v168h1680z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath8"
+     fill="#1a1a1a" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-2"
+     d="M6 3.5a1.5 1.5 0 010-3h1668a1.5 1.5 0 010 3z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath10"
+     fill="#b3b3b3"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-3"
+     d="M1674 1a1 1 0 010 2H6a1 1 0 010-2h1668m0-1H6a2 2 0 000 4h1668a2 2 0 000-4z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath12"
+     fill="#999" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-2"
+     d="M2 167.5A1.5 1.5 0 01.5 166V2a1.5 1.5 0 013 0v164a1.5 1.5 0 01-1.5 1.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath14"
+     fill="#b3b3b3"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-3"
+     d="M2 1a1 1 0 011 1v164a1 1 0 01-2 0V2a1 1 0 011-1m0-1a2 2 0 00-2 2v164a2 2 0 004 0V2a2 2 0 00-2-2z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath16"
+     fill="#999" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-2"
+     d="M1678 167.5a1.5 1.5 0 01-1.5-1.5V2a1.5 1.5 0 013 0v164a1.5 1.5 0 01-1.5 1.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath18"
+     fill="#b3b3b3"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-3"
+     d="M1678 1a1 1 0 011 1v164a1 1 0 01-2 0V2a1 1 0 011-1m0-1a2 2 0 00-2 2v164a2 2 0 004 0V2a2 2 0 00-2-2z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath20"
+     fill="#999" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-2"
+     d="M6 167.5a1.5 1.5 0 010-3h1668a1.5 1.5 0 010 3z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath22"
+     fill="#b3b3b3"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-3"
+     d="M1674 165a1 1 0 010 2H6a1 1 0 010-2h1668m0-1H6a2 2 0 000 4h1668a2 2 0 000-4z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath24"
+     fill="#999" />
+  <rect
+     class="N540X-16Z4G8Q2C-D_Front_corecls-4"
+     x="180.5"
+     y="5.5"
+     width="1494"
+     height="157"
+     rx="2.5"
+     id="N540X-16Z4G8Q2C-D_Front_corerect26"
+     fill="#b3b3b3" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-3"
+     d="M1672 6a2 2 0 012 2v152a2 2 0 01-2 2H183a2 2 0 01-2-2V8a2 2 0 012-2h1489m0-1H183a3 3 0 00-3 3v152a3 3 0 003 3h1489a3 3 0 003-3V8a3 3 0 00-3-3z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath28"
+     fill="#999" />
+  <path
+     d="M203.42 153.2h3.89v1h-2.66v1.86h2.48v1h-2.48v2.86h-1.23z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath30" />
+  <path
+     d="M209.14 158l-.58 1.91h-1.27l2.16-6.74H211l2.19 6.74h-1.32l-.61-1.91zm1.93-.93l-.53-1.66c-.13-.41-.24-.87-.34-1.26-.1.39-.2.86-.32 1.26l-.52 1.66z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath32" />
+  <path
+     d="M214.15 159.94v-6.74h1.4l1.74 2.89a18.54 18.54 0 011.15 2.26c-.08-.9-.11-1.77-.11-2.8v-2.35h1.14v6.74h-1.27l-1.76-3a22.28 22.28 0 01-1.21-2.32c.05.87.06 1.76.06 2.87v2.41z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath34" />
+  <path
+     d="M202.19 106.29a10.66 10.66 0 011.88-.14 3 3 0 012 .55 1.9 1.9 0 01.66 1.49 2 2 0 01-.58 1.53 3 3 0 01-2.13.72 3.47 3.47 0 01-.6 0v2.54h-1.22zm1.22 3.14a2.48 2.48 0 00.6 0c.92 0 1.48-.45 1.48-1.24s-.52-1.15-1.37-1.15a3.4 3.4 0 00-.71.06z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath36" />
+  <path
+     d="M208.84 112.94l-1.65-6.74h1.31l.64 3.06c.17.82.33 1.68.44 2.35.11-.71.3-1.51.49-2.36l.73-3h1.29l.67 3.1c.17.8.31 1.55.41 2.28.12-.74.28-1.51.46-2.33l.7-3h1.25l-1.81 6.74h-1.32l-.7-3.17a19.21 19.21 0 01-.37-2.14c-.12.72-.25 1.37-.45 2.14l-.78 3.17z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath38" />
+  <path
+     d="M216.44 106.29a11.68 11.68 0 011.86-.14 3.12 3.12 0 012.08.54A1.71 1.71 0 01221 108a1.8 1.8 0 01-1.22 1.69 1.72 1.72 0 01.94 1.3 13.45 13.45 0 00.53 1.88h-1.27a9.52 9.52 0 01-.45-1.59c-.19-.88-.51-1.16-1.21-1.18h-.62v2.77h-1.22zm1.22 3h.73c.83 0 1.35-.44 1.35-1.11 0-.67-.52-1.08-1.32-1.08a3.54 3.54 0 00-.76.06z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath40" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="211.45"
+     cy="141.75"
+     r="7.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle42"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M211.45 134.75a7 7 0 11-7 7 7 7 0 017-7m0-1a8 8 0 108 8 8 8 0 00-8-8z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath44"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="211.45"
+     cy="141.75"
+     r="3.69"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle46"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M211.45 138.56a3.19 3.19 0 11-3.19 3.19 3.19 3.19 0 013.19-3.19m0-1a4.19 4.19 0 104.19 4.19 4.2 4.2 0 00-4.19-4.19z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath48"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="211.45"
+     cy="140.23"
+     rx="1.52"
+     ry=".76"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse50"
+     fill="#f2f2f2" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="211.45"
+     cy="124.75"
+     r="7.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle52"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M211.45 117.75a7 7 0 11-7 7 7 7 0 017-7m0-1a8 8 0 108 8 8 8 0 00-8-8z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath54"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="211.45"
+     cy="124.75"
+     r="3.69"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle56"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M211.45 121.56a3.19 3.19 0 11-3.19 3.19 3.19 3.19 0 013.19-3.19m0-1a4.19 4.19 0 104.19 4.19 4.2 4.2 0 00-4.19-4.19z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath58"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="211.45"
+     cy="123.23"
+     rx="1.52"
+     ry=".76"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse60"
+     fill="#f2f2f2" />
+  <path
+     d="M1362.6 152.25v-1l3-3.72h-2.67v-1h4.19v.9l-3.13 3.87h3.26v1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath62" />
+  <path
+     d="M1369.28 152.25v-4.76h-1.7v-1h4.55v1h-1.7v4.76z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath64" />
+  <path
+     d="M1372.87 152.25v-5.73h1.86a6.37 6.37 0 011.37.09 1.51 1.51 0 01.83.56 1.8 1.8 0 01.33 1.12 1.82 1.82 0 01-.19.88 1.61 1.61 0 01-.49.57 1.79 1.79 0 01-.6.27 7 7 0 01-1.2.08h-.78v2.16zm1.16-4.76v1.63h.63a3 3 0 00.92-.09.75.75 0 00.49-.73.69.69 0 00-.19-.51.79.79 0 00-.46-.26 5.05 5.05 0 00-.83 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath66" />
+  <path
+     d="M1403.51 146.39l1.12-.11a1.37 1.37 0 00.42.83 1.2 1.2 0 00.83.27 1.29 1.29 0 00.85-.24.7.7 0 00.28-.55.51.51 0 00-.12-.35 1 1 0 00-.42-.25c-.13 0-.44-.13-.92-.25a3.18 3.18 0 01-1.31-.56 1.5 1.5 0 01-.52-1.16 1.47 1.47 0 01.24-.81 1.62 1.62 0 01.72-.59 2.94 2.94 0 011.13-.19 2.37 2.37 0 011.62.47 1.67 1.67 0 01.57 1.26l-1.15.05a1 1 0 00-.32-.63 1.19 1.19 0 00-.74-.2 1.29 1.29 0 00-.78.21.41.41 0 00-.19.36.44.44 0 00.17.34 3 3 0 001.07.39 5.36 5.36 0 011.24.41 1.56 1.56 0 01.64.58 1.73 1.73 0 01.23.91 1.71 1.71 0 01-1.05 1.56 3.23 3.23 0 01-1.25.21 2.47 2.47 0 01-1.66-.5 2.16 2.16 0 01-.7-1.46z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath68" />
+  <path
+     d="M1410.43 148.25v-4.76h-1.7v-1h4.55v1h-1.7v4.76z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath70" />
+  <path
+     d="M1413.73 146.39l1.13-.11a1.31 1.31 0 00.41.83 1.25 1.25 0 00.84.27 1.28 1.28 0 00.84-.24.7.7 0 00.28-.55.51.51 0 00-.12-.35 1 1 0 00-.41-.25l-.93-.25a3.13 3.13 0 01-1.3-.56 1.51 1.51 0 01-.53-1.16 1.41 1.41 0 01.25-.81 1.54 1.54 0 01.71-.59 2.94 2.94 0 011.13-.19 2.37 2.37 0 011.62.47 1.6 1.6 0 01.57 1.26l-1.15.05a1 1 0 00-.32-.63 1.16 1.16 0 00-.73-.2 1.3 1.3 0 00-.79.21.44.44 0 00-.19.36.42.42 0 00.18.34 3 3 0 001.06.39 5.66 5.66 0 011.25.41 1.54 1.54 0 01.63.58 1.73 1.73 0 01.23.91 1.68 1.68 0 01-.27.92 1.7 1.7 0 01-.78.64 3.21 3.21 0 01-1.24.21 2.5 2.5 0 01-1.67-.5 2.2 2.2 0 01-.7-1.46z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath72" />
+  <path
+     d="M1492.18 146.39l1.12-.11a1.42 1.42 0 00.41.83 1.25 1.25 0 00.84.27 1.28 1.28 0 00.84-.24.71.71 0 00.29-.55.51.51 0 00-.12-.35 1 1 0 00-.42-.25c-.14 0-.44-.13-.93-.25a3.13 3.13 0 01-1.3-.56 1.51 1.51 0 01-.53-1.16 1.49 1.49 0 01.25-.81 1.57 1.57 0 01.72-.59 2.88 2.88 0 011.12-.19 2.42 2.42 0 011.63.47 1.67 1.67 0 01.57 1.26l-1.16.05a1 1 0 00-.32-.63 1.14 1.14 0 00-.73-.2 1.3 1.3 0 00-.79.21.43.43 0 00-.18.36.44.44 0 00.17.34 3 3 0 001.06.39 5.48 5.48 0 011.25.41 1.54 1.54 0 01.63.58 1.64 1.64 0 01.23.91 1.68 1.68 0 01-.27.92 1.62 1.62 0 01-.77.64 3.26 3.26 0 01-1.25.21 2.52 2.52 0 01-1.67-.5 2.15 2.15 0 01-.69-1.46z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath74" />
+  <path
+     d="M1499.31 148.25v-2.41l-2.1-3.32h1.36l1.34 2.27 1.32-2.27h1.34l-2.11 3.33v2.4z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath76" />
+  <path
+     d="M1503.15 148.25v-5.73h1.13l2.34 3.83v-3.83h1.08v5.73h-1.16l-2.31-3.73v3.73z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath78" />
+  <path
+     d="M1512.58 146.14l1.12.36a2.49 2.49 0 01-.85 1.39 2.42 2.42 0 01-1.53.46 2.45 2.45 0 01-1.87-.78 3 3 0 01-.74-2.13 3.12 3.12 0 01.74-2.22 2.53 2.53 0 011.94-.79 2.37 2.37 0 011.71.62 2.21 2.21 0 01.59 1l-1.15.28a1.2 1.2 0 00-.42-.71 1.24 1.24 0 00-.78-.26 1.33 1.33 0 00-1 .46 2.28 2.28 0 00-.39 1.48 2.41 2.41 0 00.39 1.55 1.26 1.26 0 001 .46 1.21 1.21 0 00.8-.29 1.71 1.71 0 00.44-.88z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath80" />
+  <path
+     d="M1452.08 158.86h-1.26l-.5-1.3H1448l-.48 1.3h-1.22l2.23-5.72h1.22zm-2.08-2.26l-.79-2.13-.77 2.13z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath82" />
+  <path
+     d="M1452.73 158.86v-5.68h1.15v4.72h2.88v1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath84" />
+  <path
+     d="M1457.57 158.86v-5.72h1.73l1 3.9 1-3.9h1.74v5.72H1462v-4.5l-1.13 4.5h-1.12l-1.13-4.5v4.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath86" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="1370"
+     cy="136.75"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle88"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1370 130.75a6 6 0 11-6 6 6 6 0 016-6m0-1a7 7 0 107 7 7 7 0 00-7-7z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath90"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1370"
+     cy="136.75"
+     r="3.17"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle92"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1370 134.08a2.67 2.67 0 11-2.67 2.67 2.68 2.68 0 012.67-2.67m0-1a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath94"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="1370"
+     cy="135.42"
+     rx="1.33"
+     ry=".67"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse96"
+     fill="#f2f2f2" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="1427"
+     cy="145"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle98"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1427 139a6 6 0 11-6 6 6 6 0 016-6m0-1a7 7 0 107 7 7 7 0 00-7-7z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath100"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1427"
+     cy="145"
+     r="3.17"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle102"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1427 142.33a2.67 2.67 0 11-2.67 2.67 2.68 2.68 0 012.67-2.67m0-1a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath104"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="1427"
+     cy="143.67"
+     rx="1.33"
+     ry=".67"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse106"
+     fill="#f2f2f2" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="1455"
+     cy="145"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle108"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1455 139a6 6 0 11-6 6 6 6 0 016-6m0-1a7 7 0 107 7 7 7 0 00-7-7z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath110"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1455"
+     cy="145"
+     r="3.17"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle112"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1455 142.33a2.67 2.67 0 11-2.67 2.67 2.68 2.68 0 012.67-2.67m0-1a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath114"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="1455"
+     cy="143.67"
+     rx="1.33"
+     ry=".67"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse116"
+     fill="#f2f2f2" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="1483"
+     cy="145"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle118"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1483 139a6 6 0 11-6 6 6 6 0 016-6m0-1a7 7 0 107 7 7 7 0 00-7-7z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath120"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1483"
+     cy="145"
+     r="3.17"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle122"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1483 142.33a2.67 2.67 0 11-2.67 2.67 2.68 2.68 0 012.67-2.67m0-1a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath124"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="1483"
+     cy="143.67"
+     rx="1.33"
+     ry=".67"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse126"
+     fill="#f2f2f2" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="1305"
+     cy="136.75"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle128"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1305 130.75a6 6 0 11-6 6 6 6 0 016-6m0-1a7 7 0 107 7 7 7 0 00-7-7z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath130"
+     fill="gray" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1305"
+     cy="136.75"
+     r="3.17"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle132"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M1305 134.08a2.67 2.67 0 11-2.67 2.67 2.68 2.68 0 012.67-2.67m0-1a3.67 3.67 0 103.67 3.67 3.67 3.67 0 00-3.67-3.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath134"
+     fill="gray" />
+  <ellipse
+     class="N540X-16Z4G8Q2C-D_Front_corecls-8"
+     cx="1305"
+     cy="135.42"
+     rx="1.33"
+     ry=".67"
+     id="N540X-16Z4G8Q2C-D_Front_coreellipse136"
+     fill="#f2f2f2" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1339.42"
+     cy="72.01"
+     r="15"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle138"
+     fill="#ccc" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-9"
+     cx="1339.42"
+     cy="72.01"
+     r="12"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle140"
+     fill="#d1a05e" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     d="M1339.42 60.51a11.5 11.5 0 11-11.5 11.5 11.57 11.57 0 0111.5-11.5m0-1a12.5 12.5 0 1012.5 12.5 12.5 12.5 0 00-12.5-12.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath142"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-11"
+     cx="1339.42"
+     cy="72.01"
+     r="10.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle144"
+     fill="#9c5c1e" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-9"
+     cx="1339.42"
+     cy="72.01"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle146"
+     fill="#d1a05e" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-12"
+     cx="1339.42"
+     cy="72.01"
+     r="5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle148"
+     fill="#885f38" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     d="M1339.42 67.51a4.5 4.5 0 11-4.5 4.5 4.48 4.48 0 014.5-4.5m0-1a5.5 5.5 0 105.5 5.5 5.55 5.55 0 00-5.5-5.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath150"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     cx="1339.42"
+     cy="72.01"
+     r="1.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle152"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1339.42"
+     cy="28.52"
+     r="15"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle154"
+     fill="#ccc" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-9"
+     cx="1339.42"
+     cy="28.52"
+     r="12"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle156"
+     fill="#d1a05e" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     d="M1339.42 16.92a11.5 11.5 0 11-11.5 11.5 11.57 11.57 0 0111.5-11.5m0-1a12.5 12.5 0 1012.5 12.5 12.5 12.5 0 00-12.5-12.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath158"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-11"
+     cx="1339.42"
+     cy="28.52"
+     r="10.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle160"
+     fill="#9c5c1e" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-9"
+     cx="1339.42"
+     cy="28.52"
+     r="6.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle162"
+     fill="#d1a05e" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-12"
+     cx="1339.42"
+     cy="28.52"
+     r="5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle164"
+     fill="#885f38" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     d="M1339.42 23.92a4.5 4.5 0 11-4.5 4.5 4.48 4.48 0 014.5-4.5m0-1a5.5 5.5 0 105.5 5.5 5.55 5.55 0 00-5.5-5.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath166"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     cx="1339.42"
+     cy="28.52"
+     r="1.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle168"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     cx="1339.42"
+     cy="115.49"
+     r="17"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle170"
+     fill="#ccc" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-13"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon172"
+     fill="#c69c6d"
+     stroke="#4c1800"
+     stroke-miterlimit="10"
+     d="M1346.92 128.48l7.5-12.99-7.5-12.99h-15l-7.5 12.99 7.5 12.99z" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-9"
+     cx="1339.42"
+     cy="115.49"
+     r="13.6"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle174"
+     fill="#d1a05e" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     d="M1339.42 102.46a13 13 0 11-13 13 13.1 13.1 0 0113-13m0-1.14a14.17 14.17 0 1014.17 14.17 14.18 14.18 0 00-14.17-14.17z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath176"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-14"
+     cx="1339.42"
+     cy="115.49"
+     r="11.9"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle178"
+     fill="#e6e6e6" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-9"
+     cx="1339.42"
+     cy="115.49"
+     r="7.37"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle180"
+     fill="#d1a05e" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-12"
+     cx="1339.42"
+     cy="115.49"
+     r="5.67"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle182"
+     fill="#885f38" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     d="M1339.42 110.39a5.1 5.1 0 11-5.1 5.1 5.08 5.08 0 015.1-5.1m0-1.13a6.23 6.23 0 106.23 6.23 6.28 6.28 0 00-6.23-6.23z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath184"
+     fill="#4c1800" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-10"
+     cx="1339.42"
+     cy="115.49"
+     r="1.7"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle186"
+     fill="#4c1800" />
+  <path
+     d="M1333.63 148.06a6.68 6.68 0 01-2.17.38 3.63 3.63 0 01-2.64-.9 3.34 3.34 0 01-.94-2.48 3.42 3.42 0 013.75-3.5 4.47 4.47 0 011.79.32l-.27 1a3.63 3.63 0 00-1.53-.29 2.26 2.26 0 00-2.45 2.42 2.23 2.23 0 002.34 2.44 2.36 2.36 0 00.93-.14v-1.68h-1.19v-1h2.38z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath188" />
+  <path
+     d="M1334.89 148.37v-6.74h1.4l1.74 2.89a18.54 18.54 0 011.15 2.26c-.08-.9-.11-1.77-.11-2.8v-2.35h1.14v6.74H1339l-1.76-3a22.28 22.28 0 01-1.21-2.32c0 .87.06 1.76.06 2.87v2.41z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath190" />
+  <path
+     d="M1341.62 147a3.41 3.41 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2s.92-1.94 2.38-1.94a3.56 3.56 0 011.62.34l-.3 1a2.85 2.85 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4 4 0 01-1.82-.43z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath192" />
+  <path
+     d="M1346.81 147a3.41 3.41 0 001.63.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.11-.4-1.82-1-1.82-2s.92-1.94 2.38-1.94a3.56 3.56 0 011.62.34l-.3 1a2.85 2.85 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4 4 0 01-1.82-.43z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath194" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-1"
+     d="M1330.92 91.61l-1.18.6-.21-.93 1.57-.78h1V97h-1.18z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath196"
+     fill="#1a1a1a" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-1"
+     d="M1334.62 90.35a10.75 10.75 0 011.88-.14 3 3 0 012 .55 1.9 1.9 0 01.66 1.49 2 2 0 01-.58 1.53 3 3 0 01-2.13.72 3.47 3.47 0 01-.6 0V97h-1.22zm1.22 3.14a2.53 2.53 0 00.6.05c.92 0 1.48-.45 1.48-1.24s-.52-1.15-1.37-1.15a3.4 3.4 0 00-.71.06z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath198"
+     fill="#1a1a1a" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-1"
+     d="M1340.21 90.35a10.75 10.75 0 011.88-.14 3 3 0 012 .55 1.9 1.9 0 01.66 1.49 2 2 0 01-.58 1.53 3 3 0 01-2.13.72 3.47 3.47 0 01-.6 0V97h-1.22zm1.22 3.14a2.48 2.48 0 00.6.05c.92 0 1.48-.45 1.48-1.24s-.52-1.15-1.37-1.15a3.4 3.4 0 00-.71.06z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath200"
+     fill="#1a1a1a" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-1"
+     d="M1345.78 95.66a3.33 3.33 0 001.62.43c.79 0 1.23-.37 1.23-.92s-.34-.81-1.2-1.12c-1.1-.4-1.81-1-1.81-2s.92-1.94 2.37-1.94a3.56 3.56 0 011.62.34l-.3 1a2.85 2.85 0 00-1.34-.32c-.78 0-1.12.42-1.12.81 0 .39.39.76 1.29 1.11 1.17.44 1.74 1 1.74 2s-.82 2-2.56 2a4 4 0 01-1.82-.43z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath202"
+     fill="#1a1a1a" />
+  <path
+     d="M1325.6 47.61l-1.19.6-.21-.93 1.58-.78h1V53h-1.19z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath204" />
+  <path
+     d="M1333.62 49.71c0 2.09-.82 3.4-2.37 3.4-1.55 0-2.29-1.36-2.3-3.34-.01-1.98.85-3.38 2.37-3.38s2.3 1.4 2.3 3.32zm-3.44.06c0 1.58.43 2.4 1.11 2.4.68 0 1.1-.88 1.1-2.44s-.36-2.4-1.1-2.4c-.74 0-1.12.81-1.11 2.44z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath206" />
+  <path
+     d="M1342.43 50.25c0-.87-.09-1.92-.08-2.84-.22.83-.5 1.74-.8 2.59l-1 2.92h-1l-.9-2.88c-.26-.86-.5-1.78-.68-2.63 0 .89-.07 2-.12 2.88l-.15 2.71h-1.15l.45-6.74h1.62l.88 2.71c.24.79.45 1.59.62 2.34.18-.73.41-1.56.67-2.35l.93-2.7h1.6l.39 6.74h-1.2z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath208" />
+  <path
+     d="M1346.24 46.26V49h2.85v-2.7h1.23V53h-1.23v-3h-2.85v3H1345v-6.74z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath210" />
+  <path
+     d="M1351.29 52.29l1.83-2.34c.25-.3.46-.54.72-.82h-2.37v-1h3.87v.75l-1.79 2.29c-.24.29-.47.57-.72.83h2.57v1h-4.11z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath212" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     id="N540X-16Z4G8Q2C-D_Front_corerect214"
+     fill="#333"
+     d="M1396 36.67h118v98h-118z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-15"
+     d="M1512.83 131.66c0 1.05-1.54 1.91-3.42 1.91h-109c-1.88 0-3.42-.86-3.42-1.91V39.48c0-1 1.54-1.91 3.42-1.91h109.16c1.88 0 3.42.86 3.42 1.91v92.18z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath216"
+     fill="#c2c2c2"
+     stroke="#000"
+     stroke-miterlimit="10" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-16"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon218"
+     fill="#505050"
+     d="M1474.3 44.07v-3.9h15.8v3.9h3.9v5.9h11.8v26.5h-47.2v-26.5h10.8v-5.9z" />
+  <path
+     d="M1489.6 40.67v3.9h3.9v5.9h11.8V76h-46.2V50.47h10.8v-5.9h4.9v-3.9h14.8m1-1h-16.7v3.9h-4.9v5.9h-10.8V77h48.2V49.47h-11.9v-5.9h-3.9z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath220" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline222"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1468.9 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline224"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1472.9 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline226"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1476.8 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline228"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1480.7 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline230"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1484.7 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline232"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1488.6 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline234"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1492.5 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline236"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1496.4 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-16"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon238"
+     fill="#505050"
+     d="M1458.6 121.67v-26.5h47.2v26.5H1494v5.9h-3.9v3.9h-15.8v-3.9h-4.9v-5.9z" />
+  <path
+     d="M1505.3 95.67v25.5h-11.8v5.9h-3.9V131h-14.7v-3.9h-4.9v-5.9h-10.8V95.67h46.1m1-1h-48.2v27.5h10.8v5.9h4.9V132h16.7v-3.9h3.9v-5.9h11.8V94.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath240" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline242"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1468.9 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline244"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1472.9 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline246"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1476.8 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline248"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1480.7 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline250"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1484.7 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline252"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1488.6 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline254"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1492.5 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline256"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1496.4 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-16"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon258"
+     fill="#505050"
+     d="M1419.3 44.07v-3.9h15.8v3.9h3.9v5.9h11.8v26.5h-47.2v-26.5h10.8v-5.9z" />
+  <path
+     d="M1434.6 40.67v3.9h3.9v5.9h11.8V76h-46.2V50.47h10.8v-5.9h4.9v-3.9h14.8m1-1h-16.7v3.9h-4.9v5.9h-10.8V77h48.2V49.47h-11.9v-5.9h-3.9z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath260" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline262"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1413.9 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline264"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1417.9 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline266"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1421.8 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline268"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1425.7 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline270"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1429.7 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline272"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1433.6 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline274"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1437.5 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline276"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1441.4 74.07v-10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-16"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon278"
+     fill="#505050"
+     d="M1403.6 121.67v-26.5h47.2v26.5H1439v5.9h-3.9v3.9h-15.8v-3.9h-4.9v-5.9z" />
+  <path
+     d="M1450.3 95.67v25.5h-11.8v5.9h-3.9V131h-14.7v-3.9h-4.9v-5.9h-10.8V95.67h46.1m1-1h-48.2v27.5h10.8v5.9h4.9V132h16.7v-3.9h3.9v-5.9h11.8V94.67z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath280" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline282"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1413.9 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline284"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1417.9 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline286"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1421.8 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline288"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1425.7 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline290"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1429.7 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline292"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1433.6 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline294"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1437.5 97.57v10.8" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-17"
+     id="N540X-16Z4G8Q2C-D_Front_coreline296"
+     fill="none"
+     stroke="#fff"
+     stroke-linecap="square"
+     stroke-miterlimit="10"
+     d="M1441.4 97.57v10.8" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon298"
+     d="M1414.55 25l3.2 5 3.2-5z" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon300"
+     d="M1428.45 30l-3.2-5-3.2 5z" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon302"
+     d="M1479.55 25l3.2 5 3.2-5z" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon304"
+     d="M1493.45 30l-3.2-5-3.2 5z" />
+  <path
+     d="M1397.84 30.25v-4.76h-1.7v-1h4.56v1h-1.7v4.76z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath306" />
+  <path
+     d="M1401.06 27.42a3.75 3.75 0 01.26-1.47 2.6 2.6 0 01.54-.78 2.17 2.17 0 01.74-.52 3.14 3.14 0 011.23-.22 2.7 2.7 0 012 .78 3 3 0 01.76 2.18 3 3 0 01-.76 2.17 2.63 2.63 0 01-2 .79 2.69 2.69 0 01-2-.78 2.94 2.94 0 01-.77-2.15zm1.19 0a2.16 2.16 0 00.45 1.48 1.55 1.55 0 002.28 0 2.21 2.21 0 00.44-1.49 2.13 2.13 0 00-.43-1.47 1.59 1.59 0 00-2.3 0 2.18 2.18 0 00-.44 1.44z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath308" />
+  <path
+     d="M1407.52 24.52h2.11a4.23 4.23 0 011.09.11 2 2 0 01.86.53 2.52 2.52 0 01.55.93 4.34 4.34 0 01.19 1.35 3.69 3.69 0 01-.18 1.22 2.53 2.53 0 01-.61 1 2 2 0 01-.82.46 3.46 3.46 0 01-1 .12h-2.17zm1.15 1v3.8h.87a2.79 2.79 0 00.69-.06 1.1 1.1 0 00.47-.24 1.06 1.06 0 00.3-.55 3.69 3.69 0 00.12-1.05 3.37 3.37 0 00-.12-1 1.18 1.18 0 00-.32-.55 1 1 0 00-.54-.27 4.8 4.8 0 00-1-.06z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath310" />
+  <path
+     d="M1431.56 24.52h2.29a6.2 6.2 0 011 .06 1.58 1.58 0 01.6.24 1.65 1.65 0 01.44.47 1.29 1.29 0 01.17.67 1.36 1.36 0 01-.21.74 1.39 1.39 0 01-.59.51 1.43 1.43 0 01.8.52 1.35 1.35 0 01.29.86 1.74 1.74 0 01-.19.76 1.5 1.5 0 01-.49.59 1.58 1.58 0 01-.78.27H1431.5zm1.15 1v1.28h1.6a.76.76 0 00.47-.2.64.64 0 00.17-.45.61.61 0 00-.15-.43.62.62 0 00-.43-.2h-1zm0 2.27v1.54h1.08a5.47 5.47 0 00.79 0 .73.73 0 00.42-.33.68.68 0 00.16-.48.76.76 0 00-.12-.44.72.72 0 00-.37-.26 3.54 3.54 0 00-1-.09z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath312" />
+  <path
+     d="M1437.3 30.25v-5.73h1.15v5.73z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath314" />
+  <path
+     d="M1440.84 30.25v-4.76h-1.7v-1h4.56v1h-1.7v4.76z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath316" />
+  <path
+     d="M1444.15 28.39l1.12-.11a1.37 1.37 0 00.42.83 1.2 1.2 0 00.83.27 1.29 1.29 0 00.85-.24.73.73 0 00.28-.55.51.51 0 00-.12-.35 1 1 0 00-.42-.25c-.13 0-.44-.13-.92-.25a3.18 3.18 0 01-1.31-.56 1.5 1.5 0 01-.52-1.16 1.47 1.47 0 01.24-.81 1.62 1.62 0 01.72-.59 2.9 2.9 0 011.13-.19 2.39 2.39 0 011.62.47 1.67 1.67 0 01.57 1.26l-1.16.05a1 1 0 00-.31-.63 1.19 1.19 0 00-.74-.2 1.32 1.32 0 00-.79.21.43.43 0 00-.18.36.44.44 0 00.17.34 3 3 0 001.07.39 5.54 5.54 0 011.24.41 1.63 1.63 0 01.64.58 1.73 1.73 0 01.22.91 1.68 1.68 0 01-.27.92 1.62 1.62 0 01-.77.64 3.26 3.26 0 01-1.25.21 2.52 2.52 0 01-1.67-.5 2.2 2.2 0 01-.69-1.46z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath318" />
+  <path
+     d="M1460.22 28.14l1.12.36a2.5 2.5 0 01-.86 1.39 2.39 2.39 0 01-1.52.46 2.45 2.45 0 01-1.87-.78 3 3 0 01-.74-2.13 3.12 3.12 0 01.74-2.22 2.52 2.52 0 011.94-.79 2.37 2.37 0 011.71.62 2.21 2.21 0 01.58 1.05l-1.14.28a1.18 1.18 0 00-1.21-1 1.31 1.31 0 00-1 .46 2.22 2.22 0 00-.4 1.48 2.41 2.41 0 00.39 1.55 1.26 1.26 0 001 .46 1.17 1.17 0 00.79-.29 1.78 1.78 0 00.47-.9z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath320" />
+  <path
+     d="M1462.1 27.42a3.58 3.58 0 01.26-1.47 2.76 2.76 0 01.53-.78 2.27 2.27 0 01.74-.52 3.19 3.19 0 011.24-.22 2.68 2.68 0 012 .78 3 3 0 01.76 2.18 3 3 0 01-.75 2.17 2.65 2.65 0 01-2 .79 2.69 2.69 0 01-2-.78 3 3 0 01-.78-2.15zm1.19 0a2.16 2.16 0 00.45 1.48 1.48 1.48 0 001.14.5 1.44 1.44 0 001.13-.5 2.16 2.16 0 00.45-1.49 2.19 2.19 0 00-.43-1.47 1.59 1.59 0 00-2.3 0 2.13 2.13 0 00-.44 1.44z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath322" />
+  <path
+     d="M1468.57 30.25v-5.73h1.12l2.35 3.83v-3.83h1.07v5.73H1472l-2.31-3.73v3.73z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath324" />
+  <path
+     d="M1474 28.39l1.12-.11a1.37 1.37 0 00.42.83 1.2 1.2 0 00.83.27 1.29 1.29 0 00.85-.24.73.73 0 00.28-.55.51.51 0 00-.12-.35 1 1 0 00-.38-.24c-.13 0-.44-.13-.92-.25a3.18 3.18 0 01-1.31-.56 1.5 1.5 0 01-.52-1.16 1.47 1.47 0 01.24-.81 1.62 1.62 0 01.72-.59 2.94 2.94 0 011.13-.19 2.39 2.39 0 011.62.47 1.67 1.67 0 01.57 1.26l-1.15.05a1 1 0 00-.32-.63 1.19 1.19 0 00-.74-.2 1.29 1.29 0 00-.78.21.41.41 0 00-.19.36.44.44 0 00.17.34 3 3 0 001.07.39 5.54 5.54 0 011.24.41 1.63 1.63 0 01.64.58 1.73 1.73 0 01.23.91 1.69 1.69 0 01-.28.92 1.62 1.62 0 01-.77.64 3.23 3.23 0 01-1.25.21 2.52 2.52 0 01-1.67-.5 2.2 2.2 0 01-.73-1.47z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath326" />
+  <path
+     d="M1501.72 30.25h-1.26L1500 29h-2.29l-.47 1.3H1496l2.23-5.73h1.23zm-2.13-2.25l-.79-2.12-.8 2.12z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath328" />
+  <path
+     d="M1502.36 30.25v-5.68h1.16v4.72h2.87v1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath330" />
+  <path
+     d="M1507.2 30.25v-5.73h1.73l1 3.91 1-3.91h1.73v5.73h-1.07v-4.51l-1.14 4.51h-1.11l-1.13-4.51v4.51z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath332" />
+  <circle
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     cx="200.5"
+     cy="34.5"
+     r="9.5"
+     id="N540X-16Z4G8Q2C-D_Front_corecircle334"
+     fill="#333" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-6"
+     d="M200.5 25.5a9 9 0 11-9 9 9 9 0 019-9m0-1a10 10 0 1010 10 10 10 0 00-10-10z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath336"
+     fill="gray" />
+  <rect
+     x="1289"
+     y="36.63"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect338" />
+  <rect
+     x="1289"
+     y="50.25"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect340" />
+  <rect
+     x="1289"
+     y="63.88"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect342" />
+  <rect
+     x="1289"
+     y="77.5"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect344" />
+  <rect
+     x="1289"
+     y="91.13"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect346" />
+  <rect
+     x="1289"
+     y="104.75"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect348" />
+  <rect
+     x="1289"
+     y="23"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect350" />
+  <rect
+     x="1289"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect352" />
+  <rect
+     x="1304"
+     y="36.63"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect354" />
+  <rect
+     x="1304"
+     y="50.25"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect356" />
+  <rect
+     x="1304"
+     y="63.88"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect358" />
+  <rect
+     x="1304"
+     y="77.5"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect360" />
+  <rect
+     x="1304"
+     y="91.13"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect362" />
+  <rect
+     x="1304"
+     y="104.75"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect364" />
+  <rect
+     x="1304"
+     y="23"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect366" />
+  <rect
+     x="1304"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect368" />
+  <rect
+     x="1365"
+     y="36.63"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect370" />
+  <rect
+     x="1365"
+     y="50.25"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect372" />
+  <rect
+     x="1365"
+     y="63.88"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect374" />
+  <rect
+     x="1365"
+     y="77.5"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect376" />
+  <rect
+     x="1365"
+     y="91.13"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect378" />
+  <rect
+     x="1365"
+     y="104.75"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect380" />
+  <rect
+     x="1365"
+     y="23"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect382" />
+  <rect
+     x="1380"
+     y="36.63"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect384" />
+  <rect
+     x="1380"
+     y="50.25"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect386" />
+  <rect
+     x="1380"
+     y="63.88"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect388" />
+  <rect
+     x="1380"
+     y="77.5"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect390" />
+  <rect
+     x="1380"
+     y="91.13"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect392" />
+  <rect
+     x="1380"
+     y="104.75"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect394" />
+  <rect
+     x="1380"
+     y="23"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect396" />
+  <rect
+     x="1518"
+     y="36.63"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect398" />
+  <rect
+     x="1518"
+     y="50.25"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect400" />
+  <rect
+     x="1518"
+     y="63.88"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect402" />
+  <rect
+     x="1518"
+     y="77.5"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect404" />
+  <rect
+     x="1518"
+     y="91.13"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect406" />
+  <rect
+     x="1518"
+     y="104.75"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect408" />
+  <rect
+     x="1518"
+     y="118.13"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect410" />
+  <rect
+     x="1518"
+     y="131.75"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect412" />
+  <rect
+     x="1518"
+     y="23"
+     width="10"
+     height="10"
+     rx="2"
+     id="N540X-16Z4G8Q2C-D_Front_corerect414" />
+  <rect
+     x="1365"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect416" />
+  <rect
+     x="1380"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect418" />
+  <rect
+     x="1393"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect420" />
+  <rect
+     x="1406.56"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect422" />
+  <rect
+     x="1420.11"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect424" />
+  <rect
+     x="1433.67"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect426" />
+  <rect
+     x="1447.22"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect428" />
+  <rect
+     x="1460.78"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect430" />
+  <rect
+     x="1474.33"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect432" />
+  <rect
+     x="1487.89"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect434" />
+  <rect
+     x="1501.44"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect436" />
+  <rect
+     x="1515"
+     y="15"
+     width="10"
+     height="5"
+     rx="1.41"
+     id="N540X-16Z4G8Q2C-D_Front_corerect438" />
+  <rect
+     x="1312"
+     y="144"
+     width="12"
+     height="2"
+     rx="1"
+     id="N540X-16Z4G8Q2C-D_Front_corerect440" />
+  <rect
+     x="134"
+     y="-1340.42"
+     width="5"
+     height="2"
+     rx="1"
+     transform="rotate(90)"
+     id="N540X-16Z4G8Q2C-D_Front_corerect442" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     id="N540X-16Z4G8Q2C-D_Front_corerect444"
+     fill="#333"
+     d="M1628.94 147.11h2.37v9.49h-2.37z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1650.6 149.78a7.18 7.18 0 00-2.08-.3 2.42 2.42 0 00-2.67 2.37 2.66 2.66 0 002.67 2.67 4.12 4.12 0 002.08-.59v2.67a16.74 16.74 0 01-2.08.3 5 5 0 01-5-5.05 4.76 4.76 0 015-4.74 17.28 17.28 0 012.08.29z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath446"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1625.68 149.78a4.3 4.3 0 00-1.78-.3 2.42 2.42 0 00-2.67 2.37 2.49 2.49 0 002.67 2.67 3.77 3.77 0 001.78-.59v2.67a10.47 10.47 0 01-2.08.3 5 5 0 01-5-5.05 4.75 4.75 0 015-4.74 7.41 7.41 0 012.08.29z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath448"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1663.06 151.85a5.04 5.04 0 11-10.08 0 5.04 5.04 0 0110.08 0zm-5-2.37a2.33 2.33 0 00-2.37 2.37 2.39 2.39 0 104.74 0 2.33 2.33 0 00-2.37-2.37z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath450"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1640.51 149.48a10.26 10.26 0 00-1.78-.3c-1.18 0-1.48.3-1.48.6a.94.94 0 00.89.88l.59.3c1.78.6 2.38 1.49 2.38 2.67 0 2.38-2.08 3.27-3.86 3.27a22.76 22.76 0 01-2.67-.3v-2.37a3.9 3.9 0 002.37.59c1.19 0 1.78-.59 1.78-.89 0-.59-.59-.89-1.18-.89 0-.3-.3-.3-.6-.3a2.84 2.84 0 01-2.37-2.67c0-1.78 1.48-3 3.56-3a11.37 11.37 0 012.37.29v2.08z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath452"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1616.18 137a1.19 1.19 0 10-2.37 0v2.67a1.19 1.19 0 002.37 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath454"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1622.71 133.75a1.27 1.27 0 00-1.19-1.18 1.08 1.08 0 00-1.18 1.18v5.94a1.08 1.08 0 001.18 1.18 1.27 1.27 0 001.19-1.18z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath456"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1628.94 129.3a1.08 1.08 0 00-1.18-1.18 1.27 1.27 0 00-1.19 1.18v12.76c0 .59.59.89 1.19.89.89 0 1.18-.3 1.18-.89z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath458"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1635.47 133.75a1.19 1.19 0 00-2.37 0v5.94a1.19 1.19 0 002.37 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath460"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1642 137a1.19 1.19 0 00-2.38 0v2.67a1.19 1.19 0 002.38 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath462"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1648.52 133.75a1.19 1.19 0 00-2.37 0v5.94a1.19 1.19 0 002.37 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath464"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1655.05 129.3a1.19 1.19 0 00-2.37 0v12.76c0 .59.59.89 1.19.89s1.18-.3 1.18-.89z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath466"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1661.58 133.75a1.27 1.27 0 00-1.19-1.18 1.08 1.08 0 00-1.18 1.18v5.94a1.08 1.08 0 001.18 1.18 1.27 1.27 0 001.19-1.18z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath468"
+     fill="#333"
+     fill-rule="evenodd" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-18"
+     d="M1667.81 137a1.09 1.09 0 00-1.19-1.19 1.27 1.27 0 00-1.18 1.19v2.67a1.27 1.27 0 001.18 1.18 1.09 1.09 0 001.19-1.18z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath470"
+     fill="#333"
+     fill-rule="evenodd" />
+  <rect
+     class="N540X-16Z4G8Q2C-D_Front_corecls-4"
+     x="5"
+     y="5"
+     width="16"
+     height="158"
+     rx="2.86"
+     id="N540X-16Z4G8Q2C-D_Front_corerect472"
+     fill="#b3b3b3" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-4"
+     id="N540X-16Z4G8Q2C-D_Front_corerect474"
+     fill="#b3b3b3"
+     d="M10 5h8v158h-8z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     id="N540X-16Z4G8Q2C-D_Front_corerect476"
+     fill="#ccc"
+     d="M7 5h2v158H7z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-7"
+     id="N540X-16Z4G8Q2C-D_Front_corerect478"
+     fill="#ccc"
+     d="M16 5h2v158h-2z" />
+  <path
+     d="M16.44 136H8.56v-1.27l5.26-2.64H8.56v-1.22h7.88v1.32l-5.14 2.59h5.14z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath480" />
+  <path
+     d="M14.41 128.89l-.16-1.23a1.36 1.36 0 00.81-.32.79.79 0 00.3-.59.81.81 0 00-.38-.66 2 2 0 00-1.16-.27 1.78 1.78 0 00-1.09.27.83.83 0 00-.36.69 1.18 1.18 0 00.58 1l-.18 1-4.1-.64v-3.27h1.41v2.33l1.34.2a1.61 1.61 0 01-.25-.85 1.68 1.68 0 01.6-1.3 3 3 0 012-.67 3.4 3.4 0 011.91.57 1.86 1.86 0 01.87 1.64 2 2 0 01-.55 1.41 2.58 2.58 0 01-1.59.69z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath482" />
+  <path
+     d="M16.44 120.64h-1.59v2.65h-1.32l-5-2.8v-1h5v-.8h1.32v.8h1.59zm-2.91 0h-2.69l2.69 1.49z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath484" />
+  <path
+     d="M8.54 115.14a1.72 1.72 0 01.89-1.52 6.08 6.08 0 013.13-.58 6.06 6.06 0 013.12.58 1.74 1.74 0 010 3 6.09 6.09 0 01-3.15.58 6 6 0 01-3.11-.58 1.73 1.73 0 01-.88-1.48zm1.25 0c0 .25.16.44.48.59a7.32 7.32 0 002.29.22 7.24 7.24 0 002.28-.22c.32-.15.48-.34.48-.59 0-.25-.16-.44-.48-.58a6.94 6.94 0 00-2.28-.22 7 7 0 00-2.29.22c-.27.13-.48.33-.48.57z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath486" />
+  <path
+     d="M16.44 111.77l-4.1-2.24-3.78 2V110l2.36-1.28-2.36-1.29V106l3.77 2 4.11-2.23v1.57l-2.67 1.44 2.67 1.43z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath488" />
+  <path
+     d="M14.34 104.65h-1.51v-2.44h1.51z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath490" />
+  <path
+     d="M16.44 97.55v1.24h-5.69a4.14 4.14 0 011.14 1.6h-1.37a3.34 3.34 0 00-.74-1.07 2.91 2.91 0 00-1.24-.77v-1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath492" />
+  <path
+     d="M10.49 90.68l.16 1.2c-.58.06-.87.29-.87.71a.77.77 0 00.44.67 4.32 4.32 0 001.78.34 1.63 1.63 0 01-.5-.52 1.24 1.24 0 01-.17-.63 1.65 1.65 0 01.67-1.32 2.88 2.88 0 011.87-.57 2.92 2.92 0 011.95.6 1.84 1.84 0 01.71 1.48 1.87 1.87 0 01-.92 1.6 5.47 5.47 0 01-3.05.64 5.59 5.59 0 01-3.11-.66 2 2 0 01-1-1.7A1.67 1.67 0 019 91.31a2.45 2.45 0 011.49-.63zm3.3 2.81a2 2 0 001.14-.28.78.78 0 00.39-.63A.7.7 0 0015 92a1.91 1.91 0 00-1.07-.23 2 2 0 00-1.13.23.74.74 0 00-.36.62.72.72 0 00.34.6 1.65 1.65 0 001.01.27z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath494" />
+  <path
+     d="M16.44 89.32H15l-5.1-3.39v3H8.56v-4.72H9.8l5.31 3.54v-3.68h1.33z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath496" />
+  <path
+     d="M16.44 80.27h-1.59v2.65h-1.32l-5-2.8v-1h5v-.8h1.32v.8h1.59zm-2.91 0h-2.69l2.69 1.49z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath498" />
+  <path
+     d="M13.55 73.58h-1.33v-2.81h3.13a3.31 3.31 0 01.86 1.2 3.7 3.7 0 01.36 1.57 3 3 0 01-.47 1.68 3.1 3.1 0 01-1.41 1.16 5.33 5.33 0 01-2.2.43 5.14 5.14 0 01-2.22-.44 3.14 3.14 0 01-1.38-1.12 2.88 2.88 0 01-.46-1.65A2.72 2.72 0 019 71.75a2.8 2.8 0 011.72-.89l.3 1.28a1.69 1.69 0 00-.93.54 1.39 1.39 0 00-.32.92 1.63 1.63 0 00.67 1.4 3.16 3.16 0 002 .51 3.55 3.55 0 002.16-.55 1.53 1.53 0 00.64-1.3 2 2 0 00-.18-.79 2.29 2.29 0 00-.49-.73h-1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath500" />
+  <path
+     d="M12.19 68a1.73 1.73 0 01-.65.69 2 2 0 01-1 .22 2 2 0 01-1.47-.52 1.87 1.87 0 01-.55-1.42 1.78 1.78 0 01.58-1.44 2.14 2.14 0 011.45-.53 2 2 0 011 .24 1.6 1.6 0 01.64.65 1.85 1.85 0 01.75-.83 2.41 2.41 0 011.19-.27 2.92 2.92 0 011.29.27 2 2 0 01.86.75 2 2 0 01.29 1.07 2 2 0 01-.65 1.55 2.46 2.46 0 01-1.74.61 2.59 2.59 0 01-1.18-.29 1.86 1.86 0 01-.81-.75zm-1.52-.26a1 1 0 00.7-.21.7.7 0 00.25-.55.69.69 0 00-.25-.56 1 1 0 00-.7-.22 1 1 0 00-.69.21.73.73 0 00-.25.55.72.72 0 00.25.56 1 1 0 00.69.17zm3.37.12a1.57 1.57 0 001-.27.81.81 0 00.34-.64.79.79 0 00-.33-.64 1.57 1.57 0 00-1-.25 1.35 1.35 0 00-.89.26.79.79 0 000 1.28 1.34 1.34 0 00.84.21z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath502" />
+  <path
+     d="M15.44 57.7a4.25 4.25 0 00.66-1l1.13.48a3.07 3.07 0 01-.29.57s-.26.33-.71.87a3 3 0 01.34 1.38 2.8 2.8 0 01-1 2.26 4.64 4.64 0 01-3 .86 4.64 4.64 0 01-3-.87 3 3 0 010-4.53 4.69 4.69 0 013-.86 6.27 6.27 0 011.66.19 4.19 4.19 0 011.21.65zm-.9 1a3.4 3.4 0 00-2-.51 3.47 3.47 0 00-2.06.5 1.59 1.59 0 000 2.58 3.46 3.46 0 002.05.5 3.52 3.52 0 002.08-.5 1.51 1.51 0 00.67-1.25 1.36 1.36 0 00-.11-.53 3.74 3.74 0 00-.5.8l-.9-.36a4.18 4.18 0 01.77-1.18z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath504" />
+  <path
+     d="M15 51.14h1.4v4.34a4 4 0 01-1.51-.42 9.41 9.41 0 01-1.88-1.39 10.43 10.43 0 00-1.26-1 1.94 1.94 0 00-1-.27 1.14 1.14 0 00-.78.23.76.76 0 00-.26.6c0 .55.41.85 1.23.89l-.15 1.23a2.89 2.89 0 01-1.77-.67 2 2 0 01-.56-1.48 1.81 1.81 0 01.66-1.53 2.41 2.41 0 011.51-.52 3.34 3.34 0 01.94.14 3.77 3.77 0 01.91.4 7.89 7.89 0 011.17.91c.45.4.74.65.89.76a1.86 1.86 0 00.42.25z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath506" />
+  <path
+     d="M13.54 45.08l.46-1.26a3.46 3.46 0 011.93 1 2.44 2.44 0 01.61 1.69 2.52 2.52 0 01-1 2 4.71 4.71 0 01-3 .9 4.9 4.9 0 01-3.15-.91 2.57 2.57 0 01-1-2.12 2.47 2.47 0 01.74-1.82 3.17 3.17 0 011.56-.76l.38 1.29a1.69 1.69 0 00-1 .49 1.21 1.21 0 00-.34.87 1.39 1.39 0 00.62 1.16 3.52 3.52 0 002.06.46 3.81 3.81 0 002.11-.44 1.36 1.36 0 00.63-1.15 1.17 1.17 0 00-.4-.89 2.51 2.51 0 00-1.21-.51z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath508" />
+  <path
+     d="M14.34 42.25h-1.51v-2.43h1.51z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath510" />
+  <path
+     d="M8.56 38.06v-2.38a3.61 3.61 0 01.2-1.36 2.43 2.43 0 01.68-.85 3.55 3.55 0 011.25-.6 6.76 6.76 0 011.89-.22 6 6 0 011.78.23 3.57 3.57 0 011.19.58 2.21 2.21 0 01.66.86 3.14 3.14 0 01.23 1.29v2.45zm1.34-1.3h5.21v-1a2.51 2.51 0 00-.12-.91 1.09 1.09 0 00-.36-.46 2.07 2.07 0 00-.75-.3 6.27 6.27 0 00-1.36-.09 6.28 6.28 0 00-1.38.12 1.77 1.77 0 00-.79.38 1.12 1.12 0 00-.38.62 4.86 4.86 0 00-.07 1.06z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath512" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-1"
+     id="N540X-16Z4G8Q2C-D_Front_corerect514"
+     fill="#1a1a1a"
+     d="M1541.5 23.5h107v77h-107z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-19"
+     d="M1648 24v76h-106V24h106m1-1h-108v78h108z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath516"
+     fill="#666" />
+  <path
+     d="M1531.32 14.05h2.12a3.87 3.87 0 011.09.11 1.87 1.87 0 01.86.52 2.61 2.61 0 01.55.93 4.41 4.41 0 01.18 1.35 3.67 3.67 0 01-.17 1.22 2.46 2.46 0 01-.61 1 2 2 0 01-.82.46 3.46 3.46 0 01-1 .12h-2.18zm1.16 1v3.79h.86a2.83 2.83 0 00.7-.06 1 1 0 00.47-.23 1.33 1.33 0 00.3-.56 3.6 3.6 0 00.12-1.05 3.37 3.37 0 00-.12-1 1.35 1.35 0 00-.33-.55 1.11 1.11 0 00-.53-.27 5.06 5.06 0 00-1-.05z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath518" />
+  <path
+     d="M1540.77 17.67l1.12.35a2.53 2.53 0 01-.86 1.4 2.7 2.7 0 01-3.39-.33 3 3 0 01-.74-2.13 3.15 3.15 0 01.74-2.22 2.52 2.52 0 011.94-.79 2.41 2.41 0 011.71.62 2.27 2.27 0 01.59 1l-1.15.28a1.28 1.28 0 00-.42-.71 1.24 1.24 0 00-.79-.25 1.31 1.31 0 00-1 .45 2.28 2.28 0 00-.4 1.48 2.41 2.41 0 00.39 1.55 1.28 1.28 0 001 .46 1.17 1.17 0 00.79-.29 1.75 1.75 0 00.47-.87z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath520" />
+  <path
+     d="M1545.07 19.77v-5.72h1.16v5.72z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath522" />
+  <path
+     d="M1547.34 19.77v-5.72h1.12l2.35 3.82v-3.82h1.07v5.72h-1.16l-2.31-3.77v3.73z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath524" />
+  <path
+     d="M1553.11 19.77v-5.72h1.89a6.8 6.8 0 011.38.08 1.52 1.52 0 01.82.56 2.09 2.09 0 01.14 2 1.61 1.61 0 01-.49.57 1.47 1.47 0 01-.6.27 6.06 6.06 0 01-1.19.08h-.76v2.16zm1.15-4.75v1.62h.63a3 3 0 00.92-.09.75.75 0 00.49-.73.74.74 0 00-.18-.51.81.81 0 00-.47-.26 7.16 7.16 0 00-.83 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath526" />
+  <path
+     d="M1558.43 14.05h1.16v3.1a6.24 6.24 0 000 1 .91.91 0 00.36.57 1.23 1.23 0 00.76.21 1.17 1.17 0 00.74-.2.76.76 0 00.3-.49 5.81 5.81 0 000-1v-3.19h1.25v3a8 8 0 01-.09 1.46 1.67 1.67 0 01-.35.72 1.76 1.76 0 01-.67.47 3.06 3.06 0 01-1.1.17 3.12 3.12 0 01-1.25-.19 1.8 1.8 0 01-.67-.49 1.55 1.55 0 01-.32-.64 6.5 6.5 0 01-.12-1.45z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath528" />
+  <path
+     d="M1565.51 19.77V15h-1.7v-1h4.55v1h-1.7v4.75z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath530" />
+  <path
+     d="M1568.42 16.72v-1.1h1.1v1.1zm0 3.05v-1.09h1.1v1.09z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath532" />
+  <path
+     d="M1573 18.25v-1.1h2.16v1.1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath534" />
+  <path
+     d="M1577.68 19.77v-1.15h-2.34v-1l2.48-3.64h.92v3.64h.71v1h-.71v1.15zm0-2.11v-2l-1.32 2z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath536" />
+  <path
+     d="M1580.92 16.68a1.25 1.25 0 01-.62-.49 1.28 1.28 0 01-.19-.69 1.37 1.37 0 01.44-1.06 2.13 2.13 0 012.54 0 1.38 1.38 0 01.45 1.06 1.22 1.22 0 01-.79 1.18 1.61 1.61 0 01.73.56 1.54 1.54 0 01.25.85 1.72 1.72 0 01-.51 1.29 1.84 1.84 0 01-1.34.49 2 2 0 01-1.31-.41 1.61 1.61 0 01-.61-1.32 1.7 1.7 0 01.23-.86 1.47 1.47 0 01.73-.6zM1581 18a1 1 0 00.24.71.73.73 0 00.58.25.74.74 0 00.56-.24 1 1 0 00.22-.71.85.85 0 00-.23-.64.72.72 0 00-.57-.25.67.67 0 00-.6.28 1 1 0 00-.2.6zm.1-2.45a.69.69 0 00.19.51.67.67 0 00.49.18.68.68 0 00.5-.18.69.69 0 00.19-.52.67.67 0 00-.18-.49.7.7 0 00-.49-.19.71.71 0 00-.51.19.7.7 0 00-.15.53z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath538" />
+  <path
+     d="M1586.13 19.77l-2.05-5.72h1.26l1.45 4.23 1.4-4.23h1.22l-2.05 5.72z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath540" />
+  <path
+     d="M1593.52 19.77V15h-1.7v-1h4.55v1h-1.7v4.75z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath542" />
+  <path
+     d="M1596.73 16.94a3.49 3.49 0 01.27-1.46 2.49 2.49 0 01.53-.79 2.14 2.14 0 01.74-.51 3 3 0 011.23-.23 2.7 2.7 0 012 .78 3 3 0 01.76 2.19 3 3 0 01-.75 2.17 3 3 0 01-4 0 3 3 0 01-.78-2.15zm1.2 0a2.14 2.14 0 00.45 1.47 1.54 1.54 0 002.27 0 2.16 2.16 0 00.44-1.49 2.13 2.13 0 00-.43-1.47 1.47 1.47 0 00-1.14-.48 1.48 1.48 0 00-1.16.49 2.16 2.16 0 00-.43 1.45z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath544" />
+  <path
+     d="M1603.06 18.25v-1.1h2.15v1.1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath546" />
+  <path
+     d="M1609.33 15.45l-1.06.12a.82.82 0 00-.2-.49.61.61 0 00-.43-.15.72.72 0 00-.59.31 2.62 2.62 0 00-.3 1.3 1.29 1.29 0 011-.49 1.57 1.57 0 011.18.53 2.14 2.14 0 010 2.76 1.88 1.88 0 01-2.75-.14 3.49 3.49 0 01-.56-2.21 3.51 3.51 0 01.59-2.27 1.85 1.85 0 011.51-.7 1.64 1.64 0 011.08.37 1.71 1.71 0 01.53 1.06zm-2.49 2.39a1.26 1.26 0 00.25.83.73.73 0 00.56.29.64.64 0 00.51-.24 1.18 1.18 0 00.2-.78 1.26 1.26 0 00-.22-.82.67.67 0 00-.54-.26.72.72 0 00-.54.25 1.12 1.12 0 00-.22.73z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath548" />
+  <path
+     d="M1611.92 14a1.56 1.56 0 011.3.6 3.79 3.79 0 01.56 2.33 3.74 3.74 0 01-.57 2.33 1.52 1.52 0 01-1.29.59 1.63 1.63 0 01-1.35-.64 3.81 3.81 0 01-.51-2.29 3.81 3.81 0 01.56-2.33 1.57 1.57 0 011.3-.59zm0 .91a.61.61 0 00-.36.13.94.94 0 00-.24.46 6.62 6.62 0 00-.11 1.43 6.07 6.07 0 00.1 1.38 1.09 1.09 0 00.25.51.6.6 0 00.36.12.51.51 0 00.35-.13.8.8 0 00.25-.45 6.62 6.62 0 00.11-1.43 6.85 6.85 0 00-.1-1.39 1 1 0 00-.26-.5.56.56 0 00-.35-.11z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath550" />
+  <path
+     d="M1616.21 19.77l-2-5.72h1.25l1.45 4.23 1.4-4.23h1.23l-2 5.72z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath552" />
+  <path
+     d="M1633.18 18.3l1.1-.11a.93.93 0 00.27.58.76.76 0 001.12-.06 1.24 1.24 0 00.23-.84 1.15 1.15 0 00-.23-.79.77.77 0 00-.62-.26 1.13 1.13 0 00-.84.41l-.9-.13.57-3h2.9v1h-2.07l-.17 1a1.66 1.66 0 01.75-.18 1.68 1.68 0 011.24.53 2 2 0 01.5 1.38 2 2 0 01-.41 1.26 1.81 1.81 0 01-1.55.76 1.88 1.88 0 01-1.29-.43 1.77 1.77 0 01-.6-1.12z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath554" />
+  <path
+     d="M1637.85 19.77v-1.09h1.1v1.09z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath556" />
+  <path
+     d="M1643.54 18.75v1h-3.84a2.57 2.57 0 01.37-1.09 7.07 7.07 0 011.24-1.38 9.57 9.57 0 00.91-.93 1.22 1.22 0 00.22-.68.76.76 0 00-.19-.56.77.77 0 00-.55-.2.74.74 0 00-.55.21 1.1 1.1 0 00-.23.69l-1.09-.11a1.77 1.77 0 01.61-1.3 2 2 0 011.29-.4 1.88 1.88 0 011.33.46 1.5 1.5 0 01.48 1.14 2 2 0 01-.13.73 3.27 3.27 0 01-.44.74c-.14.16-.38.41-.72.73a7.4 7.4 0 00-.66.63 1.43 1.43 0 00-.22.3z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath558" />
+  <path
+     d="M1649.69 19.77h-1.25l-.5-1.3h-2.29l-.48 1.3H1644l2.23-5.72h1.22zm-2.13-2.26l-.78-2.13-.78 2.13z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath560" />
+  <path
+     d="M1652.22 19.77v-5.72h1.78l1 3.9 1-3.9h1.74v5.72h-1.08v-4.5l-1.13 4.5h-1.12l-1.13-4.5v4.5z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath562" />
+  <path
+     d="M1664.06 19.77h-1.26l-.5-1.3h-2.3l-.47 1.3h-1.23l2.23-5.72h1.23zm-2.13-2.26l-.79-2.13-.77 2.13z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath564" />
+  <path
+     d="M1664.09 19.77l2-3-1.77-2.73h1.35l1.15 1.84 1.12-1.84h1.34l-1.78 2.78 2 2.94h-1.5l-1.27-2-1.27 2z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath566" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corerect568"
+     d="M1621.53 16.46h9.64v.61h-9.64z" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corerect570"
+     d="M1621.53 18.63h2v.61h-2z" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corerect572"
+     d="M1629.17 18.63h2v.61h-2z" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corerect574"
+     d="M1625.35 18.63h2v.61h-2z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     id="N540X-16Z4G8Q2C-D_Front_corerect576"
+     fill="#333"
+     d="M1530 37.1h10v2h-10z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon578"
+     fill="#333"
+     d="M1535 86h-4v1h4v4h1v-4h4v-1h-4v-4h-1z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     id="N540X-16Z4G8Q2C-D_Front_corerect580"
+     fill="#333"
+     d="M1650 37.1h10v2h-10z" />
+  <path
+     class="N540X-16Z4G8Q2C-D_Front_corecls-5"
+     id="N540X-16Z4G8Q2C-D_Front_corepolygon582"
+     fill="#333"
+     d="M1655 86h-4v1h4v4h1v-4h4v-1h-4v-4h-1z" />
+  <path
+     d="M1552.13 109v-6.44h2.09a7.13 7.13 0 011.55.1 1.61 1.61 0 01.92.63 2 2 0 01.38 1.25 2 2 0 01-.22 1 1.72 1.72 0 01-.55.64 1.9 1.9 0 01-.67.3 7.61 7.61 0 01-1.35.09h-.85V109zm1.3-5.35v1.83h.72a3.23 3.23 0 001-.1.82.82 0 00.41-.32.84.84 0 00.15-.5.83.83 0 00-.21-.58.93.93 0 00-.52-.29 8.37 8.37 0 00-.94 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath584" />
+  <path
+     d="M1558 106.93l1.26-.13a1.58 1.58 0 00.47.94 1.4 1.4 0 00.94.3 1.44 1.44 0 001-.27.78.78 0 00.32-.62.6.6 0 00-.14-.39 1.11 1.11 0 00-.47-.28l-1-.28a3.39 3.39 0 01-1.46-.64 1.65 1.65 0 01-.6-1.29 1.69 1.69 0 011.09-1.57 3.19 3.19 0 011.26-.23 2.76 2.76 0 011.83.53 1.88 1.88 0 01.64 1.42l-1.3.06a1 1 0 00-.36-.71 1.26 1.26 0 00-.82-.22 1.54 1.54 0 00-.89.23.46.46 0 00-.2.4.49.49 0 00.19.39 3.34 3.34 0 001.19.43 6.15 6.15 0 011.41.47 1.78 1.78 0 01.71.65 1.94 1.94 0 01.26 1 1.91 1.91 0 01-.31 1 1.81 1.81 0 01-.87.72 3.59 3.59 0 01-1.4.24 2.78 2.78 0 01-1.88-.57 2.39 2.39 0 01-.87-1.58z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath586" />
+  <path
+     d="M1566.24 102.55a1.79 1.79 0 011.47.67 4.34 4.34 0 01.62 2.63 4.25 4.25 0 01-.63 2.62 1.75 1.75 0 01-1.46.66 1.86 1.86 0 01-1.52-.72 5.94 5.94 0 01.06-5.2 1.77 1.77 0 011.46-.66zm0 1a.65.65 0 00-.4.14.94.94 0 00-.27.51 6.79 6.79 0 00-.13 1.62 6.62 6.62 0 00.12 1.55 1.07 1.07 0 00.28.57.64.64 0 00.8 0 .94.94 0 00.27-.51 6.75 6.75 0 00.13-1.61 7.48 7.48 0 00-.11-1.56 1.24 1.24 0 00-.29-.57.65.65 0 00-.4-.11z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath588" />
+  <path
+     d="M1609.13 109v-6.44h2.09a7.13 7.13 0 011.55.1 1.61 1.61 0 01.92.63 2 2 0 01.38 1.25 2 2 0 01-.22 1 1.72 1.72 0 01-.55.64 1.9 1.9 0 01-.67.3 7.61 7.61 0 01-1.35.09h-.85V109zm1.3-5.35v1.83h.72a3.23 3.23 0 001-.1.82.82 0 00.41-.32.84.84 0 00.15-.5.83.83 0 00-.21-.58.93.93 0 00-.52-.29 8.37 8.37 0 00-.94 0z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath590" />
+  <path
+     d="M1615 106.93l1.26-.13a1.58 1.58 0 00.47.94 1.4 1.4 0 00.94.3 1.44 1.44 0 001-.27.78.78 0 00.32-.62.6.6 0 00-.14-.39 1.11 1.11 0 00-.47-.28l-1-.28a3.39 3.39 0 01-1.46-.64 1.65 1.65 0 01-.6-1.29 1.69 1.69 0 011.09-1.57 3.19 3.19 0 011.26-.23 2.76 2.76 0 011.83.53 1.88 1.88 0 01.64 1.42l-1.3.06a1 1 0 00-.36-.71 1.26 1.26 0 00-.82-.22 1.54 1.54 0 00-.89.23.46.46 0 00-.2.4.49.49 0 00.19.39 3.34 3.34 0 001.19.43 6.15 6.15 0 011.41.47 1.78 1.78 0 01.71.65 1.94 1.94 0 01.26 1 1.91 1.91 0 01-.31 1 1.81 1.81 0 01-.87.72 3.59 3.59 0 01-1.4.24 2.78 2.78 0 01-1.88-.57 2.39 2.39 0 01-.87-1.58z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath592" />
+  <path
+     d="M1624.31 109h-1.23v-4.65a4.35 4.35 0 01-1.6.94v-1.12a3.41 3.41 0 001-.61 2.2 2.2 0 00.78-1h1z"
+     id="N540X-16Z4G8Q2C-D_Front_corepath594" />
+  <path
+     id="N540X-16Z4G8Q2C-D_Front_corerect596"
+     d="M229 13h1056v146H229z" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="224.49889"
+     y="39.536747"
+     id="text4782"><tspan
+       sodipodi:role="line"
+       id="tspan4780"
+       x="224.49889"
+       y="76.029961" /></text>
+</svg>

@@ -38,13 +38,22 @@ docs/chassisview_figures/
 | ncs55a1 | EPNM real | ✅ OK |
 | ncs560 | EPNM real | ✅ OK |
 | ncs540 | EPNM real | ✅ OK |
-| ncs540l (NCS540L_CE family) | Pending — multiple sub-models | ⏳ Queued |
+| ncs540-16z4 (N540X-16Z4G8Q2C-D) | EPNM real — 4 hotspots (fan, RP, PM0, PM1) | ✅ Done |
+| ncs540-12z16g (N540X-12Z16G-SYS-D) | EPNM real — 3 hotspots (RP, PM0, PM1) | ✅ Done |
 
-### NCS540L_CE family — pending sub-models
-Priority sub-models confirmed available (Front SVG + JSON profile):
-- `Cisco_NCS_540X-12Z16G-SYS-D_Router` → `N540X-12Z16G-SYS-D_Front_core.svg` (Front only)
-- `Cisco_NCS_540X-16Z4G8Q2C-D_Router` → `N540X-16Z4G8Q2C-D_Front_core.svg` (Front only)
+### NCS540L_CE family — completed sub-models
 
+| Profile key | Model | Build script | Hotspots | Notes |
+|---|---|---|---|---|
+| `ncs540-16z4` | N540X-16Z4G8Q2C-D | `scripts/build_ncs540_16z4_chassis_profile.py` | 4 (fan, RP, PM0, PM1) | SNMP walk: `ncs540-16z4-entity-mib.json` |
+| `ncs540-12z16g` | N540X-12Z16G-SYS-D | `scripts/build_ncs540_12z16g_chassis_profile.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540`; no separate SNMP walk; fan slot not in EPNM front view |
+
+Detection rules added to `backend/app/api/devices.py::_chassis_profile_for_device`:
+- `"16z4" in compact_terms and "540x" in compact_terms` → `ncs540-16z4`
+- `"12z16g" in compact_terms and "540x" in compact_terms` → `ncs540-12z16g`
+- Both checked before generic `ncs540` fallback.
+
+### NCS540L_CE family — remaining sub-models (not yet migrated)
 Other NCS540L_CE variants available in `docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS540L_CE/` (NCS 540 large, NCS 57xx, Cisco 8000 series) — see `EPNM_CHASSIS_CATALOG.md` §"NCS 540L / Cisco 8000".
 
 ## Plan de migración
@@ -112,6 +121,6 @@ Other NCS540L_CE variants available in `docs/chassisview_figures/chassisview/com
 2. NCS560 — ✅ done
 3. NCS540 — ✅ done
 4. ASR920 — ✅ done
-5. **NCS540L_CE family** — ⏳ pending (start with `NCS_540X-12Z16G-SYS-D` and `NCS_540X-16Z4G8Q2C-D`)
+5. **NCS540L_CE family** — ✅ done (`ncs540-16z4` + `ncs540-12z16g`; other variants still available)
 6. ASR9010 — ⏳ pending
 7. NCS55A1 additional variants — ⏳ pending

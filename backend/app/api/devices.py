@@ -43,6 +43,9 @@ CHASSIS_PROFILE_FILES = {
     "asr920": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr920" / "normalized.json",
     "ncs55a1": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1" / "normalized.json",
     "ncs560": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs560" / "normalized.json",
+    # NCS540L_CE sub-model profiles (checked before generic ncs540 fallback)
+    "ncs540-16z4": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-16z4" / "normalized.json",
+    "ncs540-12z16g": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-12z16g" / "normalized.json",
     "ncs540": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540" / "normalized.json",
     "asr9010": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr9010" / "normalized.json",
 }
@@ -192,6 +195,14 @@ def _chassis_profile_for_device(device: Device, inventory: Inventory | None) -> 
         return "ncs55a1"
     if "ncs560" in compact_terms:
         return "ncs560"
+    # NCS540L_CE sub-models: check specific variants before the generic ncs540 fallback.
+    # compact_terms for N540X-16Z4G8Q2C-D  → "n540x16z4g8q2cd"    (n540x + 16z4)
+    # compact_terms for NCS_540X-12Z16G-SYS-D → "ncs540x12z16gsysd"  (540x + 12z16g)
+    # Use "540x" as the shared anchor so both N540X and NCS_540X forms match.
+    if "16z4" in compact_terms and "540x" in compact_terms:
+        return "ncs540-16z4"
+    if "12z16g" in compact_terms and "540x" in compact_terms:
+        return "ncs540-12z16g"
     if "ncs540" in compact_terms or "n540" in compact_terms:
         return "ncs540"
     if "asr" in terms and "920" in terms:
