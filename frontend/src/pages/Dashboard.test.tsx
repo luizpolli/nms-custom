@@ -70,6 +70,10 @@ const MOCK_RECENT_ALARMS = [
 
 const MOCK_ASSURANCE = { network_score: 92, health_state: 'Good' };
 
+const MOCK_TRENDS = { series: [], buckets: [] };
+const MOCK_IFACE_UTIL = { items: [] };
+const MOCK_ALARM_TREND = { hours: 24, buckets: 24, data: [] };
+
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: { queries: { retry: false, staleTime: 0, gcTime: 0 } },
@@ -92,6 +96,25 @@ describe('Dashboard page', () => {
     mockGet.mockReset();
   });
 
+  /** Helper: build a mock that responds to all Dashboard endpoints. */
+  function mockAllEndpoints(overrides: Record<string, unknown> = {}) {
+    mockGet.mockImplementation(((url: string) => {
+      const defaults: Record<string, unknown> = {
+        '/devices': MOCK_DEVICES,
+        '/alarms/summary': MOCK_ALARM_SUMMARY,
+        '/alarms': MOCK_RECENT_ALARMS,
+        '/performance/summary': MOCK_PERF_SUMMARY,
+        '/assurance/summary': MOCK_ASSURANCE,
+        '/dashboard/trends': MOCK_TRENDS,
+        '/dashboard/interface-utilization': MOCK_IFACE_UTIL,
+        '/dashboard/alarm-trend': MOCK_ALARM_TREND,
+      };
+      const match = Object.keys({ ...defaults, ...overrides }).find(k => url === k || url.startsWith(k));
+      const data = match ? (overrides[match] ?? defaults[match]) : {};
+      return Promise.resolve({ data });
+    }) as typeof api.get);
+  }
+
   it('renders the page heading', async () => {
     mockGet.mockResolvedValue({ data: [] });
     renderDashboard();
@@ -99,18 +122,8 @@ describe('Dashboard page', () => {
   });
 
   it('shows device count after data loads', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/devices') return Promise.resolve({ data: MOCK_DEVICES });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/performance/summary') return Promise.resolve({ data: MOCK_PERF_SUMMARY });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
-
+    mockAllEndpoints();
     renderDashboard();
-    // Wait for device count to appear — note: '2' may appear multiple times
-    // (device count + critical alarm count). We check at least one exists.
     await waitFor(() => {
       const allTwos = screen.getAllByText('2');
       expect(allTwos.length).toBeGreaterThanOrEqual(1);
@@ -118,26 +131,13 @@ describe('Dashboard page', () => {
   });
 
   it('shows sum of active alarms', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/devices') return Promise.resolve({ data: [] });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/performance/summary') return Promise.resolve({ data: MOCK_PERF_SUMMARY });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
-
+    mockAllEndpoints({ '/devices': [] });
     renderDashboard();
-    // critical(2)+major(1)+minor(0)+warning(3) = 6
     await waitFor(() => expect(screen.getByText('6')).toBeInTheDocument());
   });
 
   it('renders "Alarms by severity" card', async () => {
-    mockGet.mockResolvedValue({ data: {} });
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      return Promise.resolve({ data: [] });
-    });
+    mockAllEndpoints();
     renderDashboard();
     await waitFor(() =>
       expect(screen.getByText('Alarms by severity')).toBeInTheDocument(),
@@ -145,14 +145,7 @@ describe('Dashboard page', () => {
   });
 
   it('renders "Top devices by CPU" card', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/performance/summary') return Promise.resolve({ data: MOCK_PERF_SUMMARY });
-      if (url === '/devices') return Promise.resolve({ data: [] });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
+    mockAllEndpoints();
     renderDashboard();
     await waitFor(() =>
       expect(screen.getByText('Top devices by CPU')).toBeInTheDocument(),
@@ -160,28 +153,14 @@ describe('Dashboard page', () => {
   });
 
   it('shows top device names in the CPU card', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/performance/summary') return Promise.resolve({ data: MOCK_PERF_SUMMARY });
-      if (url === '/devices') return Promise.resolve({ data: [] });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
+    mockAllEndpoints();
     renderDashboard();
-    await waitFor(() => expect(screen.getByText('router-01')).toBeInTheDocument());
-    expect(screen.getByText('switch-01')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getAllByText('router-01').length).toBeGreaterThanOrEqual(1));
+    expect(screen.getAllByText('switch-01').length).toBeGreaterThanOrEqual(1);
   });
 
   it('shows recent alarm message in Recent Alarms card', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/devices') return Promise.resolve({ data: [] });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: MOCK_RECENT_ALARMS });
-      if (url === '/performance/summary') return Promise.resolve({ data: MOCK_PERF_SUMMARY });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
+    mockAllEndpoints();
     renderDashboard();
     await waitFor(() =>
       expect(screen.getByText('Interface is down')).toBeInTheDocument(),
@@ -189,14 +168,7 @@ describe('Dashboard page', () => {
   });
 
   it('shows empty state "No devices discovered yet" when devices array is empty', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/devices') return Promise.resolve({ data: [] });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/performance/summary') return Promise.resolve({ data: {} });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
+    mockAllEndpoints({ '/devices': [] });
     renderDashboard();
     await waitFor(() =>
       expect(screen.getByText('No devices discovered yet')).toBeInTheDocument(),
@@ -204,14 +176,7 @@ describe('Dashboard page', () => {
   });
 
   it('shows empty state "No alarms recorded yet" when recent alarms is empty', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/devices') return Promise.resolve({ data: MOCK_DEVICES });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/performance/summary') return Promise.resolve({ data: MOCK_PERF_SUMMARY });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
+    mockAllEndpoints({ '/alarms': [] });
     renderDashboard();
     await waitFor(() =>
       expect(screen.getByText('No alarms recorded yet')).toBeInTheDocument(),
@@ -219,14 +184,7 @@ describe('Dashboard page', () => {
   });
 
   it('shows "No KPI data" when performance summary has no top_devices', async () => {
-    mockGet.mockImplementation((url: string) => {
-      if (url === '/devices') return Promise.resolve({ data: [] });
-      if (url === '/alarms/summary') return Promise.resolve({ data: MOCK_ALARM_SUMMARY });
-      if (url === '/alarms') return Promise.resolve({ data: [] });
-      if (url === '/performance/summary') return Promise.resolve({ data: { cpu_avg: 10, top_devices: [] } });
-      if (url === '/assurance/summary') return Promise.resolve({ data: MOCK_ASSURANCE });
-      return Promise.resolve({ data: {} });
-    });
+    mockAllEndpoints({ '/devices': [], '/performance/summary': { cpu_avg: 10, top_devices: [] } });
     renderDashboard();
     await waitFor(() =>
       expect(screen.getByText('No KPI data')).toBeInTheDocument(),

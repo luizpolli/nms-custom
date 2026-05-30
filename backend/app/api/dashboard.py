@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
@@ -328,13 +328,13 @@ async def get_alarm_trend(
         if 0 <= idx < buckets:
             raised_counts[idx] += 1
 
-    for row in cleared_rows:
-        ts = row.cleared_at
-        if ts is None:
+    for row in cleared_rows:  # type: ignore[assignment]
+        cleared_ts: datetime | None = row.cleared_at  # type: ignore[assignment]
+        if cleared_ts is None:
             continue
-        if ts.tzinfo is None:
-            ts = ts.replace(tzinfo=UTC)
-        elapsed = (ts - since).total_seconds()
+        if cleared_ts.tzinfo is None:
+            cleared_ts = cleared_ts.replace(tzinfo=UTC)
+        elapsed = (cleared_ts - since).total_seconds()
         idx = min(int(elapsed // bucket_seconds), buckets - 1)
         if 0 <= idx < buckets:
             cleared_counts[idx] += 1

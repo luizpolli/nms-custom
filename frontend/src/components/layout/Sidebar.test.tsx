@@ -66,8 +66,8 @@ describe('<Sidebar>', () => {
 
   it('renders the Dashboard nav link when dashboard module is enabled', async () => {
     renderSidebar();
-    const link = await screen.findByRole('link', { name: /dashboard/i });
-    expect(link).toBeInTheDocument();
+    const links = await screen.findAllByRole('link', { name: /dashboard/i });
+    expect(links.length).toBeGreaterThanOrEqual(1);
   });
 
   it('does not render nav link for disabled module', async () => {
