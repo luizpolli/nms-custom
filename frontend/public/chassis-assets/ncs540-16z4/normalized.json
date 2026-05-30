@@ -21,13 +21,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 1,
       "ports": [],
-      "serialNumber": "FOC2634PCJ6",
+      "serialNumber": "REDACTED-NCS540-RP-0001",
       "slotKey": "0/RP0/CPU0",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 1,
       "type": "module",
       "typeId": "N540X-16Z4G8Q2C-D",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.2.533"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.2.533",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-1011": {
       "childIds": [],
@@ -47,7 +53,15 @@
       "sourceId": 1011,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 41.0,
+        "rawValue": 41,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1012": {
       "childIds": [],
@@ -67,7 +81,15 @@
       "sourceId": 1012,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 42.0,
+        "rawValue": 42,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1013": {
       "childIds": [],
@@ -87,7 +109,15 @@
       "sourceId": 1013,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 42.0,
+        "rawValue": 42,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1014": {
       "childIds": [],
@@ -107,7 +137,15 @@
       "sourceId": 1014,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.140"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.140",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 40.0,
+        "rawValue": 40,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1015": {
       "childIds": [],
@@ -127,7 +165,15 @@
       "sourceId": 1015,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 48.0,
+        "rawValue": 48,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1016": {
       "childIds": [],
@@ -147,7 +193,15 @@
       "sourceId": 1016,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.142"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.142",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 43.0,
+        "rawValue": 43,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1017": {
       "childIds": [],
@@ -167,7 +221,15 @@
       "sourceId": 1017,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.143"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.143",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 48.0,
+        "rawValue": 48,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1018": {
       "childIds": [],
@@ -187,7 +249,15 @@
       "sourceId": 1018,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.144"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.144",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 48.0,
+        "rawValue": 48,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1019": {
       "childIds": [],
@@ -207,7 +277,15 @@
       "sourceId": 1019,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.145"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.145",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 47.0,
+        "rawValue": 47,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1020": {
       "childIds": [],
@@ -227,7 +305,15 @@
       "sourceId": 1020,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.146"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.146",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 42.0,
+        "rawValue": 42,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1021": {
       "childIds": [],
@@ -247,7 +333,15 @@
       "sourceId": 1021,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.147"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.147",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.843,
+        "rawValue": 11843,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1022": {
       "childIds": [],
@@ -267,7 +361,15 @@
       "sourceId": 1022,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.148"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.148",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.89,
+        "rawValue": 890,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1023": {
       "childIds": [],
@@ -287,7 +389,15 @@
       "sourceId": 1023,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.149"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.149",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.843,
+        "rawValue": 11843,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1024": {
       "childIds": [],
@@ -307,7 +417,15 @@
       "sourceId": 1024,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.150"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.150",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.8240000000000001,
+        "rawValue": 824,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1025": {
       "childIds": [],
@@ -327,7 +445,15 @@
       "sourceId": 1025,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.151"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.151",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.875,
+        "rawValue": 11875,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1026": {
       "childIds": [],
@@ -347,7 +473,15 @@
       "sourceId": 1026,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.152"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.152",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.937,
+        "rawValue": 937,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1027": {
       "childIds": [],
@@ -367,7 +501,15 @@
       "sourceId": 1027,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.153"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.153",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.875,
+        "rawValue": 11875,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1028": {
       "childIds": [],
@@ -387,7 +529,15 @@
       "sourceId": 1028,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.154"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.154",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.203,
+        "rawValue": 1203,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1029": {
       "childIds": [],
@@ -407,7 +557,15 @@
       "sourceId": 1029,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.155"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.155",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.843,
+        "rawValue": 11843,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1030": {
       "childIds": [],
@@ -427,7 +585,15 @@
       "sourceId": 1030,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.156"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.156",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.0,
+        "rawValue": 1000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1031": {
       "childIds": [],
@@ -447,7 +613,15 @@
       "sourceId": 1031,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.157"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.157",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.843,
+        "rawValue": 11843,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1032": {
       "childIds": [],
@@ -467,7 +641,15 @@
       "sourceId": 1032,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.158"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.158",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.05,
+        "rawValue": 1050,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1033": {
       "childIds": [],
@@ -487,7 +669,15 @@
       "sourceId": 1033,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.159"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.159",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.812,
+        "rawValue": 11812,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1034": {
       "childIds": [],
@@ -507,7 +697,15 @@
       "sourceId": 1034,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.160"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.160",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 3.2960000000000003,
+        "rawValue": 3296,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1035": {
       "childIds": [],
@@ -527,7 +725,15 @@
       "sourceId": 1035,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.161"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.161",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.812,
+        "rawValue": 11812,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1036": {
       "childIds": [],
@@ -547,7 +753,15 @@
       "sourceId": 1036,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.162"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.162",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.0,
+        "rawValue": 1000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1037": {
       "childIds": [],
@@ -567,7 +781,15 @@
       "sourceId": 1037,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.163"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.163",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.875,
+        "rawValue": 11875,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1038": {
       "childIds": [],
@@ -587,7 +809,15 @@
       "sourceId": 1038,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.164"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.164",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.0,
+        "rawValue": 1000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1039": {
       "childIds": [],
@@ -607,7 +837,15 @@
       "sourceId": 1039,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.165"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.165",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.875,
+        "rawValue": 11875,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1040": {
       "childIds": [],
@@ -627,7 +865,15 @@
       "sourceId": 1040,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.167"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.167",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.199,
+        "rawValue": 1199,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1041": {
       "childIds": [],
@@ -647,7 +893,15 @@
       "sourceId": 1041,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.168"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.168",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.062,
+        "rawValue": 62,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1042": {
       "childIds": [],
@@ -667,7 +921,15 @@
       "sourceId": 1042,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.169"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.169",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.75,
+        "rawValue": 750,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1043": {
       "childIds": [],
@@ -687,7 +949,15 @@
       "sourceId": 1043,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.170"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.170",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.093,
+        "rawValue": 93,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1044": {
       "childIds": [],
@@ -707,7 +977,15 @@
       "sourceId": 1044,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.171"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.171",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 1.25,
+        "rawValue": 1250,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1045": {
       "childIds": [],
@@ -727,7 +1005,15 @@
       "sourceId": 1045,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.172"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.172",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1046": {
       "childIds": [],
@@ -747,7 +1033,15 @@
       "sourceId": 1046,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.173"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.173",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1047": {
       "childIds": [],
@@ -767,7 +1061,15 @@
       "sourceId": 1047,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.174"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.174",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.093,
+        "rawValue": 93,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1048": {
       "childIds": [],
@@ -787,7 +1089,15 @@
       "sourceId": 1048,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.175"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.175",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 1.0,
+        "rawValue": 1000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1049": {
       "childIds": [],
@@ -807,7 +1117,15 @@
       "sourceId": 1049,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.176"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.176",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 1.375,
+        "rawValue": 1375,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1050": {
       "childIds": [],
@@ -827,7 +1145,15 @@
       "sourceId": 1050,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.177"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.177",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 14.75,
+        "rawValue": 14750,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1051": {
       "childIds": [],
@@ -847,7 +1173,15 @@
       "sourceId": 1051,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.178"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.178",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.343,
+        "rawValue": 343,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1052": {
       "childIds": [],
@@ -867,7 +1201,15 @@
       "sourceId": 1052,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.179"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.179",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 3.75,
+        "rawValue": 3750,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1053": {
       "childIds": [],
@@ -887,7 +1229,15 @@
       "sourceId": 1053,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.180"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.180",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 2.0,
+        "rawValue": 2000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1054": {
       "childIds": [],
@@ -907,7 +1257,15 @@
       "sourceId": 1054,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.181"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.181",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 6.75,
+        "rawValue": 6750,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1055": {
       "childIds": [],
@@ -927,7 +1285,15 @@
       "sourceId": 1055,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.182"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.182",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.593,
+        "rawValue": 593,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1056": {
       "childIds": [],
@@ -947,7 +1313,15 @@
       "sourceId": 1056,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.183"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.183",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 6.25,
+        "rawValue": 6250,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1057": {
       "childIds": [],
@@ -967,7 +1341,15 @@
       "sourceId": 1057,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.184"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.184",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 1.687,
+        "rawValue": 1687,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1058": {
       "childIds": [],
@@ -987,7 +1369,15 @@
       "sourceId": 1058,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.185"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.185",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 18.0,
+        "rawValue": 18000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1059": {
       "childIds": [],
@@ -1007,7 +1397,15 @@
       "sourceId": 1059,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.186"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.186",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.062,
+        "rawValue": 62,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1060": {
       "childIds": [],
@@ -1027,7 +1425,15 @@
       "sourceId": 1060,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.187"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.187",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.5,
+        "rawValue": 500,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-12578": {
       "alias": "N/A",
@@ -1082,7 +1488,13 @@
       "sourceId": 13079,
       "type": "powerSupply",
       "typeId": "N540-PSU-FIXED-D",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.6.712"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.6.712",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-145": {
       "childIds": [],
@@ -1222,7 +1634,15 @@
       "sourceId": 1901,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 11.909,
+        "rawValue": 11909,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1902": {
       "childIds": [],
@@ -1242,7 +1662,15 @@
       "sourceId": 1902,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 3.282,
+        "rawValue": 3282,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1903": {
       "childIds": [],
@@ -1262,7 +1690,15 @@
       "sourceId": 1903,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 2.509,
+        "rawValue": 2509,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1904": {
       "childIds": [],
@@ -1282,7 +1718,15 @@
       "sourceId": 1904,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.81,
+        "rawValue": 1810,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1905": {
       "childIds": [],
@@ -1302,7 +1746,15 @@
       "sourceId": 1905,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.89,
+        "rawValue": 890,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1906": {
       "childIds": [],
@@ -1322,7 +1774,15 @@
       "sourceId": 1906,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.8320000000000001,
+        "rawValue": 832,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1907": {
       "childIds": [],
@@ -1342,7 +1802,15 @@
       "sourceId": 1907,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.140"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.140",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.9430000000000001,
+        "rawValue": 943,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1908": {
       "childIds": [],
@@ -1362,7 +1830,15 @@
       "sourceId": 1908,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.206,
+        "rawValue": 1206,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1909": {
       "childIds": [],
@@ -1382,7 +1858,15 @@
       "sourceId": 1909,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.142"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.142",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.055,
+        "rawValue": 1055,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1910": {
       "childIds": [],
@@ -1402,7 +1886,15 @@
       "sourceId": 1910,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.143"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.143",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.239,
+        "rawValue": 1239,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1911": {
       "childIds": [],
@@ -1422,7 +1914,15 @@
       "sourceId": 1911,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.144"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.144",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.0030000000000001,
+        "rawValue": 1003,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1912": {
       "childIds": [],
@@ -1442,7 +1942,15 @@
       "sourceId": 1912,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.145"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.145",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.002,
+        "rawValue": 1002,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1913": {
       "childIds": [],
@@ -1462,7 +1970,15 @@
       "sourceId": 1913,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.146"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.146",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.205,
+        "rawValue": 1205,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1914": {
       "childIds": [],
@@ -1482,7 +1998,15 @@
       "sourceId": 1914,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.147"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.147",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.246,
+        "rawValue": 1246,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1915": {
       "childIds": [],
@@ -1502,7 +2026,15 @@
       "sourceId": 1915,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.148"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.148",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.998,
+        "rawValue": 998,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1916": {
       "childIds": [],
@@ -1522,7 +2054,15 @@
       "sourceId": 1916,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.149"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.149",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.799,
+        "rawValue": 1799,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-1917": {
       "childIds": [],
@@ -1542,7 +2082,15 @@
       "sourceId": 1917,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.150"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.150",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 1.202,
+        "rawValue": 1202,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2": {
       "childIds": [
@@ -1613,7 +2161,15 @@
       "sourceId": 2101,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 12.089,
+        "rawValue": 12089,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2102": {
       "childIds": [],
@@ -1633,7 +2189,15 @@
       "sourceId": 2102,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 9.789,
+        "rawValue": 9789,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2473985": {
       "childIds": [
@@ -1659,13 +2223,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2473985,
       "ports": [],
-      "serialNumber": "MTC22520WTV",
+      "serialNumber": "REDACTED-SFP-GE-0001",
       "slotKey": "GigabitEthernet0/0/0/4",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2473985,
       "type": "module",
       "typeId": "GLC-TE",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.51.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.51.139",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2473991": {
       "childIds": [],
@@ -1684,7 +2254,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2473991,
       "ports": [],
-      "serialNumber": "MTC22520WTV",
+      "serialNumber": "REDACTED-SFP-GE-0001",
       "slotKey": "GigabitEthernet0/0/0/4-IDPROM",
       "sourceId": 2473991,
       "type": "module",
@@ -1710,7 +2280,15 @@
       "sourceId": 2474224,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2474234": {
       "childIds": [],
@@ -1731,7 +2309,15 @@
       "sourceId": 2474234,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2474254": {
       "childIds": [],
@@ -1752,7 +2338,15 @@
       "sourceId": 2474254,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2474266": {
       "childIds": [],
@@ -1773,7 +2367,15 @@
       "sourceId": 2474266,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2474374": {
       "childIds": [],
@@ -1794,7 +2396,15 @@
       "sourceId": 2474374,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2478081": {
       "childIds": [
@@ -1820,13 +2430,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2478081,
       "ports": [],
-      "serialNumber": "MTC230305AB",
+      "serialNumber": "REDACTED-SFP-GE-0002",
       "slotKey": "GigabitEthernet0/0/0/5",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2478081,
       "type": "module",
       "typeId": "GLC-TE",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.51.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.51.139",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2478087": {
       "childIds": [],
@@ -1845,7 +2461,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2478087,
       "ports": [],
-      "serialNumber": "MTC230305AB",
+      "serialNumber": "REDACTED-SFP-GE-0002",
       "slotKey": "GigabitEthernet0/0/0/5-IDPROM",
       "sourceId": 2478087,
       "type": "module",
@@ -1871,7 +2487,15 @@
       "sourceId": 2478320,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2478330": {
       "childIds": [],
@@ -1892,7 +2516,15 @@
       "sourceId": 2478330,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2478350": {
       "childIds": [],
@@ -1913,7 +2545,15 @@
       "sourceId": 2478350,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2478362": {
       "childIds": [],
@@ -1934,7 +2574,15 @@
       "sourceId": 2478362,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2478470": {
       "childIds": [],
@@ -1955,7 +2603,15 @@
       "sourceId": 2478470,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2482177": {
       "childIds": [
@@ -1981,13 +2637,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2482177,
       "ports": [],
-      "serialNumber": "AN131800CY",
+      "serialNumber": "REDACTED-SFP-GE-0003",
       "slotKey": "GigabitEthernet0/0/0/6",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2482177,
       "type": "module",
       "typeId": "ABCU-5710RZ",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.118.4"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.118.4",
+      "fru": {
+        "adminStatus": "off",
+        "operStatus": "offAdmin",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2482183": {
       "childIds": [],
@@ -2006,7 +2668,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2482183,
       "ports": [],
-      "serialNumber": "AN131800CY",
+      "serialNumber": "REDACTED-SFP-GE-0003",
       "slotKey": "GigabitEthernet0/0/0/6-IDPROM",
       "sourceId": 2482183,
       "type": "module",
@@ -2032,7 +2694,15 @@
       "sourceId": 2482416,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2482426": {
       "childIds": [],
@@ -2053,7 +2723,15 @@
       "sourceId": 2482426,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2482446": {
       "childIds": [],
@@ -2074,7 +2752,15 @@
       "sourceId": 2482446,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2482458": {
       "childIds": [],
@@ -2095,7 +2781,15 @@
       "sourceId": 2482458,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2482566": {
       "childIds": [],
@@ -2116,7 +2810,15 @@
       "sourceId": 2482566,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2506753": {
       "childIds": [
@@ -2142,13 +2844,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2506753,
       "ports": [],
-      "serialNumber": "ONT1842008V",
+      "serialNumber": "REDACTED-SFP-10G-0001",
       "slotKey": "TenGigE0/0/0/12",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2506753,
       "type": "module",
       "typeId": "SFP-10G-LR-X",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.76.113"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.76.113",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2506759": {
       "childIds": [],
@@ -2167,7 +2875,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2506759,
       "ports": [],
-      "serialNumber": "ONT1842008V",
+      "serialNumber": "REDACTED-SFP-10G-0001",
       "slotKey": "TenGigE0/0/0/12-IDPROM",
       "sourceId": 2506759,
       "type": "module",
@@ -2193,7 +2901,15 @@
       "sourceId": 2506992,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 32693.998,
+        "rawValue": 32693998,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2507002": {
       "childIds": [],
@@ -2214,7 +2930,15 @@
       "sourceId": 2507002,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 29.412,
+        "rawValue": 29412,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2507022": {
       "childIds": [],
@@ -2235,7 +2959,15 @@
       "sourceId": 2507022,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -190507.0,
+        "rawValue": -190507,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2507034": {
       "childIds": [],
@@ -2256,7 +2988,15 @@
       "sourceId": 2507034,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -4000000.0,
+        "rawValue": -4000000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2507142": {
       "childIds": [],
@@ -2277,7 +3017,15 @@
       "sourceId": 2507142,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 41000.0,
+        "rawValue": 41000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2523137": {
       "childIds": [
@@ -2303,13 +3051,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2523137,
       "ports": [],
-      "serialNumber": "ONT210300RK",
+      "serialNumber": "REDACTED-SFP-10G-0002",
       "slotKey": "TenGigE0/0/0/16",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2523137,
       "type": "module",
       "typeId": "SFP-10G-ER-S",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.118.4"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.118.4",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2523143": {
       "childIds": [],
@@ -2328,7 +3082,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2523143,
       "ports": [],
-      "serialNumber": "ONT210300RK",
+      "serialNumber": "REDACTED-SFP-10G-0002",
       "slotKey": "TenGigE0/0/0/16-IDPROM",
       "sourceId": 2523143,
       "type": "module",
@@ -2354,7 +3108,15 @@
       "sourceId": 2523376,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 32835.0,
+        "rawValue": 32835000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2523386": {
       "childIds": [],
@@ -2375,7 +3137,15 @@
       "sourceId": 2523386,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 72.18,
+        "rawValue": 72180,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2523406": {
       "childIds": [],
@@ -2396,7 +3166,15 @@
       "sourceId": 2523406,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 214499.0,
+        "rawValue": 214499,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2523418": {
       "childIds": [],
@@ -2417,7 +3195,15 @@
       "sourceId": 2523418,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -931443.0,
+        "rawValue": -931443,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2523526": {
       "childIds": [],
@@ -2438,7 +3224,15 @@
       "sourceId": 2523526,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 46000.0,
+        "rawValue": 46000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2531329": {
       "childIds": [
@@ -2464,13 +3258,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2531329,
       "ports": [],
-      "serialNumber": "ACW262603ZK",
+      "serialNumber": "REDACTED-SFP-10G-0003",
       "slotKey": "TenGigE0/0/0/18",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2531329,
       "type": "module",
       "typeId": "SFP-10G-LR-S",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.76.217"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.76.217",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2531335": {
       "childIds": [],
@@ -2489,7 +3289,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2531335,
       "ports": [],
-      "serialNumber": "ACW262603ZK",
+      "serialNumber": "REDACTED-SFP-10G-0003",
       "slotKey": "TenGigE0/0/0/18-IDPROM",
       "sourceId": 2531335,
       "type": "module",
@@ -2515,7 +3315,15 @@
       "sourceId": 2531568,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 32695.0,
+        "rawValue": 32695000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2531578": {
       "childIds": [],
@@ -2536,7 +3344,15 @@
       "sourceId": 2531578,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 37.74,
+        "rawValue": 37740,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2531598": {
       "childIds": [],
@@ -2557,7 +3373,15 @@
       "sourceId": 2531598,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -252665.0,
+        "rawValue": -252665,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2531610": {
       "childIds": [],
@@ -2578,7 +3402,15 @@
       "sourceId": 2531610,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -826522.0,
+        "rawValue": -826522,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2531718": {
       "childIds": [],
@@ -2599,7 +3431,15 @@
       "sourceId": 2531718,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 42000.0,
+        "rawValue": 42000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2535425": {
       "childIds": [
@@ -2625,13 +3465,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2535425,
       "ports": [],
-      "serialNumber": "OPM26280RFZ",
+      "serialNumber": "REDACTED-SFP-10G-0004",
       "slotKey": "TenGigE0/0/0/19",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2535425,
       "type": "module",
       "typeId": "SFP-10G-LR-S",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.76.217"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.76.217",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2535431": {
       "childIds": [],
@@ -2650,7 +3496,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2535431,
       "ports": [],
-      "serialNumber": "OPM26280RFZ",
+      "serialNumber": "REDACTED-SFP-10G-0004",
       "slotKey": "TenGigE0/0/0/19-IDPROM",
       "sourceId": 2535431,
       "type": "module",
@@ -2676,7 +3522,15 @@
       "sourceId": 2535664,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 33036.0,
+        "rawValue": 33036000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2535674": {
       "childIds": [],
@@ -2697,7 +3551,15 @@
       "sourceId": 2535674,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 27.142,
+        "rawValue": 27142,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2535694": {
       "childIds": [],
@@ -2718,7 +3580,15 @@
       "sourceId": 2535694,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -270025.0,
+        "rawValue": -270025,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2535706": {
       "childIds": [],
@@ -2739,7 +3609,15 @@
       "sourceId": 2535706,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -453827.0,
+        "rawValue": -453827,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2535814": {
       "childIds": [],
@@ -2760,7 +3638,15 @@
       "sourceId": 2535814,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 40000.0,
+        "rawValue": 40000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2576385": {
       "childIds": [
@@ -2795,13 +3681,19 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2576385,
       "ports": [],
-      "serialNumber": "FBN2910K05S",
+      "serialNumber": "REDACTED-QSFP-100G-0001",
       "slotKey": "HundredGigE0/0/0/29",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 2576385,
       "type": "module",
       "typeId": "QSFP-100G-LR-S",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.118.38"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.118.38",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-2576391": {
       "childIds": [],
@@ -2820,7 +3712,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 2576391,
       "ports": [],
-      "serialNumber": "FBN2910K05S",
+      "serialNumber": "REDACTED-QSFP-100G-0001",
       "slotKey": "HundredGigE0/0/0/29-IDPROM",
       "sourceId": 2576391,
       "type": "module",
@@ -2846,7 +3738,15 @@
       "sourceId": 2576624,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.135",
+      "sensor": {
+        "sensorType": "voltsAC",
+        "scale": "milli",
+        "value": 31855.0,
+        "rawValue": 31855000,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2576634": {
       "childIds": [],
@@ -2867,7 +3767,15 @@
       "sourceId": 2576634,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 31.52,
+        "rawValue": 31520,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2576635": {
       "childIds": [],
@@ -2888,7 +3796,15 @@
       "sourceId": 2576635,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576636": {
       "childIds": [],
@@ -2909,7 +3825,15 @@
       "sourceId": 2576636,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576637": {
       "childIds": [],
@@ -2930,7 +3854,15 @@
       "sourceId": 2576637,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.136",
+      "sensor": {
+        "sensorType": "amperes",
+        "scale": "milli",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576654": {
       "childIds": [],
@@ -2951,7 +3883,15 @@
       "sourceId": 2576654,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 47703.0,
+        "rawValue": 47703,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2576655": {
       "childIds": [],
@@ -2972,7 +3912,15 @@
       "sourceId": 2576655,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576656": {
       "childIds": [],
@@ -2993,7 +3941,15 @@
       "sourceId": 2576656,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576657": {
       "childIds": [],
@@ -3014,7 +3970,15 @@
       "sourceId": 2576657,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576666": {
       "childIds": [],
@@ -3035,7 +3999,15 @@
       "sourceId": 2576666,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": -174054.0,
+        "rawValue": -174054,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2576667": {
       "childIds": [],
@@ -3056,7 +4028,15 @@
       "sourceId": 2576667,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576668": {
       "childIds": [],
@@ -3077,7 +4057,15 @@
       "sourceId": 2576668,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576669": {
       "childIds": [],
@@ -3098,7 +4086,15 @@
       "sourceId": 2576669,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.141",
+      "sensor": {
+        "sensorType": "dBm",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "unknown",
+        "unitsDisplay": ""
+      }
     },
     "component-2576774": {
       "childIds": [],
@@ -3119,7 +4115,15 @@
       "sourceId": 2576774,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 39722.0,
+        "rawValue": 39722,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2661": {
       "childIds": [],
@@ -3139,7 +4143,15 @@
       "sourceId": 2661,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 37.0,
+        "rawValue": 37,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2663": {
       "childIds": [],
@@ -3159,7 +4171,15 @@
       "sourceId": 2663,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 37.0,
+        "rawValue": 37,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2664": {
       "childIds": [],
@@ -3179,7 +4199,15 @@
       "sourceId": 2664,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 44.0,
+        "rawValue": 44,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2665": {
       "childIds": [],
@@ -3199,7 +4227,15 @@
       "sourceId": 2665,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 43.0,
+        "rawValue": 43,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2666": {
       "childIds": [],
@@ -3219,7 +4255,15 @@
       "sourceId": 2666,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 47.0,
+        "rawValue": 47,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2667": {
       "childIds": [],
@@ -3239,7 +4283,15 @@
       "sourceId": 2667,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 54.0,
+        "rawValue": 54,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2668": {
       "childIds": [],
@@ -3259,7 +4311,15 @@
       "sourceId": 2668,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.150"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.150",
+      "sensor": {
+        "sensorType": "unknown",
+        "scale": "units",
+        "value": 2126.0,
+        "rawValue": 2126,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2669": {
       "childIds": [],
@@ -3279,7 +4339,15 @@
       "sourceId": 2669,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 52.0,
+        "rawValue": 52,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2670": {
       "childIds": [],
@@ -3299,7 +4367,15 @@
       "sourceId": 2670,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 42.0,
+        "rawValue": 42,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2671": {
       "childIds": [],
@@ -3319,7 +4395,15 @@
       "sourceId": 2671,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 41.0,
+        "rawValue": 41,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2672": {
       "childIds": [],
@@ -3339,7 +4423,15 @@
       "sourceId": 2672,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 41.0,
+        "rawValue": 41,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2673": {
       "childIds": [],
@@ -3359,7 +4451,15 @@
       "sourceId": 2673,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 39.0,
+        "rawValue": 39,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2674": {
       "childIds": [],
@@ -3379,7 +4479,15 @@
       "sourceId": 2674,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 41.0,
+        "rawValue": 41,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2675": {
       "childIds": [],
@@ -3399,7 +4507,15 @@
       "sourceId": 2675,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 39.0,
+        "rawValue": 39,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2676": {
       "childIds": [],
@@ -3419,7 +4535,15 @@
       "sourceId": 2676,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 42.0,
+        "rawValue": 42,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2677": {
       "childIds": [],
@@ -3439,7 +4563,15 @@
       "sourceId": 2677,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 41.0,
+        "rawValue": 41,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-2678": {
       "childIds": [],
@@ -3459,7 +4591,15 @@
       "sourceId": 2678,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.137",
+      "sensor": {
+        "sensorType": "celsius",
+        "scale": "units",
+        "value": 40.0,
+        "rawValue": 40,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-30": {
       "childIds": [
@@ -4274,13 +5414,19 @@
       "physicalClassLabel": "fan",
       "physicalIndex": 4097,
       "ports": [],
-      "serialNumber": "FOC2634P0G1",
+      "serialNumber": "REDACTED-NCS540-FAN-0001",
       "slotKey": "0/FT0",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 4097,
       "type": "fan",
       "typeId": "N540-X-BB-FAN",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.7.293"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.7.293",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     },
     "component-4103": {
       "alias": "N/A",
@@ -4301,7 +5447,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 4103,
       "ports": [],
-      "serialNumber": "FOC2634P0G1",
+      "serialNumber": "REDACTED-NCS540-FAN-0001",
       "slotKey": "0/FT0",
       "sourceId": 4103,
       "type": "module",
@@ -5162,7 +6308,15 @@
       "sourceId": 5006,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-5096": {
       "childIds": [],
@@ -5183,7 +6337,15 @@
       "sourceId": 5096,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "rpm",
+        "scale": "units",
+        "value": 18900.0,
+        "rawValue": 18900,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-5097": {
       "childIds": [],
@@ -5204,7 +6366,15 @@
       "sourceId": 5097,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "rpm",
+        "scale": "units",
+        "value": 18960.0,
+        "rawValue": 18960,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-5098": {
       "childIds": [],
@@ -5225,7 +6395,15 @@
       "sourceId": 5098,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "rpm",
+        "scale": "units",
+        "value": 18840.0,
+        "rawValue": 18840,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-5099": {
       "childIds": [],
@@ -5246,7 +6424,15 @@
       "sourceId": 5099,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "rpm",
+        "scale": "units",
+        "value": 18870.0,
+        "rawValue": 18870,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-5100": {
       "childIds": [],
@@ -5267,7 +6453,15 @@
       "sourceId": 5100,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.139",
+      "sensor": {
+        "sensorType": "rpm",
+        "scale": "units",
+        "value": 19050.0,
+        "rawValue": 19050,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-551": {
       "childIds": [],
@@ -5515,7 +6709,15 @@
       "sourceId": 680,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-681": {
       "childIds": [],
@@ -5535,7 +6737,15 @@
       "sourceId": 681,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "unknown",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-682": {
       "childIds": [],
@@ -5555,7 +6765,15 @@
       "sourceId": 682,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "unknown",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-7": {
       "alias": "N/A",
@@ -5576,7 +6794,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 7,
       "ports": [],
-      "serialNumber": "FOC2634PCJ6",
+      "serialNumber": "REDACTED-NCS540-RP-0001",
       "sourceId": 7,
       "type": "module",
       "typeId": "N540X-16Z4G8Q2C-D",
@@ -5600,7 +6818,15 @@
       "sourceId": 700,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-701": {
       "childIds": [],
@@ -5620,7 +6846,15 @@
       "sourceId": 701,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-702": {
       "childIds": [],
@@ -5640,7 +6874,15 @@
       "sourceId": 702,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-703": {
       "childIds": [],
@@ -5660,7 +6902,15 @@
       "sourceId": 703,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-704": {
       "childIds": [],
@@ -5680,7 +6930,15 @@
       "sourceId": 704,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-705": {
       "childIds": [],
@@ -5700,7 +6958,15 @@
       "sourceId": 705,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-706": {
       "childIds": [],
@@ -5720,7 +6986,15 @@
       "sourceId": 706,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-707": {
       "childIds": [],
@@ -5740,7 +7014,15 @@
       "sourceId": 707,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-708": {
       "childIds": [],
@@ -5760,7 +7042,15 @@
       "sourceId": 708,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-709": {
       "childIds": [],
@@ -5780,7 +7070,15 @@
       "sourceId": 709,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-710": {
       "childIds": [],
@@ -5800,7 +7098,15 @@
       "sourceId": 710,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-711": {
       "childIds": [],
@@ -5820,7 +7126,15 @@
       "sourceId": 711,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-712": {
       "childIds": [],
@@ -5840,7 +7154,15 @@
       "sourceId": 712,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-713": {
       "childIds": [],
@@ -5860,7 +7182,15 @@
       "sourceId": 713,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-714": {
       "childIds": [],
@@ -5880,7 +7210,15 @@
       "sourceId": 714,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-715": {
       "childIds": [],
@@ -5900,7 +7238,15 @@
       "sourceId": 715,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-716": {
       "childIds": [],
@@ -5920,7 +7266,15 @@
       "sourceId": 716,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-717": {
       "childIds": [],
@@ -5940,7 +7294,15 @@
       "sourceId": 717,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-718": {
       "childIds": [],
@@ -5960,7 +7322,15 @@
       "sourceId": 718,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-719": {
       "childIds": [],
@@ -5980,7 +7350,15 @@
       "sourceId": 719,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-720": {
       "childIds": [],
@@ -6000,7 +7378,15 @@
       "sourceId": 720,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-721": {
       "childIds": [],
@@ -6020,7 +7406,15 @@
       "sourceId": 721,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-722": {
       "childIds": [],
@@ -6040,7 +7434,15 @@
       "sourceId": 722,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-723": {
       "childIds": [],
@@ -6060,7 +7462,15 @@
       "sourceId": 723,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-724": {
       "childIds": [],
@@ -6080,7 +7490,15 @@
       "sourceId": 724,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-725": {
       "childIds": [],
@@ -6100,7 +7518,15 @@
       "sourceId": 725,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-726": {
       "childIds": [],
@@ -6120,7 +7546,15 @@
       "sourceId": 726,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-727": {
       "childIds": [],
@@ -6140,7 +7574,15 @@
       "sourceId": 727,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-728": {
       "childIds": [],
@@ -6160,7 +7602,15 @@
       "sourceId": 728,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-729": {
       "childIds": [],
@@ -6180,7 +7630,15 @@
       "sourceId": 729,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "other",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-780": {
       "childIds": [],
@@ -6200,7 +7658,15 @@
       "sourceId": 780,
       "type": "sensor",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.8.138",
+      "sensor": {
+        "sensorType": "unknown",
+        "scale": "units",
+        "value": 0.0,
+        "rawValue": 0,
+        "operStatus": "ok",
+        "unitsDisplay": ""
+      }
     },
     "component-784": {
       "childIds": [],
@@ -6971,7 +8437,7 @@
       "physicalClassLabel": "chassis",
       "physicalIndex": 8384513,
       "ports": [],
-      "serialNumber": "FOC2636NR42",
+      "serialNumber": "REDACTED-NCS540-CHASSIS-0001",
       "softwareVersion": "7.5.2-NCS540LREV0",
       "sourceId": 8384513,
       "type": "chassis",
@@ -6996,7 +8462,7 @@
       "physicalClassLabel": "module",
       "physicalIndex": 8384519,
       "ports": [],
-      "serialNumber": "FOC2636NR42",
+      "serialNumber": "REDACTED-NCS540-CHASSIS-0001",
       "sourceId": 8384519,
       "type": "module",
       "typeId": "N540X-16Z4G8Q2C-D",
@@ -7143,11 +8609,17 @@
       "sourceId": 8983,
       "type": "powerSupply",
       "typeId": "N540-PSU-FIXED-D",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.6.712"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.6.712",
+      "fru": {
+        "adminStatus": "on",
+        "operStatus": "on",
+        "present": true,
+        "currentMilliAmps": 0
+      }
     }
   },
   "deviceId": "example-ncs540-16z4",
-  "generatedAt": "2026-05-30T15:33:51.001116+00:00",
+  "generatedAt": "2026-05-30T19:11:39.490065+00:00",
   "physicalIndexToComponentId": {
     "1": "component-1",
     "1011": "component-1011",
@@ -7481,7 +8953,10 @@
   "source": {
     "epnmSvg": "NCS540L_CE/Cisco_NCS_540X-16Z4G8Q2C-D_Router/images/N540X-16Z4G8Q2C-D_Front_core.svg",
     "profile": "docs/snmpwalks/normalized/ncs540-16z4-entity-mib.json",
-    "type": "entity-mib-derived-static-profile"
+    "type": "entity-mib-derived-static-profile",
+    "sensorDataSource": "docs/snmpwalks/sanitized/ciscoEntitySensorNCS540-16Z4.walk",
+    "fruDataSource": "docs/snmpwalks/sanitized/ciscoEntityFRUControlNCS540-16Z4.walk",
+    "enrichedAt": "2026-05-30T19:11:39.490211+00:00"
   },
   "tree": [
     {

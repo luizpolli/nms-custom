@@ -1,6 +1,40 @@
 # SNMP Walk Chassis Summary
 
-Generated at `2026-05-25T18:42:43.191455+00:00` from sanitized ENTITY-MIB walks.
+Generated at `2026-05-27T17:17:09.254819+00:00` from sanitized ENTITY-MIB walks.
+
+## NCS540-16Z4
+
+- Components: 325
+- FRU/hotspot candidates: 150 / 88
+- Port candidates: 101
+- ENTITY-MIB classes: `{"chassis": 1, "container": 35, "fan": 6, "module": 70, "port": 36, "powerSupply": 2, "sensor": 175}`
+
+### Top Level
+
+- `8384513` chassis: Rack 0 (5 children)
+
+### First Hotspot Candidates
+
+- `1` module `0/RP0/CPU0`: 0/RP0/CPU0
+- `801` container `SFP bay 0`: 0/RP0/CPU0-SFP bay 0
+- `802` container `SFP bay 1`: 0/RP0/CPU0-SFP bay 1
+- `803` container `SFP bay 2`: 0/RP0/CPU0-SFP bay 2
+- `804` container `SFP bay 3`: 0/RP0/CPU0-SFP bay 3
+- `805` container `SFP bay 4`: 0/RP0/CPU0-SFP bay 4
+- `806` container `SFP bay 5`: 0/RP0/CPU0-SFP bay 5
+- `807` container `SFP bay 6`: 0/RP0/CPU0-SFP bay 6
+- `808` container `SFP bay 7`: 0/RP0/CPU0-SFP bay 7
+- `809` container `SFP bay 8`: 0/RP0/CPU0-SFP bay 8
+- `810` container `SFP bay 9`: 0/RP0/CPU0-SFP bay 9
+- `811` container `SFP bay 10`: 0/RP0/CPU0-SFP bay 10
+- `812` container `SFP bay 11`: 0/RP0/CPU0-SFP bay 11
+- `813` container `SFP bay 12`: 0/RP0/CPU0-SFP bay 12
+- `814` container `SFP bay 13`: 0/RP0/CPU0-SFP bay 13
+- `815` container `SFP bay 14`: 0/RP0/CPU0-SFP bay 14
+- `816` container `SFP bay 15`: 0/RP0/CPU0-SFP bay 15
+- `817` container `SFP bay 16`: 0/RP0/CPU0-SFP bay 16
+- `818` container `SFP bay 17`: 0/RP0/CPU0-SFP bay 17
+- `819` container `SFP bay 18`: 0/RP0/CPU0-SFP bay 18
 
 ## NCS540
 

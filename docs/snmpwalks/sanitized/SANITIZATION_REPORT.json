@@ -1,88 +1,108 @@
 {
-  "source_dir": "/Users/kapy/.openclaw/media/inbound",
-  "output_dir": "/Users/kapy/.openclaw/workspace/projects/NMS_Custom/repo/docs/snmpwalks/sanitized",
-  "files": 15,
-  "sanitization": {
-    "serial_lines_replaced": 98,
-    "unique_real_serials_replaced": 49,
-    "ifAlias_lines_replaced": 797,
-    "ip_address_values_replaced": 0
-  },
-  "by_file": {
-    "ciscoEntityFRUControlNCS540.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
+    "source_dir": "/Users/kapy/.openclaw/media/inbound",
+    "output_dir": "/Users/kapy/.openclaw/workspace/projects/NMS_Custom/repo/docs/snmpwalks/sanitized",
+    "files": 27,
+    "sanitization": {
+        "serial_lines_replaced": 98,
+        "unique_real_serials_replaced": 49,
+        "ifAlias_lines_replaced": 1097,
+        "ip_address_values_replaced": 6754
     },
-    "ciscoEntityFRUControlNCS55A1.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "ciscoEntityFRUControlNCS560.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "ciscoEntitySensorNCS540.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "ciscoEntitySensorNCS55A1.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "ciscoEntitySensorNCS560.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "entPhysicalNCS540.walk": {
-      "serial_lines": 8,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "entPhysicalNCS55A1.walk": {
-      "serial_lines": 52,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "entPhysicalNCS560.walk": {
-      "serial_lines": 38,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "ifXTableNCS540.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 29,
-      "ip_values": 0
-    },
-    "ifXTableNCS55A1.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 725,
-      "ip_values": 0
-    },
-    "ifXTableNCS560.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 43,
-      "ip_values": 0
-    },
-    "interfacesNCS540.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "interfacesNCS55A1.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
-    },
-    "interfacesNCS560.walk": {
-      "serial_lines": 0,
-      "ifAlias_lines": 0,
-      "ip_values": 0
+    "by_file": {
+        "ciscoEntityFRUControlNCS540.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntityFRUControlNCS55A1.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntityFRUControlNCS560.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntitySensorNCS540.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntitySensorNCS55A1.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntitySensorNCS560.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "entPhysicalNCS540.walk": {
+            "serial_lines": 8,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "entPhysicalNCS55A1.walk": {
+            "serial_lines": 52,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "entPhysicalNCS560.walk": {
+            "serial_lines": 38,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ifXTableNCS540.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 29,
+            "ip_values": 0
+        },
+        "ifXTableNCS55A1.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 725,
+            "ip_values": 0
+        },
+        "ifXTableNCS560.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 43,
+            "ip_values": 0
+        },
+        "interfacesNCS540.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "interfacesNCS55A1.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "interfacesNCS560.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntitySensorNCS540-16Z4.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ciscoEntityFRUControlNCS540-16Z4.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        },
+        "ifXTableNCS540-16Z4.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 100,
+            "ip_values": 0
+        },
+        "interfacesNCS540-16Z4.walk": {
+            "serial_lines": 0,
+            "ifAlias_lines": 0,
+            "ip_values": 0
+        }
     }
-  }
 }
