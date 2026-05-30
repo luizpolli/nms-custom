@@ -35,6 +35,7 @@ from app.api.topology import router as topology_router
 from app.config import Settings
 from app.database import async_session_factory, init_db
 from app.security.auth import principal_from_presented_key, require_api_auth
+from app.security.body_size import BodySizeLimitMiddleware
 from app.security.rate_limit import RateLimitMiddleware
 from app.security.redaction import configure_log_redaction
 from app.services.account_audit import record_account_activity
@@ -135,6 +136,12 @@ async def account_activity_audit(request, call_next):
 # RATE_LIMIT_ENABLED=false short-circuit inside the middleware.
 if settings.rate_limit_enabled and settings.app_env != "test":
     app.add_middleware(RateLimitMiddleware)
+
+# Body-size limit middleware is added after rate-limit so limits are checked
+# after the request is accepted (not throttled). APP_ENV=test and
+# BODY_SIZE_LIMIT_ENABLED=false short-circuit inside the middleware.
+if settings.body_size_limit_enabled and settings.app_env != "test":
+    app.add_middleware(BodySizeLimitMiddleware)
 
 # Add TrustedHost last so it is the outermost middleware and rejects bad Host
 # headers before request metrics or route handling.

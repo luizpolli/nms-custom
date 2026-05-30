@@ -199,6 +199,16 @@ class Settings(BaseSettings):
     lldp_interval: int = 120
     cdp_interval: int = 120
 
+    # ---- Body-size limits ----------------------------------------------
+    # Toggle the body-size limit middleware. Defaults to on.
+    body_size_limit_enabled: bool = True
+    # Default maximum body size for ordinary API POST/PUT/PATCH requests (MB).
+    max_request_body_mb: float = 1.0
+    # Larger cap for bulk endpoints (bulk alarms, device imports, telemetry ingest).
+    max_bulk_request_body_mb: float = 4.0
+    # Cap for MIB file uploads. Should be >= mib_upload_max_bytes.
+    max_mib_upload_body_mb: float = 10.0
+
     # ---- Rate limiting --------------------------------------------------
     # Toggle the request rate-limit middleware. Defaults to on; tests
     # disable it via APP_ENV=test (handled in the middleware).

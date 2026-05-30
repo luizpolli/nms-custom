@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.services.telemetry.adapters import TelemetryAdapterError, parse_gnmi_json_frame
 from app.services.telemetry.ingestion import TelemetryIngestionService
 
@@ -27,6 +28,10 @@ class TelemetryReceiverConfig:
     bind_host: str = "0.0.0.0"  # nosec B104 - container listener; exposure controlled by Compose/K8s/firewall.
     bind_port: int = 57400
     idle_heartbeat_seconds: int = 30
+    # Maximum bytes read per TCP frame/line. Prevents memory exhaustion from a
+    # single malformed or malicious client sending an unbounded line.
+    # Defaults to MAX_BULK_REQUEST_BODY_MB (same envelope as API bulk endpoints).
+    max_frame_bytes: int = 0  # 0 = derive from settings at runtime
 
 
 class TelemetryReceiver:
@@ -75,10 +80,27 @@ class TelemetryReceiver:
                 await server.wait_closed()
                 server_task.cancel()
 
+    def _effective_max_frame_bytes(self) -> int:
+        """Return the effective per-frame byte limit from config or settings."""
+        if self.config.max_frame_bytes > 0:
+            return self.config.max_frame_bytes
+        return int(settings.max_bulk_request_body_mb * 1024 * 1024)
+
     async def _handle_client(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter) -> None:
         peer = writer.get_extra_info("peername")
+        max_frame = self._effective_max_frame_bytes()
         try:
             while line := await reader.readline():
+                if len(line) > max_frame:
+                    logger.warning(
+                        "Telemetry receiver: frame from {} exceeded {} bytes ({} bytes), closing connection",
+                        peer,
+                        max_frame,
+                        len(line),
+                    )
+                    writer.write(b"ERR frame too large\n")
+                    await writer.drain()
+                    break
                 try:
                     samples = parse_gnmi_json_frame(line)
                     for sample in samples:
