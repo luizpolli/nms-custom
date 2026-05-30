@@ -140,6 +140,8 @@ jobs:
         run: npm run lint
       - name: TypeScript typecheck
         run: npm run typecheck
+      - name: Vitest unit tests
+        run: npm test
       - name: Build frontend
         run: npm run build
       - name: Upload frontend build
