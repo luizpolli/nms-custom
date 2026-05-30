@@ -10,6 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from app.database import get_db
 from app.models.service import Service, ServiceDependency, ServiceMember
@@ -152,9 +153,27 @@ def _to_service_read(s: Service) -> ServiceRead:
     )
 
 
+# Eager-load every relationship _to_service_read touches. Without this each
+# service triggers two extra queries per upstream dependency (one for
+# source_service.name, one for target_service.name) — the classic N+1
+# pattern. With this option the whole list is served in a small fixed
+# number of queries regardless of fleet size.
+_LIST_SERVICE_EAGER = (
+    selectinload(Service.members),
+    selectinload(Service.upstream_dependencies).selectinload(
+        ServiceDependency.source_service
+    ),
+    selectinload(Service.upstream_dependencies).selectinload(
+        ServiceDependency.target_service
+    ),
+)
+
+
 @router.get("", response_model=list[ServiceRead])
 async def list_services(db: Annotated[AsyncSession, Depends(get_db)]) -> list[ServiceRead]:
-    result = await db.execute(select(Service).order_by(Service.name))
+    result = await db.execute(
+        select(Service).options(*_LIST_SERVICE_EAGER).order_by(Service.name)
+    )
     return [_to_service_read(s) for s in result.scalars().all()]
 
 
