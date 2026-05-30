@@ -21,13 +21,24 @@ spec:
     spec:
       serviceAccountName: {{ include "nms-custom.name" . }}
       terminationGracePeriodSeconds: {{ default 30 .Values.terminationGracePeriodSeconds }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       affinity:
         {{- include "nms-custom.podAntiAffinity" (list "api" .) | nindent 8 }}
       {{- include "nms-custom.topologySpread" (list "api" .) | nindent 6 }}
+      volumes:
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: api
           image: {{ .Values.image.backend }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           envFrom:
             - configMapRef: {name: {{ include "nms-custom.name" . }}-config}
             {{- if .Values.secrets.existingSecret }}
@@ -45,6 +56,9 @@ spec:
               valueFrom: {secretKeyRef: {name: {{ $secretName }}, key: password}}
           ports:
             - containerPort: 8000
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
           {{- include "nms-custom.apiProbes" . | nindent 10 }}
           {{- with .Values.resources }}
           resources:
@@ -80,13 +94,24 @@ spec:
     spec:
       serviceAccountName: {{ include "nms-custom.name" $ }}
       terminationGracePeriodSeconds: {{ default 30 $.Values.terminationGracePeriodSeconds }}
+      {{- with $.Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       affinity:
         {{- include "nms-custom.podAntiAffinity" (list $worker.name $) | nindent 8 }}
       {{- include "nms-custom.topologySpread" (list $worker.name $) | nindent 6 }}
+      volumes:
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: {{ $worker.name }}
           image: {{ $.Values.image.backend }}
           imagePullPolicy: {{ $.Values.image.pullPolicy }}
+          {{- with $.Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           command: ["python", "-m", "app.workers.run", "{{ $worker.kind }}"]
           envFrom:
             - configMapRef: {name: {{ include "nms-custom.name" $ }}-config}
@@ -107,6 +132,9 @@ spec:
               value: "0"
             - name: POSTGRES_PASSWORD
               valueFrom: {secretKeyRef: {name: {{ $secretName }}, key: password}}
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
           {{- with $.Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -134,15 +162,29 @@ spec:
       labels: {app.kubernetes.io/component: frontend, app.kubernetes.io/instance: {{ .Release.Name }}}
     spec:
       terminationGracePeriodSeconds: {{ default 30 .Values.terminationGracePeriodSeconds }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       affinity:
         {{- include "nms-custom.podAntiAffinity" (list "frontend" .) | nindent 8 }}
       {{- include "nms-custom.topologySpread" (list "frontend" .) | nindent 6 }}
+      volumes:
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: frontend
           image: {{ .Values.image.frontend }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           ports:
             - containerPort: 5173
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
           {{- include "nms-custom.frontendProbes" . | nindent 10 }}
           {{- with .Values.resources }}
           resources:

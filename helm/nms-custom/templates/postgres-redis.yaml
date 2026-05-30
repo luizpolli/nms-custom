@@ -12,9 +12,17 @@ spec:
     metadata:
       labels: {app.kubernetes.io/component: postgres, app.kubernetes.io/instance: {{ .Release.Name }}}
     spec:
+      {{- with .Values.postgresSecurityContext.pod }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: postgres
           image: {{ .Values.postgres.image }}
+          {{- with .Values.postgresSecurityContext.container }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - {name: POSTGRES_DB, value: {{ .Values.postgres.database | quote }}}
             - {name: POSTGRES_USER, value: {{ .Values.postgres.user | quote }}}
@@ -50,9 +58,23 @@ spec:
     metadata:
       labels: {app.kubernetes.io/component: redis, app.kubernetes.io/instance: {{ .Release.Name }}}
     spec:
+      {{- with .Values.redisSecurityContext.pod }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: redis
           image: {{ .Values.redis.image }}
+          {{- with .Values.redisSecurityContext.container }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
           ports: [{containerPort: 6379}]
 ---
 apiVersion: v1

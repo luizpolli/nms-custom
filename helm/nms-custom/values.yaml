@@ -180,6 +180,57 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 
+# ---------------------------------------------------------------------------
+# Security contexts
+# ---------------------------------------------------------------------------
+# podSecurityContext is applied at the Pod spec level (fsGroup, runAsNonRoot…).
+# containerSecurityContext is applied to every app/worker/receiver container.
+# Infrastructure pods (postgres, redis) use dedicated minimal contexts below.
+# ---------------------------------------------------------------------------
+podSecurityContext:
+  runAsNonRoot: true
+  # UID/GID 1000 matches the 'appuser' created in backend/Dockerfile and the
+  # 'node' user in node:20-alpine for the frontend image.
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+
+# Security context for the bundled PostgreSQL StatefulSet.
+# TimescaleDB init scripts need to run as root briefly; we therefore only
+# set allowPrivilegeEscalation and seccompProfile here.
+postgresSecurityContext:
+  pod:
+    seccompProfile:
+      type: RuntimeDefault
+  container:
+    allowPrivilegeEscalation: false
+
+# Security context for the bundled Redis Deployment.
+# redis:7-alpine ships a 'redis' user (UID 999).
+redisSecurityContext:
+  pod:
+    runAsNonRoot: true
+    runAsUser: 999
+    runAsGroup: 999
+    fsGroup: 999
+    seccompProfile:
+      type: RuntimeDefault
+  container:
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+
 # High-availability scheduling — pod anti-affinity + topology spread keep
 # replicas distributed across nodes and AZs. Defaults are "soft" (preferred)
 # so single-AZ clusters still schedule; flip to required in values-ha.yaml.
