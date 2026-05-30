@@ -68,7 +68,7 @@ NMS_Custom is still lab/development-friendly by default, but the main production
 - Add rate limits/body-size limits at ingress for API and telemetry receiver paths.
 - Add signed/verified MIB source provenance if users upload third-party MIB packs.
 - Add security regression tests for host allow-listing, command RBAC, TLS config, and ingestion bounds.
-- Add secret-manager examples for Docker/Helm deployments.
+- Add secret-manager examples for Docker/Helm deployments. ✅ See [`docs/SECRET_MANAGER_EXAMPLES.md`](SECRET_MANAGER_EXAMPLES.md).
 
 ## Control inventory
 
