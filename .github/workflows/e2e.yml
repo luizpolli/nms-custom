@@ -54,27 +54,33 @@ jobs:
         # We intentionally do NOT start the worker services, syslog/trap
         # receivers, telemetry collector, or the monitoring profile. The
         # alarms spec only needs the API and the SPA.
-        run: docker compose up -d postgres redis app frontend
+        #
+        # --wait would honour the container healthchecks, but the backend's
+        # baked-in healthcheck curls https://localhost:8000/health and we run
+        # the app over plain HTTP in CI. Detached start + custom polling
+        # below sidesteps that mismatch without rewriting the production
+        # healthcheck.
+        run: docker compose up -d --no-deps postgres redis app frontend
 
-      - name: Wait for app + frontend to become healthy
+      - name: Wait for app + frontend to be reachable
         run: |
-          # Backend health: own healthcheck reports via compose. Poll docker
-          # inspect rather than curl so we honour the cert/TLS posture of the
-          # container itself.
-          deadline=$((SECONDS + 180))
+          # Poll the actual ports from the host. We don't trust the container
+          # healthcheck here because it's configured for HTTPS and we've
+          # disabled TLS for this run (see the .env step above).
+          deadline=$((SECONDS + 240))
           while [ $SECONDS -lt $deadline ]; do
-            app_state=$(docker inspect -f '{{.State.Health.Status}}' nms-app 2>/dev/null || echo "starting")
-            fe_status=$(curl -sk -o /dev/null -w '%{http_code}' http://localhost:5173/ || echo 000)
-            echo "app=$app_state frontend_http=$fe_status"
-            if [ "$app_state" = "healthy" ] && [ "$fe_status" = "200" ]; then
+            be_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/health || echo 000)
+            fe_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:5173/ || echo 000)
+            echo "backend_http=$be_status frontend_http=$fe_status"
+            if [ "$be_status" = "200" ] && [ "$fe_status" = "200" ]; then
               echo "Stack ready."
               exit 0
             fi
             sleep 3
           done
-          echo "::error::Stack did not become healthy within 180s"
+          echo "::error::Stack did not become reachable within 240s"
           docker compose ps
-          docker compose logs --tail=120 app frontend postgres
+          docker compose logs --tail=200 app frontend postgres redis
           exit 1
 
       - name: Install psql client for E2E seeding
