@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ArrowLeft, Network, RefreshCw } from 'lucide-react';
+import { ArrowLeft, LayoutDashboard, Network, RefreshCw } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Button, Card, StatCard, Spinner, EmptyState, PageHeader } from '../../components/ui';
 import { ChassisView } from '../inventory/chassis/ChassisView';
@@ -125,6 +125,10 @@ export function DeviceDetailPage() {
           actions={
             <div className="flex items-center gap-2">
               {pollMessage && <span className="text-green-600 text-sm">{pollMessage}</span>}
+              <Button variant="ghost" size="sm" onClick={() => navigate(`/devices/${id}/dashboard`)}>
+                <LayoutDashboard className="w-4 h-4 mr-1" />
+                Dashboard
+              </Button>
               <Button onClick={() => pollMutation.mutate()} disabled={pollMutation.isPending}>
                 <RefreshCw className={`w-4 h-4 mr-1 ${pollMutation.isPending ? 'animate-spin' : ''}`} />
                 Poll now

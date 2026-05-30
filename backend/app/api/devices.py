@@ -42,6 +42,12 @@ CHASSIS_PROFILE_FILES = {
     "asr9006": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr9006" / "normalized.json",
     "asr920": Path(__file__).resolve().parents[1] / "data" / "chassis" / "asr920" / "normalized.json",
     "ncs55a1": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1" / "normalized.json",
+    "ncs55a1-24h": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1-24h" / "normalized.json",
+    "ncs55a1-24q6h": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1-24q6h" / "normalized.json",
+    "ncs55a1-48q6h": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs55a1-48q6h" / "normalized.json",
+    "ncs5501": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs5501" / "normalized.json",
+    "ncs5502": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs5502" / "normalized.json",
+    "ncs5508": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs5508" / "normalized.json",
     "ncs560": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs560" / "normalized.json",
     # NCS540L_CE sub-model profiles (checked before generic ncs540 fallback)
     "ncs540-16z4": Path(__file__).resolve().parents[1] / "data" / "chassis" / "ncs540-16z4" / "normalized.json",
@@ -196,7 +202,23 @@ def _device_inventory_terms(device: Device, inventory: Inventory | None) -> str:
 def _chassis_profile_for_device(device: Device, inventory: Inventory | None) -> str | None:
     terms = _device_inventory_terms(device, inventory)
     compact_terms = terms.replace(" ", "")
+    # NCS5500 fixed-port routers (check before generic ncs55a1 catch-all)
+    if "ncs5508" in compact_terms:
+        return "ncs5508"
+    if "ncs5516" in compact_terms:
+        return "ncs5516"
+    if "ncs5502" in compact_terms:
+        return "ncs5502"
+    if "ncs5501" in compact_terms:
+        return "ncs5501"
+    # NCS55A1 sub-variants (check specific models before generic fallback)
     if "ncs55a1" in compact_terms:
+        if "48q6h" in compact_terms:
+            return "ncs55a1-48q6h"
+        if "24q6h" in compact_terms:
+            return "ncs55a1-24q6h"
+        if "24h" in compact_terms:
+            return "ncs55a1-24h"
         return "ncs55a1"
     if "ncs560" in compact_terms:
         return "ncs560"

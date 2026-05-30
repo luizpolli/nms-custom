@@ -1,0 +1,485 @@
+{
+  "componentsById": {},
+  "deviceId": null,
+  "generatedAt": "2026-05-30T00:00:00Z",
+  "physicalIndexToComponentId": {},
+  "platform": "NCS-5508",
+  "profileId": "Cisco_NCS_5508",
+  "schemaVersion": 2,
+  "source": {
+    "epnmSvg": "NCS55XX_CE/Cisco_NCS_5508/images/NCS-5508-Front_b.svg",
+    "note": "Static visual profile from EPNM SVG assets. Front shows line cards/RPs; rear shows fabric/fans.",
+    "type": "static-profile"
+  },
+  "tree": [],
+  "views": [
+    {
+      "height": 2180,
+      "hotspots": [
+        {
+          "bounds": {
+            "h": 2180,
+            "w": 1820,
+            "x": 0,
+            "y": 0
+          },
+          "empty": false,
+          "id": "hotspot-chassis",
+          "inventoryId": null,
+          "label": "Chassis",
+          "metadata": {
+            "sourceName": "Rack 0",
+            "sourceTypeId": "NCS-5508"
+          },
+          "physicalIndex": null,
+          "slotKey": "Rack 0"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 90
+          },
+          "empty": false,
+          "id": "hotspot-lc0",
+          "inventoryId": null,
+          "label": "Line Card Slot 0",
+          "metadata": {
+            "sourceName": "0/0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/0"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 260
+          },
+          "empty": false,
+          "id": "hotspot-lc1",
+          "inventoryId": null,
+          "label": "Line Card Slot 1",
+          "metadata": {
+            "sourceName": "0/1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/1"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 427
+          },
+          "empty": false,
+          "id": "hotspot-lc2",
+          "inventoryId": null,
+          "label": "Line Card Slot 2",
+          "metadata": {
+            "sourceName": "0/2"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/2"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 593
+          },
+          "empty": false,
+          "id": "hotspot-lc3",
+          "inventoryId": null,
+          "label": "Line Card Slot 3",
+          "metadata": {
+            "sourceName": "0/3"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/3"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 765
+          },
+          "empty": false,
+          "id": "hotspot-lc4",
+          "inventoryId": null,
+          "label": "Line Card Slot 4",
+          "metadata": {
+            "sourceName": "0/4"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/4"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 925
+          },
+          "empty": false,
+          "id": "hotspot-lc5",
+          "inventoryId": null,
+          "label": "Line Card Slot 5",
+          "metadata": {
+            "sourceName": "0/5"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/5"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 1091
+          },
+          "empty": false,
+          "id": "hotspot-lc6",
+          "inventoryId": null,
+          "label": "Line Card Slot 6",
+          "metadata": {
+            "sourceName": "0/6"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/6"
+        },
+        {
+          "bounds": {
+            "h": 162,
+            "w": 1635,
+            "x": 92,
+            "y": 1251
+          },
+          "empty": false,
+          "id": "hotspot-lc7",
+          "inventoryId": null,
+          "label": "Line Card Slot 7",
+          "metadata": {
+            "sourceName": "0/7"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/7"
+        },
+        {
+          "bounds": {
+            "h": 165,
+            "w": 562,
+            "x": 195,
+            "y": 1415
+          },
+          "empty": false,
+          "id": "hotspot-rp0",
+          "inventoryId": null,
+          "label": "Route Processor 0",
+          "metadata": {
+            "sourceName": "0/RP0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/RP0"
+        },
+        {
+          "bounds": {
+            "h": 165,
+            "w": 562,
+            "x": 921,
+            "y": 1415
+          },
+          "empty": false,
+          "id": "hotspot-rp1",
+          "inventoryId": null,
+          "label": "Route Processor 1",
+          "metadata": {
+            "sourceName": "0/RP1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/RP1"
+        },
+        {
+          "bounds": {
+            "h": 380,
+            "w": 130,
+            "x": 460,
+            "y": 1627
+          },
+          "empty": false,
+          "id": "hotspot-pm0",
+          "inventoryId": null,
+          "label": "Power Module 0",
+          "metadata": {
+            "sourceName": "0/PM0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/PM0"
+        },
+        {
+          "bounds": {
+            "h": 380,
+            "w": 130,
+            "x": 616,
+            "y": 1627
+          },
+          "empty": false,
+          "id": "hotspot-pm1",
+          "inventoryId": null,
+          "label": "Power Module 1",
+          "metadata": {
+            "sourceName": "0/PM1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/PM1"
+        },
+        {
+          "bounds": {
+            "h": 380,
+            "w": 130,
+            "x": 778,
+            "y": 1627
+          },
+          "empty": false,
+          "id": "hotspot-pm2",
+          "inventoryId": null,
+          "label": "Power Module 2",
+          "metadata": {
+            "sourceName": "0/PM2"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/PM2"
+        },
+        {
+          "bounds": {
+            "h": 380,
+            "w": 130,
+            "x": 938,
+            "y": 1627
+          },
+          "empty": false,
+          "id": "hotspot-pm3",
+          "inventoryId": null,
+          "label": "Power Module 3",
+          "metadata": {
+            "sourceName": "0/PM3"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/PM3"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/ncs5508/NCS-5508-Front_b.svg",
+      "label": "Front View",
+      "sourceHeight": 2179,
+      "sourceImage": "NCS-5508-Front_b.svg",
+      "sourceWidth": 1820,
+      "width": 1820
+    },
+    {
+      "height": 2180,
+      "hotspots": [
+        {
+          "bounds": {
+            "h": 2180,
+            "w": 1820,
+            "x": 0,
+            "y": 0
+          },
+          "empty": false,
+          "id": "hotspot-chassis-rear",
+          "inventoryId": null,
+          "label": "Chassis",
+          "metadata": {
+            "sourceName": "Rack 0",
+            "sourceTypeId": "NCS-5508"
+          },
+          "physicalIndex": null,
+          "slotKey": "Rack 0"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 167,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-ft0",
+          "inventoryId": null,
+          "label": "Fan Tray 0",
+          "metadata": {
+            "sourceName": "0/FT0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FT0"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 645,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-ft1",
+          "inventoryId": null,
+          "label": "Fan Tray 1",
+          "metadata": {
+            "sourceName": "0/FT1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FT1"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 1128,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-ft2",
+          "inventoryId": null,
+          "label": "Fan Tray 2",
+          "metadata": {
+            "sourceName": "0/FT2"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FT2"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 410,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-fc0",
+          "inventoryId": null,
+          "label": "Fabric Card 0",
+          "metadata": {
+            "sourceName": "0/FC0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FC0"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 660,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-fc1",
+          "inventoryId": null,
+          "label": "Fabric Card 1",
+          "metadata": {
+            "sourceName": "0/FC1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FC1"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 910,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-fc2",
+          "inventoryId": null,
+          "label": "Fabric Card 2",
+          "metadata": {
+            "sourceName": "0/FC2"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FC2"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 1160,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-fc3",
+          "inventoryId": null,
+          "label": "Fabric Card 3",
+          "metadata": {
+            "sourceName": "0/FC3"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FC3"
+        },
+        {
+          "bounds": {
+            "h": 1640,
+            "w": 228,
+            "x": 1400,
+            "y": 55
+          },
+          "empty": false,
+          "id": "hotspot-fc4",
+          "inventoryId": null,
+          "label": "Fabric Card 4",
+          "metadata": {
+            "sourceName": "0/FC4"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FC4"
+        },
+        {
+          "bounds": {
+            "h": 380,
+            "w": 600,
+            "x": 266,
+            "y": 1758
+          },
+          "empty": false,
+          "id": "hotspot-sc0",
+          "inventoryId": null,
+          "label": "System Controller 0",
+          "metadata": {
+            "sourceName": "0/SC0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/SC0"
+        },
+        {
+          "bounds": {
+            "h": 380,
+            "w": 600,
+            "x": 918,
+            "y": 1758
+          },
+          "empty": false,
+          "id": "hotspot-sc1",
+          "inventoryId": null,
+          "label": "System Controller 1",
+          "metadata": {
+            "sourceName": "0/SC1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/SC1"
+        }
+      ],
+      "id": "rear",
+      "image": "/chassis-assets/ncs5508/NCS-5508-Rear_b.svg",
+      "label": "Rear View",
+      "sourceHeight": 2180,
+      "sourceImage": "NCS-5508-Rear_b.svg",
+      "sourceWidth": 1820,
+      "width": 1820
+    }
+  ]
+}

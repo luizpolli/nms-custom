@@ -1,0 +1,163 @@
+{
+  "componentsById": {},
+  "deviceId": null,
+  "generatedAt": "2026-05-30T00:00:00Z",
+  "physicalIndexToComponentId": {},
+  "platform": "NCS-5502",
+  "profileId": "Cisco_NCS_5502",
+  "schemaVersion": 2,
+  "source": {
+    "epnmSvg": "NCS55XX_CE/Cisco_NCS_5502/images/NCS-5502_Front_core.svg",
+    "note": "Static visual profile from EPNM SVG assets. Rear view shows power and fan slots.",
+    "type": "static-profile"
+  },
+  "tree": [],
+  "views": [
+    {
+      "height": 331,
+      "hotspots": [
+        {
+          "bounds": {
+            "h": 331,
+            "w": 1661,
+            "x": 0,
+            "y": 0
+          },
+          "empty": false,
+          "id": "hotspot-chassis",
+          "inventoryId": null,
+          "label": "Chassis",
+          "metadata": {
+            "sourceName": "Rack 0",
+            "sourceTypeId": "NCS-5502"
+          },
+          "physicalIndex": null,
+          "slotKey": "Rack 0"
+        },
+        {
+          "bounds": {
+            "h": 323,
+            "w": 1653,
+            "x": 4,
+            "y": 4
+          },
+          "empty": false,
+          "id": "hotspot-rp0",
+          "inventoryId": null,
+          "label": "Route Processor",
+          "metadata": {
+            "sourceName": "0/RP0",
+            "sourceTypeId": "NCS-5502"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/RP0"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/ncs5502/NCS-5502_Front_core.svg",
+      "label": "Front View",
+      "sourceHeight": 331,
+      "sourceImage": "NCS-5502_Front_core.svg",
+      "sourceWidth": 1661,
+      "width": 1661
+    },
+    {
+      "height": 331,
+      "hotspots": [
+        {
+          "bounds": {
+            "h": 331,
+            "w": 1661,
+            "x": 0,
+            "y": 0
+          },
+          "empty": false,
+          "id": "hotspot-chassis-rear",
+          "inventoryId": null,
+          "label": "Chassis",
+          "metadata": {
+            "sourceName": "Rack 0",
+            "sourceTypeId": "NCS-5502"
+          },
+          "physicalIndex": null,
+          "slotKey": "Rack 0"
+        },
+        {
+          "bounds": {
+            "h": 300,
+            "w": 210,
+            "x": 23,
+            "y": 12
+          },
+          "empty": false,
+          "id": "hotspot-pm0",
+          "inventoryId": null,
+          "label": "Power Module 0",
+          "metadata": {
+            "sourceName": "0/PM0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/PM0"
+        },
+        {
+          "bounds": {
+            "h": 300,
+            "w": 310,
+            "x": 358,
+            "y": 12
+          },
+          "empty": false,
+          "id": "hotspot-ft0",
+          "inventoryId": null,
+          "label": "Fan Tray 0",
+          "metadata": {
+            "sourceName": "0/FT0"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FT0"
+        },
+        {
+          "bounds": {
+            "h": 300,
+            "w": 310,
+            "x": 1031,
+            "y": 12
+          },
+          "empty": false,
+          "id": "hotspot-ft1",
+          "inventoryId": null,
+          "label": "Fan Tray 1",
+          "metadata": {
+            "sourceName": "0/FT1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/FT1"
+        },
+        {
+          "bounds": {
+            "h": 300,
+            "w": 210,
+            "x": 1434,
+            "y": 12
+          },
+          "empty": false,
+          "id": "hotspot-pm1",
+          "inventoryId": null,
+          "label": "Power Module 1",
+          "metadata": {
+            "sourceName": "0/PM1"
+          },
+          "physicalIndex": null,
+          "slotKey": "0/PM1"
+        }
+      ],
+      "id": "rear",
+      "image": "/chassis-assets/ncs5502/NCS-5502-Rear-core.svg",
+      "label": "Rear View",
+      "sourceHeight": 331,
+      "sourceImage": "NCS-5502-Rear-core.svg",
+      "sourceWidth": 1661,
+      "width": 1661
+    }
+  ]
+}

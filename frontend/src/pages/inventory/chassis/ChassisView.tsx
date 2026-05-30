@@ -135,6 +135,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [selectedPortId, setSelectedPortId] = useState<string | null>(null);
   const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
+  const [selectedViewId, setSelectedViewId] = useState<string>('front');
   const effectiveSelection = selectedComponentId ?? defaultSelection;
 
   if (isLoading) {
@@ -153,7 +154,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
     );
   }
 
-  const view = data.views[0];
+  const view = data.views.find((v) => v.id === selectedViewId) ?? data.views[0];
   const selectedComponent = effectiveSelection ? data.componentsById[effectiveSelection] : undefined;
   const selectedPorts = collectManagedPorts(selectedComponent, data.componentsById);
   const selectedPort = selectedPorts.find((port) => port.id === selectedPortId) ?? selectedPorts[0];
@@ -203,7 +204,27 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
             <div className="flex min-h-[430px] items-center justify-center overflow-x-auto px-6">
               <div className="w-full max-w-[1280px] min-w-[760px]">
                 <div className="mb-3 flex items-center justify-between text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
-                  <span>{view.label}</span>
+                  <div className="flex items-center gap-3">
+                    <span>{view.label}</span>
+                    {data.views.length > 1 && (
+                      <div className="flex items-center gap-1 rounded-md border border-gray-300 bg-white p-0.5 shadow-sm dark:border-gray-600 dark:bg-gray-800">
+                        {data.views.map((v) => (
+                          <button
+                            key={v.id}
+                            type="button"
+                            onClick={() => setSelectedViewId(v.id)}
+                            className={`rounded px-2 py-0.5 text-[10px] font-semibold transition ${
+                              v.id === view.id
+                                ? 'bg-cisco-blue text-white shadow'
+                                : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200'
+                            }`}
+                          >
+                            {v.label ?? v.id.charAt(0).toUpperCase() + v.id.slice(1)}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   <span>{view.hotspots.filter((hotspot) => hotspot.inventoryId).length}/{view.hotspots.length} mapped hotspots</span>
                 </div>
                 <ChassisCanvas
@@ -211,6 +232,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                   selectedComponentId={effectiveSelection}
                   onSelect={handleComponentSelect}
                   onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
+                  viewId={view.id}
                 />
               </div>
             </div>
@@ -382,13 +404,15 @@ function ChassisCanvas({
   selectedComponentId,
   onSelect,
   onHotspotDetail,
+  viewId,
 }: {
   model: ChassisViewModel;
   selectedComponentId: string | null;
   onSelect: (componentId: string) => void;
   onHotspotDetail?: (physicalIndex: number) => void;
+  viewId?: string;
 }) {
-  const view = model.views[0];
+  const view = (viewId ? model.views.find((v) => v.id === viewId) : undefined) ?? model.views[0];
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
