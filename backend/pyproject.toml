@@ -7,19 +7,21 @@ name = "nms-custom"
 version = "1.0.0"
 description = "Network Management System inspired by Cisco Prime"
 requires-python = ">=3.12"
+# Runtime dependencies — single source of truth.
+# requirements.txt is a derived lockfile; do not add packages there directly.
 dependencies = [
     "fastapi>=0.115",
     "uvicorn[standard]>=0.30",
     "sqlalchemy[asyncio]>=2.0",
     "aiosqlite>=0.20",
     "asyncpg>=0.30",
-    "asyncpg-stub>=0.5",
-    "asyncpgext>=0.1",
     "pydantic>=2.9",
     "pydantic-settings>=2.5",
-    "pymysql>=1.1",
     "httpx>=0.27",
-    "pysnmp-lextudio>=6.2",
+    # pysnmp 7.x is the lextudio-maintained fork, published under the original
+    # `pysnmp` name on PyPI. Do NOT use `pysnmp-lextudio` (legacy alias, 6.x).
+    "pysnmp>=7.1",
+    "pyasn1>=0.6.3",
     "asyncssh>=2.16",
     "cryptography>=43.0",
     "python-dotenv>=1.0",
