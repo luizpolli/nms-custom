@@ -246,10 +246,12 @@ class WorkerSupervisor:
                 )
                 correlator = AlarmCorrelator(async_session_factory)
 
-                async def _handle(event: SyslogEvent) -> None:
+                # Bind the per-iteration correlator into the closure so a
+                # restart loop never accidentally calls a stale one.
+                async def _handle(event: SyslogEvent, _c=correlator) -> None:
                     packet_source_host = event.source_host
                     logical_source_host = event.hostname or event.source_host
-                    await correlator.handle_syslog(
+                    await _c.handle_syslog(
                         source_host=logical_source_host,
                         message=event.message,
                         severity=event.severity,

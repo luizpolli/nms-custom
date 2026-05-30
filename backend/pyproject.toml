@@ -54,8 +54,14 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W", "UP", "B", "SIM"]
-ignore = ["E501"]
-per-file-ignores = {"tests/**" = ["S101"]}
+ignore = [
+  "E501",   # line length is enforced via formatter, not the linter.
+  "B008",   # FastAPI mandates Depends()/Query()/Body() in arg defaults.
+  "SIM105", # `try: ... except ...: pass` reads fine without contextlib.suppress.
+  "SIM102", # nested-if collapsing reduces readability in our domain code.
+  "UP047",  # PEP 695 type params; revisit when the codebase fully adopts py3.12+ syntax.
+]
+per-file-ignores = {"tests/**" = ["S101"], "app/models/**" = ["E402"]}
 
 [tool.mypy]
 # strict mypy is the long-term goal. CI currently runs a relaxed profile

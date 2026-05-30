@@ -599,7 +599,8 @@ class BulkDeviceRow(BaseModel):
     site: str | None = Field(None, max_length=255)
     tags: list[str] = Field(default_factory=list)
     device_type: str | None = Field(None, max_length=50)
-    licenceLevel: str | None = Field(None, validation_alias=AliasChoices("licenceLevel", "licencelevel", "licence_level"))
+    # Field name kept in camelCase to match EPNM CSV export columns.
+    licenceLevel: str | None = Field(None, validation_alias=AliasChoices("licenceLevel", "licencelevel", "licence_level"))  # noqa: N815
     snmp_version: str | None = Field(None, max_length=5)
     snmp_community: str | None = None
     snmp_write_community: str | None = None
@@ -985,7 +986,7 @@ async def get_device_chassis(
     )
     active_alarms = list(alarm_result.scalars().all())
 
-    SEVERITY_RANK: dict[str, int] = {
+    severity_rank: dict[str, int] = {
         "critical": 5,
         "major": 4,
         "minor": 3,
@@ -1026,7 +1027,7 @@ async def get_device_chassis(
 
         entry = alarms_by_component.setdefault(component_id, {"maxSeverity": "info", "count": 0})
         entry["count"] += 1
-        if SEVERITY_RANK.get(sev, 0) > SEVERITY_RANK.get(entry["maxSeverity"], 0):
+        if severity_rank.get(sev, 0) > severity_rank.get(entry["maxSeverity"], 0):
             entry["maxSeverity"] = sev
 
     chassis_model["alarmsByComponentId"] = alarms_by_component
@@ -1068,7 +1069,8 @@ async def get_inventory(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
 ):
-    device = await _get_device_or_404(db, id)
+    # Called for its side-effect: raises HTTP 404 when the device id is unknown.
+    _ = await _get_device_or_404(db, id)
     result = await db.execute(select(Inventory).where(Inventory.device_id == id))
     inv = result.scalar_one_or_none()
     return inv
@@ -1081,7 +1083,8 @@ async def get_chassis_port_detail(
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> dict[str, Any]:
     """Return component, interface, and active alarm data for a chassis port."""
-    device = await _get_device_or_404(db, id)
+    # Called for its side-effect: raises HTTP 404 when the device id is unknown.
+    _ = await _get_device_or_404(db, id)
 
     # 1. Look up the physical inventory component
     comp_result = await db.execute(
