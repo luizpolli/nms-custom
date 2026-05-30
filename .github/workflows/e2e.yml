@@ -76,7 +76,9 @@ jobs:
           # disabled TLS for this run (see the .env step above).
           deadline=$((SECONDS + 240))
           while [ $SECONDS -lt $deadline ]; do
-            be_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/health || echo 000)
+            # /api/health is the unredirected endpoint; /health 307s to
+            # /health/ which would also work with curl -L but adds a hop.
+            be_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/api/health || echo 000)
             fe_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:5173/ || echo 000)
             echo "backend_http=$be_status frontend_http=$fe_status"
             if [ "$be_status" = "200" ] && [ "$fe_status" = "200" ]; then
