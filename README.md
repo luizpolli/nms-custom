@@ -183,6 +183,15 @@ Open [http://localhost:5173](http://localhost:5173) (frontend) and
 | Syslog receiver     | 5514/udp       | RFC 5425 syslog ingestion with payload cap | allow-list trusted device/simulator subnets |
 | SNMP trap receiver  | 1162/udp       | SNMPv2c traps (data-driven classifier) | allow-list trusted device/simulator subnets |
 | Telemetry receiver  | 57400/tcp      | gNMI/MDT-like line-delimited JSON    | restrict to trusted collectors; native gNMI should use TLS/mTLS |
+| Prometheus          | 9090           | Self-monitoring TSDB (monitoring profile) | internal only |
+| Alertmanager        | 9093           | Alert routing (monitoring profile)    | internal only |
+| Grafana             | 3000           | Dashboards (monitoring profile)       | put behind auth proxy if exposed |
+
+The self-monitoring stack (Prometheus + Alertmanager + Grafana) lives in the
+opt-in `monitoring` Compose profile. Start it with
+`docker compose --profile monitoring up -d`. See
+[docs/OBSERVABILITY.md](docs/OBSERVABILITY.md) for setup, alerts, dashboards,
+and receiver configuration.
 
 ## Worker / Receiver Topology
 
