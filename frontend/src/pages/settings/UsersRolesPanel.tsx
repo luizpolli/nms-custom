@@ -1,0 +1,817 @@
+/**
+ * Users & Roles + API/sessions settings panel (P1.5 slice 2 of Settings.tsx).
+ *
+ * Contains:
+ *   - SecuritySettings / AppUser / AppRole / PermissionCatalog types
+ *   - Password policy + new-user form validation helpers
+ *   - The ClientsUsersPanel component (~650 lines) — by far the largest
+ *     panel in Settings, covering users, roles, API auth, and sessions.
+ *
+ * Behaviour was NOT changed by the move. If you find drift between this
+ * and the original (commit history before P1.5), that's a refactor bug,
+ * not an intentional change.
+ */
+
+import { useEffect, useState } from 'react';
+import { ChevronRight, CheckCircle2, XCircle } from 'lucide-react';
+import { Card, CardHeader } from '../../components/ui/Card';
+import { Select } from '../../components/ui/Select';
+import { Button, Input, Badge, InfoFloat } from '../../components/ui';
+import { api } from '../../lib/api';
+
+interface SecuritySettings {
+  https_enabled: boolean;
+  https_redirect_enabled: boolean;
+  tls_min_version: 'TLSv1.2' | 'TLSv1.3';
+  tls_cert_file: string;
+  tls_key_file: string;
+  tls_ca_file: string;
+  require_signed_html_certificate: boolean;
+  api_auth_enabled: boolean;
+  max_parallel_sessions: number;
+  idle_timeout_minutes: number;
+  root_web_login_enabled: boolean;
+}
+
+export interface AppUser {
+  id: string;
+  username: string;
+  display_name?: string | null;
+  role: string;
+  roles?: string[];
+  user_type: string;
+  custom_permissions: Record<string, boolean>;
+  virtual_domain?: string | null;
+  enabled: boolean;
+  force_password_change: boolean;
+}
+
+export interface AppRole {
+  id: string;
+  name: string;
+  display_name?: string | null;
+  description?: string | null;
+  user_type: string;
+  permissions: Record<string, boolean>;
+  built_in: boolean;
+  editable?: boolean;
+}
+
+type PermissionCatalog = Record<string, { key: string; label: string; description?: string }[]>;
+
+interface SystemSettingsPermission {
+  task_group: string;
+  task_name: string;
+  additional_permission: string;
+  permission_key: string;
+}
+
+const EMPTY_USER_FORM = {
+  username: '',
+  display_name: '',
+  first_name: '',
+  last_name: '',
+  description: '',
+  email: '',
+  password: '',
+  confirm_password: '',
+  role: 'admin',
+  roles: ['admin'] as string[],
+  user_type: 'web',
+  virtual_domain: 'all-domain',
+  custom_permissions: {} as Record<string, boolean>,
+};
+
+type NewUserForm = typeof EMPTY_USER_FORM;
+type UserFormField = keyof Pick<NewUserForm, 'username' | 'first_name' | 'last_name' | 'email' | 'password' | 'confirm_password' | 'roles'>;
+type UserFormErrors = Partial<Record<UserFormField, string>>;
+
+const USERNAME_PATTERN = /^[A-Za-z0-9_.@-]+$/;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function passwordRuleChecks(user: NewUserForm) {
+  const password = user.password;
+  const identityParts = [user.username, user.email, user.first_name, user.last_name]
+    .map((part) => part.trim().toLowerCase())
+    .filter((part) => part.length >= 3);
+  const lowerPassword = password.toLowerCase();
+
+  return [
+    { key: 'length', label: 'At least 12 characters', valid: password.length >= 12 },
+    { key: 'uppercase', label: 'At least one uppercase letter', valid: /[A-Z]/.test(password) },
+    { key: 'lowercase', label: 'At least one lowercase letter', valid: /[a-z]/.test(password) },
+    { key: 'number', label: 'At least one number', valid: /\d/.test(password) },
+    { key: 'special', label: 'At least one special character', valid: /[^A-Za-z0-9\s]/.test(password) },
+    { key: 'space', label: 'No spaces or line breaks', valid: password.length > 0 && !/\s/.test(password) },
+    {
+      key: 'identity',
+      label: 'Must not contain username, email, first name, or last name',
+      valid: password.length > 0 && !identityParts.some((part) => lowerPassword.includes(part)),
+    },
+  ];
+}
+
+function validateNewUser(user: NewUserForm): UserFormErrors {
+  const errors: UserFormErrors = {};
+  const username = user.username.trim();
+  const firstName = user.first_name.trim();
+  const lastName = user.last_name.trim();
+  const email = user.email.trim();
+
+  if (!username) errors.username = 'User name is required.';
+  else if (username.length < 3) errors.username = 'User name must be at least 3 characters.';
+  else if (!USERNAME_PATTERN.test(username)) errors.username = 'Use only letters, numbers, underscore, dot, at sign, or dash.';
+
+  if (!firstName) errors.first_name = 'First name is required.';
+  if (!lastName) errors.last_name = 'Last name is required.';
+  if (!email) errors.email = 'Email address is required.';
+  else if (!EMAIL_PATTERN.test(email)) errors.email = 'Enter a valid email address.';
+
+  const failedPasswordRule = passwordRuleChecks(user).find((rule) => !rule.valid);
+  if (!user.password) errors.password = 'Password is required.';
+  else if (failedPasswordRule) errors.password = failedPasswordRule.label;
+
+  if (!user.confirm_password) errors.confirm_password = 'Confirm the password.';
+  else if (user.password !== user.confirm_password) errors.confirm_password = 'Passwords do not match.';
+
+  if (user.roles.length === 0) errors.roles = 'Select at least one role.';
+
+  return errors;
+}
+
+function apiValidationErrors(error: unknown): UserFormErrors {
+  if (typeof error !== 'object' || error === null || !('response' in error)) return {};
+  const response = (error as { response?: { data?: { detail?: unknown } } }).response;
+  const detail = response?.data?.detail;
+  if (!Array.isArray(detail)) return {};
+
+  const errors: UserFormErrors = {};
+  for (const item of detail) {
+    if (typeof item !== 'object' || item === null) continue;
+    const loc = (item as { loc?: unknown }).loc;
+    const msg = (item as { msg?: unknown }).msg;
+    if (!Array.isArray(loc) || typeof msg !== 'string') continue;
+    const field = loc[loc.length - 1];
+    let target: UserFormField | null = null;
+    if (field === 'username' || field === 'password' || field === 'roles') target = field;
+    if (field === 'role' || field === 'user_type' || field === 'virtual_domain') target = 'roles';
+    if (target) errors[target] = msg;
+  }
+  return errors;
+}
+
+function PasswordPolicyFloat({ user, visible }: { user: NewUserForm; visible: boolean }) {
+  if (!visible) return null;
+  const checks = passwordRuleChecks(user);
+  return (
+    <div className="absolute left-0 top-full z-40 mt-2 w-full rounded-lg border border-gray-200 bg-white p-3 text-xs shadow-xl dark:border-gray-700 dark:bg-gray-900 md:left-[calc(100%+0.75rem)] md:top-0 md:mt-0 md:w-80">
+      <div className="mb-2 font-semibold text-gray-900 dark:text-gray-100">Password rules</div>
+      <ul className="space-y-1.5">
+        {checks.map((rule) => (
+          <li key={rule.key} className={`flex items-center gap-2 ${rule.valid ? 'text-green-700 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+            {rule.valid ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />}
+            <span>{rule.label}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-2 rounded bg-amber-50 px-2 py-1 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+        Security tip: do not reuse device, TACACS/RADIUS, or personal account passwords.
+      </div>
+    </div>
+  );
+}
+
+export function ClientsUsersPanel({ mode = 'full' }: { mode?: 'full' | 'security' | 'users' }) {
+  const [security, setSecurity] = useState<SecuritySettings | null>(null);
+  const [users, setUsers] = useState<AppUser[]>([]);
+  const [roles, setRoles] = useState<AppRole[]>([]);
+  const [catalog, setCatalog] = useState<PermissionCatalog>({});
+  const [systemSettingsPerms, setSystemSettingsPerms] = useState<SystemSettingsPermission[]>([]);
+  const [newUser, setNewUser] = useState({ ...EMPTY_USER_FORM });
+  const [userFormErrors, setUserFormErrors] = useState<UserFormErrors>({});
+  const [passwordHelpOpen, setPasswordHelpOpen] = useState(false);
+  const [newRole, setNewRole] = useState({ name: '', description: '', user_type: 'web', permissions: {} as Record<string, boolean> });
+  const [saving, setSaving] = useState(false);
+  const [tab, setTab] = useState<'users' | 'roles' | 'sessions'>(mode === 'security' ? 'sessions' : 'users');
+  const [showNewUser, setShowNewUser] = useState(false);
+  const [selectedRoleId, setSelectedRoleId] = useState<string | null>(null);
+  const [roleSubTab, setRoleSubTab] = useState<'tasks' | 'members'>('tasks');
+  const [roleFilter, setRoleFilter] = useState('');
+  const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+
+  const toggleCategory = (cat: string) =>
+    setExpandedCategories((prev) => ({ ...prev, [cat]: !prev[cat] }));
+
+  useEffect(() => {
+    void Promise.all([
+      api.get('/settings/security').then((r) => setSecurity(r.data)),
+      api.get('/settings/users').then((r) => setUsers(r.data)),
+      api.get('/settings/roles').then((r) => setRoles(r.data)).then(() => {}),
+      api.get('/settings/permissions').then((r) => setCatalog(r.data)),
+      api.get('/settings/permissions/system-settings').then((r) => setSystemSettingsPerms(r.data)).catch(() => setSystemSettingsPerms([])),
+    ]);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedRoleId && roles.length) setSelectedRoleId(roles[0].id);
+  }, [roles, selectedRoleId]);
+
+  const updateSecurity = <K extends keyof SecuritySettings>(key: K, value: SecuritySettings[K]) => {
+    setSecurity((prev) => prev ? { ...prev, [key]: value } : prev);
+  };
+
+  const saveSecurity = async () => {
+    if (!security) return;
+    setSaving(true);
+    try {
+      const response = await api.patch('/settings/security', security);
+      setSecurity(response.data);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const createUser = async () => {
+    const validationErrors = validateNewUser(newUser);
+    setUserFormErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      window.alert('Please fix the highlighted user fields before saving.');
+      setPasswordHelpOpen(!!validationErrors.password);
+      return;
+    }
+
+    const payload = {
+      username: newUser.username.trim(),
+      password: newUser.password,
+      role: newUser.roles[0] || newUser.role,
+      roles: newUser.roles,
+      user_type: newUser.user_type,
+      virtual_domain: newUser.virtual_domain && newUser.virtual_domain !== 'all-domain' ? newUser.virtual_domain : null,
+      display_name: newUser.display_name || `${newUser.first_name} ${newUser.last_name}`.trim() || newUser.username,
+      custom_permissions: newUser.custom_permissions,
+    };
+    try {
+      const response = await api.post('/settings/users', payload);
+      setUsers((prev) => [...prev, response.data]);
+      setNewUser({ ...EMPTY_USER_FORM });
+      setUserFormErrors({});
+      setPasswordHelpOpen(false);
+      setShowNewUser(false);
+    } catch (error) {
+      const fieldErrors = apiValidationErrors(error);
+      setUserFormErrors(fieldErrors);
+      if (fieldErrors.password) setPasswordHelpOpen(true);
+      window.alert(Object.keys(fieldErrors).length ? 'Please fix the highlighted user fields before saving.' : 'User could not be saved. Check the field values and try again.');
+    }
+  };
+
+  const createRole = async () => {
+    if (!newRole.name) return;
+    const response = await api.post('/settings/roles', newRole);
+    setRoles((prev) => [...prev, response.data]);
+    setNewRole({ name: '', description: '', user_type: 'web', permissions: {} });
+  };
+
+  const toggleSelectedRolePermission = async (roleId: string, key: string) => {
+    const role = roles.find((r) => r.id === roleId);
+    if (!role) return;
+    if (role.built_in && role.editable === false) return;
+    const nextPerms = { ...role.permissions, [key]: !role.permissions[key] };
+    const response = await api.patch(`/settings/roles/${roleId}`, { permissions: nextPerms });
+    setRoles((prev) => prev.map((r) => (r.id === roleId ? response.data : r)));
+  };
+
+  const toggleUserPermission = (key: string) => {
+    setNewUser((prev) => ({ ...prev, custom_permissions: { ...prev.custom_permissions, [key]: !prev.custom_permissions[key] } }));
+  };
+
+  const roleMenuOrder = ['root', 'super_users', 'admin', 'config_managers', 'system_monitoring', 'user_defined_1', 'user_defined_2', 'user_defined_3', 'user_defined_4', 'user_defined_5', 'monitor_lite', 'nbi_read', 'nbi_write'];
+  const selectableRoles = roleMenuOrder.map((name) => roles.find((role) => role.name === name)).filter(Boolean) as AppRole[];
+
+  const toggleUserRole = (role: AppRole) => {
+    setUserFormErrors((prev) => ({ ...prev, roles: undefined }));
+    setNewUser((prev) => {
+      const current = new Set(prev.roles);
+      if (current.has(role.name)) current.delete(role.name);
+      else {
+        if (role.name === 'monitor_lite') current.clear();
+        current.add(role.name);
+        if (current.has('monitor_lite') && role.name !== 'monitor_lite') current.delete('monitor_lite');
+      }
+      const nextRoles = Array.from(current);
+      const hasNbi = nextRoles.some((name) => roles.find((r) => r.name === name)?.user_type === 'nbi');
+      const hasWeb = nextRoles.some((name) => roles.find((r) => r.name === name)?.user_type === 'web');
+      return {
+        ...prev,
+        roles: nextRoles,
+        role: nextRoles[0] || '',
+        user_type: hasNbi && !hasWeb ? 'nbi' : 'web',
+      };
+    });
+  };
+
+  return (
+    <div className="space-y-6">
+      {mode !== 'users' && (
+      <Card>
+        <CardHeader title="HTTPS / TLS and Certificates" />
+        {security && (
+          <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-2">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={security.https_enabled} onChange={(e) => updateSecurity('https_enabled', e.target.checked)} />
+              Enable HTTPS for application access
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={security.https_redirect_enabled} onChange={(e) => updateSecurity('https_redirect_enabled', e.target.checked)} />
+              Redirect HTTP to HTTPS
+            </label>
+            <label>
+              <span className="mb-1 block font-medium">Minimum TLS Version</span>
+              <Select value={security.tls_min_version} onChange={(e) => updateSecurity('tls_min_version', e.target.value as SecuritySettings['tls_min_version'])}>
+                <option value="TLSv1.3">TLSv1.3</option>
+                <option value="TLSv1.2">TLSv1.2</option>
+              </Select>
+            </label>
+            <label className="flex items-center gap-2 md:mt-6">
+              <input type="checkbox" checked={security.require_signed_html_certificate} onChange={(e) => updateSecurity('require_signed_html_certificate', e.target.checked)} />
+              Require signed certificate for HTML UI
+            </label>
+            <label>
+              <span className="mb-1 block font-medium">Certificate file</span>
+              <Input value={security.tls_cert_file} onChange={(e) => updateSecurity('tls_cert_file', e.target.value)} placeholder="/certs/server.crt" />
+            </label>
+            <label>
+              <span className="mb-1 block font-medium">Private key file</span>
+              <Input value={security.tls_key_file} onChange={(e) => updateSecurity('tls_key_file', e.target.value)} placeholder="/certs/server.key" />
+            </label>
+            <label>
+              <span className="mb-1 block font-medium">CA bundle / chain file</span>
+              <Input value={security.tls_ca_file} onChange={(e) => updateSecurity('tls_ca_file', e.target.value)} placeholder="/certs/ca-chain.crt" />
+            </label>
+            <div className="flex items-end justify-end">
+              <Button onClick={saveSecurity} disabled={saving}>{saving ? 'Saving...' : 'Save TLS Settings'}</Button>
+            </div>
+          </div>
+        )}
+      </Card>
+      )}
+
+      <Card>
+        <CardHeader title={mode === 'security' ? 'Application Access and Sessions' : 'Application Access and User Permissions'} />
+        {mode !== 'users' && security && (
+          <div className="grid grid-cols-1 gap-4 border-b border-gray-200 p-4 text-sm dark:border-gray-700 md:grid-cols-3">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={security.api_auth_enabled} onChange={(e) => updateSecurity('api_auth_enabled', e.target.checked)} />
+              Require API authentication
+            </label>
+            <label>
+              <span className="mb-1 block font-medium">Parallel sessions</span>
+              <Input type="number" value={security.max_parallel_sessions} onChange={(e) => updateSecurity('max_parallel_sessions', Number(e.target.value))} />
+            </label>
+            <label>
+              <span className="mb-1 block font-medium">Idle timeout (minutes)</span>
+              <Input type="number" value={security.idle_timeout_minutes} onChange={(e) => updateSecurity('idle_timeout_minutes', Number(e.target.value))} />
+            </label>
+            <label className="flex items-center gap-2 md:col-span-2">
+              <input type="checkbox" checked={security.root_web_login_enabled} onChange={(e) => updateSecurity('root_web_login_enabled', e.target.checked)} />
+              Allow web GUI root login (Cisco-style recommendation: disable after creating an Admin/Super User)
+            </label>
+          </div>
+        )}
+
+        {mode === 'security' && (
+          <div className="p-4 text-sm text-gray-500">
+            Active session inventory and token revocation are pending. Current limits are saved through the live security settings API above.
+          </div>
+        )}
+
+        {mode !== 'security' && (
+        <div className="p-0">
+          <div className="flex border-b border-gray-200 dark:border-gray-700">
+            {([
+              ['users', 'Users'],
+              ['roles', 'Roles'],
+              ['sessions', 'Active Sessions'],
+            ] as const).map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setTab(key)}
+                className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+                  tab === key
+                    ? 'border-cisco-blue text-cisco-blue'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {tab === 'users' && (
+            <div className="p-4">
+              {!showNewUser ? (
+                <div className="mb-4 flex items-center justify-between">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Local Web GUI / NBI Users</h4>
+                  <Button onClick={() => setShowNewUser(true)}>+ Create New User</Button>
+                </div>
+              ) : (
+                <div className="mb-4">
+                  <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Create New User</h3>
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div className="space-y-3 text-sm">
+                      <label className="block">
+                        <span className="mb-1 block font-medium">User Name <span className="text-red-500">*</span></span>
+                        <Input value={newUser.username} error={userFormErrors.username} onChange={(e) => { setNewUser((p) => ({ ...p, username: e.target.value })); setUserFormErrors((p) => ({ ...p, username: undefined })); }} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">First Name <span className="text-red-500">*</span></span>
+                        <Input value={newUser.first_name} error={userFormErrors.first_name} onChange={(e) => { setNewUser((p) => ({ ...p, first_name: e.target.value })); setUserFormErrors((p) => ({ ...p, first_name: undefined })); }} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Last Name <span className="text-red-500">*</span></span>
+                        <Input value={newUser.last_name} error={userFormErrors.last_name} onChange={(e) => { setNewUser((p) => ({ ...p, last_name: e.target.value })); setUserFormErrors((p) => ({ ...p, last_name: undefined })); }} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Description</span>
+                        <Input value={newUser.description} onChange={(e) => setNewUser((p) => ({ ...p, description: e.target.value }))} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Email Address <span className="text-red-500">*</span></span>
+                        <Input type="email" value={newUser.email} error={userFormErrors.email} onChange={(e) => { setNewUser((p) => ({ ...p, email: e.target.value })); setUserFormErrors((p) => ({ ...p, email: undefined })); }} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Role <span className="text-red-500">*</span></span>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            onClick={() => setRoleDropdownOpen((open) => !open)}
+                            className="flex w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-left text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-cisco-blue dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                          >
+                            <span className="truncate">
+                              {newUser.roles.length
+                                ? newUser.roles.map((name) => roles.find((r) => r.name === name)?.display_name || name).join(', ')
+                                : 'Select roles'}
+                            </span>
+                            <ChevronRight className={`h-4 w-4 transition-transform ${roleDropdownOpen ? 'rotate-90' : ''}`} />
+                          </button>
+                          {roleDropdownOpen && (
+                            <div className="absolute z-30 mt-1 max-h-72 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+                              {selectableRoles.map((role) => (
+                                <label key={role.id} className="flex cursor-pointer items-start gap-2 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800">
+                                  <input
+                                    type="checkbox"
+                                    checked={newUser.roles.includes(role.name)}
+                                    onChange={() => toggleUserRole(role)}
+                                    className="mt-0.5"
+                                  />
+                                  <span className="min-w-0 flex-1">
+                                    <span className="block font-medium text-gray-900 dark:text-gray-100">{role.display_name || role.name}</span>
+                                    <span className="block text-xs text-gray-500">{role.user_type === 'nbi' ? 'NBI' : 'Web UI'} · {role.description}</span>
+                                  </span>
+                                </label>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        {userFormErrors.roles && <span className="mt-1 block text-xs text-severity-critical">{userFormErrors.roles}</span>}
+                        <span className="mt-1 block text-xs text-gray-500">
+                          Monitor Lite is exclusive. Web UI and NBI roles come from Roles.csv.
+                        </span>
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">User Type</span>
+                        <Select value={newUser.user_type} onChange={(e) => setNewUser((p) => ({ ...p, user_type: e.target.value }))}>
+                          <option value="web">Web GUI</option>
+                          <option value="nbi">NBI REST API</option>
+                        </Select>
+                      </label>
+                      <label className="relative block">
+                        <span className="mb-1 flex items-center gap-2 font-medium">
+                          Password <span className="text-red-500">*</span>
+                          <InfoFloat title="Password rules" description="Use a unique password with at least 12 characters, uppercase and lowercase letters, a number, a special character, no spaces, and no username/name/email fragments." />
+                        </span>
+                        <Input
+                          type="password"
+                          value={newUser.password}
+                          error={userFormErrors.password}
+                          onFocus={() => setPasswordHelpOpen(true)}
+                          onBlur={() => setPasswordHelpOpen(false)}
+                          onChange={(e) => {
+                            setNewUser((p) => ({ ...p, password: e.target.value }));
+                            setUserFormErrors((p) => ({ ...p, password: undefined, confirm_password: undefined }));
+                          }}
+                        />
+                        <PasswordPolicyFloat user={newUser} visible={passwordHelpOpen || !!userFormErrors.password} />
+                      </label>
+                      <label className="block">
+                        <span className="mb-1 block font-medium">Confirm Password <span className="text-red-500">*</span></span>
+                        <Input
+                          type="password"
+                          value={newUser.confirm_password}
+                          error={userFormErrors.confirm_password}
+                          onChange={(e) => {
+                            setNewUser((p) => ({ ...p, confirm_password: e.target.value }));
+                            setUserFormErrors((p) => ({ ...p, confirm_password: undefined }));
+                          }}
+                        />
+                      </label>
+                      <div className="flex gap-2 pt-2">
+                        <Button onClick={createUser}>Save</Button>
+                        <Button variant="secondary" onClick={() => { setShowNewUser(false); setNewUser({ ...EMPTY_USER_FORM }); setUserFormErrors({}); setPasswordHelpOpen(false); }}>Cancel</Button>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="mb-2 text-sm font-semibold">Scope</h4>
+                      <div className="rounded-lg border border-gray-200 p-3 text-sm dark:border-gray-700">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="font-medium">all-domain</div>
+                            <div className="text-xs text-gray-500">
+                              User has access to every device managed by this server. Virtual domains can be created later under Virtual Domain Management and assigned per user.
+                            </div>
+                          </div>
+                          <Badge variant="success">Default</Badge>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div className="border-b border-gray-200 bg-gray-50 px-3 py-2 text-sm font-semibold dark:border-gray-700 dark:bg-gray-800">
+                          Optional per-user privilege overrides
+                          <span className="ml-2 text-xs font-normal text-gray-500">
+                            Check items to grant extra privileges on top of the selected role.
+                          </span>
+                        </div>
+                        <div className="max-h-96 overflow-y-auto p-3">
+                          {Object.entries(catalog).map(([group, permissions]) => (
+                            <div key={group} className="mb-3">
+                              <div className="mb-1 text-xs font-semibold uppercase text-gray-500">{group}</div>
+                              {permissions.map((permission) => (
+                                <label key={permission.key} className="flex items-center gap-2 py-0.5 text-xs">
+                                  <input
+                                    type="checkbox"
+                                    checked={!!newUser.custom_permissions[permission.key]}
+                                    onChange={() => toggleUserPermission(permission.key)}
+                                  />
+                                  <span className="flex-1">{permission.label}</span>
+                                  <InfoFloat title={permission.label} description={permission.description} />
+                                </label>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                <table className="min-w-full text-sm text-gray-700 dark:text-gray-200">
+                  <thead className="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                      {['Username', 'Type', 'Role', 'Virtual Domain', 'Overrides', 'Status'].map((h) => <th key={h} className="px-4 py-2 text-left text-xs uppercase text-gray-500 dark:text-gray-400">{h}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td className="px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{user.username}</td>
+                        <td className="px-4 py-2">{user.user_type === 'nbi' ? 'NBI REST API' : 'Web GUI'}</td>
+                        <td className="px-4 py-2">{(user.roles?.length ? user.roles : user.role.split(',')).map((name) => roles.find((r) => r.name === name)?.display_name || name).join(', ')}</td>
+                        <td className="px-4 py-2">{user.virtual_domain || 'all-domain'}</td>
+                        <td className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400">{Object.values(user.custom_permissions || {}).filter(Boolean).length}</td>
+                        <td className="px-4 py-2"><Badge variant={user.enabled ? 'success' : 'neutral'}>{user.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
+                      </tr>
+                    ))}
+                    {users.length === 0 && <tr><td className="px-4 py-4 text-gray-500" colSpan={6}>No local users configured.</td></tr>}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {tab === 'roles' && (
+            <div className="grid grid-cols-12 gap-0">
+              <aside className="col-span-12 border-r border-gray-200 dark:border-gray-700 md:col-span-3">
+                <div className="p-3">
+                  <h4 className="mb-2 text-sm font-semibold">Roles</h4>
+                  <div className="max-h-[420px] overflow-y-auto">
+                    {roles.map((role) => (
+                      <button
+                        key={role.id}
+                        onClick={() => setSelectedRoleId(role.id)}
+                        className={`block w-full truncate rounded px-3 py-2 text-left text-sm ${
+                          selectedRoleId === role.id ? 'bg-cisco-blue/10 font-semibold text-cisco-blue' : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }`}
+                        title={role.description || ''}
+                      >
+                        <span>{role.display_name || role.name}</span>
+                        <span className="ml-1 text-xs text-gray-400">{role.user_type === 'nbi' ? '(NBI)' : ''}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="mt-3 space-y-2 border-t border-gray-200 pt-3 dark:border-gray-700">
+                    <Input placeholder="new role name" value={newRole.name} onChange={(e) => setNewRole((p) => ({ ...p, name: e.target.value }))} />
+                    <Input placeholder="description" value={newRole.description} onChange={(e) => setNewRole((p) => ({ ...p, description: e.target.value }))} />
+                    <Button onClick={createRole} className="w-full">+ Add Custom Role</Button>
+                  </div>
+                </div>
+              </aside>
+              <section className="col-span-12 md:col-span-9">
+                {selectedRoleId && (() => {
+                  const role = roles.find((r) => r.id === selectedRoleId);
+                  if (!role) return null;
+                  return (
+                    <div>
+                      <div className="border-b border-gray-200 p-3 dark:border-gray-700">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-base font-semibold">Role Permissions ({role.display_name || role.name})</h4>
+                          <Badge variant={role.built_in ? 'default' : 'success'}>{role.built_in ? 'Built-in' : 'Custom'}</Badge>
+                          <Badge variant={role.user_type === 'nbi' ? 'warning' : 'default'}>{role.user_type === 'nbi' ? 'NBI' : 'Web UI'}</Badge>
+                          {role.description && <span className="ml-2 text-xs text-gray-500">{role.description}</span>}
+                        </div>
+                      </div>
+                      <div className="flex border-b border-gray-200 dark:border-gray-700">
+                        {([
+                          ['tasks', 'Task Permissions'],
+                          ['members', 'Members'],
+                        ] as const).map(([key, label]) => (
+                          <button
+                            key={key}
+                            onClick={() => setRoleSubTab(key)}
+                            className={`px-4 py-2 text-sm font-medium border-b-2 ${
+                              roleSubTab === key ? 'border-cisco-blue text-cisco-blue' : 'border-transparent text-gray-500'
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                      {roleSubTab === 'tasks' && (() => {
+                        const SUBMENU_CAT = 'Additional Permissions for System Settings Submenus';
+                        const lockedByWildcard = !!role.permissions['*'];
+                        const disabled = role.built_in && role.editable === false;
+                        const lf = roleFilter.toLowerCase();
+
+                        // Build submenu lookup keyed by permission_key
+                        const submenuByKey = Object.fromEntries(
+                          systemSettingsPerms.map((sp) => [sp.permission_key, sp.additional_permission])
+                        );
+
+                        // Separate submenu category from regular categories
+                        const regularCats = Object.entries(catalog).filter(([g]) => g !== SUBMENU_CAT);
+                        const submenuCat = catalog[SUBMENU_CAT] ?? [];
+
+                        const renderRow = (p: { key: string; label: string; description?: string }, isSubmenu = false) => {
+                          const checked = lockedByWildcard || !!role.permissions[p.key];
+                          const addlPerm = submenuByKey[p.key] || '';
+                          const infoDesc = isSubmenu
+                            ? `Additional permission required: ${addlPerm}`
+                            : (p.description || '');
+                          return (
+                            <div key={p.key} className="flex items-center gap-2 border-b border-gray-100 px-3 py-1.5 last:border-0 dark:border-gray-800">
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                disabled={disabled}
+                                onChange={() => toggleSelectedRolePermission(role.id, p.key)}
+                                className="shrink-0"
+                              />
+                              <span className="flex-1 text-sm">{p.label}</span>
+                              {isSubmenu && addlPerm && (
+                                <span className="rounded bg-amber-100 px-1.5 py-0.5 text-xs text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                                  {addlPerm}
+                                </span>
+                              )}
+                              <InfoFloat title={p.label} description={infoDesc} />
+                            </div>
+                          );
+                        };
+
+                        return (
+                          <div className="p-3">
+                            <Input
+                              placeholder="Filter by task name or category..."
+                              value={roleFilter}
+                              onChange={(e) => setRoleFilter(e.target.value)}
+                              className="mb-3 max-w-md"
+                            />
+                            <div className="max-h-[560px] space-y-1 overflow-y-auto">
+                              {/* Regular task categories */}
+                              {regularCats.map(([group, perms]) => {
+                                const filtered = perms.filter(
+                                  (p) => !lf || p.label.toLowerCase().includes(lf) || group.toLowerCase().includes(lf)
+                                );
+                                if (!filtered.length) return null;
+                                const enabledCount = filtered.filter(
+                                  (p) => lockedByWildcard || !!role.permissions[p.key]
+                                ).length;
+                                const isOpen = expandedCategories[group] ?? false;
+                                return (
+                                  <div key={group} className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleCategory(group)}
+                                      className="flex w-full items-center justify-between bg-gray-50 px-3 py-2 text-left text-sm font-semibold text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                                    >
+                                      <span>{group}</span>
+                                      <span className="flex items-center gap-2">
+                                        <span className="rounded-full bg-cisco-blue/10 px-2 py-0.5 text-xs text-cisco-blue">
+                                          {enabledCount}/{filtered.length}
+                                        </span>
+                                        <ChevronRight className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+                                      </span>
+                                    </button>
+                                    {isOpen && (
+                                      <div>{filtered.map((p) => renderRow(p))}</div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+
+                              {/* Special category: Additional Permissions for System Settings Submenus */}
+                              {submenuCat.length > 0 && (() => {
+                                const filtered = submenuCat.filter(
+                                  (p) => !lf || p.label.toLowerCase().includes(lf) || SUBMENU_CAT.toLowerCase().includes(lf)
+                                );
+                                if (!filtered.length) return null;
+                                const enabledCount = filtered.filter(
+                                  (p) => lockedByWildcard || !!role.permissions[p.key]
+                                ).length;
+                                const isOpen = expandedCategories[SUBMENU_CAT] ?? false;
+                                return (
+                                  <div className="overflow-hidden rounded-lg border-2 border-amber-400 dark:border-amber-600">
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleCategory(SUBMENU_CAT)}
+                                      className="flex w-full items-center justify-between bg-amber-50 px-3 py-2 text-left text-sm font-semibold text-amber-800 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:hover:bg-amber-900/30"
+                                    >
+                                      <span className="flex items-center gap-2">
+                                        <span className="rounded bg-amber-200 px-1.5 py-0.5 text-xs font-bold text-amber-800 dark:bg-amber-800 dark:text-amber-200">
+                                          Table 2
+                                        </span>
+                                        Additional Permissions for System Settings Submenus
+                                      </span>
+                                      <span className="flex items-center gap-2">
+                                        <span className="rounded-full bg-amber-200 px-2 py-0.5 text-xs text-amber-800 dark:bg-amber-800 dark:text-amber-200">
+                                          {enabledCount}/{filtered.length}
+                                        </span>
+                                        <ChevronRight className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+                                      </span>
+                                    </button>
+                                    {isOpen && (
+                                      <div className="bg-amber-50/50 dark:bg-amber-900/10">
+                                        {filtered.map((p) => renderRow(p, true))}
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })()}
+                            </div>
+                          </div>
+                        );
+                      })()}
+                      {roleSubTab === 'members' && (
+                        <div className="p-3">
+                          <table className="min-w-full text-sm">
+                            <thead className="bg-gray-50 dark:bg-gray-800">
+                              <tr>
+                                <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Username</th>
+                                <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Type</th>
+                                <th className="px-3 py-2 text-left text-xs uppercase text-gray-500">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                              {users.filter((u) => (u.roles?.length ? u.roles : u.role.split(',')).includes(role.name)).map((u) => (
+                                <tr key={u.id}>
+                                  <td className="px-3 py-2 font-medium">{u.username}</td>
+                                  <td className="px-3 py-2">{u.user_type === 'nbi' ? 'NBI' : 'Web GUI'}</td>
+                                  <td className="px-3 py-2"><Badge variant={u.enabled ? 'success' : 'neutral'}>{u.enabled ? 'Enabled' : 'Disabled'}</Badge></td>
+                                </tr>
+                              ))}
+                              {users.filter((u) => (u.roles?.length ? u.roles : u.role.split(',')).includes(role.name)).length === 0 && (
+                                <tr><td className="px-3 py-3 text-gray-500" colSpan={3}>No members assigned to this role.</td></tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+              </section>
+            </div>
+          )}
+
+          {tab === 'sessions' && (
+            <div className="p-4 text-sm text-gray-500">
+              Active session tracking coming soon. Session timeout and concurrent session limits are configured in the Security submenu.
+            </div>
+          )}
+        </div>
+        )}
+      </Card>
+    </div>
+  );
+}
