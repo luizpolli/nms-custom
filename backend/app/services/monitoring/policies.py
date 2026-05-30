@@ -154,7 +154,7 @@ class MonitoringPolicyRunner:
         return counts
 
     async def _target_devices(self, session: AsyncSession, policy: MonitoringPolicy) -> list[Device]:
-        stmt = select(Device).where(Device.credential_id != None)  # noqa: E711
+        stmt = select(Device).where(Device.credential_id.is_not(None))
         if not policy.target_all_devices and policy.device_ids:
             stmt = stmt.where(Device.id.in_([uuid.UUID(str(v)) for v in policy.device_ids]))
         result = await session.execute(stmt)
