@@ -1,0 +1,97 @@
+# Alert rules for NMS-Custom (P2.11).
+# Grouped by concern: API health, worker liveness, event queue, telemetry, DB.
+
+groups:
+  - name: api_health
+    interval: 30s
+    rules:
+      - alert: NmsApiHigh5xx
+        expr: |
+          (
+            sum(rate(nms_http_requests_total{status=~"5.."}[5m]))
+            /
+            sum(rate(nms_http_requests_total[5m]))
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "NMS backend 5xx ratio above 5%"
+          description: "More than 5% of HTTP responses are 5xx over the last 5 minutes."
+
+      - alert: NmsApiLatencyP95High
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(nms_http_request_duration_seconds_bucket[5m])) by (le)
+          ) > 2
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NMS backend p95 latency above 2s"
+          description: "p95 HTTP request latency has exceeded 2s for the last 10 minutes."
+
+  - name: workers
+    interval: 30s
+    rules:
+      - alert: NmsWorkerStale
+        expr: nms_worker_stale == 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NMS worker {{ $labels.kind }} is stale"
+          description: "Worker {{ $labels.kind }} has been reporting stale (nms_worker_stale=1) for 5m."
+
+      - alert: NmsWorkerErrorBurst
+        expr: rate(nms_worker_errors_total[5m]) > 0.1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NMS worker {{ $labels.kind }} error burst"
+          description: "Worker {{ $labels.kind }} error rate >0.1/s sustained for 10m."
+
+  - name: queue
+    interval: 30s
+    rules:
+      - alert: NmsEventQueueBacklog
+        expr: nms_event_queue_depth > 10000
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NMS event queue backlog ({{ $labels.stream }})"
+          description: "Event queue depth for stream {{ $labels.stream }} >10k for 10m."
+
+  - name: telemetry
+    interval: 30s
+    rules:
+      - alert: NmsTelemetryDropRate
+        expr: |
+          rate(nms_telemetry_dropped_total[5m])
+          >
+          rate(nms_telemetry_samples_total[5m]) * 0.05
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NMS telemetry drop rate >5%"
+          description: "More than 5% of telemetry samples are being dropped over the last 5 minutes."
+
+  - name: db
+    interval: 30s
+    rules:
+      - alert: NmsDbQuerySlow
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(nms_db_query_duration_seconds_bucket[5m])) by (le)
+          ) > 1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "NMS DB p95 query time >1s"
+          description: "p95 database query duration exceeds 1s sustained for 10m."

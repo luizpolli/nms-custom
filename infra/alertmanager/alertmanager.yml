@@ -1,0 +1,30 @@
+# Alertmanager configuration for NMS-Custom (P2.11).
+#
+# This is a minimal placeholder. Replace the `default` receiver with a real
+# integration (Slack, email, PagerDuty, MS Teams, etc.) per deployment.
+# Examples are documented in docs/OBSERVABILITY.md.
+
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: default
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+
+receivers:
+  - name: default
+    # Placeholder webhook sink. Configure a real receiver per deployment.
+    webhook_configs:
+      - url: http://webhook-sink/alerts
+        send_resolved: true
+
+inhibit_rules:
+  # Critical firing for the same alertname silences warnings.
+  - source_matchers:
+      - severity = critical
+    target_matchers:
+      - severity = warning
+    equal: ['alertname']

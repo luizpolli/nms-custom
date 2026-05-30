@@ -1,0 +1,37 @@
+# Prometheus configuration for NMS-Custom self-monitoring stack (P2.11).
+#
+# Scrapes the FastAPI backend (`app` service) on its HTTPS API port and exposes
+# its own /metrics endpoint. Alert rules live under /etc/prometheus/rules.
+# Alerts are forwarded to the local Alertmanager instance.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:9090
+
+  - job_name: nms-backend
+    metrics_path: /metrics
+    scheme: https
+    # Backend serves a self-signed cert in dev. In production swap this for a
+    # real CA bundle via tls_config.ca_file and remove insecure_skip_verify.
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets:
+          - app:8000
+        labels:
+          service: nms-backend
