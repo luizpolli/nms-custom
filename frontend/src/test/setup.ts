@@ -7,6 +7,10 @@
  *   ships in the runtime but is unusable without a file backing. The shim
  *   below is what the api.ts interceptor actually reads.
  * - Wipes storage between tests so interceptor state doesn't leak.
+ * - Stubs `window.confirm` (and `alert`/`prompt`) which happy-dom 20 no
+ *   longer exposes by default. Tests that exercise delete flows spy on
+ *   `window.confirm`, which fails with "can only spy on a function" unless
+ *   we install a no-op stub first.
  */
 
 import '@testing-library/jest-dom/vitest';
@@ -45,6 +49,18 @@ beforeAll(() => {
     configurable: true,
     value: storage,
   });
+
+  // happy-dom 20 no longer ships window.confirm/alert/prompt. Install
+  // permissive no-op stubs so vi.spyOn(window, 'confirm') works.
+  for (const name of ['confirm', 'alert', 'prompt'] as const) {
+    if (typeof (window as unknown as Record<string, unknown>)[name] !== 'function') {
+      Object.defineProperty(window, name, {
+        configurable: true,
+        writable: true,
+        value: name === 'confirm' ? () => true : () => undefined,
+      });
+    }
+  }
 });
 
 afterEach(() => {
