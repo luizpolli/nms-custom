@@ -13,6 +13,12 @@ services:
     environment:
       HTTPS_ENABLED: "false"
       HTTPS_REDIRECT_ENABLED: "false"
+      # The container root filesystem is read_only and the only writable
+      # location is the /tmp tmpfs (see the x-backend-security anchor in
+      # docker-compose.yml). Redirect the JSONL audit logs there so they
+      # don't ENOENT/EACCES under read_only. Lives only for the test run.
+      ACCOUNT_AUDIT_LOG_PATH: "/tmp/audit/account_audit.jsonl"
+      PRIVILEGED_ACCOUNT_AUDIT_LOG_PATH: "/tmp/audit/privileged_account_audit.jsonl"
     # Override the baked-in HTTPS healthcheck so dependents can become
     # healthy in a plain-HTTP world. Used by the e2e workflow.
     healthcheck:
