@@ -82,14 +82,37 @@ jobs:
             echo "backend_http=$be_status frontend_http=$fe_status"
             if [ "$be_status" = "200" ] && [ "$fe_status" = "200" ]; then
               echo "Stack ready."
-              exit 0
+              break
             fi
             sleep 3
           done
-          echo "::error::Stack did not become reachable within 120s"
-          docker compose ps
-          docker compose logs --tail=200 app frontend postgres redis
-          exit 1
+          if [ "$be_status" != "200" ] || [ "$fe_status" != "200" ]; then
+            echo "::error::Stack did not become reachable within 120s"
+            docker compose ps
+            docker compose logs --tail=200 app frontend postgres redis
+            exit 1
+          fi
+
+      - name: Smoke-test alarm-filter endpoints from the runner
+        # If saveAlarmFilter is going to 500 from the browser, this same
+        # call from the runner will reproduce it deterministically and
+        # leave the actual stack trace in compose logs (uvicorn prints
+        # it to stderr by default).
+        run: |
+          echo "GET /api/alarms/filters"
+          curl -sS -o /tmp/get.json -w 'status=%{http_code}\n' \
+            http://localhost:8000/api/alarms/filters || true
+          head -c 400 /tmp/get.json; echo
+          echo "POST /api/alarms/filters"
+          curl -sS -o /tmp/post.json -w 'status=%{http_code}\n' \
+            -H 'Content-Type: application/json' \
+            -d '{"name":"smoke-test","is_public":false,"filters":{"severity":"major","state":"active","limit":100,"offset":0}}' \
+            -X POST http://localhost:8000/api/alarms/filters || true
+          head -c 400 /tmp/post.json; echo
+          echo "--- app logs (last 80 lines, filtered) ---"
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml logs --no-color --tail=200 app \
+            | grep -vE 'WebSocket|connection (open|closed)' \
+            | tail -80
 
       - name: Install psql client for E2E seeding
         # The Playwright spec needs a psql binary to seed/teardown fixtures.
