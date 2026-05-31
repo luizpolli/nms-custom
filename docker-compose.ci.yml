@@ -1,0 +1,28 @@
+# ---------------------------------------------------------------------------
+# CI-only override: disables HTTPS end-to-end so the e2e workflow doesn't
+# need to provision certificates or wait for the HTTPS healthcheck. Composes
+# on top of docker-compose.yml via `docker compose -f docker-compose.yml -f
+# docker-compose.ci.yml`.
+#
+# Not for use in production or normal dev: real deployments must keep TLS
+# on (enforced by ProductionSafetyError when APP_ENV=production).
+# ---------------------------------------------------------------------------
+
+services:
+  app:
+    environment:
+      HTTPS_ENABLED: "false"
+      HTTPS_REDIRECT_ENABLED: "false"
+    # Override the baked-in HTTPS healthcheck so dependents can become
+    # healthy in a plain-HTTP world. Used by the e2e workflow.
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  frontend:
+    environment:
+      HTTPS_ENABLED: "false"
+      VITE_API_TARGET: "http://app:8000"
+      VITE_WS_TARGET: "ws://app:8000"

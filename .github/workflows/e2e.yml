@@ -53,44 +53,30 @@ jobs:
       - name: Prepare .env (HTTPS off for CI)
         run: |
           cp .env.example .env
-          # Disable HTTPS so the dev-cert bootstrap step is skipped and the
-          # frontend Vite proxy talks to the backend over plain HTTP. Auth is
-          # already disabled by default (API_AUTH_ENABLED=false) so the
+          # Auth stays disabled by default (API_AUTH_ENABLED=false) so the
           # AlarmsPage renders as the implicit "local-dev" principal.
-          sed -i 's/^HTTPS_ENABLED=.*/HTTPS_ENABLED=false/' .env
-          sed -i 's|^HTTPS_REDIRECT_ENABLED=.*|HTTPS_REDIRECT_ENABLED=false|' .env || true
-          # Ensure the backend uses a non-empty encryption key. Same value the
-          # other CI jobs use; safe for ephemeral test databases.
+          # HTTPS_ENABLED is overridden via docker-compose.ci.yml below.
           echo 'CREDENTIAL_ENCRYPTION_KEY=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=' >> .env
 
       - name: Start core stack (postgres, redis, app, frontend)
+        # docker-compose.ci.yml turns TLS off across the app and rewires the
+        # frontend's Vite proxy to http://app:8000 so the SPA doesn't try to
+        # speak TLS to a plain-HTTP backend.
+        #
         # We intentionally do NOT start the worker services, syslog/trap
         # receivers, telemetry collector, or the monitoring profile. The
         # alarms spec only needs the API and the SPA.
-        #
-        # --wait would honour the container healthchecks, but the backend's
-        # baked-in healthcheck curls https://localhost:8000/health and we run
-        # the app over plain HTTP in CI. Detached start + custom polling
-        # below sidesteps that mismatch without rewriting the production
-        # healthcheck.
-        # --no-deps so docker doesn't try to honour the frontend->app
-        # depends_on healthcheck (which is HTTPS-only). --wait is omitted
-        # because depends_on conditions would still apply otherwise; we run
-        # our own host-side reachability poll below.
         run: |
-          docker compose up -d --no-deps postgres redis
-          docker compose up -d --no-deps app
-          docker compose up -d --no-deps frontend
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml \
+            up -d --wait postgres redis app frontend
 
       - name: Wait for app + frontend to be reachable
         run: |
-          # Poll the actual ports from the host. We don't trust the container
-          # healthcheck here because it's configured for HTTPS and we've
-          # disabled TLS for this run (see the .env step above).
-          deadline=$((SECONDS + 240))
+          # 'up --wait' already gave us a healthy backend. Frontend has no
+          # healthcheck of its own, so confirm it's serving HTTP 200 before
+          # handing off to Playwright.
+          deadline=$((SECONDS + 120))
           while [ $SECONDS -lt $deadline ]; do
-            # /api/health is the unredirected endpoint; /health 307s to
-            # /health/ which would also work with curl -L but adds a hop.
             be_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/api/health || echo 000)
             fe_status=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:5173/ || echo 000)
             echo "backend_http=$be_status frontend_http=$fe_status"
@@ -100,7 +86,7 @@ jobs:
             fi
             sleep 3
           done
-          echo "::error::Stack did not become reachable within 240s"
+          echo "::error::Stack did not become reachable within 120s"
           docker compose ps
           docker compose logs --tail=200 app frontend postgres redis
           exit 1
@@ -148,8 +134,8 @@ jobs:
         if: failure()
         run: |
           mkdir -p compose-logs
-          docker compose ps > compose-logs/ps.txt || true
-          docker compose logs --no-color --tail=500 > compose-logs/all.log || true
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml ps > compose-logs/ps.txt || true
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml logs --no-color --tail=500 > compose-logs/all.log || true
 
       - name: Upload compose logs
         if: failure()
@@ -161,4 +147,4 @@ jobs:
 
       - name: Tear down stack
         if: always()
-        run: docker compose down --volumes --remove-orphans
+        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml down --volumes --remove-orphans
