@@ -110,6 +110,23 @@ test('alarm saved filters privacy, publish action, read-only public copy flow, a
     }
   });
 
+  // Surface browser-side failures in CI logs so flaky-debug runs don't
+  // require re-downloading traces every time.
+  page.on('console', (msg) => {
+    if (msg.type() === 'error' || msg.type() === 'warning') {
+      console.log(`[browser:${msg.type()}] ${msg.text()}`);
+    }
+  });
+  page.on('requestfailed', (req) => {
+    console.log(`[net:failed] ${req.method()} ${req.url()} - ${req.failure()?.errorText ?? 'unknown'}`);
+  });
+  page.on('response', (resp) => {
+    const url = resp.url();
+    if (url.includes('/api/alarms/filters') && resp.status() >= 400) {
+      console.log(`[net:err] ${resp.request().method()} ${url} -> ${resp.status()}`);
+    }
+  });
+
   await page.goto('/alarms');
   await expect(page.getByRole('heading', { name: 'Alarms' })).toBeVisible();
   await expect(page.getByText('Failed to load alarms.')).toHaveCount(0);
