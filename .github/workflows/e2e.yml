@@ -93,26 +93,21 @@ jobs:
             exit 1
           fi
 
-      - name: Smoke-test alarm-filter endpoints from the runner
-        # If saveAlarmFilter is going to 500 from the browser, this same
-        # call from the runner will reproduce it deterministically and
-        # leave the actual stack trace in compose logs (uvicorn prints
-        # it to stderr by default).
+      - name: Smoke-test alarm-filter endpoints
+        # Quick sanity check that the API actually returns 200s before we
+        # hand off to Playwright. Cheap (~200ms) and catches
+        # configuration regressions (missing tables, audit-path
+        # permissions, etc.) with a clearer error than a Playwright
+        # timeout. Also cleans up the smoke-test row it creates.
         run: |
-          echo "GET /api/alarms/filters"
-          curl -sS -o /tmp/get.json -w 'status=%{http_code}\n' \
-            http://localhost:8000/api/alarms/filters || true
-          head -c 400 /tmp/get.json; echo
-          echo "POST /api/alarms/filters"
-          curl -sS -o /tmp/post.json -w 'status=%{http_code}\n' \
+          set -e
+          status=$(curl -sS -o /dev/null -w '%{http_code}' http://localhost:8000/api/alarms/filters)
+          test "$status" = "200" || { echo "GET /api/alarms/filters returned $status"; exit 1; }
+          status=$(curl -sS -o /dev/null -w '%{http_code}' \
             -H 'Content-Type: application/json' \
             -d '{"name":"smoke-test","is_public":false,"filters":{"severity":"major","state":"active","limit":100,"offset":0}}' \
-            -X POST http://localhost:8000/api/alarms/filters || true
-          head -c 400 /tmp/post.json; echo
-          echo "--- app logs (last 80 lines, filtered) ---"
-          docker compose -f docker-compose.yml -f docker-compose.ci.yml logs --no-color --tail=200 app \
-            | grep -vE 'WebSocket|connection (open|closed)' \
-            | tail -80
+            -X POST http://localhost:8000/api/alarms/filters)
+          test "$status" = "200" -o "$status" = "201" || { echo "POST /api/alarms/filters returned $status"; exit 1; }
 
       - name: Install psql client for E2E seeding
         # The Playwright spec needs a psql binary to seed/teardown fixtures.
