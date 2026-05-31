@@ -119,6 +119,10 @@ test('alarm saved filters privacy, publish action, read-only public copy flow, a
   await page.getByLabel('Filter name').fill(privateFilterName);
   await expect(page.getByLabel('Public filter')).not.toBeChecked();
   await page.getByRole('button', { name: 'Save', exact: true }).click();
+  // Wait for the Save dialog to close so the next Load Filter click isn't
+  // intercepted by the modal overlay (visible in CI where the POST is
+  // slower than local).
+  await expect(page.getByRole('heading', { name: 'Save alarm filter' })).toHaveCount(0);
 
   await page.getByRole('button', { name: 'Load Filter' }).click();
   const privateButton = page.getByRole('button', { name: new RegExp(`${privateFilterName} Private · local-dev`) });
@@ -137,6 +141,8 @@ test('alarm saved filters privacy, publish action, read-only public copy flow, a
   await page.getByLabel('Filter name').fill(publicCopyName);
   await expect(page.getByRole('button', { name: 'Save', exact: true })).toBeEnabled();
   await page.getByRole('button', { name: 'Save', exact: true }).click();
+  // Same dialog-close wait as the private-save path above.
+  await expect(page.getByRole('heading', { name: 'Save alarm filter' })).toHaveCount(0);
 
   await page.getByRole('button', { name: 'Load Filter' }).click();
   await expect(page.locator('div').filter({ hasText: publicCopyName }).filter({ hasText: 'Private · local-dev' }).first()).toBeVisible();
