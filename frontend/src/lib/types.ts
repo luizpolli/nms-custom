@@ -1,7 +1,12 @@
 // ─── Device ──────────────────────────────────────────────────────────────────
 
 export type DeviceStatus = 'reachable' | 'unreachable' | 'unknown' | 'polling';
-export type DevicePlatform = 'ncs55a1' | 'ncs560' | 'asr920' | 'asr9010' | 'asr5k' | string;
+// Platforms with shipped chassis-view profiles in backend/app/data/chassis/.
+// 'asr5k' was previously listed here as aspirational but ships no profile,
+// no SVG assets, and no SNMP fixtures (Cisco ASR 5000 is a StarOS mobile
+// packet-core platform with an ATCA chassis architecture that differs from
+// the IOS-XR EPNM packs we consume).  See docs/chassis-asr5k-status.md.
+export type DevicePlatform = 'ncs55a1' | 'ncs560' | 'asr920' | 'asr9010' | string;
 
 export interface Device {
   id: string;
