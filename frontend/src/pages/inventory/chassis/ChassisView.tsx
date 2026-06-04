@@ -539,6 +539,7 @@ function ChassisCanvas({
           {view.hotspots.map((hotspot) => {
             const selected = containsComponent(model.componentsById, hotspot.inventoryId, selectedComponentId);
             const canSelect = Boolean(hotspot.inventoryId);
+            const showHotspotChrome = shouldRenderOverlay(model.profileId, hotspot.id);
             const alarmInfo: ComponentAlarmInfo | undefined =
               hotspot.inventoryId ? model.alarmsByComponentId?.[hotspot.inventoryId] : undefined;
             return (
@@ -562,11 +563,13 @@ function ChassisCanvas({
                   }
                 }}
                 className={`absolute rounded-sm border-2 transition ${
-                  selected
-                    ? 'border-cisco-blue bg-cisco-blue/20 shadow-[0_0_0_4px_rgba(0,124,186,0.25)]'
-                    : canSelect
-                      ? 'border-transparent bg-green-500/0 hover:border-cisco-blue/70 hover:bg-cisco-blue/10'
-                      : 'border-gray-400/40 bg-gray-500/10'
+                  !showHotspotChrome
+                    ? 'border-transparent bg-transparent focus-visible:border-cisco-blue/80 focus-visible:bg-cisco-blue/10'
+                    : selected
+                      ? 'border-cisco-blue bg-cisco-blue/20 shadow-[0_0_0_4px_rgba(0,124,186,0.25)]'
+                      : canSelect
+                        ? 'border-transparent bg-green-500/0 hover:border-cisco-blue/70 hover:bg-cisco-blue/10'
+                        : 'border-gray-400/40 bg-gray-500/10'
                 }`}
                 style={percentBounds(hotspot, view)}
               >
