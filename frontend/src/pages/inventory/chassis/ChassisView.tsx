@@ -194,15 +194,13 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
 
         <div className="relative min-h-[560px] bg-[#e7f1fb] dark:bg-gray-950">
           {/*
-            Responsive grid:
-            - <1024px: single column, everything stacks (tree, chassis, details panel).
-            - 1024-1279px: two columns — tree+chassis on the left, details panel on the right.
-              Chassis sits below the tree but fills the column width so it stays centered.
-            - >=1280px: three columns — tree | chassis | details panel.
-            The chassis cell removes the previous min-w-[760px] that was forcing horizontal
-            overflow on ~1200px viewports.
+            Responsive grid (3 cols from lg, single column below):
+            - <1024px: single column stack — tree, chassis, details panel in DOM order.
+            - >=1024px: 3 columns — tree | chassis | details panel, row-major DOM order.
+            The chassis cell uses min-w-0 so it can shrink inside its 1fr column without
+            forcing horizontal overflow at the ~1200px breakpoint.
           */}
-          <div className="grid gap-5 p-4 lg:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[300px_minmax(0,1fr)_340px]">
+          <div className="grid gap-5 p-4 lg:grid-cols-[260px_minmax(0,1fr)_300px] xl:grid-cols-[300px_minmax(0,1fr)_340px]">
             <DiscoveredElementsTree
               tree={data.tree}
               componentsById={data.componentsById}
@@ -210,7 +208,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
               onSelect={handleComponentSelect}
             />
 
-            <div className="flex min-h-[430px] min-w-0 items-center justify-center overflow-x-auto px-2 sm:px-6 lg:col-start-1 lg:row-start-2 xl:col-start-2 xl:row-start-1">
+            <div className="flex min-h-[430px] min-w-0 items-center justify-center overflow-x-auto px-2 sm:px-4 xl:px-6">
               <div className="w-full max-w-[1280px]">
                 <div className="mb-3 flex items-center justify-between text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
                   <div className="flex items-center gap-3">
@@ -246,19 +244,17 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
               </div>
             </div>
 
-            <div className="lg:col-start-2 lg:row-start-1 lg:row-span-2">
-              <ComponentDetailsPanel
-                component={selectedComponent}
-                componentsById={data.componentsById}
-                managedPorts={selectedPorts}
-                selectedPort={selectedPort}
-                managedInterface={selectedInterface}
-                hasLiveInterfaceLookup={Boolean(deviceId)}
-                isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
-                deviceId={deviceId}
-                onSelectPort={setSelectedPortId}
-              />
-            </div>
+            <ComponentDetailsPanel
+              component={selectedComponent}
+              componentsById={data.componentsById}
+              managedPorts={selectedPorts}
+              selectedPort={selectedPort}
+              managedInterface={selectedInterface}
+              hasLiveInterfaceLookup={Boolean(deviceId)}
+              isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
+              deviceId={deviceId}
+              onSelectPort={setSelectedPortId}
+            />
           </div>
 
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
