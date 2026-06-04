@@ -205,9 +205,22 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
             into a narrow middle column at ~1200px laptop viewports.
           */}
           <div className="flex flex-col gap-5 p-4">
-            {/* Row 1: chassis image, full content width. */}
-            <div className="flex min-h-[430px] min-w-0 items-center justify-center overflow-x-auto px-2 sm:px-4 xl:px-6">
-              <div className="w-full max-w-[1280px]">
+            {/* Row 1: chassis image, centered. Width is capped by aspect ratio:
+               we compute a max-width so the chassis is never taller than
+               ~360px regardless of its native aspect ratio. Tall chassis like
+               NCS560 (aspect ~2.5:1) and flat ones like ASR920 (aspect ~10:1)
+               both end up at a comfortable visual size on a laptop viewport. */}
+            <div className="flex min-h-[260px] min-w-0 items-center justify-center px-2 sm:px-4 xl:px-6">
+              {/* Size by aspect ratio so the chassis fits in a comfortable
+                 visual box. Wide chassis (ASR920, NCS540, NCS55A1, ~10:1) get
+                 the full 1280px cap. Tall chassis (NCS5508, ASR9010) get a
+                 floor of 380px width so they don't shrink to a thin sliver. */}
+              {(() => {
+                const aspectRatio = view.width / view.height;
+                const widthFromHeightCap = 360 * aspectRatio;
+                const computedWidth = `min(1280px, max(380px, ${widthFromHeightCap}px))`;
+                return (
+                  <div className="w-full max-w-[1280px]" style={{ maxWidth: computedWidth }}>
                 <div className="mb-3 flex items-center justify-between text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
                   <div className="flex items-center gap-3">
                     <span>{view.label}</span>
@@ -232,14 +245,16 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                   </div>
                   <span>{view.hotspots.filter((hotspot) => hotspot.inventoryId).length}/{view.hotspots.length} mapped hotspots</span>
                 </div>
-                <ChassisCanvas
-                  model={data}
-                  selectedComponentId={effectiveSelection}
-                  onSelect={handleComponentSelect}
-                  onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
-                  viewId={view.id}
-                />
-              </div>
+                    <ChassisCanvas
+                      model={data}
+                      selectedComponentId={effectiveSelection}
+                      onSelect={handleComponentSelect}
+                      onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
+                      viewId={view.id}
+                    />
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Row 2: tree + details panel side-by-side from md (>=768px), stacked below. */}
