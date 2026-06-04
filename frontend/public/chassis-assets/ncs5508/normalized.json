@@ -49,7 +49,12 @@
             "sourceName": "0/0"
           },
           "physicalIndex": null,
-          "slotKey": "0/0"
+          "slotKey": "0/0",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -66,7 +71,12 @@
             "sourceName": "0/1"
           },
           "physicalIndex": null,
-          "slotKey": "0/1"
+          "slotKey": "0/1",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -83,7 +93,12 @@
             "sourceName": "0/2"
           },
           "physicalIndex": null,
-          "slotKey": "0/2"
+          "slotKey": "0/2",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -100,7 +115,12 @@
             "sourceName": "0/3"
           },
           "physicalIndex": null,
-          "slotKey": "0/3"
+          "slotKey": "0/3",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -117,7 +137,12 @@
             "sourceName": "0/4"
           },
           "physicalIndex": null,
-          "slotKey": "0/4"
+          "slotKey": "0/4",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -134,7 +159,12 @@
             "sourceName": "0/5"
           },
           "physicalIndex": null,
-          "slotKey": "0/5"
+          "slotKey": "0/5",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -151,7 +181,12 @@
             "sourceName": "0/6"
           },
           "physicalIndex": null,
-          "slotKey": "0/6"
+          "slotKey": "0/6",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -168,7 +203,12 @@
             "sourceName": "0/7"
           },
           "physicalIndex": null,
-          "slotKey": "0/7"
+          "slotKey": "0/7",
+          "asset": {
+            "typeId": "NC55-36X100G",
+            "image": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-36X100G.svg"
+          }
         },
         {
           "bounds": {
@@ -219,7 +259,12 @@
             "sourceName": "0/PM0"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM0"
+          "slotKey": "0/PM0",
+          "asset": {
+            "typeId": "NC55-1200W-ACFW",
+            "image": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg"
+          }
         },
         {
           "bounds": {
@@ -236,7 +281,12 @@
             "sourceName": "0/PM1"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "NC55-1200W-ACFW",
+            "image": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg"
+          }
         },
         {
           "bounds": {
@@ -253,7 +303,12 @@
             "sourceName": "0/PM2"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM2"
+          "slotKey": "0/PM2",
+          "asset": {
+            "typeId": "NC55-1200W-ACFW",
+            "image": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg"
+          }
         },
         {
           "bounds": {
@@ -270,7 +325,12 @@
             "sourceName": "0/PM3"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM3"
+          "slotKey": "0/PM3",
+          "asset": {
+            "typeId": "NC55-1200W-ACFW",
+            "image": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-1200W-ACFW.svg"
+          }
         }
       ],
       "id": "front",
@@ -317,7 +377,12 @@
             "sourceName": "0/FT0"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "NS55-5508-FAN",
+            "image": "/chassis-assets/ncs5508/modules/NS55-5508-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NS55-5508-FAN.svg"
+          }
         },
         {
           "bounds": {
@@ -334,7 +399,12 @@
             "sourceName": "0/FT1"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT1"
+          "slotKey": "0/FT1",
+          "asset": {
+            "typeId": "NS55-5508-FAN",
+            "image": "/chassis-assets/ncs5508/modules/NS55-5508-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NS55-5508-FAN.svg"
+          }
         },
         {
           "bounds": {
@@ -351,7 +421,12 @@
             "sourceName": "0/FT2"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT2"
+          "slotKey": "0/FT2",
+          "asset": {
+            "typeId": "NS55-5508-FAN",
+            "image": "/chassis-assets/ncs5508/modules/NS55-5508-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NS55-5508-FAN.svg"
+          }
         },
         {
           "bounds": {
@@ -368,7 +443,12 @@
             "sourceName": "0/FC0"
           },
           "physicalIndex": null,
-          "slotKey": "0/FC0"
+          "slotKey": "0/FC0",
+          "asset": {
+            "typeId": "NC55-5508-FC",
+            "image": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg"
+          }
         },
         {
           "bounds": {
@@ -385,7 +465,12 @@
             "sourceName": "0/FC1"
           },
           "physicalIndex": null,
-          "slotKey": "0/FC1"
+          "slotKey": "0/FC1",
+          "asset": {
+            "typeId": "NC55-5508-FC",
+            "image": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg"
+          }
         },
         {
           "bounds": {
@@ -402,7 +487,12 @@
             "sourceName": "0/FC2"
           },
           "physicalIndex": null,
-          "slotKey": "0/FC2"
+          "slotKey": "0/FC2",
+          "asset": {
+            "typeId": "NC55-5508-FC",
+            "image": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg"
+          }
         },
         {
           "bounds": {
@@ -419,7 +509,12 @@
             "sourceName": "0/FC3"
           },
           "physicalIndex": null,
-          "slotKey": "0/FC3"
+          "slotKey": "0/FC3",
+          "asset": {
+            "typeId": "NC55-5508-FC",
+            "image": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg"
+          }
         },
         {
           "bounds": {
@@ -436,7 +531,12 @@
             "sourceName": "0/FC4"
           },
           "physicalIndex": null,
-          "slotKey": "0/FC4"
+          "slotKey": "0/FC4",
+          "asset": {
+            "typeId": "NC55-5508-FC",
+            "image": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg",
+            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-5508-FC.svg"
+          }
         },
         {
           "bounds": {

@@ -97,7 +97,12 @@
             "sourceName": "0/PM0"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM0"
+          "slotKey": "0/PM0",
+          "asset": {
+            "typeId": "NCS-5502-PSU",
+            "image": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-powersupply.svg",
+            "sourceImage": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-powersupply.svg"
+          }
         },
         {
           "bounds": {
@@ -114,7 +119,12 @@
             "sourceName": "0/FT0"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "NCS-5502-FAN",
+            "image": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-fan.svg",
+            "sourceImage": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-fan.svg"
+          }
         },
         {
           "bounds": {
@@ -131,7 +141,12 @@
             "sourceName": "0/FT1"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT1"
+          "slotKey": "0/FT1",
+          "asset": {
+            "typeId": "NCS-5502-FAN",
+            "image": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-fan.svg",
+            "sourceImage": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-fan.svg"
+          }
         },
         {
           "bounds": {

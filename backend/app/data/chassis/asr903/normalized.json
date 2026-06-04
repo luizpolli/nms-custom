@@ -1577,6 +1577,11 @@
       "height": 381.6,
       "hotspots": [
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA8T.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA8T.svg",
+            "typeId": "A900-IMA8T"
+          },
           "bounds": {
             "h": 57.24,
             "w": 431.51,
@@ -1599,6 +1604,11 @@
           "slotKey": "subslot/0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA8S.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA8S.svg",
+            "typeId": "A900-IMA8S"
+          },
           "bounds": {
             "h": 57.24,
             "w": 431.51,
@@ -1621,6 +1631,11 @@
           "slotKey": "subslot/1"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA4OS.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA4OS.svg",
+            "typeId": "A900-IMA4OS"
+          },
           "bounds": {
             "h": 57.24,
             "w": 431.51,
@@ -1643,6 +1658,11 @@
           "slotKey": "subslot/2"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-FILLER-LC.svg",
+            "typeId": "A900-FILLER-LC"
+          },
           "bounds": {
             "h": 57.24,
             "w": 431.51,
@@ -1665,6 +1685,11 @@
           "slotKey": "subslot/3"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-IMA32D.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-IMA32D.svg",
+            "typeId": "A900-IMA32D"
+          },
           "bounds": {
             "h": 57.24,
             "w": 431.51,
@@ -1687,6 +1712,11 @@
           "slotKey": "subslot/4"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-FILLER-LC.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-FILLER-LC.svg",
+            "typeId": "A900-FILLER-LC"
+          },
           "bounds": {
             "h": 57.24,
             "w": 431.51,
@@ -1709,6 +1739,11 @@
           "slotKey": "subslot/5"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A903-RSP1A-55.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A903-RSP1A-55.svg",
+            "typeId": "A903-RSP1A-55"
+          },
           "bounds": {
             "h": 115.28,
             "w": 641.01,
@@ -1731,6 +1766,11 @@
           "slotKey": "slot_R0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-FILLER-RSP.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-FILLER-RSP.svg",
+            "typeId": "A900-FILLER-RSP"
+          },
           "bounds": {
             "h": 115.28,
             "w": 641.01,
@@ -1753,6 +1793,11 @@
           "slotKey": "slot_R1"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-PWR550-A.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-PWR550-A.svg",
+            "typeId": "A900-PWR550-A"
+          },
           "bounds": {
             "h": 100.17,
             "w": 304.87,
@@ -1775,6 +1820,11 @@
           "slotKey": "Power_Supply_Bay_0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A900-PWR550-A.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A900-PWR550-A.svg",
+            "typeId": "A900-PWR550-A"
+          },
           "bounds": {
             "h": 100.17,
             "w": 304.87,
@@ -1797,6 +1847,11 @@
           "slotKey": "Power_Supply_Bay_1"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/asr903/A903-FAN.svg",
+            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/pluggables/images/horizontal/A903-FAN.svg",
+            "typeId": "A903-FAN"
+          },
           "bounds": {
             "h": 364.11,
             "w": 164.16,

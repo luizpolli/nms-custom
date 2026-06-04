@@ -8430,6 +8430,11 @@
           "slotKey": "0/RP0/CPU0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-28z4c/modules/N540-28Z4C-SYS-D-PSU.svg",
+            "sourceImage": "/chassis-assets/ncs540-28z4c/modules/N540-28Z4C-SYS-D-PSU.svg",
+            "typeId": "N540-28Z4C-SYS-D-PSU"
+          },
           "bounds": {
             "h": 62,
             "w": 99,
@@ -8450,6 +8455,11 @@
           "slotKey": "0/PM0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-28z4c/modules/N540-28Z4C-SYS-D-PSU.svg",
+            "sourceImage": "/chassis-assets/ncs540-28z4c/modules/N540-28Z4C-SYS-D-PSU.svg",
+            "typeId": "N540-28Z4C-SYS-D-PSU"
+          },
           "bounds": {
             "h": 62,
             "w": 99,
