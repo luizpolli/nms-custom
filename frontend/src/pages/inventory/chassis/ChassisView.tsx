@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent, WheelEvent as ReactWheelEvent } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Activity, Bell, CheckCircle2, Info, Maximize2, Minus, Plus, TerminalSquare } from 'lucide-react';
@@ -445,6 +445,13 @@ function ChassisCanvas({
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+
+  // Reset zoom + pan when the device or the active view changes, so a
+  // zoomed-in NCS560 doesn't carry its zoom state over to the next chassis.
+  useEffect(() => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, [model.deviceId, model.profileId, view.id]);
   const dragState = useRef<{ pointerId: number; startX: number; startY: number; originX: number; originY: number; moved: boolean } | null>(null);
 
   const frameSize = () => {
