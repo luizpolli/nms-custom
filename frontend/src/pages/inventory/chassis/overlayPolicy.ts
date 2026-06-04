@@ -40,10 +40,23 @@ export const OVERLAY_POLICY: OverlayPolicy = {
   // ASR920 base SVG is full artwork (704 paths) — it already paints all 24
   // SFP bays, the 4 RJ45/SFP uplinks, the PSU slots and the fan tray.  The
   // overlay was duplicating every connector.  Verified visually 2026-06-04.
-  asr920: {
+  Cisco_ASR_920_20SZ_M_Router: {
     sfp: false,
     uplink: false,
     psu: false,
+  },
+  Cisco_NCS540: {
+    rp: false,
+    bay: false,
+    fan: false,
+    power: false,
+  },
+  Cisco_NCS560: {
+    rp: false,
+    linecard: false,
+    bay: false,
+    fan: false,
+    power: false,
   },
 };
 

@@ -23,19 +23,21 @@ describe('overlayPolicy', () => {
     });
 
     it('defaults to true when the profile has no entry for that type', () => {
-      // asr920 has entries for sfp/uplink/psu but not for fan
-      expect(shouldRenderOverlay('asr920', 'hotspot-fan-0')).toBe(true);
+      // ASR920 has entries for sfp/uplink/psu but not for mgmt.
+      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-mgmt-0')).toBe(true);
     });
 
     it('returns false when the profile + type pair is disabled', () => {
-      expect(shouldRenderOverlay('asr920', 'hotspot-sfp-3')).toBe(false);
-      expect(shouldRenderOverlay('asr920', 'hotspot-uplink-0')).toBe(false);
-      expect(shouldRenderOverlay('asr920', 'hotspot-psu-0')).toBe(false);
+      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-sfp-3')).toBe(false);
+      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-uplink-0')).toBe(false);
+      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-psu-0')).toBe(false);
+      expect(shouldRenderOverlay('Cisco_NCS540', 'hotspot-bay-801')).toBe(false);
+      expect(shouldRenderOverlay('Cisco_NCS560', 'hotspot-linecard-0')).toBe(false);
     });
 
     it('does not affect other profiles', () => {
-      expect(shouldRenderOverlay('ncs560', 'hotspot-bay-17184')).toBe(true);
-      expect(shouldRenderOverlay('ncs540', 'hotspot-bay-801')).toBe(true);
+      expect(shouldRenderOverlay('ncs540-12z16g', 'hotspot-rp-0')).toBe(true);
+      expect(shouldRenderOverlay('ncs55a1', 'hotspot-sfp-3')).toBe(true);
     });
   });
 
