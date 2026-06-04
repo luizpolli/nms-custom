@@ -8427,12 +8427,7 @@
             "sourceTypeId": "N540-PSU-FIXED-D"
           },
           "physicalIndex": 8982,
-          "slotKey": "0/PM0",
-          "asset": {
-            "typeId": "N540-PSU-FIXED-D",
-            "image": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Power_Module-DC.svg",
-            "sourceImage": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Power_Module-DC.svg"
-          }
+          "slotKey": "0/PM0"
         },
         {
           "bounds": {
@@ -8452,12 +8447,7 @@
             "sourceTypeId": "N540-PSU-FIXED-D"
           },
           "physicalIndex": 13078,
-          "slotKey": "0/PM1",
-          "asset": {
-            "typeId": "N540-PSU-FIXED-D",
-            "image": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Power_Module-DC.svg",
-            "sourceImage": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Power_Module-DC.svg"
-          }
+          "slotKey": "0/PM1"
         },
         {
           "bounds": {
@@ -8477,12 +8467,7 @@
             "sourceTypeId": "N540X-12Z16G-SYS-D"
           },
           "physicalIndex": 1,
-          "slotKey": "0/RP0/CPU0",
-          "asset": {
-            "typeId": "N540X-12Z16G-SYS-D",
-            "image": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Front_Ports.svg",
-            "sourceImage": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Front_Ports.svg"
-          }
+          "slotKey": "0/RP0/CPU0"
         },
         {
           "bounds": {
@@ -8502,12 +8487,7 @@
             "sourceTypeId": "N540-FAN"
           },
           "physicalIndex": 4097,
-          "slotKey": "0/FT0",
-          "asset": {
-            "typeId": "N540-FAN",
-            "image": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Fan.svg",
-            "sourceImage": "/chassis-assets/ncs540-fh-agg/modules/N540-FH-AGG-SYS_Fan.svg"
-          }
+          "slotKey": "0/FT0"
         }
       ],
       "id": "front",

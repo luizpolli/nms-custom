@@ -2060,11 +2060,6 @@
           "slotKey": "PS0/M1"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9010/A9K-FILLER-PT.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-PT.svg",
-            "typeId": "A9K-FILLER-PT"
-          },
           "bounds": {
             "h": 399.97,
             "w": 863.24,
@@ -2085,11 +2080,6 @@
           "slotKey": "PS0/M2"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9010/A9K-FILLER-PT.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-PT.svg",
-            "typeId": "A9K-FILLER-PT"
-          },
           "bounds": {
             "h": 399.97,
             "w": 863.24,
@@ -2135,11 +2125,6 @@
           "slotKey": "PS1/M1"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9010/A9K-FILLER-PT.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-PT.svg",
-            "typeId": "A9K-FILLER-PT"
-          },
           "bounds": {
             "h": 399.97,
             "w": 863.24,
@@ -2185,11 +2170,6 @@
           "slotKey": "FT0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9010/ASR-9010-FAN.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/ASR-9010-FAN.svg",
-            "typeId": "ASR-9010-FAN"
-          },
           "bounds": {
             "h": 299.98,
             "w": 3190.24,

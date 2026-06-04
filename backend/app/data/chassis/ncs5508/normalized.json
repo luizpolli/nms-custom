@@ -225,12 +225,7 @@
             "sourceName": "0/RP0"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP0",
-          "asset": {
-            "typeId": "NC55-RP-E",
-            "image": "/chassis-assets/ncs5508/modules/NC55-RP-E.svg",
-            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-RP-E.svg"
-          }
+          "slotKey": "0/RP0"
         },
         {
           "bounds": {
@@ -247,12 +242,7 @@
             "sourceName": "0/RP1"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP1",
-          "asset": {
-            "typeId": "NC55-RP-E",
-            "image": "/chassis-assets/ncs5508/modules/NC55-RP-E.svg",
-            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-RP-E.svg"
-          }
+          "slotKey": "0/RP1"
         },
         {
           "bounds": {
@@ -563,12 +553,7 @@
             "sourceName": "0/SC0"
           },
           "physicalIndex": null,
-          "slotKey": "0/SC0",
-          "asset": {
-            "typeId": "NC55-SC",
-            "image": "/chassis-assets/ncs5508/modules/NC55-SC.svg",
-            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-SC.svg"
-          }
+          "slotKey": "0/SC0"
         },
         {
           "bounds": {
@@ -585,12 +570,7 @@
             "sourceName": "0/SC1"
           },
           "physicalIndex": null,
-          "slotKey": "0/SC1",
-          "asset": {
-            "typeId": "NC55-SC",
-            "image": "/chassis-assets/ncs5508/modules/NC55-SC.svg",
-            "sourceImage": "/chassis-assets/ncs5508/modules/NC55-SC.svg"
-          }
+          "slotKey": "0/SC1"
         }
       ],
       "id": "rear",

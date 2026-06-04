@@ -1385,11 +1385,6 @@
           "slotKey": "RSP1"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/ASR-9006-FAN-V2.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/ASR-9006-FAN-V2.svg",
-            "typeId": "ASR-9006-FAN-V2"
-          },
           "bounds": {
             "h": 638.14,
             "w": 537.74,

@@ -50,12 +50,7 @@
             "sourceTypeId": "NCS-5501"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP0",
-          "asset": {
-            "typeId": "NCS-5501-RP",
-            "image": "/chassis-assets/ncs5501/modules/NCS-5501_RP.svg",
-            "sourceImage": "/chassis-assets/ncs5501/modules/NCS-5501_RP.svg"
-          }
+          "slotKey": "0/RP0"
         }
       ],
       "id": "front",
