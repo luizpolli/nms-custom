@@ -6,6 +6,7 @@ import { api } from '../../../lib/api';
 import { Badge, Button, Card, Spinner } from '../../../components/ui';
 import type { ChassisComponent, ChassisComponentPort, ChassisHotspot, ChassisTreeNode, ChassisViewModel, ChassisViewImage, ComponentAlarmInfo } from './chassisTypes';
 import { PortDetailPanel } from './PortDetailPanel';
+import { shouldRenderOverlay } from './overlayPolicy';
 
 interface ChassisViewProps {
   deviceName: string;
@@ -530,9 +531,11 @@ function ChassisCanvas({
             className="absolute inset-0 h-full w-full select-none"
             draggable={false}
           />
-          {view.hotspots.map((hotspot) => (
-            <SlotAsset key={`${hotspot.id}-asset`} hotspot={hotspot} view={view} />
-          ))}
+          {view.hotspots.map((hotspot) =>
+            shouldRenderOverlay(model.profileId, hotspot.id) ? (
+              <SlotAsset key={`${hotspot.id}-asset`} hotspot={hotspot} view={view} />
+            ) : null
+          )}
           {view.hotspots.map((hotspot) => {
             const selected = containsComponent(model.componentsById, hotspot.inventoryId, selectedComponentId);
             const canSelect = Boolean(hotspot.inventoryId);
