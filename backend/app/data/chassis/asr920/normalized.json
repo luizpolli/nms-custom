@@ -1832,7 +1832,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 304,
-          "slotKey": "subslot/0/0/4"
+          "slotKey": "subslot/0/0/4",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -1852,7 +1857,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 305,
-          "slotKey": "subslot/0/0/5"
+          "slotKey": "subslot/0/0/5",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -1872,7 +1882,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 306,
-          "slotKey": "subslot/0/0/6"
+          "slotKey": "subslot/0/0/6",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -2067,7 +2082,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 314,
-          "slotKey": "subslot/0/0/14"
+          "slotKey": "subslot/0/0/14",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -2087,7 +2107,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 315,
-          "slotKey": "subslot/0/0/15"
+          "slotKey": "subslot/0/0/15",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -2107,7 +2132,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 316,
-          "slotKey": "subslot/0/0/16"
+          "slotKey": "subslot/0/0/16",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -2127,7 +2157,12 @@
             "sourceTypeId": "SFP-GE-T"
           },
           "physicalIndex": 317,
-          "slotKey": "subslot/0/0/17"
+          "slotKey": "subslot/0/0/17",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
+          }
         },
         {
           "bounds": {
@@ -2317,7 +2352,12 @@
             "sourceTypeId": "ASR-920-PWR-A"
           },
           "physicalIndex": 22,
-          "slotKey": "Power_Supply_Bay_0"
+          "slotKey": "Power_Supply_Bay_0",
+          "asset": {
+            "typeId": "ASR-920-PWR-A",
+            "image": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg"
+          }
         },
         {
           "bounds": {
@@ -2337,7 +2377,12 @@
             "sourceTypeId": "ASR-920-PWR-A"
           },
           "physicalIndex": 23,
-          "slotKey": "Power_Supply_Bay_1"
+          "slotKey": "Power_Supply_Bay_1",
+          "asset": {
+            "typeId": "ASR-920-PWR-A",
+            "image": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg"
+          }
         }
       ],
       "id": "front",

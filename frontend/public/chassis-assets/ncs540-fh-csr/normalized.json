@@ -8502,7 +8502,12 @@
             "sourceTypeId": "N540X-12Z16G-SYS-D"
           },
           "physicalIndex": 1,
-          "slotKey": "0/RP0/CPU0"
+          "slotKey": "0/RP0/CPU0",
+          "asset": {
+            "typeId": "N540X-12Z16G-SYS-D",
+            "image": "/chassis-assets/ncs540-fh-csr/modules/N540-FH-CSR-SYS_Front_Port.svg",
+            "sourceImage": "/chassis-assets/ncs540-fh-csr/modules/N540-FH-CSR-SYS_Front_Port.svg"
+          }
         }
       ],
       "id": "front",

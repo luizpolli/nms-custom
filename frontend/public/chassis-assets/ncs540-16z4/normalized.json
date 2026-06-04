@@ -11627,6 +11627,11 @@
       "height": 168,
       "hotspots": [
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-16z4/modules/N540-X-BB-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540-X-BB-FAN.svg",
+            "typeId": "N540-X-BB-FAN"
+          },
           "bounds": {
             "h": 158,
             "w": 198,
@@ -11647,6 +11652,11 @@
           "slotKey": "0/FT0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-16z4/modules/N540X-16Z4G8Q2C-D.svg",
+            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540X-16Z4G8Q2C-D.svg",
+            "typeId": "N540X-16Z4G8Q2C-D"
+          },
           "bounds": {
             "h": 146,
             "w": 1056,
@@ -11667,6 +11677,11 @@
           "slotKey": "0/RP0/CPU0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-16z4/modules/N540-PSU-FIXED-D.svg",
+            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540-PSU-FIXED-D.svg",
+            "typeId": "N540-PSU-FIXED-D"
+          },
           "bounds": {
             "h": 74,
             "w": 127,
@@ -11687,6 +11702,11 @@
           "slotKey": "0/PM0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-16z4/modules/N540-PSU-FIXED-D.svg",
+            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540-PSU-FIXED-D.svg",
+            "typeId": "N540-PSU-FIXED-D"
+          },
           "bounds": {
             "h": 74,
             "w": 127,

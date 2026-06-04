@@ -8410,6 +8410,11 @@
       "height": 165,
       "hotspots": [
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-28z4c/modules/N540-28Z4C-SYS-D-RSP.svg",
+            "sourceImage": "/chassis-assets/ncs540-28z4c/modules/N540-28Z4C-SYS-D-RSP.svg",
+            "typeId": "N540-28Z4C-SYS-D-RSP"
+          },
           "bounds": {
             "h": 155,
             "w": 1240,

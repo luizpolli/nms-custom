@@ -8410,6 +8410,11 @@
       "height": 165,
       "hotspots": [
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-RSP.svg",
+            "sourceImage": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-RSP.svg",
+            "typeId": "N540-12Z20G-SYS-D-RSP"
+          },
           "bounds": {
             "h": 155,
             "w": 1265,
@@ -8430,6 +8435,11 @@
           "slotKey": "0/RP0/CPU0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-PSU.svg",
+            "sourceImage": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-PSU.svg",
+            "typeId": "N540-12Z20G-SYS-D-PSU"
+          },
           "bounds": {
             "h": 75,
             "w": 85,
@@ -8450,6 +8460,11 @@
           "slotKey": "0/PM0"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-PSU.svg",
+            "sourceImage": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-PSU.svg",
+            "typeId": "N540-12Z20G-SYS-D-PSU"
+          },
           "bounds": {
             "h": 75,
             "w": 85,
@@ -8470,6 +8485,11 @@
           "slotKey": "0/PM1"
         },
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs540-12z20g/modules/N540-12Z20G-SYS-D-FAN.svg",
+            "typeId": "N540-12Z20G-SYS-D-FAN"
+          },
           "bounds": {
             "h": 155,
             "w": 65,

@@ -25911,7 +25911,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 800,
-          "slotKey": "QSFP28 bay 0"
+          "slotKey": "QSFP28 bay 0",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -25931,7 +25936,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 801,
-          "slotKey": "QSFP28 bay 1"
+          "slotKey": "QSFP28 bay 1",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -25951,7 +25961,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 802,
-          "slotKey": "QSFP28 bay 2"
+          "slotKey": "QSFP28 bay 2",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -25971,7 +25986,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 803,
-          "slotKey": "QSFP28 bay 3"
+          "slotKey": "QSFP28 bay 3",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -25991,7 +26011,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 804,
-          "slotKey": "QSFP28 bay 4"
+          "slotKey": "QSFP28 bay 4",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26011,7 +26036,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 805,
-          "slotKey": "QSFP28 bay 5"
+          "slotKey": "QSFP28 bay 5",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26031,7 +26061,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 806,
-          "slotKey": "QSFP28 bay 6"
+          "slotKey": "QSFP28 bay 6",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26051,7 +26086,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 807,
-          "slotKey": "QSFP28 bay 7"
+          "slotKey": "QSFP28 bay 7",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26071,7 +26111,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 808,
-          "slotKey": "QSFP28 bay 8"
+          "slotKey": "QSFP28 bay 8",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26091,7 +26136,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 809,
-          "slotKey": "QSFP28 bay 0"
+          "slotKey": "QSFP28 bay 0",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26111,7 +26161,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 810,
-          "slotKey": "QSFP28 bay 1"
+          "slotKey": "QSFP28 bay 1",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26131,7 +26186,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 811,
-          "slotKey": "QSFP28 bay 2"
+          "slotKey": "QSFP28 bay 2",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26151,7 +26211,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 812,
-          "slotKey": "QSFP28 bay 3"
+          "slotKey": "QSFP28 bay 3",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26171,7 +26236,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 813,
-          "slotKey": "QSFP28 bay 4"
+          "slotKey": "QSFP28 bay 4",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26191,7 +26261,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 814,
-          "slotKey": "QSFP28 bay 5"
+          "slotKey": "QSFP28 bay 5",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26211,7 +26286,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 815,
-          "slotKey": "QSFP28 bay 6"
+          "slotKey": "QSFP28 bay 6",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26231,7 +26311,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 816,
-          "slotKey": "QSFP28 bay 7"
+          "slotKey": "QSFP28 bay 7",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26251,7 +26336,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 817,
-          "slotKey": "QSFP28 bay 8"
+          "slotKey": "QSFP28 bay 8",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26271,7 +26361,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 818,
-          "slotKey": "QSFP28 bay 0"
+          "slotKey": "QSFP28 bay 0",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26291,7 +26386,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 819,
-          "slotKey": "QSFP28 bay 1"
+          "slotKey": "QSFP28 bay 1",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26311,7 +26411,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 820,
-          "slotKey": "QSFP28 bay 2"
+          "slotKey": "QSFP28 bay 2",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26331,7 +26436,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 821,
-          "slotKey": "QSFP28 bay 3"
+          "slotKey": "QSFP28 bay 3",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26351,7 +26461,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 822,
-          "slotKey": "QSFP28 bay 4"
+          "slotKey": "QSFP28 bay 4",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26371,7 +26486,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 823,
-          "slotKey": "QSFP28 bay 5"
+          "slotKey": "QSFP28 bay 5",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26391,7 +26511,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 824,
-          "slotKey": "QSFP28 bay 6"
+          "slotKey": "QSFP28 bay 6",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26411,7 +26536,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 825,
-          "slotKey": "QSFP28 bay 7"
+          "slotKey": "QSFP28 bay 7",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26431,7 +26561,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 826,
-          "slotKey": "QSFP28 bay 8"
+          "slotKey": "QSFP28 bay 8",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26451,7 +26586,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 827,
-          "slotKey": "QSFP28 bay 0"
+          "slotKey": "QSFP28 bay 0",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26471,7 +26611,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 828,
-          "slotKey": "QSFP28 bay 1"
+          "slotKey": "QSFP28 bay 1",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26491,7 +26636,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 829,
-          "slotKey": "QSFP28 bay 2"
+          "slotKey": "QSFP28 bay 2",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26511,7 +26661,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 830,
-          "slotKey": "QSFP28 bay 3"
+          "slotKey": "QSFP28 bay 3",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26531,7 +26686,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 831,
-          "slotKey": "QSFP28 bay 4"
+          "slotKey": "QSFP28 bay 4",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26551,7 +26711,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 832,
-          "slotKey": "QSFP28 bay 5"
+          "slotKey": "QSFP28 bay 5",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26571,7 +26736,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 833,
-          "slotKey": "QSFP28 bay 6"
+          "slotKey": "QSFP28 bay 6",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26591,7 +26761,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 834,
-          "slotKey": "QSFP28 bay 7"
+          "slotKey": "QSFP28 bay 7",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26611,7 +26786,12 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 835,
-          "slotKey": "QSFP28 bay 8"
+          "slotKey": "QSFP28 bay 8",
+          "asset": {
+            "typeId": "QSFP-100G-SR4-S",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
         },
         {
           "bounds": {
@@ -26756,7 +26936,12 @@
             "sourceTypeId": "NCS-55A1-36H-SE-S"
           },
           "physicalIndex": 1,
-          "slotKey": "0/RP0"
+          "slotKey": "0/RP0",
+          "asset": {
+            "typeId": "NCS-55A1-36H-SE-S-RP",
+            "image": "/chassis-assets/ncs55a1/modules/NCS-55A1-36H-SE-S-RP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/NCS-55A1-36H-SE-S-RP.svg"
+          }
         },
         {
           "bounds": {
@@ -26878,7 +27063,12 @@
             "sourceTypeId": "NC55-A1-FAN-FW"
           },
           "physicalIndex": 20481,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "NC55-A1-FAN-FW",
+            "image": "/chassis-assets/ncs55a1/modules/NC55-A1-FAN-FW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/NC55-A1-FAN-FW.svg"
+          }
         },
         {
           "bounds": {
@@ -26898,7 +27088,12 @@
             "sourceTypeId": "NC55-A1-FAN-FW"
           },
           "physicalIndex": 24577,
-          "slotKey": "0/FT1"
+          "slotKey": "0/FT1",
+          "asset": {
+            "typeId": "NC55-A1-FAN-FW",
+            "image": "/chassis-assets/ncs55a1/modules/NC55-A1-FAN-FW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/NC55-A1-FAN-FW.svg"
+          }
         },
         {
           "bounds": {
@@ -26918,7 +27113,12 @@
             "sourceTypeId": "NC55-A1-FAN-FW"
           },
           "physicalIndex": 28673,
-          "slotKey": "0/FT2"
+          "slotKey": "0/FT2",
+          "asset": {
+            "typeId": "NC55-A1-FAN-FW",
+            "image": "/chassis-assets/ncs55a1/modules/NC55-A1-FAN-FW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/NC55-A1-FAN-FW.svg"
+          }
         },
         {
           "bounds": {

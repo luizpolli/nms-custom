@@ -50,7 +50,12 @@
             "sourceTypeId": "NCS-5502"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP0"
+          "slotKey": "0/RP0",
+          "asset": {
+            "typeId": "NCS-5502-RP",
+            "image": "/chassis-assets/ncs5502/modules/NCS-5502-RP.svg",
+            "sourceImage": "/chassis-assets/ncs5502/modules/NCS-5502-RP.svg"
+          }
         }
       ],
       "id": "front",
@@ -163,7 +168,12 @@
             "sourceName": "0/PM1"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "NCS-5502-PSU",
+            "image": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-powersupply.svg",
+            "sourceImage": "/chassis-assets/ncs5502/modules/NCS-5502-Rear-powersupply.svg"
+          }
         }
       ],
       "id": "rear",

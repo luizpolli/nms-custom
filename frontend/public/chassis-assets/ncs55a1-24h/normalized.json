@@ -50,7 +50,12 @@
             "sourceTypeId": "NCS-55A1-24H"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP0"
+          "slotKey": "0/RP0",
+          "asset": {
+            "typeId": "NCS-55A1-24H",
+            "image": "/chassis-assets/ncs55a1-24h/modules/NCS-55A1-24H_Front_RP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1-24h/modules/NCS-55A1-24H_Front_RP.svg"
+          }
         }
       ],
       "id": "front",

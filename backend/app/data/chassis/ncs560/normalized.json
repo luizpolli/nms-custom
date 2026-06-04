@@ -13714,7 +13714,12 @@
             "sourceTypeId": "A900-IMA8Z"
           },
           "physicalIndex": 16385,
-          "slotKey": "0/2"
+          "slotKey": "0/2",
+          "asset": {
+            "typeId": "A900-IMA8Z",
+            "image": "/chassis-assets/ncs560/modules/A900-IMA8Z.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-IMA8Z.svg"
+          }
         },
         {
           "bounds": {
@@ -13734,7 +13739,12 @@
             "sourceTypeId": "A900-IMA8CS1Z-M"
           },
           "physicalIndex": 24577,
-          "slotKey": "0/4"
+          "slotKey": "0/4",
+          "asset": {
+            "typeId": "A900-IMA8CS1Z-M",
+            "image": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg"
+          }
         },
         {
           "bounds": {
@@ -13754,7 +13764,12 @@
             "sourceTypeId": "A900-IMA8CS1Z-M"
           },
           "physicalIndex": 28673,
-          "slotKey": "0/5"
+          "slotKey": "0/5",
+          "asset": {
+            "typeId": "A900-IMA8CS1Z-M",
+            "image": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-IMA8CS1Z-M.svg"
+          }
         },
         {
           "bounds": {
@@ -14924,7 +14939,12 @@
             "sourceTypeId": "A900-PWR1200-D"
           },
           "physicalIndex": 90113,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "A900-PWR1200-D",
+            "image": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg"
+          }
         },
         {
           "bounds": {

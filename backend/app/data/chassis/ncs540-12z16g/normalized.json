@@ -8410,6 +8410,11 @@
       "height": 168,
       "hotspots": [
         {
+          "asset": {
+            "image": "/chassis-assets/ncs540-12z16g/modules/N540X-12Z16G-SYS-D.svg",
+            "sourceImage": "/chassis-assets/ncs540-12z16g/modules/N540X-12Z16G-SYS-D.svg",
+            "typeId": "N540X-12Z16G-SYS-D"
+          },
           "bounds": {
             "h": 154,
             "w": 1088,
