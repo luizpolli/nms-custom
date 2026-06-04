@@ -9086,8 +9086,8 @@
       "id": "front",
       "image": "/chassis-assets/ncs540/NCS540-Front.svg",
       "label": "Front View",
-      "sourceHeight": 420,
-      "sourceWidth": 1240,
+      "sourceHeight": 168,
+      "sourceWidth": 1680,
       "width": 1680
     }
   ]

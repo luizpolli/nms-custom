@@ -125,8 +125,12 @@ def build() -> None:
                 "image": f"/chassis-assets/ncs540-12z16g/{FRONT_SVG_NAME}",
                 "width": CANVAS_WIDTH,
                 "height": CANVAS_HEIGHT,
-                "sourceWidth":  1670,
-                "sourceHeight": 165,
+                # sourceWidth/sourceHeight mirror the render canvas because
+                # hotspot bounds are already expressed in CANVAS_WIDTH/HEIGHT
+                # coordinates; the frontend percent layout divides by
+                # view.width/height. Keep them aligned to avoid mismatch.
+                "sourceWidth":  CANVAS_WIDTH,
+                "sourceHeight": CANVAS_HEIGHT,
                 "hotspots": hotspots,
             }
         ],

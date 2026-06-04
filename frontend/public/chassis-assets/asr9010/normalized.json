@@ -2213,9 +2213,9 @@
       "id": "front",
       "image": "/chassis-assets/asr9010/ASR-9010-AC-Front.svg",
       "label": "Front View",
-      "sourceHeight": 331.0,
+      "sourceHeight": 6619.5,
       "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/Cisco_ASR_9010_Router/images/ASR-9010-AC-Front.svg",
-      "sourceWidth": 186.0,
+      "sourceWidth": 3490.5,
       "width": 3490.5
     }
   ]

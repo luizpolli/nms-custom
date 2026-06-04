@@ -1513,9 +1513,9 @@
       "id": "front",
       "image": "/chassis-assets/asr9006/ASR-9006-AC-Front.svg",
       "label": "Front View",
-      "sourceHeight": 158.0,
+      "sourceHeight": 3150.8112,
       "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/Cisco_ASR_9006_Router/images/ASR-9006-AC-Front.svg",
-      "sourceWidth": 173.0,
+      "sourceWidth": 3445.5,
       "width": 3445.5
     }
   ]

@@ -1877,9 +1877,9 @@
       "id": "front",
       "image": "/chassis-assets/asr903/ASR-903-Front.svg",
       "label": "Front View",
-      "sourceHeight": 480,
+      "sourceHeight": 381.6,
       "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/asr901Family/Cisco_ASR_903_Router/images/ASR-903-Front.svg",
-      "sourceWidth": 1750,
+      "sourceWidth": 1367.999,
       "width": 1367.999
     }
   ]

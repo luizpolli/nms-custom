@@ -690,8 +690,12 @@ def normalize_asr903(tarball: Path) -> dict[str, Any]:
                 "sourceImage": ASR903_PATHS["image"],
                 "width": image_width,
                 "height": image_height,
-                "sourceWidth": profile["width"],
-                "sourceHeight": profile["height"],
+                # sourceWidth/sourceHeight mirror view.width/height
+                # because hotspot bounds are already scaled to the SVG's
+                # viewBox (image_width/image_height); see
+                # coordinate_scale above.
+                "sourceWidth": image_width,
+                "sourceHeight": image_height,
                 "hotspots": hotspots,
             }
         ],
@@ -741,8 +745,12 @@ def normalize_asr9006(tarball: Path) -> dict[str, Any]:
                 "sourceImage": ASR9006_PATHS["image"],
                 "width": image_width,
                 "height": image_height,
-                "sourceWidth": profile["width"],
-                "sourceHeight": profile["height"],
+                # sourceWidth/sourceHeight mirror view.width/height
+                # because hotspot bounds are already scaled to the SVG's
+                # viewBox (image_width/image_height); see
+                # coordinate_scale above.
+                "sourceWidth": image_width,
+                "sourceHeight": image_height,
                 "hotspots": hotspots,
             }
         ],
@@ -792,8 +800,12 @@ def normalize_asr9010(tarball: Path) -> dict[str, Any]:
                 "sourceImage": ASR9010_PATHS["image"],
                 "width": image_width,
                 "height": image_height,
-                "sourceWidth": profile["width"],
-                "sourceHeight": profile["height"],
+                # sourceWidth/sourceHeight mirror view.width/height
+                # because hotspot bounds are already scaled to the SVG's
+                # viewBox (image_width/image_height); see
+                # coordinate_scale above.
+                "sourceWidth": image_width,
+                "sourceHeight": image_height,
                 "hotspots": hotspots,
             }
         ],
