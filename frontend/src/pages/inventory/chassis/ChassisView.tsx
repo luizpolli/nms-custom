@@ -194,21 +194,49 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
 
         <div className="relative min-h-[560px] bg-[#e7f1fb] dark:bg-gray-950">
           {/*
-            Responsive grid (3 cols from lg, single column below):
-            - <1024px: single column stack — tree, chassis, details panel in DOM order.
-            - >=1024px: 3 columns — tree | chassis | details panel, row-major DOM order.
-            The chassis cell uses min-w-0 so it can shrink inside its 1fr column without
-            forcing horizontal overflow at the ~1200px breakpoint.
+            Responsive grid driven by chassis legibility:
+            - <1024px (mobile/tablet):     1 col stack — tree, chassis, panel.
+            - 1024-1535px (laptop ~1200): 2 rows — chassis full-width on top,
+                                          tree + panel side-by-side below.
+                                          (Avoids squishing the chassis to ~568px
+                                          inside a 3-col layout at 1200px viewports.)
+            - >=1536px (large desktop):    3 cols — tree | chassis | panel.
+            Chassis cell uses min-w-0 + overflow-x-auto so it never forces page overflow.
           */}
-          <div className="grid gap-5 p-4 lg:grid-cols-[260px_minmax(0,1fr)_300px] xl:grid-cols-[300px_minmax(0,1fr)_340px]">
-            <DiscoveredElementsTree
-              tree={data.tree}
-              componentsById={data.componentsById}
-              selectedComponentId={effectiveSelection}
-              onSelect={handleComponentSelect}
-            />
+          <div
+            className={[
+              'grid gap-5 p-4',
+              // 1024-1535px: 2 cols, chassis spans both on row 1
+              'lg:grid-cols-[minmax(0,1fr)_340px]',
+              // >=1536px: classic 3-col layout, single row
+              '2xl:grid-cols-[300px_minmax(0,1fr)_340px]',
+            ].join(' ')}
+          >
+            <div
+              className={[
+                // 1024-1535px: tree goes to row 2 col 1 (below chassis).
+                'lg:col-start-1 lg:row-start-2',
+                // >=1536px: tree is leftmost column, single row.
+                '2xl:col-start-1 2xl:row-start-1',
+              ].join(' ')}
+            >
+              <DiscoveredElementsTree
+                tree={data.tree}
+                componentsById={data.componentsById}
+                selectedComponentId={effectiveSelection}
+                onSelect={handleComponentSelect}
+              />
+            </div>
 
-            <div className="flex min-h-[430px] min-w-0 items-center justify-center overflow-x-auto px-2 sm:px-4 xl:px-6">
+            <div
+              className={[
+                'flex min-h-[430px] min-w-0 items-center justify-center overflow-x-auto px-2 sm:px-4 xl:px-6',
+                // 1024-1535px: chassis spans both columns on row 1 (full width).
+                'lg:col-span-2 lg:col-start-1 lg:row-start-1',
+                // >=1536px: chassis sits in middle column, single row.
+                '2xl:col-span-1 2xl:col-start-2 2xl:row-start-1',
+              ].join(' ')}
+            >
               <div className="w-full max-w-[1280px]">
                 <div className="mb-3 flex items-center justify-between text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
                   <div className="flex items-center gap-3">
@@ -244,17 +272,26 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
               </div>
             </div>
 
-            <ComponentDetailsPanel
-              component={selectedComponent}
-              componentsById={data.componentsById}
-              managedPorts={selectedPorts}
-              selectedPort={selectedPort}
-              managedInterface={selectedInterface}
-              hasLiveInterfaceLookup={Boolean(deviceId)}
-              isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
-              deviceId={deviceId}
-              onSelectPort={setSelectedPortId}
-            />
+            <div
+              className={[
+                // 1024-1535px: panel sits row 2 col 2 (right of tree, below chassis).
+                'lg:col-start-2 lg:row-start-2',
+                // >=1536px: panel is right column, single row.
+                '2xl:col-start-3 2xl:row-start-1',
+              ].join(' ')}
+            >
+              <ComponentDetailsPanel
+                component={selectedComponent}
+                componentsById={data.componentsById}
+                managedPorts={selectedPorts}
+                selectedPort={selectedPort}
+                managedInterface={selectedInterface}
+                hasLiveInterfaceLookup={Boolean(deviceId)}
+                isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
+                deviceId={deviceId}
+                onSelectPort={setSelectedPortId}
+              />
+            </div>
           </div>
 
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
