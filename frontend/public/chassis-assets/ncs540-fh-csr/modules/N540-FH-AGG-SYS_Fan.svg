@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   data-name="Layer 1"
+   width="152"
+   height="152"
+   viewBox="0 0 152 152"
+   version="1.1"
+   id="svg62"
+   sodipodi:docname="N540-FH-AGG-SYS_Fan.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata68">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs66" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1315"
+     id="namedview64"
+     showgrid="false"
+     inkscape:zoom="6.8289474"
+     inkscape:cx="76"
+     inkscape:cy="76"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg62" />
+  <path
+     fill="#1a1a1a"
+     d="M.89 5.36H151.1v141.27H.89z"
+     id="path2" />
+  <path
+     d="M1.79 6.15v139.7h148.42V6.15zM142.4 122.56l-15.62 15.53H25.22L9.6 122.56V29.44l15.62-15.53h101.56l15.62 15.53z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path4" />
+  <path
+     d="M145.18 139.51v-8.59l5.93-3v-15.24l-5.93-3.7v-7.64l5.93-3v-16l-5.93-3v-7.58l5.93-3.7V52.78l-5.93-3v-7.6l5.93-3.71V23.19l-5.93-3v-8.55l5.93-3V5.36H.89v2.88l.83-.41 6.68 3.81v8.59l-6.68 3.82-.83-.42v14.29l.83-.51 6.68 4.77v7.63l-6.68 3.82-.83-.41V67.5l.83-.5 6.68 4.76v7.63l-6.68 3.82-.83-.41v15.14l.83-.42 6.68 3.82V109l-6.68 4.77-.83-.52v14.29l.83-.41 6.68 3.81v8.59l-6.68 3.82-.83-.41v3.72h150.22v-4.17zm6.06-53.64v9l-7 4-8-4v-9l8-4zM128.05 50v-8l8-5 7 5v8l-7 4zm15 21.59v8l-7 4-8-4v-8l8-5zm-8.6-15.31v9l-7 4-8-4v-9l8-4zm-8.19 15.32v8l-7 4-8-4v-8l8-5zm0-21.59l-7 4-8-4V42l8-5 7 5zm-8.59 6.28v9l-7 4-8-4v-9l8-4zm-8.2 15.31v8l-7 4-8-4v-8l8-5zm0-21.59l-7 4-8-4V42l8-5 7 5zm-8.59 6.28v9l-7 4-8-4v-9l8-4zm-8.2 15.31v8l-7 4-8-4v-8l8-5zm0-21.59l-7 4-8-4V42l8-5 7 5zm-8.59 6.28v9l-7 4-8-4v-9l8-4zM75.9 71.6v8l-7 4-8-4v-8l8-5zm0-21.6l-7 4-8-4v-8l8-5 7 5zm-8.6 6.28v9l-7 4-8-4v-9l8-4zM59.11 71.6v8l-7 4-8-4v-8l8-5zm0-21.59l-7 4-8-4V42l8-5 7 5zm-8.6 6.28v9l-7 4-8-4v-9l8-4zM42.32 71.6v8l-7 4-8-4v-8l8-5zM42 49.81l-6.7 3.82-7.64-3.82v-7.63l7.64-4.77 6.7 4.77zm-8.26 6.48v9l-7 4-8-4v-9l8-4zM25.53 50l-7 4-8-4v-8l8-5 7 5zm0 21.59v8l-7 4-8-4v-8l8-5zm0 29.54v8l-7 5-8-5v-8l8-4zm-6.81-6.28v-9l8-4 7 4v9l-7 4zm8.6 6.28l8-4 7 4v8l-7 5-8-5zm8.19-6.28v-9l8-4 7 4v9l-7 4zm8.6 6.28l8-4 7 4v8l-7 5-8-5zm8.19-6.28v-9l8-4 7 4v9l-7 4zm8.6 6.28l8-4 7 4v8l-7 5-8-5zm8.19-6.28v-9l8-4 7 4v9l-7 4zm8.59 6.28l8-4 7 4v8l-7 5-8-5zm8.2-6.28v-9l8-4 7 4v9l-7 4zm8.59 6.28l8-4 7 4v8l-7 5-8-5zm8.2-6.28v-9l8-4 7 4v9l-7 4zm8.59 6.28l8-4 7 4v8l-7 5-8-5zm8.19-6.28v-9l8-4 7 4v9l-7 4zm8.6 6.28l8-4 7 4v8l-7 5-8-5zm23.19-44.85v9l-7 4-8-4v-9l8-4zm-.33-29.38v7.63l-6.69 4.78-7.64-4.78v-7.62l7.64-3.82zm-22.86-15.46l8-4 7 4v9l-7 4-8-4zm6.4 15.27v8l-7 5-8-5v-8l8-4zm-23.19-15.27l8-4 7 4v9l-7 4-8-4zm6.41 15.27v8l-7 5-8-5v-8l8-4zm-23.2-15.27l8-4 7 4v9l-7 4-8-4zm6.41 15.27v8l-7 5-8-5v-8l8-4zm-23.2-15.27l8-4 7 4v9l-7 4-8-4zm6.41 15.27v8l-7 5-8-5v-8l8-4zM60.9 11.44l8-4 7 4v9l-7 4-8-4zm6.4 15.27v8l-7 5-8-5v-8l8-4zM44.11 11.44l8-4 7 4v9l-7 4-8-4zm6.4 15.27v8l-7 5-8-5v-8l8-4zM27.32 11.44l8-4 7 4v9l-7 4-8-4zm6.4 15.27v8l-7 5-8-5v-8l8-4zM10.53 11.44l8-4 7 4v9l-7 4-8-4zm-8.26 23.1v-7.63l7.64-3.82 6.69 3.82v7.63l-6.69 4.78zm-.33 30.74v-9l8-4 7 4v9l-7 4zm0 29.58v-9l8-4 7 4v9l-7 4zm0 29.59v-8l8-5 7 5v8l-7 4zm23.59 15.26l-7 4-8-4v-9l8-4 7 4zm-6.81-15.26v-8l8-5 7 5v8l-7 4zm23.6 15.26l-7 4-8-4v-9l8-4 7 4zm-6.81-15.26v-8l8-5 7 5v8l-7 4zm23.6 15.26l-7 4-8-4v-9l8-4 7 4zm-6.81-15.26v-8l8-5 7 5v8l-7 4zm23.6 15.26l-7 4-8-4v-9l8-4 7 4zm-6.81-15.26v-8l8-5 7 5v8l-7 4zm23.59 15.26l-7 4-8-4v-9l8-4 7 4zm-6.8-15.26v-8l8-5 7 5v8l-7 4zm23.59 15.26l-7 4-8-4v-9l8-4 7 4zm-6.8-15.26v-8l8-5 7 5v8l-7 4zm23.59 15.26l-7 4-8-4v-9l8-4 7 4zm-6.81-15.26v-8l8-5 7 5v8l-7 4zm23.6 15.26l-7 4-8-4v-9l8-4 7 4zm-6.81-15.26v-8l8-5 7 5v8l-7 4z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path6" />
+  <path
+     d="M150 2v148H2V2h148m2-2H0v152h152z"
+     fill="#333"
+     id="path8" />
+  <path
+     d="M10 149.5a7.5 7.5 0 01-7.5-7.5v-35H23a6.51 6.51 0 006.5-6.5v-49A6.51 6.51 0 0023 45H2.5V10A7.5 7.5 0 0110 2.5h132a7.5 7.5 0 017.5 7.5v35.5H129a6.51 6.51 0 00-6.5 6.5v49a6.51 6.51 0 006.5 6.5h20.5V142a7.5 7.5 0 01-7.5 7.5zM7.5 142a2.5 2.5 0 002.5 2.5h132a2.5 2.5 0 002.5-2.5v-29.5H129a11.51 11.51 0 01-11.5-11.5V52A11.51 11.51 0 01129 40.5h15.5V10a2.5 2.5 0 00-2.5-2.5H10A2.5 2.5 0 007.5 10v30H23a11.51 11.51 0 0111.5 11.5v49A11.51 11.51 0 0123 112H7.5z"
+     fill="gray"
+     id="path10" />
+  <path
+     d="M142 3a7 7 0 017 7v35h-20a7 7 0 00-7 7v49a7 7 0 007 7h20v34a7 7 0 01-7 7H10a7 7 0 01-7-7v-34.5h20a7 7 0 007-7v-49a7 7 0 00-7-7H3V10a7 7 0 017-7h132M7 40.5h16a11 11 0 0111 11v49a11 11 0 01-11 11H7V142a3 3 0 003 3h132a3 3 0 003-3v-30h-16a11 11 0 01-11-11V52a11 11 0 0111-11h16V10a3 3 0 00-3-3H10a3 3 0 00-3 3v30.5M142 2H10a8 8 0 00-8 8v35.5h21a6 6 0 016 6v49a6 6 0 01-6 6H2V142a8 8 0 008 8h132a8 8 0 008-8v-35h-21a6 6 0 01-6-6V52a6 6 0 016-6h21V10a8 8 0 00-8-8zM8 39.5V10a2 2 0 012-2h132a2 2 0 012 2v30h-15a12 12 0 00-12 12v49a12 12 0 0012 12h15v29a2 2 0 01-2 2H10a2 2 0 01-2-2v-29.5h15a12 12 0 0012-12v-49a12 12 0 00-12-12z"
+     fill="#4d4d4d"
+     id="path12" />
+  <path
+     d="M14 102.5A11.51 11.51 0 012.5 91V61A11.51 11.51 0 0114 49.5h30.5v53z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path14" />
+  <path
+     d="M44 50v52H14A11 11 0 013 91V61a11 11 0 0111-11h30m1-1H14A12 12 0 002 61v30a12 12 0 0012 12h31z"
+     fill="#4d4d4d"
+     id="path16" />
+  <path
+     d="M24 94.05a11 11 0 01-11-11V69a11 11 0 0111-11h12v36.1z"
+     fill="gray"
+     fill-rule="evenodd"
+     id="path18" />
+  <path
+     d="M35 59v34.1H24a10 10 0 01-10-10V69a10 10 0 0110-10h11m2-2H24a12 12 0 00-12 12v14.1a12 12 0 0012 12h13z"
+     fill="#b3b3b3"
+     id="path20" />
+  <path
+     d="M45 102.5a7.5 7.5 0 01-7.5-7.5V57a7.5 7.5 0 0115 0v38a7.5 7.5 0 01-7.5 7.5z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path22" />
+  <path
+     d="M45 50a7 7 0 017 7v38a7 7 0 01-14 0V57a7 7 0 017-7m0-1a8 8 0 00-8 8v38a8 8 0 008 8 8 8 0 008-8V57a8 8 0 00-8-8z"
+     fill="#4d4d4d"
+     id="path24" />
+  <circle
+     cx="45"
+     cy="54.45"
+     r="3"
+     fill="#e6e6e6"
+     id="circle26" />
+  <path
+     d="M45 52a2.5 2.5 0 11-2.5 2.5A2.5 2.5 0 0145 52m0-1a3.5 3.5 0 103.5 3.5A3.5 3.5 0 0045 51z"
+     fill="#ccc"
+     id="path28" />
+  <path
+     d="M107.5 102.5v-53H138A11.51 11.51 0 01149.5 61v30a11.51 11.51 0 01-11.5 11.5z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path30" />
+  <path
+     d="M138 50a11 11 0 0111 11v30a11 11 0 01-11 11h-30V50h30m0-1h-31v54h31a12 12 0 0012-12V61a12 12 0 00-12-12z"
+     fill="#4d4d4d"
+     id="path32" />
+  <path
+     d="M116 94.05V58h12a11 11 0 0111 11v14.1a11 11 0 01-11 11z"
+     fill="gray"
+     fill-rule="evenodd"
+     id="path34" />
+  <path
+     d="M128 59a10 10 0 0110 10v14.1a10 10 0 01-10 10h-11V59h11m0-2h-13v38.1h13a12 12 0 0012-12V69a12 12 0 00-12-12z"
+     fill="#b3b3b3"
+     id="path36" />
+  <path
+     d="M107 102.5a7.5 7.5 0 01-7.5-7.5V57a7.5 7.5 0 0115 0v38a7.5 7.5 0 01-7.5 7.5z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path38" />
+  <path
+     d="M107 50a7 7 0 017 7v38a7 7 0 01-14 0V57a7 7 0 017-7m0-1a8 8 0 00-8 8v38a8 8 0 008 8 8 8 0 008-8V57a8 8 0 00-8-8z"
+     fill="#4d4d4d"
+     id="path40" />
+  <circle
+     cx="107"
+     cy="54.45"
+     r="3"
+     fill="#e6e6e6"
+     id="circle42" />
+  <path
+     d="M107 52a2.5 2.5 0 11-2.5 2.5A2.5 2.5 0 01107 52m0-1a3.5 3.5 0 103.5 3.5A3.5 3.5 0 00107 51z"
+     fill="#ccc"
+     id="path44" />
+  <path
+     d="M94.42 96.57a169.31 169.31 0 01-36.84 0C55.05 96.28 53 94.19 53 92V60c0-2.19 2-4.28 4.58-4.57a169.31 169.31 0 0136.84 0C97 55.72 99 57.81 99 60v32c0 2.19-2 4.28-4.58 4.57z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="path46" />
+  <path
+     d="M76 54.43v1a168.62 168.62 0 0118.27 1A4 4 0 0197.85 60v32a4 4 0 01-3.57 3.57 166.44 166.44 0 01-18.28 1 168.62 168.62 0 01-18.27-1A4 4 0 0154.15 92V60a4 4 0 013.57-3.57 166.44 166.44 0 0118.28-1v-1m0 0a169.13 169.13 0 00-18.42 1C55.05 55.72 53 57.81 53 60v32c0 2.19 2 4.28 4.58 4.57a169.27 169.27 0 0018.42 1 169.27 169.27 0 0018.42-1C97 96.28 99 94.19 99 92V60c0-2.19-2-4.28-4.58-4.57a169.27 169.27 0 00-18.42-1z"
+     fill="#4d4d4d"
+     id="path48" />
+  <path
+     d="M92.23 57.52a143.75 143.75 0 00-31.31 0c-2.16.32-3.9 2-3.9 3.68 0 .27 1.74-2.47 3.9-2.69a240.53 240.53 0 0131.31 0c2.16.22 3.89 3 3.89 2.69 0-1.68-1.73-3.36-3.89-3.68z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="path50" />
+  <circle
+     cx="14.67"
+     cy="14.47"
+     r="5.5"
+     fill="#b3b3b3"
+     id="circle52" />
+  <path
+     d="M14.67 9.47a5 5 0 11-5 5 5 5 0 015-5m0-1a6 6 0 106 6 6 6 0 00-6-6z"
+     fill="#333"
+     id="path54" />
+  <path
+     d="M14.67 18.59a4.12 4.12 0 114.11-4.12 4.13 4.13 0 01-4.11 4.12z"
+     fill="#333"
+     id="path56" />
+  <path
+     d="M14.67 10.86a3.62 3.62 0 11-3.62 3.61 3.61 3.61 0 013.62-3.61m0-1a4.62 4.62 0 104.61 4.61 4.61 4.61 0 00-4.61-4.61z"
+     fill="gray"
+     id="path58" />
+  <text
+     style="line-height:1.25"
+     x="73.071"
+     y="79.222"
+     font-weight="400"
+     font-size="40"
+     font-family="sans-serif"
+     letter-spacing="0"
+     word-spacing="0"
+     id="text60" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="65.017342"
+     y="79.221581"
+     id="text72"><tspan
+       sodipodi:role="line"
+       id="tspan70"
+       x="65.017342"
+       y="115.71479" /></text>
+</svg>

@@ -50,7 +50,12 @@
             "sourceTypeId": "NCS-5501"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP0"
+          "slotKey": "0/RP0",
+          "asset": {
+            "typeId": "NCS-5501-RP",
+            "image": "/chassis-assets/ncs5501/modules/NCS-5501_RP.svg",
+            "sourceImage": "/chassis-assets/ncs5501/modules/NCS-5501_RP.svg"
+          }
         }
       ],
       "id": "front",
@@ -97,7 +102,12 @@
             "sourceName": "0/PM0"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM0"
+          "slotKey": "0/PM0",
+          "asset": {
+            "typeId": "NCS-5501-PSU",
+            "image": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_powersupply.svg",
+            "sourceImage": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_powersupply.svg"
+          }
         },
         {
           "bounds": {
@@ -114,7 +124,12 @@
             "sourceName": "0/FT0"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "NCS-5501-FAN",
+            "image": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_fan.svg",
+            "sourceImage": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_fan.svg"
+          }
         },
         {
           "bounds": {
@@ -131,7 +146,12 @@
             "sourceName": "0/FT1"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT1"
+          "slotKey": "0/FT1",
+          "asset": {
+            "typeId": "NCS-5501-FAN",
+            "image": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_fan.svg",
+            "sourceImage": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_fan.svg"
+          }
         },
         {
           "bounds": {
@@ -148,7 +168,12 @@
             "sourceName": "0/PM1"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "NCS-5501-PSU",
+            "image": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_powersupply.svg",
+            "sourceImage": "/chassis-assets/ncs5501/modules/NCS-5501_Rear_powersupply.svg"
+          }
         }
       ],
       "id": "rear",

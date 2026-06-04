@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   data-name="Layer 1"
+   width="200"
+   height="155.25"
+   version="1.1"
+   viewBox="0 0 200 155.25"
+   id="N540-FH-AGG-SYS_Power_Modulesvg252"
+   sodipodi:docname="N540-FH-AGG-SYS_Power_Module.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="N540-FH-AGG-SYS_Power_Moduledefs256" />
+  <sodipodi:namedview
+     id="N540-FH-AGG-SYS_Power_Modulenamedview254"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="3.0402576"
+     inkscape:cx="100.15599"
+     inkscape:cy="77.625"
+     inkscape:window-width="1280"
+     inkscape:window-height="658"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg252" />
+  <path
+     fill="#1a1a1a"
+     d="M200 155l-200 .25V.25L200 0z"
+     id="N540-FH-AGG-SYS_Power_Modulepath2" />
+  <path
+     fill="#ccc"
+     d="M168.69 143.76v9.06H4.04v-31.04h191.92v21.98zM6 4.78a1.52 1.52 0 010-3h189a1.52 1.52 0 010 3z"
+     id="N540-FH-AGG-SYS_Power_Modulepath4" />
+  <path
+     d="M195 2.25a1 1 0 010 2H6a1 1 0 010-2h189m0-1H6a2 2 0 00-2 2 2 2 0 002 2h189a2 2 0 002-2 2 2 0 00-2-2z"
+     fill="#333"
+     id="N540-FH-AGG-SYS_Power_Modulepath6" />
+  <path
+     d="M196 120.27V6c-3 0-5.44-1.8-5.44-4H39.39v118.27z"
+     fill="#ccc"
+     id="N540-FH-AGG-SYS_Power_Modulepath8" />
+  <path
+     fill="#1a1a1a"
+     d="M99.89 129.08l4.32 7.53h8.64l4.32-7.53-4.32-7.53h-8.64zM99.89 48.88l4.32 7.53h8.64l4.32-7.53-4.32-7.53h-8.64zM99.89 28.83l4.32 7.53h8.64l4.32-7.53-4.32-7.53h-8.64zM135.04 129.08l4.32 7.53H148l4.32-7.53-4.32-7.53h-8.64zM135.04 48.88l4.32 7.53H148l4.32-7.53-4.32-7.53h-8.64zM135.04 28.83l4.32 7.53H148l4.32-7.53L148 21.3h-8.64zM170.19 129.08l4.32 7.53h8.64l4.32-7.53-4.32-7.53h-8.64zM170.19 48.88l4.32 7.53h8.64l4.32-7.53-4.32-7.53h-8.64zM170.19 28.83l4.32 7.53h8.64l4.32-7.53-4.32-7.53h-8.64zM112.85 16.31l3.01-5.24H101.2l3.01 5.24zM148 16.31l3.01-5.24h-14.66l3.01 5.24zM183.15 16.31l3.45-6h-15.53l3.44 6z"
+     id="N540-FH-AGG-SYS_Power_Modulepath10" />
+  <path
+     d="M192.93 6.6v130.12H84.85v12.74H9.55c0-2.78-5.16-5-6.52-5V2H189c0 2.54 1.75 4.6 3.93 4.6z"
+     fill="#ccc"
+     id="N540-FH-AGG-SYS_Power_Modulepath12" />
+  <rect
+     x=".5"
+     y="3.51"
+     width="3.04"
+     height="149.97"
+     rx=".5"
+     fill="#ccc"
+     id="N540-FH-AGG-SYS_Power_Modulerect14" />
+  <path
+     d="M3 4v149H1V4h2m0-1H1a1 1 0 00-1 1v149a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1z"
+     fill="#333"
+     id="N540-FH-AGG-SYS_Power_Modulepath16" />
+  <rect
+     x="196.46"
+     y="3.26"
+     width="3.04"
+     height="149.73"
+     rx=".5"
+     fill="#ccc"
+     id="N540-FH-AGG-SYS_Power_Modulerect18" />
+  <path
+     d="M199 3.76v148.73h-2V3.76h2m0-1h-2a1 1 0 00-1 1v148.73a1 1 0 001 1h2a1 1 0 001-1V3.76a1 1 0 00-1-1z"
+     fill="#333"
+     id="N540-FH-AGG-SYS_Power_Modulepath20" />
+  <path
+     d="M16.61 110.21a10.07 10.07 0 1110.11-10.07 10.1 10.1 0 01-10.11 10.07z"
+     fill="#333"
+     fill-rule="evenodd"
+     id="N540-FH-AGG-SYS_Power_Modulepath22" />
+  <path
+     d="M16.61 90.57A9.57 9.57 0 117 100.14a9.6 9.6 0 019.6-9.57m0-1a10.57 10.57 0 1010.61 10.57 10.59 10.59 0 00-10.6-10.57z"
+     fill="gray"
+     id="N540-FH-AGG-SYS_Power_Modulepath24" />
+  <path
+     d="M16.61 105.18a5 5 0 115.06-5 5.05 5.05 0 01-5.06 5z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-AGG-SYS_Power_Modulepath26" />
+  <path
+     d="M16.61 95.6a4.54 4.54 0 11-4.55 4.54 4.56 4.56 0 014.55-4.54m0-1a5.54 5.54 0 105.56 5.54 5.54 5.54 0 00-5.56-5.54z"
+     fill="gray"
+     id="N540-FH-AGG-SYS_Power_Modulepath28" />
+  <ellipse
+     cx="16.61"
+     cy="98.13"
+     rx="2.02"
+     ry="1.01"
+     fill="#f2f2f2"
+     id="N540-FH-AGG-SYS_Power_Moduleellipse30" />
+  <ellipse
+     cx="16.61"
+     cy="124.3"
+     rx="10.11"
+     ry="10.07"
+     fill="#333"
+     id="N540-FH-AGG-SYS_Power_Moduleellipse32" />
+  <path
+     d="M16.61 114.73A9.57 9.57 0 117 124.3a9.6 9.6 0 019.6-9.57m0-1a10.57 10.57 0 1010.62 10.57 10.59 10.59 0 00-10.61-10.57z"
+     fill="gray"
+     id="N540-FH-AGG-SYS_Power_Modulepath34" />
+  <path
+     d="M16.61 129.33a5 5 0 115.06-5 5.05 5.05 0 01-5.06 5z"
+     fill="#ccc"
+     fill-rule="evenodd"
+     id="N540-FH-AGG-SYS_Power_Modulepath36" />
+  <path
+     d="M16.61 119.76a4.54 4.54 0 11-4.55 4.54 4.56 4.56 0 014.55-4.54m0-1a5.54 5.54 0 105.56 5.54 5.54 5.54 0 00-5.56-5.54z"
+     fill="gray"
+     id="N540-FH-AGG-SYS_Power_Modulepath38" />
+  <ellipse
+     cx="16.61"
+     cy="122.28"
+     rx="2.02"
+     ry="1.01"
+     fill="#f2f2f2"
+     id="N540-FH-AGG-SYS_Power_Moduleellipse40" />
+  <text
+     transform="translate(29.72 103.92)"
+     font-size="10.06"
+     font-family="ArialNarrow, 'Arial Narrow'"
+     id="N540-FH-AGG-SYS_Power_Moduletext48"><tspan
+       letter-spacing="-.04em"
+       id="N540-FH-AGG-SYS_Power_Moduletspan42">F</tspan><tspan
+       x="4.59"
+       y="0"
+       id="N540-FH-AGG-SYS_Power_Moduletspan44">AI</tspan><tspan
+       x="12.39"
+       y="0"
+       letter-spacing="-.03em"
+       id="N540-FH-AGG-SYS_Power_Moduletspan46">L</tspan></text>
+  <text
+     transform="translate(29.72 128.07)"
+     font-size="10.06"
+     font-family="ArialNarrow, 'Arial Narrow'"
+     id="N540-FH-AGG-SYS_Power_Moduletext50">OK</text>
+  <g
+     clip-path="url(#clip-path)"
+     id="N540-FH-AGG-SYS_Power_Moduleg212">
+    <path
+       d="M49.43 23.72L56 27.46v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath52" />
+    <path
+       d="M49.43 24.29l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath54" />
+    <path
+       d="M63.57 23.72l6.57 3.74v7.47l-6.57 3.74L57 34.93v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath56" />
+    <path
+       d="M63.57 24.29l6.08 3.46v6.89l-6.08 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.08-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath58" />
+    <path
+       d="M77.72 23.72l6.57 3.74v7.47l-6.57 3.74-6.58-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath60" />
+    <path
+       d="M77.72 24.29l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath62" />
+    <path
+       d="M56.5 11.64l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath64" />
+    <path
+       d="M56.5 12.22l6.07 3.45v6.89L56.5 26l-6.07-3.46v-6.87l6.07-3.45m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath66" />
+    <path
+       d="M42.36 11.64l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath68" />
+    <path
+       d="M42.36 12.22l6.07 3.45v6.89L42.36 26l-6.07-3.46v-6.87l6.07-3.45m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath70" />
+    <path
+       d="M49.43 47.87L56 51.62v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath72" />
+    <path
+       d="M49.43 48.45l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8.02l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath74" />
+    <path
+       d="M63.57 47.87l6.57 3.75v7.47l-6.57 3.74L57 59.09v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath76" />
+    <path
+       d="M63.57 48.45l6.08 3.46v6.89l-6.08 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8.05l7.07 4 7.08-4v-8.02l-7.08-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath78" />
+    <path
+       d="M77.72 47.87l6.57 3.75v7.47l-6.57 3.74-6.58-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath80" />
+    <path
+       d="M77.72 48.45l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8.02l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath82" />
+    <path
+       d="M56.5 35.8l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath84" />
+    <path
+       d="M56.5 36.37l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath86" />
+    <path
+       d="M70.64 35.8l6.58 3.74v7.47l-6.58 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath88" />
+    <path
+       d="M70.65 36.37l6.07 3.46v6.89l-6.07 3.45-6.08-3.45v-6.89l6.08-3.46m0-1.15l-7.08 4v8l7.08 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath90" />
+    <path
+       d="M42.36 35.8l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath92" />
+    <path
+       d="M42.36 36.37l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath94" />
+    <path
+       d="M49.43 72.03L56 75.77v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath96" />
+    <path
+       d="M49.43 72.61l6.07 3.45V83l-6.07 3.46L43.36 83v-6.94l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath98" />
+    <path
+       d="M63.57 72.03l6.57 3.74v7.47l-6.57 3.74L57 83.24v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath100" />
+    <path
+       d="M63.57 72.61l6.08 3.45V83l-6.08 3.46L57.5 83v-6.94l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.08-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath102" />
+    <path
+       d="M77.72 72.03l6.57 3.74v7.47l-6.57 3.74-6.58-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath104" />
+    <path
+       d="M77.72 72.61l6.07 3.45V83l-6.07 3.46L71.65 83v-6.94l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath106" />
+    <path
+       d="M56.5 59.95l6.57 3.74v7.47l-6.57 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath108" />
+    <path
+       d="M56.5 60.53L62.57 64v6.89l-6.07 3.44-6.07-3.46V64l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V63.4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath110" />
+    <path
+       d="M70.64 59.95l6.58 3.74v7.47l-6.58 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath112" />
+    <path
+       d="M70.65 60.53L76.72 64v6.89l-6.07 3.46-6.08-3.46V64l6.08-3.45m0-1.15l-7.08 4v8.06l7.08 4 7.07-4V63.4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath114" />
+    <path
+       d="M42.36 59.95l6.57 3.74v7.47l-6.57 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath116" />
+    <path
+       d="M42.36 60.53L48.43 64v6.89l-6.07 3.46-6.07-3.46V64l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V63.4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath118" />
+    <path
+       d="M56.5 84.11l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath120" />
+    <path
+       d="M56.5 84.68l6.07 3.46V95l-6.07 3.49L50.43 95v-6.86l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath122" />
+    <path
+       d="M56.48 108.27l6.58 3.75v7.47l-6.58 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath124" />
+    <path
+       d="M56.49 108.85l6.07 3.46v6.89l-6.07 3.45-6.08-3.45v-6.89l6.08-3.46m0-1.15l-7.08 4v8l7.08 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath126" />
+    <path
+       d="M70.64 84.11l6.58 3.74v7.47l-6.58 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath128" />
+    <path
+       d="M70.65 84.68l6.07 3.46V95l-6.07 3.46L64.57 95v-6.86l6.08-3.46m0-1.15l-7.08 4v8l7.08 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath130" />
+    <path
+       d="M70.6 108.27l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath132" />
+    <path
+       d="M70.6 108.84l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8.06l7.07 4 7.07-4v-8.06z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath134" />
+    <path
+       d="M63.56 96.19l6.58 3.74v7.48l-6.58 3.74-6.58-3.74v-7.48z"
+       id="N540-FH-AGG-SYS_Power_Modulepath136" />
+    <path
+       d="M63.56 96.76l6.08 3.46v6.9l-6.08 3.46-6.07-3.46v-6.9l6.07-3.46m0-1.15l-7.07 4v8.06l7.07 4 7.08-4v-8.03l-7.08-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath138" />
+    <path
+       d="M77.72 96.19l6.57 3.74v7.48l-6.57 3.74-6.58-3.74v-7.48z"
+       id="N540-FH-AGG-SYS_Power_Modulepath140" />
+    <path
+       d="M77.72 96.76l6.07 3.46v6.9l-6.07 3.46-6.08-3.46v-6.9l6.08-3.46m0-1.15l-7.08 4v8.06l7.08 4 7.07-4v-8.03l-7.07-4zM49.43 145.07l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4V156l7.07 4 7.07-4v-8l-7.07-4zM63.57 145.07l6.08 3.46v6.89l-6.08 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4V156l7.07 4 7.08-4v-8l-7.08-4zM77.72 145.07l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4V156l7.07 4 7.07-4v-8l-7.07-4zM91.86 145.07l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4V156l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath142" />
+    <path
+       d="M63.53 120.34l6.57 3.74v7.47l-6.57 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath144" />
+    <path
+       d="M63.53 120.92l6.07 3.45v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath146" />
+    <path
+       d="M77.67 120.34l6.57 3.74v7.47l-6.57 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath148" />
+    <path
+       d="M77.67 120.92l6.07 3.45v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath150" />
+    <path
+       d="M28.22 11.64l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath152" />
+    <path
+       d="M28.22 12.22l6.07 3.45v6.89L28.22 26l-6.07-3.46v-6.87l6.07-3.45m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath154" />
+    <path
+       d="M35.29 23.72l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath156" />
+    <path
+       d="M35.29 24.29l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath158" />
+    <path
+       d="M28.22 35.8l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath160" />
+    <path
+       d="M28.22 36.37l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath162" />
+    <path
+       d="M35.29 47.87l6.57 3.75v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath164" />
+    <path
+       d="M35.29 48.45l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8.02l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath166" />
+    <path
+       d="M28.22 59.95l6.57 3.74v7.47l-6.57 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath168" />
+    <path
+       d="M28.22 60.53L34.29 64v6.89l-6.07 3.46-6.07-3.46V64l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V63.4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath170" />
+    <path
+       d="M35.29 72.03l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath172" />
+    <path
+       d="M35.29 72.61l6.07 3.45V83l-6.07 3.46L29.22 83v-6.94l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath174" />
+    <path
+       d="M14.14 11.64l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath176" />
+    <path
+       d="M14.14 12.22l6.07 3.45v6.89L14.14 26l-6.07-3.44v-6.89l6.07-3.45m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath178" />
+    <path
+       d="M21.21 23.72l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath180" />
+    <path
+       d="M21.21 24.29l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath182" />
+    <path
+       d="M14.14 35.8l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath184" />
+    <path
+       d="M14.14 36.37l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath186" />
+    <path
+       d="M21.21 47.87l6.57 3.75v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath188" />
+    <path
+       d="M21.21 48.45l6.07 3.46v6.89l-6.07 3.45-6.07-3.45v-6.89l6.07-3.46m0-1.15l-7.07 4v8.05l7.07 4 7.07-4v-8.02l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath190" />
+    <path
+       d="M14.14 59.95l6.57 3.74v7.47l-6.57 3.75-6.57-3.75v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath192" />
+    <path
+       d="M14.14 60.53L20.21 64v6.89l-6.07 3.46-6.07-3.48V64l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V63.4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath194" />
+    <path
+       d="M21.21 72.03l6.57 3.74v7.47l-6.57 3.74-6.57-3.74v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath196" />
+    <path
+       d="M21.21 72.61l6.07 3.45V83l-6.07 3.46L15.14 83v-6.94l6.07-3.45m0-1.15l-7.07 4v8l7.07 4 7.07-4v-8z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath198" />
+    <path
+       d="M7.07 23.72l6.57 3.74v7.47l-6.57 3.74L.5 34.93v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath200" />
+    <path
+       d="M7.07 24.29l6.07 3.46v6.89L7.07 38.1 1 34.64v-6.89l6.07-3.46m0-1.15L0 27.17v8l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath202" />
+    <path
+       d="M7.07 47.87l6.57 3.75v7.47l-6.57 3.74L.5 59.09v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath204" />
+    <path
+       d="M7.07 48.45l6.07 3.46v6.89l-6.07 3.45L1 58.8v-6.89l6.07-3.46m0-1.15L0 51.33v8.05l7.07 4 7.07-4v-8.05l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath206" />
+    <path
+       d="M7.07 72.03l6.57 3.74v7.47l-6.57 3.74L.5 83.24v-7.47z"
+       id="N540-FH-AGG-SYS_Power_Modulepath208" />
+    <path
+       d="M7.07 72.61l6.07 3.45V83l-6.07 3.41L1 83v-6.94l6.07-3.45m0-1.15L0 75.48v8l7.07 4 7.07-4v-8l-7.07-4zM35.29 145.07l6.07 3.46v6.89l-6.07 3.46-6.07-3.46v-6.89l6.07-3.46m0-1.15l-7.07 4V156l7.07 4 7.07-4v-8l-7.07-4z"
+       fill="#cacac9"
+       id="N540-FH-AGG-SYS_Power_Modulepath210" />
+  </g>
+  <rect
+     x="68.68"
+     y="8.29"
+     width="20.22"
+     height="134.88"
+     rx="10"
+     fill="#b3b3b3"
+     id="N540-FH-AGG-SYS_Power_Modulerect214" />
+  <path
+     d="M78.9 9.29a9 9 0 019 9v114.89a9 9 0 01-9 9h-.22a9 9 0 01-9-9V18.29a9 9 0 019-9h.22m0-2h-.22a11 11 0 00-11 11v114.89a11 11 0 0011 11h.22a11 11 0 0011-11V18.29a11 11 0 00-11-11z"
+     fill="#4d4d4d"
+     id="N540-FH-AGG-SYS_Power_Modulepath216" />
+  <path
+     d="M141.41 119.59l6.57 3.74v7.48l-6.57 3.74-6.57-3.74v-7.48z"
+     id="N540-FH-AGG-SYS_Power_Modulepath218" />
+  <path
+     d="M141.41 120.17l6.07 3.45v6.89l-6.07 3.49-6.07-3.46v-6.89l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V123l-7.07-4z"
+     fill="#cacac9"
+     id="N540-FH-AGG-SYS_Power_Modulepath220" />
+  <path
+     d="M124.44 119.59l6.57 3.74v7.48l-6.57 3.74-6.57-3.74v-7.48z"
+     id="N540-FH-AGG-SYS_Power_Modulepath222" />
+  <path
+     d="M124.44 120.17l6.07 3.45v6.89l-6.07 3.49-6.07-3.46v-6.89l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V123l-7.07-4z"
+     fill="#cacac9"
+     id="N540-FH-AGG-SYS_Power_Modulepath224" />
+  <path
+     d="M107.46 119.59l6.57 3.74v7.48l-6.57 3.74-6.57-3.74v-7.48z"
+     id="N540-FH-AGG-SYS_Power_Modulepath226" />
+  <path
+     d="M107.46 120.17l6.07 3.45v6.89l-6.07 3.49-6.07-3.46v-6.89l6.07-3.45m0-1.15l-7.07 4v8.06l7.07 4 7.07-4V123l-7.07-4z"
+     fill="#cacac9"
+     id="N540-FH-AGG-SYS_Power_Modulepath228" />
+  <path
+     fill="#333"
+     d="M97.98 1.85h1.01v17.11h-1.01zM179.8 15.94h17.17v1.01H179.8z"
+     id="N540-FH-AGG-SYS_Power_Modulepath230" />
+  <rect
+     x="96.32"
+     y="10.43"
+     width="91.93"
+     height="115.75"
+     rx="1.52"
+     fill="#333"
+     id="N540-FH-AGG-SYS_Power_Modulerect232" />
+  <path
+     d="M186.73 10.93a1 1 0 011 1v112.74a1 1 0 01-1 1H97.84a1 1 0 01-1-1V12a1 1 0 011-1h88.89m0-1H97.84a2 2 0 00-2 2v112.67a2 2 0 002 2h88.89a2 2 0 002-2V12a2 2 0 00-2-2z"
+     fill="#999"
+     id="N540-FH-AGG-SYS_Power_Modulepath234" />
+  <path
+     d="M109.68 101.71v-66.8a14.45 14.45 0 0114.54-14.48H142a13.44 13.44 0 019.7 4l16.95 14.49c2.43 3.22 4 6.44 4 10.46v37.84a15.23 15.23 0 01-4 10.46l-16.95 14.49a13.44 13.44 0 01-9.7 4h-17.78a14.45 14.45 0 01-14.54-14.48z"
+     fill="none"
+     stroke="#000"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width=".06"
+     id="N540-FH-AGG-SYS_Power_Modulepath236" />
+  <path
+     d="M109.68 101.71v-66.8a14.45 14.45 0 0114.54-14.48H142a13.44 13.44 0 019.7 4l16.95 14.49c2.43 3.22 4 6.44 4 10.46v37.84a15.23 15.23 0 01-4 10.46l-16.95 14.49a13.44 13.44 0 01-9.7 4h-17.78a14.45 14.45 0 01-14.54-14.48z"
+     fill="#262626"
+     fill-rule="evenodd"
+     id="N540-FH-AGG-SYS_Power_Modulepath238" />
+  <path
+     d="M154.91 71.93v-6.44c0-.8 0-1.61-.81-1.61h-12.92c-.81 0-.81.81-.81 1.61v6.44a.79.79 0 00.81.81h12.92a.79.79 0 00.81-.81zM138 48.6V43a1.74 1.74 0 00-1.62-1.61h-12.97a2.83 2.83 0 00-.81 1.61v5.6a2.78 2.78 0 00.81 1.6h12.92a1.73 1.73 0 001.67-1.6z"
+     fill="gray"
+     fill-rule="evenodd"
+     id="N540-FH-AGG-SYS_Power_Modulepath240" />
+  <path
+     d="M138 94.46V88c0-.81-.81-.81-1.62-.81h-12.97a.79.79 0 00-.81.81v6.43l.81.81h12.92a2.83 2.83 0 001.62-.81z"
+     fill="#999"
+     fill-rule="evenodd"
+     id="N540-FH-AGG-SYS_Power_Modulepath242" />
+  <path
+     d="M154.91 71.93v-6.44c0-.8 0-1.61-.81-1.61h-12.92c-.81 0-.81.81-.81 1.61v6.44a.79.79 0 00.81.81h12.92a.79.79 0 00.81-.81zM138 48.6V43a1.74 1.74 0 00-1.62-1.61h-12.97a2.83 2.83 0 00-.81 1.61v5.6a2.78 2.78 0 00.81 1.6h12.92a1.73 1.73 0 001.67-1.6zM138 94.46V88c0-.81-.81-.81-1.62-.81h-12.97a.79.79 0 00-.81.81v6.43l.81.81h12.92a2.83 2.83 0 001.62-.81z"
+     fill="none"
+     stroke="#8c8c8c"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width=".06"
+     id="N540-FH-AGG-SYS_Power_Modulepath244" />
+  <rect
+     x="179.29"
+     y="114.73"
+     width="19.2"
+     height="38.25"
+     rx="6.5"
+     fill="#b3b3b3"
+     id="N540-FH-AGG-SYS_Power_Modulerect246" />
+  <path
+     d="M192 115.23a6 6 0 016 6v25.25a6 6 0 01-6 6h-6.2a6 6 0 01-6-6v-25.25a6 6 0 016-6h6.2m0-1h-6.2a7 7 0 00-7 7v25.25a7 7 0 007 7h6.2a7 7 0 007-7v-25.25a7 7 0 00-7-7z"
+     fill="#4d4d4d"
+     id="N540-FH-AGG-SYS_Power_Modulepath248" />
+  <text
+     style="line-height:1.25"
+     x="35.29"
+     y="143.92"
+     font-weight="400"
+     font-size="40"
+     font-family="sans-serif"
+     letter-spacing="0"
+     word-spacing="0"
+     id="N540-FH-AGG-SYS_Power_Moduletext250" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="35.290001"
+     y="143.92"
+     id="N540-FH-AGG-SYS_Power_Moduletext1338"><tspan
+       sodipodi:role="line"
+       id="N540-FH-AGG-SYS_Power_Moduletspan1336"
+       x="35.290001"
+       y="143.92" /></text>
+</svg>

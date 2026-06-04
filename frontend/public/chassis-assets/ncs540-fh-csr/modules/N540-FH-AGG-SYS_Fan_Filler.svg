@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="152"
+   height="152"
+   viewBox="0 0 152 152"
+   version="1.1"
+   id="svg14"
+   sodipodi:docname="N540-FH-AGG-SYS_Fan_Filler.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs18" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1315"
+     id="namedview16"
+     showgrid="false"
+     inkscape:zoom="1.5526316"
+     inkscape:cx="76"
+     inkscape:cy="76"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg14" />
+  <path
+     d="M.4 6C.4 3 2.5.5 5 .5h141.9c2.5 0 4.6 2.5 4.6 5.5v140c0 3-2.1 5.5-4.6 5.5H5.1c-2.5 0-4.6-2.5-4.6-5.5z"
+     fill="#eee"
+     id="path2" />
+  <path
+     d="M151.2 146c0 2.8-1.9 5-4.2 5H5.1c-2.4 0-4.2-2.2-4.2-5V6c0-2.8 1.9-5 4.2-5H147c2.4 0 4.2 2.2 4.2 5v140m.8 0V6c0-3.3-2.3-6-5.1-6H5.1C2.3 0 0 2.7 0 6v140c0 3.3 2.3 6 5.1 6H147c2.7 0 5-2.7 5-6z"
+     fill="gray"
+     id="path4" />
+  <g
+     id="g10">
+    <path
+       d="M9.8 16c0-3 2.1-5.5 4.6-5.5h123.2c2.5 0 4.6 2.5 4.6 5.5v120c0 3-2.1 5.5-4.6 5.5H14.4c-2.5 0-4.6-2.5-4.6-5.5V16z"
+       fill="#bfbfbf"
+       id="path6" />
+    <path
+       d="M141.9 136c0 2.8-1.9 5-4.2 5H14.4c-2.4 0-4.2-2.2-4.2-5V16c0-2.8 1.9-5 4.2-5h123.2c2.4 0 4.2 2.2 4.2 5l.1 120m.8 0V16c0-3.3-2.3-6-5.1-6H14.4c-2.8 0-5.1 2.7-5.1 6v120c0 3.3 2.3 6 5.1 6h123.2c2.8 0 5.1-2.7 5.1-6z"
+       fill="gray"
+       id="path8" />
+  </g>
+  <text
+     style="line-height:1.25"
+     x="44.441"
+     y="77.932"
+     font-weight="400"
+     font-size="40"
+     font-family="sans-serif"
+     letter-spacing="0"
+     word-spacing="0"
+     id="text12" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="61.18644"
+     y="99.18644"
+     id="text24"><tspan
+       sodipodi:role="line"
+       id="tspan22"
+       x="61.18644"
+       y="135.67966" /></text>
+</svg>

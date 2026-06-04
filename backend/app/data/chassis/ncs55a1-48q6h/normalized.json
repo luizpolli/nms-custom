@@ -50,7 +50,12 @@
             "sourceTypeId": "NCS-55A1-48Q6H"
           },
           "physicalIndex": null,
-          "slotKey": "0/RP0"
+          "slotKey": "0/RP0",
+          "asset": {
+            "typeId": "NCS-55A1-48Q6H-RP",
+            "image": "/chassis-assets/ncs55a1-48q6h/modules/NCS-55A1-36H-S-RP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1-48q6h/modules/NCS-55A1-36H-S-RP.svg"
+          }
         }
       ],
       "id": "front",
@@ -97,7 +102,12 @@
             "sourceName": "0/PM0"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM0"
+          "slotKey": "0/PM0",
+          "asset": {
+            "typeId": "NC55-2KW-DCFW",
+            "image": "/chassis-assets/ncs55a1-48q6h/modules/NC55-2KW-DCFW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1-48q6h/modules/NC55-2KW-DCFW.svg"
+          }
         },
         {
           "bounds": {
@@ -114,7 +124,12 @@
             "sourceName": "0/FT0"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT0"
+          "slotKey": "0/FT0",
+          "asset": {
+            "typeId": "NC55-A1-FAN-FW",
+            "image": "/chassis-assets/ncs55a1-48q6h/modules/NC55-A1-FAN-FW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1-48q6h/modules/NC55-A1-FAN-FW.svg"
+          }
         },
         {
           "bounds": {
@@ -131,7 +146,12 @@
             "sourceName": "0/FT1"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT1"
+          "slotKey": "0/FT1",
+          "asset": {
+            "typeId": "NC55-A1-FAN-FW",
+            "image": "/chassis-assets/ncs55a1-48q6h/modules/NC55-A1-FAN-FW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1-48q6h/modules/NC55-A1-FAN-FW.svg"
+          }
         },
         {
           "bounds": {
@@ -148,7 +168,12 @@
             "sourceName": "0/PM1"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM1"
+          "slotKey": "0/PM1",
+          "asset": {
+            "typeId": "NC55-2KW-DCFW",
+            "image": "/chassis-assets/ncs55a1-48q6h/modules/NC55-2KW-DCFW.svg",
+            "sourceImage": "/chassis-assets/ncs55a1-48q6h/modules/NC55-2KW-DCFW.svg"
+          }
         }
       ],
       "id": "rear",

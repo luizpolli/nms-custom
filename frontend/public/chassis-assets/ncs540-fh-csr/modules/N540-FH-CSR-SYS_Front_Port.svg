@@ -1,0 +1,4937 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Core"
+   viewBox="0 0 1106.34 114.3"
+   version="1.1"
+   sodipodi:docname="N540-FH-CSR-SYS_Front_Port.svg"
+   width="1106.34"
+   height="114.3"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="N540-FH-CSR-SYS_Front_Portmetadata1465">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="N540-FH-CSR-SYS_Front_Portdefs1463" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1315"
+     id="N540-FH-CSR-SYS_Front_Portnamedview1461"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.1512374"
+     inkscape:cx="553.17"
+     inkscape:cy="57.150003"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Core" />
+  <rect
+     x="218.26001"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect2"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 273.07,16.36 V 111.9 H 218.76 V 16.36 h 54.31 m 1,-1 h -56.3 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath4"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="223.19"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect6"
+     style="fill:#856427" />
+  <rect
+     x="226.42999"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect8"
+     style="fill:#856427" />
+  <rect
+     x="232.92999"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect10"
+     style="fill:#856427" />
+  <rect
+     x="229.67999"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect12"
+     style="fill:#856427" />
+  <rect
+     x="236.16998"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect14"
+     style="fill:#856427" />
+  <rect
+     x="239.41998"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect16"
+     style="fill:#856427" />
+  <rect
+     x="243.75"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect18"
+     style="fill:#856427" />
+  <path
+     d="m 265.9,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath20"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 269.81,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath22"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 265.9,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath24"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 269.81,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 H 266.4 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath26"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="241"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect28"
+     style="fill:#737373" />
+  <path
+     d="m 243.83,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath30"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="246.40997"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect32"
+     style="fill:#737373" />
+  <path
+     d="m 249.24,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath34"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="241"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect36"
+     style="fill:#737373" />
+  <path
+     d="m 243.83,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath38"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="246.40997"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect40"
+     style="fill:#737373" />
+  <path
+     d="m 249.24,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath42"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="223.19"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect44"
+     style="fill:#856427" />
+  <rect
+     x="226.42999"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect46"
+     style="fill:#856427" />
+  <rect
+     x="232.92999"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect48"
+     style="fill:#856427" />
+  <rect
+     x="229.67999"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect50"
+     style="fill:#856427" />
+  <rect
+     x="236.16998"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect52"
+     style="fill:#856427" />
+  <rect
+     x="239.41998"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect54"
+     style="fill:#856427" />
+  <rect
+     x="243.75"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect56"
+     style="fill:#856427" />
+  <path
+     d="m 236.33,75.55 a 2.42,2.42 0 0 1 0.71,-1.75 c 0.79,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.63,0 1.38,0.72 2.12,1.46 a 3.68,3.68 0 0 0 0.55,1.33 5,5 0 0 1 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath58"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 253.01,72.71 c 0.4,0 1.08,0.64 1.65,1.2 a 4.28,4.28 0 0 0 0.47,1.14 h -18.24 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.61,-0.6 1.44,-1.44 1.89,-1.44 h 13.72 m 0,-1 h -13.72 c -0.87,0 -1.73,0.87 -2.6,1.74 a 3.19,3.19 0 0 0 -0.86,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.86,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath60"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 255.74,74.46 -0.54,-0.52 a 10.85,10.85 0 0 0 -1.89,-1.58 L 253.2,72.3 h -14.34 l -0.11,0.06 a 10.22,10.22 0 0 0 -1.9,1.59 c -0.17,0.17 -0.35,0.35 -0.53,0.51 H 218.27 V 51.63 h 18.08 a 5.5,5.5 0 0 0 0.67,0.41 3.24,3.24 0 0 1 1.54,1.5 l 0.14,0.26 h 14.66 l 0.14,-0.26 a 3.71,3.71 0 0 1 1.39,-1.48 c 0.18,-0.13 0.38,-0.27 0.57,-0.43 h 18.09 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath62"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 273.05,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.57,10.57 0 0 0 -2,1.66 l -0.39,0.37 H 218.77 V 52.13 h 17.42 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.8,2.8 0 0 1 1.34,1.3 l 0.28,0.52 h 15.26 l 0.28,-0.52 a 3.34,3.34 0 0 1 1.23,-1.31 c 0.15,-0.11 0.31,-0.21 0.47,-0.34 h 17.41 m -17.5,-1.28 c -0.83,0.93 -1.66,0.93 -2.48,2.45 H 239 c -0.83,-1.52 -1.66,-1.52 -2.49,-2.17 h -18.74 v 23.83 h 18.73 a 17.13,17.13 0 0 1 2.49,-2.16 h 14.07 a 17.63,17.63 0 0 1 2.48,2.16 h 18.5 V 51.13 h -18.5 v -0.28 z"
+     id="N540-FH-CSR-SYS_Front_Portpath64"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 239.29,52.8 c -0.66,0 -1.46,-0.81 -2.25,-1.59 a 2.42,2.42 0 0 1 -0.71,-1.75 h 19.65 a 5,5 0 0 1 -0.3,0.55 3.68,3.68 0 0 0 -0.55,1.33 c -0.74,0.74 -1.49,1.46 -2.12,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath66"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 255.13,49.96 a 4.28,4.28 0 0 0 -0.47,1.14 c -0.57,0.56 -1.25,1.2 -1.65,1.2 h -13.72 c -0.45,0 -1.28,-0.84 -1.89,-1.44 a 1.73,1.73 0 0 1 -0.51,-0.9 h 18.24 m 1.49,-1 h -20.79 a 3.19,3.19 0 0 0 0.86,2.6 c 0.87,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.74,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath68"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="220.90997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect70"
+     style="fill:#404040" />
+  <rect
+     x="220.90997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect72"
+     style="fill:#404040" />
+  <rect
+     x="220.90997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect74"
+     style="fill:#404040" />
+  <rect
+     x="233.90997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect76"
+     style="fill:#404040" />
+  <rect
+     x="233.90997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect78"
+     style="fill:#404040" />
+  <rect
+     x="233.90997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect80"
+     style="fill:#404040" />
+  <rect
+     x="246.90997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect82"
+     style="fill:#404040" />
+  <rect
+     x="246.90997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect84"
+     style="fill:#404040" />
+  <rect
+     x="246.90997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect86"
+     style="fill:#404040" />
+  <rect
+     x="259.90997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect88"
+     style="fill:#404040" />
+  <rect
+     x="259.90997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect90"
+     style="fill:#404040" />
+  <rect
+     x="259.90997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect92"
+     style="fill:#404040" />
+  <rect
+     x="276.71002"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect94"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 331.5,16.36 V 111.9 H 277.2 V 16.36 h 54.3 m 1,-1 h -56.28 v 97.5 H 332.5 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath96"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="281.63"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect98"
+     style="fill:#856427" />
+  <rect
+     x="284.88"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect100"
+     style="fill:#856427" />
+  <rect
+     x="291.37"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect102"
+     style="fill:#856427" />
+  <rect
+     x="288.12"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect104"
+     style="fill:#856427" />
+  <rect
+     x="294.62"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect106"
+     style="fill:#856427" />
+  <rect
+     x="297.87"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect108"
+     style="fill:#856427" />
+  <rect
+     x="302.20001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect110"
+     style="fill:#856427" />
+  <path
+     d="m 324.34,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath112"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 328.25,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath114"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 324.34,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath116"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 328.25,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath118"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="299.45001"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect120"
+     style="fill:#737373" />
+  <path
+     d="m 302.28,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath122"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="304.85999"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect124"
+     style="fill:#737373" />
+  <path
+     d="m 307.69,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath126"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="299.45001"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect128"
+     style="fill:#737373" />
+  <path
+     d="m 302.28,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath130"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="304.85999"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect132"
+     style="fill:#737373" />
+  <path
+     d="m 307.69,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath134"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="281.63"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect136"
+     style="fill:#856427" />
+  <rect
+     x="284.88"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect138"
+     style="fill:#856427" />
+  <rect
+     x="291.37"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect140"
+     style="fill:#856427" />
+  <rect
+     x="288.12"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect142"
+     style="fill:#856427" />
+  <rect
+     x="294.62"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect144"
+     style="fill:#856427" />
+  <rect
+     x="297.87"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect146"
+     style="fill:#856427" />
+  <rect
+     x="302.20001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect148"
+     style="fill:#856427" />
+  <path
+     d="m 294.78,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.76 c 0.62,0 1.37,0.72 2.11,1.46 a 3.54,3.54 0 0 0 0.56,1.33 c 0.1,0.18 0.21,0.37 0.29,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath150"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 311.5,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 4,4 0 0 0 0.47,1.14 h -18.28 a 1.71,1.71 0 0 1 0.5,-0.9 c 0.61,-0.6 1.44,-1.44 1.9,-1.44 h 13.76 m 0,-1 h -13.76 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath152"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 314.19,74.46 c -0.18,-0.16 -0.36,-0.34 -0.54,-0.51 a 10.5,10.5 0 0 0 -1.89,-1.59 l -0.12,-0.06 h -14.33 l -0.12,0.06 a 10.85,10.85 0 0 0 -1.89,1.58 l -0.54,0.52 h -18 V 51.63 h 18.07 a 6.38,6.38 0 0 0 0.67,0.41 3.2,3.2 0 0 1 1.54,1.5 l 0.14,0.26 h 14.67 l 0.14,-0.26 a 3.63,3.63 0 0 1 1.38,-1.48 7.1,7.1 0 0 0 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath154"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="M 331.5,52.13 V 73.96 H 314.39 L 314,73.59 a 10.89,10.89 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 277.22 V 52.13 h 17.41 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.76,2.76 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.23,-1.31 c 0.14,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.66,-1.52 -2.48,-2.17 h -18.74 v 23.83 h 18.74 a 16.57,16.57 0 0 1 2.48,-2.16 h 14.06 a 16.57,16.57 0 0 1 2.48,2.16 H 332.5 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath156"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 297.74,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.64 c -0.08,0.18 -0.19,0.37 -0.29,0.55 a 3.54,3.54 0 0 0 -0.56,1.33 c -0.74,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath158"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 313.58,49.96 a 4,4 0 0 0 -0.47,1.14 c -0.57,0.56 -1.26,1.2 -1.65,1.2 h -13.72 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.71,1.71 0 0 1 -0.5,-0.9 h 18.24 m 1.48,-1 h -20.79 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.76 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath160"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="279.35999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect162"
+     style="fill:#404040" />
+  <rect
+     x="279.35999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect164"
+     style="fill:#404040" />
+  <rect
+     x="279.35999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect166"
+     style="fill:#404040" />
+  <rect
+     x="292.35999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect168"
+     style="fill:#404040" />
+  <rect
+     x="292.35999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect170"
+     style="fill:#404040" />
+  <rect
+     x="292.35999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect172"
+     style="fill:#404040" />
+  <rect
+     x="305.35999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect174"
+     style="fill:#404040" />
+  <rect
+     x="305.35999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect176"
+     style="fill:#404040" />
+  <rect
+     x="305.35999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect178"
+     style="fill:#404040" />
+  <rect
+     x="318.35999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect180"
+     style="fill:#404040" />
+  <rect
+     x="318.35999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect182"
+     style="fill:#404040" />
+  <rect
+     x="318.35999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect184"
+     style="fill:#404040" />
+  <rect
+     x="335.15997"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect186"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 389.96,16.36 V 111.9 H 335.65 V 16.36 h 54.31 m 1,-1 h -56.3 v 97.5 h 56.29 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath188"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="340.08002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect190"
+     style="fill:#856427" />
+  <rect
+     x="343.32001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect192"
+     style="fill:#856427" />
+  <rect
+     x="349.82001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect194"
+     style="fill:#856427" />
+  <rect
+     x="346.57001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect196"
+     style="fill:#856427" />
+  <rect
+     x="353.06"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect198"
+     style="fill:#856427" />
+  <rect
+     x="356.31"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect200"
+     style="fill:#856427" />
+  <rect
+     x="360.64001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect202"
+     style="fill:#856427" />
+  <path
+     d="m 382.79,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath204"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 386.7,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath206"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 382.79,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath208"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 386.7,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath210"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="357.89001"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect212"
+     style="fill:#737373" />
+  <path
+     d="m 360.72,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath214"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="363.29999"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect216"
+     style="fill:#737373" />
+  <path
+     d="m 366.13,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath218"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="357.89001"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect220"
+     style="fill:#737373" />
+  <path
+     d="m 360.72,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath222"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="363.29999"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect224"
+     style="fill:#737373" />
+  <path
+     d="m 366.13,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath226"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="340.08002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect228"
+     style="fill:#856427" />
+  <rect
+     x="343.32001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect230"
+     style="fill:#856427" />
+  <rect
+     x="349.82001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect232"
+     style="fill:#856427" />
+  <rect
+     x="346.57001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect234"
+     style="fill:#856427" />
+  <rect
+     x="353.06"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect236"
+     style="fill:#856427" />
+  <rect
+     x="356.31"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect238"
+     style="fill:#856427" />
+  <rect
+     x="360.64001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect240"
+     style="fill:#856427" />
+  <path
+     d="m 353.22,75.55 a 2.39,2.39 0 0 1 0.72,-1.75 c 0.78,-0.78 1.58,-1.59 2.24,-1.59 h 13.73 c 0.62,0 1.37,0.72 2.11,1.46 a 3.68,3.68 0 0 0 0.55,1.33 5,5 0 0 1 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath242"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 369.9,72.71 c 0.4,0 1.08,0.64 1.65,1.2 a 4.28,4.28 0 0 0 0.47,1.14 h -18.24 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.61,-0.6 1.44,-1.44 1.89,-1.44 h 13.72 m 0,-1 h -13.72 c -0.87,0 -1.73,0.87 -2.6,1.74 a 3.19,3.19 0 0 0 -0.86,2.6 h 20.78 c 0,-0.87 -1,-1.74 -1,-2.6 -0.86,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath244"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 372.63,74.46 c -0.18,-0.16 -0.35,-0.34 -0.53,-0.51 a 10.22,10.22 0 0 0 -1.9,-1.59 l -0.11,-0.06 h -14.34 l -0.11,0.06 a 10.85,10.85 0 0 0 -1.89,1.58 l -0.54,0.52 H 335.16 V 51.63 h 18.08 a 5.5,5.5 0 0 0 0.67,0.41 3.24,3.24 0 0 1 1.54,1.5 l 0.14,0.26 h 14.66 l 0.14,-0.26 a 3.71,3.71 0 0 1 1.39,-1.48 c 0.18,-0.13 0.38,-0.27 0.57,-0.43 h 18.15 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath246"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 389.95,52.13 v 21.83 h -17.12 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.57,10.57 0 0 0 -2,1.66 l -0.39,0.37 H 335.66 V 52.13 h 17.42 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.8,2.8 0 0 1 1.34,1.3 l 0.28,0.52 h 15.26 l 0.28,-0.52 a 3.34,3.34 0 0 1 1.23,-1.31 c 0.15,-0.11 0.31,-0.21 0.47,-0.34 h 17.42 m -17.51,-1.28 c -0.83,0.93 -1.66,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.66,-1.52 -2.49,-2.17 h -18.74 v 23.83 h 18.74 a 17.13,17.13 0 0 1 2.49,-2.16 h 14.07 a 17.63,17.63 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath248"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 356.18,52.8 c -0.66,0 -1.46,-0.81 -2.24,-1.59 a 2.39,2.39 0 0 1 -0.72,-1.75 h 19.65 a 5,5 0 0 1 -0.3,0.55 3.68,3.68 0 0 0 -0.55,1.33 c -0.74,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath250"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 372.02,49.96 a 4.28,4.28 0 0 0 -0.47,1.14 c -0.57,0.56 -1.25,1.2 -1.65,1.2 h -13.72 c -0.45,0 -1.28,-0.84 -1.89,-1.44 a 1.73,1.73 0 0 1 -0.51,-0.9 h 18.24 m 1.49,-1 h -20.79 a 3.19,3.19 0 0 0 0.86,2.6 c 0.87,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.74,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath252"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="337.79999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect254"
+     style="fill:#404040" />
+  <rect
+     x="337.79999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect256"
+     style="fill:#404040" />
+  <rect
+     x="337.79999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect258"
+     style="fill:#404040" />
+  <rect
+     x="350.79999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect260"
+     style="fill:#404040" />
+  <rect
+     x="350.79999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect262"
+     style="fill:#404040" />
+  <rect
+     x="350.79999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect264"
+     style="fill:#404040" />
+  <rect
+     x="363.79999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect266"
+     style="fill:#404040" />
+  <rect
+     x="363.79999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect268"
+     style="fill:#404040" />
+  <rect
+     x="363.79999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect270"
+     style="fill:#404040" />
+  <rect
+     x="376.79999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect272"
+     style="fill:#404040" />
+  <rect
+     x="376.79999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect274"
+     style="fill:#404040" />
+  <rect
+     x="376.79999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect276"
+     style="fill:#404040" />
+  <rect
+     x="393.59998"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect278"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 448.41,16.36 V 111.9 H 394.09 V 16.36 h 54.32 m 1,-1 h -56.3 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath280"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="398.52002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect282"
+     style="fill:#856427" />
+  <rect
+     x="401.77002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect284"
+     style="fill:#856427" />
+  <rect
+     x="408.26001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect286"
+     style="fill:#856427" />
+  <rect
+     x="405.02002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect288"
+     style="fill:#856427" />
+  <rect
+     x="411.51001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect290"
+     style="fill:#856427" />
+  <rect
+     x="414.76001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect292"
+     style="fill:#856427" />
+  <rect
+     x="419.09003"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect294"
+     style="fill:#856427" />
+  <path
+     d="m 441.23,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath296"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 445.14,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath298"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 441.23,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath300"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 445.14,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath302"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="416.34003"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect304"
+     style="fill:#737373" />
+  <path
+     d="m 419.17,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath306"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="421.75"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect308"
+     style="fill:#737373" />
+  <path
+     d="m 424.58,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath310"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="416.34003"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect312"
+     style="fill:#737373" />
+  <path
+     d="m 419.17,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath314"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="421.75"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect316"
+     style="fill:#737373" />
+  <path
+     d="m 424.58,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath318"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="398.52002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect320"
+     style="fill:#856427" />
+  <rect
+     x="401.77002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect322"
+     style="fill:#856427" />
+  <rect
+     x="408.26001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect324"
+     style="fill:#856427" />
+  <rect
+     x="405.02002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect326"
+     style="fill:#856427" />
+  <rect
+     x="411.51001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect328"
+     style="fill:#856427" />
+  <rect
+     x="414.76001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect330"
+     style="fill:#856427" />
+  <rect
+     x="419.09003"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect332"
+     style="fill:#856427" />
+  <path
+     d="m 411.67,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.62,0 1.38,0.72 2.11,1.46 a 3.89,3.89 0 0 0 0.56,1.33 c 0.1,0.18 0.21,0.37 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath334"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 428.35,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 4,4 0 0 0 0.47,1.14 h -18.24 a 1.71,1.71 0 0 1 0.5,-0.9 c 0.61,-0.6 1.44,-1.44 1.9,-1.44 h 13.72 m 0,-1 h -13.72 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath336"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 431.08,74.46 -0.54,-0.52 a 10.85,10.85 0 0 0 -1.89,-1.58 L 428.53,72.3 H 414.2 l -0.12,0.06 a 10.85,10.85 0 0 0 -1.89,1.58 l -0.54,0.52 h -18 V 51.63 h 18.07 a 6.38,6.38 0 0 0 0.67,0.41 3.2,3.2 0 0 1 1.54,1.5 l 0.15,0.26 h 14.62 l 0.14,-0.26 a 3.63,3.63 0 0 1 1.38,-1.48 7.1,7.1 0 0 0 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath338"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 448.39,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.89,10.89 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 394.11 V 52.13 h 17.39 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.76,2.76 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.24,-1.31 c 0.15,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 h -14.06 c -0.83,-1.52 -1.65,-1.52 -2.48,-2.17 h -18.74 v 23.83 h 18.74 a 17.09,17.09 0 0 1 2.48,-2.16 h 14.07 a 16.57,16.57 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 v -0.28 z"
+     id="N540-FH-CSR-SYS_Front_Portpath340"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 414.63,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.65 c -0.09,0.18 -0.2,0.37 -0.3,0.55 a 3.89,3.89 0 0 0 -0.56,1.33 c -0.73,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath342"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 430.5,49.96 a 4,4 0 0 0 -0.5,1.17 c -0.57,0.56 -1.26,1.2 -1.65,1.2 h -13.72 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.71,1.71 0 0 1 -0.5,-0.9 h 18.27 m 1.48,-1 h -20.82 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath344"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="396.25"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect346"
+     style="fill:#404040" />
+  <rect
+     x="396.25"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect348"
+     style="fill:#404040" />
+  <rect
+     x="396.25"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect350"
+     style="fill:#404040" />
+  <rect
+     x="409.25"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect352"
+     style="fill:#404040" />
+  <rect
+     x="409.25"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect354"
+     style="fill:#404040" />
+  <rect
+     x="409.25"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect356"
+     style="fill:#404040" />
+  <rect
+     x="422.25"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect358"
+     style="fill:#404040" />
+  <rect
+     x="422.25"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect360"
+     style="fill:#404040" />
+  <rect
+     x="422.25"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect362"
+     style="fill:#404040" />
+  <rect
+     x="435.25"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect364"
+     style="fill:#404040" />
+  <rect
+     x="435.25"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect366"
+     style="fill:#404040" />
+  <rect
+     x="435.25"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect368"
+     style="fill:#404040" />
+  <rect
+     x="452.03998"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect370"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 506.85,16.36 V 111.9 H 452.5 V 16.36 h 54.31 m 1,-1 h -56.26 v 97.5 h 56.29 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath372"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="456.96997"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect374"
+     style="fill:#856427" />
+  <rect
+     x="460.21002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect376"
+     style="fill:#856427" />
+  <rect
+     x="466.71002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect378"
+     style="fill:#856427" />
+  <rect
+     x="463.46002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect380"
+     style="fill:#856427" />
+  <rect
+     x="469.95001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect382"
+     style="fill:#856427" />
+  <rect
+     x="473.20001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect384"
+     style="fill:#856427" />
+  <rect
+     x="477.53003"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect386"
+     style="fill:#856427" />
+  <path
+     d="m 499.68,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath388"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 503.59,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath390"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 499.68,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath392"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 503.59,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath394"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="474.78003"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect396"
+     style="fill:#737373" />
+  <path
+     d="m 477.61,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath398"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="480.20001"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect400"
+     style="fill:#737373" />
+  <path
+     d="m 483.02,23.96 v 3.42 h -2.32 v -3.42 h 2.32 m 1,-1 h -4.32 v 5.42 h 4.32 z"
+     id="N540-FH-CSR-SYS_Front_Portpath402"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="474.78003"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect404"
+     style="fill:#737373" />
+  <path
+     d="m 477.61,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath406"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="480.20001"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect408"
+     style="fill:#737373" />
+  <path
+     d="m 483.02,101.96 v 3.42 h -2.32 v -3.42 h 2.32 m 1,-1 h -4.32 v 5.42 h 4.32 z"
+     id="N540-FH-CSR-SYS_Front_Portpath410"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="456.96997"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect412"
+     style="fill:#856427" />
+  <rect
+     x="460.21002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect414"
+     style="fill:#856427" />
+  <rect
+     x="466.71002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect416"
+     style="fill:#856427" />
+  <rect
+     x="463.46002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect418"
+     style="fill:#856427" />
+  <rect
+     x="469.95001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect420"
+     style="fill:#856427" />
+  <rect
+     x="473.20001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect422"
+     style="fill:#856427" />
+  <rect
+     x="477.53003"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect424"
+     style="fill:#856427" />
+  <path
+     d="m 470.11,75.55 a 2.39,2.39 0 0 1 0.72,-1.75 c 0.78,-0.78 1.58,-1.59 2.24,-1.59 h 13.72 c 0.63,0 1.38,0.72 2.12,1.46 a 3.68,3.68 0 0 0 0.55,1.33 5,5 0 0 1 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath426"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 486.8,72.71 c 0.39,0 1.07,0.64 1.64,1.2 a 4,4 0 0 0 0.48,1.14 h -18.25 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.61,-0.6 1.44,-1.44 1.89,-1.44 h 13.73 m 0,-1 h -13.73 c -0.87,0 -1.73,0.87 -2.6,1.74 a 3.19,3.19 0 0 0 -0.86,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.86,-0.87 -1.73,-1.74 -2.59,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath428"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 489.5,74.46 -0.55,-0.52 a 10.5,10.5 0 0 0 -1.89,-1.58 l -0.11,-0.06 h -14.31 l -0.11,0.06 a 10.22,10.22 0 0 0 -1.9,1.59 c -0.17,0.17 -0.35,0.35 -0.53,0.51 H 452.05 V 51.63 h 18.08 a 5.5,5.5 0 0 0 0.67,0.41 3.24,3.24 0 0 1 1.54,1.5 l 0.14,0.26 h 14.66 l 0.14,-0.26 a 3.71,3.71 0 0 1 1.39,-1.48 c 0.18,-0.13 0.38,-0.27 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath430"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 506.84,52.13 v 21.83 h -17.12 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 L 487.1,71.8 h -14.6 l -0.23,0.13 a 10.57,10.57 0 0 0 -2,1.66 l -0.39,0.37 H 452.55 V 52.13 h 17.42 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.8,2.8 0 0 1 1.34,1.3 l 0.28,0.52 h 15.26 l 0.28,-0.52 a 3.34,3.34 0 0 1 1.23,-1.31 c 0.15,-0.11 0.31,-0.21 0.47,-0.34 h 17.42 m -17.51,-1.28 c -0.83,0.93 -1.66,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.66,-1.52 -2.49,-2.17 h -18.74 v 23.83 h 18.74 a 17.13,17.13 0 0 1 2.49,-2.16 h 14.07 a 17.63,17.63 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath432"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 473.07,52.8 c -0.66,0 -1.46,-0.81 -2.24,-1.59 a 2.39,2.39 0 0 1 -0.72,-1.75 h 19.65 a 5,5 0 0 1 -0.3,0.55 3.68,3.68 0 0 0 -0.55,1.33 c -0.74,0.74 -1.49,1.46 -2.12,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath434"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 488.92,49.96 a 4,4 0 0 0 -0.48,1.14 c -0.57,0.56 -1.25,1.2 -1.64,1.2 h -13.73 c -0.45,0 -1.28,-0.84 -1.89,-1.44 a 1.73,1.73 0 0 1 -0.51,-0.9 h 18.25 m 1.48,-1 h -20.79 a 3.19,3.19 0 0 0 0.86,2.6 c 0.87,0.87 1.73,1.74 2.6,1.74 h 13.73 c 0.86,0 1.73,-0.87 2.59,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath436"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="454.70001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect438"
+     style="fill:#404040" />
+  <rect
+     x="454.70001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect440"
+     style="fill:#404040" />
+  <rect
+     x="454.70001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect442"
+     style="fill:#404040" />
+  <rect
+     x="467.70001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect444"
+     style="fill:#404040" />
+  <rect
+     x="467.70001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect446"
+     style="fill:#404040" />
+  <rect
+     x="467.70001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect448"
+     style="fill:#404040" />
+  <rect
+     x="480.70001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect450"
+     style="fill:#404040" />
+  <rect
+     x="480.70001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect452"
+     style="fill:#404040" />
+  <rect
+     x="480.70001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect454"
+     style="fill:#404040" />
+  <rect
+     x="493.70001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect456"
+     style="fill:#404040" />
+  <rect
+     x="493.70001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect458"
+     style="fill:#404040" />
+  <rect
+     x="493.70001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect460"
+     style="fill:#404040" />
+  <rect
+     x="510.48999"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect462"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 565.3,16.36 V 111.9 H 510.98 V 16.36 h 54.32 m 1,-1 H 510 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath464"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="515.41003"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect466"
+     style="fill:#856427" />
+  <rect
+     x="518.66003"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect468"
+     style="fill:#856427" />
+  <rect
+     x="525.15002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect470"
+     style="fill:#856427" />
+  <rect
+     x="521.91003"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect472"
+     style="fill:#856427" />
+  <rect
+     x="528.40002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect474"
+     style="fill:#856427" />
+  <rect
+     x="531.65002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect476"
+     style="fill:#856427" />
+  <rect
+     x="535.97998"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect478"
+     style="fill:#856427" />
+  <path
+     d="m 558.12,45.21 v -8.75 h 4.38 v 8.75 z m 0,-15.16 v -9.84 h 4.38 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath480"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 562.03,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath482"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 558.12,108.05 V 99.3 h 4.38 v 8.75 z m 0,-14.09 v -9.83 h 4.38 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath484"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 562.03,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath486"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="533.22998"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect488"
+     style="fill:#737373" />
+  <path
+     d="m 536.06,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath490"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="538.64001"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect492"
+     style="fill:#737373" />
+  <path
+     d="m 541.5,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath494"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="533.22998"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect496"
+     style="fill:#737373" />
+  <path
+     d="m 536.06,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath498"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="538.64001"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect500"
+     style="fill:#737373" />
+  <path
+     d="m 541.5,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath502"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="515.41003"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect504"
+     style="fill:#856427" />
+  <rect
+     x="518.66003"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect506"
+     style="fill:#856427" />
+  <rect
+     x="525.15002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect508"
+     style="fill:#856427" />
+  <rect
+     x="521.91003"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect510"
+     style="fill:#856427" />
+  <rect
+     x="528.40002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect512"
+     style="fill:#856427" />
+  <rect
+     x="531.65002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect514"
+     style="fill:#856427" />
+  <rect
+     x="535.97998"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect516"
+     style="fill:#856427" />
+  <path
+     d="m 528.56,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.62,0 1.38,0.72 2.11,1.46 a 3.89,3.89 0 0 0 0.56,1.33 c 0.11,0.18 0.21,0.37 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath518"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 545.24,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 4,4 0 0 0 0.47,1.14 h -18.24 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.6,-0.6 1.43,-1.44 1.89,-1.44 h 13.72 m 0,-1 H 531.5 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath520"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 547.97,74.46 -0.54,-0.52 a 10.85,10.85 0 0 0 -1.89,-1.58 l -0.12,-0.06 h -14.33 l -0.12,0.06 a 10.5,10.5 0 0 0 -1.89,1.59 c -0.18,0.17 -0.36,0.35 -0.54,0.51 h -18 V 51.63 h 18.07 a 6.38,6.38 0 0 0 0.67,0.41 3.2,3.2 0 0 1 1.54,1.5 l 0.14,0.26 h 14.67 l 0.14,-0.26 a 3.7,3.7 0 0 1 1.38,-1.48 c 0.19,-0.13 0.38,-0.27 0.58,-0.43 h 18.09 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath522"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 565.28,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.61 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 511 V 52.13 h 17.42 a 6.39,6.39 0 0 0 0.58,0.35 2.72,2.72 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.23,-1.31 c 0.15,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.65,-1.52 -2.48,-2.17 H 510 v 23.83 h 18.74 a 17.09,17.09 0 0 1 2.48,-2.16 h 14.07 a 16.57,16.57 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath524"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 531.5,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.65 c -0.09,0.18 -0.19,0.37 -0.3,0.55 a 3.89,3.89 0 0 0 -0.56,1.33 c -0.74,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath526"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 547.36,49.96 a 4,4 0 0 0 -0.47,1.14 c -0.57,0.56 -1.26,1.2 -1.65,1.2 H 531.5 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.78,1.78 0 0 1 -0.5,-0.9 h 18.24 m 1.48,-1 h -20.79 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath528"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="513.14001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect530"
+     style="fill:#404040" />
+  <rect
+     x="513.14001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect532"
+     style="fill:#404040" />
+  <rect
+     x="513.14001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect534"
+     style="fill:#404040" />
+  <rect
+     x="526.14001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect536"
+     style="fill:#404040" />
+  <rect
+     x="526.14001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect538"
+     style="fill:#404040" />
+  <rect
+     x="526.14001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect540"
+     style="fill:#404040" />
+  <rect
+     x="539.14001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect542"
+     style="fill:#404040" />
+  <rect
+     x="539.14001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect544"
+     style="fill:#404040" />
+  <rect
+     x="539.14001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect546"
+     style="fill:#404040" />
+  <rect
+     x="552.14001"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect548"
+     style="fill:#404040" />
+  <rect
+     x="552.14001"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect550"
+     style="fill:#404040" />
+  <rect
+     x="552.14001"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect552"
+     style="fill:#404040" />
+  <rect
+     x="663.56995"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect554"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 718.38,16.36 V 111.9 H 664.07 V 16.36 h 54.31 m 1,-1 H 663.1 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath556"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="668.5"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect558"
+     style="fill:#856427" />
+  <rect
+     x="671.73999"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect560"
+     style="fill:#856427" />
+  <rect
+     x="678.23999"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect562"
+     style="fill:#856427" />
+  <rect
+     x="674.98999"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect564"
+     style="fill:#856427" />
+  <rect
+     x="681.47998"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect566"
+     style="fill:#856427" />
+  <rect
+     x="684.72998"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect568"
+     style="fill:#856427" />
+  <rect
+     x="689.06006"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect570"
+     style="fill:#856427" />
+  <path
+     d="m 711.21,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath572"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 715.12,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath574"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 711.21,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath576"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 715.12,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath578"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="686.31006"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect580"
+     style="fill:#737373" />
+  <path
+     d="m 689.14,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath582"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="691.71997"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect584"
+     style="fill:#737373" />
+  <path
+     d="m 694.55,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath586"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="686.31006"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect588"
+     style="fill:#737373" />
+  <path
+     d="m 689.14,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath590"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="691.71997"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect592"
+     style="fill:#737373" />
+  <path
+     d="m 694.55,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath594"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="668.5"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect596"
+     style="fill:#856427" />
+  <rect
+     x="671.73999"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect598"
+     style="fill:#856427" />
+  <rect
+     x="678.23999"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect600"
+     style="fill:#856427" />
+  <rect
+     x="674.98999"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect602"
+     style="fill:#856427" />
+  <rect
+     x="681.47998"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect604"
+     style="fill:#856427" />
+  <rect
+     x="684.72998"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect606"
+     style="fill:#856427" />
+  <rect
+     x="689.06006"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect608"
+     style="fill:#856427" />
+  <path
+     d="m 681.64,75.55 a 2.42,2.42 0 0 1 0.71,-1.75 c 0.79,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.63,0 1.38,0.72 2.12,1.46 a 3.68,3.68 0 0 0 0.55,1.33 5,5 0 0 1 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath610"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 698.32,72.71 c 0.4,0 1.08,0.64 1.65,1.2 a 4.28,4.28 0 0 0 0.47,1.14 H 682.2 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.61,-0.6 1.44,-1.44 1.89,-1.44 h 13.72 m 0,-1 H 684.6 c -0.87,0 -1.73,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.8 c 0,-0.87 -1,-1.74 -1,-2.6 -0.86,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath612"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 701.05,74.46 -0.54,-0.52 a 10.5,10.5 0 0 0 -1.89,-1.58 l -0.11,-0.06 h -14.34 l -0.11,0.06 a 10.22,10.22 0 0 0 -1.9,1.59 c -0.17,0.17 -0.35,0.35 -0.53,0.51 H 663.58 V 51.63 h 18.08 a 5.5,5.5 0 0 0 0.67,0.41 3.24,3.24 0 0 1 1.54,1.5 l 0.14,0.26 h 14.66 l 0.14,-0.26 a 3.71,3.71 0 0 1 1.39,-1.48 c 0.18,-0.13 0.38,-0.27 0.57,-0.43 h 18.09 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath614"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 718.36,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.57,10.57 0 0 0 -2,1.66 l -0.39,0.37 H 664.06 V 52.13 h 17.44 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.8,2.8 0 0 1 1.34,1.3 l 0.28,0.52 h 15.26 l 0.28,-0.52 a 3.34,3.34 0 0 1 1.23,-1.31 l 0.47,-0.34 h 17.41 m -17.5,-1.28 c -0.83,0.93 -1.66,0.93 -2.49,2.45 H 684.3 c -0.82,-1.52 -1.65,-1.52 -2.48,-2.17 h -18.74 v 23.83 h 18.74 a 17.63,17.63 0 0 1 2.48,-2.16 h 14.07 a 17.13,17.13 0 0 1 2.49,2.16 h 18.5 V 51.13 h -18.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath616"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 684.6,52.8 c -0.66,0 -1.46,-0.81 -2.24,-1.59 a 2.39,2.39 0 0 1 -0.72,-1.75 h 19.65 a 5,5 0 0 1 -0.3,0.55 3.68,3.68 0 0 0 -0.55,1.33 c -0.74,0.74 -1.49,1.46 -2.12,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath618"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 700.44,49.96 a 4.28,4.28 0 0 0 -0.47,1.14 c -0.57,0.56 -1.25,1.2 -1.65,1.2 H 684.6 c -0.45,0 -1.28,-0.84 -1.89,-1.44 a 1.73,1.73 0 0 1 -0.51,-0.9 h 18.24 m 1.49,-1 h -20.8 a 3.17,3.17 0 0 0 0.87,2.6 c 0.87,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.74,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath620"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="666.21997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect622"
+     style="fill:#404040" />
+  <rect
+     x="666.21997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect624"
+     style="fill:#404040" />
+  <rect
+     x="666.21997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect626"
+     style="fill:#404040" />
+  <rect
+     x="679.21997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect628"
+     style="fill:#404040" />
+  <rect
+     x="679.21997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect630"
+     style="fill:#404040" />
+  <rect
+     x="679.21997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect632"
+     style="fill:#404040" />
+  <rect
+     x="692.21997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect634"
+     style="fill:#404040" />
+  <rect
+     x="692.21997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect636"
+     style="fill:#404040" />
+  <rect
+     x="692.21997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect638"
+     style="fill:#404040" />
+  <rect
+     x="705.21997"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect640"
+     style="fill:#404040" />
+  <rect
+     x="705.21997"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect642"
+     style="fill:#404040" />
+  <rect
+     x="705.21997"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect644"
+     style="fill:#404040" />
+  <rect
+     x="722.02002"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect646"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 776.83,16.36 V 111.9 H 722.5 V 16.36 h 54.32 m 1,-1 H 721.5 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath648"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="726.93994"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect650"
+     style="fill:#856427" />
+  <rect
+     x="730.18994"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect652"
+     style="fill:#856427" />
+  <rect
+     x="736.68005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect654"
+     style="fill:#856427" />
+  <rect
+     x="733.43005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect656"
+     style="fill:#856427" />
+  <rect
+     x="739.93005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect658"
+     style="fill:#856427" />
+  <rect
+     x="743.18005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect660"
+     style="fill:#856427" />
+  <rect
+     x="747.5"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect662"
+     style="fill:#856427" />
+  <path
+     d="m 769.65,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath664"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 773.56,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath666"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 769.65,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath668"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 773.56,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath670"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="744.76001"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect672"
+     style="fill:#737373" />
+  <path
+     d="m 747.59,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath674"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="750.17004"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect676"
+     style="fill:#737373" />
+  <path
+     d="m 753,23.96 v 3.42 h -2.33 V 23.96 H 753 m 1,-1 h -4.33 v 5.42 H 754 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath678"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="744.76001"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect680"
+     style="fill:#737373" />
+  <path
+     d="m 747.59,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath682"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="750.17004"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect684"
+     style="fill:#737373" />
+  <path
+     d="m 753,101.96 v 3.42 h -2.33 v -3.42 H 753 m 1,-1 h -4.33 v 5.42 H 754 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath686"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="726.93994"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect688"
+     style="fill:#856427" />
+  <rect
+     x="730.18994"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect690"
+     style="fill:#856427" />
+  <rect
+     x="736.68005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect692"
+     style="fill:#856427" />
+  <rect
+     x="733.43005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect694"
+     style="fill:#856427" />
+  <rect
+     x="739.93005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect696"
+     style="fill:#856427" />
+  <rect
+     x="743.18005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect698"
+     style="fill:#856427" />
+  <rect
+     x="747.5"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect700"
+     style="fill:#856427" />
+  <path
+     d="m 740.09,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.62,0 1.37,0.72 2.11,1.46 a 3.7,3.7 0 0 0 0.56,1.33 c 0.1,0.18 0.21,0.37 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath702"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 756.77,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 3.71,3.71 0 0 0 0.47,1.14 h -18.24 a 1.71,1.71 0 0 1 0.5,-0.9 c 0.61,-0.6 1.44,-1.44 1.9,-1.44 h 13.72 m 0,-1 h -13.72 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath704"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 759.5,74.46 c -0.18,-0.16 -0.36,-0.34 -0.54,-0.51 a 10.5,10.5 0 0 0 -1.89,-1.59 l -0.12,-0.06 h -14.33 l -0.12,0.06 a 10.85,10.85 0 0 0 -1.89,1.58 l -0.54,0.52 h -18 V 51.63 h 18.07 a 6.38,6.38 0 0 0 0.67,0.41 3.2,3.2 0 0 1 1.54,1.5 l 0.14,0.26 h 14.67 l 0.14,-0.26 a 3.63,3.63 0 0 1 1.38,-1.48 7.1,7.1 0 0 0 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath706"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="M 776.81,52.13 V 73.96 H 759.7 l -0.39,-0.37 a 10.89,10.89 0 0 0 -2,-1.66 L 757.08,71.8 H 742.5 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 722.5 V 52.13 h 17.41 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.76,2.76 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.23,-1.31 c 0.14,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.66,-1.52 -2.48,-2.17 H 721.5 v 23.83 h 18.74 a 16.57,16.57 0 0 1 2.48,-2.16 h 14.07 a 16.57,16.57 0 0 1 2.48,2.16 h 18.51 V 51.13 H 759.3 v -0.28 z"
+     id="N540-FH-CSR-SYS_Front_Portpath708"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 743.05,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.65 c -0.09,0.18 -0.2,0.37 -0.3,0.55 a 3.7,3.7 0 0 0 -0.56,1.33 c -0.74,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath710"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 758.89,49.96 a 3.71,3.71 0 0 0 -0.47,1.14 c -0.57,0.56 -1.26,1.2 -1.65,1.2 h -13.72 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.8,1.8 0 0 1 -0.51,-0.9 h 18.25 m 1.48,-1 h -20.79 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath712"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="724.67004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect714"
+     style="fill:#404040" />
+  <rect
+     x="724.67004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect716"
+     style="fill:#404040" />
+  <rect
+     x="724.67004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect718"
+     style="fill:#404040" />
+  <rect
+     x="737.67004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect720"
+     style="fill:#404040" />
+  <rect
+     x="737.67004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect722"
+     style="fill:#404040" />
+  <rect
+     x="737.67004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect724"
+     style="fill:#404040" />
+  <rect
+     x="750.67004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect726"
+     style="fill:#404040" />
+  <rect
+     x="750.67004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect728"
+     style="fill:#404040" />
+  <rect
+     x="750.67004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect730"
+     style="fill:#404040" />
+  <rect
+     x="763.67004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect732"
+     style="fill:#404040" />
+  <rect
+     x="763.67004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect734"
+     style="fill:#404040" />
+  <rect
+     x="763.67004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect736"
+     style="fill:#404040" />
+  <rect
+     x="780.45996"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect738"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 835.27,16.36 V 111.9 H 780.96 V 16.36 h 54.31 m 1,-1 h -56.28 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath740"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="785.39001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect742"
+     style="fill:#856427" />
+  <rect
+     x="788.63"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect744"
+     style="fill:#856427" />
+  <rect
+     x="795.13"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect746"
+     style="fill:#856427" />
+  <rect
+     x="791.88"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect748"
+     style="fill:#856427" />
+  <rect
+     x="798.37"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect750"
+     style="fill:#856427" />
+  <rect
+     x="801.62"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect752"
+     style="fill:#856427" />
+  <rect
+     x="805.94995"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect754"
+     style="fill:#856427" />
+  <path
+     d="m 828.1,45.21 v -8.75 h 4.4 v 8.75 z m 0,-15.16 v -9.84 h 4.4 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath756"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 832.01,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath758"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 828.1,108.05 V 99.3 h 4.4 v 8.75 z m 0,-14.09 v -9.83 h 4.4 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath760"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 832.01,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 H 828.6 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath762"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="803.19995"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect764"
+     style="fill:#737373" />
+  <path
+     d="m 806.03,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath766"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="808.60999"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect768"
+     style="fill:#737373" />
+  <path
+     d="m 811.44,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath770"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="803.19995"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect772"
+     style="fill:#737373" />
+  <path
+     d="m 806.03,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath774"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="808.60999"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect776"
+     style="fill:#737373" />
+  <path
+     d="m 811.44,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath778"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="785.39001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect780"
+     style="fill:#856427" />
+  <rect
+     x="788.63"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect782"
+     style="fill:#856427" />
+  <rect
+     x="795.13"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect784"
+     style="fill:#856427" />
+  <rect
+     x="791.88"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect786"
+     style="fill:#856427" />
+  <rect
+     x="798.37"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect788"
+     style="fill:#856427" />
+  <rect
+     x="801.62"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect790"
+     style="fill:#856427" />
+  <rect
+     x="805.94995"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect792"
+     style="fill:#856427" />
+  <path
+     d="m 798.5,75.55 a 2.42,2.42 0 0 1 0.71,-1.75 c 0.79,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.63,0 1.38,0.72 2.12,1.46 a 3.68,3.68 0 0 0 0.55,1.33 5,5 0 0 1 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath794"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 815.21,72.71 c 0.4,0 1.08,0.64 1.65,1.2 a 4.28,4.28 0 0 0 0.47,1.14 h -18.24 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.61,-0.6 1.44,-1.44 1.89,-1.44 h 13.72 m 0,-1 H 801.5 c -0.87,0 -1.73,0.87 -2.6,1.74 a 3.19,3.19 0 0 0 -0.86,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.86,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath796"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 817.94,74.46 c -0.18,-0.16 -0.36,-0.34 -0.53,-0.51 a 10.22,10.22 0 0 0 -1.9,-1.59 L 815.4,72.3 h -14.34 l -0.11,0.06 a 10.5,10.5 0 0 0 -1.89,1.58 l -0.54,0.52 h -18 V 51.63 h 17.98 a 6.46,6.46 0 0 0 0.68,0.41 3.24,3.24 0 0 1 1.54,1.5 l 0.14,0.26 h 14.66 l 0.14,-0.26 a 3.71,3.71 0 0 1 1.39,-1.48 l 0.57,-0.43 h 18.09 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath798"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 835.25,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.57,10.57 0 0 0 -2,1.66 l -0.39,0.37 H 780.95 V 52.13 h 17.42 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.8,2.8 0 0 1 1.34,1.3 l 0.28,0.52 h 15.26 l 0.28,-0.52 a 3.34,3.34 0 0 1 1.23,-1.31 c 0.15,-0.11 0.31,-0.21 0.47,-0.34 h 17.41 m -17.5,-1.28 c -0.83,0.93 -1.66,0.93 -2.48,2.45 h -14.08 c -0.82,-1.52 -1.65,-1.52 -2.48,-2.17 h -18.74 v 23.83 h 18.74 a 17.63,17.63 0 0 1 2.48,-2.16 h 14.08 a 17.63,17.63 0 0 1 2.48,2.16 h 18.5 V 51.13 h -18.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath800"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 801.5,52.8 c -0.66,0 -1.46,-0.81 -2.25,-1.59 a 2.42,2.42 0 0 1 -0.71,-1.75 h 19.65 a 5,5 0 0 1 -0.3,0.55 3.68,3.68 0 0 0 -0.55,1.33 c -0.74,0.74 -1.49,1.46 -2.12,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath802"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 817.33,49.96 a 4.28,4.28 0 0 0 -0.47,1.14 c -0.57,0.56 -1.25,1.2 -1.65,1.2 H 801.5 c -0.45,0 -1.28,-0.84 -1.89,-1.44 a 1.73,1.73 0 0 1 -0.51,-0.9 h 18.24 m 1.49,-1 h -20.79 a 3.19,3.19 0 0 0 0.86,2.6 c 0.87,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.74,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath804"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="783.10999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect806"
+     style="fill:#404040" />
+  <rect
+     x="783.10999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect808"
+     style="fill:#404040" />
+  <rect
+     x="783.10999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect810"
+     style="fill:#404040" />
+  <rect
+     x="796.10999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect812"
+     style="fill:#404040" />
+  <rect
+     x="796.10999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect814"
+     style="fill:#404040" />
+  <rect
+     x="796.10999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect816"
+     style="fill:#404040" />
+  <rect
+     x="809.10999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect818"
+     style="fill:#404040" />
+  <rect
+     x="809.10999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect820"
+     style="fill:#404040" />
+  <rect
+     x="809.10999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect822"
+     style="fill:#404040" />
+  <rect
+     x="822.10999"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect824"
+     style="fill:#404040" />
+  <rect
+     x="822.10999"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect826"
+     style="fill:#404040" />
+  <rect
+     x="822.10999"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect828"
+     style="fill:#404040" />
+  <rect
+     x="838.91003"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect830"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 893.72,16.36 V 111.9 H 839.4 V 16.36 h 54.32 m 1,-1 h -56.28 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath832"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="843.82996"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect834"
+     style="fill:#856427" />
+  <rect
+     x="847.07996"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect836"
+     style="fill:#856427" />
+  <rect
+     x="853.56995"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect838"
+     style="fill:#856427" />
+  <rect
+     x="850.31995"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect840"
+     style="fill:#856427" />
+  <rect
+     x="856.81995"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect842"
+     style="fill:#856427" />
+  <rect
+     x="860.06995"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect844"
+     style="fill:#856427" />
+  <rect
+     x="864.40002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect846"
+     style="fill:#856427" />
+  <path
+     d="m 886.5,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath848"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 890.5,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath850"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 886.5,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath852"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 890.5,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath854"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="861.65002"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect856"
+     style="fill:#737373" />
+  <path
+     d="m 864.5,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath858"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="867.06006"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect860"
+     style="fill:#737373" />
+  <path
+     d="m 869.89,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath862"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="861.65002"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect864"
+     style="fill:#737373" />
+  <path
+     d="m 864.5,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath866"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="867.06006"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect868"
+     style="fill:#737373" />
+  <path
+     d="m 869.89,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath870"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="843.82996"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect872"
+     style="fill:#856427" />
+  <rect
+     x="847.07996"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect874"
+     style="fill:#856427" />
+  <rect
+     x="853.56995"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect876"
+     style="fill:#856427" />
+  <rect
+     x="850.31995"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect878"
+     style="fill:#856427" />
+  <rect
+     x="856.81995"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect880"
+     style="fill:#856427" />
+  <rect
+     x="860.06995"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect882"
+     style="fill:#856427" />
+  <rect
+     x="864.40002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect884"
+     style="fill:#856427" />
+  <path
+     d="m 856.98,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.62,0 1.38,0.72 2.11,1.46 a 3.54,3.54 0 0 0 0.56,1.33 c 0.1,0.18 0.21,0.37 0.29,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath886"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 873.66,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 4,4 0 0 0 0.47,1.14 H 857.5 a 1.71,1.71 0 0 1 0.5,-0.9 c 0.61,-0.6 1.44,-1.44 1.9,-1.44 h 13.72 m 0,-1 H 859.9 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath888"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 876.39,74.46 -0.54,-0.52 a 10.85,10.85 0 0 0 -1.89,-1.58 L 873.84,72.3 H 859.5 l -0.12,0.06 a 10.85,10.85 0 0 0 -1.89,1.58 l -0.54,0.52 h -18 V 51.63 h 18.07 a 6.38,6.38 0 0 0 0.67,0.41 3.2,3.2 0 0 1 1.54,1.5 l 0.14,0.26 h 14.67 l 0.14,-0.26 a 3.63,3.63 0 0 1 1.38,-1.48 7.1,7.1 0 0 0 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath890"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 893.7,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.89,10.89 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.61 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 839.4 V 52.13 h 17.41 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.76,2.76 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.23,-1.31 c 0.14,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.66,-1.52 -2.48,-2.17 H 838.4 v 23.83 h 18.74 a 16.57,16.57 0 0 1 2.48,-2.16 h 14.07 a 16.57,16.57 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath892"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 859.94,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.64 c -0.08,0.18 -0.19,0.37 -0.29,0.55 a 3.54,3.54 0 0 0 -0.56,1.33 c -0.73,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath894"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 875.78,49.96 a 4,4 0 0 0 -0.47,1.14 c -0.57,0.56 -1.26,1.2 -1.65,1.2 h -13.72 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.71,1.71 0 0 1 -0.5,-0.9 h 18.24 m 1.48,-1 H 856.5 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath896"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="841.56006"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect898"
+     style="fill:#404040" />
+  <rect
+     x="841.56006"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect900"
+     style="fill:#404040" />
+  <rect
+     x="841.56006"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect902"
+     style="fill:#404040" />
+  <rect
+     x="854.56006"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect904"
+     style="fill:#404040" />
+  <rect
+     x="854.56006"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect906"
+     style="fill:#404040" />
+  <rect
+     x="854.56006"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect908"
+     style="fill:#404040" />
+  <rect
+     x="867.56006"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect910"
+     style="fill:#404040" />
+  <rect
+     x="867.56006"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect912"
+     style="fill:#404040" />
+  <rect
+     x="867.56006"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect914"
+     style="fill:#404040" />
+  <rect
+     x="880.56006"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect916"
+     style="fill:#404040" />
+  <rect
+     x="880.56006"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect918"
+     style="fill:#404040" />
+  <rect
+     x="880.56006"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect920"
+     style="fill:#404040" />
+  <rect
+     x="897.34998"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect922"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 952.16,16.36 V 111.9 H 897.85 V 16.36 h 54.31 m 1,-1 h -56.29 v 97.5 h 56.29 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath924"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="902.28003"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect926"
+     style="fill:#856427" />
+  <rect
+     x="905.52002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect928"
+     style="fill:#856427" />
+  <rect
+     x="912.02002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect930"
+     style="fill:#856427" />
+  <rect
+     x="908.77002"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect932"
+     style="fill:#856427" />
+  <rect
+     x="915.26001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect934"
+     style="fill:#856427" />
+  <rect
+     x="918.51001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect936"
+     style="fill:#856427" />
+  <rect
+     x="922.83997"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect938"
+     style="fill:#856427" />
+  <path
+     d="m 944.99,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath940"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 948.9,20.71 v 8.84 h -3.4 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath942"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 944.99,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath944"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 948.9,84.63 v 8.83 h -3.4 v -8.83 h 3.41 m 0,15.17 v 7.75 H 945.5 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath946"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="920.08997"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect948"
+     style="fill:#737373" />
+  <path
+     d="m 922.92,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath950"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="925.5"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect952"
+     style="fill:#737373" />
+  <path
+     d="m 928.33,23.96 v 3.42 H 926 v -3.42 h 2.33 m 1,-1 H 925 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath954"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="920.08997"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect956"
+     style="fill:#737373" />
+  <path
+     d="m 922.92,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath958"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="925.5"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect960"
+     style="fill:#737373" />
+  <path
+     d="m 928.33,101.96 v 3.42 H 926 v -3.42 h 2.33 m 1,-1 H 925 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath962"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="902.28003"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect964"
+     style="fill:#856427" />
+  <rect
+     x="905.52002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect966"
+     style="fill:#856427" />
+  <rect
+     x="912.02002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect968"
+     style="fill:#856427" />
+  <rect
+     x="908.77002"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect970"
+     style="fill:#856427" />
+  <rect
+     x="915.26001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect972"
+     style="fill:#856427" />
+  <rect
+     x="918.51001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect974"
+     style="fill:#856427" />
+  <rect
+     x="922.83997"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect976"
+     style="fill:#856427" />
+  <path
+     d="m 915.42,75.55 a 2.39,2.39 0 0 1 0.72,-1.75 c 0.78,-0.78 1.58,-1.59 2.24,-1.59 h 13.72 c 0.63,0 1.38,0.72 2.12,1.46 a 3.68,3.68 0 0 0 0.55,1.33 5,5 0 0 1 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath978"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 932.1,72.71 c 0.4,0 1.08,0.64 1.65,1.2 a 4.28,4.28 0 0 0 0.47,1.14 h -18.24 a 1.73,1.73 0 0 1 0.51,-0.9 c 0.61,-0.6 1.44,-1.44 1.89,-1.44 h 13.72 m 0,-1 h -13.72 c -0.87,0 -1.73,0.87 -2.6,1.74 a 3.19,3.19 0 0 0 -0.86,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.86,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath980"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 934.83,74.46 -0.54,-0.52 a 10.5,10.5 0 0 0 -1.89,-1.58 l -0.11,-0.06 h -14.34 l -0.11,0.06 a 10.22,10.22 0 0 0 -1.9,1.59 c -0.17,0.17 -0.35,0.35 -0.53,0.51 H 897.36 V 51.63 h 18.08 a 5.5,5.5 0 0 0 0.67,0.41 3.24,3.24 0 0 1 1.54,1.5 l 0.14,0.26 h 14.71 l 0.14,-0.26 a 3.71,3.71 0 0 1 1.39,-1.48 c 0.18,-0.13 0.38,-0.27 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath982"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 952.15,52.13 v 21.83 h -17.12 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.6 l -0.23,0.13 a 10.57,10.57 0 0 0 -2,1.66 l -0.39,0.37 H 897.84 V 52.13 h 17.42 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.8,2.8 0 0 1 1.34,1.3 l 0.28,0.52 h 15.26 l 0.28,-0.52 a 3.34,3.34 0 0 1 1.23,-1.31 c 0.15,-0.11 0.31,-0.21 0.47,-0.34 h 17.42 m -17.51,-1.28 c -0.83,0.93 -1.66,0.93 -2.48,2.45 h -14.07 c -0.83,-1.52 -1.66,-1.52 -2.49,-2.17 h -18.74 v 23.83 h 18.74 a 17.13,17.13 0 0 1 2.49,-2.16 h 14.07 a 17.63,17.63 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath984"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 918.38,52.8 c -0.66,0 -1.46,-0.81 -2.24,-1.59 a 2.39,2.39 0 0 1 -0.72,-1.75 h 19.65 a 5,5 0 0 1 -0.3,0.55 3.68,3.68 0 0 0 -0.55,1.33 c -0.74,0.74 -1.49,1.46 -2.12,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath986"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 934.22,49.96 a 4.28,4.28 0 0 0 -0.47,1.14 c -0.57,0.56 -1.25,1.2 -1.65,1.2 h -13.72 c -0.45,0 -1.28,-0.84 -1.89,-1.44 a 1.73,1.73 0 0 1 -0.51,-0.9 h 18.24 m 1.49,-1 h -20.79 a 3.19,3.19 0 0 0 0.86,2.6 c 0.87,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.74,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath988"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="900"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect990"
+     style="fill:#404040" />
+  <rect
+     x="900"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect992"
+     style="fill:#404040" />
+  <rect
+     x="900"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect994"
+     style="fill:#404040" />
+  <rect
+     x="913"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect996"
+     style="fill:#404040" />
+  <rect
+     x="913"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect998"
+     style="fill:#404040" />
+  <rect
+     x="913"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1000"
+     style="fill:#404040" />
+  <rect
+     x="926"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1002"
+     style="fill:#404040" />
+  <rect
+     x="926"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1004"
+     style="fill:#404040" />
+  <rect
+     x="926"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1006"
+     style="fill:#404040" />
+  <rect
+     x="939"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1008"
+     style="fill:#404040" />
+  <rect
+     x="939"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1010"
+     style="fill:#404040" />
+  <rect
+     x="939"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1012"
+     style="fill:#404040" />
+  <rect
+     x="955.80005"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect1014"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 1010.61,16.36 V 111.9 H 956.29 V 16.36 h 54.32 m 1,-1 h -56.28 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath1016"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="960.71997"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1018"
+     style="fill:#856427" />
+  <rect
+     x="963.96997"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1020"
+     style="fill:#856427" />
+  <rect
+     x="970.45996"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1022"
+     style="fill:#856427" />
+  <rect
+     x="967.21997"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1024"
+     style="fill:#856427" />
+  <rect
+     x="973.70996"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1026"
+     style="fill:#856427" />
+  <rect
+     x="976.95996"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1028"
+     style="fill:#856427" />
+  <rect
+     x="981.29004"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1030"
+     style="fill:#856427" />
+  <path
+     d="m 1003.43,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1032"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 1007.34,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1034"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 1003.43,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1036"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 1007.34,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 h -3.41 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1038"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="978.54004"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1040"
+     style="fill:#737373" />
+  <path
+     d="m 981.37,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1042"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="983.94995"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1044"
+     style="fill:#737373" />
+  <path
+     d="m 986.78,23.96 v 3.42 h -2.28 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1046"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="978.54004"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1048"
+     style="fill:#737373" />
+  <path
+     d="m 981.37,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1050"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="983.94995"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1052"
+     style="fill:#737373" />
+  <path
+     d="m 986.78,101.96 v 3.42 h -2.28 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1054"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="960.71997"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1056"
+     style="fill:#856427" />
+  <rect
+     x="963.96997"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1058"
+     style="fill:#856427" />
+  <rect
+     x="970.45996"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1060"
+     style="fill:#856427" />
+  <rect
+     x="967.21997"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1062"
+     style="fill:#856427" />
+  <rect
+     x="973.70996"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1064"
+     style="fill:#856427" />
+  <rect
+     x="976.95996"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1066"
+     style="fill:#856427" />
+  <rect
+     x="981.29004"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1068"
+     style="fill:#856427" />
+  <path
+     d="m 973.87,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.62,0 1.38,0.72 2.11,1.46 a 3.89,3.89 0 0 0 0.56,1.33 c 0.11,0.18 0.21,0.37 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1070"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 990.55,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 4,4 0 0 0 0.47,1.14 h -18.24 a 1.71,1.71 0 0 1 0.5,-0.9 c 0.61,-0.6 1.44,-1.44 1.9,-1.44 h 13.72 m 0,-1 h -13.72 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1072"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 993.28,74.46 -0.54,-0.52 a 10.85,10.85 0 0 0 -1.89,-1.58 L 990.73,72.3 H 976.4 l -0.12,0.06 a 10.5,10.5 0 0 0 -1.89,1.59 c -0.18,0.17 -0.36,0.35 -0.54,0.51 h -18 V 51.63 h 18.07 a 6.38,6.38 0 0 0 0.67,0.41 3.2,3.2 0 0 1 1.54,1.5 l 0.14,0.26 h 14.67 l 0.14,-0.26 a 3.63,3.63 0 0 1 1.38,-1.48 7.1,7.1 0 0 0 0.57,-0.43 h 18.1 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1074"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="M 1010.59,52.13 V 73.96 H 993.5 l -0.39,-0.37 a 10.89,10.89 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.61 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 956.31 V 52.13 h 17.41 c 0.21,0.14 0.41,0.25 0.59,0.35 a 2.76,2.76 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.23,-1.31 c 0.14,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 h -14.1 c -0.83,-1.52 -1.65,-1.52 -2.48,-2.17 h -18.74 v 23.83 h 18.74 a 17.09,17.09 0 0 1 2.48,-2.16 h 14.07 a 16.57,16.57 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 v -0.28 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1076"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 976.83,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.63 c -0.09,0.18 -0.19,0.37 -0.3,0.55 a 3.89,3.89 0 0 0 -0.56,1.33 c -0.74,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1078"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 992.67,49.96 a 4,4 0 0 0 -0.47,1.14 c -0.57,0.56 -1.26,1.2 -1.65,1.2 h -13.72 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.71,1.71 0 0 1 -0.5,-0.9 h 18.24 m 1.48,-1 h -20.79 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1080"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="958.44995"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1082"
+     style="fill:#404040" />
+  <rect
+     x="958.44995"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1084"
+     style="fill:#404040" />
+  <rect
+     x="958.44995"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1086"
+     style="fill:#404040" />
+  <rect
+     x="971.44995"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1088"
+     style="fill:#404040" />
+  <rect
+     x="971.44995"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1090"
+     style="fill:#404040" />
+  <rect
+     x="971.44995"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1092"
+     style="fill:#404040" />
+  <rect
+     x="984.44995"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1094"
+     style="fill:#404040" />
+  <rect
+     x="984.44995"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1096"
+     style="fill:#404040" />
+  <rect
+     x="984.44995"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1098"
+     style="fill:#404040" />
+  <rect
+     x="997.44995"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1100"
+     style="fill:#404040" />
+  <rect
+     x="997.44995"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1102"
+     style="fill:#404040" />
+  <rect
+     x="997.44995"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1104"
+     style="fill:#404040" />
+  <rect
+     x="587.27002"
+     y="15.87"
+     width="55.299999"
+     height="96.519997"
+     id="N540-FH-CSR-SYS_Front_Portrect1106"
+     style="fill:#4d4d4d" />
+  <path
+     d="M 642.08,16.36 V 111.9 H 587.76 V 16.36 h 54.32 m 1,-1 H 586.8 v 97.5 h 56.28 V 15.38 Z"
+     id="N540-FH-CSR-SYS_Front_Portpath1108"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="592.18994"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1110"
+     style="fill:#856427" />
+  <rect
+     x="595.43994"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1112"
+     style="fill:#856427" />
+  <rect
+     x="601.93005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1114"
+     style="fill:#856427" />
+  <rect
+     x="598.68994"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1116"
+     style="fill:#856427" />
+  <rect
+     x="605.18005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1118"
+     style="fill:#856427" />
+  <rect
+     x="608.43005"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1120"
+     style="fill:#856427" />
+  <rect
+     x="612.76001"
+     y="41.380001"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1122"
+     style="fill:#856427" />
+  <path
+     d="m 634.9,45.21 v -8.75 h 4.41 v 8.75 z m 0,-15.16 v -9.84 h 4.41 v 9.84 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1124"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 638.81,20.71 v 8.84 h -3.41 v -8.84 h 3.41 m 0,16.25 v 7.75 h -3.41 v -7.75 h 3.41 m 1,-17.25 h -5.41 v 10.84 h 5.41 z m 0,16.25 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1126"
+     inkscape:connector-curvature="0" />
+  <path
+     d="M 634.9,108.05 V 99.3 h 4.41 v 8.75 z m 0,-14.09 v -9.83 h 4.41 v 9.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1128"
+     inkscape:connector-curvature="0"
+     style="fill:#b3b3b3" />
+  <path
+     d="m 638.81,84.63 v 8.83 h -3.41 v -8.83 h 3.41 m 0,15.17 v 7.75 H 635.4 V 99.8 h 3.41 m 1,-16.17 h -5.41 v 10.83 h 5.41 z m 0,15.17 h -5.41 v 9.75 h 5.41 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1130"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="610.01001"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1132"
+     style="fill:#737373" />
+  <path
+     d="m 612.84,23.96 v 3.42 h -2.34 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1134"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="615.42004"
+     y="23.460001"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1136"
+     style="fill:#737373" />
+  <path
+     d="m 618.25,23.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1138"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="610.01001"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1140"
+     style="fill:#737373" />
+  <path
+     d="m 612.84,101.96 v 3.42 h -2.34 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1142"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="615.42004"
+     y="101.46"
+     width="3.3299999"
+     height="4.4200001"
+     id="N540-FH-CSR-SYS_Front_Portrect1144"
+     style="fill:#737373" />
+  <path
+     d="m 618.25,101.96 v 3.42 h -2.33 v -3.42 h 2.33 m 1,-1 h -4.33 v 5.42 h 4.33 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1146"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <rect
+     x="592.18994"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1148"
+     style="fill:#856427" />
+  <rect
+     x="595.43994"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1150"
+     style="fill:#856427" />
+  <rect
+     x="601.93005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1152"
+     style="fill:#856427" />
+  <rect
+     x="598.68994"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1154"
+     style="fill:#856427" />
+  <rect
+     x="605.18005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1156"
+     style="fill:#856427" />
+  <rect
+     x="608.43005"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1158"
+     style="fill:#856427" />
+  <rect
+     x="612.76001"
+     y="79.299995"
+     width="1.08"
+     height="4.3299999"
+     id="N540-FH-CSR-SYS_Front_Portrect1160"
+     style="fill:#856427" />
+  <path
+     d="m 605.34,75.55 a 2.34,2.34 0 0 1 0.71,-1.75 c 0.78,-0.78 1.59,-1.59 2.25,-1.59 h 13.72 c 0.62,0 1.38,0.72 2.11,1.46 a 3.89,3.89 0 0 0 0.56,1.33 c 0.11,0.18 0.21,0.37 0.3,0.55 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1162"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 622.02,72.71 c 0.39,0 1.08,0.64 1.65,1.2 a 4.28,4.28 0 0 0 0.47,1.14 H 605.9 a 1.78,1.78 0 0 1 0.5,-0.9 c 0.61,-0.6 1.44,-1.44 1.9,-1.44 h 13.72 m 0,-1 H 608.3 c -0.87,0 -1.74,0.87 -2.6,1.74 a 3.17,3.17 0 0 0 -0.87,2.6 h 20.79 c 0,-0.87 -1,-1.74 -1,-2.6 -0.87,-0.87 -1.73,-1.74 -2.6,-1.74 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1164"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 624.75,74.46 -0.54,-0.52 a 10.85,10.85 0 0 0 -1.89,-1.58 L 622.2,72.3 h -14.33 l -0.12,0.06 a 10.5,10.5 0 0 0 -1.89,1.59 c -0.18,0.17 -0.36,0.35 -0.54,0.51 h -18 V 51.63 h 18.07 a 5.58,5.58 0 0 0 0.68,0.41 3.23,3.23 0 0 1 1.53,1.5 l 0.14,0.26 h 14.67 l 0.14,-0.26 a 3.77,3.77 0 0 1 1.38,-1.48 c 0.19,-0.13 0.38,-0.27 0.58,-0.43 h 18.09 v 22.83 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1166"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc" />
+  <path
+     d="m 642.06,52.13 v 21.83 h -17.11 l -0.39,-0.37 a 10.57,10.57 0 0 0 -2,-1.66 l -0.23,-0.13 h -14.61 l -0.23,0.13 a 10.89,10.89 0 0 0 -2,1.66 l -0.39,0.37 H 587.76 V 52.13 h 17.42 a 6.39,6.39 0 0 0 0.58,0.35 2.72,2.72 0 0 1 1.34,1.3 l 0.29,0.52 h 15.25 l 0.29,-0.52 a 3.27,3.27 0 0 1 1.23,-1.31 c 0.15,-0.11 0.3,-0.21 0.46,-0.34 h 17.42 m -17.51,-1.28 c -0.82,0.93 -1.65,0.93 -2.48,2.45 H 608 c -0.83,-1.52 -1.65,-1.52 -2.48,-2.17 h -18.74 v 23.83 h 18.72 a 17.09,17.09 0 0 1 2.48,-2.16 h 14.07 a 16.57,16.57 0 0 1 2.48,2.16 h 18.51 V 51.13 h -18.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1168"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <path
+     d="m 608.3,52.8 c -0.66,0 -1.47,-0.81 -2.25,-1.59 a 2.34,2.34 0 0 1 -0.71,-1.75 h 19.65 c -0.09,0.18 -0.19,0.37 -0.3,0.55 a 3.89,3.89 0 0 0 -0.56,1.33 c -0.73,0.74 -1.49,1.46 -2.11,1.46 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1170"
+     inkscape:connector-curvature="0"
+     style="fill:#e4e0dc;fill-rule:evenodd" />
+  <path
+     d="m 624.14,49.96 a 4.28,4.28 0 0 0 -0.47,1.14 c -0.57,0.56 -1.26,1.2 -1.65,1.2 H 608.3 c -0.46,0 -1.29,-0.84 -1.9,-1.44 a 1.78,1.78 0 0 1 -0.5,-0.9 h 18.24 m 1.48,-1 h -20.79 a 3.17,3.17 0 0 0 0.87,2.6 c 0.86,0.87 1.73,1.74 2.6,1.74 h 13.72 c 0.87,0 1.73,-0.87 2.6,-1.74 0,-0.86 1,-1.73 1,-2.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1172"
+     inkscape:connector-curvature="0"
+     style="fill:#a6a6a6" />
+  <rect
+     x="589.92004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1174"
+     style="fill:#404040" />
+  <rect
+     x="589.92004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1176"
+     style="fill:#404040" />
+  <rect
+     x="589.92004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1178"
+     style="fill:#404040" />
+  <rect
+     x="602.92004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1180"
+     style="fill:#404040" />
+  <rect
+     x="602.92004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1182"
+     style="fill:#404040" />
+  <rect
+     x="602.92004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1184"
+     style="fill:#404040" />
+  <rect
+     x="615.92004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1186"
+     style="fill:#404040" />
+  <rect
+     x="615.92004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1188"
+     style="fill:#404040" />
+  <rect
+     x="615.92004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1190"
+     style="fill:#404040" />
+  <rect
+     x="628.92004"
+     y="56.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1192"
+     style="fill:#404040" />
+  <rect
+     x="628.92004"
+     y="61.41"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1194"
+     style="fill:#404040" />
+  <rect
+     x="628.92004"
+     y="66.409996"
+     width="11"
+     height="3"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1196"
+     style="fill:#404040" />
+  <path
+     d="m 69.26,111.8 a 2,2 0 0 1 -2,2 H 2.5 a 2,2 0 0 1 -2,-2 V 2.5 a 2,2 0 0 1 2,-2 h 64.9 a 2,2 0 0 1 2,2 v 87.3 z"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portpath1198"
+     inkscape:connector-curvature="0"
+     style="fill:#c2c2c2;stroke:#000000;stroke-miterlimit:10" />
+  <polygon
+     points="544.86,29.77 544.86,23.87 549.76,23.87 549.76,15.97 565.56,15.97 565.56,23.87 569.46,23.87 569.46,29.77 581.26,29.77 581.26,56.27 534.06,56.27 534.06,29.77 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1200"
+     style="fill:#505050"
+     transform="translate(-523.5,-14.87)" />
+  <path
+     d="m 41.56,8.5 v 1 h 3.94 v 5.9 H 57.3 V 40.9 H 11.1 V 15.4 H 21.9 V 9.5 h 4.9 V 1.6 h 14.8 m 1,-1 H 25.8 v 7.9 h -4.9 v 5.9 H 10.1 V 41.9 H 58.3 V 14.4 H 46.5 V 8.5 h -3.9 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1202"
+     inkscape:connector-curvature="0" />
+  <line
+     x1="20.859985"
+     y1="39"
+     x2="20.859985"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1204"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="24.859985"
+     y1="39"
+     x2="24.859985"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1206"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="28.76001"
+     y1="39"
+     x2="28.76001"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1208"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="32.659973"
+     y1="39"
+     x2="32.659973"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1210"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="36.659973"
+     y1="39"
+     x2="36.659973"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1212"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="40.559998"
+     y1="39"
+     x2="40.559998"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1214"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="44.460022"
+     y1="39"
+     x2="44.460022"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1216"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <line
+     x1="48.359985"
+     y1="39"
+     x2="48.359985"
+     y2="28.199999"
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portline1218"
+     style="fill:none;stroke:#ffffff;stroke-linecap:square;stroke-miterlimit:10" />
+  <polygon
+     points="583.66,19.47 573.86,19.47 573.86,27.27 583.66,27.27 "
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portpolygon1220"
+     style="fill:#c2c2c2;stroke:#000000;stroke-linecap:square;stroke-miterlimit:10"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="541.46,19.47 531.66,19.47 531.66,27.27 541.46,27.27 "
+     stroke-miterlimit="10"
+     id="N540-FH-CSR-SYS_Front_Portpolygon1222"
+     style="fill:#c2c2c2;stroke:#000000;stroke-linecap:square;stroke-miterlimit:10"
+     transform="translate(-523.5,-14.87)" />
+  <path
+     d="M 10.5,111.9 A 1.61,1.61 0 0 1 8.98,110.3 V 58.13 a 1.6,1.6 0 0 1 1.52,-1.6 h 47.82 a 1.6,1.6 0 0 1 1.52,1.6 v 52.2 a 1.6,1.6 0 0 1 -1.52,1.6 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1224"
+     inkscape:connector-curvature="0"
+     style="fill:#1a1a1a" />
+  <path
+     d="m 58.32,56.9 a 1,1 0 0 1 1,1.1 v 52.2 a 1,1 0 0 1 -1,1.1 H 10.5 a 1,1 0 0 1 -1,-1.1 V 58 a 1,1 0 0 1 1,-1.1 h 47.82 m 0,-1.1 H 10.5 A 2.17,2.17 0 0 0 8.41,58 v 52.2 a 2.17,2.17 0 0 0 2.09,2.2 h 47.82 a 2.17,2.17 0 0 0 2.09,-2.2 V 58 a 2.17,2.17 0 0 0 -2.09,-2.2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1226"
+     inkscape:connector-curvature="0"
+     style="fill:#cccccc" />
+  <polygon
+     points="544.96,117.67 544.96,120.67 546.96,120.67 546.96,117.67 546.96,116.67 546.96,115.67 542.96,115.67 542.96,117.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1228"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="553.96,117.67 553.96,120.67 555.96,120.67 555.96,117.67 555.96,116.67 555.96,115.67 551.96,115.67 551.96,117.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1230"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="561.96,117.67 561.96,120.67 563.96,120.67 563.96,117.67 563.96,116.67 563.96,115.67 559.96,115.67 559.96,117.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1232"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="570.96,117.67 570.96,120.67 572.96,120.67 572.96,117.67 572.96,116.67 572.96,115.67 568.96,115.67 568.96,117.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1234"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <rect
+     x="15.26001"
+     y="94.599998"
+     width="38.310001"
+     height="5.5999999"
+     id="N540-FH-CSR-SYS_Front_Portrect1236"
+     style="fill:#4d4d4d" />
+  <polygon
+     points="544.96,84.67 544.96,87.67 546.96,87.67 546.96,84.67 546.96,83.67 546.96,82.67 542.96,82.67 542.96,84.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1238"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="553.96,84.67 553.96,87.67 555.96,87.67 555.96,84.67 555.96,83.67 555.96,82.67 551.96,82.67 551.96,84.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1240"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="561.96,84.67 561.96,87.67 563.96,87.67 563.96,84.67 563.96,83.67 563.96,82.67 559.96,82.67 559.96,84.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1242"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <polygon
+     points="570.96,84.67 570.96,87.67 572.96,87.67 572.96,84.67 572.96,83.67 572.96,82.67 568.96,82.67 568.96,84.67 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1244"
+     style="fill:#b3b3b3"
+     transform="translate(-523.5,-14.87)" />
+  <rect
+     x="15.26001"
+     y="61.600002"
+     width="38.310001"
+     height="5.5999999"
+     id="N540-FH-CSR-SYS_Front_Portrect1246"
+     style="fill:#4d4d4d" />
+  <rect
+     x="9.460022"
+     y="89.799995"
+     width="50"
+     height="2"
+     id="N540-FH-CSR-SYS_Front_Portrect1248"
+     style="fill:#e6e6e6" />
+  <rect
+     x="9.460022"
+     y="75.799995"
+     width="50"
+     height="2"
+     id="N540-FH-CSR-SYS_Front_Portrect1250"
+     style="fill:#e6e6e6" />
+  <rect
+     x="9.460022"
+     y="76.799995"
+     width="50"
+     height="14"
+     id="N540-FH-CSR-SYS_Front_Portrect1252"
+     style="fill:#c2c2c2" />
+  <rect
+     x="1030.84"
+     y="17.049999"
+     width="75"
+     height="95"
+     rx="3.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1254"
+     style="fill:#595959" />
+  <path
+     d="m 1102.34,17.55 a 3,3 0 0 1 3,3 v 88 a 3,3 0 0 1 -3,3 h -68 a 3,3 0 0 1 -3,-3 v -88 a 3,3 0 0 1 3,-3 h 68 m 0,-1 h -68 a 4,4 0 0 0 -4,4 v 88 a 4,4 0 0 0 4,4 h 68 a 4,4 0 0 0 4,-4 v -88 a 4,4 0 0 0 -4,-4 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1256"
+     inkscape:connector-curvature="0"
+     style="fill:#e6e6e6" />
+  <polygon
+     points="1628.84,75 1628.84,65.42 1554.84,65.42 1554.84,75 1557.36,75 1557.36,84.83 1554.84,84.83 1554.84,93.42 1628.84,93.42 1628.84,84.83 1626.33,84.83 1626.33,75 "
+     id="N540-FH-CSR-SYS_Front_Portpolygon1258"
+     style="fill:#b7b0a1;fill-rule:evenodd"
+     transform="translate(-523.5,-14.87)" />
+  <rect
+     x="1037.48"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1260" />
+  <rect
+     x="1037.48"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1262" />
+  <rect
+     x="1046.45"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1264" />
+  <rect
+     x="1046.45"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1266" />
+  <rect
+     x="1055.41"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1268" />
+  <rect
+     x="1055.41"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1270" />
+  <rect
+     x="1064.38"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1272" />
+  <rect
+     x="1064.38"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1274" />
+  <rect
+     x="1037.48"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1276" />
+  <rect
+     x="1037.48"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1278" />
+  <rect
+     x="1046.45"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1280" />
+  <rect
+     x="1046.45"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1282" />
+  <rect
+     x="1055.41"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1284" />
+  <rect
+     x="1055.41"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1286" />
+  <rect
+     x="1064.38"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1288" />
+  <rect
+     x="1064.38"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1290" />
+  <rect
+     x="1073.3"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1292" />
+  <rect
+     x="1073.3"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1294" />
+  <rect
+     x="1082.27"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1296" />
+  <rect
+     x="1082.27"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1298" />
+  <rect
+     x="1091.23"
+     y="53.570004"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1300" />
+  <rect
+     x="1091.23"
+     y="59.549999"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1302" />
+  <rect
+     x="1073.3"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1304" />
+  <rect
+     x="1073.3"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1306" />
+  <rect
+     x="1082.27"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1308" />
+  <rect
+     x="1082.27"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1310" />
+  <rect
+     x="1091.23"
+     y="65.559998"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1312" />
+  <rect
+     x="1091.23"
+     y="71.540001"
+     width="7.9699998"
+     height="3.99"
+     rx="1.99"
+     id="N540-FH-CSR-SYS_Front_Portrect1314" />
+  <path
+     d="m 1036.34,80.03 h 64 a 3.52,3.52 0 0 1 3.52,3.52 v 24 a 3.51,3.51 0 0 1 -3.51,3.51 h -64 a 3.52,3.52 0 0 1 -3.52,-3.52 v -24 a 3.51,3.51 0 0 1 3.51,-3.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1316"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <path
+     d="m 1100.34,80.52 a 3,3 0 0 1 3,3 v 24 a 3,3 0 0 1 -3,3 h -64 a 3,3 0 0 1 -3,-3 v -24 a 3,3 0 0 1 3,-3 h 64 m 0,-1 h -64 a 4,4 0 0 0 -4,4 v 24 a 4,4 0 0 0 4,4 h 64 a 4,4 0 0 0 4,-4 v -24 a 4,4 0 0 0 -4,-4 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1318"
+     inkscape:connector-curvature="0"
+     style="fill:#1a1a1a" />
+  <rect
+     x="1033.84"
+     y="102.05"
+     width="69"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1320"
+     style="fill:#999999" />
+  <path
+     d="m 1101.34,102.55 a 1,1 0 0 1 1,1 v 5 a 1,1 0 0 1 -1,1 h -66 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 1,-1 h 66 m 0,-1 h -66 a 2,2 0 0 0 -2,2 v 5 a 2,2 0 0 0 2,2 h 66 a 2,2 0 0 0 2,-2 v -5 a 2,2 0 0 0 -2,-2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1322"
+     inkscape:connector-curvature="0"
+     style="fill:#1a1a1a" />
+  <path
+     d="m 1035.34,100.55 a 1.51,1.51 0 0 1 -1.5,-1.5 v -7 a 1.5,1.5 0 0 1 3,0 v 7 a 1.5,1.5 0 0 1 -1.5,1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1324"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1035.34,91.05 a 1,1 0 0 1 1,1 v 7 a 1,1 0 1 1 -2,0 v -7 a 1,1 0 0 1 1,-1 m 0,-1 a 2,2 0 0 0 -2,2 v 7 a 2,2 0 1 0 4,0 v -7 a 2,2 0 0 0 -2,-2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1326"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1034.84,89.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1328"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1034.84,82.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1330"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1034.84,109.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1332"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1034.84,102.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1334"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1101.34,100.55 a 1.51,1.51 0 0 1 -1.5,-1.5 v -7 a 1.5,1.5 0 0 1 3,0 v 7 a 1.5,1.5 0 0 1 -1.5,1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1336"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1101.34,91.05 a 1,1 0 0 1 1,1 v 7 a 1,1 0 1 1 -2,0 v -7 a 1,1 0 0 1 1,-1 m 0,-1 a 2,2 0 0 0 -2,2 v 7 a 2,2 0 1 0 4,0 v -7 a 2,2 0 0 0 -2,-2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1338"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1101.84,109.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1340"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1101.84,102.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1342"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1101.84,89.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1344"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1101.84,82.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1346"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1089.34,111.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1348"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1097.34,109.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1350"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1039.34,111.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1352"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1047.34,109.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1354"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1051.84,111.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1356"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1059.84,109.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1358"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1064.34,111.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1360"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1072.34,109.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1362"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1076.84,111.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1364"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1084.84,109.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1366"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1089.34,83.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1368"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1097.34,81.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1370"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1039.34,83.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1372"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1047.34,81.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1374"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1051.84,83.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1376"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1059.84,81.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1378"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1064.34,83.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1380"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1072.34,81.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1382"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1076.84,83.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1384"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1084.84,81.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1386"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1036.34,18.03 h 64 a 3.52,3.52 0 0 1 3.52,3.52 v 24 a 3.51,3.51 0 0 1 -3.51,3.51 h -64 a 3.52,3.52 0 0 1 -3.52,-3.52 v -24 a 3.51,3.51 0 0 1 3.51,-3.51 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1388"
+     inkscape:connector-curvature="0"
+     style="fill:#333333" />
+  <path
+     d="m 1100.34,18.52 a 3,3 0 0 1 3,3 v 24 a 3,3 0 0 1 -3,3 h -64 a 3,3 0 0 1 -3,-3 v -24 a 3,3 0 0 1 3,-3 h 64 m 0,-1 h -64 a 4,4 0 0 0 -4,4 v 24 a 4,4 0 0 0 4,4 h 64 a 4,4 0 0 0 4,-4 v -24 a 4,4 0 0 0 -4,-4 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1390"
+     inkscape:connector-curvature="0"
+     style="fill:#1a1a1a" />
+  <rect
+     x="1033.84"
+     y="19.049997"
+     width="69"
+     height="8"
+     rx="1.5"
+     id="N540-FH-CSR-SYS_Front_Portrect1392"
+     style="fill:#999999" />
+  <path
+     d="m 1101.34,19.55 a 1,1 0 0 1 1,1 v 5 a 1,1 0 0 1 -1,1 h -66 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 1,-1 h 66 m 0,-1 h -66 a 2,2 0 0 0 -2,2 v 5 a 2,2 0 0 0 2,2 h 66 a 2,2 0 0 0 2,-2 v -5 a 2,2 0 0 0 -2,-2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1394"
+     inkscape:connector-curvature="0"
+     style="fill:#1a1a1a" />
+  <path
+     d="m 1101.34,38.55 a 1.51,1.51 0 0 1 -1.5,-1.5 v -7 a 1.5,1.5 0 0 1 3,0 v 7 a 1.5,1.5 0 0 1 -1.5,1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1396"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1101.34,29.05 a 1,1 0 0 1 1,1 v 7 a 1,1 0 1 1 -2,0 v -7 a 1,1 0 0 1 1,-1 m 0,-1 a 2,2 0 0 0 -2,2 v 7 a 2,2 0 1 0 4,0 v -7 a 2,2 0 0 0 -2,-2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1398"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1101.84,47.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1400"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1101.84,40.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1402"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1101.84,27.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1404"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1101.84,20.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1406"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1035.34,38.55 a 1.51,1.51 0 0 1 -1.5,-1.5 v -7 a 1.5,1.5 0 0 1 3,0 v 7 a 1.5,1.5 0 0 1 -1.5,1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1408"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1035.34,29.05 a 1,1 0 0 1 1,1 v 7 a 1,1 0 1 1 -2,0 v -7 a 1,1 0 0 1 1,-1 m 0,-1 a 2,2 0 0 0 -2,2 v 7 a 2,2 0 1 0 4,0 v -7 a 2,2 0 0 0 -2,-2 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1410"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1034.84,27.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1412"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1034.84,20.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1414"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1034.84,47.05 a 1,1 0 0 1 -1,-1 v -5 a 1,1 0 0 1 2,0 v 5 a 1,1 0 0 1 -1,1 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1416"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1034.84,40.55 a 0.5,0.5 0 0 1 0.5,0.5 v 5 a 0.5,0.5 0 0 1 -0.5,0.5 0.51,0.51 0 0 1 -0.5,-0.5 v -5 a 0.5,0.5 0 0 1 0.5,-0.5 m 0,-1 a 1.5,1.5 0 0 0 -1.5,1.5 v 5 a 1.5,1.5 0 1 0 3,0 v -5 a 1.5,1.5 0 0 0 -1.5,-1.5 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1418"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1039.34,20.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1420"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1047.34,18.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1422"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1089.34,20.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1424"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1097.34,18.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1426"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1076.84,20.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1428"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1084.84,18.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1430"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1064.34,20.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1432"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1072.34,18.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1434"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1051.84,20.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1436"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1059.84,18.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1438"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1039.34,48.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1440"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1047.34,46.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1442"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1089.34,48.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1444"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1097.34,46.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1446"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1076.84,48.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1448"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1084.84,46.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1450"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1064.34,48.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1452"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1072.34,46.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1454"
+     inkscape:connector-curvature="0" />
+  <path
+     d="m 1051.84,48.13 a 1.07,1.07 0 0 1 0,-2.13 h 8 a 1.07,1.07 0 1 1 0,2.13 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1456"
+     inkscape:connector-curvature="0"
+     style="fill:#866b00;fill-rule:evenodd" />
+  <path
+     d="m 1059.84,46.41 a 0.64,0.64 0 0 1 0.64,0.64 0.64,0.64 0 0 1 -0.64,0.63 h -8 a 0.63,0.63 0 0 1 -0.63,-0.63 0.64,0.64 0 0 1 0.63,-0.64 h 8 m 0,-0.86 h -8 a 1.5,1.5 0 0 0 0,3 h 8 a 1.5,1.5 0 0 0 0,-3 z"
+     id="N540-FH-CSR-SYS_Front_Portpath1458"
+     inkscape:connector-curvature="0" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-0"
+     id="N540-FH-CSR-SYS_Front_Portrect735"
+     width="55.299999"
+     height="36.939999"
+     x="217.77"
+     y="74.959999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-1"
+     id="N540-FH-CSR-SYS_Front_Portrect737"
+     width="54.290001"
+     height="35.77"
+     x="218.75999"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-2"
+     id="N540-FH-CSR-SYS_Front_Portrect739"
+     width="55.279999"
+     height="36.939999"
+     x="276.22"
+     y="74.959999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-3"
+     id="N540-FH-CSR-SYS_Front_Portrect741"
+     width="55.299999"
+     height="34.77"
+     x="277.20001"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-4"
+     id="N540-FH-CSR-SYS_Front_Portrect743"
+     width="55.299961"
+     height="37.93"
+     x="335.16"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-5"
+     id="N540-FH-CSR-SYS_Front_Portrect745"
+     width="55.299999"
+     height="34.77"
+     x="335.64999"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-6"
+     id="N540-FH-CSR-SYS_Front_Portrect747"
+     width="54.759998"
+     height="37.439999"
+     x="393.64999"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-7"
+     id="N540-FH-CSR-SYS_Front_Portrect749"
+     width="55.299999"
+     height="34.77"
+     x="394.09"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-8"
+     id="N540-FH-CSR-SYS_Front_Portrect751"
+     width="55.299999"
+     height="36.939999"
+     x="451.54999"
+     y="74.959999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-9"
+     id="N540-FH-CSR-SYS_Front_Portrect753"
+     width="54.84"
+     height="35.27"
+     x="452.5"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-10"
+     id="N540-FH-CSR-SYS_Front_Portrect755"
+     width="53.029999"
+     height="33.59"
+     x="510"
+     y="74.959999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-11"
+     id="N540-FH-CSR-SYS_Front_Portrect757"
+     width="54.299999"
+     height="35.77"
+     x="510.98001"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-12"
+     id="N540-FH-CSR-SYS_Front_Portrect759"
+     width="54.759998"
+     height="37.439999"
+     x="587.32001"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-13"
+     id="N540-FH-CSR-SYS_Front_Portrect761"
+     width="54.279999"
+     height="35.77"
+     x="587.76001"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-14"
+     id="N540-FH-CSR-SYS_Front_Portrect763"
+     width="54.32"
+     height="37.939999"
+     x="664.06"
+     y="73.959999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-15"
+     id="N540-FH-CSR-SYS_Front_Portrect765"
+     width="54.290001"
+     height="35.77"
+     x="664.07001"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-16"
+     id="N540-FH-CSR-SYS_Front_Portrect767"
+     width="54.759998"
+     height="37.439999"
+     x="722.07001"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-17"
+     id="N540-FH-CSR-SYS_Front_Portrect769"
+     width="55.279999"
+     height="34.77"
+     x="722.5"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-18"
+     id="N540-FH-CSR-SYS_Front_Portrect771"
+     width="55.32"
+     height="36.939999"
+     x="779.95001"
+     y="74.959999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-19"
+     id="N540-FH-CSR-SYS_Front_Portrect773"
+     width="54.770039"
+     height="36.259998"
+     x="780.45996"
+     y="15.87" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-20"
+     id="N540-FH-CSR-SYS_Front_Portrect775"
+     width="52.549999"
+     height="34.09"
+     x="838.95001"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-21"
+     id="N540-FH-CSR-SYS_Front_Portrect777"
+     width="55.279999"
+     height="34.77"
+     x="839.40002"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-22"
+     id="N540-FH-CSR-SYS_Front_Portrect779"
+     width="54.799999"
+     height="37.439999"
+     x="897.35999"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-23"
+     id="N540-FH-CSR-SYS_Front_Portrect781"
+     width="55.279999"
+     height="34.77"
+     x="897.84998"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-24"
+     id="N540-FH-CSR-SYS_Front_Portrect783"
+     width="54.759998"
+     height="37.439999"
+     x="955.84998"
+     y="74.459999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-25"
+     id="N540-FH-CSR-SYS_Front_Portrect785"
+     width="54.84"
+     height="35.27"
+     x="956.28998"
+     y="16.360001" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-26"
+     id="N540-FH-CSR-SYS_Front_Portrect787"
+     width="67.999969"
+     height="28.500004"
+     x="1034.84"
+     y="81.550003" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-27"
+     id="N540-FH-CSR-SYS_Front_Portrect789"
+     width="67"
+     height="27.5"
+     x="1034.84"
+     y="19.549999" />
+  <rect
+     style="fill:none"
+	 data-cv-id="PORT-28"
+     id="N540-FH-CSR-SYS_Front_Portrect791"
+     width="46.200001"
+     height="25.5"
+     x="11.1"
+     y="15.4" />
+</svg>
