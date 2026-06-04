@@ -8430,11 +8430,6 @@
           "slotKey": "0/RP0/CPU0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/ncs540-12z16g/modules/N540-PSU-FIXED-D.svg",
-            "sourceImage": "/chassis-assets/ncs540-12z16g/modules/N540-PSU-FIXED-D.svg",
-            "typeId": "N540-PSU-FIXED-D"
-          },
           "bounds": {
             "h": 65,
             "w": 103,
@@ -8455,11 +8450,6 @@
           "slotKey": "0/PM0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/ncs540-12z16g/modules/N540-PSU-FIXED-D.svg",
-            "sourceImage": "/chassis-assets/ncs540-12z16g/modules/N540-PSU-FIXED-D.svg",
-            "typeId": "N540-PSU-FIXED-D"
-          },
           "bounds": {
             "h": 65,
             "w": 103,

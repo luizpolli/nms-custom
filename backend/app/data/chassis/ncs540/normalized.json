@@ -8425,12 +8425,7 @@
             "sourceTypeId": "N540X-12Z16G-SYS-D"
           },
           "physicalIndex": 1,
-          "slotKey": "0/RP0/CPU0",
-          "asset": {
-            "typeId": "N540X-12Z16G-SYS-D",
-            "image": "/chassis-assets/ncs540/modules/N540X-12Z16G-SYS-D_RSP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/N540X-12Z16G-SYS-D_RSP.svg"
-          }
+          "slotKey": "0/RP0/CPU0"
         },
         {
           "bounds": {
@@ -8450,12 +8445,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 801,
-          "slotKey": "SFP bay 0",
-          "asset": {
-            "typeId": "RJ45-1G",
-            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
-          }
+          "slotKey": "SFP bay 0"
         },
         {
           "bounds": {
@@ -8475,12 +8465,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 802,
-          "slotKey": "SFP bay 1",
-          "asset": {
-            "typeId": "RJ45-1G",
-            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
-          }
+          "slotKey": "SFP bay 1"
         },
         {
           "bounds": {
@@ -8500,12 +8485,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 803,
-          "slotKey": "SFP bay 2",
-          "asset": {
-            "typeId": "RJ45-1G",
-            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
-          }
+          "slotKey": "SFP bay 2"
         },
         {
           "bounds": {
@@ -8525,12 +8505,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 804,
-          "slotKey": "SFP bay 3",
-          "asset": {
-            "typeId": "RJ45-1G",
-            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
-          }
+          "slotKey": "SFP bay 3"
         },
         {
           "bounds": {
@@ -8550,12 +8525,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 805,
-          "slotKey": "SFP bay 4",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 4"
         },
         {
           "bounds": {
@@ -8575,12 +8545,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 806,
-          "slotKey": "SFP bay 5",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 5"
         },
         {
           "bounds": {
@@ -8600,12 +8565,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 807,
-          "slotKey": "SFP bay 6",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 6"
         },
         {
           "bounds": {
@@ -8625,12 +8585,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 808,
-          "slotKey": "SFP bay 7",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 7"
         },
         {
           "bounds": {
@@ -8650,12 +8605,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 809,
-          "slotKey": "SFP bay 8",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 8"
         },
         {
           "bounds": {
@@ -8675,12 +8625,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 810,
-          "slotKey": "SFP bay 9",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 9"
         },
         {
           "bounds": {
@@ -8700,12 +8645,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 811,
-          "slotKey": "SFP bay 10",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 10"
         },
         {
           "bounds": {
@@ -8725,12 +8665,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 812,
-          "slotKey": "SFP bay 11",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 11"
         },
         {
           "bounds": {
@@ -8750,12 +8685,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 813,
-          "slotKey": "SFP bay 12",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 12"
         },
         {
           "bounds": {
@@ -8775,12 +8705,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 814,
-          "slotKey": "SFP bay 13",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 13"
         },
         {
           "bounds": {
@@ -8800,12 +8725,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 815,
-          "slotKey": "SFP bay 14",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 14"
         },
         {
           "bounds": {
@@ -8825,12 +8745,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 816,
-          "slotKey": "SFP bay 15",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 15"
         },
         {
           "bounds": {
@@ -8850,12 +8765,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 817,
-          "slotKey": "SFP bay 16",
-          "asset": {
-            "typeId": "SFP-10G-LR-S",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 16"
         },
         {
           "bounds": {
@@ -8875,12 +8785,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 818,
-          "slotKey": "SFP bay 17",
-          "asset": {
-            "typeId": "SFP-10G-ER-S",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 17"
         },
         {
           "bounds": {
@@ -8900,12 +8805,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 819,
-          "slotKey": "SFP bay 18",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 18"
         },
         {
           "bounds": {
@@ -8925,12 +8825,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 820,
-          "slotKey": "SFP bay 19",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 19"
         },
         {
           "bounds": {
@@ -8950,12 +8845,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 821,
-          "slotKey": "SFP bay 20",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 20"
         },
         {
           "bounds": {
@@ -8975,12 +8865,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 822,
-          "slotKey": "SFP bay 21",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 21"
         },
         {
           "bounds": {
@@ -9000,12 +8885,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 823,
-          "slotKey": "SFP bay 22",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 22"
         },
         {
           "bounds": {
@@ -9025,12 +8905,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 824,
-          "slotKey": "SFP bay 23",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 23"
         },
         {
           "bounds": {
@@ -9050,12 +8925,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 825,
-          "slotKey": "SFP bay 24",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 24"
         },
         {
           "bounds": {
@@ -9075,12 +8945,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 826,
-          "slotKey": "SFP bay 25",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 25"
         },
         {
           "bounds": {
@@ -9100,12 +8965,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 827,
-          "slotKey": "SFP bay 26",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 26"
         },
         {
           "bounds": {
@@ -9125,12 +8985,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 828,
-          "slotKey": "SFP bay 27",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
-          }
+          "slotKey": "SFP bay 27"
         },
         {
           "bounds": {
@@ -9150,12 +9005,7 @@
             "sourceTypeId": "N540-FAN"
           },
           "physicalIndex": 4097,
-          "slotKey": "0/FT0",
-          "asset": {
-            "typeId": "N540-FAN",
-            "image": "/chassis-assets/ncs540/modules/N540-24Q8L2DD-SYS_rear_fans.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/N540-24Q8L2DD-SYS_rear_fans.svg"
-          }
+          "slotKey": "0/FT0"
         },
         {
           "bounds": {
@@ -9175,12 +9025,7 @@
             "sourceTypeId": "N540-PSU-FIXED-D"
           },
           "physicalIndex": 8982,
-          "slotKey": "0/PM0",
-          "asset": {
-            "typeId": "N540-PSU-FIXED-D",
-            "image": "/chassis-assets/ncs540/modules/N540X-12Z16G-SYS-D_Front_depowersupply.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/N540X-12Z16G-SYS-D_Front_depowersupply.svg"
-          }
+          "slotKey": "0/PM0"
         },
         {
           "bounds": {
@@ -9200,12 +9045,7 @@
             "sourceTypeId": "N540-PSU-FIXED-D"
           },
           "physicalIndex": 13078,
-          "slotKey": "0/PM1",
-          "asset": {
-            "typeId": "N540-PSU-FIXED-D",
-            "image": "/chassis-assets/ncs540/modules/N540X-12Z16G-SYS-D_Front_depowersupply.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/N540X-12Z16G-SYS-D_Front_depowersupply.svg"
-          }
+          "slotKey": "0/PM1"
         },
         {
           "bounds": {

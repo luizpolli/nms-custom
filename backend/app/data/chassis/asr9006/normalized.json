@@ -1235,11 +1235,6 @@
       "height": 3150.8112,
       "hotspots": [
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-MOD80-TR.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-MOD80-TR.svg",
-            "typeId": "A9K-MOD80-TR"
-          },
           "bounds": {
             "h": 319.07,
             "w": 2748.43,
@@ -1260,11 +1255,6 @@
           "slotKey": "0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
-            "typeId": "A9K-FILLER-LC"
-          },
           "bounds": {
             "h": 319.07,
             "w": 2748.43,
@@ -1285,11 +1275,6 @@
           "slotKey": "1"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
-            "typeId": "A9K-FILLER-LC"
-          },
           "bounds": {
             "h": 319.07,
             "w": 2748.43,
@@ -1310,11 +1295,6 @@
           "slotKey": "2"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
-            "typeId": "A9K-FILLER-LC"
-          },
           "bounds": {
             "h": 319.07,
             "w": 2748.43,
@@ -1335,11 +1315,6 @@
           "slotKey": "3"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-RSP-4G.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-RSP-4G.svg",
-            "typeId": "A9K-RSP-4G"
-          },
           "bounds": {
             "h": 319.07,
             "w": 2748.43,
@@ -1360,11 +1335,6 @@
           "slotKey": "RSP0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-FILLER-LC.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-FILLER-LC.svg",
-            "typeId": "A9K-FILLER-LC"
-          },
           "bounds": {
             "h": 319.07,
             "w": 2748.43,
@@ -1405,11 +1375,6 @@
           "slotKey": "FT0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/ASR-9006-FAN-V2.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/ASR-9006-FAN-V2.svg",
-            "typeId": "ASR-9006-FAN-V2"
-          },
           "bounds": {
             "h": 638.14,
             "w": 537.74,
@@ -1430,11 +1395,6 @@
           "slotKey": "FT1"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-3KW-AC.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-3KW-AC.svg",
-            "typeId": "A9K-3KW-AC"
-          },
           "bounds": {
             "h": 319.07,
             "w": 995.81,
@@ -1455,11 +1415,6 @@
           "slotKey": "PS0/M0"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9K-3KW-AC.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9K-3KW-AC.svg",
-            "typeId": "A9K-3KW-AC"
-          },
           "bounds": {
             "h": 319.07,
             "w": 995.81,
@@ -1480,11 +1435,6 @@
           "slotKey": "PS0/M1"
         },
         {
-          "asset": {
-            "image": "/chassis-assets/asr9006/A9006-FILLER-PT.svg",
-            "sourceImage": "applications/storm/chassisview/com.cisco.prime.deviceprofile/ASR9K-IOSXR/pluggables/images/horizontal/A9006-FILLER-PT.svg",
-            "typeId": "A9006-FILLER-PT"
-          },
           "bounds": {
             "h": 319.07,
             "w": 995.81,

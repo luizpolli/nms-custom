@@ -13624,12 +13624,7 @@
             "sourceTypeId": "N560-4-RSP4E"
           },
           "physicalIndex": 1,
-          "slotKey": "0/RP0",
-          "asset": {
-            "typeId": "N560-4-RSP4E",
-            "image": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg"
-          }
+          "slotKey": "0/RP0"
         },
         {
           "bounds": {
@@ -13669,12 +13664,7 @@
             "sourceTypeId": "N560-4-RSP4E"
           },
           "physicalIndex": 4097,
-          "slotKey": "0/RP1",
-          "asset": {
-            "typeId": "N560-4-RSP4E",
-            "image": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-RSP4E.svg"
-          }
+          "slotKey": "0/RP1"
         },
         {
           "bounds": {
@@ -13774,12 +13764,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17184,
-          "slotKey": "QSFP bay 0",
-          "asset": {
-            "typeId": "SFP-10G-LR-S",
-            "image": "/chassis-assets/ncs560/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/SFP.svg"
-          }
+          "slotKey": "QSFP bay 0"
         },
         {
           "bounds": {
@@ -13799,12 +13784,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17185,
-          "slotKey": "QSFP bay 1",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 1"
         },
         {
           "bounds": {
@@ -13824,12 +13804,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17186,
-          "slotKey": "QSFP bay 2",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 2"
         },
         {
           "bounds": {
@@ -13849,12 +13824,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17187,
-          "slotKey": "QSFP bay 3",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 3"
         },
         {
           "bounds": {
@@ -13874,12 +13844,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17188,
-          "slotKey": "QSFP bay 4",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 4"
         },
         {
           "bounds": {
@@ -13899,12 +13864,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17189,
-          "slotKey": "QSFP bay 5",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 5"
         },
         {
           "bounds": {
@@ -13924,12 +13884,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17190,
-          "slotKey": "QSFP bay 6",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 6"
         },
         {
           "bounds": {
@@ -13949,12 +13904,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 17191,
-          "slotKey": "QSFP bay 7",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 7"
         },
         {
           "bounds": {
@@ -13974,12 +13924,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25376,
-          "slotKey": "QSFP bay 0",
-          "asset": {
-            "typeId": "GLC-TE",
-            "image": "/chassis-assets/ncs560/modules/GLC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/GLC.svg"
-          }
+          "slotKey": "QSFP bay 0"
         },
         {
           "bounds": {
@@ -13999,12 +13944,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25377,
-          "slotKey": "QSFP bay 1",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 1"
         },
         {
           "bounds": {
@@ -14024,12 +13964,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25378,
-          "slotKey": "QSFP bay 2",
-          "asset": {
-            "typeId": "GLC-TE",
-            "image": "/chassis-assets/ncs560/modules/GLC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/GLC.svg"
-          }
+          "slotKey": "QSFP bay 2"
         },
         {
           "bounds": {
@@ -14049,12 +13984,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25379,
-          "slotKey": "QSFP bay 3",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 3"
         },
         {
           "bounds": {
@@ -14074,12 +14004,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25380,
-          "slotKey": "QSFP bay 4",
-          "asset": {
-            "typeId": "GLC-TE",
-            "image": "/chassis-assets/ncs560/modules/GLC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/GLC.svg"
-          }
+          "slotKey": "QSFP bay 4"
         },
         {
           "bounds": {
@@ -14099,12 +14024,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25381,
-          "slotKey": "QSFP bay 5",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 5"
         },
         {
           "bounds": {
@@ -14124,12 +14044,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25382,
-          "slotKey": "QSFP bay 6",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 6"
         },
         {
           "bounds": {
@@ -14149,12 +14064,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25383,
-          "slotKey": "QSFP bay 7",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 7"
         },
         {
           "bounds": {
@@ -14174,12 +14084,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25384,
-          "slotKey": "QSFP bay 8",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 8"
         },
         {
           "bounds": {
@@ -14199,12 +14104,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25385,
-          "slotKey": "QSFP bay 9",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 9"
         },
         {
           "bounds": {
@@ -14224,12 +14124,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25386,
-          "slotKey": "QSFP bay 10",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 10"
         },
         {
           "bounds": {
@@ -14249,12 +14144,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25387,
-          "slotKey": "QSFP bay 11",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 11"
         },
         {
           "bounds": {
@@ -14274,12 +14164,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25388,
-          "slotKey": "QSFP bay 12",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 12"
         },
         {
           "bounds": {
@@ -14299,12 +14184,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25389,
-          "slotKey": "QSFP bay 13",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 13"
         },
         {
           "bounds": {
@@ -14324,12 +14204,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25390,
-          "slotKey": "QSFP bay 14",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 14"
         },
         {
           "bounds": {
@@ -14349,12 +14224,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25391,
-          "slotKey": "QSFP bay 15",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 15"
         },
         {
           "bounds": {
@@ -14374,12 +14244,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 25392,
-          "slotKey": "QSFP bay 16",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 16"
         },
         {
           "bounds": {
@@ -14399,12 +14264,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29472,
-          "slotKey": "QSFP bay 0",
-          "asset": {
-            "typeId": "GLC-TE",
-            "image": "/chassis-assets/ncs560/modules/GLC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/GLC.svg"
-          }
+          "slotKey": "QSFP bay 0"
         },
         {
           "bounds": {
@@ -14424,12 +14284,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29473,
-          "slotKey": "QSFP bay 1",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 1"
         },
         {
           "bounds": {
@@ -14449,12 +14304,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29474,
-          "slotKey": "QSFP bay 2",
-          "asset": {
-            "typeId": "GLC-TE",
-            "image": "/chassis-assets/ncs560/modules/GLC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/GLC.svg"
-          }
+          "slotKey": "QSFP bay 2"
         },
         {
           "bounds": {
@@ -14474,12 +14324,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29475,
-          "slotKey": "QSFP bay 3",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 3"
         },
         {
           "bounds": {
@@ -14499,12 +14344,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29476,
-          "slotKey": "QSFP bay 4",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 4"
         },
         {
           "bounds": {
@@ -14524,12 +14364,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29477,
-          "slotKey": "QSFP bay 5",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 5"
         },
         {
           "bounds": {
@@ -14549,12 +14384,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29478,
-          "slotKey": "QSFP bay 6",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 6"
         },
         {
           "bounds": {
@@ -14574,12 +14404,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29479,
-          "slotKey": "QSFP bay 7",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 7"
         },
         {
           "bounds": {
@@ -14599,12 +14424,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29480,
-          "slotKey": "QSFP bay 8",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 8"
         },
         {
           "bounds": {
@@ -14624,12 +14444,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29481,
-          "slotKey": "QSFP bay 9",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 9"
         },
         {
           "bounds": {
@@ -14649,12 +14464,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29482,
-          "slotKey": "QSFP bay 10",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 10"
         },
         {
           "bounds": {
@@ -14674,12 +14484,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29483,
-          "slotKey": "QSFP bay 11",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 11"
         },
         {
           "bounds": {
@@ -14699,12 +14504,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29484,
-          "slotKey": "QSFP bay 12",
-          "asset": {
-            "typeId": "GLC-TE",
-            "image": "/chassis-assets/ncs560/modules/GLC.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/GLC.svg"
-          }
+          "slotKey": "QSFP bay 12"
         },
         {
           "bounds": {
@@ -14724,12 +14524,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29485,
-          "slotKey": "QSFP bay 13",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 13"
         },
         {
           "bounds": {
@@ -14749,12 +14544,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29486,
-          "slotKey": "QSFP bay 14",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 14"
         },
         {
           "bounds": {
@@ -14774,12 +14564,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29487,
-          "slotKey": "QSFP bay 15",
-          "asset": {
-            "typeId": "QSFP",
-            "image": "/chassis-assets/ncs560/modules/QSFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/QSFP.svg"
-          }
+          "slotKey": "QSFP bay 15"
         },
         {
           "bounds": {
@@ -14799,12 +14584,7 @@
             "sourceTypeId": "N/A"
           },
           "physicalIndex": 29488,
-          "slotKey": "QSFP bay 16",
-          "asset": {
-            "typeId": "SFP-10G-ER-S",
-            "image": "/chassis-assets/ncs560/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/SFP.svg"
-          }
+          "slotKey": "QSFP bay 16"
         },
         {
           "bounds": {
@@ -14824,12 +14604,7 @@
             "sourceTypeId": "N560-4-PWR-FAN"
           },
           "physicalIndex": 73729,
-          "slotKey": "0/FT0",
-          "asset": {
-            "typeId": "N560-4-PWR-FAN",
-            "image": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-PWR-FAN.svg"
-          }
+          "slotKey": "0/FT0"
         },
         {
           "bounds": {
@@ -14849,12 +14624,7 @@
             "sourceTypeId": "N560-4-FAN-H"
           },
           "physicalIndex": 77825,
-          "slotKey": "0/FT1",
-          "asset": {
-            "typeId": "N560-4-FAN-H",
-            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg"
-          }
+          "slotKey": "0/FT1"
         },
         {
           "bounds": {
@@ -14874,12 +14644,7 @@
             "sourceTypeId": "N560-4-FAN-H"
           },
           "physicalIndex": 81921,
-          "slotKey": "0/FT2",
-          "asset": {
-            "typeId": "N560-4-FAN-H",
-            "image": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/N560-4-FAN-H.svg"
-          }
+          "slotKey": "0/FT2"
         },
         {
           "bounds": {
@@ -14899,12 +14664,7 @@
             "sourceTypeId": "A900-PWR1200-D"
           },
           "physicalIndex": 86017,
-          "slotKey": "0/PM0",
-          "asset": {
-            "typeId": "A900-PWR1200-D",
-            "image": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg",
-            "sourceImage": "/chassis-assets/ncs560/modules/A900-PWR1200-D.svg"
-          }
+          "slotKey": "0/PM0"
         },
         {
           "bounds": {

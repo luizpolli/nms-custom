@@ -97,12 +97,7 @@
             "sourceName": "0/PM0"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM0",
-          "asset": {
-            "typeId": "NC55-2KW-DCFW",
-            "image": "/chassis-assets/ncs55a1-24q6h/modules/NC55-2KW-DCFW.svg",
-            "sourceImage": "/chassis-assets/ncs55a1-24q6h/modules/NC55-2KW-DCFW.svg"
-          }
+          "slotKey": "0/PM0"
         },
         {
           "bounds": {
@@ -119,12 +114,7 @@
             "sourceName": "0/FT0"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT0",
-          "asset": {
-            "typeId": "NC55-A1-FAN-FW",
-            "image": "/chassis-assets/ncs55a1-24q6h/modules/NC55-A1-FAN-FW.svg",
-            "sourceImage": "/chassis-assets/ncs55a1-24q6h/modules/NC55-A1-FAN-FW.svg"
-          }
+          "slotKey": "0/FT0"
         },
         {
           "bounds": {
@@ -141,12 +131,7 @@
             "sourceName": "0/FT1"
           },
           "physicalIndex": null,
-          "slotKey": "0/FT1",
-          "asset": {
-            "typeId": "NC55-A1-FAN-FW",
-            "image": "/chassis-assets/ncs55a1-24q6h/modules/NC55-A1-FAN-FW.svg",
-            "sourceImage": "/chassis-assets/ncs55a1-24q6h/modules/NC55-A1-FAN-FW.svg"
-          }
+          "slotKey": "0/FT1"
         },
         {
           "bounds": {
@@ -163,12 +148,7 @@
             "sourceName": "0/PM1"
           },
           "physicalIndex": null,
-          "slotKey": "0/PM1",
-          "asset": {
-            "typeId": "NC55-2KW-DCFW",
-            "image": "/chassis-assets/ncs55a1-24q6h/modules/NC55-2KW-DCFW.svg",
-            "sourceImage": "/chassis-assets/ncs55a1-24q6h/modules/NC55-2KW-DCFW.svg"
-          }
+          "slotKey": "0/PM1"
         }
       ],
       "id": "rear",
