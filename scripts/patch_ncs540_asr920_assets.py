@@ -57,6 +57,7 @@ NCS540_MODULE_BASE = "/chassis-assets/ncs540/modules"
 
 NCS540_RP_SVG = "N540X-12Z16G-SYS-D_RSP.svg"
 NCS540_PSU_SVG = "N540X-12Z16G-SYS-D_Front_depowersupply.svg"
+NCS540_RJ45_SVG = "RJ45.svg"  # locally synthesized; EPNM has no per-PID RJ45 glyph
 
 
 def patch_ncs540(path: Path) -> dict[str, int]:
@@ -79,13 +80,24 @@ def patch_ncs540(path: Path) -> dict[str, int]:
             tier = "filler"
 
             if hid.startswith("hotspot-bay"):
+                inv_desc = (inv.get("description") or "")
+                is_fixed_copper = "Fixed Port Container" in inv_desc
                 child_model = first_child_transceiver_model(comps, inv_id)
-                filename = pick_transceiver_filename(child_model, slot_key)
-                if child_model:
-                    type_id = child_model
-                    tier = "real"
+                if is_fixed_copper:
+                    # 12Z16G-SYS-D has 4 fixed 1G copper RJ45 ports as the
+                    # leftmost row 0 bays (SFP bay 0..3 per the slotKey, but
+                    # actually 1G Cu).  EPNM ships no per-PID RJ45 glyph, so
+                    # use the locally synthesized one.
+                    filename = NCS540_RJ45_SVG
+                    type_id = child_model or "RJ45-1G"
+                    tier = "real" if child_model else "filler"
                 else:
-                    type_id = filename.removesuffix(".svg")
+                    filename = pick_transceiver_filename(child_model, slot_key)
+                    if child_model:
+                        type_id = child_model
+                        tier = "real"
+                    else:
+                        type_id = filename.removesuffix(".svg")
             elif hid.startswith("hotspot-rp"):
                 filename = NCS540_RP_SVG
                 type_id = inv_model or "N540X-12Z16G-SYS-D-RSP"

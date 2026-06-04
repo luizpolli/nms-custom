@@ -8452,9 +8452,9 @@
           "physicalIndex": 801,
           "slotKey": "SFP bay 0",
           "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+            "typeId": "RJ45-1G",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
           }
         },
         {
@@ -8477,9 +8477,9 @@
           "physicalIndex": 802,
           "slotKey": "SFP bay 1",
           "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+            "typeId": "RJ45-1G",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
           }
         },
         {
@@ -8502,9 +8502,9 @@
           "physicalIndex": 803,
           "slotKey": "SFP bay 2",
           "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+            "typeId": "RJ45-1G",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
           }
         },
         {
@@ -8527,9 +8527,9 @@
           "physicalIndex": 804,
           "slotKey": "SFP bay 3",
           "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/ncs540/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+            "typeId": "RJ45-1G",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
           }
         },
         {
