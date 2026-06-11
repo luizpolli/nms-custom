@@ -67,8 +67,8 @@ A full-featured **Enterprise Network Management System** inspired by **Cisco EPN
 - **Trusted Host middleware** — `ALLOWED_HOSTS` enforced; local defaults restricted to localhost/container names
 
 ### Test Coverage
-- **Backend: 410+ tests** across 149 test files — API endpoints, workers, event bus, assurance, AI Ops, chassis detection, security regression suite
-- **Frontend: 277+ tests** — Vitest + React Testing Library covering UI components, pages, alarm table, chassis detection, settings, telemetry, AI Ops
+- **Backend: 500+ tests** across 64 test files — API endpoints, workers, event bus, assurance, AI Ops, chassis detection, security regression suite
+- **Frontend: 295+ tests** — Vitest + React Testing Library covering UI components, pages, alarm table, chassis detection, settings, telemetry, AI Ops
 - **CI gates:** ruff lint, mypy (0 errors required), pytest, alembic migration check, frontend lint + typecheck, helm lint
 
 ---
@@ -238,8 +238,8 @@ See [docs/NMS_ARCHITECTURE_EXECUTION_PLAN.md](docs/NMS_ARCHITECTURE_EXECUTION_PL
 
 | Layer | Test Files | Tests | Notes |
 |---|---|---|---|
-| Backend (pytest) | 149 | 410+ | API endpoints, workers, event bus, assurance, chassis detection, AI Ops, security regression |
-| Frontend (Vitest + RTL) | 29 | 277+ | Components, pages, alarm table, chassis detection, settings panels, AI Ops |
+| Backend (pytest) | 64 | 505 | API endpoints, workers, event bus, assurance, chassis detection, AI Ops, security regression |
+| Frontend (Vitest + RTL) | 30 | 299 | Components, pages, alarm table, chassis detection, settings panels, AI Ops |
 
 **CI pipeline (GitHub Actions):**
 - `ruff check` — Python lint (hard gate)
