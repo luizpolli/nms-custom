@@ -35,6 +35,19 @@ type ManagedInterface = {
   role?: string | null;
 };
 
+type PortInventoryRow = {
+  id: string;
+  kind: 'physical' | 'logical';
+  name: string;
+  source: string;
+  componentName?: string;
+  physicalIndex?: number | string | null;
+  ifIndex?: number | null;
+  adminStatus?: string | null;
+  operStatus?: string | null;
+  speedBps?: number | null;
+};
+
 async function fetchStaticChassisModel(dataUrl: string): Promise<ChassisViewModel> {
   const response = await fetch(dataUrl);
   if (!response.ok) {
@@ -105,6 +118,83 @@ function matchManagedInterface(port: ManagedPort | undefined, interfaces: Manage
   });
 }
 
+function isLogicalInterfaceName(name?: string | null): boolean {
+  const value = String(name ?? '').trim();
+  if (!value) return false;
+  if (value.includes('.')) return true;
+  return /^(?:BD|BDI|Bundle-Ether|Lo|Loopback|Nu|Null|Po|Port-channel|Tunnel|Vi|Virtual|Vlan)\d/i.test(value);
+}
+
+function isPhysicalInterfaceName(name?: string | null): boolean {
+  const value = String(name ?? '').trim();
+  if (!value || isLogicalInterfaceName(value)) return false;
+  return /^(?:Eth|Ethernet|Fa|FastEthernet|Fo|FortyGigE|Gi|GigabitEthernet|Hu|HundredGigE|MgmtEth|Te|TenGigE|TwentyFiveGigE)\d/i.test(value);
+}
+
+function collectPhysicalPortRows(model: ChassisViewModel): PortInventoryRow[] {
+  const rows: PortInventoryRow[] = [];
+  const seen = new Set<string>();
+
+  for (const component of Object.values(model.componentsById)) {
+    const componentName = component.displayName ?? component.name;
+    if (component.type?.toLowerCase() === 'port') {
+      const id = `component:${component.id}`;
+      seen.add(id);
+      rows.push({
+        id,
+        kind: 'physical',
+        name: componentName,
+        source: component.source?.type ?? 'chassis',
+        componentName,
+        physicalIndex: component.physicalIndex,
+      });
+    }
+
+    for (const port of component.ports ?? []) {
+      const portId = String(port.portId ?? port.id);
+      const id = `port:${component.id}:${portId}`;
+      if (seen.has(id)) continue;
+      seen.add(id);
+      rows.push({
+        id,
+        kind: 'physical',
+        name: port.name ?? `Port ${portId}`,
+        source: component.source?.type ?? 'chassis',
+        componentName,
+        physicalIndex: component.physicalIndex ?? port.portId,
+      });
+    }
+  }
+
+  return rows.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+}
+
+function buildPortInventoryRows(model: ChassisViewModel, interfaces: ManagedInterface[]): PortInventoryRow[] {
+  const rows = collectPhysicalPortRows(model);
+  const physicalNames = new Set(rows.map((row) => normalizeInterfaceName(row.name)).filter(Boolean));
+
+  for (const iface of interfaces) {
+    const normalizedName = normalizeInterfaceName(iface.name);
+    const kind = isPhysicalInterfaceName(iface.name) ? 'physical' : 'logical';
+    if (kind === 'physical' && physicalNames.has(normalizedName)) continue;
+    rows.push({
+      id: `interface:${iface.id}`,
+      kind,
+      name: iface.name,
+      source: 'if-mib',
+      ifIndex: iface.if_index,
+      adminStatus: iface.admin_status,
+      operStatus: iface.oper_status,
+      speedBps: iface.speed_bps,
+    });
+  }
+
+  return rows.sort((a, b) => {
+    if (a.kind !== b.kind) return a.kind === 'physical' ? -1 : 1;
+    return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+  });
+}
+
 function containsComponent(
   componentsById: Record<string, ChassisComponent>,
   ancestorId: string | null | undefined,
@@ -160,6 +250,10 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   const selectedPorts = collectManagedPorts(selectedComponent, data.componentsById);
   const selectedPort = selectedPorts.find((port) => port.id === selectedPortId) ?? selectedPorts[0];
   const managedInterfaces = managedInterfacesQuery.data ?? [];
+  const portInventoryRows = useMemo(
+    () => (data ? buildPortInventoryRows(data, managedInterfaces) : []),
+    [data, managedInterfaces],
+  );
   const selectedInterface = matchManagedInterface(selectedPort, managedInterfaces);
   const physicalInventory = data.source?.physicalInventory;
   const inventorySourceLabel = physicalInventory?.matched
@@ -263,6 +357,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
               <DiscoveredElementsTree
                 tree={data.tree}
                 componentsById={data.componentsById}
+                managedInterfaces={managedInterfaces}
                 selectedComponentId={effectiveSelection}
                 onSelect={handleComponentSelect}
               />
@@ -278,6 +373,8 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                 onSelectPort={setSelectedPortId}
               />
             </div>
+
+            <PortInventoryTable rows={portInventoryRows} hasLiveInterfaceLookup={Boolean(deviceId)} />
           </div>
 
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
@@ -302,14 +399,20 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
 function DiscoveredElementsTree({
   tree,
   componentsById,
+  managedInterfaces,
   selectedComponentId,
   onSelect,
 }: {
   tree: ChassisTreeNode[];
   componentsById: Record<string, ChassisComponent>;
+  managedInterfaces: ManagedInterface[];
   selectedComponentId: string | null;
   onSelect: (componentId: string) => void;
 }) {
+  const logicalInterfaces = managedInterfaces
+    .filter((iface) => isLogicalInterfaceName(iface.name))
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+
   return (
     <div className="max-h-[430px] overflow-auto rounded-lg border border-gray-200 bg-white/90 p-3 shadow dark:border-gray-700 dark:bg-gray-900/95">
       <div className="mb-3 flex items-center justify-between gap-2">
@@ -330,6 +433,24 @@ function DiscoveredElementsTree({
             onSelect={onSelect}
           />
         ))}
+        {logicalInterfaces.length > 0 && (
+          <div className="pt-2">
+            <div className="px-2 py-1 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Logical interfaces</div>
+            {logicalInterfaces.map((iface) => (
+              <div
+                key={iface.id}
+                className="grid grid-cols-[1fr_auto] gap-2 rounded px-2 py-1.5 text-sm text-gray-700 dark:text-gray-300"
+                style={{ paddingLeft: 22 }}
+              >
+                <span className="min-w-0">
+                  <span className="block truncate font-medium">{iface.name}</span>
+                  <span className="block truncate text-xs text-gray-500 dark:text-gray-400">{iface.description ?? iface.alias ?? 'logical'}</span>
+                </span>
+                <span className="font-mono text-xs text-gray-500 dark:text-gray-400">{iface.if_index ?? '-'}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -647,6 +768,69 @@ function percentBounds(hotspot: ChassisHotspot, view: ChassisViewImage) {
     width: `${(hotspot.bounds.w / view.width) * 100}%`,
     height: `${(hotspot.bounds.h / view.height) * 100}%`,
   };
+}
+
+function PortInventoryTable({ rows, hasLiveInterfaceLookup }: { rows: PortInventoryRow[]; hasLiveInterfaceLookup: boolean }) {
+  const physicalCount = rows.filter((row) => row.kind === 'physical').length;
+  const logicalCount = rows.filter((row) => row.kind === 'logical').length;
+
+  return (
+    <div className="rounded-lg border border-gray-200 bg-white/90 shadow dark:border-gray-700 dark:bg-gray-900/95">
+      <div className="flex flex-col gap-2 border-b border-gray-200 px-4 py-3 dark:border-gray-700 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Port inventory</p>
+          <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Physical and logical ports</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="default">{physicalCount} physical</Badge>
+          <Badge variant={logicalCount ? 'success' : 'default'}>{logicalCount} logical</Badge>
+        </div>
+      </div>
+
+      {rows.length === 0 ? (
+        <p className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
+          {hasLiveInterfaceLookup ? 'No port inventory has been collected for this device.' : 'Live interface records are not available in static preview.'}
+        </p>
+      ) : (
+        <div className="max-h-72 overflow-auto">
+          <table className="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-800">
+            <thead className="sticky top-0 bg-gray-50 text-xs uppercase text-gray-500 dark:bg-gray-900 dark:text-gray-400">
+              <tr>
+                <th className="px-4 py-2 text-left font-semibold">Type</th>
+                <th className="px-4 py-2 text-left font-semibold">Name</th>
+                <th className="px-4 py-2 text-left font-semibold">Source / Parent</th>
+                <th className="px-4 py-2 text-left font-semibold">Index</th>
+                <th className="px-4 py-2 text-left font-semibold">State</th>
+                <th className="px-4 py-2 text-left font-semibold">Speed</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 bg-white dark:divide-gray-800 dark:bg-gray-900">
+              {rows.map((row) => (
+                <tr key={row.id} className="text-gray-700 dark:text-gray-300">
+                  <td className="px-4 py-2">
+                    <Badge variant={row.kind === 'physical' ? 'default' : 'success'}>
+                      {row.kind === 'physical' ? 'Physical' : 'Logical'}
+                    </Badge>
+                  </td>
+                  <td className="max-w-[220px] truncate px-4 py-2 font-medium text-gray-900 dark:text-gray-100">{row.name}</td>
+                  <td className="max-w-[260px] truncate px-4 py-2 text-gray-500 dark:text-gray-400">
+                    {row.componentName ?? row.source}
+                  </td>
+                  <td className="px-4 py-2 font-mono text-xs text-gray-500 dark:text-gray-400">
+                    {row.kind === 'physical' ? row.physicalIndex ?? '-' : row.ifIndex ?? '-'}
+                  </td>
+                  <td className="px-4 py-2 text-gray-500 dark:text-gray-400">
+                    {row.adminStatus || row.operStatus ? `${row.adminStatus ?? '-'}/${row.operStatus ?? '-'}` : '-'}
+                  </td>
+                  <td className="px-4 py-2 text-gray-500 dark:text-gray-400">{formatSpeedBps(row.speedBps)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function ComponentDetailsPanel({
