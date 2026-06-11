@@ -69,6 +69,6 @@ real transceiver PID preserved in `asset.typeId`).
 
 ## See also
 
-- `scripts/patch_ncs540_asr920_assets.py` — asset population logic.
+- `scripts/archive/chassis-migration/patch_ncs540_asr920_assets.py` — asset population logic.
 - `frontend/public/chassis-assets/ncs540/modules/RJ45.svg` — local RJ45 glyph.
 - EPNM source: `docs/chassisview_figures/.../NCS540L_CE/Cisco_NCS_540X-12Z16G-SYS-D_Router/`.

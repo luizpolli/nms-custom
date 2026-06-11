@@ -50,13 +50,13 @@ docs/chassisview_figures/
 
 | Profile key | Model(s) | Build script | Hotspots | Notes |
 |---|---|---|---|---|
-| `ncs540-16z4` | N540X-16Z4G8Q2C-D, **-A** alias | `scripts/build_ncs540_16z4_chassis_profile.py` | 4 (fan, RP, PM0, PM1) | SNMP walk: `ncs540-16z4-entity-mib.json` |
-| `ncs540-12z16g` | N540X-12Z16G-SYS-D, **-A** alias | `scripts/build_ncs540_12z16g_chassis_profile.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540`; fan slot not in EPNM front view |
-| `ncs540-28z4c` | N540-28Z4C-SYS-D, **-A** alias | `scripts/build_ncs540_remaining_variants.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540` |
-| `ncs540-12z20g` | N540-12Z20G-SYS-D, **-A** alias | `scripts/build_ncs540_remaining_variants.py` | 4 (fan, RP, PM0, PM1) | Component data reused from `ncs540` |
-| `ncs540-fh-agg` | N540-FH-AGG-SYS | `scripts/build_ncs540_remaining_variants.py` | 4 (PSU0, PSU1, RP, fan) | Component data reused from `ncs540` |
-| `ncs540-fh-csr` | N540-FH-CSR-SYS | `scripts/build_ncs540_remaining_variants.py` | 4 (PSU0, PSU1, fan, RP) | Component data reused from `ncs540` |
-| `ncs540x-4z14g2q` | N540X-4Z14G2Q-D, **-A** alias | `scripts/build_ncs540_remaining_variants.py` | 3 (PM0, PM1, RP) | Component data reused from `ncs540` |
+| `ncs540-16z4` | N540X-16Z4G8Q2C-D, **-A** alias | `scripts/archive/chassis-migration/build_ncs540_16z4_chassis_profile.py` | 4 (fan, RP, PM0, PM1) | SNMP walk: `ncs540-16z4-entity-mib.json` |
+| `ncs540-12z16g` | N540X-12Z16G-SYS-D, **-A** alias | `scripts/archive/chassis-migration/build_ncs540_12z16g_chassis_profile.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540`; fan slot not in EPNM front view |
+| `ncs540-28z4c` | N540-28Z4C-SYS-D, **-A** alias | `scripts/archive/chassis-migration/build_ncs540_remaining_variants.py` | 3 (RP, PM0, PM1) | Component data reused from `ncs540` |
+| `ncs540-12z20g` | N540-12Z20G-SYS-D, **-A** alias | `scripts/archive/chassis-migration/build_ncs540_remaining_variants.py` | 4 (fan, RP, PM0, PM1) | Component data reused from `ncs540` |
+| `ncs540-fh-agg` | N540-FH-AGG-SYS | `scripts/archive/chassis-migration/build_ncs540_remaining_variants.py` | 4 (PSU0, PSU1, RP, fan) | Component data reused from `ncs540` |
+| `ncs540-fh-csr` | N540-FH-CSR-SYS | `scripts/archive/chassis-migration/build_ncs540_remaining_variants.py` | 4 (PSU0, PSU1, fan, RP) | Component data reused from `ncs540` |
+| `ncs540x-4z14g2q` | N540X-4Z14G2Q-D, **-A** alias | `scripts/archive/chassis-migration/build_ncs540_remaining_variants.py` | 3 (PM0, PM1, RP) | Component data reused from `ncs540` |
 
 Detection rules in `backend/app/api/devices.py::_chassis_profile_for_device`:
 - `"16z4" in compact_terms and "540x" in compact_terms` → `ncs540-16z4` (D + A variants)
