@@ -223,6 +223,14 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   });
 
   const defaultSelection = useMemo(() => (data ? firstSelectableNode(data.tree) : null), [data]);
+  const managedInterfaces = useMemo(
+    () => managedInterfacesQuery.data ?? [],
+    [managedInterfacesQuery.data],
+  );
+  const portInventoryRows = useMemo(
+    () => (data ? buildPortInventoryRows(data, managedInterfaces) : []),
+    [data, managedInterfaces],
+  );
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [selectedPortId, setSelectedPortId] = useState<string | null>(null);
   const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
@@ -249,11 +257,6 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   const selectedComponent = effectiveSelection ? data.componentsById[effectiveSelection] : undefined;
   const selectedPorts = collectManagedPorts(selectedComponent, data.componentsById);
   const selectedPort = selectedPorts.find((port) => port.id === selectedPortId) ?? selectedPorts[0];
-  const managedInterfaces = managedInterfacesQuery.data ?? [];
-  const portInventoryRows = useMemo(
-    () => (data ? buildPortInventoryRows(data, managedInterfaces) : []),
-    [data, managedInterfaces],
-  );
   const selectedInterface = matchManagedInterface(selectedPort, managedInterfaces);
   const physicalInventory = data.source?.physicalInventory;
   const inventorySourceLabel = physicalInventory?.matched
