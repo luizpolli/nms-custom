@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nms-custom"
-version = "1.0.0"
+version = "1.1.0"
 description = "Network Management System inspired by Cisco Prime"
 requires-python = ">=3.12"
 # Runtime dependencies — single source of truth.
