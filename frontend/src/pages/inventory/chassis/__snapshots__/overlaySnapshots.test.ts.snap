@@ -1,0 +1,885 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`chassis overlay snapshots > asr903 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_903_Router",
+  "views": {
+    "front": {
+      "Fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "Power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "slot": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "subslot": {
+        "hotspots": 6,
+        "overlay": "rendered",
+        "withAsset": 6,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr920 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_920_20SZ_M_Router",
+  "views": {
+    "front": {
+      "mgmt": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "psu": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+      "sfp": {
+        "hotspots": 20,
+        "overlay": "suppressed",
+        "withAsset": 20,
+      },
+      "uplink": {
+        "hotspots": 4,
+        "overlay": "suppressed",
+        "withAsset": 4,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr9006 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_9006_Router",
+  "views": {
+    "front": {
+      "0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "FT0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "FT1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "PS0": {
+        "hotspots": 3,
+        "overlay": "rendered",
+        "withAsset": 3,
+      },
+      "RSP0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "RSP1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr9010 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_9010_Router",
+  "views": {
+    "front": {
+      "0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "5": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "6": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "7": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "FT0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "FT1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "PS0": {
+        "hotspots": 3,
+        "overlay": "rendered",
+        "withAsset": 3,
+      },
+      "PS1": {
+        "hotspots": 3,
+        "overlay": "rendered",
+        "withAsset": 3,
+      },
+      "RSP0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "RSP1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > covers every shipped profile directory 1`] = `
+[
+  "asr9006",
+  "asr9010",
+  "asr903",
+  "asr920",
+  "ncs540",
+  "ncs540-12z16g",
+  "ncs540-12z20g",
+  "ncs540-16z4",
+  "ncs540-28z4c",
+  "ncs540-fh-agg",
+  "ncs540-fh-csr",
+  "ncs540x-4z14g2q",
+  "ncs5501",
+  "ncs5502",
+  "ncs5508",
+  "ncs55a1",
+  "ncs55a1-24h",
+  "ncs55a1-24q6h",
+  "ncs55a1-48q6h",
+  "ncs560",
+]
+`;
+
+exports[`chassis overlay snapshots > ncs55a1 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS55A1",
+  "views": {
+    "front": {
+      "0": {
+        "hotspots": 5,
+        "overlay": "rendered",
+        "withAsset": 5,
+      },
+      "1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "784": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "8384513": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "qsfp28": {
+        "hotspots": 36,
+        "overlay": "rendered",
+        "withAsset": 36,
+      },
+    },
+    "rear": {
+      "0": {
+        "hotspots": 5,
+        "overlay": "rendered",
+        "withAsset": 5,
+      },
+      "8384513": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs55a1-24h overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_55A1-24H",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+    "rear": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "ft0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs55a1-24q6h overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_55A1-24Q6H-S",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+    "rear": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "ft0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs55a1-48q6h overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_55A1-48Q6H",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+    "rear": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "ft0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS540",
+  "views": {
+    "front": {
+      "bay": {
+        "hotspots": 28,
+        "overlay": "suppressed",
+        "withAsset": 28,
+      },
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "fan": {
+        "hotspots": 1,
+        "overlay": "suppressed",
+        "withAsset": 1,
+      },
+      "power": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "suppressed",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540-12z16g overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540X-12Z16G-SYS-D",
+  "views": {
+    "front": {
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540-12z20g overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540-12Z20G-SYS-D",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540-16z4 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540X-16Z4G8Q2C-D",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540-28z4c overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540-28Z4C-SYS-D",
+  "views": {
+    "front": {
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540-fh-agg overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540-FH-AGG-SYS",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540-fh-csr overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540-FH-CSR-SYS",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs540x-4z14g2q overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540X-4Z14G2Q-D",
+  "views": {
+    "front": {
+      "power": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs560 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS560",
+  "views": {
+    "front": {
+      "bay": {
+        "hotspots": 42,
+        "overlay": "suppressed",
+        "withAsset": 42,
+      },
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "fan": {
+        "hotspots": 3,
+        "overlay": "suppressed",
+        "withAsset": 3,
+      },
+      "linecard": {
+        "hotspots": 3,
+        "overlay": "suppressed",
+        "withAsset": 3,
+      },
+      "port": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "power": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+      "rp": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs5501 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_5501",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+    "rear": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "ft0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs5502 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_5502",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+    "rear": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "ft0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs5508 overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_5508",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "lc0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc5": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc6": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "lc7": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "pm3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "rp1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+    "rear": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "fc0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "fc1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "fc2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "fc3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "fc4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "ft2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "sc0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "sc1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+    },
+  },
+}
+`;
