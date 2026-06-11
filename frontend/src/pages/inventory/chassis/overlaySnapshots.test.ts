@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, type Dirent } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
@@ -30,9 +30,9 @@ type NormalizedProfile = { profileId?: string; views: View[] };
 
 function profileDirs(): string[] {
   return readdirSync(ASSETS_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .filter((name) => existsSync(join(ASSETS_DIR, name, 'normalized.json')))
+    .filter((entry: Dirent) => entry.isDirectory())
+    .map((entry: Dirent) => entry.name)
+    .filter((name: string) => existsSync(join(ASSETS_DIR, name, 'normalized.json')))
     .sort();
 }
 

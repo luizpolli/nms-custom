@@ -37,14 +37,13 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-          cache-dependency-path: backend/requirements.txt
+          cache-dependency-path: backend/requirements-dev.txt
       - name: Install backend dependencies (runtime + dev)
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          # Dev extras: ruff/mypy/types-redis/pytest-cov. Kept aligned with
-          # pyproject.toml [project.optional-dependencies.dev].
-          pip install "ruff>=0.8" "mypy>=1.13" "types-redis>=4.6" "pytest-cov>=6.0"
+          # Pinned lock generated from pyproject.toml [project.dependencies]
+          # + [project.optional-dependencies.dev] via uv pip compile.
+          pip install -r requirements-dev.txt
       - name: Ruff lint
         run: ruff check app
       - name: Run backend tests
