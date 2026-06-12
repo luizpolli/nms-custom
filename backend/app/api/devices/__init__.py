@@ -17,7 +17,15 @@ from app.api.devices.common import _build_snmp_cred, _get_device_or_404, router,
 # ``app.api.devices.CredentialVault`` and import the chassis helpers below.
 from app.security.crypto import CredentialVault
 
-for _submodule in ("export", "bulk_import", "snmp_ops", "crud", "chassis", "interface_ops"):
+for _submodule in (
+    "export",
+    "bulk_import",
+    "snmp_ops",
+    "crud",
+    "chassis",
+    "interface_ops",
+    "config_ops",
+):
     importlib.import_module(f"app.api.devices.{_submodule}")
 
 from app.api.devices.chassis import (  # noqa: E402

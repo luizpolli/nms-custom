@@ -5,6 +5,7 @@ import { ArrowLeft, LayoutDashboard, Network, RefreshCw } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Button, Card, StatCard, Spinner, EmptyState, PageHeader } from '../../components/ui';
 import { ChassisView } from '../inventory/chassis/ChassisView';
+import { ConfigComplianceTab } from './components/ConfigComplianceTab';
 import { DeviceStatusBadge } from './components/DeviceStatusBadge';
 import { DeviceTagList } from './components/DeviceTagList';
 
@@ -53,7 +54,7 @@ interface InterfaceRow {
   phys_address?: string | null;
 }
 
-type Tab = 'overview' | 'chassis' | 'inventory' | 'interfaces' | 'ios' | 'kpis';
+type Tab = 'overview' | 'chassis' | 'inventory' | 'interfaces' | 'ios' | 'config' | 'kpis';
 
 export function DeviceDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -110,6 +111,7 @@ export function DeviceDetailPage() {
     { key: 'inventory', label: 'Inventory' },
     { key: 'interfaces', label: 'Interfaces' },
     { key: 'ios', label: 'IOS Versions' },
+    { key: 'config', label: 'Config' },
     { key: 'kpis', label: 'Recent KPIs' },
   ];
 
@@ -303,6 +305,8 @@ export function DeviceDetailPage() {
           )}
         </div>
       )}
+
+      {activeTab === 'config' && <ConfigComplianceTab deviceId={device.id} />}
 
       {activeTab === 'kpis' && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

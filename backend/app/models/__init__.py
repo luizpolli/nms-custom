@@ -5,6 +5,7 @@ from app.models.alarm_filter import SavedAlarmFilter
 from app.models.alarm_rule import AlarmRule
 from app.models.audit import AuditLog
 from app.models.command import Command
+from app.models.config_backup import ConfigBackup
 from app.models.credential import Credential, CredentialAssignment
 from app.models.device import Device
 from app.models.forwarding import ForwardingTarget
@@ -34,6 +35,7 @@ __all__ = [
     "AlarmRule",
     "AuditLog",
     "Command",
+    "ConfigBackup",
     "Credential",
     "CredentialAssignment",
     "Device",
