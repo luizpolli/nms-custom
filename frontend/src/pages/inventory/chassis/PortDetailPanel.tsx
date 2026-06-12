@@ -1,6 +1,6 @@
-import { type ReactNode, useEffect, useRef } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { AlertTriangle, CheckCircle2, Info, X, XCircle, Zap } from 'lucide-react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AlertTriangle, CheckCircle2, Info, Power, PowerOff, X, XCircle, Zap } from 'lucide-react';
 import { api } from '../../../lib/api';
 import { Badge, Spinner } from '../../../components/ui';
 
@@ -112,6 +112,149 @@ function MetricRow({ label, value }: { label: string; value: ReactNode }) {
       <span className="shrink-0 text-gray-500 dark:text-gray-400">{label}</span>
       <span className="text-right font-medium text-gray-900 dark:text-gray-100">{value}</span>
     </div>
+  );
+}
+
+// ── Port control ─────────────────────────────────────────────────────────────
+
+type AdminStatusAction = 'enable' | 'disable';
+
+export type AdminStatusResult = {
+  interfaceName: string;
+  action: AdminStatusAction;
+  success: boolean;
+  adminStatus?: string | null;
+  output?: string | null;
+  error?: string | null;
+};
+
+export function extractAdminStatusError(error: unknown): string {
+  if (typeof error === 'object' && error !== null) {
+    const response = (error as { response?: { status?: number; data?: { detail?: unknown } } })
+      .response;
+    if (response?.status === 403) return 'Not permitted — admin role required.';
+    if (typeof response?.data?.detail === 'string') return response.data.detail;
+  }
+  return 'Request failed.';
+}
+
+function PortControlSection({
+  deviceId,
+  physicalIndex,
+  interfaceId,
+  interfaceName,
+}: {
+  deviceId: string;
+  physicalIndex: number;
+  interfaceId: string;
+  interfaceName: string;
+}) {
+  const queryClient = useQueryClient();
+  const [pendingAction, setPendingAction] = useState<AdminStatusAction | null>(null);
+
+  const mutation = useMutation<AdminStatusResult, unknown, AdminStatusAction>({
+    mutationFn: (action) =>
+      api
+        .post<AdminStatusResult>(
+          `/devices/${deviceId}/interfaces/${interfaceId}/admin-status`,
+          { action },
+        )
+        .then((r) => r.data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['port-detail', deviceId, physicalIndex] });
+      queryClient.invalidateQueries({ queryKey: ['chassis-managed-interfaces', deviceId] });
+    },
+  });
+
+  const confirmLabel = pendingAction === 'disable' ? 'shutdown' : 'no shutdown';
+
+  return (
+    <section>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+        Port control
+      </p>
+      <div className="rounded-md border border-gray-200 bg-gray-50 px-3 py-3 text-sm space-y-2 dark:border-gray-700 dark:bg-gray-800">
+        {pendingAction === null ? (
+          <div className="flex gap-2">
+            <button
+              type="button"
+              disabled={mutation.isPending}
+              onClick={() => setPendingAction('enable')}
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-green-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-green-700 disabled:opacity-50"
+            >
+              <Power className="h-4 w-4" />
+              Enable
+            </button>
+            <button
+              type="button"
+              disabled={mutation.isPending}
+              onClick={() => setPendingAction('disable')}
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-50"
+            >
+              <PowerOff className="h-4 w-4" />
+              Disable
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <p className="text-gray-800 dark:text-gray-200">
+              Send <span className="font-mono font-semibold">{confirmLabel}</span> to{' '}
+              <span className="font-semibold">{interfaceName}</span>?
+            </p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={mutation.isPending}
+                onClick={() => {
+                  mutation.mutate(pendingAction);
+                  setPendingAction(null);
+                }}
+                className="flex-1 rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+              >
+                Confirm
+              </button>
+              <button
+                type="button"
+                onClick={() => setPendingAction(null)}
+                className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+
+        {mutation.isPending && (
+          <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <Spinner />
+            <span>Applying configuration…</span>
+          </div>
+        )}
+
+        {mutation.isSuccess &&
+          (mutation.data.success ? (
+            <div className="flex items-center gap-2 rounded-md border border-green-200 bg-green-50 px-3 py-2 text-green-700 dark:border-green-900 dark:bg-green-950 dark:text-green-400">
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              {mutation.data.interfaceName} {mutation.data.action}d.
+            </div>
+          ) : (
+            <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-400">
+              <p className="font-medium">Device rejected the change.</p>
+              {(mutation.data.error || mutation.data.output) && (
+                <pre className="mt-1 max-h-24 overflow-y-auto whitespace-pre-wrap font-mono text-xs">
+                  {mutation.data.error ?? mutation.data.output}
+                </pre>
+              )}
+            </div>
+          ))}
+
+        {mutation.isError && (
+          <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-400">
+            {extractAdminStatusError(mutation.error)}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -299,6 +442,16 @@ export function PortDetailPanel({ deviceId, physicalIndex, onClose }: PortDetail
                   </p>
                 )}
               </section>
+
+              {/* Port Control */}
+              {query.data.interface && (
+                <PortControlSection
+                  deviceId={deviceId}
+                  physicalIndex={physicalIndex}
+                  interfaceId={query.data.interface.id}
+                  interfaceName={query.data.interface.name}
+                />
+              )}
 
               {/* Active Alarms */}
               <section>

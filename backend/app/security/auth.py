@@ -25,6 +25,11 @@ PERM_COMMANDS_RUN_BULK = "commands:run_bulk"
 PERM_COMMANDS_EXPORT = "commands:export"
 PERM_COMMANDS_SCHEDULE = "commands:schedule"
 
+# Interface administrative control (shutdown / no shutdown). Deliberately
+# restricted to root/admin — operators can run read commands but must not
+# change port admin state.
+PERM_INTERFACES_ADMIN = "interfaces:admin_status"
+
 # Settings/admin permissions use the same catalog keys exposed by
 # app.api.permissions_catalog so API-key roles and the UI speak one language.
 PERM_SETTINGS_SYSTEM = "administrative_operations_system_settings"
@@ -40,12 +45,12 @@ _ROLE_COMMAND_PERMS: dict[str, frozenset[str]] = {
     "root": frozenset({
         PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,
         PERM_COMMANDS_DELETE, PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK,
-        PERM_COMMANDS_EXPORT, PERM_COMMANDS_SCHEDULE,
+        PERM_COMMANDS_EXPORT, PERM_COMMANDS_SCHEDULE, PERM_INTERFACES_ADMIN,
     }),
     "admin": frozenset({
         PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,
         PERM_COMMANDS_DELETE, PERM_COMMANDS_RUN, PERM_COMMANDS_RUN_BULK,
-        PERM_COMMANDS_EXPORT, PERM_COMMANDS_SCHEDULE,
+        PERM_COMMANDS_EXPORT, PERM_COMMANDS_SCHEDULE, PERM_INTERFACES_ADMIN,
     }),
     "operator": frozenset({
         PERM_COMMANDS_READ, PERM_COMMANDS_CREATE, PERM_COMMANDS_UPDATE,

@@ -145,6 +145,14 @@ class CommandRunner:
         return list(await asyncio.gather(*[_run_one(d) for d in device_ids]))
 
 
+def ssh_credential_for_device(device: Device) -> SSHCredential:
+    """Resolve and decrypt the SSH credential attached to *device*.
+
+    Raises ValueError when the device has no credential attached.
+    """
+    return _build_ssh_credential(device, _resolve_credential_for_device(device))
+
+
 # ---------------------------------------------------------------------------
 # Private helpers
 # ---------------------------------------------------------------------------

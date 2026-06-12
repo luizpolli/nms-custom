@@ -6,6 +6,7 @@ Errors are caught at every public method boundary; callers receive a
 
 from __future__ import annotations
 
+import asyncio
 import time
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -131,6 +132,50 @@ class SSHClient:
             duration_ms = (time.monotonic() - t0) * 1000
             logger.exception("Unexpected SSH error on {}: {}", self._cred.host, exc)
             return _error_result(command, str(exc), duration_ms)
+
+    async def run_config_session(self, commands: list[str], timeout: int = 60) -> CommandResult:
+        """Execute an ordered command sequence inside ONE interactive shell.
+
+        Network-OS configuration workflows (``configure terminal`` …
+        ``commit``/``write memory``) must share a single terminal session;
+        each ``run()`` call opens a fresh exec channel with a fresh CLI
+        context, so it cannot be used for config changes. A trailing
+        ``exit`` is appended so the remote shell terminates the session.
+
+        Never raises — errors are captured into the CommandResult.
+        """
+        joined = " ; ".join(commands)
+        if self._conn is None:
+            return _error_result(joined, "SSHClient is not connected")
+        t0 = time.monotonic()
+        try:
+            process = await self._conn.create_process(term_type="vt100")
+            process.stdin.write("\n".join([*commands, "exit"]) + "\n")
+            stdout = await asyncio.wait_for(process.stdout.read(), timeout=timeout)
+            duration_ms = (time.monotonic() - t0) * 1000
+            exit_status = process.exit_status if process.exit_status is not None else 0
+            logger.debug(
+                "SSH config session commands={} exit={} duration={:.1f}ms host={}",
+                len(commands),
+                exit_status,
+                duration_ms,
+                self._cred.host,
+            )
+            return CommandResult(
+                stdout=str(stdout or ""),
+                stderr="",
+                exit_status=exit_status,
+                duration_ms=duration_ms,
+                command=joined,
+            )
+        except TimeoutError:
+            duration_ms = (time.monotonic() - t0) * 1000
+            logger.warning("SSH config session timed out after {}s on {}", timeout, self._cred.host)
+            return _error_result(joined, f"config session timed out after {timeout}s", duration_ms)
+        except Exception as exc:  # noqa: BLE001
+            duration_ms = (time.monotonic() - t0) * 1000
+            logger.warning("SSH config session error on {}: {}", self._cred.host, exc)
+            return _error_result(joined, str(exc), duration_ms)
 
     async def run_many(self, commands: list[str], timeout: int = 30) -> list[CommandResult]:
         """Execute commands sequentially, stopping on first non-zero exit."""
