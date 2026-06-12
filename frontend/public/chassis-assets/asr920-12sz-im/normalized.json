@@ -1,0 +1,1606 @@
+{
+  "componentsById": {
+    "component-1": {
+      "childIds": [
+        "component-2",
+        "component-3",
+        "component-4",
+        "component-5",
+        "component-25",
+        "component-45"
+      ],
+      "description": "Cisco ASR-920-12SZ-IM Router Chassis",
+      "displayName": "Chassis",
+      "id": "component-1",
+      "isFRUable": "TRUE",
+      "manufacturer": "Cisco Systems Inc",
+      "modelName": "ASR-920-12SZ-IM",
+      "name": "Chassis",
+      "physicalIndex": 1,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 1,
+      "type": "Chassis",
+      "typeId": "ASR-920-12SZ-IM"
+    },
+    "component-100": {
+      "childIds": [],
+      "containedPhysicalIndex": 2,
+      "description": "Cisco ASR-920-12SZ-IM Router Route Switch Processor",
+      "displayName": "module R0",
+      "id": "component-100",
+      "modelName": "ASR-920-12SZ-IM",
+      "name": "module R0",
+      "parentId": "component-2",
+      "physicalIndex": 100,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 100,
+      "type": "Module",
+      "typeId": "ASR-920-12SZ-IM"
+    },
+    "component-2": {
+      "childIds": [
+        "component-100"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Route Processor Slot",
+      "displayName": "slot R0",
+      "id": "component-2",
+      "modelName": "Route Processor Slot",
+      "name": "slot R0",
+      "parentId": "component-1",
+      "physicalIndex": 2,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 2,
+      "type": "Equipment"
+    },
+    "component-25": {
+      "childIds": [
+        "component-26"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 1",
+      "id": "component-25",
+      "modelName": "Power Supply Bay",
+      "name": "Power Supply Bay 1",
+      "parentId": "component-1",
+      "physicalIndex": 25,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 25,
+      "type": "Equipment"
+    },
+    "component-26": {
+      "childIds": [],
+      "containedPhysicalIndex": 25,
+      "description": "ASR 920 250W AC Power Supply",
+      "displayName": "Power Supply Module 1",
+      "id": "component-26",
+      "modelName": "ASR-920-PWR-A",
+      "name": "Power Supply Module 1",
+      "parentId": "component-25",
+      "physicalIndex": 26,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 26,
+      "type": "Equipment",
+      "typeId": "ASR-920-PWR-A"
+    },
+    "component-3": {
+      "childIds": [
+        "component-300"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "FIXED IM Bay",
+      "displayName": "subslot 0/0",
+      "id": "component-3",
+      "modelName": "FIXED IM Bay",
+      "name": "subslot 0/0",
+      "parentId": "component-1",
+      "physicalIndex": 3,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 3,
+      "type": "Equipment"
+    },
+    "component-300": {
+      "childIds": [
+        "component-301",
+        "component-302",
+        "component-303",
+        "component-304",
+        "component-305",
+        "component-306",
+        "component-307",
+        "component-308",
+        "component-471",
+        "component-485",
+        "component-499",
+        "component-513",
+        "component-527",
+        "component-541",
+        "component-555",
+        "component-569"
+      ],
+      "containedPhysicalIndex": 3,
+      "description": "FIXED : 12-port Gig & 4-port Ten Gig Ethernet",
+      "displayName": " FIXED IM subslot 0/0",
+      "id": "component-300",
+      "modelName": "12xGE-4x10GE-FIXED",
+      "name": " FIXED IM subslot 0/0",
+      "parentId": "component-3",
+      "physicalIndex": 300,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 300,
+      "type": "Module",
+      "typeId": "12xGE-4x10GE-FIXED"
+    },
+    "component-301": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/0",
+      "id": "component-301",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/0",
+      "parentId": "component-300",
+      "physicalIndex": 301,
+      "ports": [
+        {
+          "id": "301",
+          "name": "GigabitEthernet0/0/0",
+          "portId": 301
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 301,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-302": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/1",
+      "id": "component-302",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/1",
+      "parentId": "component-300",
+      "physicalIndex": 302,
+      "ports": [
+        {
+          "id": "302",
+          "name": "GigabitEthernet0/0/1",
+          "portId": 302
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 302,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-303": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/2",
+      "id": "component-303",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/2",
+      "parentId": "component-300",
+      "physicalIndex": 303,
+      "ports": [
+        {
+          "id": "303",
+          "name": "GigabitEthernet0/0/2",
+          "portId": 303
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 303,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-304": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/3",
+      "id": "component-304",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/3",
+      "parentId": "component-300",
+      "physicalIndex": 304,
+      "ports": [
+        {
+          "id": "304",
+          "name": "GigabitEthernet0/0/3",
+          "portId": 304
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 304,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-305": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/4",
+      "id": "component-305",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/4",
+      "parentId": "component-300",
+      "physicalIndex": 305,
+      "ports": [
+        {
+          "id": "305",
+          "name": "GigabitEthernet0/0/4",
+          "portId": 305
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 305,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-306": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/5",
+      "id": "component-306",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/5",
+      "parentId": "component-300",
+      "physicalIndex": 306,
+      "ports": [
+        {
+          "id": "306",
+          "name": "GigabitEthernet0/0/5",
+          "portId": 306
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 306,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-307": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/6",
+      "id": "component-307",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/6",
+      "parentId": "component-300",
+      "physicalIndex": 307,
+      "ports": [
+        {
+          "id": "307",
+          "name": "GigabitEthernet0/0/6",
+          "portId": 307
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 307,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-308": {
+      "childIds": [],
+      "containedPhysicalIndex": 300,
+      "description": "GE RJ45 port",
+      "displayName": "GigabitEthernet0/0/7",
+      "id": "component-308",
+      "modelName": "GE RJ45 port",
+      "name": "GigabitEthernet0/0/7",
+      "parentId": "component-300",
+      "physicalIndex": 308,
+      "ports": [
+        {
+          "id": "308",
+          "name": "GigabitEthernet0/0/7",
+          "portId": 308
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 308,
+      "type": "Port",
+      "typeId": "RJ45-GE"
+    },
+    "component-4": {
+      "childIds": [],
+      "containedPhysicalIndex": 1,
+      "description": "Interface Module Bay",
+      "displayName": "subslot 0/1",
+      "id": "component-4",
+      "modelName": "Interface Module Bay",
+      "name": "subslot 0/1",
+      "parentId": "component-1",
+      "physicalIndex": 4,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4,
+      "type": "Equipment"
+    },
+    "component-45": {
+      "childIds": [
+        "component-46"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Fan Tray Bay",
+      "displayName": "Fan Tray Bay 0",
+      "id": "component-45",
+      "modelName": "Fan Tray Bay",
+      "name": "Fan Tray Bay 0",
+      "parentId": "component-1",
+      "physicalIndex": 45,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 45,
+      "type": "Equipment"
+    },
+    "component-46": {
+      "childIds": [],
+      "containedPhysicalIndex": 45,
+      "description": "ASR 920 Fan tray",
+      "displayName": "Fan Tray",
+      "id": "component-46",
+      "modelName": "ASR-920-FAN",
+      "name": "Fan Tray",
+      "parentId": "component-45",
+      "physicalIndex": 46,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 46,
+      "type": "Equipment",
+      "typeId": "ASR-920-FAN"
+    },
+    "component-471": {
+      "childIds": [
+        "component-473"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 8",
+      "id": "component-471",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 8",
+      "parentId": "component-300",
+      "physicalIndex": 471,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 471,
+      "type": "Equipment"
+    },
+    "component-473": {
+      "childIds": [],
+      "containedPhysicalIndex": 471,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/8",
+      "id": "component-473",
+      "modelName": "GE SFP port",
+      "name": "GigabitEthernet0/0/8",
+      "parentId": "component-471",
+      "physicalIndex": 473,
+      "ports": [
+        {
+          "id": "473",
+          "name": "GigabitEthernet0/0/8",
+          "portId": 473
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 473,
+      "type": "Port",
+      "typeId": "SFP-GE"
+    },
+    "component-485": {
+      "childIds": [
+        "component-487"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 9",
+      "id": "component-485",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 9",
+      "parentId": "component-300",
+      "physicalIndex": 485,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 485,
+      "type": "Equipment"
+    },
+    "component-487": {
+      "childIds": [],
+      "containedPhysicalIndex": 485,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/9",
+      "id": "component-487",
+      "modelName": "GE SFP port",
+      "name": "GigabitEthernet0/0/9",
+      "parentId": "component-485",
+      "physicalIndex": 487,
+      "ports": [
+        {
+          "id": "487",
+          "name": "GigabitEthernet0/0/9",
+          "portId": 487
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 487,
+      "type": "Port",
+      "typeId": "SFP-GE"
+    },
+    "component-499": {
+      "childIds": [
+        "component-501"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 10",
+      "id": "component-499",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 10",
+      "parentId": "component-300",
+      "physicalIndex": 499,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 499,
+      "type": "Equipment"
+    },
+    "component-5": {
+      "childIds": [
+        "component-6"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 0",
+      "id": "component-5",
+      "modelName": "Power Supply Bay",
+      "name": "Power Supply Bay 0",
+      "parentId": "component-1",
+      "physicalIndex": 5,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 5,
+      "type": "Equipment"
+    },
+    "component-501": {
+      "childIds": [],
+      "containedPhysicalIndex": 499,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/10",
+      "id": "component-501",
+      "modelName": "GE SFP port",
+      "name": "GigabitEthernet0/0/10",
+      "parentId": "component-499",
+      "physicalIndex": 501,
+      "ports": [
+        {
+          "id": "501",
+          "name": "GigabitEthernet0/0/10",
+          "portId": 501
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 501,
+      "type": "Port",
+      "typeId": "SFP-GE"
+    },
+    "component-513": {
+      "childIds": [
+        "component-515"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 11",
+      "id": "component-513",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 11",
+      "parentId": "component-300",
+      "physicalIndex": 513,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 513,
+      "type": "Equipment"
+    },
+    "component-515": {
+      "childIds": [],
+      "containedPhysicalIndex": 513,
+      "description": "GE SFP port",
+      "displayName": "GigabitEthernet0/0/11",
+      "id": "component-515",
+      "modelName": "GE SFP port",
+      "name": "GigabitEthernet0/0/11",
+      "parentId": "component-513",
+      "physicalIndex": 515,
+      "ports": [
+        {
+          "id": "515",
+          "name": "GigabitEthernet0/0/11",
+          "portId": 515
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 515,
+      "type": "Port",
+      "typeId": "SFP-GE"
+    },
+    "component-527": {
+      "childIds": [
+        "component-529"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 12",
+      "id": "component-527",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 12",
+      "parentId": "component-300",
+      "physicalIndex": 527,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 527,
+      "type": "Equipment"
+    },
+    "component-529": {
+      "childIds": [],
+      "containedPhysicalIndex": 527,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/12",
+      "id": "component-529",
+      "modelName": "10GE SFP+ uplink",
+      "name": "TenGigabitEthernet0/0/12",
+      "parentId": "component-527",
+      "physicalIndex": 529,
+      "ports": [
+        {
+          "id": "529",
+          "name": "TenGigabitEthernet0/0/12",
+          "portId": 529
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 529,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-541": {
+      "childIds": [
+        "component-543"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 13",
+      "id": "component-541",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 13",
+      "parentId": "component-300",
+      "physicalIndex": 541,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 541,
+      "type": "Equipment"
+    },
+    "component-543": {
+      "childIds": [],
+      "containedPhysicalIndex": 541,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/13",
+      "id": "component-543",
+      "modelName": "10GE SFP+ uplink",
+      "name": "TenGigabitEthernet0/0/13",
+      "parentId": "component-541",
+      "physicalIndex": 543,
+      "ports": [
+        {
+          "id": "543",
+          "name": "TenGigabitEthernet0/0/13",
+          "portId": 543
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 543,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-555": {
+      "childIds": [
+        "component-557"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 14",
+      "id": "component-555",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 14",
+      "parentId": "component-300",
+      "physicalIndex": 555,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 555,
+      "type": "Equipment"
+    },
+    "component-557": {
+      "childIds": [],
+      "containedPhysicalIndex": 555,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/14",
+      "id": "component-557",
+      "modelName": "10GE SFP+ uplink",
+      "name": "TenGigabitEthernet0/0/14",
+      "parentId": "component-555",
+      "physicalIndex": 557,
+      "ports": [
+        {
+          "id": "557",
+          "name": "TenGigabitEthernet0/0/14",
+          "portId": 557
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 557,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-569": {
+      "childIds": [
+        "component-571"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 15",
+      "id": "component-569",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 15",
+      "parentId": "component-300",
+      "physicalIndex": 569,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 569,
+      "type": "Equipment"
+    },
+    "component-571": {
+      "childIds": [],
+      "containedPhysicalIndex": 569,
+      "description": "10GE SFP+ uplink",
+      "displayName": "TenGigabitEthernet0/0/15",
+      "id": "component-571",
+      "modelName": "10GE SFP+ uplink",
+      "name": "TenGigabitEthernet0/0/15",
+      "parentId": "component-569",
+      "physicalIndex": 571,
+      "ports": [
+        {
+          "id": "571",
+          "name": "TenGigabitEthernet0/0/15",
+          "portId": 571
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 571,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-6": {
+      "childIds": [],
+      "containedPhysicalIndex": 5,
+      "description": "ASR 920 250W AC Power Supply",
+      "displayName": "Power Supply Module 0",
+      "id": "component-6",
+      "modelName": "ASR-920-PWR-A",
+      "name": "Power Supply Module 0",
+      "parentId": "component-5",
+      "physicalIndex": 6,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 6,
+      "type": "Equipment",
+      "typeId": "ASR-920-PWR-A"
+    }
+  },
+  "deviceId": "sample-asr920-12sz-im",
+  "generatedAt": "2026-06-12T10:15:56.988837+00:00",
+  "model": "ASR-920-12SZ-IM",
+  "physicalIndexToComponentId": {
+    "1": "component-1",
+    "100": "component-100",
+    "2": "component-2",
+    "25": "component-25",
+    "26": "component-26",
+    "3": "component-3",
+    "300": "component-300",
+    "301": "component-301",
+    "302": "component-302",
+    "303": "component-303",
+    "304": "component-304",
+    "305": "component-305",
+    "306": "component-306",
+    "307": "component-307",
+    "308": "component-308",
+    "4": "component-4",
+    "45": "component-45",
+    "46": "component-46",
+    "471": "component-471",
+    "473": "component-473",
+    "485": "component-485",
+    "487": "component-487",
+    "499": "component-499",
+    "5": "component-5",
+    "501": "component-501",
+    "513": "component-513",
+    "515": "component-515",
+    "527": "component-527",
+    "529": "component-529",
+    "541": "component-541",
+    "543": "component-543",
+    "555": "component-555",
+    "557": "component-557",
+    "569": "component-569",
+    "571": "component-571",
+    "6": "component-6"
+  },
+  "platform": "Cisco ASR-920-12SZ-IM Router",
+  "profileId": "Cisco_ASR_920_12SZ_IM_Router",
+  "schemaVersion": "nms.chassisView.v1",
+  "source": {
+    "profile": "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR_920-12SZ-IM_Router",
+    "type": "hand-curated-static-profile",
+    "walk": "docs/snmpwalks/asr920/entPhysicalASR920-12SZ-IM.walk"
+  },
+  "tree": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-100",
+              "id": "component-100",
+              "label": "module R0",
+              "physicalIndex": 100,
+              "type": "Module",
+              "typeId": "ASR-920-12SZ-IM"
+            }
+          ],
+          "componentId": "component-2",
+          "id": "component-2",
+          "label": "slot R0",
+          "physicalIndex": 2,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "componentId": "component-301",
+                  "id": "component-301",
+                  "label": "GigabitEthernet0/0/0",
+                  "physicalIndex": 301,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-302",
+                  "id": "component-302",
+                  "label": "GigabitEthernet0/0/1",
+                  "physicalIndex": 302,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-303",
+                  "id": "component-303",
+                  "label": "GigabitEthernet0/0/2",
+                  "physicalIndex": 303,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-304",
+                  "id": "component-304",
+                  "label": "GigabitEthernet0/0/3",
+                  "physicalIndex": 304,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-305",
+                  "id": "component-305",
+                  "label": "GigabitEthernet0/0/4",
+                  "physicalIndex": 305,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-306",
+                  "id": "component-306",
+                  "label": "GigabitEthernet0/0/5",
+                  "physicalIndex": 306,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-307",
+                  "id": "component-307",
+                  "label": "GigabitEthernet0/0/6",
+                  "physicalIndex": 307,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [],
+                  "componentId": "component-308",
+                  "id": "component-308",
+                  "label": "GigabitEthernet0/0/7",
+                  "physicalIndex": 308,
+                  "type": "Port",
+                  "typeId": "RJ45-GE"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-473",
+                      "id": "component-473",
+                      "label": "GigabitEthernet0/0/8",
+                      "physicalIndex": 473,
+                      "type": "Port",
+                      "typeId": "SFP-GE"
+                    }
+                  ],
+                  "componentId": "component-471",
+                  "id": "component-471",
+                  "label": "subslot 0/0 transceiver container 8",
+                  "physicalIndex": 471,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-487",
+                      "id": "component-487",
+                      "label": "GigabitEthernet0/0/9",
+                      "physicalIndex": 487,
+                      "type": "Port",
+                      "typeId": "SFP-GE"
+                    }
+                  ],
+                  "componentId": "component-485",
+                  "id": "component-485",
+                  "label": "subslot 0/0 transceiver container 9",
+                  "physicalIndex": 485,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-501",
+                      "id": "component-501",
+                      "label": "GigabitEthernet0/0/10",
+                      "physicalIndex": 501,
+                      "type": "Port",
+                      "typeId": "SFP-GE"
+                    }
+                  ],
+                  "componentId": "component-499",
+                  "id": "component-499",
+                  "label": "subslot 0/0 transceiver container 10",
+                  "physicalIndex": 499,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-515",
+                      "id": "component-515",
+                      "label": "GigabitEthernet0/0/11",
+                      "physicalIndex": 515,
+                      "type": "Port",
+                      "typeId": "SFP-GE"
+                    }
+                  ],
+                  "componentId": "component-513",
+                  "id": "component-513",
+                  "label": "subslot 0/0 transceiver container 11",
+                  "physicalIndex": 513,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-529",
+                      "id": "component-529",
+                      "label": "TenGigabitEthernet0/0/12",
+                      "physicalIndex": 529,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-527",
+                  "id": "component-527",
+                  "label": "subslot 0/0 transceiver container 12",
+                  "physicalIndex": 527,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-543",
+                      "id": "component-543",
+                      "label": "TenGigabitEthernet0/0/13",
+                      "physicalIndex": 543,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-541",
+                  "id": "component-541",
+                  "label": "subslot 0/0 transceiver container 13",
+                  "physicalIndex": 541,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-557",
+                      "id": "component-557",
+                      "label": "TenGigabitEthernet0/0/14",
+                      "physicalIndex": 557,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-555",
+                  "id": "component-555",
+                  "label": "subslot 0/0 transceiver container 14",
+                  "physicalIndex": 555,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-571",
+                      "id": "component-571",
+                      "label": "TenGigabitEthernet0/0/15",
+                      "physicalIndex": 571,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-569",
+                  "id": "component-569",
+                  "label": "subslot 0/0 transceiver container 15",
+                  "physicalIndex": 569,
+                  "type": "Equipment",
+                  "typeId": null
+                }
+              ],
+              "componentId": "component-300",
+              "id": "component-300",
+              "label": " FIXED IM subslot 0/0",
+              "physicalIndex": 300,
+              "type": "Module",
+              "typeId": "12xGE-4x10GE-FIXED"
+            }
+          ],
+          "componentId": "component-3",
+          "id": "component-3",
+          "label": "subslot 0/0",
+          "physicalIndex": 3,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [],
+          "componentId": "component-4",
+          "id": "component-4",
+          "label": "subslot 0/1",
+          "physicalIndex": 4,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-6",
+              "id": "component-6",
+              "label": "Power Supply Module 0",
+              "physicalIndex": 6,
+              "type": "Equipment",
+              "typeId": "ASR-920-PWR-A"
+            }
+          ],
+          "componentId": "component-5",
+          "id": "component-5",
+          "label": "Power Supply Bay 0",
+          "physicalIndex": 5,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-26",
+              "id": "component-26",
+              "label": "Power Supply Module 1",
+              "physicalIndex": 26,
+              "type": "Equipment",
+              "typeId": "ASR-920-PWR-A"
+            }
+          ],
+          "componentId": "component-25",
+          "id": "component-25",
+          "label": "Power Supply Bay 1",
+          "physicalIndex": 25,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-46",
+              "id": "component-46",
+              "label": "Fan Tray",
+              "physicalIndex": 46,
+              "type": "Equipment",
+              "typeId": "ASR-920-FAN"
+            }
+          ],
+          "componentId": "component-45",
+          "id": "component-45",
+          "label": "Fan Tray Bay 0",
+          "physicalIndex": 45,
+          "type": "Equipment",
+          "typeId": null
+        }
+      ],
+      "componentId": "component-1",
+      "id": "component-1",
+      "label": "Chassis",
+      "physicalIndex": null,
+      "type": "Chassis",
+      "typeId": "ASR-920-12SZ-IM"
+    }
+  ],
+  "views": [
+    {
+      "height": 165,
+      "hotspots": [
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-rj45-0",
+          "inventoryId": "component-301",
+          "label": "Gi0/0/0",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/0",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 301,
+          "slotKey": "subslot/0/0/0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-rj45-1",
+          "inventoryId": "component-302",
+          "label": "Gi0/0/1",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/1",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 302,
+          "slotKey": "subslot/0/0/1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-rj45-2",
+          "inventoryId": "component-303",
+          "label": "Gi0/0/2",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/2",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 303,
+          "slotKey": "subslot/0/0/2"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-rj45-3",
+          "inventoryId": "component-304",
+          "label": "Gi0/0/3",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/3",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 304,
+          "slotKey": "subslot/0/0/3"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-rj45-4",
+          "inventoryId": "component-305",
+          "label": "Gi0/0/4",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/4",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 305,
+          "slotKey": "subslot/0/0/4"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-rj45-5",
+          "inventoryId": "component-306",
+          "label": "Gi0/0/5",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/5",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 306,
+          "slotKey": "subslot/0/0/5"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-rj45-6",
+          "inventoryId": "component-307",
+          "label": "Gi0/0/6",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/6",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 307,
+          "slotKey": "subslot/0/0/6"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/GLC.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/GLC.svg",
+            "typeId": "RJ45-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-rj45-7",
+          "inventoryId": "component-308",
+          "label": "Gi0/0/7",
+          "metadata": {
+            "modelName": "GE RJ45 port",
+            "modelTypeId": "RJ45-GE",
+            "sourceName": "Gi0/0/7",
+            "sourceTypeId": "RJ45-GE"
+          },
+          "physicalIndex": 308,
+          "slotKey": "subslot/0/0/7"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-8",
+          "inventoryId": "component-473",
+          "label": "Gi0/0/8",
+          "metadata": {
+            "modelName": "GE SFP port",
+            "modelTypeId": "SFP-GE",
+            "sourceName": "Gi0/0/8",
+            "sourceTypeId": "SFP-GE"
+          },
+          "physicalIndex": 473,
+          "slotKey": "subslot/0/0/8"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-9",
+          "inventoryId": "component-487",
+          "label": "Gi0/0/9",
+          "metadata": {
+            "modelName": "GE SFP port",
+            "modelTypeId": "SFP-GE",
+            "sourceName": "Gi0/0/9",
+            "sourceTypeId": "SFP-GE"
+          },
+          "physicalIndex": 487,
+          "slotKey": "subslot/0/0/9"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-10",
+          "inventoryId": "component-501",
+          "label": "Gi0/0/10",
+          "metadata": {
+            "modelName": "GE SFP port",
+            "modelTypeId": "SFP-GE",
+            "sourceName": "Gi0/0/10",
+            "sourceTypeId": "SFP-GE"
+          },
+          "physicalIndex": 501,
+          "slotKey": "subslot/0/0/10"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-GE"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-11",
+          "inventoryId": "component-515",
+          "label": "Gi0/0/11",
+          "metadata": {
+            "modelName": "GE SFP port",
+            "modelTypeId": "SFP-GE",
+            "sourceName": "Gi0/0/11",
+            "sourceTypeId": "SFP-GE"
+          },
+          "physicalIndex": 515,
+          "slotKey": "subslot/0/0/11"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 56,
+            "x": 560,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-uplink-12",
+          "inventoryId": "component-529",
+          "label": "Te0/0/12",
+          "metadata": {
+            "modelName": "10GE SFP+ uplink",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/12",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 529,
+          "slotKey": "subslot/0/0/12"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 56,
+            "x": 624,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-uplink-13",
+          "inventoryId": "component-543",
+          "label": "Te0/0/13",
+          "metadata": {
+            "modelName": "10GE SFP+ uplink",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/13",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 543,
+          "slotKey": "subslot/0/0/13"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 56,
+            "x": 560,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-uplink-14",
+          "inventoryId": "component-557",
+          "label": "Te0/0/14",
+          "metadata": {
+            "modelName": "10GE SFP+ uplink",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/14",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 557,
+          "slotKey": "subslot/0/0/14"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 56,
+            "x": 624,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-uplink-15",
+          "inventoryId": "component-571",
+          "label": "Te0/0/15",
+          "metadata": {
+            "modelName": "10GE SFP+ uplink",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/15",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 571,
+          "slotKey": "subslot/0/0/15"
+        },
+        {
+          "bounds": {
+            "h": 98,
+            "w": 360,
+            "x": 860,
+            "y": 34
+          },
+          "empty": true,
+          "id": "hotspot-im-0",
+          "inventoryId": "component-4",
+          "label": "IM 0/1",
+          "metadata": {
+            "modelName": "Interface Module Bay",
+            "modelTypeId": null,
+            "sourceName": "IM 0/1",
+            "sourceTypeId": null
+          },
+          "physicalIndex": 4,
+          "slotKey": "subslot/0/1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg",
+            "typeId": "ASR-920-PWR-A"
+          },
+          "bounds": {
+            "h": 98,
+            "w": 138,
+            "x": 1390,
+            "y": 34
+          },
+          "empty": false,
+          "id": "hotspot-psu-0",
+          "inventoryId": "component-6",
+          "label": "PSU 0",
+          "metadata": {
+            "modelName": "ASR 920 250W AC Power Supply",
+            "modelTypeId": "ASR-920-PWR-A",
+            "sourceName": "PSU 0",
+            "sourceTypeId": "ASR-920-PWR-A"
+          },
+          "physicalIndex": 6,
+          "slotKey": "Power_Supply_Bay_0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-PWR-A.svg",
+            "typeId": "ASR-920-PWR-A"
+          },
+          "bounds": {
+            "h": 98,
+            "w": 138,
+            "x": 1542,
+            "y": 34
+          },
+          "empty": false,
+          "id": "hotspot-psu-1",
+          "inventoryId": "component-26",
+          "label": "PSU 1",
+          "metadata": {
+            "modelName": "ASR 920 250W AC Power Supply",
+            "modelTypeId": "ASR-920-PWR-A",
+            "sourceName": "PSU 1",
+            "sourceTypeId": "ASR-920-PWR-A"
+          },
+          "physicalIndex": 26,
+          "slotKey": "Power_Supply_Bay_1"
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 130,
+            "x": 22,
+            "y": 96
+          },
+          "empty": false,
+          "id": "hotspot-fan-0",
+          "inventoryId": "component-46",
+          "label": "Fan Tray",
+          "metadata": {
+            "modelName": "ASR 920 Fan tray",
+            "modelTypeId": "ASR-920-FAN",
+            "sourceName": "Fan Tray",
+            "sourceTypeId": "ASR-920-FAN"
+          },
+          "physicalIndex": 46,
+          "slotKey": "Fan_Tray_0"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/asr920-12sz-im/ASR-920-12SZ-IM-Front.svg",
+      "label": "Front View",
+      "sourceHeight": 165,
+      "sourceImage": "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR_920-12SZ-IM_Router",
+      "sourceWidth": 1680,
+      "width": 1680
+    }
+  ]
+}

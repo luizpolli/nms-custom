@@ -1,0 +1,1412 @@
+{
+  "componentsById": {
+    "component-1": {
+      "childIds": [
+        "component-2",
+        "component-3",
+        "component-4",
+        "component-24",
+        "component-45"
+      ],
+      "description": "Cisco ASR-920-12SZ Router Chassis",
+      "displayName": "Chassis",
+      "id": "component-1",
+      "isFRUable": "TRUE",
+      "manufacturer": "Cisco Systems Inc",
+      "modelName": "ASR-920-12SZ-D",
+      "name": "Chassis",
+      "physicalIndex": 1,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 1,
+      "type": "Chassis",
+      "typeId": "ASR-920-12SZ-D"
+    },
+    "component-100": {
+      "childIds": [],
+      "containedPhysicalIndex": 2,
+      "description": "Cisco ASR-920-12SZ Router Route Switch Processor",
+      "displayName": "module R0",
+      "id": "component-100",
+      "modelName": "ASR-920-12SZ-D",
+      "name": "module R0",
+      "parentId": "component-2",
+      "physicalIndex": 100,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 100,
+      "type": "Module",
+      "typeId": "ASR-920-12SZ-D"
+    },
+    "component-2": {
+      "childIds": [
+        "component-100"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Route Processor Slot",
+      "displayName": "slot R0",
+      "id": "component-2",
+      "modelName": "Route Processor Slot",
+      "name": "slot R0",
+      "parentId": "component-1",
+      "physicalIndex": 2,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 2,
+      "type": "Equipment"
+    },
+    "component-24": {
+      "childIds": [
+        "component-25"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 1",
+      "id": "component-24",
+      "modelName": "Power Supply Bay",
+      "name": "Power Supply Bay 1",
+      "parentId": "component-1",
+      "physicalIndex": 24,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 24,
+      "type": "Equipment"
+    },
+    "component-25": {
+      "childIds": [],
+      "containedPhysicalIndex": 24,
+      "description": "ASR 920 250W DC Power Supply",
+      "displayName": "Power Supply Module 1",
+      "id": "component-25",
+      "modelName": "ASR-920-PWR-D",
+      "name": "Power Supply Module 1",
+      "parentId": "component-24",
+      "physicalIndex": 25,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 25,
+      "type": "Equipment",
+      "typeId": "ASR-920-PWR-D"
+    },
+    "component-3": {
+      "childIds": [
+        "component-300"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "FIXED IM Bay",
+      "displayName": "subslot 0/0",
+      "id": "component-3",
+      "modelName": "FIXED IM Bay",
+      "name": "subslot 0/0",
+      "parentId": "component-1",
+      "physicalIndex": 3,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 3,
+      "type": "Equipment"
+    },
+    "component-300": {
+      "childIds": [
+        "component-359",
+        "component-373",
+        "component-387",
+        "component-401",
+        "component-415",
+        "component-429",
+        "component-443",
+        "component-457",
+        "component-471",
+        "component-485",
+        "component-499",
+        "component-513"
+      ],
+      "containedPhysicalIndex": 3,
+      "description": "FIXED : 12-port dual rate 10G/1G Ethernet",
+      "displayName": " FIXED IM subslot 0/0",
+      "id": "component-300",
+      "modelName": "12x10GE-FIXED",
+      "name": " FIXED IM subslot 0/0",
+      "parentId": "component-3",
+      "physicalIndex": 300,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 300,
+      "type": "Module",
+      "typeId": "12x10GE-FIXED"
+    },
+    "component-359": {
+      "childIds": [
+        "component-361"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 0",
+      "id": "component-359",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 0",
+      "parentId": "component-300",
+      "physicalIndex": 359,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 359,
+      "type": "Equipment"
+    },
+    "component-361": {
+      "childIds": [],
+      "containedPhysicalIndex": 359,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/0",
+      "id": "component-361",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/0",
+      "parentId": "component-359",
+      "physicalIndex": 361,
+      "ports": [
+        {
+          "id": "361",
+          "name": "TenGigabitEthernet0/0/0",
+          "portId": 361
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 361,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-373": {
+      "childIds": [
+        "component-375"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 1",
+      "id": "component-373",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 1",
+      "parentId": "component-300",
+      "physicalIndex": 373,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 373,
+      "type": "Equipment"
+    },
+    "component-375": {
+      "childIds": [],
+      "containedPhysicalIndex": 373,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/1",
+      "id": "component-375",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/1",
+      "parentId": "component-373",
+      "physicalIndex": 375,
+      "ports": [
+        {
+          "id": "375",
+          "name": "TenGigabitEthernet0/0/1",
+          "portId": 375
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 375,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-387": {
+      "childIds": [
+        "component-389"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 2",
+      "id": "component-387",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 2",
+      "parentId": "component-300",
+      "physicalIndex": 387,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 387,
+      "type": "Equipment"
+    },
+    "component-389": {
+      "childIds": [],
+      "containedPhysicalIndex": 387,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/2",
+      "id": "component-389",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/2",
+      "parentId": "component-387",
+      "physicalIndex": 389,
+      "ports": [
+        {
+          "id": "389",
+          "name": "TenGigabitEthernet0/0/2",
+          "portId": 389
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 389,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-4": {
+      "childIds": [
+        "component-5"
+      ],
+      "containedPhysicalIndex": 1,
+      "description": "Power Supply Bay",
+      "displayName": "Power Supply Bay 0",
+      "id": "component-4",
+      "modelName": "Power Supply Bay",
+      "name": "Power Supply Bay 0",
+      "parentId": "component-1",
+      "physicalIndex": 4,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 4,
+      "type": "Equipment"
+    },
+    "component-401": {
+      "childIds": [
+        "component-403"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 3",
+      "id": "component-401",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 3",
+      "parentId": "component-300",
+      "physicalIndex": 401,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 401,
+      "type": "Equipment"
+    },
+    "component-403": {
+      "childIds": [],
+      "containedPhysicalIndex": 401,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/3",
+      "id": "component-403",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/3",
+      "parentId": "component-401",
+      "physicalIndex": 403,
+      "ports": [
+        {
+          "id": "403",
+          "name": "TenGigabitEthernet0/0/3",
+          "portId": 403
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 403,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-415": {
+      "childIds": [
+        "component-417"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 4",
+      "id": "component-415",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 4",
+      "parentId": "component-300",
+      "physicalIndex": 415,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 415,
+      "type": "Equipment"
+    },
+    "component-417": {
+      "childIds": [],
+      "containedPhysicalIndex": 415,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/4",
+      "id": "component-417",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/4",
+      "parentId": "component-415",
+      "physicalIndex": 417,
+      "ports": [
+        {
+          "id": "417",
+          "name": "TenGigabitEthernet0/0/4",
+          "portId": 417
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 417,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-429": {
+      "childIds": [
+        "component-431"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 5",
+      "id": "component-429",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 5",
+      "parentId": "component-300",
+      "physicalIndex": 429,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 429,
+      "type": "Equipment"
+    },
+    "component-431": {
+      "childIds": [],
+      "containedPhysicalIndex": 429,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/5",
+      "id": "component-431",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/5",
+      "parentId": "component-429",
+      "physicalIndex": 431,
+      "ports": [
+        {
+          "id": "431",
+          "name": "TenGigabitEthernet0/0/5",
+          "portId": 431
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 431,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-443": {
+      "childIds": [
+        "component-445"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 6",
+      "id": "component-443",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 6",
+      "parentId": "component-300",
+      "physicalIndex": 443,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 443,
+      "type": "Equipment"
+    },
+    "component-445": {
+      "childIds": [],
+      "containedPhysicalIndex": 443,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/6",
+      "id": "component-445",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/6",
+      "parentId": "component-443",
+      "physicalIndex": 445,
+      "ports": [
+        {
+          "id": "445",
+          "name": "TenGigabitEthernet0/0/6",
+          "portId": 445
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 445,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-45": {
+      "childIds": [],
+      "containedPhysicalIndex": 1,
+      "description": "ASR 920 Fan tray",
+      "displayName": "Fan Tray",
+      "id": "component-45",
+      "modelName": "ASR-920-FAN",
+      "name": "Fan Tray",
+      "parentId": "component-1",
+      "physicalIndex": 45,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 45,
+      "type": "Equipment",
+      "typeId": "ASR-920-FAN"
+    },
+    "component-457": {
+      "childIds": [
+        "component-459"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 7",
+      "id": "component-457",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 7",
+      "parentId": "component-300",
+      "physicalIndex": 457,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 457,
+      "type": "Equipment"
+    },
+    "component-459": {
+      "childIds": [],
+      "containedPhysicalIndex": 457,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/7",
+      "id": "component-459",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/7",
+      "parentId": "component-457",
+      "physicalIndex": 459,
+      "ports": [
+        {
+          "id": "459",
+          "name": "TenGigabitEthernet0/0/7",
+          "portId": 459
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 459,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-471": {
+      "childIds": [
+        "component-473"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 8",
+      "id": "component-471",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 8",
+      "parentId": "component-300",
+      "physicalIndex": 471,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 471,
+      "type": "Equipment"
+    },
+    "component-473": {
+      "childIds": [],
+      "containedPhysicalIndex": 471,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/8",
+      "id": "component-473",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/8",
+      "parentId": "component-471",
+      "physicalIndex": 473,
+      "ports": [
+        {
+          "id": "473",
+          "name": "TenGigabitEthernet0/0/8",
+          "portId": 473
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 473,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-485": {
+      "childIds": [
+        "component-487"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 9",
+      "id": "component-485",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 9",
+      "parentId": "component-300",
+      "physicalIndex": 485,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 485,
+      "type": "Equipment"
+    },
+    "component-487": {
+      "childIds": [],
+      "containedPhysicalIndex": 485,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/9",
+      "id": "component-487",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/9",
+      "parentId": "component-485",
+      "physicalIndex": 487,
+      "ports": [
+        {
+          "id": "487",
+          "name": "TenGigabitEthernet0/0/9",
+          "portId": 487
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 487,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-499": {
+      "childIds": [
+        "component-501"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 10",
+      "id": "component-499",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 10",
+      "parentId": "component-300",
+      "physicalIndex": 499,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 499,
+      "type": "Equipment"
+    },
+    "component-5": {
+      "childIds": [],
+      "containedPhysicalIndex": 4,
+      "description": "ASR 920 250W DC Power Supply",
+      "displayName": "Power Supply Module 0",
+      "id": "component-5",
+      "modelName": "ASR-920-PWR-D",
+      "name": "Power Supply Module 0",
+      "parentId": "component-4",
+      "physicalIndex": 5,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 5,
+      "type": "Equipment",
+      "typeId": "ASR-920-PWR-D"
+    },
+    "component-501": {
+      "childIds": [],
+      "containedPhysicalIndex": 499,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/10",
+      "id": "component-501",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/10",
+      "parentId": "component-499",
+      "physicalIndex": 501,
+      "ports": [
+        {
+          "id": "501",
+          "name": "TenGigabitEthernet0/0/10",
+          "portId": 501
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 501,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    },
+    "component-513": {
+      "childIds": [
+        "component-515"
+      ],
+      "containedPhysicalIndex": 300,
+      "description": "SFP cage",
+      "displayName": "subslot 0/0 transceiver container 11",
+      "id": "component-513",
+      "modelName": "SFP cage",
+      "name": "subslot 0/0 transceiver container 11",
+      "parentId": "component-300",
+      "physicalIndex": 513,
+      "ports": [],
+      "serviceState": 1,
+      "sourceId": 513,
+      "type": "Equipment"
+    },
+    "component-515": {
+      "childIds": [],
+      "containedPhysicalIndex": 513,
+      "description": "1G/10G dual-rate SFP+ port",
+      "displayName": "TenGigabitEthernet0/0/11",
+      "id": "component-515",
+      "modelName": "1G/10G dual-rate SFP+ port",
+      "name": "TenGigabitEthernet0/0/11",
+      "parentId": "component-513",
+      "physicalIndex": 515,
+      "ports": [
+        {
+          "id": "515",
+          "name": "TenGigabitEthernet0/0/11",
+          "portId": 515
+        }
+      ],
+      "serviceState": 1,
+      "sourceId": 515,
+      "type": "Port",
+      "typeId": "SFP-10G"
+    }
+  },
+  "deviceId": "sample-asr920-12sz",
+  "generatedAt": "2026-06-12T10:15:56.988038+00:00",
+  "model": "ASR-920-12SZ-D",
+  "physicalIndexToComponentId": {
+    "1": "component-1",
+    "100": "component-100",
+    "2": "component-2",
+    "24": "component-24",
+    "25": "component-25",
+    "3": "component-3",
+    "300": "component-300",
+    "359": "component-359",
+    "361": "component-361",
+    "373": "component-373",
+    "375": "component-375",
+    "387": "component-387",
+    "389": "component-389",
+    "4": "component-4",
+    "401": "component-401",
+    "403": "component-403",
+    "415": "component-415",
+    "417": "component-417",
+    "429": "component-429",
+    "431": "component-431",
+    "443": "component-443",
+    "445": "component-445",
+    "45": "component-45",
+    "457": "component-457",
+    "459": "component-459",
+    "471": "component-471",
+    "473": "component-473",
+    "485": "component-485",
+    "487": "component-487",
+    "499": "component-499",
+    "5": "component-5",
+    "501": "component-501",
+    "513": "component-513",
+    "515": "component-515"
+  },
+  "platform": "Cisco ASR-920-12SZ Router",
+  "profileId": "Cisco_ASR_920_12SZ_Router",
+  "schemaVersion": "nms.chassisView.v1",
+  "source": {
+    "profile": "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR920-12SZ-D_Router",
+    "type": "hand-curated-static-profile",
+    "walk": "docs/snmpwalks/asr920/entPhysicalASR920-12SZ-D.walk"
+  },
+  "tree": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-100",
+              "id": "component-100",
+              "label": "module R0",
+              "physicalIndex": 100,
+              "type": "Module",
+              "typeId": "ASR-920-12SZ-D"
+            }
+          ],
+          "componentId": "component-2",
+          "id": "component-2",
+          "label": "slot R0",
+          "physicalIndex": 2,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-361",
+                      "id": "component-361",
+                      "label": "TenGigabitEthernet0/0/0",
+                      "physicalIndex": 361,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-359",
+                  "id": "component-359",
+                  "label": "subslot 0/0 transceiver container 0",
+                  "physicalIndex": 359,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-375",
+                      "id": "component-375",
+                      "label": "TenGigabitEthernet0/0/1",
+                      "physicalIndex": 375,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-373",
+                  "id": "component-373",
+                  "label": "subslot 0/0 transceiver container 1",
+                  "physicalIndex": 373,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-389",
+                      "id": "component-389",
+                      "label": "TenGigabitEthernet0/0/2",
+                      "physicalIndex": 389,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-387",
+                  "id": "component-387",
+                  "label": "subslot 0/0 transceiver container 2",
+                  "physicalIndex": 387,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-403",
+                      "id": "component-403",
+                      "label": "TenGigabitEthernet0/0/3",
+                      "physicalIndex": 403,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-401",
+                  "id": "component-401",
+                  "label": "subslot 0/0 transceiver container 3",
+                  "physicalIndex": 401,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-417",
+                      "id": "component-417",
+                      "label": "TenGigabitEthernet0/0/4",
+                      "physicalIndex": 417,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-415",
+                  "id": "component-415",
+                  "label": "subslot 0/0 transceiver container 4",
+                  "physicalIndex": 415,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-431",
+                      "id": "component-431",
+                      "label": "TenGigabitEthernet0/0/5",
+                      "physicalIndex": 431,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-429",
+                  "id": "component-429",
+                  "label": "subslot 0/0 transceiver container 5",
+                  "physicalIndex": 429,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-445",
+                      "id": "component-445",
+                      "label": "TenGigabitEthernet0/0/6",
+                      "physicalIndex": 445,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-443",
+                  "id": "component-443",
+                  "label": "subslot 0/0 transceiver container 6",
+                  "physicalIndex": 443,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-459",
+                      "id": "component-459",
+                      "label": "TenGigabitEthernet0/0/7",
+                      "physicalIndex": 459,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-457",
+                  "id": "component-457",
+                  "label": "subslot 0/0 transceiver container 7",
+                  "physicalIndex": 457,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-473",
+                      "id": "component-473",
+                      "label": "TenGigabitEthernet0/0/8",
+                      "physicalIndex": 473,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-471",
+                  "id": "component-471",
+                  "label": "subslot 0/0 transceiver container 8",
+                  "physicalIndex": 471,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-487",
+                      "id": "component-487",
+                      "label": "TenGigabitEthernet0/0/9",
+                      "physicalIndex": 487,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-485",
+                  "id": "component-485",
+                  "label": "subslot 0/0 transceiver container 9",
+                  "physicalIndex": 485,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-501",
+                      "id": "component-501",
+                      "label": "TenGigabitEthernet0/0/10",
+                      "physicalIndex": 501,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-499",
+                  "id": "component-499",
+                  "label": "subslot 0/0 transceiver container 10",
+                  "physicalIndex": 499,
+                  "type": "Equipment",
+                  "typeId": null
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "componentId": "component-515",
+                      "id": "component-515",
+                      "label": "TenGigabitEthernet0/0/11",
+                      "physicalIndex": 515,
+                      "type": "Port",
+                      "typeId": "SFP-10G"
+                    }
+                  ],
+                  "componentId": "component-513",
+                  "id": "component-513",
+                  "label": "subslot 0/0 transceiver container 11",
+                  "physicalIndex": 513,
+                  "type": "Equipment",
+                  "typeId": null
+                }
+              ],
+              "componentId": "component-300",
+              "id": "component-300",
+              "label": " FIXED IM subslot 0/0",
+              "physicalIndex": 300,
+              "type": "Module",
+              "typeId": "12x10GE-FIXED"
+            }
+          ],
+          "componentId": "component-3",
+          "id": "component-3",
+          "label": "subslot 0/0",
+          "physicalIndex": 3,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-5",
+              "id": "component-5",
+              "label": "Power Supply Module 0",
+              "physicalIndex": 5,
+              "type": "Equipment",
+              "typeId": "ASR-920-PWR-D"
+            }
+          ],
+          "componentId": "component-4",
+          "id": "component-4",
+          "label": "Power Supply Bay 0",
+          "physicalIndex": 4,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "componentId": "component-25",
+              "id": "component-25",
+              "label": "Power Supply Module 1",
+              "physicalIndex": 25,
+              "type": "Equipment",
+              "typeId": "ASR-920-PWR-D"
+            }
+          ],
+          "componentId": "component-24",
+          "id": "component-24",
+          "label": "Power Supply Bay 1",
+          "physicalIndex": 24,
+          "type": "Equipment",
+          "typeId": null
+        },
+        {
+          "children": [],
+          "componentId": "component-45",
+          "id": "component-45",
+          "label": "Fan Tray",
+          "physicalIndex": 45,
+          "type": "Equipment",
+          "typeId": "ASR-920-FAN"
+        }
+      ],
+      "componentId": "component-1",
+      "id": "component-1",
+      "label": "Chassis",
+      "physicalIndex": null,
+      "type": "Chassis",
+      "typeId": "ASR-920-12SZ-D"
+    }
+  ],
+  "views": [
+    {
+      "height": 165,
+      "hotspots": [
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-0",
+          "inventoryId": "component-361",
+          "label": "Te0/0/0",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/0",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 361,
+          "slotKey": "subslot/0/0/0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-1",
+          "inventoryId": "component-375",
+          "label": "Te0/0/1",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/1",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 375,
+          "slotKey": "subslot/0/0/1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-2",
+          "inventoryId": "component-389",
+          "label": "Te0/0/2",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/2",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 389,
+          "slotKey": "subslot/0/0/2"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-3",
+          "inventoryId": "component-403",
+          "label": "Te0/0/3",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/3",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 403,
+          "slotKey": "subslot/0/0/3"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-4",
+          "inventoryId": "component-417",
+          "label": "Te0/0/4",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/4",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 417,
+          "slotKey": "subslot/0/0/4"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 36
+          },
+          "empty": false,
+          "id": "hotspot-sfp-5",
+          "inventoryId": "component-431",
+          "label": "Te0/0/5",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/5",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 431,
+          "slotKey": "subslot/0/0/5"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 200,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-6",
+          "inventoryId": "component-445",
+          "label": "Te0/0/6",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/6",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 445,
+          "slotKey": "subslot/0/0/6"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 254,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-7",
+          "inventoryId": "component-459",
+          "label": "Te0/0/7",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/7",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 459,
+          "slotKey": "subslot/0/0/7"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 308,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-8",
+          "inventoryId": "component-473",
+          "label": "Te0/0/8",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/8",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 473,
+          "slotKey": "subslot/0/0/8"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 362,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-9",
+          "inventoryId": "component-487",
+          "label": "Te0/0/9",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/9",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 487,
+          "slotKey": "subslot/0/0/9"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 416,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-10",
+          "inventoryId": "component-501",
+          "label": "Te0/0/10",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/10",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 501,
+          "slotKey": "subslot/0/0/10"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP-10G"
+          },
+          "bounds": {
+            "h": 38,
+            "w": 46,
+            "x": 470,
+            "y": 86
+          },
+          "empty": false,
+          "id": "hotspot-sfp-11",
+          "inventoryId": "component-515",
+          "label": "Te0/0/11",
+          "metadata": {
+            "modelName": "1G/10G dual-rate SFP+ port",
+            "modelTypeId": "SFP-10G",
+            "sourceName": "Te0/0/11",
+            "sourceTypeId": "SFP-10G"
+          },
+          "physicalIndex": 515,
+          "slotKey": "subslot/0/0/11"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/ASR-920-PWR-D.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-PWR-D.svg",
+            "typeId": "ASR-920-PWR-D"
+          },
+          "bounds": {
+            "h": 98,
+            "w": 138,
+            "x": 1390,
+            "y": 34
+          },
+          "empty": false,
+          "id": "hotspot-psu-0",
+          "inventoryId": "component-5",
+          "label": "PSU 0",
+          "metadata": {
+            "modelName": "ASR 920 250W DC Power Supply",
+            "modelTypeId": "ASR-920-PWR-D",
+            "sourceName": "PSU 0",
+            "sourceTypeId": "ASR-920-PWR-D"
+          },
+          "physicalIndex": 5,
+          "slotKey": "Power_Supply_Bay_0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/ASR-920-PWR-D.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-PWR-D.svg",
+            "typeId": "ASR-920-PWR-D"
+          },
+          "bounds": {
+            "h": 98,
+            "w": 138,
+            "x": 1542,
+            "y": 34
+          },
+          "empty": false,
+          "id": "hotspot-psu-1",
+          "inventoryId": "component-25",
+          "label": "PSU 1",
+          "metadata": {
+            "modelName": "ASR 920 250W DC Power Supply",
+            "modelTypeId": "ASR-920-PWR-D",
+            "sourceName": "PSU 1",
+            "sourceTypeId": "ASR-920-PWR-D"
+          },
+          "physicalIndex": 25,
+          "slotKey": "Power_Supply_Bay_1"
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 130,
+            "x": 22,
+            "y": 96
+          },
+          "empty": false,
+          "id": "hotspot-fan-0",
+          "inventoryId": "component-45",
+          "label": "Fan Tray",
+          "metadata": {
+            "modelName": "ASR 920 Fan tray",
+            "modelTypeId": "ASR-920-FAN",
+            "sourceName": "Fan Tray",
+            "sourceTypeId": "ASR-920-FAN"
+          },
+          "physicalIndex": 45,
+          "slotKey": "Fan_Tray_0"
+        }
+      ],
+      "id": "front",
+      "image": "/chassis-assets/asr920-12sz/ASR-920-12SZ-D-Front.svg",
+      "label": "Front View",
+      "sourceHeight": 165,
+      "sourceImage": "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR920-12SZ-D_Router",
+      "sourceWidth": 1680,
+      "width": 1680
+    }
+  ]
+}

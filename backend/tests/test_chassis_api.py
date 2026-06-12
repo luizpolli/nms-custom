@@ -1013,7 +1013,7 @@ def test_chassis_pid_from_physical_components_wins_over_model_heuristics():
 
 
 def test_chassis_pid_detects_asr920_variant_from_walk_pid():
-    """PIDs captured in docs/snmpwalks/asr920 resolve via the exact table."""
+    """PIDs captured in docs/snmpwalks/asr920 resolve to their variant profile."""
     device = Device(
         id=uuid.uuid4(),
         name="edge-920",
@@ -1021,9 +1021,60 @@ def test_chassis_pid_detects_asr920_variant_from_walk_pid():
         device_type="router",
         vendor="Cisco",
     )
-    for pid in ("ASR-920-12CZ-D", "ASR-920-12SZ-D", "ASR-920-12SZ-IM", "ASR-920-12SZ-IM-CC"):
+    expected = {
+        "ASR-920-12CZ-D": "asr920-12cz",
+        "ASR-920-12SZ-D": "asr920-12sz",
+        "ASR-920-12SZ-IM": "asr920-12sz-im",
+        "ASR-920-12SZ-IM-CC": "asr920-12sz-im",
+        "ASR-920-20SZ-M": "asr920",
+    }
+    for pid, profile in expected.items():
         components = [_chassis_component(pid)]
-        assert _chassis_profile_for_device(device, None, components) == "asr920", pid
+        assert _chassis_profile_for_device(device, None, components) == profile, pid
+
+
+def test_chassis_heuristics_detect_asr920_12sz_variants():
+    """Model-string heuristics route 12-port variants to dedicated profiles."""
+    cases = {
+        "Cisco ASR-920-12CZ-A": "asr920-12cz",
+        "Cisco ASR-920-12SZ-IM": "asr920-12sz-im",
+        "Cisco ASR-920-12SZ-A": "asr920-12sz",
+        "Cisco ASR-920-20SZ-M": "asr920",
+    }
+    for model, profile in cases.items():
+        device = Device(
+            id=uuid.uuid4(),
+            name="edge-920-h",
+            ip_address="10.0.2.10",
+            device_type="router",
+            model=model,
+            vendor="Cisco",
+        )
+        assert _chassis_profile_for_device(device, None) == profile, model
+
+
+@pytest.mark.asyncio
+async def test_chassis_endpoint_returns_asr920_12sz_im_profile():
+    device_id = uuid.uuid4()
+    device = Device(
+        id=device_id,
+        name="edge-12sz-im",
+        ip_address="10.0.2.11",
+        device_type="router",
+        model="Cisco ASR-920-12SZ-IM",
+        vendor="Cisco",
+    )
+
+    chassis = await get_device_chassis(device_id, _FakeSession(device))  # type: ignore[arg-type]
+
+    assert chassis["schemaVersion"] == "nms.chassisView.v1"
+    assert chassis["profileId"] == "Cisco_ASR_920_12SZ_IM_Router"
+    assert chassis["tree"][0]["label"] == "edge-12sz-im"
+    # Real walk indexes: Gi0/0/0 fixed copper port and Te0/0/13 SFP+ port.
+    phys_map = chassis["physicalIndexToComponentId"]
+    assert phys_map["301"] == "component-301"
+    assert phys_map["543"] == "component-543"
+    assert chassis["componentsById"]["component-543"]["name"] == "TenGigabitEthernet0/0/13"
 
 
 def test_chassis_pid_detects_ncs560_sys_pid_not_covered_by_heuristics():

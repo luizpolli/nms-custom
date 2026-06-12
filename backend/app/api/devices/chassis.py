@@ -30,6 +30,10 @@ CHASSIS_PROFILE_FILES = {
     "asr903": _CHASSIS_DATA_DIR / "asr903" / "normalized.json",
     "asr9006": _CHASSIS_DATA_DIR / "asr9006" / "normalized.json",
     "asr920": _CHASSIS_DATA_DIR / "asr920" / "normalized.json",
+    # ASR920 12-port variants (real entPhysicalIndex maps from docs/snmpwalks)
+    "asr920-12cz": _CHASSIS_DATA_DIR / "asr920-12cz" / "normalized.json",
+    "asr920-12sz": _CHASSIS_DATA_DIR / "asr920-12sz" / "normalized.json",
+    "asr920-12sz-im": _CHASSIS_DATA_DIR / "asr920-12sz-im" / "normalized.json",
     "ncs55a1": _CHASSIS_DATA_DIR / "ncs55a1" / "normalized.json",
     "ncs55a1-24h": _CHASSIS_DATA_DIR / "ncs55a1-24h" / "normalized.json",
     "ncs55a1-24q6h": _CHASSIS_DATA_DIR / "ncs55a1-24q6h" / "normalized.json",
@@ -63,17 +67,17 @@ CHASSIS_PID_PROFILES: dict[str, str] = {
     "ASR-920-4SZ-D": "asr920",
     "ASR-920-8S4Z-PD": "asr920",
     "ASR-920-10SZ-PD": "asr920",
-    "ASR-920-12CZ-A": "asr920",
-    "ASR-920-12CZ-D": "asr920",
-    "ASR-920-12SZ-A": "asr920",
-    "ASR-920-12SZ-D": "asr920",
-    "ASR-920-12SZ-IM": "asr920",
-    "ASR-920-12SZ-IM-CC": "asr920",
+    "ASR-920-12CZ-A": "asr920-12cz",
+    "ASR-920-12CZ-D": "asr920-12cz",
+    "ASR-920-12SZ-A": "asr920-12sz",
+    "ASR-920-12SZ-D": "asr920-12sz",
+    "ASR-920-12SZ-IM": "asr920-12sz-im",
+    "ASR-920-12SZ-IM-CC": "asr920-12sz-im",
     "ASR-920-20SZ-M": "asr920",
     "ASR-920-24SZ-IM": "asr920",
     "ASR-920-24SZ-M": "asr920",
     "ASR-920-24TZ-M": "asr920",
-    "ASR-920U-12SZ-IM": "asr920",
+    "ASR-920U-12SZ-IM": "asr920-12sz-im",
     # ASR 9000 series (IOS XR)
     "ASR-9006": "asr9006",
     "ASR-9006-AC": "asr9006",
@@ -222,6 +226,13 @@ def _chassis_profile_for_device(
     if "ncs540" in compact_terms or "n540" in compact_terms:
         return "ncs540"
     if "asr" in terms and "920" in terms:
+        # 12-port variants get dedicated profiles; check before the generic fallback.
+        if "12cz" in compact_terms:
+            return "asr920-12cz"
+        if "12szim" in compact_terms:
+            return "asr920-12sz-im"
+        if "12sz" in compact_terms:
+            return "asr920-12sz"
         return "asr920"
     if "asr" in terms and "903" in terms:
         return "asr903"

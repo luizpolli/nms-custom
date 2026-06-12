@@ -60,6 +60,106 @@ exports[`chassis overlay snapshots > asr920 overlay summary is stable 1`] = `
 }
 `;
 
+exports[`chassis overlay snapshots > asr920-12cz overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_920_12CZ_Router",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "psu": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+      "rj45": {
+        "hotspots": 8,
+        "overlay": "suppressed",
+        "withAsset": 8,
+      },
+      "sfp": {
+        "hotspots": 4,
+        "overlay": "suppressed",
+        "withAsset": 4,
+      },
+      "uplink": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr920-12sz overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_920_12SZ_Router",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "psu": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+      "sfp": {
+        "hotspots": 12,
+        "overlay": "suppressed",
+        "withAsset": 12,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr920-12sz-im overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_920_12SZ_IM_Router",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "im": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "psu": {
+        "hotspots": 2,
+        "overlay": "suppressed",
+        "withAsset": 2,
+      },
+      "rj45": {
+        "hotspots": 8,
+        "overlay": "suppressed",
+        "withAsset": 8,
+      },
+      "sfp": {
+        "hotspots": 4,
+        "overlay": "suppressed",
+        "withAsset": 4,
+      },
+      "uplink": {
+        "hotspots": 4,
+        "overlay": "suppressed",
+        "withAsset": 4,
+      },
+    },
+  },
+}
+`;
+
 exports[`chassis overlay snapshots > asr9006 overlay summary is stable 1`] = `
 {
   "profileId": "Cisco_ASR_9006_Router",
@@ -201,6 +301,9 @@ exports[`chassis overlay snapshots > covers every shipped profile directory 1`] 
   "asr9010",
   "asr903",
   "asr920",
+  "asr920-12cz",
+  "asr920-12sz",
+  "asr920-12sz-im",
   "ncs540",
   "ncs540-12z16g",
   "ncs540-12z20g",
