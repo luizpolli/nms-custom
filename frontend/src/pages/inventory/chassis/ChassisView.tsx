@@ -11,9 +11,11 @@ import { DiscoveredElementsTree } from './DiscoveredElementsTree';
 import { PortInventoryTable } from './PortInventoryTable';
 import {
   buildPortInventoryRows,
+  buildPortStatusByComponentId,
   collectManagedPorts,
   matchManagedInterface,
   type ManagedInterface,
+  type PortStatus,
 } from './portInventory';
 
 interface ChassisViewProps {
@@ -72,6 +74,17 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
     () => (data ? buildPortInventoryRows(data, managedInterfaces) : []),
     [data, managedInterfaces],
   );
+  const portStatusByComponentId = useMemo(
+    () => (data ? buildPortStatusByComponentId(data, managedInterfaces) : {}),
+    [data, managedInterfaces],
+  );
+  const portStatusCounts = useMemo(() => {
+    const counts: Record<PortStatus, number> = { up: 0, down: 0, 'admin-down': 0 };
+    for (const info of Object.values(portStatusByComponentId)) {
+      counts[info.status] += 1;
+    }
+    return counts;
+  }, [portStatusByComponentId]);
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [selectedPortId, setSelectedPortId] = useState<string | null>(null);
   const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
@@ -190,6 +203,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                       onSelect={handleComponentSelect}
                       onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
                       viewId={view.id}
+                      portStatusByComponentId={portStatusByComponentId}
                     />
                   </div>
                 );
@@ -222,9 +236,20 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
           </div>
 
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
-            <LegendDot className="bg-green-500" label="Operational" />
-            <LegendDot className="bg-cisco-blue" label="Selected" />
-            <LegendDot className="bg-gray-400" label="Empty bay" />
+            {Object.keys(portStatusByComponentId).length > 0 ? (
+              <>
+                <LegendDot className="bg-green-500" label={`Up (${portStatusCounts.up})`} />
+                <LegendDot className="bg-red-500" label={`Down (${portStatusCounts.down})`} />
+                <LegendDot className="bg-gray-400" label={`Admin down (${portStatusCounts['admin-down']})`} />
+                <LegendDot className="bg-cisco-blue" label="Selected" />
+              </>
+            ) : (
+              <>
+                <LegendDot className="bg-green-500" label="Operational" />
+                <LegendDot className="bg-cisco-blue" label="Selected" />
+                <LegendDot className="bg-gray-400" label="Empty bay" />
+              </>
+            )}
           </div>
         </div>
       </div>

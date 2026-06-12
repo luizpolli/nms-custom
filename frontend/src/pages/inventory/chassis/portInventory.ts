@@ -78,6 +78,73 @@ export function matchManagedInterface(port: ManagedPort | undefined, interfaces:
   });
 }
 
+export type PortStatus = 'up' | 'down' | 'admin-down';
+
+export type PortStatusInfo = {
+  status: PortStatus;
+  interfaceName: string;
+  adminStatus?: string | null;
+  operStatus?: string | null;
+};
+
+export function classifyPortStatus(
+  adminStatus?: string | null,
+  operStatus?: string | null,
+): PortStatus | null {
+  const admin = String(adminStatus ?? '').trim().toLowerCase();
+  const oper = String(operStatus ?? '').trim().toLowerCase();
+  if (admin === 'down') return 'admin-down';
+  if (oper === 'up') return 'up';
+  if (oper === 'down' || oper === 'lowerlayerdown' || oper === 'lower-layer-down' || oper === 'dormant') {
+    return 'down';
+  }
+  return null;
+}
+
+export function buildPortStatusByComponentId(
+  model: ChassisViewModel,
+  interfaces: ManagedInterface[],
+): Record<string, PortStatusInfo> {
+  if (!interfaces.length) return {};
+
+  const byNormalizedName = new Map<string, ManagedInterface>();
+  for (const iface of interfaces) {
+    for (const candidate of [iface.name, iface.description, iface.alias]) {
+      const key = normalizeInterfaceName(candidate);
+      if (key && !byNormalizedName.has(key)) byNormalizedName.set(key, iface);
+    }
+  }
+
+  const result: Record<string, PortStatusInfo> = {};
+  for (const component of Object.values(model.componentsById)) {
+    const looksLikePort =
+      component.type?.toLowerCase() === 'port' ||
+      isPhysicalInterfaceName(component.name) ||
+      isPhysicalInterfaceName(component.displayName);
+    if (!looksLikePort) continue;
+
+    let iface: ManagedInterface | undefined;
+    for (const candidate of [component.name, component.displayName]) {
+      const key = normalizeInterfaceName(candidate);
+      if (key && byNormalizedName.has(key)) {
+        iface = byNormalizedName.get(key);
+        break;
+      }
+    }
+    if (!iface) continue;
+
+    const status = classifyPortStatus(iface.admin_status, iface.oper_status);
+    if (!status) continue;
+    result[component.id] = {
+      status,
+      interfaceName: iface.name,
+      adminStatus: iface.admin_status,
+      operStatus: iface.oper_status,
+    };
+  }
+  return result;
+}
+
 export function isLogicalInterfaceName(name?: string | null): boolean {
   const value = String(name ?? '').trim();
   if (!value) return false;

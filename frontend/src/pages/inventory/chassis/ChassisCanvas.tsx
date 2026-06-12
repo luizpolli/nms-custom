@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent, WheelEvent as ReactWheelEvent } from 'react';
 import { Maximize2, Minus, Plus } from 'lucide-react';
 import type { ChassisComponent, ChassisHotspot, ChassisViewModel, ChassisViewImage, ComponentAlarmInfo } from './chassisTypes';
+import type { PortStatus, PortStatusInfo } from './portInventory';
 import { shouldRenderOverlay } from './overlayPolicy';
 
 const ZOOM_MIN = 1;
@@ -39,6 +40,27 @@ function AlarmDot({ severity }: { severity: ComponentAlarmInfo['maxSeverity'] })
   );
 }
 
+const PORT_STATUS_DOT_STYLES: Record<PortStatus, string> = {
+  up: 'bg-green-500',
+  down: 'bg-red-500',
+  'admin-down': 'bg-gray-400',
+};
+
+const PORT_STATUS_LABELS: Record<PortStatus, string> = {
+  up: 'up',
+  down: 'down',
+  'admin-down': 'admin down',
+};
+
+function PortStatusDot({ status }: { status: PortStatus }) {
+  return (
+    <span
+      aria-label={`port ${PORT_STATUS_LABELS[status]}`}
+      className={`pointer-events-none absolute bottom-0.5 left-0.5 h-2 w-2 rounded-full ring-1 ring-white/60 ${PORT_STATUS_DOT_STYLES[status]}`}
+    />
+  );
+}
+
 const ALARM_LEGEND_ITEMS: { severity: ComponentAlarmInfo['maxSeverity']; label: string; color: string }[] = [
   { severity: 'critical', label: 'Critical', color: 'bg-red-500' },
   { severity: 'major',    label: 'Major',    color: 'bg-orange-500' },
@@ -64,12 +86,14 @@ export function ChassisCanvas({
   onSelect,
   onHotspotDetail,
   viewId,
+  portStatusByComponentId,
 }: {
   model: ChassisViewModel;
   selectedComponentId: string | null;
   onSelect: (componentId: string) => void;
   onHotspotDetail?: (physicalIndex: number) => void;
   viewId?: string;
+  portStatusByComponentId?: Record<string, PortStatusInfo>;
 }) {
   const view = (viewId ? model.views.find((v) => v.id === viewId) : undefined) ?? model.views[0];
   const frameRef = useRef<HTMLDivElement | null>(null);
@@ -171,12 +195,15 @@ export function ChassisCanvas({
             const showHotspotChrome = shouldRenderOverlay(model.profileId, hotspot.id);
             const alarmInfo: ComponentAlarmInfo | undefined =
               hotspot.inventoryId ? model.alarmsByComponentId?.[hotspot.inventoryId] : undefined;
+            const portStatus: PortStatusInfo | undefined =
+              hotspot.inventoryId ? portStatusByComponentId?.[hotspot.inventoryId] : undefined;
+            const baseTitle = hotspot.metadata?.sourceName ?? hotspot.label;
             return (
               <button
                 key={hotspot.id}
                 type="button"
                 disabled={!canSelect}
-                title={hotspot.metadata?.sourceName ?? hotspot.label}
+                title={portStatus ? `${baseTitle} — ${portStatus.interfaceName} ${PORT_STATUS_LABELS[portStatus.status]}` : baseTitle}
                 aria-label={`Select ${hotspot.metadata?.sourceName ?? hotspot.label}`}
                 onPointerUp={(event) => {
                   if (consumedClick(event)) event.preventDefault();
@@ -202,6 +229,7 @@ export function ChassisCanvas({
                 }`}
                 style={percentBounds(hotspot, view)}
               >
+                {portStatus && <PortStatusDot status={portStatus.status} />}
                 {alarmInfo && <AlarmDot severity={alarmInfo.maxSeverity} />}
               </button>
             );
