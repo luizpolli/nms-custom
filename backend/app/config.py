@@ -97,6 +97,13 @@ class Settings(BaseSettings):
     # SNMP
     snmp_default_community: str = "public"
     snmp_version: str = "v2c"
+    # SNMPv3 USM users for the trap receiver — JSON list, e.g.
+    # [{"user": "nms-trap", "auth_protocol": "SHA256", "auth_key": "...",
+    #   "priv_protocol": "AES128", "priv_key": "...",
+    #   "engine_id": "80000009030000112233445566"}]
+    # engine_id is the SENDER's snmpEngineID (required for v3 TRAP PDUs;
+    # INFORMs work without it). Parsed by trap_receiver.parse_trap_v3_users.
+    trap_v3_users: str = ""
 
     # CORS / hosts
     cors_origins: list[str] = Field(default_factory=lambda: ["http://localhost:5173"])

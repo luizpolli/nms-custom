@@ -132,7 +132,11 @@ class WorkerSupervisor:
 
     async def _run_trap_receiver_loop(self) -> None:
         from app.services.alarms.correlator import AlarmCorrelator
-        from app.services.snmp.trap_receiver import SNMPTrapReceiver, TrapEvent
+        from app.services.snmp.trap_receiver import (
+            SNMPTrapReceiver,
+            TrapEvent,
+            parse_trap_v3_users,
+        )
 
         trap_port = int(os.environ.get("TRAP_PORT", "162"))
         backoff = 10
@@ -143,6 +147,7 @@ class WorkerSupervisor:
                 receiver = SNMPTrapReceiver(
                     bind_host=os.environ.get("TRAP_BIND_HOST", "0.0.0.0"),  # nosec B104 - container listener
                     bind_port=trap_port,
+                    v3_users=parse_trap_v3_users(settings.trap_v3_users),
                 )
                 correlator = AlarmCorrelator(async_session_factory)
 

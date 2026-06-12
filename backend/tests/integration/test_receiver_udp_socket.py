@@ -131,3 +131,71 @@ async def test_trap_receiver_dispatches_raw_snmpv2c_trap_over_socket() -> None:
     assert event.trap_oid == "1.3.6.1.6.3.1.1.5.3"
     assert event.varbinds["1.3.6.1.2.1.1.5.0"] == "router-trap-socket-1"
     assert event.varbinds["1.3.6.1.6.3.1.1.4.1.0"] == event.trap_oid
+
+
+@pytest.mark.integration
+async def test_trap_receiver_accepts_snmpv3_authpriv_trap_over_socket() -> None:
+    from app.services.snmp import trap_receiver
+
+    if trap_receiver.engine is None:
+        pytest.skip("pysnmp-lextudio is not installed in this environment")
+
+    from pysnmp.hlapi.v3arch.asyncio import (
+        ContextData,
+        NotificationType,
+        ObjectIdentity,
+        SnmpEngine,
+        UdpTransportTarget,
+        UsmUserData,
+        send_notification,
+        usmAesCfb128Protocol,
+        usmHMAC192SHA256AuthProtocol,
+    )
+    from pysnmp.proto.rfc1902 import OctetString
+
+    from app.services.snmp.trap_receiver import SNMPTrapReceiver, TrapEvent, TrapV3User
+
+    engine_id = "8000000001020304"
+    received: asyncio.Queue[TrapEvent] = asyncio.Queue()
+    port = _free_udp_port()
+    receiver = SNMPTrapReceiver(
+        bind_host="127.0.0.1",
+        bind_port=port,
+        v3_users=[
+            TrapV3User(
+                user="nms-trap",
+                auth_protocol="SHA256",
+                auth_key="authpass123",
+                priv_protocol="AES128",
+                priv_key="privpass123",
+                engine_id=engine_id,
+            )
+        ],
+    )
+    receiver.on_trap(received.put_nowait)
+
+    await receiver.start()
+    try:
+        # v3 TRAP PDUs are authoritative on the sender side, so the sender
+        # engine must carry the engineID the receiver has the user keyed to.
+        sender = SnmpEngine(OctetString(hexValue=engine_id))
+        error_indication, _, _, _ = await send_notification(
+            sender,
+            UsmUserData(
+                "nms-trap",
+                "authpass123",
+                "privpass123",
+                authProtocol=usmHMAC192SHA256AuthProtocol,
+                privProtocol=usmAesCfb128Protocol,
+            ),
+            await UdpTransportTarget.create(("127.0.0.1", port)),
+            ContextData(),
+            "trap",
+            NotificationType(ObjectIdentity("1.3.6.1.6.3.1.1.5.3")),
+        )
+        assert error_indication is None
+        event = await asyncio.wait_for(received.get(), timeout=5)
+    finally:
+        await receiver.stop()
+
+    assert event.trap_oid == "1.3.6.1.6.3.1.1.5.3"
