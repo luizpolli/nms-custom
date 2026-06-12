@@ -51,6 +51,100 @@ CHASSIS_PROFILE_FILES = {
 }
 
 
+# Exact chassis PID → profile mapping. The PID is entPhysicalModelName on the
+# ENTITY-MIB chassis row (entPhysicalClass == chassis(3)); reference walks live
+# in docs/snmpwalks/. Exact PIDs are checked before the substring heuristics in
+# _chassis_profile_for_device, so a collected device always lands on the right
+# profile even when its display model string is generic.
+CHASSIS_PID_PROFILES: dict[str, str] = {
+    # ASR 900 series (IOS XE)
+    "ASR-903": "asr903",
+    "ASR-920-4SZ-A": "asr920",
+    "ASR-920-4SZ-D": "asr920",
+    "ASR-920-8S4Z-PD": "asr920",
+    "ASR-920-10SZ-PD": "asr920",
+    "ASR-920-12CZ-A": "asr920",
+    "ASR-920-12CZ-D": "asr920",
+    "ASR-920-12SZ-A": "asr920",
+    "ASR-920-12SZ-D": "asr920",
+    "ASR-920-12SZ-IM": "asr920",
+    "ASR-920-12SZ-IM-CC": "asr920",
+    "ASR-920-20SZ-M": "asr920",
+    "ASR-920-24SZ-IM": "asr920",
+    "ASR-920-24SZ-M": "asr920",
+    "ASR-920-24TZ-M": "asr920",
+    "ASR-920U-12SZ-IM": "asr920",
+    # ASR 9000 series (IOS XR)
+    "ASR-9006": "asr9006",
+    "ASR-9006-AC": "asr9006",
+    "ASR-9006-DC": "asr9006",
+    "ASR-9010": "asr9010",
+    "ASR-9010-AC": "asr9010",
+    "ASR-9010-DC": "asr9010",
+    # NCS 540 (IOS XR)
+    "N540-24Z8Q2C-M": "ncs540",
+    "N540-24Z8Q2C-SYS": "ncs540",
+    "N540-ACC-SYS": "ncs540",
+    "N540X-16Z4G8Q2C-A": "ncs540-16z4",
+    "N540X-16Z4G8Q2C-D": "ncs540-16z4",
+    "N540X-12Z16G-SYS-A": "ncs540-12z16g",
+    "N540X-12Z16G-SYS-D": "ncs540-12z16g",
+    "N540-28Z4C-SYS-A": "ncs540-28z4c",
+    "N540-28Z4C-SYS-D": "ncs540-28z4c",
+    "N540-12Z20G-SYS-A": "ncs540-12z20g",
+    "N540-12Z20G-SYS-D": "ncs540-12z20g",
+    "N540-FH-AGG-SYS": "ncs540-fh-agg",
+    "N540-FH-CSR-SYS": "ncs540-fh-csr",
+    "N540X-4Z14G2Q-A": "ncs540x-4z14g2q",
+    "N540X-4Z14G2Q-D": "ncs540x-4z14g2q",
+    # NCS 55xx (IOS XR)
+    "NCS-55A1-36H-S": "ncs55a1",
+    "NCS-55A1-36H-SE-S": "ncs55a1",
+    "NCS-55A1-24H": "ncs55a1-24h",
+    "NCS-55A1-24Q6H-S": "ncs55a1-24q6h",
+    "NCS-55A1-24Q6H-SS": "ncs55a1-24q6h",
+    "NCS-55A1-48Q6H": "ncs55a1-48q6h",
+    "NCS-5501": "ncs5501",
+    "NCS-5501-SE": "ncs5501",
+    "NCS-5502": "ncs5502",
+    "NCS-5502-SE": "ncs5502",
+    "NCS-5508": "ncs5508",
+    # NCS 560 (IOS XR)
+    "N560-4-SYS": "ncs560",
+    "N560-7-SYS": "ncs560",
+    "NCS560-4": "ncs560",
+    "NCS560-7": "ncs560",
+}
+
+_CHASSIS_CLASS_LABELS = {"3", "chassis"}
+
+
+def _normalize_pid(value: object) -> str:
+    return str(value).strip().rstrip("=").strip().upper()
+
+
+def _chassis_pid_for_device(
+    device: Device,
+    inventory: Inventory | None,
+    physical_components: list[PhysicalInventoryComponent] | None = None,
+) -> str | None:
+    """Return the chassis PID for a device, preferring collected ENTITY-MIB data."""
+    if physical_components:
+        for component in physical_components:
+            if component.physical_class == 3 and component.model_name:
+                return _normalize_pid(component.model_name)
+    for item in _normalize_physical_inventory_items(inventory):
+        physical_class = str(item.get("physicalClass", "")).strip().lower()
+        model_name = item.get("modelName") or item.get("model")
+        if physical_class in _CHASSIS_CLASS_LABELS and model_name:
+            return _normalize_pid(model_name)
+    # Fall back to model strings that are themselves exact PIDs.
+    for candidate in ((inventory.hardware_model if inventory else None), device.model):
+        if candidate and _normalize_pid(candidate) in CHASSIS_PID_PROFILES:
+            return _normalize_pid(candidate)
+    return None
+
+
 def _device_inventory_terms(device: Device, inventory: Inventory | None) -> str:
     values: list[str] = [
         device.name,
@@ -69,7 +163,16 @@ def _device_inventory_terms(device: Device, inventory: Inventory | None) -> str:
     return " ".join(values).lower().replace("-", " ").replace("_", " ")
 
 
-def _chassis_profile_for_device(device: Device, inventory: Inventory | None) -> str | None:
+def _chassis_profile_for_device(
+    device: Device,
+    inventory: Inventory | None,
+    physical_components: list[PhysicalInventoryComponent] | None = None,
+) -> str | None:
+    pid = _chassis_pid_for_device(device, inventory, physical_components)
+    if pid is not None:
+        profile = CHASSIS_PID_PROFILES.get(pid)
+        if profile is not None:
+            return profile
     terms = _device_inventory_terms(device, inventory)
     compact_terms = terms.replace(" ", "")
     # NCS5500 fixed-port routers (check before generic ncs55a1 catch-all)
@@ -416,16 +519,16 @@ async def get_device_chassis(
     if device is None:
         raise HTTPException(status_code=404, detail="Device not found")
 
-    profile = _chassis_profile_for_device(device, device.inventory)
-    if profile is None:
-        raise HTTPException(status_code=404, detail="No chassis profile is available for this device")
-
     physical_result = await db.execute(
         select(PhysicalInventoryComponent)
         .where(PhysicalInventoryComponent.device_id == id)
         .order_by(PhysicalInventoryComponent.physical_index.asc())
     )
     physical_components = list(physical_result.scalars().all())
+
+    profile = _chassis_profile_for_device(device, device.inventory, physical_components)
+    if profile is None:
+        raise HTTPException(status_code=404, detail="No chassis profile is available for this device")
     chassis_model = _customize_chassis_model(
         _load_chassis_profile(profile),
         device,

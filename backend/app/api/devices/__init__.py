@@ -21,8 +21,10 @@ for _submodule in ("export", "bulk_import", "snmp_ops", "crud", "chassis"):
     importlib.import_module(f"app.api.devices.{_submodule}")
 
 from app.api.devices.chassis import (  # noqa: E402
+    CHASSIS_PID_PROFILES,
     CHASSIS_PROFILE_FILES,
     _apply_physical_inventory_to_chassis,
+    _chassis_pid_for_device,
     _chassis_profile_for_device,
     _customize_chassis_model,
     _load_chassis_profile,
@@ -31,10 +33,12 @@ from app.api.devices.chassis import (  # noqa: E402
 )
 
 __all__ = [
+    "CHASSIS_PID_PROFILES",
     "CHASSIS_PROFILE_FILES",
     "CredentialVault",
     "_apply_physical_inventory_to_chassis",
     "_build_snmp_cred",
+    "_chassis_pid_for_device",
     "_chassis_profile_for_device",
     "_customize_chassis_model",
     "_get_device_or_404",

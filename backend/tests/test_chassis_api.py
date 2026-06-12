@@ -970,3 +970,158 @@ def test_chassis_profile_ncs5501_not_confused_with_ncs55a1():
     profile = _chassis_profile_for_device(device, None)
     assert profile == "ncs5501"
     assert profile != "ncs55a1"
+
+
+# ---------------------------------------------------------------------------
+# PID-based profile detection (exact entPhysicalModelName mapping)
+# ---------------------------------------------------------------------------
+
+from app.api.devices import CHASSIS_PID_PROFILES, _chassis_pid_for_device  # noqa: E402
+
+
+def _chassis_component(model_name: str, physical_class: int = 3) -> PhysicalInventoryComponent:
+    return PhysicalInventoryComponent(
+        id=uuid.uuid4(),
+        device_id=uuid.uuid4(),
+        physical_index=1,
+        name="Chassis",
+        physical_class=physical_class,
+        model_name=model_name,
+    )
+
+
+def test_every_pid_profile_target_is_a_known_profile():
+    from app.api.devices import CHASSIS_PROFILE_FILES
+
+    unknown = {p for p in CHASSIS_PID_PROFILES.values() if p not in CHASSIS_PROFILE_FILES}
+    assert not unknown, f"PID table maps to missing profiles: {unknown}"
+
+
+def test_chassis_pid_from_physical_components_wins_over_model_heuristics():
+    """A collected chassis PID must beat the device.model substring heuristics."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="mislabeled-router",
+        ip_address="10.0.2.1",
+        device_type="router",
+        model="Cisco ASR 9006",  # heuristics alone would say asr9006
+        vendor="Cisco",
+    )
+    components = [_chassis_component("NCS-55A1-36H-SE-S")]
+
+    assert _chassis_profile_for_device(device, None, components) == "ncs55a1"
+
+
+def test_chassis_pid_detects_asr920_variant_from_walk_pid():
+    """PIDs captured in docs/snmpwalks/asr920 resolve via the exact table."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="edge-920",
+        ip_address="10.0.2.2",
+        device_type="router",
+        vendor="Cisco",
+    )
+    for pid in ("ASR-920-12CZ-D", "ASR-920-12SZ-D", "ASR-920-12SZ-IM", "ASR-920-12SZ-IM-CC"):
+        components = [_chassis_component(pid)]
+        assert _chassis_profile_for_device(device, None, components) == "asr920", pid
+
+
+def test_chassis_pid_detects_ncs560_sys_pid_not_covered_by_heuristics():
+    """N560-4-SYS contains no 'ncs560' token, so only the PID table can map it."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="agg-n560",
+        ip_address="10.0.2.3",
+        device_type="router",
+        model="N560-4-SYS",
+        vendor="Cisco",
+    )
+
+    assert _chassis_profile_for_device(device, None) == "ncs560"
+
+
+def test_chassis_pid_from_legacy_inventory_json_items():
+    """physicalClass may be the label string in legacy inventory JSON blobs."""
+    device = Device(
+        id=uuid.uuid4(),
+        name="legacy-blob",
+        ip_address="10.0.2.4",
+        device_type="router",
+        vendor="Cisco",
+    )
+    inventory = Inventory(
+        id=uuid.uuid4(),
+        device_id=device.id,
+        additional_info={
+            "physical_inventory": [
+                {"physicalIndex": 1, "physicalClass": "chassis", "modelName": "N540X-16Z4G8Q2C-A"},
+            ]
+        },
+    )
+
+    assert _chassis_pid_for_device(device, inventory) == "N540X-16Z4G8Q2C-A"
+    assert _chassis_profile_for_device(device, inventory) == "ncs540-16z4"
+
+
+def test_chassis_pid_normalizes_trailing_equals_and_case():
+    device = Device(
+        id=uuid.uuid4(),
+        name="weird-pid",
+        ip_address="10.0.2.5",
+        device_type="router",
+        vendor="Cisco",
+    )
+    components = [_chassis_component("ncs-5501-se= ")]
+
+    assert _chassis_pid_for_device(device, None, components) == "NCS-5501-SE"
+    assert _chassis_profile_for_device(device, None, components) == "ncs5501"
+
+
+def test_chassis_pid_ignores_non_chassis_components():
+    device = Device(
+        id=uuid.uuid4(),
+        name="no-chassis-row",
+        ip_address="10.0.2.6",
+        device_type="router",
+        vendor="Cisco",
+    )
+    components = [_chassis_component("A900-IMA8S", physical_class=9)]
+
+    assert _chassis_pid_for_device(device, None, components) is None
+    assert _chassis_profile_for_device(device, None, components) is None
+
+
+@pytest.mark.asyncio
+async def test_chassis_endpoint_resolves_profile_from_collected_pid():
+    """Endpoint must use persisted physical inventory PID when model is generic."""
+    device_id = uuid.uuid4()
+    device = Device(
+        id=device_id,
+        name="pid-resolved",
+        ip_address="10.0.2.7",
+        device_type="router",
+        model="Cisco Router",  # no usable heuristic token
+        vendor="Cisco",
+    )
+    chassis_row = PhysicalInventoryComponent(
+        id=uuid.uuid4(),
+        device_id=device_id,
+        physical_index=1,
+        name="Chassis",
+        physical_class=3,
+        model_name="NCS-55A1-36H-SE-S",
+    )
+
+    class _PidSession(_FakeSession):
+        async def execute(self, *args, **kwargs):
+            self.calls += 1
+            if self.calls == 1:
+                return _FakeResult(scalar=self.device)
+            if self.calls == 2:
+                return _FakeResult(rows=self.physical_components)
+            return _FakeResult(rows=[])  # alarms query
+
+    chassis = await get_device_chassis(device_id, _PidSession(device, [chassis_row]))  # type: ignore[arg-type]
+
+    assert chassis["profileId"] == "Cisco_NCS55A1"
+    assert chassis["source"]["profile"] == "ncs55a1"
