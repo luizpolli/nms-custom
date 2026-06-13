@@ -14,11 +14,9 @@ asr920-12cz     : 12CZ-D. Fan+2 PSU left; 8 RJ45 (left cage, 4 cols x 2 rows);
                   4 SFP-GE (right cage); 2x 10G uplink; viewBox 3422.5x312.5.
 asr920-12sz     : 12SZ-D. Fan+2 PSU (DC terminal block) left; 12 SFP-GE/10G ports
                   in a single row inside the "1G/10G" cage right; viewBox 1680x166.
-
-12SZ-IM is intentionally absent: its EPNM faceplate is a modular timing chassis
-(GNSS / 10MHz / 1PPS, "10G SFP+" + "1G SFP" port groups numbered 15->0, IM bays)
-whose layout does not map cleanly onto the inventory model, so that profile keeps
-its construction-aligned synthetic faceplate until a dedicated calibration pass.
+asr920-12sz-im  : 12SZ-IM-CC modular timing chassis; ports descending 15->0
+                  (10G-SFP+ uplinks + 1G-SFP + RJ45 pairs); IM = timing module
+                  (GNSS/10MHz/1PPS); 2 PSU bays + vent left; viewBox 3422.5x312.5.
 """
 from __future__ import annotations
 
@@ -71,6 +69,46 @@ LAYOUTS["asr920-12sz"] = {
     "hotspot-psu-0": (11.0, 28.0, 7.5, 34.0),
     "hotspot-psu-1": (19.5, 28.0, 7.5, 34.0),
     "hotspot-fan-0": (3.5, 40.0, 5.5, 55.0),
+}
+
+
+# --------------------------------------------------------------------------- #
+# ASR920-12SZ-IM-CC : modular timing chassis, viewBox 3422.5x312.5             #
+#   Ports run descending 15->0 left-to-right:                                  #
+#     10G SFP+ uplinks 12-15 and 1G-SFP 8-11 in a single row inside the cage;  #
+#     RJ45 0-7 as four vertical pairs near the branding;                       #
+#   IM 0/1 = the timing module (GNSS / 10MHz / 1PPS); 2 PSU bays + vent left.  #
+# --------------------------------------------------------------------------- #
+_IM_W, _IM_H = 1.3, 36.0          # SFP / uplink single-row box
+_IM_RY = 24.0                     # single-row centre (inside the dark cage)
+_IM_RT, _IM_RB = 15.0, 32.0       # RJ45 pair rows
+_IM_RW, _IM_RH = 1.5, 15.0
+LAYOUTS["asr920-12sz-im"] = {
+    # 10G SFP+ uplinks 12-15 (labels 15+ 14+ 13+ 12+)
+    "hotspot-uplink-15": (42.0, _IM_RY, _IM_W, _IM_H),
+    "hotspot-uplink-14": (45.2, _IM_RY, _IM_W, _IM_H),
+    "hotspot-uplink-13": (48.8, _IM_RY, _IM_W, _IM_H),
+    "hotspot-uplink-12": (52.2, _IM_RY, _IM_W, _IM_H),
+    # 1G SFP-GE 8-11 (labels 11 10 9 8)
+    "hotspot-sfp-11": (55.8, _IM_RY, _IM_W, _IM_H),
+    "hotspot-sfp-10": (59.2, _IM_RY, _IM_W, _IM_H),
+    "hotspot-sfp-9": (62.6, _IM_RY, _IM_W, _IM_H),
+    "hotspot-sfp-8": (66.0, _IM_RY, _IM_W, _IM_H),
+    # RJ45 0-7 : four vertical pairs (labels 7/6 5/4 3/2 1/0), even=bottom
+    "hotspot-rj45-7": (74.0, _IM_RT, _IM_RW, _IM_RH),
+    "hotspot-rj45-6": (74.0, _IM_RB, _IM_RW, _IM_RH),
+    "hotspot-rj45-5": (77.3, _IM_RT, _IM_RW, _IM_RH),
+    "hotspot-rj45-4": (77.3, _IM_RB, _IM_RW, _IM_RH),
+    "hotspot-rj45-3": (80.4, _IM_RT, _IM_RW, _IM_RH),
+    "hotspot-rj45-2": (80.4, _IM_RB, _IM_RW, _IM_RH),
+    "hotspot-rj45-1": (83.2, _IM_RT, _IM_RW, _IM_RH),
+    "hotspot-rj45-0": (83.2, _IM_RB, _IM_RW, _IM_RH),
+    # IM 0/1 = timing module (GNSS / 10MHz / 1PPS)
+    "hotspot-im-0": (38.0, 30.0, 9.0, 52.0),
+    # PSU bays + vent (left)
+    "hotspot-psu-0": (10.5, 35.0, 11.0, 56.0),
+    "hotspot-psu-1": (22.0, 35.0, 11.0, 56.0),
+    "hotspot-fan-0": (31.0, 35.0, 6.0, 56.0),
 }
 
 
