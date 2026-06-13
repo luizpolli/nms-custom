@@ -1027,7 +1027,7 @@
   ],
   "views": [
     {
-      "height": 165,
+      "height": 166,
       "hotspots": [
         {
           "asset": {
@@ -1036,10 +1036,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 200,
-            "y": 36
+            "x": 1188.6,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-0",
@@ -1061,10 +1061,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 254,
-            "y": 36
+            "x": 1215.5,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-1",
@@ -1086,10 +1086,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 308,
-            "y": 36
+            "x": 1245.7,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-2",
@@ -1111,10 +1111,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 362,
-            "y": 36
+            "x": 1272.6,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-3",
@@ -1136,10 +1136,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 416,
-            "y": 36
+            "x": 1299.5,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-4",
@@ -1161,10 +1161,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 470,
-            "y": 36
+            "x": 1326.4,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-5",
@@ -1186,10 +1186,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 200,
-            "y": 86
+            "x": 1354.9,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-6",
@@ -1211,10 +1211,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 254,
-            "y": 86
+            "x": 1381.8,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-7",
@@ -1236,10 +1236,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 308,
-            "y": 86
+            "x": 1408.7,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-8",
@@ -1261,10 +1261,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 362,
-            "y": 86
+            "x": 1435.6,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-9",
@@ -1286,10 +1286,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 416,
-            "y": 86
+            "x": 1464.1,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-10",
@@ -1311,10 +1311,10 @@
             "typeId": "SFP-10G"
           },
           "bounds": {
-            "h": 38,
-            "w": 46,
-            "x": 470,
-            "y": 86
+            "x": 1489.3,
+            "y": 43.2,
+            "w": 21.8,
+            "h": 69.7
           },
           "empty": false,
           "id": "hotspot-sfp-11",
@@ -1336,10 +1336,10 @@
             "typeId": "ASR-920-PWR-D"
           },
           "bounds": {
-            "h": 98,
-            "w": 138,
-            "x": 1390,
-            "y": 34
+            "x": 121.8,
+            "y": 18.3,
+            "w": 126.0,
+            "h": 56.4
           },
           "empty": false,
           "id": "hotspot-psu-0",
@@ -1361,10 +1361,10 @@
             "typeId": "ASR-920-PWR-D"
           },
           "bounds": {
-            "h": 98,
-            "w": 138,
-            "x": 1542,
-            "y": 34
+            "x": 264.6,
+            "y": 18.3,
+            "w": 126.0,
+            "h": 56.4
           },
           "empty": false,
           "id": "hotspot-psu-1",
@@ -1381,10 +1381,10 @@
         },
         {
           "bounds": {
-            "h": 50,
-            "w": 130,
-            "x": 22,
-            "y": 96
+            "x": 12.6,
+            "y": 20.8,
+            "w": 92.4,
+            "h": 91.3
           },
           "empty": false,
           "id": "hotspot-fan-0",
@@ -1401,10 +1401,10 @@
         }
       ],
       "id": "front",
-      "image": "/chassis-assets/asr920-12sz/ASR-920-12SZ-D-Front.svg",
+      "image": "/chassis-assets/asr920-12sz/epnm-front.svg",
       "label": "Front View",
-      "sourceHeight": 165,
-      "sourceImage": "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/NCS42XXFamily/Cisco_ASR920-12SZ-D_Router",
+      "sourceHeight": 166,
+      "sourceImage": "/chassis-assets/asr920-12sz/epnm-front.svg",
       "sourceWidth": 1680,
       "width": 1680
     }

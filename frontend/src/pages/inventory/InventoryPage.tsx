@@ -112,6 +112,9 @@ const exampleDevice = {
 const exampleChassisProfiles = [
   { id: 'asr903', label: 'ASR 903', deviceName: exampleDevice.name, dataUrl: '/chassis-assets/asr903/normalized.json' },
   { id: 'asr920', label: 'ASR 920', deviceName: 'MEX-EDGE-ASR920-01', dataUrl: '/chassis-assets/asr920/normalized.json' },
+  { id: 'asr920-12cz', label: 'ASR 920 12CZ', deviceName: 'MEX-EDGE-ASR920-12CZ', dataUrl: '/chassis-assets/asr920-12cz/normalized.json' },
+  { id: 'asr920-12sz', label: 'ASR 920 12SZ', deviceName: 'MEX-EDGE-ASR920-12SZ', dataUrl: '/chassis-assets/asr920-12sz/normalized.json' },
+  { id: 'asr920-12sz-im', label: 'ASR 920 12SZ-IM', deviceName: 'MEX-EDGE-ASR920-12SZIM', dataUrl: '/chassis-assets/asr920-12sz-im/normalized.json' },
   { id: 'asr9006', label: 'ASR 9006', deviceName: 'MEX-CORE-ASR9K-01', dataUrl: '/chassis-assets/asr9006/normalized.json' },
   { id: 'ncs55a1', label: 'NCS55A1', deviceName: 'MEX-CORE-NCS55A1-01', dataUrl: '/chassis-assets/ncs55a1/normalized.json' },
   { id: 'ncs560', label: 'NCS560', deviceName: 'MEX-CORE-NCS560-01', dataUrl: '/chassis-assets/ncs560/normalized.json' },
