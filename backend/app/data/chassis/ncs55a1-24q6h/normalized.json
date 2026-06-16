@@ -18,6 +18,1248 @@
       "hotspots": [
         {
           "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 185,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-0",
+          "inventoryId": null,
+          "label": "QSFP28 0",
+          "metadata": {
+            "sourceName": "QSFP28 bay 0",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 0",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 212,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-1",
+          "inventoryId": null,
+          "label": "QSFP28 1",
+          "metadata": {
+            "sourceName": "QSFP28 bay 1",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 1",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 238,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-2",
+          "inventoryId": null,
+          "label": "QSFP28 2",
+          "metadata": {
+            "sourceName": "QSFP28 bay 2",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 2",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 264,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-3",
+          "inventoryId": null,
+          "label": "QSFP28 3",
+          "metadata": {
+            "sourceName": "QSFP28 bay 3",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 3",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 291,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-4",
+          "inventoryId": null,
+          "label": "QSFP28 4",
+          "metadata": {
+            "sourceName": "QSFP28 bay 4",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 4",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 317,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-5",
+          "inventoryId": null,
+          "label": "QSFP28 5",
+          "metadata": {
+            "sourceName": "QSFP28 bay 5",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 5",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 344,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-6",
+          "inventoryId": null,
+          "label": "QSFP28 6",
+          "metadata": {
+            "sourceName": "QSFP28 bay 6",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 6",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 370,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-7",
+          "inventoryId": null,
+          "label": "QSFP28 7",
+          "metadata": {
+            "sourceName": "QSFP28 bay 7",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 7",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 396,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-8",
+          "inventoryId": null,
+          "label": "QSFP28 8",
+          "metadata": {
+            "sourceName": "QSFP28 bay 8",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 8",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 423,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-9",
+          "inventoryId": null,
+          "label": "QSFP28 9",
+          "metadata": {
+            "sourceName": "QSFP28 bay 9",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 9",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 449,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-10",
+          "inventoryId": null,
+          "label": "QSFP28 10",
+          "metadata": {
+            "sourceName": "QSFP28 bay 10",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 10",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 476,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-11",
+          "inventoryId": null,
+          "label": "QSFP28 11",
+          "metadata": {
+            "sourceName": "QSFP28 bay 11",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 11",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 502,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-12",
+          "inventoryId": null,
+          "label": "QSFP28 12",
+          "metadata": {
+            "sourceName": "QSFP28 bay 12",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 12",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 528,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-13",
+          "inventoryId": null,
+          "label": "QSFP28 13",
+          "metadata": {
+            "sourceName": "QSFP28 bay 13",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 13",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 555,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-14",
+          "inventoryId": null,
+          "label": "QSFP28 14",
+          "metadata": {
+            "sourceName": "QSFP28 bay 14",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 14",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 581,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-15",
+          "inventoryId": null,
+          "label": "QSFP28 15",
+          "metadata": {
+            "sourceName": "QSFP28 bay 15",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 15",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 608,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-16",
+          "inventoryId": null,
+          "label": "QSFP28 16",
+          "metadata": {
+            "sourceName": "QSFP28 bay 16",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 16",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 634,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-17",
+          "inventoryId": null,
+          "label": "QSFP28 17",
+          "metadata": {
+            "sourceName": "QSFP28 bay 17",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 17",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 660,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-18",
+          "inventoryId": null,
+          "label": "QSFP28 18",
+          "metadata": {
+            "sourceName": "QSFP28 bay 18",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 18",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 687,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-19",
+          "inventoryId": null,
+          "label": "QSFP28 19",
+          "metadata": {
+            "sourceName": "QSFP28 bay 19",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 19",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 713,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-20",
+          "inventoryId": null,
+          "label": "QSFP28 20",
+          "metadata": {
+            "sourceName": "QSFP28 bay 20",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 20",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 740,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-21",
+          "inventoryId": null,
+          "label": "QSFP28 21",
+          "metadata": {
+            "sourceName": "QSFP28 bay 21",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 21",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 766,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-22",
+          "inventoryId": null,
+          "label": "QSFP28 22",
+          "metadata": {
+            "sourceName": "QSFP28 bay 22",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 22",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 792,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-23",
+          "inventoryId": null,
+          "label": "QSFP28 23",
+          "metadata": {
+            "sourceName": "QSFP28 bay 23",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 23",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 819,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-24",
+          "inventoryId": null,
+          "label": "QSFP28 24",
+          "metadata": {
+            "sourceName": "QSFP28 bay 24",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 24",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 845,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-25",
+          "inventoryId": null,
+          "label": "QSFP28 25",
+          "metadata": {
+            "sourceName": "QSFP28 bay 25",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 25",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 872,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-26",
+          "inventoryId": null,
+          "label": "QSFP28 26",
+          "metadata": {
+            "sourceName": "QSFP28 bay 26",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 26",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 898,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-27",
+          "inventoryId": null,
+          "label": "QSFP28 27",
+          "metadata": {
+            "sourceName": "QSFP28 bay 27",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 27",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 924,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-28",
+          "inventoryId": null,
+          "label": "QSFP28 28",
+          "metadata": {
+            "sourceName": "QSFP28 bay 28",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 28",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 951,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-29",
+          "inventoryId": null,
+          "label": "QSFP28 29",
+          "metadata": {
+            "sourceName": "QSFP28 bay 29",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 29",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 977,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-30",
+          "inventoryId": null,
+          "label": "QSFP28 30",
+          "metadata": {
+            "sourceName": "QSFP28 bay 30",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 30",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1004,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-31",
+          "inventoryId": null,
+          "label": "QSFP28 31",
+          "metadata": {
+            "sourceName": "QSFP28 bay 31",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 31",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1030,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-32",
+          "inventoryId": null,
+          "label": "QSFP28 32",
+          "metadata": {
+            "sourceName": "QSFP28 bay 32",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 32",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1056,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-33",
+          "inventoryId": null,
+          "label": "QSFP28 33",
+          "metadata": {
+            "sourceName": "QSFP28 bay 33",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 33",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1083,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-34",
+          "inventoryId": null,
+          "label": "QSFP28 34",
+          "metadata": {
+            "sourceName": "QSFP28 bay 34",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 34",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1109,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-35",
+          "inventoryId": null,
+          "label": "QSFP28 35",
+          "metadata": {
+            "sourceName": "QSFP28 bay 35",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 35",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1136,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-36",
+          "inventoryId": null,
+          "label": "QSFP28 36",
+          "metadata": {
+            "sourceName": "QSFP28 bay 36",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 36",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1162,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-37",
+          "inventoryId": null,
+          "label": "QSFP28 37",
+          "metadata": {
+            "sourceName": "QSFP28 bay 37",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 37",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1188,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-38",
+          "inventoryId": null,
+          "label": "QSFP28 38",
+          "metadata": {
+            "sourceName": "QSFP28 bay 38",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 38",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1215,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-39",
+          "inventoryId": null,
+          "label": "QSFP28 39",
+          "metadata": {
+            "sourceName": "QSFP28 bay 39",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 39",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1241,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-40",
+          "inventoryId": null,
+          "label": "QSFP28 40",
+          "metadata": {
+            "sourceName": "QSFP28 bay 40",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 40",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1268,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-41",
+          "inventoryId": null,
+          "label": "QSFP28 41",
+          "metadata": {
+            "sourceName": "QSFP28 bay 41",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 41",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1294,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-42",
+          "inventoryId": null,
+          "label": "QSFP28 42",
+          "metadata": {
+            "sourceName": "QSFP28 bay 42",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 42",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1320,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-43",
+          "inventoryId": null,
+          "label": "QSFP28 43",
+          "metadata": {
+            "sourceName": "QSFP28 bay 43",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 43",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1347,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-44",
+          "inventoryId": null,
+          "label": "QSFP28 44",
+          "metadata": {
+            "sourceName": "QSFP28 bay 44",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 44",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1373,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-45",
+          "inventoryId": null,
+          "label": "QSFP28 45",
+          "metadata": {
+            "sourceName": "QSFP28 bay 45",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 45",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1400,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-46",
+          "inventoryId": null,
+          "label": "QSFP28 46",
+          "metadata": {
+            "sourceName": "QSFP28 bay 46",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 46",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1426,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-47",
+          "inventoryId": null,
+          "label": "QSFP28 47",
+          "metadata": {
+            "sourceName": "QSFP28 bay 47",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP28 bay 47",
+          "asset": {
+            "typeId": "QSFP28",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1452,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-48",
+          "inventoryId": null,
+          "label": "SFP+ 48",
+          "metadata": {
+            "sourceName": "SFP+ bay 48",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP+ bay 48",
+          "asset": {
+            "typeId": "SFP+",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1479,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-49",
+          "inventoryId": null,
+          "label": "SFP+ 49",
+          "metadata": {
+            "sourceName": "SFP+ bay 49",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP+ bay 49",
+          "asset": {
+            "typeId": "SFP+",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1505,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-50",
+          "inventoryId": null,
+          "label": "SFP+ 50",
+          "metadata": {
+            "sourceName": "SFP+ bay 50",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP+ bay 50",
+          "asset": {
+            "typeId": "SFP+",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1532,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-51",
+          "inventoryId": null,
+          "label": "SFP+ 51",
+          "metadata": {
+            "sourceName": "SFP+ bay 51",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP+ bay 51",
+          "asset": {
+            "typeId": "SFP+",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1558,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-52",
+          "inventoryId": null,
+          "label": "SFP+ 52",
+          "metadata": {
+            "sourceName": "SFP+ bay 52",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP+ bay 52",
+          "asset": {
+            "typeId": "SFP+",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 102,
+            "w": 24,
+            "x": 1584,
+            "y": 29
+          },
+          "empty": true,
+          "id": "hotspot-port-53",
+          "inventoryId": null,
+          "label": "SFP+ 53",
+          "metadata": {
+            "sourceName": "SFP+ bay 53",
+            "sourceTypeId": "NCS-55A1-24Q6H-S"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP+ bay 53",
+          "asset": {
+            "typeId": "SFP+",
+            "image": "/chassis-assets/ncs55a1/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs55a1/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
             "h": 165,
             "w": 1670,
             "x": 0,
