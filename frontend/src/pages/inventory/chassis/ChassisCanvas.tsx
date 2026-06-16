@@ -23,27 +23,30 @@ function clampPan(pan: { x: number; y: number }, zoom: number, frame: { width: n
   };
 }
 
-const ALARM_DOT_STYLES: Record<ComponentAlarmInfo['maxSeverity'], string> = {
-  critical: 'bg-red-500 animate-pulse',
-  major: 'bg-orange-500',
-  minor: 'bg-yellow-400',
-  warning: 'bg-blue-400',
-  info: 'bg-gray-400',
+const ALARM_ICONS: Record<ComponentAlarmInfo['maxSeverity'], string> = {
+  critical: '/chassis-icons/alertCritical.svg',
+  major: '/chassis-icons/alertMajor.svg',
+  minor: '/chassis-icons/alertMinor.svg',
+  warning: '/chassis-icons/fi-warning.svg',
+  info: '/chassis-icons/fi-record-information.svg',
 };
 
-function AlarmDot({ severity }: { severity: ComponentAlarmInfo['maxSeverity'] }) {
+function AlarmIcon({ severity }: { severity: ComponentAlarmInfo['maxSeverity'] }) {
   return (
-    <span
+    <img
+      src={ALARM_ICONS[severity]}
+      alt=""
       aria-label={`${severity} alarm`}
-      className={`pointer-events-none absolute right-0.5 top-0.5 h-2 w-2 rounded-full ring-1 ring-white/60 ${ALARM_DOT_STYLES[severity]}`}
+      className={`pointer-events-none absolute right-0 top-0 h-3 w-3 object-contain${severity === 'critical' ? ' animate-pulse' : ''}`}
+      draggable={false}
     />
   );
 }
 
-const PORT_STATUS_DOT_STYLES: Record<PortStatus, string> = {
-  up: 'bg-green-500',
-  down: 'bg-red-500',
-  'admin-down': 'bg-gray-400',
+const PORT_STATUS_ICONS: Record<PortStatus, string> = {
+  up: '/chassis-icons/up.svg',
+  down: '/chassis-icons/down.svg',
+  'admin-down': '/chassis-icons/fi-admindown.svg',
 };
 
 const PORT_STATUS_LABELS: Record<PortStatus, string> = {
@@ -52,20 +55,23 @@ const PORT_STATUS_LABELS: Record<PortStatus, string> = {
   'admin-down': 'admin down',
 };
 
-function PortStatusDot({ status }: { status: PortStatus }) {
+function PortStatusIcon({ status }: { status: PortStatus }) {
   return (
-    <span
+    <img
+      src={PORT_STATUS_ICONS[status]}
+      alt=""
       aria-label={`port ${PORT_STATUS_LABELS[status]}`}
-      className={`pointer-events-none absolute bottom-0.5 left-0.5 h-2 w-2 rounded-full ring-1 ring-white/60 ${PORT_STATUS_DOT_STYLES[status]}`}
+      className="pointer-events-none absolute bottom-0 left-0 h-3 w-3 object-contain"
+      draggable={false}
     />
   );
 }
 
-const ALARM_LEGEND_ITEMS: { severity: ComponentAlarmInfo['maxSeverity']; label: string; color: string }[] = [
-  { severity: 'critical', label: 'Critical', color: 'bg-red-500' },
-  { severity: 'major',    label: 'Major',    color: 'bg-orange-500' },
-  { severity: 'minor',    label: 'Minor',    color: 'bg-yellow-400' },
-  { severity: 'warning',  label: 'Warning',  color: 'bg-blue-400' },
+const ALARM_LEGEND_ITEMS: { severity: ComponentAlarmInfo['maxSeverity']; label: string }[] = [
+  { severity: 'critical', label: 'Critical' },
+  { severity: 'major',    label: 'Major' },
+  { severity: 'minor',    label: 'Minor' },
+  { severity: 'warning',  label: 'Warning' },
 ];
 
 function containsComponent(
@@ -229,8 +235,8 @@ export function ChassisCanvas({
                 }`}
                 style={percentBounds(hotspot, view)}
               >
-                {portStatus && <PortStatusDot status={portStatus.status} />}
-                {alarmInfo && <AlarmDot severity={alarmInfo.maxSeverity} />}
+                {portStatus && <PortStatusIcon status={portStatus.status} />}
+                {alarmInfo && <AlarmIcon severity={alarmInfo.maxSeverity} />}
               </button>
             );
           })}
@@ -239,9 +245,9 @@ export function ChassisCanvas({
       {model.alarmSummary && model.alarmSummary.total > 0 && (
         <div className="absolute left-4 top-4 flex flex-col gap-1 rounded-md bg-white/95 px-2 py-1.5 shadow ring-1 ring-gray-300 dark:bg-gray-900/95 dark:ring-gray-700">
           <span className="mb-0.5 text-[9px] font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Alarms</span>
-          {ALARM_LEGEND_ITEMS.filter(({ severity }) => (model.alarmSummary?.[severity] ?? 0) > 0).map(({ severity, label, color }) => (
+          {ALARM_LEGEND_ITEMS.filter(({ severity }) => (model.alarmSummary?.[severity] ?? 0) > 0).map(({ severity, label }) => (
             <div key={severity} className="flex items-center gap-1.5">
-              <span className={`h-2 w-2 rounded-full ring-1 ring-white/60 ${color}${severity === 'critical' ? ' animate-pulse' : ''}`} />
+              <img src={ALARM_ICONS[severity]} alt="" className={`h-3 w-3 shrink-0 object-contain${severity === 'critical' ? ' animate-pulse' : ''}`} draggable={false} />
               <span className="text-[10px] text-gray-700 dark:text-gray-300">{label}</span>
               <span className="ml-auto text-[10px] font-mono font-semibold text-gray-800 dark:text-gray-200">{model.alarmSummary?.[severity]}</span>
             </div>

@@ -238,9 +238,9 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
             {Object.keys(portStatusByComponentId).length > 0 ? (
               <>
-                <LegendDot className="bg-green-500" label={`Up (${portStatusCounts.up})`} />
-                <LegendDot className="bg-red-500" label={`Down (${portStatusCounts.down})`} />
-                <LegendDot className="bg-gray-400" label={`Admin down (${portStatusCounts['admin-down']})`} />
+                <LegendDot icon="/chassis-icons/up.svg" label={`Up (${portStatusCounts.up})`} />
+                <LegendDot icon="/chassis-icons/down.svg" label={`Down (${portStatusCounts.down})`} />
+                <LegendDot icon="/chassis-icons/fi-admindown.svg" label={`Admin down (${portStatusCounts['admin-down']})`} />
                 <LegendDot className="bg-cisco-blue" label="Selected" />
               </>
             ) : (
@@ -265,10 +265,13 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   </>);
 }
 
-function LegendDot({ className, label }: { className: string; label: string }) {
+function LegendDot({ className, icon, label }: { className?: string; icon?: string; label: string }) {
   return (
     <span className="inline-flex items-center gap-1.5">
-      <span className={`h-2.5 w-2.5 rounded-full ${className}`} />
+      {icon
+        ? <img src={icon} alt="" className="h-3.5 w-3.5 shrink-0 object-contain" draggable={false} />
+        : <span className={`h-2.5 w-2.5 rounded-full ${className ?? ''}`} />
+      }
       {label}
     </span>
   );
