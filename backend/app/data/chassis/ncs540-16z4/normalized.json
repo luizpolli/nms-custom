@@ -10152,54 +10152,694 @@
       "height": 168,
       "hotspots": [
         {
-          "asset": {
-            "image": "/chassis-assets/ncs540-16z4/modules/N540-X-BB-FAN.svg",
-            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540-X-BB-FAN.svg",
-            "typeId": "N540-X-BB-FAN"
-          },
           "bounds": {
-            "h": 158,
-            "w": 198,
-            "x": 24,
-            "y": 5
+            "h": 47,
+            "w": 47,
+            "x": 254,
+            "y": 35
           },
-          "empty": false,
-          "id": "hotspot-fan-4097",
-          "inventoryId": "component-4097",
-          "label": "0/FT0",
+          "empty": true,
+          "id": "hotspot-port-0",
+          "inventoryId": null,
+          "label": "SFP bay 0",
           "metadata": {
-            "modelName": "N540-X-BB-FAN",
-            "modelTypeId": "N540-X-BB-FAN",
-            "sourceName": "0/FT0",
-            "sourceTypeId": "N540-X-BB-FAN"
+            "sourceName": "SFP bay 0",
+            "sourceTypeId": "SFP bay 0"
           },
-          "physicalIndex": 4097,
-          "slotKey": "0/FT0"
+          "physicalIndex": null,
+          "slotKey": "SFP bay 0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
+          }
         },
         {
-          "asset": {
-            "image": "/chassis-assets/ncs540-16z4/modules/N540X-16Z4G8Q2C-D.svg",
-            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540X-16Z4G8Q2C-D.svg",
-            "typeId": "N540X-16Z4G8Q2C-D"
-          },
           "bounds": {
-            "h": 146,
-            "w": 1056,
-            "x": 240,
-            "y": 12
+            "h": 40,
+            "w": 47,
+            "x": 254,
+            "y": 93
           },
-          "empty": false,
-          "id": "hotspot-rp-1",
-          "inventoryId": "component-1",
-          "label": "0/RP0/CPU0",
+          "empty": true,
+          "id": "hotspot-port-1",
+          "inventoryId": null,
+          "label": "SFP bay 1",
           "metadata": {
-            "modelName": "N540X-16Z4G8Q2C-D",
-            "modelTypeId": "N540X-16Z4G8Q2C-D",
-            "sourceName": "0/RP0/CPU0",
-            "sourceTypeId": "N540X-16Z4G8Q2C-D"
+            "sourceName": "SFP bay 1",
+            "sourceTypeId": "SFP bay 1"
           },
-          "physicalIndex": 1,
-          "slotKey": "0/RP0/CPU0"
+          "physicalIndex": null,
+          "slotKey": "SFP bay 1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 47,
+            "w": 47,
+            "x": 310,
+            "y": 35
+          },
+          "empty": true,
+          "id": "hotspot-port-2",
+          "inventoryId": null,
+          "label": "SFP bay 2",
+          "metadata": {
+            "sourceName": "SFP bay 2",
+            "sourceTypeId": "SFP bay 2"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 40,
+            "w": 47,
+            "x": 310,
+            "y": 93
+          },
+          "empty": true,
+          "id": "hotspot-port-3",
+          "inventoryId": null,
+          "label": "SFP bay 3",
+          "metadata": {
+            "sourceName": "SFP bay 3",
+            "sourceTypeId": "SFP bay 3"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/RJ45.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 380,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-4",
+          "inventoryId": null,
+          "label": "SFP bay 4",
+          "metadata": {
+            "sourceName": "SFP bay 4",
+            "sourceTypeId": "SFP bay 4"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 4",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 438,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-5",
+          "inventoryId": null,
+          "label": "SFP bay 5",
+          "metadata": {
+            "sourceName": "SFP bay 5",
+            "sourceTypeId": "SFP bay 5"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 5",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 497,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-6",
+          "inventoryId": null,
+          "label": "SFP bay 6",
+          "metadata": {
+            "sourceName": "SFP bay 6",
+            "sourceTypeId": "SFP bay 6"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 6",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 555,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-7",
+          "inventoryId": null,
+          "label": "SFP bay 7",
+          "metadata": {
+            "sourceName": "SFP bay 7",
+            "sourceTypeId": "SFP bay 7"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 7",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 614,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-8",
+          "inventoryId": null,
+          "label": "SFP bay 8",
+          "metadata": {
+            "sourceName": "SFP bay 8",
+            "sourceTypeId": "SFP bay 8"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 8",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 672,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-9",
+          "inventoryId": null,
+          "label": "SFP bay 9",
+          "metadata": {
+            "sourceName": "SFP bay 9",
+            "sourceTypeId": "SFP bay 9"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 9",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 730,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-10",
+          "inventoryId": null,
+          "label": "SFP bay 10",
+          "metadata": {
+            "sourceName": "SFP bay 10",
+            "sourceTypeId": "SFP bay 10"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 10",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 789,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-11",
+          "inventoryId": null,
+          "label": "SFP bay 11",
+          "metadata": {
+            "sourceName": "SFP bay 11",
+            "sourceTypeId": "SFP bay 11"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 11",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 380,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-12",
+          "inventoryId": null,
+          "label": "SFP bay 12",
+          "metadata": {
+            "sourceName": "SFP bay 12",
+            "sourceTypeId": "SFP bay 12"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 12",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 438,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-13",
+          "inventoryId": null,
+          "label": "SFP bay 13",
+          "metadata": {
+            "sourceName": "SFP bay 13",
+            "sourceTypeId": "SFP bay 13"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 13",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 497,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-14",
+          "inventoryId": null,
+          "label": "SFP bay 14",
+          "metadata": {
+            "sourceName": "SFP bay 14",
+            "sourceTypeId": "SFP bay 14"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 14",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 555,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-15",
+          "inventoryId": null,
+          "label": "SFP bay 15",
+          "metadata": {
+            "sourceName": "SFP bay 15",
+            "sourceTypeId": "SFP bay 15"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 15",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 614,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-16",
+          "inventoryId": null,
+          "label": "SFP bay 16",
+          "metadata": {
+            "sourceName": "SFP bay 16",
+            "sourceTypeId": "SFP bay 16"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 16",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 672,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-17",
+          "inventoryId": null,
+          "label": "SFP bay 17",
+          "metadata": {
+            "sourceName": "SFP bay 17",
+            "sourceTypeId": "SFP bay 17"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 17",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 730,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-18",
+          "inventoryId": null,
+          "label": "SFP bay 18",
+          "metadata": {
+            "sourceName": "SFP bay 18",
+            "sourceTypeId": "SFP bay 18"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 18",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 789,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-19",
+          "inventoryId": null,
+          "label": "SFP bay 19",
+          "metadata": {
+            "sourceName": "SFP bay 19",
+            "sourceTypeId": "SFP bay 19"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 19",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 868,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-20",
+          "inventoryId": null,
+          "label": "SFP bay 20",
+          "metadata": {
+            "sourceName": "SFP bay 20",
+            "sourceTypeId": "SFP bay 20"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 20",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 927,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-21",
+          "inventoryId": null,
+          "label": "SFP bay 21",
+          "metadata": {
+            "sourceName": "SFP bay 21",
+            "sourceTypeId": "SFP bay 21"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 21",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 986,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-22",
+          "inventoryId": null,
+          "label": "SFP bay 22",
+          "metadata": {
+            "sourceName": "SFP bay 22",
+            "sourceTypeId": "SFP bay 22"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 22",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 46,
+            "w": 55,
+            "x": 1044,
+            "y": 36
+          },
+          "empty": true,
+          "id": "hotspot-port-23",
+          "inventoryId": null,
+          "label": "SFP bay 23",
+          "metadata": {
+            "sourceName": "SFP bay 23",
+            "sourceTypeId": "SFP bay 23"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 23",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 868,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-24",
+          "inventoryId": null,
+          "label": "SFP bay 24",
+          "metadata": {
+            "sourceName": "SFP bay 24",
+            "sourceTypeId": "SFP bay 24"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 24",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 927,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-25",
+          "inventoryId": null,
+          "label": "SFP bay 25",
+          "metadata": {
+            "sourceName": "SFP bay 25",
+            "sourceTypeId": "SFP bay 25"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 25",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 986,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-26",
+          "inventoryId": null,
+          "label": "SFP bay 26",
+          "metadata": {
+            "sourceName": "SFP bay 26",
+            "sourceTypeId": "SFP bay 26"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 26",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 50,
+            "w": 55,
+            "x": 1044,
+            "y": 82
+          },
+          "empty": true,
+          "id": "hotspot-port-27",
+          "inventoryId": null,
+          "label": "SFP bay 27",
+          "metadata": {
+            "sourceName": "SFP bay 27",
+            "sourceTypeId": "SFP bay 27"
+          },
+          "physicalIndex": null,
+          "slotKey": "SFP bay 27",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/SFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 98,
+            "w": 76,
+            "x": 1124,
+            "y": 37
+          },
+          "empty": true,
+          "id": "hotspot-port-28",
+          "inventoryId": null,
+          "label": "QSFP bay 28",
+          "metadata": {
+            "sourceName": "QSFP bay 28",
+            "sourceTypeId": "QSFP bay 28"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP bay 28",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs540/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/QSFP.svg"
+          }
+        },
+        {
+          "bounds": {
+            "h": 112,
+            "w": 66,
+            "x": 1227,
+            "y": 25
+          },
+          "empty": true,
+          "id": "hotspot-port-29",
+          "inventoryId": null,
+          "label": "QSFP bay 29",
+          "metadata": {
+            "sourceName": "QSFP bay 29",
+            "sourceTypeId": "QSFP bay 29"
+          },
+          "physicalIndex": null,
+          "slotKey": "QSFP bay 29",
+          "asset": {
+            "typeId": "QSFP",
+            "image": "/chassis-assets/ncs540/modules/QSFP.svg",
+            "sourceImage": "/chassis-assets/ncs540/modules/QSFP.svg"
+          }
         },
         {
           "asset": {
@@ -10250,6 +10890,56 @@
           },
           "physicalIndex": 13079,
           "slotKey": "0/PM1"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/ncs540-16z4/modules/N540-X-BB-FAN.svg",
+            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540-X-BB-FAN.svg",
+            "typeId": "N540-X-BB-FAN"
+          },
+          "bounds": {
+            "h": 158,
+            "w": 198,
+            "x": 24,
+            "y": 5
+          },
+          "empty": false,
+          "id": "hotspot-fan-4097",
+          "inventoryId": "component-4097",
+          "label": "0/FT0",
+          "metadata": {
+            "modelName": "N540-X-BB-FAN",
+            "modelTypeId": "N540-X-BB-FAN",
+            "sourceName": "0/FT0",
+            "sourceTypeId": "N540-X-BB-FAN"
+          },
+          "physicalIndex": 4097,
+          "slotKey": "0/FT0"
+        },
+        {
+          "asset": {
+            "image": "/chassis-assets/ncs540-16z4/modules/N540X-16Z4G8Q2C-D.svg",
+            "sourceImage": "/chassis-assets/ncs540-16z4/modules/N540X-16Z4G8Q2C-D.svg",
+            "typeId": "N540X-16Z4G8Q2C-D"
+          },
+          "bounds": {
+            "h": 146,
+            "w": 1056,
+            "x": 240,
+            "y": 12
+          },
+          "empty": false,
+          "id": "hotspot-rp-1",
+          "inventoryId": "component-1",
+          "label": "0/RP0/CPU0",
+          "metadata": {
+            "modelName": "N540X-16Z4G8Q2C-D",
+            "modelTypeId": "N540X-16Z4G8Q2C-D",
+            "sourceName": "0/RP0/CPU0",
+            "sourceTypeId": "N540X-16Z4G8Q2C-D"
+          },
+          "physicalIndex": 1,
+          "slotKey": "0/RP0/CPU0"
         }
       ],
       "id": "front",
