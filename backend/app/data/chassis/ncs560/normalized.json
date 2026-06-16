@@ -13644,12 +13644,17 @@
           "label": "MGMT0",
           "metadata": {
             "modelName": "N/A",
-            "modelTypeId": "N/A",
+            "modelTypeId": "MGMT-RJ45",
             "sourceName": "MgmtEth0/RP0/CPU0/0",
-            "sourceTypeId": "N/A"
+            "sourceTypeId": "MGMT-RJ45"
           },
           "physicalIndex": 784,
-          "slotKey": "MgmtEth0/RP0/CPU0/0"
+          "slotKey": "MgmtEth0/RP0/CPU0/0",
+          "asset": {
+            "typeId": "MGMT-RJ45",
+            "image": "/chassis-assets/ncs560/modules/MGMT-RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/MGMT-RJ45.svg"
+          }
         },
         {
           "bounds": {
@@ -13689,12 +13694,17 @@
           "label": "MGMT1",
           "metadata": {
             "modelName": "N/A",
-            "modelTypeId": "N/A",
+            "modelTypeId": "MGMT-RJ45",
             "sourceName": "MgmtEth0/RP1/CPU0/0",
-            "sourceTypeId": "N/A"
+            "sourceTypeId": "MGMT-RJ45"
           },
           "physicalIndex": 4880,
-          "slotKey": "MgmtEth0/RP1/CPU0/0"
+          "slotKey": "MgmtEth0/RP1/CPU0/0",
+          "asset": {
+            "typeId": "MGMT-RJ45",
+            "image": "/chassis-assets/ncs560/modules/MGMT-RJ45.svg",
+            "sourceImage": "/chassis-assets/ncs560/modules/MGMT-RJ45.svg"
+          }
         },
         {
           "bounds": {
