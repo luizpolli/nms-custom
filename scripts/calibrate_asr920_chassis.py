@@ -17,10 +17,13 @@ asr920-12sz     : 12SZ-D. Fan+2 PSU (DC terminal block) left; 12 SFP-GE/10G port
 asr920-12sz-im  : 12SZ-IM-CC modular timing chassis; ports descending 15->0
                   (10G-SFP+ uplinks + 1G-SFP + RJ45 pairs); IM = timing module
                   (GNSS/10MHz/1PPS); 2 PSU bays + vent left; viewBox 3422.5x312.5.
+asr920-24sz     : 24SZ-M. Fan+PSU left section; 24x GE SFP single row (ports 0-23);
+                  4x 10G SFP+ in 2x2 grid (uplinks 24-27); PSU right; 3422.5x315.
 """
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 
 # (x_center_pct, y_center_pct, w_pct, h_pct) per hotspot id.
@@ -112,6 +115,55 @@ LAYOUTS["asr920-12sz-im"] = {
 }
 
 
+# --------------------------------------------------------------------------- #
+# ASR920-24SZ-M : 24x GE SFP (single row) + 4x 10G uplinks (2x2 grid)       #
+#   viewBox 3422.5 x 315.06 — same chassis width as 12CZ                     #
+#   Port x-centres derived from y=57 SFP-cage box elements at 36px pitch     #
+#   (boxes 1343-2168 for GigE 0-23; 2x2 uplink grid at x≈78.3 / 81.2%)      #
+#   PSU panels extracted from SVG fill paths: x=1164.5 w=123 and x=2880.5   #
+# --------------------------------------------------------------------------- #
+_GW, _GH = 1.05, 70.0          # GigE SFP hotspot
+_GY = 47.0                     # single row y-centre
+# GigE port x-centres (% of 3422.5): boxes[i]+10.5 / 3422.5 * 100
+_GE_X = [
+    39.55, 40.60, 41.66, 42.71, 43.76, 44.81,  # 0-5
+    45.87, 46.92, 47.93, 48.98, 50.04, 51.09,  # 6-11
+    52.14, 53.19, 54.25, 55.30, 56.35, 57.35,  # 12-17
+    58.40, 59.45, 60.51, 61.56, 62.61, 63.67,  # 18-23
+]
+_UW24, _UH24 = 2.0, 20.0
+_UTOP, _UBOT = 33.0, 55.0
+# Two uplink columns centred on LED-arrow indicators at x≈78.31% and 81.16%
+_UCOL = [78.31, 81.16]
+LAYOUTS["asr920-24sz"] = {
+    **{f"hotspot-sfp-{i}": (_GE_X[i], _GY, _GW, _GH) for i in range(24)},
+    # TenGigE uplinks 24-27: 2 columns × 2 rows (even=top, odd=bottom)
+    "hotspot-uplink-24": (_UCOL[0], _UTOP, _UW24, _UH24),
+    "hotspot-uplink-25": (_UCOL[0], _UBOT, _UW24, _UH24),
+    "hotspot-uplink-26": (_UCOL[1], _UTOP, _UW24, _UH24),
+    "hotspot-uplink-27": (_UCOL[1], _UBOT, _UW24, _UH24),
+    # PSU bays: panel bounds from SVG fill paths
+    "hotspot-psu-0": (35.82, 47.86, 3.59, 67.13),
+    "hotspot-psu-1": (86.29, 47.86, 4.25, 67.13),
+    # Fan tray bay (left section, before PSU 0)
+    "hotspot-fan-0": (25.0, 47.86, 10.0, 67.13),
+}
+
+# ---------------------------------------------------------------------------
+# EPNM artwork overrides — profiles whose build-script placeholder SVG must be
+# replaced with the real EPNM front artwork. apply() copies the source SVG to
+# epnm-front.svg and updates width/height in normalized.json accordingly.
+# ---------------------------------------------------------------------------
+_EPNM: dict[str, tuple[str, float, float]] = {
+    # profile: (path relative to repo root, svg_w, svg_h)
+    "asr920-24sz": (
+        "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/"
+        "NCS42XXFamily/Cisco_ASR_920_24SZM_Router/images/ASR-920-24SZ-M-Front.svg",
+        3422.5, 315.06,
+    ),
+}
+
+
 def bounds(xc: float, yc: float, w: float, h: float, W: float, H: float) -> dict:
     bw = w / 100 * W
     bh = h / 100 * H
@@ -124,10 +176,21 @@ def bounds(xc: float, yc: float, w: float, h: float, W: float, H: float) -> dict
 
 
 def apply(repo: Path, profile: str, layout: dict) -> None:
+    epnm = _EPNM.get(profile)
     for base in ("frontend/public/chassis-assets", "backend/app/data/chassis"):
         path = repo / base / profile / "normalized.json"
         data = json.loads(path.read_text())
         view = data["views"][0]
+        if epnm:
+            src_rel, epnm_w, epnm_h = epnm
+            src = repo / src_rel
+            dst = path.parent / "epnm-front.svg"
+            shutil.copy2(src, dst)
+            img = f"/chassis-assets/{profile}/epnm-front.svg"
+            view["image"] = img
+            view["sourceImage"] = img
+            view["width"] = epnm_w
+            view["height"] = epnm_h
         W, H = view["width"], view["height"]
         n = 0
         for hs in view["hotspots"]:

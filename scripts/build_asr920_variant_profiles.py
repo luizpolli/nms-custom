@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build static chassis-view profiles for the ASR920 12-port variants.
+"""Build static chassis-view profiles for ASR920 variants.
 
 Generates ``asr920-12cz`` (ASR-920-12CZ-A/D), ``asr920-12sz``
-(ASR-920-12SZ-A/D) and ``asr920-12sz-im`` (ASR-920-12SZ-IM / -CC / 920U)
-following the hand-curated pattern of the existing ASR-920-20SZ-M profile
+(ASR-920-12SZ-A/D), ``asr920-12sz-im`` (ASR-920-12SZ-IM / -CC / 920U) and
+``asr920-24sz`` (ASR-920-24SZ-M, 24xGE fiber + 4x10G, modular PSU) following
+the hand-curated pattern of the existing ASR-920-20SZ-M profile
 (scripts/archive/chassis-migration/build_asr920_chassis_profile.py), with one
 key difference: every component carries the REAL entPhysicalIndex observed in
 the reference walks under ``docs/snmpwalks/asr920/``, so live ENTITY-MIB
@@ -130,6 +131,31 @@ VARIANTS: dict[str, dict[str, Any]] = {
             "NCS42XXFamily/Cisco_ASR_920-12SZ-IM_Router"
         ),
         "walk": "docs/snmpwalks/asr920/entPhysicalASR920-12SZ-IM.walk",
+    },
+    "asr920-24sz": {
+        "profileId": "Cisco_ASR_920_24SZM_Router",
+        "platform": "Cisco ASR-920-24SZ-M Router",
+        "model": "ASR-920-24SZ-M",
+        "subtitle": "24x GE SFP + 4x 10G SFP+ access router",
+        "moduleModel": "24xGE-4x10GE-FIXED-S",
+        "moduleDescr": (
+            "FIXED : 24-port Gig & 4-port Ten Gig SFP Ethernet Interface Module"
+        ),
+        "copperPorts": [],
+        "sfpGePorts": list(range(0, 24)),
+        "uplinkPorts": list(range(24, 28)),
+        "psuBays": (5, 25),
+        "psuModules": (6, 26),
+        "fanTray": 46,
+        "fanBay": 45,
+        "imBay": None,
+        "psuTypeId": "ASR-920-PWR-D",
+        "psuDescr": "ASR 920 250W DC Power Supply",
+        "sourceProfile": (
+            "docs/chassisview_figures/chassisview/com.cisco.prime.deviceprofile/"
+            "NCS42XXFamily/Cisco_ASR_920_24SZM_Router"
+        ),
+        "walk": "docs/snmpwalks/asr920/entPhysicalASR920-24SZ.walk",
     },
 }
 
