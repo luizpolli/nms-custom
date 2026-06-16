@@ -175,10 +175,10 @@ async def test_trap_receiver_accepts_snmpv3_authpriv_trap_over_socket() -> None:
     receiver.on_trap(received.put_nowait)
 
     await receiver.start()
+    sender = SnmpEngine(OctetString(hexValue=engine_id))
     try:
         # v3 TRAP PDUs are authoritative on the sender side, so the sender
         # engine must carry the engineID the receiver has the user keyed to.
-        sender = SnmpEngine(OctetString(hexValue=engine_id))
         error_indication, _, _, _ = await send_notification(
             sender,
             UsmUserData(
@@ -196,6 +196,7 @@ async def test_trap_receiver_accepts_snmpv3_authpriv_trap_over_socket() -> None:
         assert error_indication is None
         event = await asyncio.wait_for(received.get(), timeout=5)
     finally:
+        sender.transportDispatcher.closeDispatcher()
         await receiver.stop()
 
     assert event.trap_oid == "1.3.6.1.6.3.1.1.5.3"

@@ -160,6 +160,36 @@ exports[`chassis overlay snapshots > asr920-12sz-im overlay summary is stable 1`
 }
 `;
 
+exports[`chassis overlay snapshots > asr920-24sz overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_ASR_920_24SZM_Router",
+  "views": {
+    "front": {
+      "fan": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "psu": {
+        "hotspots": 2,
+        "overlay": "rendered",
+        "withAsset": 2,
+      },
+      "sfp": {
+        "hotspots": 24,
+        "overlay": "rendered",
+        "withAsset": 24,
+      },
+      "uplink": {
+        "hotspots": 4,
+        "overlay": "rendered",
+        "withAsset": 4,
+      },
+    },
+  },
+}
+`;
+
 exports[`chassis overlay snapshots > asr9006 overlay summary is stable 1`] = `
 {
   "profileId": "Cisco_ASR_9006_Router",
@@ -304,6 +334,7 @@ exports[`chassis overlay snapshots > covers every shipped profile directory 1`] 
   "asr920-12cz",
   "asr920-12sz",
   "asr920-12sz-im",
+  "asr920-24sz",
   "ncs540",
   "ncs540-12z16g",
   "ncs540-12z20g",
@@ -380,6 +411,11 @@ exports[`chassis overlay snapshots > ncs55a1-24h overlay summary is stable 1`] =
         "overlay": "rendered",
         "withAsset": 0,
       },
+      "port": {
+        "hotspots": 56,
+        "overlay": "rendered",
+        "withAsset": 56,
+      },
       "rp0": {
         "hotspots": 1,
         "overlay": "rendered",
@@ -427,6 +463,11 @@ exports[`chassis overlay snapshots > ncs55a1-24q6h overlay summary is stable 1`]
         "overlay": "rendered",
         "withAsset": 0,
       },
+      "port": {
+        "hotspots": 54,
+        "overlay": "rendered",
+        "withAsset": 54,
+      },
       "rp0": {
         "hotspots": 1,
         "overlay": "rendered",
@@ -473,6 +514,11 @@ exports[`chassis overlay snapshots > ncs55a1-48q6h overlay summary is stable 1`]
         "hotspots": 1,
         "overlay": "rendered",
         "withAsset": 0,
+      },
+      "port": {
+        "hotspots": 54,
+        "overlay": "rendered",
+        "withAsset": 54,
       },
       "rp0": {
         "hotspots": 1,
@@ -551,6 +597,11 @@ exports[`chassis overlay snapshots > ncs540-12z16g overlay summary is stable 1`]
   "profileId": "Cisco_NCS_540X-12Z16G-SYS-D",
   "views": {
     "front": {
+      "port": {
+        "hotspots": 28,
+        "overlay": "rendered",
+        "withAsset": 28,
+      },
       "power": {
         "hotspots": 2,
         "overlay": "rendered",
@@ -600,6 +651,11 @@ exports[`chassis overlay snapshots > ncs540-16z4 overlay summary is stable 1`] =
         "hotspots": 1,
         "overlay": "rendered",
         "withAsset": 1,
+      },
+      "port": {
+        "hotspots": 30,
+        "overlay": "rendered",
+        "withAsset": 30,
       },
       "power": {
         "hotspots": 2,
@@ -734,7 +790,7 @@ exports[`chassis overlay snapshots > ncs560 overlay summary is stable 1`] = `
       "port": {
         "hotspots": 2,
         "overlay": "rendered",
-        "withAsset": 0,
+        "withAsset": 2,
       },
       "power": {
         "hotspots": 2,
