@@ -10,9 +10,9 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
+from app.services import system_admin
 from app.services.observability import get_all_worker_status
 from app.services.retention import DEFAULT_RETENTION_POLICIES, ensure_timescale_schema
-from app.services import system_admin
 
 router = APIRouter()
 
