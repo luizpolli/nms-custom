@@ -365,6 +365,7 @@ export function InventoryPage() {
     enabled: mode === 'live',
   });
 
+  const demoActive = isDemoEnabled();
   const rows = data ?? [];
   const chassisCapableDevices = (devicesQuery.data ?? []).filter(isSupportedChassisDevice);
   const selectedDevice = chassisCapableDevices.find((d) => d.id === selectedDeviceId);
@@ -376,22 +377,24 @@ export function InventoryPage() {
         subtitle={mode === 'example' ? 'Modeled device inventory example' : `${rows.length} inventory entries`}
         actions={
           <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex rounded-md border border-gray-300 bg-white p-1 dark:border-gray-700 dark:bg-gray-900">
-              <button
-                type="button"
-                onClick={() => setMode('example')}
-                className={`rounded px-3 py-1.5 text-sm font-medium ${mode === 'example' ? 'bg-cisco-blue text-white' : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'}`}
-              >
-                Example Model
-              </button>
-              <button
-                type="button"
-                onClick={() => setMode('live')}
-                className={`rounded px-3 py-1.5 text-sm font-medium ${mode === 'live' ? 'bg-cisco-blue text-white' : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'}`}
-              >
-                Live Inventory
-              </button>
-            </div>
+            {demoActive && (
+              <div className="inline-flex rounded-md border border-gray-300 bg-white p-1 dark:border-gray-700 dark:bg-gray-900">
+                <button
+                  type="button"
+                  onClick={() => setMode('example')}
+                  className={`rounded px-3 py-1.5 text-sm font-medium ${mode === 'example' ? 'bg-cisco-blue text-white' : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'}`}
+                >
+                  Example Model
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMode('live')}
+                  className={`rounded px-3 py-1.5 text-sm font-medium ${mode === 'live' ? 'bg-cisco-blue text-white' : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'}`}
+                >
+                  Live Inventory
+                </button>
+              </div>
+            )}
             <Button variant="ghost" onClick={() => refetch()} disabled={isFetching}>
               <RefreshCw className={`w-4 h-4 mr-1 ${isFetching ? 'animate-spin' : ''}`} />
               Refresh

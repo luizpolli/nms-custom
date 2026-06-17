@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { api } from '../../lib/api';
 import { TopologyGraph, type ApiNode, type ApiLink } from './components/TopologyGraph';
 import { RebuildButton } from './components/RebuildButton';
 
@@ -22,7 +22,7 @@ export default function TopologyPage() {
   const { data, isLoading, isError, refetch } = useQuery<TopologyResponse>({
     queryKey: ['topology'],
     queryFn: async () => {
-      const res = await axios.get<TopologyResponse>('/api/topology/graph');
+      const res = await api.get<TopologyResponse>('/topology/graph');
       return res.data;
     },
   });
