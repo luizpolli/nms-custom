@@ -36,7 +36,8 @@ async def _docker(*args: str) -> tuple[int, str, str]:
             stderr=asyncio.subprocess.PIPE,
         )
         stdout, stderr = await proc.communicate()
-        return proc.returncode, stdout.decode().strip(), stderr.decode().strip()
+        rc: int = proc.returncode if proc.returncode is not None else -1
+        return rc, stdout.decode().strip(), stderr.decode().strip()
     except FileNotFoundError:
         return -1, "", "docker CLI not found"
 
