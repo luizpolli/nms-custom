@@ -8,6 +8,18 @@ import {
   DEMO_ALARM_TRENDS,
   DEMO_KPI_TRENDS,
 } from './data/dashboard';
+import {
+  DEMO_TELEMETRY_HEALTH,
+  DEMO_TELEMETRY_COLLECTORS,
+  DEMO_TELEMETRY_SUBSCRIPTIONS,
+  DEMO_TELEMETRY_SENSOR_PATHS,
+  DEMO_COMMANDS,
+  DEMO_IOS_EOL_REPORT,
+  getDemoIOSVersions,
+  DEMO_MONITORING_POLICIES,
+  DEMO_MONITORING_PRESETS,
+  getDemoDeviceInventory,
+} from './data/operations';
 
 type Handler = (url: string, params?: Record<string, string>) => unknown;
 
@@ -60,6 +72,38 @@ const HANDLERS: Array<[RegExp, Handler]> = [
     degraded: DEMO_ASSURANCE_SERVICES.filter((s) => s.health_state === 'degraded').length,
     impaired: DEMO_ASSURANCE_SERVICES.filter((s) => s.health_state === 'impaired').length,
   })],
+
+  // Telemetry
+  [/^\/telemetry\/health$/,        () => DEMO_TELEMETRY_HEALTH],
+  [/^\/telemetry\/collectors$/,    () => DEMO_TELEMETRY_COLLECTORS],
+  [/^\/telemetry\/subscriptions$/, () => DEMO_TELEMETRY_SUBSCRIPTIONS],
+  [/^\/telemetry\/sensor-paths$/,  () => DEMO_TELEMETRY_SENSOR_PATHS],
+
+  // Commands
+  [/^\/commands$/, () => DEMO_COMMANDS],
+
+  // IOS versions — more specific first
+  [/^\/ios\/eol-report$/, () => DEMO_IOS_EOL_REPORT],
+  [
+    /^\/ios\/devices\/([^/]+)\/versions$/,
+    (url) => {
+      const match = url.match(/\/ios\/devices\/([^/]+)\/versions/);
+      return getDemoIOSVersions(match?.[1] ?? '');
+    },
+  ],
+
+  // Monitoring policies — presets before list
+  [/^\/monitoring-policies\/presets$/, () => DEMO_MONITORING_PRESETS],
+  [/^\/monitoring-policies$/,         () => DEMO_MONITORING_POLICIES],
+
+  // Per-device inventory — must come before /devices$ to avoid partial match
+  [
+    /^\/devices\/([^/]+)\/inventory$/,
+    (url) => {
+      const match = url.match(/\/devices\/([^/]+)\/inventory/);
+      return getDemoDeviceInventory(match?.[1] ?? '');
+    },
+  ],
 ];
 
 export function matchDemoHandler(

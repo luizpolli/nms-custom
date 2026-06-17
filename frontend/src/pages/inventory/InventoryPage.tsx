@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { isDemoEnabled } from '../../demo/index';
 import {
   Cable,
   Cpu,
@@ -337,8 +339,22 @@ async function fetchDevices(): Promise<Device[]> {
 }
 
 export function InventoryPage() {
-  const [mode, setMode] = useState<InventoryMode>('example');
+  const [searchParams] = useSearchParams();
+  const [mode, setMode] = useState<InventoryMode>(() => isDemoEnabled() ? 'example' : 'live');
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
+
+  // When navigated from Devices page with a device_id param, pre-select the device
+  useEffect(() => {
+    const deviceId = searchParams.get('device_id');
+    if (!deviceId) return;
+    if (isDemoEnabled()) {
+      setMode('example');
+    } else {
+      setMode('live');
+      setSelectedDeviceId(deviceId);
+    }
+  }, [searchParams]);
+
   const { data, isLoading, isError, refetch, isFetching } = useQuery<DeviceInventoryRow[]>({
     queryKey: ['all-inventory'],
     queryFn: fetchAllInventory,

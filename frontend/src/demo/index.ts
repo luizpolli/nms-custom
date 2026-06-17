@@ -37,6 +37,19 @@ export function installDemoInterceptor(
           headers: {},
           config,
         } as AxiosResponse);
+    } else {
+      // Block write operations in demo mode — return success without hitting backend
+      const method = (config.method ?? 'get').toLowerCase();
+      if (['post', 'put', 'patch', 'delete'].includes(method)) {
+        config.adapter = (): Promise<AxiosResponse> =>
+          Promise.resolve({
+            data: { ok: true, demo: true },
+            status: 200,
+            statusText: 'OK (demo)',
+            headers: {},
+            config,
+          } as AxiosResponse);
+      }
     }
 
     return config;

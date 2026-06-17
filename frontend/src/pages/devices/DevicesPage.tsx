@@ -292,11 +292,24 @@ export function DevicesPage() {
 
   // Build columns from visible set + always-on actions column
   const columns = [
-    ...ALL_COLUMNS.filter((c) => visibleCols.has(c.key)).map((c) => ({
-      key: c.key,
-      header: c.header,
-      render: c.render,
-    })),
+    ...ALL_COLUMNS.filter((c) => visibleCols.has(c.key)).map((c) => {
+      if (c.key === 'name') {
+        return {
+          key: c.key,
+          header: c.header,
+          render: (_: unknown, row: Device) => (
+            <button
+              type="button"
+              className="text-left font-medium text-blue-600 hover:underline dark:text-blue-400"
+              onClick={() => navigate(`/inventory?device_id=${row.id}`)}
+            >
+              {row.name}
+            </button>
+          ),
+        };
+      }
+      return { key: c.key, header: c.header, render: c.render };
+    }),
     {
       key: 'actions',
       header: 'Actions',
