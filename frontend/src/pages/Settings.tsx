@@ -24,7 +24,7 @@ import {
   type CategoryKey,
 } from './settings/_shared';
 import { ClientsUsersPanel, type AppUser, type AppRole } from './settings/UsersRolesPanel';
-import { GeneralPanel, SystemPanel, MailNotificationPanel } from './settings/GeneralSystemPanels';
+import { GeneralPanel, SystemPanel, MailNotificationPanel, DemoModePanel } from './settings/GeneralSystemPanels';
 import { NetworkDevicesPanel, AlarmsEventsPanel, InventorySettingsPanel } from './settings/NetworkAlarmsPanels';
 import { ModuleControlSettingsPanel, IntegrationsAiOpsSettingsPanel, LabOperationsSettingsPanel } from './settings/IntegrationsLabPanels';
 import { SettingsAuditPanel, AccountAuditPanel } from './settings/AuditPanels';
@@ -121,7 +121,12 @@ function SystemAdminPanel() {
 function CategoryContent({ category }: { category: CategoryKey }) {
   switch (category) {
     case 'general':
-      return <GeneralPanel />;
+      return (
+        <div className="space-y-6">
+          <GeneralPanel />
+          <DemoModePanel />
+        </div>
+      );
     case 'system':
       return (
         <div className="space-y-6">

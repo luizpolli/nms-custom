@@ -5,16 +5,76 @@
  */
 
 import { useEffect, useState } from 'react';
+import { FlaskConical } from 'lucide-react';
 import { useThemeStore, type Theme } from '../../stores/theme';
 import { Card, CardHeader } from '../../components/ui/Card';
 import { Select } from '../../components/ui/Select';
 import { Button, Input, Badge } from '../../components/ui';
 import { api } from '../../lib/api';
+import { isDemoEnabled, setDemoMode } from '../../demo/index';
 import {
   useSettingsResource,
   SettingsSaveBar,
   SettingsHint,
 } from './_shared';
+
+// ─── Demo Mode ────────────────────────────────────────────────────────────────
+
+export function DemoModePanel() {
+  const [active, setActive] = useState(isDemoEnabled());
+
+  const toggle = () => {
+    setActive(!active);
+    setDemoMode(!active);
+  };
+
+  return (
+    <Card>
+      <CardHeader title="Demo Mode" />
+      <div className="space-y-4 p-4 text-sm">
+        <p className="text-gray-600 dark:text-gray-300">
+          Demo Mode injects synthetic data (15 Cisco devices, 25 alarms, 8 services, topology graph,
+          credential profiles, and dashboard KPIs) without hitting the real backend. Useful for
+          presentations, UAT, and UI development.
+        </p>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={toggle}
+            role="switch"
+            aria-checked={active}
+            className={`
+              relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center
+              rounded-full border-2 border-transparent transition-colors
+              focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2
+              ${active ? 'bg-amber-500' : 'bg-gray-300 dark:bg-gray-600'}
+            `}
+          >
+            <span
+              className={`
+                pointer-events-none inline-block h-4 w-4 transform rounded-full
+                bg-white shadow transition-transform
+                ${active ? 'translate-x-5' : 'translate-x-0.5'}
+              `}
+            />
+          </button>
+          <span className="flex items-center gap-1.5 font-medium">
+            <FlaskConical className="h-4 w-4 text-amber-600" />
+            Demo Mode is <strong>{active ? 'ON' : 'OFF'}</strong>
+          </span>
+        </div>
+        {active && (
+          <div className="rounded-md border border-amber-300 bg-amber-50 p-3 text-amber-900 dark:border-amber-600 dark:bg-amber-900/20 dark:text-amber-200">
+            Synthetic data is active. Toggling off will reload the page and restore live data.
+          </div>
+        )}
+        <p className="text-xs text-gray-400 dark:text-gray-500">
+          Demo state is stored in localStorage and survives page refreshes. It does not affect the
+          backend in any way.
+        </p>
+      </div>
+    </Card>
+  );
+}
 
 // ─── General ─────────────────────────────────────────────────────────────────
 

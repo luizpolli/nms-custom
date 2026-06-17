@@ -1,10 +1,14 @@
 import axios, { AxiosError } from 'axios';
+import { installDemoInterceptor } from '../demo/index';
 
 export const api = axios.create({
   baseURL: '/api',
   headers: { 'Content-Type': 'application/json' },
   timeout: 30_000,
 });
+
+// Must run before auth interceptor so demo adapter is installed first
+installDemoInterceptor(api);
 
 api.interceptors.request.use((config) => {
   const apiKey = window.localStorage.getItem('nms_api_key');
