@@ -12,7 +12,6 @@ import {
   Radar,
   RadioTower,
   Server,
-  Settings2,
   ShieldCheck,
   Terminal,
   Waypoints,
@@ -35,8 +34,7 @@ export type ModuleKey =
   | 'discovery'
   | 'commands'
   | 'ios'
-  | 'reports'
-  | 'system_admin';
+  | 'reports';
 
 export type ModuleControlSettings = Record<ModuleKey, boolean>;
 
@@ -66,7 +64,6 @@ export const MODULE_DEFAULTS: ModuleControlSettings = {
   commands: true,
   ios: true,
   reports: true,
-  system_admin: true,
 };
 
 export const MODULES: ModuleMeta[] = [
@@ -86,7 +83,6 @@ export const MODULES: ModuleMeta[] = [
   { key: 'commands', label: 'Commands', route: '/commands', group: 'Automation', description: 'Approved command execution, scheduling, and command history.', icon: <Terminal className="h-5 w-5" /> },
   { key: 'ios', label: 'IOS Versions', route: '/ios', group: 'Core', description: 'Software image and IOS version visibility.', icon: <Layers className="h-5 w-5" /> },
   { key: 'reports', label: 'Reports', route: '/reports', group: 'Analytics', description: 'Operational reports and export workflows.', icon: <FileText className="h-5 w-5" /> },
-  { key: 'system_admin', label: 'System Admin', route: '/system-admin', group: 'Core', description: 'Container status, backup jobs, and system maintenance.', icon: <Settings2 className="h-5 w-5" /> },
 ];
 
 export const moduleByKey = Object.fromEntries(MODULES.map((module) => [module.key, module])) as Record<ModuleKey, ModuleMeta>;

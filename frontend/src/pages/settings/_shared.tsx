@@ -23,6 +23,7 @@ import {
   BrainCircuit,
   FlaskConical,
   ToggleLeft,
+  Wrench,
 } from 'lucide-react';
 import { Button } from '../../components/ui';
 import { api } from '../../lib/api';
@@ -40,7 +41,8 @@ export type CategoryKey =
   | 'eventForwarding'
   | 'modules'
   | 'integrationsAiOps'
-  | 'labOperations';
+  | 'labOperations'
+  | 'systemAdmin';
 
 export interface Category {
   key: CategoryKey;
@@ -64,6 +66,7 @@ export const CATEGORY_PERMISSIONS: Record<CategoryKey, string[]> = {
   modules: ['administrative_operations_system_settings'],
   integrationsAiOps: ['administrative_operations_system_settings'],
   labOperations: ['administrative_operations_system_settings', 'system_settings_submenu_performance_ptp_synce'],
+  systemAdmin: ['administrative_operations_system_settings'],
 };
 
 export const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, string[]>>> = {
@@ -144,6 +147,10 @@ export const SUBMENU_PERMISSIONS: Partial<Record<CategoryKey, Record<string, str
     Maintenance: ['administrative_operations_scheduled_tasks_and_data_collection'],
     Runbooks: ['administrative_operations_system_settings'],
     'PTP / SyncE': ['system_settings_submenu_performance_ptp_synce'],
+  },
+  systemAdmin: {
+    'Container status': ['administrative_operations_system_settings'],
+    'Backup jobs': ['administrative_operations_system_settings'],
   },
 };
 
@@ -236,6 +243,15 @@ export const CATEGORIES: Category[] = [
     description: 'Certification readiness, lab health, traffic simulator hooks, maintenance windows, operational runbooks, and PTP/SyncE.',
     icon: <FlaskConical className="h-5 w-5" />,
     submenus: ['Lab health', 'Traffic simulator', 'Maintenance', 'Runbooks', 'PTP / SyncE'],
+    status: 'live',
+  },
+  {
+    key: 'systemAdmin',
+    number: 11,
+    title: 'System Administration',
+    description: 'Container status and restart, scheduled backup jobs, backup history, and backup configuration.',
+    icon: <Wrench className="h-5 w-5" />,
+    submenus: ['Container status', 'Backup jobs'],
     status: 'live',
   },
 ];

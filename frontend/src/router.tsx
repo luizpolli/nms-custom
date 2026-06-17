@@ -126,10 +126,6 @@ const AIOpsPage = lazySafe(
   () => import('./pages/aiops/AIOpsPage').then((m) => pickExport(m, 'AIOpsPage')),
   'AIOpsPage',
 );
-const SystemAdminPage = lazySafe(
-  () => import('./pages/system/SystemAdminPage').then((m) => pickExport(m, 'SystemAdminPage')),
-  'SystemAdminPage',
-);
 function PageFallback() {
   return (
     <div className="flex h-full items-center justify-center">
@@ -199,8 +195,7 @@ export function AppRouter() {
           <Route path="assurance" element={<ModuleRoute moduleKey="assurance" name="Assurance"><AssurancePage /></ModuleRoute>} />
           <Route path="services" element={<ModuleRoute moduleKey="services" name="Services"><ServicesPage /></ModuleRoute>} />
           <Route path="ai-ops" element={<ModuleRoute moduleKey="ai_ops" name="AI Ops"><AIOpsPage /></ModuleRoute>} />
-          <Route path="system-admin" element={<ModuleRoute moduleKey="system_admin" name="System Admin"><SystemAdminPage /></ModuleRoute>} />
-          <Route path="dashboard/custom" element={<Guarded name="Custom Dashboard"><CustomDashboardPage /></Guarded>} />
+<Route path="dashboard/custom" element={<Guarded name="Custom Dashboard"><CustomDashboardPage /></Guarded>} />
           <Route path="lab" element={<Navigate to="/settings?section=labOperations" replace />} />
           <Route path="alarm-rules" element={<Navigate to="/settings?section=alarmsEvents" replace />} />
           <Route path="monitoring-policies" element={<ModuleRoute moduleKey="monitoring_policies" name="Monitoring Policies"><MonitoringPoliciesPage /></ModuleRoute>} />

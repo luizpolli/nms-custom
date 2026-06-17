@@ -28,6 +28,8 @@ import { GeneralPanel, SystemPanel, MailNotificationPanel } from './settings/Gen
 import { NetworkDevicesPanel, AlarmsEventsPanel, InventorySettingsPanel } from './settings/NetworkAlarmsPanels';
 import { ModuleControlSettingsPanel, IntegrationsAiOpsSettingsPanel, LabOperationsSettingsPanel } from './settings/IntegrationsLabPanels';
 import { SettingsAuditPanel, AccountAuditPanel } from './settings/AuditPanels';
+import { ContainersPanel } from './system/ContainersPanel';
+import { BackupsPanel } from './system/BackupsPanel';
 
 // ---------------------------------------------------------------------------
 // Tiny wrapper panels that compose two or more sub-panels
@@ -72,6 +74,42 @@ function NotificationsForwardingPanel() {
     <div className="space-y-6">
       <MailNotificationPanel />
       <ForwardingSettings />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// System Administration panel (containers + backups tabs)
+// ---------------------------------------------------------------------------
+
+function SystemAdminPanel() {
+  type Tab = 'containers' | 'backups';
+  const [tab, setTab] = useState<Tab>('containers');
+  const tabs: Array<{ key: Tab; label: string }> = [
+    { key: 'containers', label: 'Services & Containers' },
+    { key: 'backups',    label: 'Backup Jobs' },
+  ];
+  return (
+    <div className="space-y-6">
+      <Card>
+        <div className="flex flex-wrap gap-2 p-3">
+          {tabs.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              onClick={() => setTab(item.key)}
+              className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
+                tab === item.key
+                  ? 'border-cisco-blue bg-cisco-blue text-white'
+                  : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </Card>
+      {tab === 'containers' ? <ContainersPanel /> : <BackupsPanel />}
     </div>
   );
 }
@@ -124,6 +162,8 @@ function CategoryContent({ category }: { category: CategoryKey }) {
           <LabOperationsSettingsPanel />
         </div>
       );
+    case 'systemAdmin':
+      return <SystemAdminPanel />;
   }
 }
 
@@ -134,6 +174,7 @@ function CategoryContent({ category }: { category: CategoryKey }) {
 const SECTION_KEYS = new Set<CategoryKey>([
   'general', 'system', 'security', 'usersRoles', 'networkDevices',
   'inventory', 'alarmsEvents', 'eventForwarding', 'modules', 'integrationsAiOps', 'labOperations',
+  'systemAdmin',
 ]);
 
 function isValidSection(s: string | null): s is CategoryKey {
