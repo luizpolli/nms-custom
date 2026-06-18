@@ -571,7 +571,7 @@
       "id": "component-300",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/0",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-100",
       "physicalIndex": 300,
       "ports": [
@@ -594,7 +594,7 @@
       "id": "component-301",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/1",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-101",
       "physicalIndex": 301,
       "ports": [
@@ -617,7 +617,7 @@
       "id": "component-302",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/2",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-102",
       "physicalIndex": 302,
       "ports": [
@@ -640,7 +640,7 @@
       "id": "component-303",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/3",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-103",
       "physicalIndex": 303,
       "ports": [
@@ -663,7 +663,7 @@
       "id": "component-304",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/4",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-104",
       "physicalIndex": 304,
       "ports": [
@@ -686,7 +686,7 @@
       "id": "component-305",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/5",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-105",
       "physicalIndex": 305,
       "ports": [
@@ -709,7 +709,7 @@
       "id": "component-306",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/6",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-106",
       "physicalIndex": 306,
       "ports": [
@@ -732,7 +732,7 @@
       "id": "component-307",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/7",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-107",
       "physicalIndex": 307,
       "ports": [
@@ -939,7 +939,6 @@
       "id": "component-316",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/16",
-      "operStatus": "down",
       "parentId": "component-116",
       "physicalIndex": 316,
       "ports": [
@@ -962,7 +961,6 @@
       "id": "component-317",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/17",
-      "operStatus": "down",
       "parentId": "component-117",
       "physicalIndex": 317,
       "ports": [
@@ -985,7 +983,6 @@
       "id": "component-318",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/18",
-      "operStatus": "down",
       "parentId": "component-118",
       "physicalIndex": 318,
       "ports": [
@@ -1008,7 +1005,6 @@
       "id": "component-319",
       "modelName": "SFP Gigabit Ethernet",
       "name": "GigabitEthernet0/0/19",
-      "operStatus": "down",
       "parentId": "component-119",
       "physicalIndex": 319,
       "ports": [
@@ -1031,7 +1027,7 @@
       "id": "component-350",
       "modelName": "SFP+ 10G uplink",
       "name": "TenGigabitEthernet0/0/20",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-150",
       "physicalIndex": 350,
       "ports": [
@@ -1054,7 +1050,7 @@
       "id": "component-351",
       "modelName": "SFP+ 10G uplink",
       "name": "TenGigabitEthernet0/0/21",
-      "operStatus": "down",
+      "operStatus": "up",
       "parentId": "component-151",
       "physicalIndex": 351,
       "ports": [

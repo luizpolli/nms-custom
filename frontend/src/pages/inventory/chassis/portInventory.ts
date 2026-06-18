@@ -105,41 +105,62 @@ export function buildPortStatusByComponentId(
   model: ChassisViewModel,
   interfaces: ManagedInterface[],
 ): Record<string, PortStatusInfo> {
-  if (!interfaces.length) return {};
-
-  const byNormalizedName = new Map<string, ManagedInterface>();
-  for (const iface of interfaces) {
-    for (const candidate of [iface.name, iface.description, iface.alias]) {
-      const key = normalizeInterfaceName(candidate);
-      if (key && !byNormalizedName.has(key)) byNormalizedName.set(key, iface);
+  // Live path: match components to polled managed interfaces (IF-MIB data)
+  if (interfaces.length) {
+    const byNormalizedName = new Map<string, ManagedInterface>();
+    for (const iface of interfaces) {
+      for (const candidate of [iface.name, iface.description, iface.alias]) {
+        const key = normalizeInterfaceName(candidate);
+        if (key && !byNormalizedName.has(key)) byNormalizedName.set(key, iface);
+      }
     }
+
+    const result: Record<string, PortStatusInfo> = {};
+    for (const component of Object.values(model.componentsById)) {
+      const looksLikePort =
+        component.type?.toLowerCase() === 'port' ||
+        isPhysicalInterfaceName(component.name) ||
+        isPhysicalInterfaceName(component.displayName);
+      if (!looksLikePort) continue;
+
+      let iface: ManagedInterface | undefined;
+      for (const candidate of [component.name, component.displayName]) {
+        const key = normalizeInterfaceName(candidate);
+        if (key && byNormalizedName.has(key)) {
+          iface = byNormalizedName.get(key);
+          break;
+        }
+      }
+      if (!iface) continue;
+
+      const status = classifyPortStatus(iface.admin_status, iface.oper_status);
+      if (!status) continue;
+      result[component.id] = {
+        status,
+        interfaceName: iface.name,
+        adminStatus: iface.admin_status,
+        operStatus: iface.oper_status,
+      };
+    }
+    return result;
   }
 
+  // Static fallback: derive port state from the operStatus field embedded in the
+  // chassis model itself (used by example/demo mode where no live interface poll runs).
   const result: Record<string, PortStatusInfo> = {};
   for (const component of Object.values(model.componentsById)) {
+    if (!component.operStatus) continue;
     const looksLikePort =
       component.type?.toLowerCase() === 'port' ||
       isPhysicalInterfaceName(component.name) ||
       isPhysicalInterfaceName(component.displayName);
     if (!looksLikePort) continue;
-
-    let iface: ManagedInterface | undefined;
-    for (const candidate of [component.name, component.displayName]) {
-      const key = normalizeInterfaceName(candidate);
-      if (key && byNormalizedName.has(key)) {
-        iface = byNormalizedName.get(key);
-        break;
-      }
-    }
-    if (!iface) continue;
-
-    const status = classifyPortStatus(iface.admin_status, iface.oper_status);
+    const status = classifyPortStatus(undefined, component.operStatus);
     if (!status) continue;
     result[component.id] = {
       status,
-      interfaceName: iface.name,
-      adminStatus: iface.admin_status,
-      operStatus: iface.oper_status,
+      interfaceName: component.displayName,
+      operStatus: component.operStatus,
     };
   }
   return result;

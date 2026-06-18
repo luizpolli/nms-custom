@@ -2392,7 +2392,8 @@
       "sourceId": 3100,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3101": {
       "childIds": [],
@@ -2419,7 +2420,8 @@
       "sourceId": 3101,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3102": {
       "childIds": [],
@@ -2446,7 +2448,8 @@
       "sourceId": 3102,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3103": {
       "childIds": [],
@@ -2473,7 +2476,8 @@
       "sourceId": 3103,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3104": {
       "childIds": [],
@@ -2500,7 +2504,8 @@
       "sourceId": 3104,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3105": {
       "childIds": [],
@@ -2527,7 +2532,8 @@
       "sourceId": 3105,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3106": {
       "childIds": [],
@@ -2554,7 +2560,8 @@
       "sourceId": 3106,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3107": {
       "childIds": [],
@@ -2581,7 +2588,8 @@
       "sourceId": 3107,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3108": {
       "childIds": [],
@@ -2608,7 +2616,8 @@
       "sourceId": 3108,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3109": {
       "childIds": [],
@@ -2635,7 +2644,8 @@
       "sourceId": 3109,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3110": {
       "childIds": [],
@@ -2662,7 +2672,8 @@
       "sourceId": 3110,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3111": {
       "childIds": [],
@@ -2689,7 +2700,8 @@
       "sourceId": 3111,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3200": {
       "childIds": [],
@@ -2716,7 +2728,8 @@
       "sourceId": 3200,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3201": {
       "childIds": [],
@@ -2743,7 +2756,8 @@
       "sourceId": 3201,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3202": {
       "childIds": [],
@@ -2770,7 +2784,8 @@
       "sourceId": 3202,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3203": {
       "childIds": [],
@@ -2797,7 +2812,8 @@
       "sourceId": 3203,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3204": {
       "childIds": [],
@@ -2824,7 +2840,8 @@
       "sourceId": 3204,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3205": {
       "childIds": [],
@@ -2851,7 +2868,8 @@
       "sourceId": 3205,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3206": {
       "childIds": [],
@@ -2878,7 +2896,8 @@
       "sourceId": 3206,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3207": {
       "childIds": [],
@@ -2905,7 +2924,8 @@
       "sourceId": 3207,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3208": {
       "childIds": [],
@@ -2932,7 +2952,8 @@
       "sourceId": 3208,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3209": {
       "childIds": [],
@@ -2959,7 +2980,8 @@
       "sourceId": 3209,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3210": {
       "childIds": [],
@@ -2986,7 +3008,8 @@
       "sourceId": 3210,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3211": {
       "childIds": [],
@@ -3013,7 +3036,8 @@
       "sourceId": 3211,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3212": {
       "childIds": [],
@@ -3040,7 +3064,8 @@
       "sourceId": 3212,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3213": {
       "childIds": [],
@@ -3067,7 +3092,8 @@
       "sourceId": 3213,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3214": {
       "childIds": [],
@@ -3094,7 +3120,8 @@
       "sourceId": 3214,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3215": {
       "childIds": [],
@@ -3121,7 +3148,8 @@
       "sourceId": 3215,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-4097": {
       "alias": "N/A",
