@@ -229,7 +229,11 @@ export function ChassisCanvas({
                 }}
                 className={`absolute rounded-sm border-2 transition ${
                   !showHotspotChrome
-                    ? 'border-transparent bg-transparent focus-visible:border-cisco-blue/80 focus-visible:bg-cisco-blue/10'
+                    ? selected
+                      ? 'border-cisco-blue/70 bg-cisco-blue/15 shadow-[0_0_0_2px_rgba(0,124,186,0.2)]'
+                      : canSelect
+                        ? 'border-transparent bg-transparent hover:border-cisco-blue/50 hover:bg-cisco-blue/10'
+                        : 'border-transparent bg-transparent'
                     : selected
                       ? 'border-cisco-blue bg-cisco-blue/20 shadow-[0_0_0_4px_rgba(0,124,186,0.25)]'
                       : canSelect
