@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { isDemoEnabled } from '../../demo/index';
+import { DEMO_DEVICES, EXAMPLE_DEVICE_BASE } from '../../demo/data/devices';
 import {
   Cable,
   Cpu,
@@ -49,60 +50,8 @@ interface DeviceInventoryRow extends InventoryItem {
 
 type InventoryMode = 'live' | 'example';
 
-interface ExampleModule {
-  slot: string;
-  type: string;
-  part: string;
-  serial: string;
-  status: string;
-  ports: string;
-  firmware: string;
-}
-
-interface ExampleOptic {
-  interface: string;
-  type: string;
-  part: string;
-  serial: string;
-  wavelength: string;
-  rxPower: string;
-  txPower: string;
-  status: 'ok' | 'warning';
-}
-
 const exampleDevice = {
-  name: 'MEX-CORE-ASR-01',
-  managementIp: '10.24.10.11',
-  role: 'Cell-site aggregation router',
-  site: 'CDMX / MEX-DC1 / Rack R12',
-  vendor: 'Cisco',
-  platform: 'ASR 903',
-  serial: 'FOX2748P1A9',
-  os: 'IOS XR 7.9.2',
-  uptime: '184d 06h 21m',
-  collectionStatus: 'Successful',
-  lastCollection: '2026-05-24 21:58 CST',
-  lifecycle: 'In service',
-  license: 'Advantage + Segment Routing',
-  software: [
-    { name: 'IOS XR', version: '7.9.2', state: 'Active' },
-    { name: 'SMU bundle', version: 'asr9k-x64-7.9.2.CSCwf88931', state: 'Installed' },
-    { name: 'Telemetry package', version: '2.4.1', state: 'Active' },
-  ],
-  modules: [
-    { slot: '0/RSP0', type: 'Route Switch Processor', part: 'A900-RSP2A-128', serial: 'FOC2712RP0A', status: 'OK', ports: 'Mgmt + console + BITS', firmware: '7.9.2' },
-    { slot: '0/RSP1', type: 'Route Switch Processor', part: 'A900-RSP2A-128', serial: 'FOC2712RP1B', status: 'Standby', ports: 'Standby bay', firmware: '7.9.2' },
-    { slot: '0/0', type: 'Interface Module', part: 'A900-IMA8D', serial: 'FOC2709LC01', status: 'OK', ports: '8 x GE/10GE', firmware: '5.21' },
-    { slot: '0/1', type: 'Interface Module', part: 'A900-IMA16D', serial: 'FOC2709LC02', status: 'OK', ports: '16 x GE/10GE', firmware: '5.21' },
-    { slot: '0/FT0', type: 'Fan Tray', part: 'A903-FAN', serial: 'FOC2707FT01', status: 'OK', ports: 'Fan + alarm', firmware: '1.08' },
-    { slot: '0/PM0', type: 'Power Module', part: 'A900-PWR550-A', serial: 'DTN2706PM00', status: 'OK', ports: 'AC input', firmware: '1.12' },
-  ] satisfies ExampleModule[],
-  optics: [
-    { interface: 'Hu0/1/0/0', type: 'QSFP28-LR4', part: 'QSFP-100G-LR4-S', serial: 'AVD2741Q001', wavelength: '1310 nm', rxPower: '-2.9 dBm', txPower: '1.8 dBm', status: 'ok' },
-    { interface: 'Hu0/1/0/1', type: 'QSFP28-SR4', part: 'QSFP-100G-SR4-S', serial: 'AVD2741Q002', wavelength: '850 nm', rxPower: '-1.7 dBm', txPower: '2.1 dBm', status: 'ok' },
-    { interface: 'Te0/0/0/12', type: 'SFP-10G-LR', part: 'SFP-10G-LR-S', serial: 'AGM2738S012', wavelength: '1310 nm', rxPower: '-8.4 dBm', txPower: '-1.2 dBm', status: 'warning' },
-    { interface: 'Te0/0/0/13', type: 'SFP-10G-SR', part: 'SFP-10G-SR-S', serial: 'AGM2738S013', wavelength: '850 nm', rxPower: '-2.1 dBm', txPower: '-2.0 dBm', status: 'ok' },
-  ] satisfies ExampleOptic[],
+  ...EXAMPLE_DEVICE_BASE,
   environment: [
     { label: 'CPU', value: '18%', icon: <Cpu className="h-5 w-5" />, tone: 'success' },
     { label: 'Memory', value: '41%', icon: <HardDrive className="h-5 w-5" />, tone: 'default' },
@@ -110,6 +59,19 @@ const exampleDevice = {
     { label: 'Power feeds', value: '2/2', icon: <ShieldCheck className="h-5 w-5" />, tone: 'success' },
   ],
 };
+
+function modelToChassisProfile(model: string): string | undefined {
+  const m = model.toUpperCase();
+  const map: [string, string][] = [
+    ['55A1-24Q6H', 'ncs55a1-24q6h'], ['55A1-48Q6H', 'ncs55a1-48q6h'],
+    ['55A1-24H', 'ncs55a1-24h'],     ['55A1', 'ncs55a1'],
+    ['NCS-560', 'ncs560'],           ['9010', 'asr9010'],
+    ['9006', 'asr9006'],             ['920-24SZ', 'asr920-24sz'],
+    ['920-12CZ', 'asr920-12cz'],     ['920-12SZ', 'asr920-12sz'],
+    ['920', 'asr920'],
+  ];
+  return map.find(([k]) => m.includes(k))?.[1];
+}
 
 const exampleChassisProfiles = [
   { id: 'asr903', label: 'ASR 903', deviceName: exampleDevice.name, dataUrl: '/chassis-assets/asr903/normalized.json' },
@@ -176,10 +138,28 @@ function rowPorts(row: InventoryItem): number | string {
   return row.ports ?? row.port_count ?? '-';
 }
 
-function ExampleInventoryModel() {
-  const [selectedChassisProfile, setSelectedChassisProfile] = useState(exampleChassisProfiles[0]);
+const DEMO_ROLE_LABELS: Record<string, string> = {
+  core: 'Core backbone router', aggregation: 'Aggregation router',
+  access: 'Access / cell-site router', pe: 'Provider edge router', 'mobile-gw': 'Mobile gateway',
+};
+
+function ExampleInventoryModel({ pinnedDeviceId }: { pinnedDeviceId?: string }) {
+  const demoDevice = pinnedDeviceId ? DEMO_DEVICES.find((d) => d.id === pinnedDeviceId) : undefined;
+  const profileId = demoDevice ? (modelToChassisProfile(demoDevice.model) ?? 'asr903') : 'asr903';
+  const defaultProfile = exampleChassisProfiles.find((p) => p.id === profileId) ?? exampleChassisProfiles[0];
+  const [selectedChassisProfile, setSelectedChassisProfile] = useState(defaultProfile);
+  const device = demoDevice ? {
+    ...exampleDevice,
+    name: demoDevice.name,
+    managementIp: demoDevice.ip_address,
+    platform: demoDevice.model.replace(/^([A-Z]+)-/, '$1 '),
+    os: `${demoDevice.os_type} ${demoDevice.software_version}`,
+    site: demoDevice.location,
+    role: DEMO_ROLE_LABELS[demoDevice.role] ?? demoDevice.role,
+    serial: `FOX${demoDevice.name.split('').reduce((a, c) => (a + c.charCodeAt(0)) % 10000, 0).toString().padStart(4, '0')}`,
+  } : exampleDevice;
   const totalPorts = 32;
-  const activeOptics = exampleDevice.optics.filter((optic) => optic.status === 'ok').length;
+  const activeOptics = device.optics.filter((optic) => optic.status === 'ok').length;
 
   return (
     <div className="space-y-6">
@@ -188,27 +168,27 @@ function ExampleInventoryModel() {
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
               <Router className="h-5 w-5 text-cisco-blue" />
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{exampleDevice.name}</h2>
-              <Badge variant="success">{exampleDevice.collectionStatus}</Badge>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{device.name}</h2>
+              <Badge variant="success">{device.collectionStatus}</Badge>
               <Badge variant="default">Example</Badge>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              {exampleDevice.role} - {exampleDevice.site}
+              {device.role} - {device.site}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4 lg:text-right">
-            <Metric label="Mgmt IP" value={exampleDevice.managementIp} />
-            <Metric label="Platform" value={exampleDevice.platform} />
-            <Metric label="Serial" value={exampleDevice.serial} mono />
-            <Metric label="Last collection" value={exampleDevice.lastCollection} />
+            <Metric label="Mgmt IP" value={device.managementIp} />
+            <Metric label="Platform" value={device.platform} />
+            <Metric label="Serial" value={device.serial} mono />
+            <Metric label="Last collection" value={device.lastCollection} />
           </div>
         </div>
 
         <div className="grid gap-3 md:grid-cols-4">
-          <StatCard title="Modules" value={exampleDevice.modules.length} icon={<Layers3 className="h-5 w-5" />} />
+          <StatCard title="Modules" value={device.modules.length} icon={<Layers3 className="h-5 w-5" />} />
           <StatCard title="Ports" value={totalPorts} icon={<Cable className="h-5 w-5" />} />
-          <StatCard title="Optics OK" value={`${activeOptics}/${exampleDevice.optics.length}`} icon={<Package className="h-5 w-5" />} tone="success" />
-          <StatCard title="Uptime" value={exampleDevice.uptime} icon={<RefreshCw className="h-5 w-5" />} />
+          <StatCard title="Optics OK" value={`${activeOptics}/${device.optics.length}`} icon={<Package className="h-5 w-5" />} tone="success" />
+          <StatCard title="Uptime" value={device.uptime} icon={<RefreshCw className="h-5 w-5" />} />
         </div>
       </Card>
 
@@ -242,20 +222,20 @@ function ExampleInventoryModel() {
               { key: 'firmware', header: 'FW' },
               { key: 'status', header: 'Status', render: (value) => <Badge variant={value === 'OK' || value === 'Standby' ? 'success' : 'warning'}>{String(value)}</Badge> },
             ]}
-            data={exampleDevice.modules}
+            data={device.modules}
           />
         </Card>
 
         <Card className="space-y-4">
           <SectionTitle title="Software & lifecycle" subtitle="Operating image, packages, license, and lifecycle state." />
           <div className="grid gap-3 text-sm">
-            <MetricLine label="Vendor" value={exampleDevice.vendor} />
-            <MetricLine label="OS" value={exampleDevice.os} />
-            <MetricLine label="License" value={exampleDevice.license} />
-            <MetricLine label="Lifecycle" value={exampleDevice.lifecycle} />
+            <MetricLine label="Vendor" value={device.vendor} />
+            <MetricLine label="OS" value={device.os} />
+            <MetricLine label="License" value={device.license} />
+            <MetricLine label="Lifecycle" value={device.lifecycle} />
           </div>
           <div className="space-y-2">
-            {exampleDevice.software.map((pkg) => (
+            {device.software.map((pkg) => (
               <div key={pkg.name} className="flex items-center justify-between gap-3 rounded-md border border-gray-200 px-3 py-2 text-sm dark:border-gray-700">
                 <div>
                   <p className="font-medium text-gray-900 dark:text-gray-100">{pkg.name}</p>
@@ -282,14 +262,14 @@ function ExampleInventoryModel() {
               { key: 'txPower', header: 'TX' },
               { key: 'status', header: 'Status', render: (value) => <Badge variant={value === 'ok' ? 'success' : 'warning'}>{value === 'ok' ? 'OK' : 'Check'}</Badge> },
             ]}
-            data={exampleDevice.optics}
+            data={device.optics}
           />
         </Card>
 
         <Card className="space-y-4">
           <SectionTitle title="Environment snapshot" subtitle="Current operational health from the latest collection." />
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-            {exampleDevice.environment.map((item) => (
+            {device.environment.map((item) => (
               <StatCard key={item.label} title={item.label} value={item.value} icon={item.icon} tone={item.tone} />
             ))}
           </div>
@@ -342,6 +322,7 @@ export function InventoryPage() {
   const [searchParams] = useSearchParams();
   const [mode, setMode] = useState<InventoryMode>(() => isDemoEnabled() ? 'example' : 'live');
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
+  const [pinnedDeviceId, setPinnedDeviceId] = useState<string | undefined>(undefined);
 
   // When navigated from Devices page with a device_id param, pre-select the device
   useEffect(() => {
@@ -349,6 +330,7 @@ export function InventoryPage() {
     if (!deviceId) return;
     if (isDemoEnabled()) {
       setMode('example');
+      setPinnedDeviceId(deviceId);
     } else {
       setMode('live');
       setSelectedDeviceId(deviceId);
@@ -403,7 +385,7 @@ export function InventoryPage() {
         }
       />
 
-      {mode === 'example' && <ExampleInventoryModel />}
+      {mode === 'example' && <ExampleInventoryModel key={pinnedDeviceId ?? 'default'} pinnedDeviceId={pinnedDeviceId} />}
 
       {mode === 'live' && (
         <>

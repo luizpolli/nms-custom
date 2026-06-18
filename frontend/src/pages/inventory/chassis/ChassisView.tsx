@@ -16,6 +16,7 @@ import {
   matchManagedInterface,
   type ManagedInterface,
   type PortStatus,
+  type PortStatusInfo,
 } from './portInventory';
 
 interface ChassisViewProps {
@@ -48,6 +49,25 @@ function firstSelectableNode(nodes: ChassisTreeNode[]): string | null {
     if (child) return child;
   }
   return null;
+}
+
+const PORT_HOTSPOT_RE = /^(?:QSFP|SFP|Gi|GE|Te|Hu|Fo|Fa|Eth|Mgmt|\d+\/\d)/i;
+const SLOT_HOTSPOT_RE = /^(?:RP\d|Line Card|Fan|Power Module)/i;
+
+function generateDemoPortStatusByHotspot(model: ChassisViewModel): Record<string, PortStatusInfo> {
+  const result: Record<string, PortStatusInfo> = {};
+  let idx = 0;
+  for (const view of model.views) {
+    for (const hotspot of view.hotspots) {
+      const label = hotspot.label ?? '';
+      if (SLOT_HOTSPOT_RE.test(label) || !PORT_HOTSPOT_RE.test(label)) continue;
+      const slot = idx % 10;
+      idx++;
+      if (slot >= 9) continue; // ~10% no-SFP / empty → gray in legend
+      result[hotspot.id] = { status: slot >= 7 ? 'down' : 'up', interfaceName: label };
+    }
+  }
+  return result;
 }
 
 export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/asr903/normalized.json', model }: ChassisViewProps) {
@@ -85,6 +105,11 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
     }
     return counts;
   }, [portStatusByComponentId]);
+  // Demo / static mode: generate synthetic port colours when no live interface data is available
+  const portStatusByHotspotId = useMemo(() => {
+    if (deviceId || !data || Object.keys(portStatusByComponentId).length > 0) return {};
+    return generateDemoPortStatusByHotspot(data);
+  }, [deviceId, data, portStatusByComponentId]);
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [selectedPortId, setSelectedPortId] = useState<string | null>(null);
   const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
@@ -204,6 +229,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                       onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
                       viewId={view.id}
                       portStatusByComponentId={portStatusByComponentId}
+                      portStatusByHotspotId={portStatusByHotspotId}
                     />
                   </div>
                 );
