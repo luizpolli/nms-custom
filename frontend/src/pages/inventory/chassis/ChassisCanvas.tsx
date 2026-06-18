@@ -93,6 +93,7 @@ export function ChassisCanvas({
   onHotspotDetail,
   viewId,
   portStatusByComponentId,
+  portStatusByHotspotId,
 }: {
   model: ChassisViewModel;
   selectedComponentId: string | null;
@@ -100,6 +101,7 @@ export function ChassisCanvas({
   onHotspotDetail?: (physicalIndex: number) => void;
   viewId?: string;
   portStatusByComponentId?: Record<string, PortStatusInfo>;
+  portStatusByHotspotId?: Record<string, PortStatusInfo>;
 }) {
   const view = (viewId ? model.views.find((v) => v.id === viewId) : undefined) ?? model.views[0];
   const frameRef = useRef<HTMLDivElement | null>(null);
@@ -202,7 +204,8 @@ export function ChassisCanvas({
             const alarmInfo: ComponentAlarmInfo | undefined =
               hotspot.inventoryId ? model.alarmsByComponentId?.[hotspot.inventoryId] : undefined;
             const portStatus: PortStatusInfo | undefined =
-              hotspot.inventoryId ? portStatusByComponentId?.[hotspot.inventoryId] : undefined;
+              (hotspot.inventoryId ? portStatusByComponentId?.[hotspot.inventoryId] : undefined)
+              ?? portStatusByHotspotId?.[hotspot.id];
             const baseTitle = hotspot.metadata?.sourceName ?? hotspot.label;
             return (
               <button

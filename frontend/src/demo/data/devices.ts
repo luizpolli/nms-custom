@@ -373,3 +373,39 @@ export const DEMO_DEVICES = [
     updated_at: OLDER(15),
   },
 ];
+
+// Static inventory card data (non-JSX fields only) — environment icons are added in InventoryPage.tsx
+export const EXAMPLE_DEVICE_BASE = {
+  name: 'MEX-CORE-ASR-01',
+  managementIp: '10.24.10.11',
+  role: 'Cell-site aggregation router',
+  site: 'CDMX / MEX-DC1 / Rack R12',
+  vendor: 'Cisco',
+  platform: 'ASR 903',
+  serial: 'FOX2748P1A9',
+  os: 'IOS XR 7.9.2',
+  uptime: '184d 06h 21m',
+  collectionStatus: 'Successful',
+  lastCollection: '2026-05-24 21:58 CST',
+  lifecycle: 'In service',
+  license: 'Advantage + Segment Routing',
+  software: [
+    { name: 'IOS XR', version: '7.9.2', state: 'Active' },
+    { name: 'SMU bundle', version: 'asr9k-x64-7.9.2.CSCwf88931', state: 'Installed' },
+    { name: 'Telemetry package', version: '2.4.1', state: 'Active' },
+  ],
+  modules: [
+    { slot: '0/RSP0', type: 'Route Switch Processor', part: 'A900-RSP2A-128', serial: 'FOC2712RP0A', status: 'OK', ports: 'Mgmt + console + BITS', firmware: '7.9.2' },
+    { slot: '0/RSP1', type: 'Route Switch Processor', part: 'A900-RSP2A-128', serial: 'FOC2712RP1B', status: 'Standby', ports: 'Standby bay', firmware: '7.9.2' },
+    { slot: '0/0', type: 'Interface Module', part: 'A900-IMA8D', serial: 'FOC2709LC01', status: 'OK', ports: '8 x GE/10GE', firmware: '5.21' },
+    { slot: '0/1', type: 'Interface Module', part: 'A900-IMA16D', serial: 'FOC2709LC02', status: 'OK', ports: '16 x GE/10GE', firmware: '5.21' },
+    { slot: '0/FT0', type: 'Fan Tray', part: 'A903-FAN', serial: 'FOC2707FT01', status: 'OK', ports: 'Fan + alarm', firmware: '1.08' },
+    { slot: '0/PM0', type: 'Power Module', part: 'A900-PWR550-A', serial: 'DTN2706PM00', status: 'OK', ports: 'AC input', firmware: '1.12' },
+  ],
+  optics: [
+    { interface: 'Hu0/1/0/0', type: 'QSFP28-LR4', part: 'QSFP-100G-LR4-S', serial: 'AVD2741Q001', wavelength: '1310 nm', rxPower: '-2.9 dBm', txPower: '1.8 dBm', status: 'ok' as const },
+    { interface: 'Hu0/1/0/1', type: 'QSFP28-SR4', part: 'QSFP-100G-SR4-S', serial: 'AVD2741Q002', wavelength: '850 nm', rxPower: '-1.7 dBm', txPower: '2.1 dBm', status: 'ok' as const },
+    { interface: 'Te0/0/0/12', type: 'SFP-10G-LR', part: 'SFP-10G-LR-S', serial: 'AGM2738S012', wavelength: '1310 nm', rxPower: '-8.4 dBm', txPower: '-1.2 dBm', status: 'warning' as const },
+    { interface: 'Te0/0/0/13', type: 'SFP-10G-SR', part: 'SFP-10G-SR-S', serial: 'AGM2738S013', wavelength: '850 nm', rxPower: '-2.1 dBm', txPower: '-2.0 dBm', status: 'ok' as const },
+  ],
+};
