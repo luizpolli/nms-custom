@@ -951,7 +951,8 @@
       "serviceState": 1,
       "sourceId": 316,
       "type": "Module",
-      "typeId": "SFP-GE-T"
+      "typeId": "SFP-GE-T",
+      "operStatus": "down"
     },
     "component-317": {
       "childIds": [],
@@ -973,7 +974,8 @@
       "serviceState": 1,
       "sourceId": 317,
       "type": "Module",
-      "typeId": "SFP-GE-T"
+      "typeId": "SFP-GE-T",
+      "operStatus": "down"
     },
     "component-318": {
       "childIds": [],
@@ -995,7 +997,8 @@
       "serviceState": 1,
       "sourceId": 318,
       "type": "Module",
-      "typeId": "SFP-GE-T"
+      "typeId": "SFP-GE-T",
+      "operStatus": "down"
     },
     "component-319": {
       "childIds": [],
@@ -1017,7 +1020,8 @@
       "serviceState": 1,
       "sourceId": 319,
       "type": "Module",
-      "typeId": "SFP-GE-T"
+      "typeId": "SFP-GE-T",
+      "operStatus": "down"
     },
     "component-350": {
       "childIds": [],

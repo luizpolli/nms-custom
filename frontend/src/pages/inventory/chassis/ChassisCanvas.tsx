@@ -230,9 +230,9 @@ export function ChassisCanvas({
                 className={`absolute rounded-sm border-2 transition ${
                   !showHotspotChrome
                     ? selected
-                      ? 'border-cisco-blue/70 bg-cisco-blue/15 shadow-[0_0_0_2px_rgba(0,124,186,0.2)]'
+                      ? 'border-cisco-blue-light bg-cisco-blue-light/20 shadow-[0_0_0_2px_rgba(0,174,239,0.35)]'
                       : canSelect
-                        ? 'border-transparent bg-transparent hover:border-cisco-blue/50 hover:bg-cisco-blue/10'
+                        ? 'border-transparent bg-transparent hover:border-white/50 hover:bg-white/10'
                         : 'border-transparent bg-transparent'
                     : selected
                       ? 'border-cisco-blue bg-cisco-blue/20 shadow-[0_0_0_4px_rgba(0,124,186,0.25)]'
