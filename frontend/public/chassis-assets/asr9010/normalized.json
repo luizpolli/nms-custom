@@ -1117,6 +1117,414 @@
       "serviceState": 1,
       "sourceId": 4664352,
       "type": "Module"
+    },
+    "component-port-9010a-0": {
+      "id": "component-port-9010a-0",
+      "sourceId": 5209473,
+      "parentId": "component-4664351",
+      "name": "TenGigE0/0/0/0",
+      "displayName": "TenGigE0/0/0/0",
+      "type": "port",
+      "physicalIndex": 5209473,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010a-1": {
+      "id": "component-port-9010a-1",
+      "sourceId": 5368920,
+      "parentId": "component-4664351",
+      "name": "TenGigE0/0/0/1",
+      "displayName": "TenGigE0/0/0/1",
+      "type": "port",
+      "physicalIndex": 5368920,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010a-2": {
+      "id": "component-port-9010a-2",
+      "sourceId": 5369842,
+      "parentId": "component-4664351",
+      "name": "TenGigE0/0/0/2",
+      "displayName": "TenGigE0/0/0/2",
+      "type": "port",
+      "physicalIndex": 5369842,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010a-3": {
+      "id": "component-port-9010a-3",
+      "sourceId": 5182947,
+      "parentId": "component-4664351",
+      "name": "TenGigE0/0/0/3",
+      "displayName": "TenGigE0/0/0/3",
+      "type": "port",
+      "physicalIndex": 5182947,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-0": {
+      "id": "component-port-9010b-0",
+      "sourceId": 5410582,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/0",
+      "displayName": "TenGigE0/1/0/0",
+      "type": "port",
+      "physicalIndex": 5410582,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-1": {
+      "id": "component-port-9010b-1",
+      "sourceId": 5830306,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/1",
+      "displayName": "TenGigE0/1/0/1",
+      "type": "port",
+      "physicalIndex": 5830306,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-2": {
+      "id": "component-port-9010b-2",
+      "sourceId": 5336883,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/2",
+      "displayName": "TenGigE0/1/0/2",
+      "type": "port",
+      "physicalIndex": 5336883,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-3": {
+      "id": "component-port-9010b-3",
+      "sourceId": 5183929,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/3",
+      "displayName": "TenGigE0/1/0/3",
+      "type": "port",
+      "physicalIndex": 5183929,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-4": {
+      "id": "component-port-9010b-4",
+      "sourceId": 5394379,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/4",
+      "displayName": "TenGigE0/1/0/4",
+      "type": "port",
+      "physicalIndex": 5394379,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-5": {
+      "id": "component-port-9010b-5",
+      "sourceId": 5820268,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/5",
+      "displayName": "TenGigE0/1/0/5",
+      "type": "port",
+      "physicalIndex": 5820268,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-6": {
+      "id": "component-port-9010b-6",
+      "sourceId": 5827872,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/6",
+      "displayName": "TenGigE0/1/0/6",
+      "type": "port",
+      "physicalIndex": 5827872,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010b-7": {
+      "id": "component-port-9010b-7",
+      "sourceId": 5213969,
+      "parentId": "component-4664337",
+      "name": "TenGigE0/1/0/7",
+      "displayName": "TenGigE0/1/0/7",
+      "type": "port",
+      "physicalIndex": 5213969,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-0": {
+      "id": "component-port-9010c-0",
+      "sourceId": 5334498,
+      "parentId": "component-4664331",
+      "name": "TenGigE0/3/0/0",
+      "displayName": "TenGigE0/3/0/0",
+      "type": "port",
+      "physicalIndex": 5334498,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-1": {
+      "id": "component-port-9010c-1",
+      "sourceId": 5698930,
+      "parentId": "component-4664331",
+      "name": "TenGigE0/3/0/1",
+      "displayName": "TenGigE0/3/0/1",
+      "type": "port",
+      "physicalIndex": 5698930,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-2": {
+      "id": "component-port-9010c-2",
+      "sourceId": 5786360,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/0",
+      "displayName": "GigabitEthernet0/3/0/0",
+      "type": "port",
+      "physicalIndex": 5786360,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-3": {
+      "id": "component-port-9010c-3",
+      "sourceId": 5176333,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/1",
+      "displayName": "GigabitEthernet0/3/0/1",
+      "type": "port",
+      "physicalIndex": 5176333,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-4": {
+      "id": "component-port-9010c-4",
+      "sourceId": 5671819,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/2",
+      "displayName": "GigabitEthernet0/3/0/2",
+      "type": "port",
+      "physicalIndex": 5671819,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-5": {
+      "id": "component-port-9010c-5",
+      "sourceId": 5781055,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/3",
+      "displayName": "GigabitEthernet0/3/0/3",
+      "type": "port",
+      "physicalIndex": 5781055,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-6": {
+      "id": "component-port-9010c-6",
+      "sourceId": 5192157,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/4",
+      "displayName": "GigabitEthernet0/3/0/4",
+      "type": "port",
+      "physicalIndex": 5192157,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-7": {
+      "id": "component-port-9010c-7",
+      "sourceId": 5890754,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/5",
+      "displayName": "GigabitEthernet0/3/0/5",
+      "type": "port",
+      "physicalIndex": 5890754,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-8": {
+      "id": "component-port-9010c-8",
+      "sourceId": 5657222,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/6",
+      "displayName": "GigabitEthernet0/3/0/6",
+      "type": "port",
+      "physicalIndex": 5657222,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-9": {
+      "id": "component-port-9010c-9",
+      "sourceId": 5082104,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/7",
+      "displayName": "GigabitEthernet0/3/0/7",
+      "type": "port",
+      "physicalIndex": 5082104,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-10": {
+      "id": "component-port-9010c-10",
+      "sourceId": 5522342,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/8",
+      "displayName": "GigabitEthernet0/3/0/8",
+      "type": "port",
+      "physicalIndex": 5522342,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-11": {
+      "id": "component-port-9010c-11",
+      "sourceId": 5639093,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/9",
+      "displayName": "GigabitEthernet0/3/0/9",
+      "type": "port",
+      "physicalIndex": 5639093,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-12": {
+      "id": "component-port-9010c-12",
+      "sourceId": 5098002,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/10",
+      "displayName": "GigabitEthernet0/3/0/10",
+      "type": "port",
+      "physicalIndex": 5098002,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-13": {
+      "id": "component-port-9010c-13",
+      "sourceId": 5718633,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/11",
+      "displayName": "GigabitEthernet0/3/0/11",
+      "type": "port",
+      "physicalIndex": 5718633,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-14": {
+      "id": "component-port-9010c-14",
+      "sourceId": 5856804,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/12",
+      "displayName": "GigabitEthernet0/3/0/12",
+      "type": "port",
+      "physicalIndex": 5856804,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-15": {
+      "id": "component-port-9010c-15",
+      "sourceId": 5823255,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/13",
+      "displayName": "GigabitEthernet0/3/0/13",
+      "type": "port",
+      "physicalIndex": 5823255,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-16": {
+      "id": "component-port-9010c-16",
+      "sourceId": 5760872,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/14",
+      "displayName": "GigabitEthernet0/3/0/14",
+      "type": "port",
+      "physicalIndex": 5760872,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-17": {
+      "id": "component-port-9010c-17",
+      "sourceId": 5339395,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/15",
+      "displayName": "GigabitEthernet0/3/0/15",
+      "type": "port",
+      "physicalIndex": 5339395,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-18": {
+      "id": "component-port-9010c-18",
+      "sourceId": 5741011,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/16",
+      "displayName": "GigabitEthernet0/3/0/16",
+      "type": "port",
+      "physicalIndex": 5741011,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-19": {
+      "id": "component-port-9010c-19",
+      "sourceId": 5665343,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/17",
+      "displayName": "GigabitEthernet0/3/0/17",
+      "type": "port",
+      "physicalIndex": 5665343,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-20": {
+      "id": "component-port-9010c-20",
+      "sourceId": 5533058,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/18",
+      "displayName": "GigabitEthernet0/3/0/18",
+      "type": "port",
+      "physicalIndex": 5533058,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9010c-21": {
+      "id": "component-port-9010c-21",
+      "sourceId": 5209511,
+      "parentId": "component-4664331",
+      "name": "GigabitEthernet0/3/0/19",
+      "displayName": "GigabitEthernet0/3/0/19",
+      "type": "port",
+      "physicalIndex": 5209511,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
     }
   },
   "deviceId": "sample-asr9010",
@@ -2208,6 +2616,618 @@
           },
           "physicalIndex": 25315280,
           "slotKey": "FT1"
+        },
+        {
+          "id": "hotspot-9010a-0",
+          "slotKey": "TenGigE0/0/0/0",
+          "label": "TenGigE0/0/0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010a-0",
+          "physicalIndex": 5209473,
+          "empty": false,
+          "bounds": {
+            "x": 282.73,
+            "y": 1149.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010a-1",
+          "slotKey": "TenGigE0/0/0/1",
+          "label": "TenGigE0/0/0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010a-1",
+          "physicalIndex": 5368920,
+          "empty": false,
+          "bounds": {
+            "x": 282.73,
+            "y": 1309.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010a-2",
+          "slotKey": "TenGigE0/0/0/2",
+          "label": "TenGigE0/0/0/2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010a-2",
+          "physicalIndex": 5369842,
+          "empty": false,
+          "bounds": {
+            "x": 282.73,
+            "y": 1469.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010a-3",
+          "slotKey": "TenGigE0/0/0/3",
+          "label": "TenGigE0/0/0/3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010a-3",
+          "physicalIndex": 5182947,
+          "empty": false,
+          "bounds": {
+            "x": 282.73,
+            "y": 1629.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-0",
+          "slotKey": "TenGigE0/1/0/0",
+          "label": "TenGigE0/1/0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-0",
+          "physicalIndex": 5410582,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 1149.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-1",
+          "slotKey": "TenGigE0/1/0/1",
+          "label": "TenGigE0/1/0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-1",
+          "physicalIndex": 5830306,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 1309.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-2",
+          "slotKey": "TenGigE0/1/0/2",
+          "label": "TenGigE0/1/0/2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-2",
+          "physicalIndex": 5336883,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 1469.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-3",
+          "slotKey": "TenGigE0/1/0/3",
+          "label": "TenGigE0/1/0/3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-3",
+          "physicalIndex": 5183929,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 1629.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-4",
+          "slotKey": "TenGigE0/1/0/4",
+          "label": "TenGigE0/1/0/4",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-4",
+          "physicalIndex": 5394379,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 1789.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-5",
+          "slotKey": "TenGigE0/1/0/5",
+          "label": "TenGigE0/1/0/5",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-5",
+          "physicalIndex": 5820268,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 1949.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-6",
+          "slotKey": "TenGigE0/1/0/6",
+          "label": "TenGigE0/1/0/6",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-6",
+          "physicalIndex": 5827872,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 2109.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010b-7",
+          "slotKey": "TenGigE0/1/0/7",
+          "label": "TenGigE0/1/0/7",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010b-7",
+          "physicalIndex": 5213969,
+          "empty": false,
+          "bounds": {
+            "x": 582.98,
+            "y": 2269.92,
+            "w": 110,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-0",
+          "slotKey": "TenGigE0/3/0/0",
+          "label": "TenGigE0/3/0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-0",
+          "physicalIndex": 5334498,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 1149.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-1",
+          "slotKey": "TenGigE0/3/0/1",
+          "label": "TenGigE0/3/0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-1",
+          "physicalIndex": 5698930,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 1309.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-2",
+          "slotKey": "GigabitEthernet0/3/0/0",
+          "label": "GigabitEthernet0/3/0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-2",
+          "physicalIndex": 5786360,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 1469.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-3",
+          "slotKey": "GigabitEthernet0/3/0/1",
+          "label": "GigabitEthernet0/3/0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-3",
+          "physicalIndex": 5176333,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 1629.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-4",
+          "slotKey": "GigabitEthernet0/3/0/2",
+          "label": "GigabitEthernet0/3/0/2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-4",
+          "physicalIndex": 5671819,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 1789.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-5",
+          "slotKey": "GigabitEthernet0/3/0/3",
+          "label": "GigabitEthernet0/3/0/3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-5",
+          "physicalIndex": 5781055,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 1949.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-6",
+          "slotKey": "GigabitEthernet0/3/0/4",
+          "label": "GigabitEthernet0/3/0/4",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-6",
+          "physicalIndex": 5192157,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 2109.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-7",
+          "slotKey": "GigabitEthernet0/3/0/5",
+          "label": "GigabitEthernet0/3/0/5",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-7",
+          "physicalIndex": 5890754,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 2269.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-8",
+          "slotKey": "GigabitEthernet0/3/0/6",
+          "label": "GigabitEthernet0/3/0/6",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-8",
+          "physicalIndex": 5657222,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 2429.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-9",
+          "slotKey": "GigabitEthernet0/3/0/7",
+          "label": "GigabitEthernet0/3/0/7",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-9",
+          "physicalIndex": 5082104,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 2589.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-10",
+          "slotKey": "GigabitEthernet0/3/0/8",
+          "label": "GigabitEthernet0/3/0/8",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-10",
+          "physicalIndex": 5522342,
+          "empty": false,
+          "bounds": {
+            "x": 1145.97,
+            "y": 2749.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-11",
+          "slotKey": "GigabitEthernet0/3/0/9",
+          "label": "GigabitEthernet0/3/0/9",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-11",
+          "physicalIndex": 5639093,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 1149.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-12",
+          "slotKey": "GigabitEthernet0/3/0/10",
+          "label": "GigabitEthernet0/3/0/10",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-12",
+          "physicalIndex": 5098002,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 1309.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-13",
+          "slotKey": "GigabitEthernet0/3/0/11",
+          "label": "GigabitEthernet0/3/0/11",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-13",
+          "physicalIndex": 5718633,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 1469.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-14",
+          "slotKey": "GigabitEthernet0/3/0/12",
+          "label": "GigabitEthernet0/3/0/12",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-14",
+          "physicalIndex": 5856804,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 1629.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-15",
+          "slotKey": "GigabitEthernet0/3/0/13",
+          "label": "GigabitEthernet0/3/0/13",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-15",
+          "physicalIndex": 5823255,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 1789.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-16",
+          "slotKey": "GigabitEthernet0/3/0/14",
+          "label": "GigabitEthernet0/3/0/14",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-16",
+          "physicalIndex": 5760872,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 1949.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-17",
+          "slotKey": "GigabitEthernet0/3/0/15",
+          "label": "GigabitEthernet0/3/0/15",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-17",
+          "physicalIndex": 5339395,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 2109.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-18",
+          "slotKey": "GigabitEthernet0/3/0/16",
+          "label": "GigabitEthernet0/3/0/16",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-18",
+          "physicalIndex": 5741011,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 2269.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-19",
+          "slotKey": "GigabitEthernet0/3/0/17",
+          "label": "GigabitEthernet0/3/0/17",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-19",
+          "physicalIndex": 5665343,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 2429.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-20",
+          "slotKey": "GigabitEthernet0/3/0/18",
+          "label": "GigabitEthernet0/3/0/18",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-20",
+          "physicalIndex": 5533058,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 2589.92,
+            "w": 105.745,
+            "h": 140
+          }
+        },
+        {
+          "id": "hotspot-9010c-21",
+          "slotKey": "GigabitEthernet0/3/0/19",
+          "label": "GigabitEthernet0/3/0/19",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9010c-21",
+          "physicalIndex": 5209511,
+          "empty": false,
+          "bounds": {
+            "x": 1266.7150000000001,
+            "y": 2749.92,
+            "w": 105.745,
+            "h": 140
+          }
         }
       ],
       "id": "front",
