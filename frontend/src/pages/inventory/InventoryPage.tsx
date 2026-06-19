@@ -88,6 +88,8 @@ const exampleChassisProfiles = [
   { id: 'ncs55a1-24h', label: 'NCS55A1-24H', deviceName: 'MEX-CORE-NCS55A1-24H', dataUrl: '/chassis-assets/ncs55a1-24h/normalized.json' },
   { id: 'ncs560', label: 'NCS560', deviceName: 'MEX-CORE-NCS560-01', dataUrl: '/chassis-assets/ncs560/normalized.json' },
   { id: 'ncs540', label: 'NCS540', deviceName: 'MEX-EDGE-NCS540-01', dataUrl: '/chassis-assets/ncs540/normalized.json' },
+  { id: 'ncs540-12z16g', label: 'NCS540X-12Z16G', deviceName: 'MEX-EDGE-NCS540X-12Z16G', dataUrl: '/chassis-assets/ncs540-12z16g/normalized.json' },
+  { id: 'ncs540-16z4', label: 'NCS540X-16Z4', deviceName: 'MEX-EDGE-NCS540X-16Z4', dataUrl: '/chassis-assets/ncs540-16z4/normalized.json' },
 ];
 
 async function fetchAllInventory(): Promise<DeviceInventoryRow[]> {
