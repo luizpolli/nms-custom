@@ -803,6 +803,246 @@
       "serviceState": 1,
       "sourceId": 8104544,
       "type": "Equipment"
+    },
+    "component-port-9006-4615340": {
+      "id": "component-port-9006-4615340",
+      "sourceId": 4615340,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/0",
+      "displayName": "GigabitEthernet0/0/0/0",
+      "type": "port",
+      "physicalIndex": 4615340,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615335": {
+      "id": "component-port-9006-4615335",
+      "sourceId": 4615335,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/1",
+      "displayName": "GigabitEthernet0/0/0/1",
+      "type": "port",
+      "physicalIndex": 4615335,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615336": {
+      "id": "component-port-9006-4615336",
+      "sourceId": 4615336,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/2",
+      "displayName": "GigabitEthernet0/0/0/2",
+      "type": "port",
+      "physicalIndex": 4615336,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615337": {
+      "id": "component-port-9006-4615337",
+      "sourceId": 4615337,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/3",
+      "displayName": "GigabitEthernet0/0/0/3",
+      "type": "port",
+      "physicalIndex": 4615337,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615338": {
+      "id": "component-port-9006-4615338",
+      "sourceId": 4615338,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/4",
+      "displayName": "GigabitEthernet0/0/0/4",
+      "type": "port",
+      "physicalIndex": 4615338,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615328": {
+      "id": "component-port-9006-4615328",
+      "sourceId": 4615328,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/5",
+      "displayName": "GigabitEthernet0/0/0/5",
+      "type": "port",
+      "physicalIndex": 4615328,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615329": {
+      "id": "component-port-9006-4615329",
+      "sourceId": 4615329,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/6",
+      "displayName": "GigabitEthernet0/0/0/6",
+      "type": "port",
+      "physicalIndex": 4615329,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615331": {
+      "id": "component-port-9006-4615331",
+      "sourceId": 4615331,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/7",
+      "displayName": "GigabitEthernet0/0/0/7",
+      "type": "port",
+      "physicalIndex": 4615331,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615332": {
+      "id": "component-port-9006-4615332",
+      "sourceId": 4615332,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/8",
+      "displayName": "GigabitEthernet0/0/0/8",
+      "type": "port",
+      "physicalIndex": 4615332,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615326": {
+      "id": "component-port-9006-4615326",
+      "sourceId": 4615326,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/9",
+      "displayName": "GigabitEthernet0/0/0/9",
+      "type": "port",
+      "physicalIndex": 4615326,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615304": {
+      "id": "component-port-9006-4615304",
+      "sourceId": 4615304,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/10",
+      "displayName": "GigabitEthernet0/0/0/10",
+      "type": "port",
+      "physicalIndex": 4615304,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615303": {
+      "id": "component-port-9006-4615303",
+      "sourceId": 4615303,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/11",
+      "displayName": "GigabitEthernet0/0/0/11",
+      "type": "port",
+      "physicalIndex": 4615303,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615302": {
+      "id": "component-port-9006-4615302",
+      "sourceId": 4615302,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/12",
+      "displayName": "GigabitEthernet0/0/0/12",
+      "type": "port",
+      "physicalIndex": 4615302,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615301": {
+      "id": "component-port-9006-4615301",
+      "sourceId": 4615301,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/13",
+      "displayName": "GigabitEthernet0/0/0/13",
+      "type": "port",
+      "physicalIndex": 4615301,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615308": {
+      "id": "component-port-9006-4615308",
+      "sourceId": 4615308,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/14",
+      "displayName": "GigabitEthernet0/0/0/14",
+      "type": "port",
+      "physicalIndex": 4615308,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615307": {
+      "id": "component-port-9006-4615307",
+      "sourceId": 4615307,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/15",
+      "displayName": "GigabitEthernet0/0/0/15",
+      "type": "port",
+      "physicalIndex": 4615307,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615306": {
+      "id": "component-port-9006-4615306",
+      "sourceId": 4615306,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/16",
+      "displayName": "GigabitEthernet0/0/0/16",
+      "type": "port",
+      "physicalIndex": 4615306,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615305": {
+      "id": "component-port-9006-4615305",
+      "sourceId": 4615305,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/17",
+      "displayName": "GigabitEthernet0/0/0/17",
+      "type": "port",
+      "physicalIndex": 4615305,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615311": {
+      "id": "component-port-9006-4615311",
+      "sourceId": 4615311,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/18",
+      "displayName": "GigabitEthernet0/0/0/18",
+      "type": "port",
+      "physicalIndex": 4615311,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9006-4615310": {
+      "id": "component-port-9006-4615310",
+      "sourceId": 4615310,
+      "parentId": "component-4636966",
+      "name": "GigabitEthernet0/0/0/19",
+      "displayName": "GigabitEthernet0/0/0/19",
+      "type": "port",
+      "physicalIndex": 4615310,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
     }
   },
   "deviceId": "sample-asr9006",
@@ -1508,6 +1748,366 @@
           },
           "physicalIndex": 10110611,
           "slotKey": "PS0/M2"
+        },
+        {
+          "id": "hotspot-gige-0",
+          "slotKey": "GigabitEthernet0/0/0/0",
+          "label": "GigabitEthernet0/0/0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615340",
+          "physicalIndex": 4615340,
+          "empty": false,
+          "bounds": {
+            "x": 528.0,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-1",
+          "slotKey": "GigabitEthernet0/0/0/1",
+          "label": "GigabitEthernet0/0/0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615335",
+          "physicalIndex": 4615335,
+          "empty": false,
+          "bounds": {
+            "x": 652.4,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-2",
+          "slotKey": "GigabitEthernet0/0/0/2",
+          "label": "GigabitEthernet0/0/0/2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615336",
+          "physicalIndex": 4615336,
+          "empty": false,
+          "bounds": {
+            "x": 776.8,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-3",
+          "slotKey": "GigabitEthernet0/0/0/3",
+          "label": "GigabitEthernet0/0/0/3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615337",
+          "physicalIndex": 4615337,
+          "empty": false,
+          "bounds": {
+            "x": 901.2,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-4",
+          "slotKey": "GigabitEthernet0/0/0/4",
+          "label": "GigabitEthernet0/0/0/4",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615338",
+          "physicalIndex": 4615338,
+          "empty": false,
+          "bounds": {
+            "x": 1025.6,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-5",
+          "slotKey": "GigabitEthernet0/0/0/5",
+          "label": "GigabitEthernet0/0/0/5",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615328",
+          "physicalIndex": 4615328,
+          "empty": false,
+          "bounds": {
+            "x": 1150.0,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-6",
+          "slotKey": "GigabitEthernet0/0/0/6",
+          "label": "GigabitEthernet0/0/0/6",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615329",
+          "physicalIndex": 4615329,
+          "empty": false,
+          "bounds": {
+            "x": 1274.4,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-7",
+          "slotKey": "GigabitEthernet0/0/0/7",
+          "label": "GigabitEthernet0/0/0/7",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615331",
+          "physicalIndex": 4615331,
+          "empty": false,
+          "bounds": {
+            "x": 1398.8000000000002,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-8",
+          "slotKey": "GigabitEthernet0/0/0/8",
+          "label": "GigabitEthernet0/0/0/8",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615332",
+          "physicalIndex": 4615332,
+          "empty": false,
+          "bounds": {
+            "x": 1523.2,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-9",
+          "slotKey": "GigabitEthernet0/0/0/9",
+          "label": "GigabitEthernet0/0/0/9",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615326",
+          "physicalIndex": 4615326,
+          "empty": false,
+          "bounds": {
+            "x": 1647.6000000000001,
+            "y": 1750.0,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-10",
+          "slotKey": "GigabitEthernet0/0/0/10",
+          "label": "GigabitEthernet0/0/0/10",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615304",
+          "physicalIndex": 4615304,
+          "empty": false,
+          "bounds": {
+            "x": 528.0,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-11",
+          "slotKey": "GigabitEthernet0/0/0/11",
+          "label": "GigabitEthernet0/0/0/11",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615303",
+          "physicalIndex": 4615303,
+          "empty": false,
+          "bounds": {
+            "x": 652.4,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-12",
+          "slotKey": "GigabitEthernet0/0/0/12",
+          "label": "GigabitEthernet0/0/0/12",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615302",
+          "physicalIndex": 4615302,
+          "empty": false,
+          "bounds": {
+            "x": 776.8,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-13",
+          "slotKey": "GigabitEthernet0/0/0/13",
+          "label": "GigabitEthernet0/0/0/13",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615301",
+          "physicalIndex": 4615301,
+          "empty": false,
+          "bounds": {
+            "x": 901.2,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-14",
+          "slotKey": "GigabitEthernet0/0/0/14",
+          "label": "GigabitEthernet0/0/0/14",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615308",
+          "physicalIndex": 4615308,
+          "empty": false,
+          "bounds": {
+            "x": 1025.6,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-15",
+          "slotKey": "GigabitEthernet0/0/0/15",
+          "label": "GigabitEthernet0/0/0/15",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615307",
+          "physicalIndex": 4615307,
+          "empty": false,
+          "bounds": {
+            "x": 1150.0,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-16",
+          "slotKey": "GigabitEthernet0/0/0/16",
+          "label": "GigabitEthernet0/0/0/16",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615306",
+          "physicalIndex": 4615306,
+          "empty": false,
+          "bounds": {
+            "x": 1274.4,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-17",
+          "slotKey": "GigabitEthernet0/0/0/17",
+          "label": "GigabitEthernet0/0/0/17",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615305",
+          "physicalIndex": 4615305,
+          "empty": false,
+          "bounds": {
+            "x": 1398.8000000000002,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-18",
+          "slotKey": "GigabitEthernet0/0/0/18",
+          "label": "GigabitEthernet0/0/0/18",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615311",
+          "physicalIndex": 4615311,
+          "empty": false,
+          "bounds": {
+            "x": 1523.2,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
+        },
+        {
+          "id": "hotspot-gige-19",
+          "slotKey": "GigabitEthernet0/0/0/19",
+          "label": "GigabitEthernet0/0/0/19",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/asr920/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9006-4615310",
+          "physicalIndex": 4615310,
+          "empty": false,
+          "bounds": {
+            "x": 1647.6000000000001,
+            "y": 1879.5,
+            "w": 110,
+            "h": 115
+          }
         }
       ],
       "id": "front",
