@@ -153,6 +153,12 @@ export function IntegrationsAiOpsSettingsPanel() {
             <span className="mb-1 block font-medium">Report export target path</span>
             <Input value={cfg.report_export_target_path} onChange={(e) => setIntegration('report_export_target_path', e.target.value)} placeholder="/exports/reports" />
           </label>
+          <div className="md:col-span-3">
+            <SettingsHint>
+              These fields are saved but not yet consumed by the backend — northbound forwarding is
+              configured separately under Notifications &amp; Forwarding, which is the live implementation.
+            </SettingsHint>
+          </div>
         </div>
       </Card>
 
@@ -196,7 +202,9 @@ export function IntegrationsAiOpsSettingsPanel() {
           <div className="md:col-span-3">
             <SettingsHint>
               API keys and tokens must be configured via environment variables or a secret store — never entered here.
-              This panel stores only provider references, model selection, and behaviour knobs.
+              This panel stores provider references and behaviour knobs for documentation purposes, but the running
+              assistant currently reads its live configuration from the backend's AI_OPS_LLM_* environment variables —
+              changes made here do not yet take effect until that wiring is added.
               The Base URL field accepts any OpenAI-compatible endpoint (e.g. a local Ollama proxy or a self-hosted vLLM instance).
             </SettingsHint>
           </div>

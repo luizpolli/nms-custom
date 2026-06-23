@@ -234,7 +234,7 @@ export const CATEGORIES: Category[] = [
     description: 'Northbound APIs, webhooks, AI Ops recommendations, model/provider knobs, and external tools.',
     icon: <BrainCircuit className="h-5 w-5" />,
     submenus: ['Northbound API', 'Webhooks', 'AI Ops', 'LLM providers', 'Export targets'],
-    status: 'planned',
+    status: 'partial',
   },
   {
     key: 'labOperations',
