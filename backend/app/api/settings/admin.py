@@ -177,12 +177,18 @@ async def update_inventory_settings(
 # ---------------------------------------------------------------------------
 
 
+async def load_bulkstats_settings(db: AsyncSession) -> BulkstatsAdminSettings:
+    """Public accessor — used by the watch-path and SSH-pull collector
+    workers to read their configured paths/intervals/retention."""
+    return await _load_setting(db, _BULKSTATS_KEY, BulkstatsAdminSettings, BulkstatsAdminSettings)
+
+
 @router.get("/bulkstats", response_model=BulkstatsAdminSettings)
 async def get_bulkstats_settings(
     db: Annotated[AsyncSession, Depends(get_db)],
     _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
 ) -> BulkstatsAdminSettings:
-    return await _load_setting(db, _BULKSTATS_KEY, BulkstatsAdminSettings, BulkstatsAdminSettings)
+    return await load_bulkstats_settings(db)
 
 
 @router.put("/bulkstats", response_model=BulkstatsAdminSettings)

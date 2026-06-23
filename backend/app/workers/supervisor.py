@@ -31,6 +31,7 @@ class WorkerSupervisor:
             asyncio.create_task(self._run_syslog_receiver_loop(), name="syslog-receiver"),
             asyncio.create_task(self._run_report_scheduler_loop(), name="report-scheduler"),
             asyncio.create_task(self._run_telemetry_receiver_loop(), name="telemetry-receiver"),
+            asyncio.create_task(self._run_bulkstats_watch_loop(), name="bulkstats-watch"),
             asyncio.create_task(self._run_event_consumer_loop("worker-alarm"), name="worker-alarm"),
             asyncio.create_task(self._run_event_consumer_loop("worker-discovery"), name="worker-discovery"),
             asyncio.create_task(self._run_event_consumer_loop("worker-telemetry"), name="worker-telemetry"),
@@ -233,6 +234,40 @@ class WorkerSupervisor:
                 break
             except Exception as exc:
                 logger.error("Telemetry receiver error: {}", exc)
+                await beat.failure(str(exc))
+                await asyncio.sleep(backoff)
+        await beat.close()
+
+    async def _run_bulkstats_watch_loop(self) -> None:
+        from app.api.settings.admin import load_bulkstats_settings
+        from app.services.bulkstats.watch_collector import run_watch_pass
+
+        backoff = 10
+        beat = WorkerHeartbeat("bulkstats-watch", 60)
+        await beat.starting()
+        while not self._stop_event.is_set():
+            interval = 60
+            try:
+                async with async_session_factory() as session:
+                    cfg = await load_bulkstats_settings(session)
+                interval = cfg.watch.poll_interval_seconds
+                if not cfg.watch.enabled:
+                    await beat.success()
+                    await asyncio.sleep(interval)
+                    continue
+                result = await run_watch_pass(async_session_factory, cfg.watch.watch_path)
+                if result.files_ingested or result.files_failed:
+                    logger.info(
+                        "bulkstats watch pass: ingested={} failed={}",
+                        result.files_ingested,
+                        result.files_failed,
+                    )
+                await beat.success()
+                await asyncio.sleep(interval)
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                logger.error("Bulkstats watch loop error: {}", exc)
                 await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
         await beat.close()

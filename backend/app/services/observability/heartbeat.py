@@ -25,6 +25,8 @@ WORKER_KINDS: tuple[str, ...] = (
     "worker-alarm",
     "worker-discovery",
     "worker-telemetry",
+    "bulkstats-watch",
+    "bulkstats-pull",
 )
 
 _KEY_PREFIX = "nms:workers:"
