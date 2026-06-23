@@ -1,8 +1,971 @@
 {
-  "componentsById": {},
+  "componentsById": {
+    "component-chassis": {
+      "id": "component-chassis",
+      "sourceId": 1,
+      "parentId": null,
+      "name": "chassis NCS-55A1-24Q6H-S",
+      "displayName": "NCS-55A1-24Q6H-S Chassis",
+      "description": "NCS-55A1-24Q6H-S Fixed Chassis",
+      "type": "Chassis",
+      "typeId": "NCS-55A1-24Q6H-S",
+      "physicalIndex": 1,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": [
+        "component-rp0",
+        "component-pm0",
+        "component-ft0",
+        "component-ft1",
+        "component-pm1"
+      ]
+    },
+    "component-rp0": {
+      "id": "component-rp0",
+      "sourceId": 2,
+      "parentId": "component-chassis",
+      "name": "Route Processor 0",
+      "displayName": "0/RP0",
+      "description": "Fixed Route Processor",
+      "type": "Module",
+      "typeId": "RP0",
+      "physicalIndex": 2,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": [
+        "component-port-0",
+        "component-port-1",
+        "component-port-2",
+        "component-port-3",
+        "component-port-4",
+        "component-port-5",
+        "component-port-6",
+        "component-port-7",
+        "component-port-8",
+        "component-port-9",
+        "component-port-10",
+        "component-port-11",
+        "component-port-12",
+        "component-port-13",
+        "component-port-14",
+        "component-port-15",
+        "component-port-16",
+        "component-port-17",
+        "component-port-18",
+        "component-port-19",
+        "component-port-20",
+        "component-port-21",
+        "component-port-22",
+        "component-port-23",
+        "component-port-24",
+        "component-port-25",
+        "component-port-26",
+        "component-port-27",
+        "component-port-28",
+        "component-port-29",
+        "component-port-30",
+        "component-port-31",
+        "component-port-32",
+        "component-port-33",
+        "component-port-34",
+        "component-port-35",
+        "component-port-36",
+        "component-port-37",
+        "component-port-38",
+        "component-port-39",
+        "component-port-40",
+        "component-port-41",
+        "component-port-42",
+        "component-port-43",
+        "component-port-44",
+        "component-port-45",
+        "component-port-46",
+        "component-port-47",
+        "component-port-48",
+        "component-port-49",
+        "component-port-50",
+        "component-port-51",
+        "component-port-52",
+        "component-port-53"
+      ]
+    },
+    "component-port-0": {
+      "id": "component-port-0",
+      "sourceId": 100,
+      "parentId": "component-rp0",
+      "name": "QSFP28 0",
+      "displayName": "QSFP28 bay 0",
+      "description": "QSFP28 bay 0",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 100,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-1": {
+      "id": "component-port-1",
+      "sourceId": 101,
+      "parentId": "component-rp0",
+      "name": "QSFP28 1",
+      "displayName": "QSFP28 bay 1",
+      "description": "QSFP28 bay 1",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 101,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-2": {
+      "id": "component-port-2",
+      "sourceId": 102,
+      "parentId": "component-rp0",
+      "name": "QSFP28 2",
+      "displayName": "QSFP28 bay 2",
+      "description": "QSFP28 bay 2",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 102,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-3": {
+      "id": "component-port-3",
+      "sourceId": 103,
+      "parentId": "component-rp0",
+      "name": "QSFP28 3",
+      "displayName": "QSFP28 bay 3",
+      "description": "QSFP28 bay 3",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 103,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-4": {
+      "id": "component-port-4",
+      "sourceId": 104,
+      "parentId": "component-rp0",
+      "name": "QSFP28 4",
+      "displayName": "QSFP28 bay 4",
+      "description": "QSFP28 bay 4",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 104,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-5": {
+      "id": "component-port-5",
+      "sourceId": 105,
+      "parentId": "component-rp0",
+      "name": "QSFP28 5",
+      "displayName": "QSFP28 bay 5",
+      "description": "QSFP28 bay 5",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 105,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-6": {
+      "id": "component-port-6",
+      "sourceId": 106,
+      "parentId": "component-rp0",
+      "name": "QSFP28 6",
+      "displayName": "QSFP28 bay 6",
+      "description": "QSFP28 bay 6",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 106,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-7": {
+      "id": "component-port-7",
+      "sourceId": 107,
+      "parentId": "component-rp0",
+      "name": "QSFP28 7",
+      "displayName": "QSFP28 bay 7",
+      "description": "QSFP28 bay 7",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 107,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-8": {
+      "id": "component-port-8",
+      "sourceId": 108,
+      "parentId": "component-rp0",
+      "name": "QSFP28 8",
+      "displayName": "QSFP28 bay 8",
+      "description": "QSFP28 bay 8",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 108,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9": {
+      "id": "component-port-9",
+      "sourceId": 109,
+      "parentId": "component-rp0",
+      "name": "QSFP28 9",
+      "displayName": "QSFP28 bay 9",
+      "description": "QSFP28 bay 9",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 109,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-10": {
+      "id": "component-port-10",
+      "sourceId": 110,
+      "parentId": "component-rp0",
+      "name": "QSFP28 10",
+      "displayName": "QSFP28 bay 10",
+      "description": "QSFP28 bay 10",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 110,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-11": {
+      "id": "component-port-11",
+      "sourceId": 111,
+      "parentId": "component-rp0",
+      "name": "QSFP28 11",
+      "displayName": "QSFP28 bay 11",
+      "description": "QSFP28 bay 11",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 111,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-12": {
+      "id": "component-port-12",
+      "sourceId": 112,
+      "parentId": "component-rp0",
+      "name": "QSFP28 12",
+      "displayName": "QSFP28 bay 12",
+      "description": "QSFP28 bay 12",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 112,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-13": {
+      "id": "component-port-13",
+      "sourceId": 113,
+      "parentId": "component-rp0",
+      "name": "QSFP28 13",
+      "displayName": "QSFP28 bay 13",
+      "description": "QSFP28 bay 13",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 113,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-14": {
+      "id": "component-port-14",
+      "sourceId": 114,
+      "parentId": "component-rp0",
+      "name": "QSFP28 14",
+      "displayName": "QSFP28 bay 14",
+      "description": "QSFP28 bay 14",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 114,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-15": {
+      "id": "component-port-15",
+      "sourceId": 115,
+      "parentId": "component-rp0",
+      "name": "QSFP28 15",
+      "displayName": "QSFP28 bay 15",
+      "description": "QSFP28 bay 15",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 115,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-16": {
+      "id": "component-port-16",
+      "sourceId": 116,
+      "parentId": "component-rp0",
+      "name": "QSFP28 16",
+      "displayName": "QSFP28 bay 16",
+      "description": "QSFP28 bay 16",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 116,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-17": {
+      "id": "component-port-17",
+      "sourceId": 117,
+      "parentId": "component-rp0",
+      "name": "QSFP28 17",
+      "displayName": "QSFP28 bay 17",
+      "description": "QSFP28 bay 17",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 117,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-18": {
+      "id": "component-port-18",
+      "sourceId": 118,
+      "parentId": "component-rp0",
+      "name": "QSFP28 18",
+      "displayName": "QSFP28 bay 18",
+      "description": "QSFP28 bay 18",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 118,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-19": {
+      "id": "component-port-19",
+      "sourceId": 119,
+      "parentId": "component-rp0",
+      "name": "QSFP28 19",
+      "displayName": "QSFP28 bay 19",
+      "description": "QSFP28 bay 19",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 119,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-20": {
+      "id": "component-port-20",
+      "sourceId": 120,
+      "parentId": "component-rp0",
+      "name": "QSFP28 20",
+      "displayName": "QSFP28 bay 20",
+      "description": "QSFP28 bay 20",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 120,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-21": {
+      "id": "component-port-21",
+      "sourceId": 121,
+      "parentId": "component-rp0",
+      "name": "QSFP28 21",
+      "displayName": "QSFP28 bay 21",
+      "description": "QSFP28 bay 21",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 121,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-22": {
+      "id": "component-port-22",
+      "sourceId": 122,
+      "parentId": "component-rp0",
+      "name": "QSFP28 22",
+      "displayName": "QSFP28 bay 22",
+      "description": "QSFP28 bay 22",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 122,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-23": {
+      "id": "component-port-23",
+      "sourceId": 123,
+      "parentId": "component-rp0",
+      "name": "QSFP28 23",
+      "displayName": "QSFP28 bay 23",
+      "description": "QSFP28 bay 23",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 123,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-24": {
+      "id": "component-port-24",
+      "sourceId": 124,
+      "parentId": "component-rp0",
+      "name": "QSFP28 24",
+      "displayName": "QSFP28 bay 24",
+      "description": "QSFP28 bay 24",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 124,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-25": {
+      "id": "component-port-25",
+      "sourceId": 125,
+      "parentId": "component-rp0",
+      "name": "QSFP28 25",
+      "displayName": "QSFP28 bay 25",
+      "description": "QSFP28 bay 25",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 125,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-26": {
+      "id": "component-port-26",
+      "sourceId": 126,
+      "parentId": "component-rp0",
+      "name": "QSFP28 26",
+      "displayName": "QSFP28 bay 26",
+      "description": "QSFP28 bay 26",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 126,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-27": {
+      "id": "component-port-27",
+      "sourceId": 127,
+      "parentId": "component-rp0",
+      "name": "QSFP28 27",
+      "displayName": "QSFP28 bay 27",
+      "description": "QSFP28 bay 27",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 127,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-28": {
+      "id": "component-port-28",
+      "sourceId": 128,
+      "parentId": "component-rp0",
+      "name": "QSFP28 28",
+      "displayName": "QSFP28 bay 28",
+      "description": "QSFP28 bay 28",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 128,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-29": {
+      "id": "component-port-29",
+      "sourceId": 129,
+      "parentId": "component-rp0",
+      "name": "QSFP28 29",
+      "displayName": "QSFP28 bay 29",
+      "description": "QSFP28 bay 29",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 129,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-30": {
+      "id": "component-port-30",
+      "sourceId": 130,
+      "parentId": "component-rp0",
+      "name": "QSFP28 30",
+      "displayName": "QSFP28 bay 30",
+      "description": "QSFP28 bay 30",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 130,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-31": {
+      "id": "component-port-31",
+      "sourceId": 131,
+      "parentId": "component-rp0",
+      "name": "QSFP28 31",
+      "displayName": "QSFP28 bay 31",
+      "description": "QSFP28 bay 31",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 131,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-32": {
+      "id": "component-port-32",
+      "sourceId": 132,
+      "parentId": "component-rp0",
+      "name": "QSFP28 32",
+      "displayName": "QSFP28 bay 32",
+      "description": "QSFP28 bay 32",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 132,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-33": {
+      "id": "component-port-33",
+      "sourceId": 133,
+      "parentId": "component-rp0",
+      "name": "QSFP28 33",
+      "displayName": "QSFP28 bay 33",
+      "description": "QSFP28 bay 33",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 133,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-34": {
+      "id": "component-port-34",
+      "sourceId": 134,
+      "parentId": "component-rp0",
+      "name": "QSFP28 34",
+      "displayName": "QSFP28 bay 34",
+      "description": "QSFP28 bay 34",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 134,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-35": {
+      "id": "component-port-35",
+      "sourceId": 135,
+      "parentId": "component-rp0",
+      "name": "QSFP28 35",
+      "displayName": "QSFP28 bay 35",
+      "description": "QSFP28 bay 35",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 135,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-36": {
+      "id": "component-port-36",
+      "sourceId": 136,
+      "parentId": "component-rp0",
+      "name": "QSFP28 36",
+      "displayName": "QSFP28 bay 36",
+      "description": "QSFP28 bay 36",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 136,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-37": {
+      "id": "component-port-37",
+      "sourceId": 137,
+      "parentId": "component-rp0",
+      "name": "QSFP28 37",
+      "displayName": "QSFP28 bay 37",
+      "description": "QSFP28 bay 37",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 137,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-38": {
+      "id": "component-port-38",
+      "sourceId": 138,
+      "parentId": "component-rp0",
+      "name": "QSFP28 38",
+      "displayName": "QSFP28 bay 38",
+      "description": "QSFP28 bay 38",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 138,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-39": {
+      "id": "component-port-39",
+      "sourceId": 139,
+      "parentId": "component-rp0",
+      "name": "QSFP28 39",
+      "displayName": "QSFP28 bay 39",
+      "description": "QSFP28 bay 39",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 139,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-40": {
+      "id": "component-port-40",
+      "sourceId": 140,
+      "parentId": "component-rp0",
+      "name": "QSFP28 40",
+      "displayName": "QSFP28 bay 40",
+      "description": "QSFP28 bay 40",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 140,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-41": {
+      "id": "component-port-41",
+      "sourceId": 141,
+      "parentId": "component-rp0",
+      "name": "QSFP28 41",
+      "displayName": "QSFP28 bay 41",
+      "description": "QSFP28 bay 41",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 141,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-42": {
+      "id": "component-port-42",
+      "sourceId": 142,
+      "parentId": "component-rp0",
+      "name": "QSFP28 42",
+      "displayName": "QSFP28 bay 42",
+      "description": "QSFP28 bay 42",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 142,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-43": {
+      "id": "component-port-43",
+      "sourceId": 143,
+      "parentId": "component-rp0",
+      "name": "QSFP28 43",
+      "displayName": "QSFP28 bay 43",
+      "description": "QSFP28 bay 43",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 143,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-44": {
+      "id": "component-port-44",
+      "sourceId": 144,
+      "parentId": "component-rp0",
+      "name": "QSFP28 44",
+      "displayName": "QSFP28 bay 44",
+      "description": "QSFP28 bay 44",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 144,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-45": {
+      "id": "component-port-45",
+      "sourceId": 145,
+      "parentId": "component-rp0",
+      "name": "QSFP28 45",
+      "displayName": "QSFP28 bay 45",
+      "description": "QSFP28 bay 45",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 145,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-46": {
+      "id": "component-port-46",
+      "sourceId": 146,
+      "parentId": "component-rp0",
+      "name": "QSFP28 46",
+      "displayName": "QSFP28 bay 46",
+      "description": "QSFP28 bay 46",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 146,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-47": {
+      "id": "component-port-47",
+      "sourceId": 147,
+      "parentId": "component-rp0",
+      "name": "QSFP28 47",
+      "displayName": "QSFP28 bay 47",
+      "description": "QSFP28 bay 47",
+      "type": "port",
+      "typeId": "QSFP28",
+      "physicalIndex": 147,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-48": {
+      "id": "component-port-48",
+      "sourceId": 148,
+      "parentId": "component-rp0",
+      "name": "SFP+ 48",
+      "displayName": "SFP+ bay 48",
+      "description": "SFP+ bay 48",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 148,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-49": {
+      "id": "component-port-49",
+      "sourceId": 149,
+      "parentId": "component-rp0",
+      "name": "SFP+ 49",
+      "displayName": "SFP+ bay 49",
+      "description": "SFP+ bay 49",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 149,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-50": {
+      "id": "component-port-50",
+      "sourceId": 150,
+      "parentId": "component-rp0",
+      "name": "SFP+ 50",
+      "displayName": "SFP+ bay 50",
+      "description": "SFP+ bay 50",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 150,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-51": {
+      "id": "component-port-51",
+      "sourceId": 151,
+      "parentId": "component-rp0",
+      "name": "SFP+ 51",
+      "displayName": "SFP+ bay 51",
+      "description": "SFP+ bay 51",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 151,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-52": {
+      "id": "component-port-52",
+      "sourceId": 152,
+      "parentId": "component-rp0",
+      "name": "SFP+ 52",
+      "displayName": "SFP+ bay 52",
+      "description": "SFP+ bay 52",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 152,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-53": {
+      "id": "component-port-53",
+      "sourceId": 153,
+      "parentId": "component-rp0",
+      "name": "SFP+ 53",
+      "displayName": "SFP+ bay 53",
+      "description": "SFP+ bay 53",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 153,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-pm0": {
+      "id": "component-pm0",
+      "sourceId": 154,
+      "parentId": "component-chassis",
+      "name": "Power Module 0",
+      "displayName": "0/PM0",
+      "description": "Power Module 0",
+      "type": "Equipment",
+      "typeId": "NC55-2KW-DCFW",
+      "physicalIndex": 154,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-ft0": {
+      "id": "component-ft0",
+      "sourceId": 155,
+      "parentId": "component-chassis",
+      "name": "Fan Tray 0",
+      "displayName": "0/FT0",
+      "description": "Fan Tray 0",
+      "type": "Equipment",
+      "typeId": "NC55-A1-FAN-FW",
+      "physicalIndex": 155,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-ft1": {
+      "id": "component-ft1",
+      "sourceId": 156,
+      "parentId": "component-chassis",
+      "name": "Fan Tray 1",
+      "displayName": "0/FT1",
+      "description": "Fan Tray 1",
+      "type": "Equipment",
+      "typeId": "NC55-A1-FAN-FW",
+      "physicalIndex": 156,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-pm1": {
+      "id": "component-pm1",
+      "sourceId": 157,
+      "parentId": "component-chassis",
+      "name": "Power Module 1",
+      "displayName": "0/PM1",
+      "description": "Power Module 1",
+      "type": "Equipment",
+      "typeId": "NC55-2KW-DCFW",
+      "physicalIndex": 157,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    }
+  },
   "deviceId": null,
   "generatedAt": "2026-05-30T00:00:00Z",
-  "physicalIndexToComponentId": {},
+  "physicalIndexToComponentId": {
+    "1": "component-chassis",
+    "2": "component-rp0",
+    "100": "component-port-0",
+    "101": "component-port-1",
+    "102": "component-port-2",
+    "103": "component-port-3",
+    "104": "component-port-4",
+    "105": "component-port-5",
+    "106": "component-port-6",
+    "107": "component-port-7",
+    "108": "component-port-8",
+    "109": "component-port-9",
+    "110": "component-port-10",
+    "111": "component-port-11",
+    "112": "component-port-12",
+    "113": "component-port-13",
+    "114": "component-port-14",
+    "115": "component-port-15",
+    "116": "component-port-16",
+    "117": "component-port-17",
+    "118": "component-port-18",
+    "119": "component-port-19",
+    "120": "component-port-20",
+    "121": "component-port-21",
+    "122": "component-port-22",
+    "123": "component-port-23",
+    "124": "component-port-24",
+    "125": "component-port-25",
+    "126": "component-port-26",
+    "127": "component-port-27",
+    "128": "component-port-28",
+    "129": "component-port-29",
+    "130": "component-port-30",
+    "131": "component-port-31",
+    "132": "component-port-32",
+    "133": "component-port-33",
+    "134": "component-port-34",
+    "135": "component-port-35",
+    "136": "component-port-36",
+    "137": "component-port-37",
+    "138": "component-port-38",
+    "139": "component-port-39",
+    "140": "component-port-40",
+    "141": "component-port-41",
+    "142": "component-port-42",
+    "143": "component-port-43",
+    "144": "component-port-44",
+    "145": "component-port-45",
+    "146": "component-port-46",
+    "147": "component-port-47",
+    "148": "component-port-48",
+    "149": "component-port-49",
+    "150": "component-port-50",
+    "151": "component-port-51",
+    "152": "component-port-52",
+    "153": "component-port-53",
+    "154": "component-pm0",
+    "155": "component-ft0",
+    "156": "component-ft1",
+    "157": "component-pm1"
+  },
   "platform": "NCS-55A1-24Q6H-S",
   "profileId": "Cisco_NCS_55A1-24Q6H-S",
   "schemaVersion": 2,
@@ -11,7 +974,550 @@
     "note": "Static visual profile from EPNM SVG assets. Rear view shows power and fan slots.",
     "type": "static-profile"
   },
-  "tree": [],
+  "tree": [
+    {
+      "id": "component-chassis",
+      "label": "NCS-55A1-24Q6H-S Chassis",
+      "type": "Chassis",
+      "typeId": "NCS-55A1-24Q6H-S",
+      "physicalIndex": 1,
+      "componentId": "component-chassis",
+      "children": [
+        {
+          "id": "component-rp0",
+          "label": "0/RP0",
+          "type": "Module",
+          "typeId": "RP0",
+          "physicalIndex": 2,
+          "componentId": "component-rp0",
+          "children": [
+            {
+              "id": "component-port-0",
+              "label": "QSFP28 bay 0",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 100,
+              "componentId": "component-port-0",
+              "children": []
+            },
+            {
+              "id": "component-port-1",
+              "label": "QSFP28 bay 1",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 101,
+              "componentId": "component-port-1",
+              "children": []
+            },
+            {
+              "id": "component-port-2",
+              "label": "QSFP28 bay 2",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 102,
+              "componentId": "component-port-2",
+              "children": []
+            },
+            {
+              "id": "component-port-3",
+              "label": "QSFP28 bay 3",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 103,
+              "componentId": "component-port-3",
+              "children": []
+            },
+            {
+              "id": "component-port-4",
+              "label": "QSFP28 bay 4",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 104,
+              "componentId": "component-port-4",
+              "children": []
+            },
+            {
+              "id": "component-port-5",
+              "label": "QSFP28 bay 5",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 105,
+              "componentId": "component-port-5",
+              "children": []
+            },
+            {
+              "id": "component-port-6",
+              "label": "QSFP28 bay 6",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 106,
+              "componentId": "component-port-6",
+              "children": []
+            },
+            {
+              "id": "component-port-7",
+              "label": "QSFP28 bay 7",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 107,
+              "componentId": "component-port-7",
+              "children": []
+            },
+            {
+              "id": "component-port-8",
+              "label": "QSFP28 bay 8",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 108,
+              "componentId": "component-port-8",
+              "children": []
+            },
+            {
+              "id": "component-port-9",
+              "label": "QSFP28 bay 9",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 109,
+              "componentId": "component-port-9",
+              "children": []
+            },
+            {
+              "id": "component-port-10",
+              "label": "QSFP28 bay 10",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 110,
+              "componentId": "component-port-10",
+              "children": []
+            },
+            {
+              "id": "component-port-11",
+              "label": "QSFP28 bay 11",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 111,
+              "componentId": "component-port-11",
+              "children": []
+            },
+            {
+              "id": "component-port-12",
+              "label": "QSFP28 bay 12",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 112,
+              "componentId": "component-port-12",
+              "children": []
+            },
+            {
+              "id": "component-port-13",
+              "label": "QSFP28 bay 13",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 113,
+              "componentId": "component-port-13",
+              "children": []
+            },
+            {
+              "id": "component-port-14",
+              "label": "QSFP28 bay 14",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 114,
+              "componentId": "component-port-14",
+              "children": []
+            },
+            {
+              "id": "component-port-15",
+              "label": "QSFP28 bay 15",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 115,
+              "componentId": "component-port-15",
+              "children": []
+            },
+            {
+              "id": "component-port-16",
+              "label": "QSFP28 bay 16",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 116,
+              "componentId": "component-port-16",
+              "children": []
+            },
+            {
+              "id": "component-port-17",
+              "label": "QSFP28 bay 17",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 117,
+              "componentId": "component-port-17",
+              "children": []
+            },
+            {
+              "id": "component-port-18",
+              "label": "QSFP28 bay 18",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 118,
+              "componentId": "component-port-18",
+              "children": []
+            },
+            {
+              "id": "component-port-19",
+              "label": "QSFP28 bay 19",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 119,
+              "componentId": "component-port-19",
+              "children": []
+            },
+            {
+              "id": "component-port-20",
+              "label": "QSFP28 bay 20",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 120,
+              "componentId": "component-port-20",
+              "children": []
+            },
+            {
+              "id": "component-port-21",
+              "label": "QSFP28 bay 21",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 121,
+              "componentId": "component-port-21",
+              "children": []
+            },
+            {
+              "id": "component-port-22",
+              "label": "QSFP28 bay 22",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 122,
+              "componentId": "component-port-22",
+              "children": []
+            },
+            {
+              "id": "component-port-23",
+              "label": "QSFP28 bay 23",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 123,
+              "componentId": "component-port-23",
+              "children": []
+            },
+            {
+              "id": "component-port-24",
+              "label": "QSFP28 bay 24",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 124,
+              "componentId": "component-port-24",
+              "children": []
+            },
+            {
+              "id": "component-port-25",
+              "label": "QSFP28 bay 25",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 125,
+              "componentId": "component-port-25",
+              "children": []
+            },
+            {
+              "id": "component-port-26",
+              "label": "QSFP28 bay 26",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 126,
+              "componentId": "component-port-26",
+              "children": []
+            },
+            {
+              "id": "component-port-27",
+              "label": "QSFP28 bay 27",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 127,
+              "componentId": "component-port-27",
+              "children": []
+            },
+            {
+              "id": "component-port-28",
+              "label": "QSFP28 bay 28",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 128,
+              "componentId": "component-port-28",
+              "children": []
+            },
+            {
+              "id": "component-port-29",
+              "label": "QSFP28 bay 29",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 129,
+              "componentId": "component-port-29",
+              "children": []
+            },
+            {
+              "id": "component-port-30",
+              "label": "QSFP28 bay 30",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 130,
+              "componentId": "component-port-30",
+              "children": []
+            },
+            {
+              "id": "component-port-31",
+              "label": "QSFP28 bay 31",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 131,
+              "componentId": "component-port-31",
+              "children": []
+            },
+            {
+              "id": "component-port-32",
+              "label": "QSFP28 bay 32",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 132,
+              "componentId": "component-port-32",
+              "children": []
+            },
+            {
+              "id": "component-port-33",
+              "label": "QSFP28 bay 33",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 133,
+              "componentId": "component-port-33",
+              "children": []
+            },
+            {
+              "id": "component-port-34",
+              "label": "QSFP28 bay 34",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 134,
+              "componentId": "component-port-34",
+              "children": []
+            },
+            {
+              "id": "component-port-35",
+              "label": "QSFP28 bay 35",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 135,
+              "componentId": "component-port-35",
+              "children": []
+            },
+            {
+              "id": "component-port-36",
+              "label": "QSFP28 bay 36",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 136,
+              "componentId": "component-port-36",
+              "children": []
+            },
+            {
+              "id": "component-port-37",
+              "label": "QSFP28 bay 37",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 137,
+              "componentId": "component-port-37",
+              "children": []
+            },
+            {
+              "id": "component-port-38",
+              "label": "QSFP28 bay 38",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 138,
+              "componentId": "component-port-38",
+              "children": []
+            },
+            {
+              "id": "component-port-39",
+              "label": "QSFP28 bay 39",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 139,
+              "componentId": "component-port-39",
+              "children": []
+            },
+            {
+              "id": "component-port-40",
+              "label": "QSFP28 bay 40",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 140,
+              "componentId": "component-port-40",
+              "children": []
+            },
+            {
+              "id": "component-port-41",
+              "label": "QSFP28 bay 41",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 141,
+              "componentId": "component-port-41",
+              "children": []
+            },
+            {
+              "id": "component-port-42",
+              "label": "QSFP28 bay 42",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 142,
+              "componentId": "component-port-42",
+              "children": []
+            },
+            {
+              "id": "component-port-43",
+              "label": "QSFP28 bay 43",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 143,
+              "componentId": "component-port-43",
+              "children": []
+            },
+            {
+              "id": "component-port-44",
+              "label": "QSFP28 bay 44",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 144,
+              "componentId": "component-port-44",
+              "children": []
+            },
+            {
+              "id": "component-port-45",
+              "label": "QSFP28 bay 45",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 145,
+              "componentId": "component-port-45",
+              "children": []
+            },
+            {
+              "id": "component-port-46",
+              "label": "QSFP28 bay 46",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 146,
+              "componentId": "component-port-46",
+              "children": []
+            },
+            {
+              "id": "component-port-47",
+              "label": "QSFP28 bay 47",
+              "type": "port",
+              "typeId": "QSFP28",
+              "physicalIndex": 147,
+              "componentId": "component-port-47",
+              "children": []
+            },
+            {
+              "id": "component-port-48",
+              "label": "SFP+ bay 48",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 148,
+              "componentId": "component-port-48",
+              "children": []
+            },
+            {
+              "id": "component-port-49",
+              "label": "SFP+ bay 49",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 149,
+              "componentId": "component-port-49",
+              "children": []
+            },
+            {
+              "id": "component-port-50",
+              "label": "SFP+ bay 50",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 150,
+              "componentId": "component-port-50",
+              "children": []
+            },
+            {
+              "id": "component-port-51",
+              "label": "SFP+ bay 51",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 151,
+              "componentId": "component-port-51",
+              "children": []
+            },
+            {
+              "id": "component-port-52",
+              "label": "SFP+ bay 52",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 152,
+              "componentId": "component-port-52",
+              "children": []
+            },
+            {
+              "id": "component-port-53",
+              "label": "SFP+ bay 53",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 153,
+              "componentId": "component-port-53",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "component-pm0",
+          "label": "0/PM0",
+          "type": "Equipment",
+          "typeId": "NC55-2KW-DCFW",
+          "physicalIndex": 154,
+          "componentId": "component-pm0",
+          "children": []
+        },
+        {
+          "id": "component-ft0",
+          "label": "0/FT0",
+          "type": "Equipment",
+          "typeId": "NC55-A1-FAN-FW",
+          "physicalIndex": 155,
+          "componentId": "component-ft0",
+          "children": []
+        },
+        {
+          "id": "component-ft1",
+          "label": "0/FT1",
+          "type": "Equipment",
+          "typeId": "NC55-A1-FAN-FW",
+          "physicalIndex": 156,
+          "componentId": "component-ft1",
+          "children": []
+        },
+        {
+          "id": "component-pm1",
+          "label": "0/PM1",
+          "type": "Equipment",
+          "typeId": "NC55-2KW-DCFW",
+          "physicalIndex": 157,
+          "componentId": "component-pm1",
+          "children": []
+        }
+      ]
+    }
+  ],
   "views": [
     {
       "height": 165,
@@ -23,15 +1529,15 @@
             "x": 185,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-0",
-          "inventoryId": null,
+          "inventoryId": "component-port-0",
           "label": "QSFP28 0",
           "metadata": {
             "sourceName": "QSFP28 bay 0",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 100,
           "slotKey": "QSFP28 bay 0",
           "asset": {
             "typeId": "QSFP28",
@@ -46,15 +1552,15 @@
             "x": 212,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-1",
-          "inventoryId": null,
+          "inventoryId": "component-port-1",
           "label": "QSFP28 1",
           "metadata": {
             "sourceName": "QSFP28 bay 1",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 101,
           "slotKey": "QSFP28 bay 1",
           "asset": {
             "typeId": "QSFP28",
@@ -69,15 +1575,15 @@
             "x": 238,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-2",
-          "inventoryId": null,
+          "inventoryId": "component-port-2",
           "label": "QSFP28 2",
           "metadata": {
             "sourceName": "QSFP28 bay 2",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 102,
           "slotKey": "QSFP28 bay 2",
           "asset": {
             "typeId": "QSFP28",
@@ -92,15 +1598,15 @@
             "x": 264,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-3",
-          "inventoryId": null,
+          "inventoryId": "component-port-3",
           "label": "QSFP28 3",
           "metadata": {
             "sourceName": "QSFP28 bay 3",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 103,
           "slotKey": "QSFP28 bay 3",
           "asset": {
             "typeId": "QSFP28",
@@ -115,15 +1621,15 @@
             "x": 291,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-4",
-          "inventoryId": null,
+          "inventoryId": "component-port-4",
           "label": "QSFP28 4",
           "metadata": {
             "sourceName": "QSFP28 bay 4",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 104,
           "slotKey": "QSFP28 bay 4",
           "asset": {
             "typeId": "QSFP28",
@@ -138,15 +1644,15 @@
             "x": 317,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-5",
-          "inventoryId": null,
+          "inventoryId": "component-port-5",
           "label": "QSFP28 5",
           "metadata": {
             "sourceName": "QSFP28 bay 5",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 105,
           "slotKey": "QSFP28 bay 5",
           "asset": {
             "typeId": "QSFP28",
@@ -161,15 +1667,15 @@
             "x": 344,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-6",
-          "inventoryId": null,
+          "inventoryId": "component-port-6",
           "label": "QSFP28 6",
           "metadata": {
             "sourceName": "QSFP28 bay 6",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 106,
           "slotKey": "QSFP28 bay 6",
           "asset": {
             "typeId": "QSFP28",
@@ -184,15 +1690,15 @@
             "x": 370,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-7",
-          "inventoryId": null,
+          "inventoryId": "component-port-7",
           "label": "QSFP28 7",
           "metadata": {
             "sourceName": "QSFP28 bay 7",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 107,
           "slotKey": "QSFP28 bay 7",
           "asset": {
             "typeId": "QSFP28",
@@ -207,15 +1713,15 @@
             "x": 396,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-8",
-          "inventoryId": null,
+          "inventoryId": "component-port-8",
           "label": "QSFP28 8",
           "metadata": {
             "sourceName": "QSFP28 bay 8",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 108,
           "slotKey": "QSFP28 bay 8",
           "asset": {
             "typeId": "QSFP28",
@@ -230,15 +1736,15 @@
             "x": 423,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-9",
-          "inventoryId": null,
+          "inventoryId": "component-port-9",
           "label": "QSFP28 9",
           "metadata": {
             "sourceName": "QSFP28 bay 9",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 109,
           "slotKey": "QSFP28 bay 9",
           "asset": {
             "typeId": "QSFP28",
@@ -253,15 +1759,15 @@
             "x": 449,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-10",
-          "inventoryId": null,
+          "inventoryId": "component-port-10",
           "label": "QSFP28 10",
           "metadata": {
             "sourceName": "QSFP28 bay 10",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 110,
           "slotKey": "QSFP28 bay 10",
           "asset": {
             "typeId": "QSFP28",
@@ -276,15 +1782,15 @@
             "x": 476,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-11",
-          "inventoryId": null,
+          "inventoryId": "component-port-11",
           "label": "QSFP28 11",
           "metadata": {
             "sourceName": "QSFP28 bay 11",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 111,
           "slotKey": "QSFP28 bay 11",
           "asset": {
             "typeId": "QSFP28",
@@ -299,15 +1805,15 @@
             "x": 502,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-12",
-          "inventoryId": null,
+          "inventoryId": "component-port-12",
           "label": "QSFP28 12",
           "metadata": {
             "sourceName": "QSFP28 bay 12",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 112,
           "slotKey": "QSFP28 bay 12",
           "asset": {
             "typeId": "QSFP28",
@@ -322,15 +1828,15 @@
             "x": 528,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-13",
-          "inventoryId": null,
+          "inventoryId": "component-port-13",
           "label": "QSFP28 13",
           "metadata": {
             "sourceName": "QSFP28 bay 13",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 113,
           "slotKey": "QSFP28 bay 13",
           "asset": {
             "typeId": "QSFP28",
@@ -345,15 +1851,15 @@
             "x": 555,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-14",
-          "inventoryId": null,
+          "inventoryId": "component-port-14",
           "label": "QSFP28 14",
           "metadata": {
             "sourceName": "QSFP28 bay 14",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 114,
           "slotKey": "QSFP28 bay 14",
           "asset": {
             "typeId": "QSFP28",
@@ -368,15 +1874,15 @@
             "x": 581,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-15",
-          "inventoryId": null,
+          "inventoryId": "component-port-15",
           "label": "QSFP28 15",
           "metadata": {
             "sourceName": "QSFP28 bay 15",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 115,
           "slotKey": "QSFP28 bay 15",
           "asset": {
             "typeId": "QSFP28",
@@ -391,15 +1897,15 @@
             "x": 608,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-16",
-          "inventoryId": null,
+          "inventoryId": "component-port-16",
           "label": "QSFP28 16",
           "metadata": {
             "sourceName": "QSFP28 bay 16",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 116,
           "slotKey": "QSFP28 bay 16",
           "asset": {
             "typeId": "QSFP28",
@@ -414,15 +1920,15 @@
             "x": 634,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-17",
-          "inventoryId": null,
+          "inventoryId": "component-port-17",
           "label": "QSFP28 17",
           "metadata": {
             "sourceName": "QSFP28 bay 17",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 117,
           "slotKey": "QSFP28 bay 17",
           "asset": {
             "typeId": "QSFP28",
@@ -437,15 +1943,15 @@
             "x": 660,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-18",
-          "inventoryId": null,
+          "inventoryId": "component-port-18",
           "label": "QSFP28 18",
           "metadata": {
             "sourceName": "QSFP28 bay 18",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 118,
           "slotKey": "QSFP28 bay 18",
           "asset": {
             "typeId": "QSFP28",
@@ -460,15 +1966,15 @@
             "x": 687,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-19",
-          "inventoryId": null,
+          "inventoryId": "component-port-19",
           "label": "QSFP28 19",
           "metadata": {
             "sourceName": "QSFP28 bay 19",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 119,
           "slotKey": "QSFP28 bay 19",
           "asset": {
             "typeId": "QSFP28",
@@ -483,15 +1989,15 @@
             "x": 713,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-20",
-          "inventoryId": null,
+          "inventoryId": "component-port-20",
           "label": "QSFP28 20",
           "metadata": {
             "sourceName": "QSFP28 bay 20",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 120,
           "slotKey": "QSFP28 bay 20",
           "asset": {
             "typeId": "QSFP28",
@@ -506,15 +2012,15 @@
             "x": 740,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-21",
-          "inventoryId": null,
+          "inventoryId": "component-port-21",
           "label": "QSFP28 21",
           "metadata": {
             "sourceName": "QSFP28 bay 21",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 121,
           "slotKey": "QSFP28 bay 21",
           "asset": {
             "typeId": "QSFP28",
@@ -529,15 +2035,15 @@
             "x": 766,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-22",
-          "inventoryId": null,
+          "inventoryId": "component-port-22",
           "label": "QSFP28 22",
           "metadata": {
             "sourceName": "QSFP28 bay 22",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 122,
           "slotKey": "QSFP28 bay 22",
           "asset": {
             "typeId": "QSFP28",
@@ -552,15 +2058,15 @@
             "x": 792,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-23",
-          "inventoryId": null,
+          "inventoryId": "component-port-23",
           "label": "QSFP28 23",
           "metadata": {
             "sourceName": "QSFP28 bay 23",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 123,
           "slotKey": "QSFP28 bay 23",
           "asset": {
             "typeId": "QSFP28",
@@ -575,15 +2081,15 @@
             "x": 819,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-24",
-          "inventoryId": null,
+          "inventoryId": "component-port-24",
           "label": "QSFP28 24",
           "metadata": {
             "sourceName": "QSFP28 bay 24",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 124,
           "slotKey": "QSFP28 bay 24",
           "asset": {
             "typeId": "QSFP28",
@@ -598,15 +2104,15 @@
             "x": 845,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-25",
-          "inventoryId": null,
+          "inventoryId": "component-port-25",
           "label": "QSFP28 25",
           "metadata": {
             "sourceName": "QSFP28 bay 25",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 125,
           "slotKey": "QSFP28 bay 25",
           "asset": {
             "typeId": "QSFP28",
@@ -621,15 +2127,15 @@
             "x": 872,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-26",
-          "inventoryId": null,
+          "inventoryId": "component-port-26",
           "label": "QSFP28 26",
           "metadata": {
             "sourceName": "QSFP28 bay 26",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 126,
           "slotKey": "QSFP28 bay 26",
           "asset": {
             "typeId": "QSFP28",
@@ -644,15 +2150,15 @@
             "x": 898,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-27",
-          "inventoryId": null,
+          "inventoryId": "component-port-27",
           "label": "QSFP28 27",
           "metadata": {
             "sourceName": "QSFP28 bay 27",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 127,
           "slotKey": "QSFP28 bay 27",
           "asset": {
             "typeId": "QSFP28",
@@ -667,15 +2173,15 @@
             "x": 924,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-28",
-          "inventoryId": null,
+          "inventoryId": "component-port-28",
           "label": "QSFP28 28",
           "metadata": {
             "sourceName": "QSFP28 bay 28",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 128,
           "slotKey": "QSFP28 bay 28",
           "asset": {
             "typeId": "QSFP28",
@@ -690,15 +2196,15 @@
             "x": 951,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-29",
-          "inventoryId": null,
+          "inventoryId": "component-port-29",
           "label": "QSFP28 29",
           "metadata": {
             "sourceName": "QSFP28 bay 29",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 129,
           "slotKey": "QSFP28 bay 29",
           "asset": {
             "typeId": "QSFP28",
@@ -713,15 +2219,15 @@
             "x": 977,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-30",
-          "inventoryId": null,
+          "inventoryId": "component-port-30",
           "label": "QSFP28 30",
           "metadata": {
             "sourceName": "QSFP28 bay 30",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 130,
           "slotKey": "QSFP28 bay 30",
           "asset": {
             "typeId": "QSFP28",
@@ -736,15 +2242,15 @@
             "x": 1004,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-31",
-          "inventoryId": null,
+          "inventoryId": "component-port-31",
           "label": "QSFP28 31",
           "metadata": {
             "sourceName": "QSFP28 bay 31",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 131,
           "slotKey": "QSFP28 bay 31",
           "asset": {
             "typeId": "QSFP28",
@@ -759,15 +2265,15 @@
             "x": 1030,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-32",
-          "inventoryId": null,
+          "inventoryId": "component-port-32",
           "label": "QSFP28 32",
           "metadata": {
             "sourceName": "QSFP28 bay 32",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 132,
           "slotKey": "QSFP28 bay 32",
           "asset": {
             "typeId": "QSFP28",
@@ -782,15 +2288,15 @@
             "x": 1056,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-33",
-          "inventoryId": null,
+          "inventoryId": "component-port-33",
           "label": "QSFP28 33",
           "metadata": {
             "sourceName": "QSFP28 bay 33",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 133,
           "slotKey": "QSFP28 bay 33",
           "asset": {
             "typeId": "QSFP28",
@@ -805,15 +2311,15 @@
             "x": 1083,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-34",
-          "inventoryId": null,
+          "inventoryId": "component-port-34",
           "label": "QSFP28 34",
           "metadata": {
             "sourceName": "QSFP28 bay 34",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 134,
           "slotKey": "QSFP28 bay 34",
           "asset": {
             "typeId": "QSFP28",
@@ -828,15 +2334,15 @@
             "x": 1109,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-35",
-          "inventoryId": null,
+          "inventoryId": "component-port-35",
           "label": "QSFP28 35",
           "metadata": {
             "sourceName": "QSFP28 bay 35",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 135,
           "slotKey": "QSFP28 bay 35",
           "asset": {
             "typeId": "QSFP28",
@@ -851,15 +2357,15 @@
             "x": 1136,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-36",
-          "inventoryId": null,
+          "inventoryId": "component-port-36",
           "label": "QSFP28 36",
           "metadata": {
             "sourceName": "QSFP28 bay 36",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 136,
           "slotKey": "QSFP28 bay 36",
           "asset": {
             "typeId": "QSFP28",
@@ -874,15 +2380,15 @@
             "x": 1162,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-37",
-          "inventoryId": null,
+          "inventoryId": "component-port-37",
           "label": "QSFP28 37",
           "metadata": {
             "sourceName": "QSFP28 bay 37",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 137,
           "slotKey": "QSFP28 bay 37",
           "asset": {
             "typeId": "QSFP28",
@@ -897,15 +2403,15 @@
             "x": 1188,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-38",
-          "inventoryId": null,
+          "inventoryId": "component-port-38",
           "label": "QSFP28 38",
           "metadata": {
             "sourceName": "QSFP28 bay 38",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 138,
           "slotKey": "QSFP28 bay 38",
           "asset": {
             "typeId": "QSFP28",
@@ -920,15 +2426,15 @@
             "x": 1215,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-39",
-          "inventoryId": null,
+          "inventoryId": "component-port-39",
           "label": "QSFP28 39",
           "metadata": {
             "sourceName": "QSFP28 bay 39",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 139,
           "slotKey": "QSFP28 bay 39",
           "asset": {
             "typeId": "QSFP28",
@@ -943,15 +2449,15 @@
             "x": 1241,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-40",
-          "inventoryId": null,
+          "inventoryId": "component-port-40",
           "label": "QSFP28 40",
           "metadata": {
             "sourceName": "QSFP28 bay 40",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 140,
           "slotKey": "QSFP28 bay 40",
           "asset": {
             "typeId": "QSFP28",
@@ -966,15 +2472,15 @@
             "x": 1268,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-41",
-          "inventoryId": null,
+          "inventoryId": "component-port-41",
           "label": "QSFP28 41",
           "metadata": {
             "sourceName": "QSFP28 bay 41",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 141,
           "slotKey": "QSFP28 bay 41",
           "asset": {
             "typeId": "QSFP28",
@@ -989,15 +2495,15 @@
             "x": 1294,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-42",
-          "inventoryId": null,
+          "inventoryId": "component-port-42",
           "label": "QSFP28 42",
           "metadata": {
             "sourceName": "QSFP28 bay 42",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 142,
           "slotKey": "QSFP28 bay 42",
           "asset": {
             "typeId": "QSFP28",
@@ -1012,15 +2518,15 @@
             "x": 1320,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-43",
-          "inventoryId": null,
+          "inventoryId": "component-port-43",
           "label": "QSFP28 43",
           "metadata": {
             "sourceName": "QSFP28 bay 43",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 143,
           "slotKey": "QSFP28 bay 43",
           "asset": {
             "typeId": "QSFP28",
@@ -1035,15 +2541,15 @@
             "x": 1347,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-44",
-          "inventoryId": null,
+          "inventoryId": "component-port-44",
           "label": "QSFP28 44",
           "metadata": {
             "sourceName": "QSFP28 bay 44",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 144,
           "slotKey": "QSFP28 bay 44",
           "asset": {
             "typeId": "QSFP28",
@@ -1058,15 +2564,15 @@
             "x": 1373,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-45",
-          "inventoryId": null,
+          "inventoryId": "component-port-45",
           "label": "QSFP28 45",
           "metadata": {
             "sourceName": "QSFP28 bay 45",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 145,
           "slotKey": "QSFP28 bay 45",
           "asset": {
             "typeId": "QSFP28",
@@ -1081,15 +2587,15 @@
             "x": 1400,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-46",
-          "inventoryId": null,
+          "inventoryId": "component-port-46",
           "label": "QSFP28 46",
           "metadata": {
             "sourceName": "QSFP28 bay 46",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 146,
           "slotKey": "QSFP28 bay 46",
           "asset": {
             "typeId": "QSFP28",
@@ -1104,15 +2610,15 @@
             "x": 1426,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-47",
-          "inventoryId": null,
+          "inventoryId": "component-port-47",
           "label": "QSFP28 47",
           "metadata": {
             "sourceName": "QSFP28 bay 47",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 147,
           "slotKey": "QSFP28 bay 47",
           "asset": {
             "typeId": "QSFP28",
@@ -1127,15 +2633,15 @@
             "x": 1452,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-48",
-          "inventoryId": null,
+          "inventoryId": "component-port-48",
           "label": "SFP+ 48",
           "metadata": {
             "sourceName": "SFP+ bay 48",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 148,
           "slotKey": "SFP+ bay 48",
           "asset": {
             "typeId": "SFP+",
@@ -1150,15 +2656,15 @@
             "x": 1479,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-49",
-          "inventoryId": null,
+          "inventoryId": "component-port-49",
           "label": "SFP+ 49",
           "metadata": {
             "sourceName": "SFP+ bay 49",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 149,
           "slotKey": "SFP+ bay 49",
           "asset": {
             "typeId": "SFP+",
@@ -1173,15 +2679,15 @@
             "x": 1505,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-50",
-          "inventoryId": null,
+          "inventoryId": "component-port-50",
           "label": "SFP+ 50",
           "metadata": {
             "sourceName": "SFP+ bay 50",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 150,
           "slotKey": "SFP+ bay 50",
           "asset": {
             "typeId": "SFP+",
@@ -1196,15 +2702,15 @@
             "x": 1532,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-51",
-          "inventoryId": null,
+          "inventoryId": "component-port-51",
           "label": "SFP+ 51",
           "metadata": {
             "sourceName": "SFP+ bay 51",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 151,
           "slotKey": "SFP+ bay 51",
           "asset": {
             "typeId": "SFP+",
@@ -1219,15 +2725,15 @@
             "x": 1558,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-52",
-          "inventoryId": null,
+          "inventoryId": "component-port-52",
           "label": "SFP+ 52",
           "metadata": {
             "sourceName": "SFP+ bay 52",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 152,
           "slotKey": "SFP+ bay 52",
           "asset": {
             "typeId": "SFP+",
@@ -1242,15 +2748,15 @@
             "x": 1584,
             "y": 29
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-53",
-          "inventoryId": null,
+          "inventoryId": "component-port-53",
           "label": "SFP+ 53",
           "metadata": {
             "sourceName": "SFP+ bay 53",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 153,
           "slotKey": "SFP+ bay 53",
           "asset": {
             "typeId": "SFP+",
@@ -1267,13 +2773,13 @@
           },
           "empty": false,
           "id": "hotspot-chassis",
-          "inventoryId": null,
+          "inventoryId": "component-chassis",
           "label": "Chassis",
           "metadata": {
             "sourceName": "Rack 0",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 1,
           "slotKey": "Rack 0"
         },
         {
@@ -1285,13 +2791,13 @@
           },
           "empty": false,
           "id": "hotspot-rp0",
-          "inventoryId": null,
+          "inventoryId": "component-rp0",
           "label": "Route Processor",
           "metadata": {
             "sourceName": "0/RP0",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 2,
           "slotKey": "0/RP0",
           "asset": {
             "typeId": "NCS-55A1-24Q6H-S-RP",
@@ -1320,13 +2826,13 @@
           },
           "empty": false,
           "id": "hotspot-chassis-rear",
-          "inventoryId": null,
+          "inventoryId": "component-chassis",
           "label": "Chassis",
           "metadata": {
             "sourceName": "Rack 0",
             "sourceTypeId": "NCS-55A1-24Q6H-S"
           },
-          "physicalIndex": null,
+          "physicalIndex": 1,
           "slotKey": "Rack 0"
         },
         {
@@ -1338,12 +2844,12 @@
           },
           "empty": false,
           "id": "hotspot-pm0",
-          "inventoryId": null,
+          "inventoryId": "component-pm0",
           "label": "Power Module 0",
           "metadata": {
             "sourceName": "0/PM0"
           },
-          "physicalIndex": null,
+          "physicalIndex": 154,
           "slotKey": "0/PM0",
           "asset": {
             "typeId": "NC55-2KW-DCFW",
@@ -1360,12 +2866,12 @@
           },
           "empty": false,
           "id": "hotspot-ft0",
-          "inventoryId": null,
+          "inventoryId": "component-ft0",
           "label": "Fan Tray 0",
           "metadata": {
             "sourceName": "0/FT0"
           },
-          "physicalIndex": null,
+          "physicalIndex": 155,
           "slotKey": "0/FT0",
           "asset": {
             "typeId": "NC55-A1-FAN-FW",
@@ -1382,12 +2888,12 @@
           },
           "empty": false,
           "id": "hotspot-ft1",
-          "inventoryId": null,
+          "inventoryId": "component-ft1",
           "label": "Fan Tray 1",
           "metadata": {
             "sourceName": "0/FT1"
           },
-          "physicalIndex": null,
+          "physicalIndex": 156,
           "slotKey": "0/FT1",
           "asset": {
             "typeId": "NC55-A1-FAN-FW",
@@ -1404,12 +2910,12 @@
           },
           "empty": false,
           "id": "hotspot-pm1",
-          "inventoryId": null,
+          "inventoryId": "component-pm1",
           "label": "Power Module 1",
           "metadata": {
             "sourceName": "0/PM1"
           },
-          "physicalIndex": null,
+          "physicalIndex": 157,
           "slotKey": "0/PM1",
           "asset": {
             "typeId": "NC55-2KW-DCFW",
