@@ -62,5 +62,10 @@ docs/chassisview_figures/
 # Reference hardware photos used to calibrate chassis views — local only, never commit
 docs/Cisco *.png
 docs/Cisco *.jpg
+# Real bulkstats samples used to calibrate the parser — contain production
+# hostnames/IPs, local only, never commit. The schema definition files
+# (bulkstatsschema*.csv) are generic Cisco field docs, not customer data —
+# those ARE safe to track.
+docs/bulkstats/*_bulkstats_*.csv
 # Runtime audit logs
 backend/data/audit/

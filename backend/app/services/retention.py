@@ -20,11 +20,13 @@ class RetentionPolicy:
 DEFAULT_RETENTION_POLICIES: tuple[RetentionPolicy, ...] = (
     RetentionPolicy("telemetry_raw_samples", "timestamp", 7),
     RetentionPolicy("kpis", "timestamp", 90),
+    RetentionPolicy("bulkstats_raw_samples", "timestamp", 30),
 )
 
 _RETENTION_DELETE_SQL = {
     "telemetry_raw_samples": "DELETE FROM telemetry_raw_samples WHERE timestamp < now() - (:days * interval '1 day')",
     "kpis": "DELETE FROM kpis WHERE timestamp < now() - (:days * interval '1 day')",
+    "bulkstats_raw_samples": "DELETE FROM bulkstats_raw_samples WHERE timestamp < now() - (:days * interval '1 day')",
 }
 
 _TIMESCALE_PK_SQL = {
@@ -35,6 +37,10 @@ _TIMESCALE_PK_SQL = {
     "telemetry_raw_samples": (
         "ALTER TABLE telemetry_raw_samples DROP CONSTRAINT IF EXISTS telemetry_raw_samples_pkey",
         "ALTER TABLE telemetry_raw_samples ADD PRIMARY KEY (id, timestamp)",
+    ),
+    "bulkstats_raw_samples": (
+        "ALTER TABLE bulkstats_raw_samples DROP CONSTRAINT IF EXISTS bulkstats_raw_samples_pkey",
+        "ALTER TABLE bulkstats_raw_samples ADD PRIMARY KEY (id, timestamp)",
     ),
 }
 
@@ -94,7 +100,7 @@ async def ensure_timescale_schema(session: AsyncSession) -> dict[str, str]:
         status["extension"] = f"skipped: {exc}"
         return status
 
-    for table_name in ("kpis", "telemetry_raw_samples"):
+    for table_name in ("kpis", "telemetry_raw_samples", "bulkstats_raw_samples"):
         try:
             pk_changed = await _ensure_timescale_primary_key(session, table_name)
             await session.execute(

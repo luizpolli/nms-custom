@@ -4,6 +4,7 @@ from app.models.alarm import Alarm
 from app.models.alarm_filter import SavedAlarmFilter
 from app.models.alarm_rule import AlarmRule
 from app.models.audit import AuditLog
+from app.models.bulkstats import BulkstatsCounterCatalog, BulkstatsIngestionStat, BulkstatsRawSample
 from app.models.command import Command
 from app.models.config_backup import ConfigBackup
 from app.models.credential import Credential, CredentialAssignment
@@ -34,6 +35,9 @@ __all__ = [
     "SavedAlarmFilter",
     "AlarmRule",
     "AuditLog",
+    "BulkstatsCounterCatalog",
+    "BulkstatsIngestionStat",
+    "BulkstatsRawSample",
     "Command",
     "ConfigBackup",
     "Credential",

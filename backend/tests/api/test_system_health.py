@@ -59,7 +59,9 @@ def test_system_retention_reports_policies(monkeypatch):
     assert resp.status_code == 200
     body = resp.json()
     assert body["timescale"]["extension"] == "ok"
-    assert {policy["table"] for policy in body["policies"]} == {"kpis", "telemetry_raw_samples"}
+    assert {policy["table"] for policy in body["policies"]} == {
+        "kpis", "telemetry_raw_samples", "bulkstats_raw_samples",
+    }
 
 
 def test_prometheus_metrics_endpoint_exposes_nms_metrics(monkeypatch):
