@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from typing import AsyncGenerator
-from unittest.mock import AsyncMock, MagicMock
+from collections.abc import AsyncGenerator
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
 from app.main import app
-
 
 # ---------------------------------------------------------------------------
 # Fake async session
@@ -62,16 +59,30 @@ async def _fake_get_db() -> AsyncGenerator[FakeAsyncSession, None]:
 
 
 # ---------------------------------------------------------------------------
-# Override dependency BEFORE constructing TestClient
+# Override dependency for the lifetime of this module's tests only.
+#
+# Setting this at import time (instead of inside the fixture) used to leak:
+# other test modules' setup_method/teardown_method pairs do an unconditional
+# `app.dependency_overrides.pop(get_db, None)`, which — since
+# `app.dependency_overrides` is a single global dict shared by the whole
+# `app` singleton — would silently wipe out an override set at collection
+# time, long before any test here actually ran. Scoping the override to the
+# fixture means it's set/restored right around this module's own tests.
 # ---------------------------------------------------------------------------
-
-app.dependency_overrides[get_db] = _fake_get_db
 
 
 @pytest.fixture(scope="module")
 def client():
-    with TestClient(app, raise_server_exceptions=False) as c:
-        yield c
+    previous = app.dependency_overrides.get(get_db)
+    app.dependency_overrides[get_db] = _fake_get_db
+    try:
+        with TestClient(app, raise_server_exceptions=False) as c:
+            yield c
+    finally:
+        if previous is None:
+            app.dependency_overrides.pop(get_db, None)
+        else:
+            app.dependency_overrides[get_db] = previous
 
 
 # ---------------------------------------------------------------------------
