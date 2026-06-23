@@ -230,11 +230,11 @@ export const CATEGORIES: Category[] = [
   {
     key: 'integrationsAiOps',
     number: 9,
-    title: 'Integrations / AI Ops',
-    description: 'Northbound APIs, webhooks, AI Ops recommendations, model/provider knobs, and external tools.',
+    title: 'AI Ops',
+    description: 'Enable or disable AI Ops recommendations, and review the active LLM provider configuration.',
     icon: <BrainCircuit className="h-5 w-5" />,
-    submenus: ['Northbound API', 'Webhooks', 'AI Ops', 'LLM providers', 'Export targets'],
-    status: 'partial',
+    submenus: ['AI Ops'],
+    status: 'live',
   },
   {
     key: 'labOperations',

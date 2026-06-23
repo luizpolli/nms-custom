@@ -5,8 +5,7 @@
  */
 
 import { Card, CardHeader } from '../../components/ui/Card';
-import { Select } from '../../components/ui/Select';
-import { Input, Badge, Button } from '../../components/ui';
+import { Input, Badge, Button, Switch } from '../../components/ui';
 import { useSettingsResource, SettingsSaveBar, SettingsHint } from './_shared';
 import { MODULES, MODULE_DEFAULTS, type ModuleControlSettings, type ModuleKey } from '../../lib/moduleControls';
 import { useModuleControls } from '../../components/layout/ModuleControlProvider';
@@ -77,14 +76,12 @@ export function ModuleControlSettingsPanel() {
                           <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{module.description}</p>
                         </div>
                       </div>
-                      <label className="inline-flex shrink-0 items-center gap-2 text-sm">
-                        <input
-                          type="checkbox"
-                          checked={enabled}
-                          onChange={(event) => setModule(module.key, event.target.checked)}
-                        />
-                        <span>{enabled ? 'On' : 'Off'}</span>
-                      </label>
+                      <Switch
+                        checked={enabled}
+                        onChange={(value) => setModule(module.key, value)}
+                        label={enabled ? 'On' : 'Off'}
+                        className="shrink-0"
+                      />
                     </div>
                   );
                 })}
@@ -99,119 +96,70 @@ export function ModuleControlSettingsPanel() {
   );
 }
 
-// ─── Integrations / AI Ops ────────────────────────────────────────────────────
+// ─── AI Ops ───────────────────────────────────────────────────────────────────
 
 interface IntegrationsAiOpsAdminSettings {
-  nbi_enabled: boolean;
-  webhook_retry_attempts: number;
-  webhook_timeout_seconds: number;
   ai_ops_enabled: boolean;
-  ai_recommendation_min_confidence: number;
-  llm_provider: 'local' | 'openai' | 'azure' | 'custom';
-  llm_base_url: string;
-  llm_model: string;
-  llm_timeout_seconds: number;
-  report_export_target_path: string;
+  // Read-only — mirrors the backend's AI_OPS_LLM_* environment variables.
+  // Connection details (model, base URL, API key) are infra-level config and
+  // are never edited from this panel.
+  effective_llm_enabled?: boolean;
+  effective_llm_provider?: string;
+  effective_llm_model?: string;
+  effective_llm_base_url?: string;
 }
 
 const INTEGRATIONS_DEFAULTS: IntegrationsAiOpsAdminSettings = {
-  nbi_enabled: true,
-  webhook_retry_attempts: 3,
-  webhook_timeout_seconds: 10,
   ai_ops_enabled: true,
-  ai_recommendation_min_confidence: 70,
-  llm_provider: 'local',
-  llm_base_url: '',
-  llm_model: '',
-  llm_timeout_seconds: 30,
-  report_export_target_path: '',
 };
 
 export function IntegrationsAiOpsSettingsPanel() {
   const { cfg, setCfg, loading, saving, saved, error, save } = useSettingsResource('/settings/integrations-ai-ops', INTEGRATIONS_DEFAULTS);
-  const setIntegration = <K extends keyof IntegrationsAiOpsAdminSettings>(k: K, v: IntegrationsAiOpsAdminSettings[K]) =>
-    setCfg((p) => ({ ...p, [k]: v }));
 
   return (
     <div className="space-y-6">
       <Card>
-        <CardHeader title="Northbound API and Webhooks" />
-        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
-          <label className="flex items-center gap-2 md:col-span-3">
-            <input type="checkbox" checked={cfg.nbi_enabled} onChange={(e) => setIntegration('nbi_enabled', e.target.checked)} />
-            Enable northbound API access
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Webhook retries</span>
-            <Input type="number" value={cfg.webhook_retry_attempts} onChange={(e) => setIntegration('webhook_retry_attempts', Number(e.target.value))} />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Webhook timeout (seconds)</span>
-            <Input type="number" value={cfg.webhook_timeout_seconds} onChange={(e) => setIntegration('webhook_timeout_seconds', Number(e.target.value))} />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Report export target path</span>
-            <Input value={cfg.report_export_target_path} onChange={(e) => setIntegration('report_export_target_path', e.target.value)} placeholder="/exports/reports" />
-          </label>
-          <div className="md:col-span-3">
-            <SettingsHint>
-              These fields are saved but not yet consumed by the backend — northbound forwarding is
-              configured separately under Notifications &amp; Forwarding, which is the live implementation.
-            </SettingsHint>
+        <CardHeader title="AI Ops" />
+        <div className="space-y-4 p-4 text-sm">
+          <Switch
+            checked={cfg.ai_ops_enabled}
+            onChange={(value) => setCfg((p) => ({ ...p, ai_ops_enabled: value }))}
+            label="Enable AI Ops recommendations"
+          />
+
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-950">
+            <div className="mb-2 flex items-center gap-2 font-medium text-gray-900 dark:text-gray-100">
+              Active LLM configuration
+              <Badge variant={cfg.effective_llm_enabled ? 'success' : 'neutral'}>
+                {cfg.effective_llm_enabled ? 'Connected' : 'Not configured'}
+              </Badge>
+            </div>
+            <dl className="grid grid-cols-1 gap-2 text-xs text-gray-600 dark:text-gray-400 sm:grid-cols-2">
+              <div>
+                <dt className="font-medium">Provider</dt>
+                <dd className="font-mono">{cfg.effective_llm_provider || '—'}</dd>
+              </div>
+              <div>
+                <dt className="font-medium">Model</dt>
+                <dd className="font-mono">{cfg.effective_llm_model || '—'}</dd>
+              </div>
+              <div className="sm:col-span-2">
+                <dt className="font-medium">Base URL</dt>
+                <dd className="font-mono">{cfg.effective_llm_base_url || '—'}</dd>
+              </div>
+            </dl>
           </div>
+
+          <SettingsHint>
+            Provider, model, base URL, and API key are infrastructure config — set them via the
+            backend's AI_OPS_LLM_* environment variables, never in this panel. The toggle above is
+            the only knob this page controls; it's ANDed with the environment flag, so the
+            assistant only answers questions when both are on.
+          </SettingsHint>
         </div>
       </Card>
 
-      <Card>
-        <CardHeader title="AI Ops and LLM Provider" />
-        <div className="grid grid-cols-1 gap-4 p-4 text-sm md:grid-cols-3">
-          <label className="flex items-center gap-2 md:col-span-3">
-            <input type="checkbox" checked={cfg.ai_ops_enabled} onChange={(e) => setIntegration('ai_ops_enabled', e.target.checked)} />
-            Enable AI Ops recommendations
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">LLM provider</span>
-            <Select value={cfg.llm_provider} onChange={(e) => setIntegration('llm_provider', e.target.value as IntegrationsAiOpsAdminSettings['llm_provider'])} disabled={!cfg.ai_ops_enabled}>
-              <option value="local">Local (no external API)</option>
-              <option value="openai">OpenAI</option>
-              <option value="azure">Azure OpenAI</option>
-              <option value="custom">Custom / OpenAI-compatible</option>
-            </Select>
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Model name</span>
-            <Input value={cfg.llm_model} onChange={(e) => setIntegration('llm_model', e.target.value)} placeholder="e.g. gpt-4o, llama3" disabled={!cfg.ai_ops_enabled} />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Timeout (seconds)</span>
-            <Input type="number" value={cfg.llm_timeout_seconds} onChange={(e) => setIntegration('llm_timeout_seconds', Number(e.target.value))} disabled={!cfg.ai_ops_enabled} />
-          </label>
-          <label className="block md:col-span-2">
-            <span className="mb-1 block font-medium">Base URL</span>
-            <Input
-              value={cfg.llm_base_url}
-              onChange={(e) => setIntegration('llm_base_url', e.target.value)}
-              placeholder={cfg.llm_provider === 'custom' ? 'https://my-llm-proxy.example.com/v1' : 'Leave empty for provider default'}
-              disabled={!cfg.ai_ops_enabled}
-            />
-          </label>
-          <label className="block">
-            <span className="mb-1 block font-medium">Minimum confidence (%)</span>
-            <Input type="number" value={cfg.ai_recommendation_min_confidence} onChange={(e) => setIntegration('ai_recommendation_min_confidence', Number(e.target.value))} disabled={!cfg.ai_ops_enabled} />
-          </label>
-          <div className="md:col-span-3">
-            <SettingsHint>
-              API keys and tokens must be configured via environment variables or a secret store — never entered here.
-              This panel stores provider references and behaviour knobs for documentation purposes, but the running
-              assistant currently reads its live configuration from the backend's AI_OPS_LLM_* environment variables —
-              changes made here do not yet take effect until that wiring is added.
-              The Base URL field accepts any OpenAI-compatible endpoint (e.g. a local Ollama proxy or a self-hosted vLLM instance).
-            </SettingsHint>
-          </div>
-        </div>
-      </Card>
-
-      <SettingsSaveBar label="Save Integrations / AI Ops Settings" loading={loading} saving={saving} saved={saved} error={error} onSave={save} />
+      <SettingsSaveBar label="Save AI Ops Settings" loading={loading} saving={saving} saved={saved} error={error} onSave={save} />
     </div>
   );
 }

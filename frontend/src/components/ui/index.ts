@@ -10,6 +10,8 @@ export { Input } from './Input';
 
 export { Select } from './Select';
 
+export { Switch } from './Switch';
+
 export { Table, Thead, Tbody, Th, Td, Tr } from './Table';
 
 export { Modal } from './Modal';
