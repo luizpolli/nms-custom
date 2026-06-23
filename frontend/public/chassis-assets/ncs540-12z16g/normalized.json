@@ -2392,7 +2392,8 @@
       "sourceId": 3100,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3101": {
       "childIds": [],
@@ -2419,7 +2420,8 @@
       "sourceId": 3101,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3102": {
       "childIds": [],
@@ -2446,7 +2448,8 @@
       "sourceId": 3102,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3103": {
       "childIds": [],
@@ -2473,7 +2476,8 @@
       "sourceId": 3103,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3104": {
       "childIds": [],
@@ -2500,7 +2504,8 @@
       "sourceId": 3104,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3105": {
       "childIds": [],
@@ -2527,7 +2532,8 @@
       "sourceId": 3105,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3106": {
       "childIds": [],
@@ -2554,7 +2560,8 @@
       "sourceId": 3106,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3107": {
       "childIds": [],
@@ -2581,7 +2588,8 @@
       "sourceId": 3107,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3108": {
       "childIds": [],
@@ -2608,7 +2616,8 @@
       "sourceId": 3108,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3109": {
       "childIds": [],
@@ -2635,7 +2644,8 @@
       "sourceId": 3109,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3110": {
       "childIds": [],
@@ -2662,7 +2672,8 @@
       "sourceId": 3110,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "down"
     },
     "component-3111": {
       "childIds": [],
@@ -2689,7 +2700,8 @@
       "sourceId": 3111,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.315",
+      "operStatus": "up"
     },
     "component-3200": {
       "childIds": [],
@@ -2716,7 +2728,8 @@
       "sourceId": 3200,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3201": {
       "childIds": [],
@@ -2743,7 +2756,8 @@
       "sourceId": 3201,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3202": {
       "childIds": [],
@@ -2770,7 +2784,8 @@
       "sourceId": 3202,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3203": {
       "childIds": [],
@@ -2797,7 +2812,8 @@
       "sourceId": 3203,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3204": {
       "childIds": [],
@@ -2824,7 +2840,8 @@
       "sourceId": 3204,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3205": {
       "childIds": [],
@@ -2851,7 +2868,8 @@
       "sourceId": 3205,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3206": {
       "childIds": [],
@@ -2878,7 +2896,8 @@
       "sourceId": 3206,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3207": {
       "childIds": [],
@@ -2905,7 +2924,8 @@
       "sourceId": 3207,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3208": {
       "childIds": [],
@@ -2932,7 +2952,8 @@
       "sourceId": 3208,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3209": {
       "childIds": [],
@@ -2959,7 +2980,8 @@
       "sourceId": 3209,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3210": {
       "childIds": [],
@@ -2986,7 +3008,8 @@
       "sourceId": 3210,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3211": {
       "childIds": [],
@@ -3013,7 +3036,8 @@
       "sourceId": 3211,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3212": {
       "childIds": [],
@@ -3040,7 +3064,8 @@
       "sourceId": 3212,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3213": {
       "childIds": [],
@@ -3067,7 +3092,8 @@
       "sourceId": 3213,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-3214": {
       "childIds": [],
@@ -3094,7 +3120,8 @@
       "sourceId": 3214,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "down"
     },
     "component-3215": {
       "childIds": [],
@@ -3121,7 +3148,8 @@
       "sourceId": 3215,
       "type": "port",
       "typeId": "N/A",
-      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132"
+      "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.10.132",
+      "operStatus": "up"
     },
     "component-4097": {
       "alias": "N/A",
@@ -8416,15 +8444,15 @@
             "x": 610,
             "y": 48
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-0",
-          "inventoryId": null,
-          "label": "SFP bay 0",
+          "inventoryId": "component-3200",
+          "label": "GigabitEthernet0/0/0/0",
           "metadata": {
             "sourceName": "SFP bay 0",
             "sourceTypeId": "SFP bay 0"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3200,
           "slotKey": "SFP bay 0",
           "asset": {
             "typeId": "SFP",
@@ -8439,15 +8467,15 @@
             "x": 665,
             "y": 48
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-1",
-          "inventoryId": null,
-          "label": "SFP bay 1",
+          "inventoryId": "component-3201",
+          "label": "GigabitEthernet0/0/0/1",
           "metadata": {
             "sourceName": "SFP bay 1",
             "sourceTypeId": "SFP bay 1"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3201,
           "slotKey": "SFP bay 1",
           "asset": {
             "typeId": "SFP",
@@ -8462,15 +8490,15 @@
             "x": 745,
             "y": 38
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-2",
-          "inventoryId": null,
-          "label": "SFP bay 2",
+          "inventoryId": "component-3202",
+          "label": "GigabitEthernet0/0/0/2",
           "metadata": {
             "sourceName": "SFP bay 2",
             "sourceTypeId": "SFP bay 2"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3202,
           "slotKey": "SFP bay 2",
           "asset": {
             "typeId": "SFP",
@@ -8485,15 +8513,15 @@
             "x": 800,
             "y": 38
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-3",
-          "inventoryId": null,
-          "label": "SFP bay 3",
+          "inventoryId": "component-3203",
+          "label": "GigabitEthernet0/0/0/3",
           "metadata": {
             "sourceName": "SFP bay 3",
             "sourceTypeId": "SFP bay 3"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3203,
           "slotKey": "SFP bay 3",
           "asset": {
             "typeId": "SFP",
@@ -8508,15 +8536,15 @@
             "x": 880,
             "y": 95
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-4",
-          "inventoryId": null,
-          "label": "SFP bay 4",
+          "inventoryId": "component-3204",
+          "label": "GigabitEthernet0/0/0/4",
           "metadata": {
             "sourceName": "SFP bay 4",
             "sourceTypeId": "SFP bay 4"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3204,
           "slotKey": "SFP bay 4",
           "asset": {
             "typeId": "SFP",
@@ -8531,15 +8559,15 @@
             "x": 939,
             "y": 95
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-5",
-          "inventoryId": null,
-          "label": "SFP bay 5",
+          "inventoryId": "component-3205",
+          "label": "GigabitEthernet0/0/0/5",
           "metadata": {
             "sourceName": "SFP bay 5",
             "sourceTypeId": "SFP bay 5"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3205,
           "slotKey": "SFP bay 5",
           "asset": {
             "typeId": "SFP",
@@ -8554,15 +8582,15 @@
             "x": 1002,
             "y": 99
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-6",
-          "inventoryId": null,
-          "label": "SFP bay 6",
+          "inventoryId": "component-3206",
+          "label": "GigabitEthernet0/0/0/6",
           "metadata": {
             "sourceName": "SFP bay 6",
             "sourceTypeId": "SFP bay 6"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3206,
           "slotKey": "SFP bay 6",
           "asset": {
             "typeId": "SFP",
@@ -8577,15 +8605,15 @@
             "x": 1061,
             "y": 99
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-7",
-          "inventoryId": null,
-          "label": "SFP bay 7",
+          "inventoryId": "component-3207",
+          "label": "GigabitEthernet0/0/0/7",
           "metadata": {
             "sourceName": "SFP bay 7",
             "sourceTypeId": "SFP bay 7"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3207,
           "slotKey": "SFP bay 7",
           "asset": {
             "typeId": "SFP",
@@ -8600,15 +8628,15 @@
             "x": 1115,
             "y": 94
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-8",
-          "inventoryId": null,
-          "label": "SFP bay 8",
+          "inventoryId": "component-3208",
+          "label": "GigabitEthernet0/0/0/8",
           "metadata": {
             "sourceName": "SFP bay 8",
             "sourceTypeId": "SFP bay 8"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3208,
           "slotKey": "SFP bay 8",
           "asset": {
             "typeId": "SFP",
@@ -8623,15 +8651,15 @@
             "x": 1174,
             "y": 94
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-9",
-          "inventoryId": null,
-          "label": "SFP bay 9",
+          "inventoryId": "component-3209",
+          "label": "GigabitEthernet0/0/0/9",
           "metadata": {
             "sourceName": "SFP bay 9",
             "sourceTypeId": "SFP bay 9"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3209,
           "slotKey": "SFP bay 9",
           "asset": {
             "typeId": "SFP",
@@ -8646,15 +8674,15 @@
             "x": 1249,
             "y": 95
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-10",
-          "inventoryId": null,
-          "label": "SFP bay 10",
+          "inventoryId": "component-3210",
+          "label": "GigabitEthernet0/0/0/10",
           "metadata": {
             "sourceName": "SFP bay 10",
             "sourceTypeId": "SFP bay 10"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3210,
           "slotKey": "SFP bay 10",
           "asset": {
             "typeId": "SFP",
@@ -8669,15 +8697,15 @@
             "x": 1313,
             "y": 99
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-11",
-          "inventoryId": null,
-          "label": "SFP bay 11",
+          "inventoryId": "component-3211",
+          "label": "GigabitEthernet0/0/0/11",
           "metadata": {
             "sourceName": "SFP bay 11",
             "sourceTypeId": "SFP bay 11"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3211,
           "slotKey": "SFP bay 11",
           "asset": {
             "typeId": "SFP",
@@ -8692,15 +8720,15 @@
             "x": 1366,
             "y": 95
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-12",
-          "inventoryId": null,
-          "label": "SFP bay 12",
+          "inventoryId": "component-3212",
+          "label": "GigabitEthernet0/0/0/12",
           "metadata": {
             "sourceName": "SFP bay 12",
             "sourceTypeId": "SFP bay 12"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3212,
           "slotKey": "SFP bay 12",
           "asset": {
             "typeId": "SFP",
@@ -8715,15 +8743,15 @@
             "x": 1425,
             "y": 95
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-13",
-          "inventoryId": null,
-          "label": "SFP bay 13",
+          "inventoryId": "component-3213",
+          "label": "GigabitEthernet0/0/0/13",
           "metadata": {
             "sourceName": "SFP bay 13",
             "sourceTypeId": "SFP bay 13"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3213,
           "slotKey": "SFP bay 13",
           "asset": {
             "typeId": "SFP",
@@ -8738,15 +8766,15 @@
             "x": 1488,
             "y": 99
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-14",
-          "inventoryId": null,
-          "label": "SFP bay 14",
+          "inventoryId": "component-3214",
+          "label": "GigabitEthernet0/0/0/14",
           "metadata": {
             "sourceName": "SFP bay 14",
             "sourceTypeId": "SFP bay 14"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3214,
           "slotKey": "SFP bay 14",
           "asset": {
             "typeId": "SFP",
@@ -8761,15 +8789,15 @@
             "x": 1542,
             "y": 94
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-15",
-          "inventoryId": null,
-          "label": "SFP bay 15",
+          "inventoryId": "component-3215",
+          "label": "GigabitEthernet0/0/0/15",
           "metadata": {
             "sourceName": "SFP bay 15",
             "sourceTypeId": "SFP bay 15"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3215,
           "slotKey": "SFP bay 15",
           "asset": {
             "typeId": "SFP",
@@ -8784,15 +8812,15 @@
             "x": 881,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-16",
-          "inventoryId": null,
-          "label": "SFP bay 16",
+          "inventoryId": "component-3100",
+          "label": "TenGigE0/0/0/16",
           "metadata": {
             "sourceName": "SFP bay 16",
             "sourceTypeId": "SFP bay 16"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3100,
           "slotKey": "SFP bay 16",
           "asset": {
             "typeId": "SFP",
@@ -8807,15 +8835,15 @@
             "x": 940,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-17",
-          "inventoryId": null,
-          "label": "SFP bay 17",
+          "inventoryId": "component-3101",
+          "label": "TenGigE0/0/0/17",
           "metadata": {
             "sourceName": "SFP bay 17",
             "sourceTypeId": "SFP bay 17"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3101,
           "slotKey": "SFP bay 17",
           "asset": {
             "typeId": "SFP",
@@ -8830,15 +8858,15 @@
             "x": 998,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-18",
-          "inventoryId": null,
-          "label": "SFP bay 18",
+          "inventoryId": "component-3102",
+          "label": "TenGigE0/0/0/18",
           "metadata": {
             "sourceName": "SFP bay 18",
             "sourceTypeId": "SFP bay 18"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3102,
           "slotKey": "SFP bay 18",
           "asset": {
             "typeId": "SFP",
@@ -8853,15 +8881,15 @@
             "x": 1057,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-19",
-          "inventoryId": null,
-          "label": "SFP bay 19",
+          "inventoryId": "component-3103",
+          "label": "TenGigE0/0/0/19",
           "metadata": {
             "sourceName": "SFP bay 19",
             "sourceTypeId": "SFP bay 19"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3103,
           "slotKey": "SFP bay 19",
           "asset": {
             "typeId": "SFP",
@@ -8876,15 +8904,15 @@
             "x": 1115,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-20",
-          "inventoryId": null,
-          "label": "SFP bay 20",
+          "inventoryId": "component-3104",
+          "label": "TenGigE0/0/0/20",
           "metadata": {
             "sourceName": "SFP bay 20",
             "sourceTypeId": "SFP bay 20"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3104,
           "slotKey": "SFP bay 20",
           "asset": {
             "typeId": "SFP",
@@ -8899,15 +8927,15 @@
             "x": 1174,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-21",
-          "inventoryId": null,
-          "label": "SFP bay 21",
+          "inventoryId": "component-3105",
+          "label": "TenGigE0/0/0/21",
           "metadata": {
             "sourceName": "SFP bay 21",
             "sourceTypeId": "SFP bay 21"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3105,
           "slotKey": "SFP bay 21",
           "asset": {
             "typeId": "SFP",
@@ -8922,15 +8950,15 @@
             "x": 1250,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-22",
-          "inventoryId": null,
-          "label": "SFP bay 22",
+          "inventoryId": "component-3106",
+          "label": "TenGigE0/0/0/22",
           "metadata": {
             "sourceName": "SFP bay 22",
             "sourceTypeId": "SFP bay 22"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3106,
           "slotKey": "SFP bay 22",
           "asset": {
             "typeId": "SFP",
@@ -8945,15 +8973,15 @@
             "x": 1309,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-23",
-          "inventoryId": null,
-          "label": "SFP bay 23",
+          "inventoryId": "component-3107",
+          "label": "TenGigE0/0/0/23",
           "metadata": {
             "sourceName": "SFP bay 23",
             "sourceTypeId": "SFP bay 23"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3107,
           "slotKey": "SFP bay 23",
           "asset": {
             "typeId": "SFP",
@@ -8968,15 +8996,15 @@
             "x": 1367,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-24",
-          "inventoryId": null,
-          "label": "SFP bay 24",
+          "inventoryId": "component-3108",
+          "label": "TenGigE0/0/0/24",
           "metadata": {
             "sourceName": "SFP bay 24",
             "sourceTypeId": "SFP bay 24"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3108,
           "slotKey": "SFP bay 24",
           "asset": {
             "typeId": "SFP",
@@ -8991,15 +9019,15 @@
             "x": 1426,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-25",
-          "inventoryId": null,
-          "label": "SFP bay 25",
+          "inventoryId": "component-3109",
+          "label": "TenGigE0/0/0/25",
           "metadata": {
             "sourceName": "SFP bay 25",
             "sourceTypeId": "SFP bay 25"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3109,
           "slotKey": "SFP bay 25",
           "asset": {
             "typeId": "SFP",
@@ -9014,15 +9042,15 @@
             "x": 1484,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-26",
-          "inventoryId": null,
-          "label": "SFP bay 26",
+          "inventoryId": "component-3110",
+          "label": "TenGigE0/0/0/26",
           "metadata": {
             "sourceName": "SFP bay 26",
             "sourceTypeId": "SFP bay 26"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3110,
           "slotKey": "SFP bay 26",
           "asset": {
             "typeId": "SFP",
@@ -9037,15 +9065,15 @@
             "x": 1542,
             "y": 36
           },
-          "empty": true,
+          "empty": false,
           "id": "hotspot-port-27",
-          "inventoryId": null,
-          "label": "SFP bay 27",
+          "inventoryId": "component-3111",
+          "label": "TenGigE0/0/0/27",
           "metadata": {
             "sourceName": "SFP bay 27",
             "sourceTypeId": "SFP bay 27"
           },
-          "physicalIndex": null,
+          "physicalIndex": 3111,
           "slotKey": "SFP bay 27",
           "asset": {
             "typeId": "SFP",
