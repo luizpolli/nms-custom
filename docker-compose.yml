@@ -30,6 +30,55 @@ x-backend-security: &backend-security
     - /run:mode=0755,size=8m
 
 services:
+  # Docker socket proxy — gives nms-app just enough Docker API access to
+  # list/restart the known containers (System Administration panel) without
+  # ever exposing the raw socket (= host root) to that container. Only
+  # CONTAINERS/PING/POST/RESTARTS are allowed; everything else (EXEC, VOLUMES,
+  # IMAGES, NETWORKS, SWARM, BUILD, ...) is denied.
+  docker-proxy:
+    image: tecnativa/docker-socket-proxy:latest
+    container_name: nms-docker-proxy
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:mode=1777,size=8m
+      - /run:mode=0755,size=8m
+      - /var/lib/haproxy:mode=0755,size=8m
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      CONTAINERS: "1"
+      POST: "1"
+      ALLOW_RESTARTS: "1"
+      PING: "1"
+      EVENTS: "0"
+      VERSION: "0"
+      INFO: "0"
+      AUTH: "0"
+      SECRETS: "0"
+      BUILD: "0"
+      COMMIT: "0"
+      CONFIGS: "0"
+      DISTRIBUTION: "0"
+      EXEC: "0"
+      GRPC: "0"
+      IMAGES: "0"
+      NETWORKS: "0"
+      NODES: "0"
+      PLUGINS: "0"
+      SERVICES: "0"
+      SESSION: "0"
+      SWARM: "0"
+      SYSTEM: "0"
+      TASKS: "0"
+      VOLUMES: "0"
+    networks:
+      - nms-net
+
   postgres:
     image: timescale/timescaledb:latest-pg16
     container_name: nms-postgres
@@ -96,6 +145,7 @@ services:
       TLS_MIN_VERSION: "${TLS_MIN_VERSION:-TLSv1.3}"
       TLS_CERT_FILE: "${TLS_CERT_FILE:-/certs/server.crt}"
       TLS_KEY_FILE: "${TLS_KEY_FILE:-/certs/server.key}"
+      DOCKER_PROXY_URL: "${DOCKER_PROXY_URL:-http://docker-proxy:2375}"
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     volumes:
@@ -108,6 +158,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      docker-proxy:
+        condition: service_started
     healthcheck:
       test: ["CMD", "curl", "-k", "-f", "https://localhost:8000/health"]
       interval: 30s

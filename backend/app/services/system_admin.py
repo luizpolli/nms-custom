@@ -7,9 +7,17 @@ import os
 import shutil
 from pathlib import Path
 
+import httpx
+
 BACKUP_DIR = Path(os.getenv("BACKUP_DIR", "/app/backups"))
 BACKUP_CONFIG_FILE = Path(os.getenv("BACKUP_CONFIG_FILE", "/app/data/backup-config.json"))
 BACKUP_SCRIPT = Path(os.getenv("BACKUP_SCRIPT", "/app/scripts/backup.sh"))
+
+# Docker socket proxy (Tecnativa/docker-socket-proxy) — exposes a whitelisted
+# subset of the Docker Engine API over HTTP so this container never touches
+# /var/run/docker.sock directly. See docker-compose.yml for the proxy's
+# allowed-endpoint configuration.
+DOCKER_PROXY_URL = os.getenv("DOCKER_PROXY_URL", "http://docker-proxy:2375")
 
 KNOWN_CONTAINERS: dict[str, dict] = {
     "nms-postgres":           {"label": "PostgreSQL",          "group": "Infrastructure", "critical": True},
@@ -28,34 +36,22 @@ KNOWN_CONTAINERS: dict[str, dict] = {
 }
 
 
-async def _docker(*args: str) -> tuple[int, str, str]:
-    try:
-        proc = await asyncio.create_subprocess_exec(
-            "docker", *args,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
-        stdout, stderr = await proc.communicate()
-        rc: int = proc.returncode if proc.returncode is not None else -1
-        return rc, stdout.decode().strip(), stderr.decode().strip()
-    except FileNotFoundError:
-        return -1, "", "docker CLI not found"
-
-
 async def get_container_statuses() -> dict:
-    rc, out, _ = await _docker(
-        "ps", "-a",
-        "--format", "{{.Names}}\t{{.Status}}\t{{.State}}",
-    )
     docker_states: dict[str, dict] = {}
-    if rc == 0:
-        for line in out.splitlines():
-            parts = line.split("\t")
-            if len(parts) >= 3:
-                docker_states[parts[0]] = {
-                    "status_text": parts[1],
-                    "state": parts[2],
-                }
+    docker_available = False
+    try:
+        async with httpx.AsyncClient(base_url=DOCKER_PROXY_URL, timeout=5.0) as client:
+            resp = await client.get("/containers/json", params={"all": "1"})
+            resp.raise_for_status()
+            docker_available = True
+            for entry in resp.json():
+                names = [n.lstrip("/") for n in entry.get("Names", [])]
+                state = (entry.get("State") or "unknown").lower()
+                status_text = entry.get("Status") or "—"
+                for name in names:
+                    docker_states[name] = {"status_text": status_text, "state": state}
+    except (httpx.HTTPError, ValueError):
+        docker_available = False
 
     containers = []
     for name, meta in KNOWN_CONTAINERS.items():
@@ -68,14 +64,20 @@ async def get_container_statuses() -> dict:
             "state": info.get("state", "unknown"),
             "status_text": info.get("status_text", "—"),
         })
-    return {"docker_available": rc == 0, "containers": containers}
+    return {"docker_available": docker_available, "containers": containers}
 
 
 async def restart_container(name: str) -> dict:
     if name not in KNOWN_CONTAINERS:
         return {"ok": False, "error": "Unknown container"}
-    rc, out, err = await _docker("restart", name)
-    return {"ok": rc == 0, "error": err if rc != 0 else None}
+    try:
+        async with httpx.AsyncClient(base_url=DOCKER_PROXY_URL, timeout=15.0) as client:
+            resp = await client.post(f"/containers/{name}/restart")
+            if resp.status_code in (204, 304):
+                return {"ok": True, "error": None}
+            return {"ok": False, "error": f"docker proxy returned {resp.status_code}: {resp.text}"}
+    except httpx.HTTPError as exc:
+        return {"ok": False, "error": str(exc)}
 
 
 def list_backups(backup_dir: Path | None = None) -> list[dict]:
