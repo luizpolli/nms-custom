@@ -16,6 +16,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.settings.admin import load_integrations_ai_ops_settings
 from app.config import settings
 from app.database import get_db
 from app.models.alarm import Alarm
@@ -218,7 +219,8 @@ async def assistant_ask(
     payload: AssistantAskRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
 ) -> AssistantAnswerResponse:
-    if not getattr(settings, "ai_ops_llm_enabled", False):
+    admin_settings = await load_integrations_ai_ops_settings(db)
+    if not getattr(settings, "ai_ops_llm_enabled", False) or not admin_settings.ai_ops_enabled:
         raise HTTPException(status_code=503, detail="AI Ops LLM assistant disabled")
     provider = get_provider(getattr(settings, "ai_ops_llm_provider", "null"))
     limits = GuardrailLimits(

@@ -425,25 +425,25 @@ class TestAdditionalSettingsSections:
         assert resp.status_code == 422
 
     def test_integrations_ai_ops_put_persists(self):
-        payload = {
-            "nbi_enabled": True,
-            "webhook_retry_attempts": 5,
-            "webhook_timeout_seconds": 30,
-            "ai_ops_enabled": True,
-            "ai_recommendation_min_confidence": 85,
-            "llm_provider": "custom",
-            "llm_model": "local-model",
-            "report_export_target_path": "/exports/reports",
-        }
+        payload = {"ai_ops_enabled": False}
         resp = self.client.put("/api/settings/integrations-ai-ops", json=payload)
         assert resp.status_code == 200
-        assert resp.json()["ai_recommendation_min_confidence"] == 85
+        assert resp.json()["ai_ops_enabled"] is False
         assert self.store["__audit__"][-1].action == "settings.integrations_ai_ops.update"
 
-    def test_integrations_invalid_confidence_rejected(self):
-        payload = self.client.get("/api/settings/integrations-ai-ops").json()
-        payload["ai_recommendation_min_confidence"] = 101
-        resp = self.client.put("/api/settings/integrations-ai-ops", json=payload)
+    def test_integrations_ai_ops_get_includes_effective_runtime_config(self):
+        resp = self.client.get("/api/settings/integrations-ai-ops")
+        assert resp.status_code == 200
+        body = resp.json()
+        assert "effective_llm_enabled" in body
+        assert "effective_llm_provider" in body
+        assert "effective_llm_model" in body
+        assert "effective_llm_base_url" in body
+
+    def test_integrations_ai_ops_put_rejects_invalid_type(self):
+        resp = self.client.put(
+            "/api/settings/integrations-ai-ops", json={"ai_ops_enabled": "not-a-bool"}
+        )
         assert resp.status_code == 422
 
     def test_lab_operations_put_persists(self):
@@ -513,7 +513,7 @@ class TestSettingsProfile:
         assert body["network_devices"]["snmp"]["snmp_port"] == 161
         assert body["inventory"]["config_archive_retention_days"] == 90
         assert body["alarms_events"]["notifications"]["min_severity_to_notify"] == "major"
-        assert body["integrations_ai_ops"]["llm_provider"] == "local"
+        assert body["integrations_ai_ops"]["ai_ops_enabled"] is True
         assert body["lab_operations"]["certification_mode_enabled"] is True
         assert body["modules"]["telemetry"] is True
         assert self.store["__audit__"][-1].action == "settings.profile.export"
@@ -526,7 +526,7 @@ class TestSettingsProfile:
         payload["network_devices"]["cli"]["ssh_timeout_seconds"] = 75
         payload["inventory"]["default_discovery_profile"] = "profile-discovery"
         payload["alarms_events"]["suppression"]["suppression_window_minutes"] = 22
-        payload["integrations_ai_ops"]["ai_recommendation_min_confidence"] = 88
+        payload["integrations_ai_ops"]["ai_ops_enabled"] = False
         payload["lab_operations"]["simulator_profile"] = "profile-sim"
         payload["modules"]["telemetry"] = False
 
@@ -539,7 +539,7 @@ class TestSettingsProfile:
         assert self.client.get("/api/settings/network-devices").json()["cli"]["ssh_timeout_seconds"] == 75
         assert self.client.get("/api/settings/inventory").json()["default_discovery_profile"] == "profile-discovery"
         assert self.client.get("/api/settings/alarms-events").json()["suppression"]["suppression_window_minutes"] == 22
-        assert self.client.get("/api/settings/integrations-ai-ops").json()["ai_recommendation_min_confidence"] == 88
+        assert self.client.get("/api/settings/integrations-ai-ops").json()["ai_ops_enabled"] is False
         assert self.client.get("/api/settings/lab-operations").json()["simulator_profile"] == "profile-sim"
         assert self.client.get("/api/settings/modules").json()["telemetry"] is False
         assert any(entry.action == "settings.profile.import" for entry in self.store["__audit__"])

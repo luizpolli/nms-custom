@@ -257,38 +257,22 @@ class AlarmsEventsAdminSettings(BaseModel):
 
 
 class IntegrationsAiOpsAdminSettings(BaseModel):
-    nbi_enabled: bool = True
-    webhook_retry_attempts: int = Field(3, ge=0, le=20)
-    webhook_timeout_seconds: int = Field(10, ge=1, le=300)
+    """Admin-facing AI Ops toggle. Connection details (provider, model, base
+    URL, API key) are infrastructure config and live only in AI_OPS_LLM_*
+    environment variables — see IntegrationsAiOpsAdminSettingsResponse for
+    the read-only effective_* fields that mirror what's actually running.
+    """
+
     ai_ops_enabled: bool = True
-    ai_recommendation_min_confidence: int = Field(70, ge=0, le=100)
-    llm_provider: Literal["local", "openai", "azure", "custom"] = "local"
-    llm_base_url: str = Field(
-        "",
-        max_length=512,
-        description="Base URL for the LLM API endpoint (e.g. https://api.openai.com/v1 or a custom OpenAI-compatible URL). Leave empty to use the provider's default.",
-    )
-    llm_model: str = Field("", max_length=120)
-    llm_timeout_seconds: int = Field(
-        30, ge=1, le=600, description="Per-request timeout for LLM API calls in seconds."
-    )
-    report_export_target_path: str = Field("", max_length=512)
 
-    @field_validator("report_export_target_path")
-    @classmethod
-    def validate_export_path(cls, value: str) -> str:
-        if value and any(ch in value for ch in "\r\n\x00"):
-            raise ValueError("Invalid export target path")
-        return value
 
-    @field_validator("llm_base_url")
-    @classmethod
-    def validate_llm_base_url(cls, value: str) -> str:
-        if value and not value.startswith(("https://", "http://")):
-            raise ValueError("llm_base_url must be an HTTP(S) URL")
-        if value and any(ch in value for ch in "\r\n\x00"):
-            raise ValueError("Invalid llm_base_url")
-        return value
+class IntegrationsAiOpsAdminSettingsResponse(IntegrationsAiOpsAdminSettings):
+    """GET-only view: admin toggle plus the live env-driven config it gates."""
+
+    effective_llm_enabled: bool
+    effective_llm_provider: str
+    effective_llm_model: str
+    effective_llm_base_url: str
 
 
 # ---------------------------------------------------------------------------

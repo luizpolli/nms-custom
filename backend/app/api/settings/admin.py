@@ -12,6 +12,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.database import get_db
 from app.security.auth import (
     PERM_SETTINGS_ALARMS_EVENTS,
@@ -32,6 +33,7 @@ from ._schemas import (
     AlarmsEventsAdminSettings,
     GeneralAdminSettings,
     IntegrationsAiOpsAdminSettings,
+    IntegrationsAiOpsAdminSettingsResponse,
     InventoryAdminSettings,
     LabOperationsAdminSettings,
     ModuleControlSettings,
@@ -205,16 +207,32 @@ async def update_alarms_events_settings(
 # ---------------------------------------------------------------------------
 
 
-@router.get("/integrations-ai-ops", response_model=IntegrationsAiOpsAdminSettings)
-async def get_integrations_ai_ops_settings(
-    db: Annotated[AsyncSession, Depends(get_db)],
-    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+async def load_integrations_ai_ops_settings(
+    db: AsyncSession,
 ) -> IntegrationsAiOpsAdminSettings:
+    """Public accessor for the AI Ops admin toggle — used by app.api.ai_ops
+    to gate the assistant alongside the infra-level AI_OPS_LLM_ENABLED flag.
+    """
     return await _load_setting(
         db,
         _INTEGRATIONS_AI_OPS_KEY,
         IntegrationsAiOpsAdminSettings,
         IntegrationsAiOpsAdminSettings,
+    )
+
+
+@router.get("/integrations-ai-ops", response_model=IntegrationsAiOpsAdminSettingsResponse)
+async def get_integrations_ai_ops_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> IntegrationsAiOpsAdminSettingsResponse:
+    cfg = await load_integrations_ai_ops_settings(db)
+    return IntegrationsAiOpsAdminSettingsResponse(
+        **cfg.model_dump(),
+        effective_llm_enabled=settings.ai_ops_llm_enabled,
+        effective_llm_provider=settings.ai_ops_llm_provider,
+        effective_llm_model=settings.ai_ops_llm_model,
+        effective_llm_base_url=settings.ai_ops_llm_base_url,
     )
 
 
