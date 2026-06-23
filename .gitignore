@@ -59,5 +59,8 @@ Thumbs.db
 
 # EPNM chassis source figures (~400MB, not for git — use local copy for migrations)
 docs/chassisview_figures/
+# Reference hardware photos used to calibrate chassis views — local only, never commit
+docs/Cisco *.png
+docs/Cisco *.jpg
 # Runtime audit logs
 backend/data/audit/
