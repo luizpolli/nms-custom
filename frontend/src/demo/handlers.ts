@@ -104,6 +104,33 @@ const HANDLERS: Array<[RegExp, Handler]> = [
       return getDemoDeviceInventory(match?.[1] ?? '');
     },
   ],
+
+  // AI Ops assistant — canned, citation-bearing answer so the panel renders
+  // a realistic example instead of falling through to the generic
+  // "{ ok: true, demo: true }" POST stub (which lacks `citations`/`answer`
+  // and breaks normalizeAssistantAnswer's `.map()` call).
+  [
+    /^\/ai-ops\/assistant\/ask$/,
+    () => ({
+      question: 'What is happening with critical links right now?',
+      answer:
+        'Interface TenGigE0/0/0/24 on ncs55a1-mty-core-01 is down due to carrier loss [alarm:alarm-0001]. ' +
+        'This is advisory-only synthetic data — demo mode never calls a real LLM provider.',
+      citations: [
+        {
+          source_type: 'alarm',
+          object_id: 'alarm:alarm-0001',
+          label: 'Interface TenGigE0/0/0/24 is DOWN — carrier loss detected',
+          timestamp: new Date().toISOString(),
+          detail: 'severity=critical state=active source=ncs55a1-mty-core-01',
+        },
+      ],
+      provider: 'demo',
+      advisory_only: true,
+      rejected_reason: null,
+      generated_at: new Date().toISOString(),
+    }),
+  ],
 ];
 
 export function matchDemoHandler(
