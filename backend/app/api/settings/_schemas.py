@@ -33,6 +33,7 @@ _GENERAL_KEY = "general"
 _SYSTEM_KEY = "system"
 _NETWORK_DEVICES_KEY = "network_devices"
 _INVENTORY_KEY = "inventory"
+_BULKSTATS_KEY = "bulkstats"
 _ALARMS_EVENTS_KEY = "alarms_events"
 _INTEGRATIONS_AI_OPS_KEY = "integrations_ai_ops"
 _LAB_OPERATIONS_KEY = "lab_operations"
@@ -208,6 +209,47 @@ class InventoryAdminSettings(BaseModel):
         if value and any(ch in value for ch in "\r\n\x00"):
             raise ValueError("Invalid image repository path")
         return value
+
+
+# ---------------------------------------------------------------------------
+# Bulkstats settings
+# ---------------------------------------------------------------------------
+
+
+def _validate_filesystem_path(value: str) -> str:
+    if value and any(ch in value for ch in "\r\n\x00"):
+        raise ValueError("Invalid path")
+    return value
+
+
+class BulkstatsWatchSettings(BaseModel):
+    enabled: bool = True
+    watch_path: str = Field("/data/bulkstats/incoming", max_length=512)
+    poll_interval_seconds: int = Field(60, ge=5, le=3600)
+
+    @field_validator("watch_path")
+    @classmethod
+    def validate_watch_path(cls, value: str) -> str:
+        return _validate_filesystem_path(value)
+
+
+class BulkstatsPullSettings(BaseModel):
+    enabled: bool = True
+    # Directory on the StarOS device where bulkstats files land, fetched over
+    # the device's existing SSH/SFTP credential (see Credential/SSHClient).
+    remote_path: str = Field("/flash/bulkstats", max_length=512)
+    poll_interval_seconds: int = Field(900, ge=60, le=86400)
+
+    @field_validator("remote_path")
+    @classmethod
+    def validate_remote_path(cls, value: str) -> str:
+        return _validate_filesystem_path(value)
+
+
+class BulkstatsAdminSettings(BaseModel):
+    raw_sample_retention_days: int = Field(30, ge=1, le=365)
+    watch: BulkstatsWatchSettings = Field(default_factory=BulkstatsWatchSettings)  # type: ignore[arg-type]
+    pull: BulkstatsPullSettings = Field(default_factory=BulkstatsPullSettings)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------------------

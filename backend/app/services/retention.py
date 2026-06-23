@@ -45,6 +45,33 @@ _TIMESCALE_PK_SQL = {
 }
 
 
+async def has_retention_policy(session: AsyncSession, table_name: str) -> bool:
+    """Whether a Timescale retention policy job is already registered for
+    this hypertable (regardless of which interval it was set to)."""
+    result = await session.execute(
+        text(
+            "SELECT EXISTS (SELECT 1 FROM timescaledb_information.jobs "
+            "WHERE proc_name = 'policy_retention' AND hypertable_name = :table_name)"
+        ),
+        {"table_name": table_name},
+    )
+    return bool(result.scalar_one())
+
+
+async def set_retention_policy(session: AsyncSession, table_name: str, days: int) -> None:
+    """Replace (or create) the Timescale retention policy for a hypertable.
+
+    Used both for first-time bootstrap and for applying an admin-changed
+    retention_days value immediately, without waiting for a restart.
+    """
+    await session.execute(text("SELECT remove_retention_policy(:table_name, if_exists => TRUE)"), {"table_name": table_name})
+    await session.execute(
+        text("SELECT add_retention_policy(:table_name, (:days * interval '1 day'), if_not_exists => TRUE)"),
+        {"table_name": table_name, "days": days},
+    )
+    await session.commit()
+
+
 async def enforce_retention(session: AsyncSession, policies: tuple[RetentionPolicy, ...] = DEFAULT_RETENTION_POLICIES) -> dict[str, int]:
     """Delete rows older than configured retention windows.
 
@@ -119,12 +146,15 @@ async def ensure_timescale_schema(session: AsyncSession) -> dict[str, str]:
 
     for policy in DEFAULT_RETENTION_POLICIES:
         try:
-            await session.execute(text("SELECT remove_retention_policy(:table_name, if_exists => TRUE)"), {"table_name": policy.table})
-            await session.execute(
-                text("SELECT add_retention_policy(:table_name, (:days * interval '1 day'), if_not_exists => TRUE)"),
-                {"table_name": policy.table, "days": policy.keep_days},
-            )
-            await session.commit()
+            # Idempotent: only seed the bootstrap default when no policy job
+            # exists yet. An admin-customized policy (set via Settings, e.g.
+            # bulkstats retention_days) must survive app restarts — a blind
+            # remove+add on every boot would silently reset it back to
+            # DEFAULT_RETENTION_POLICIES' hardcoded days each time.
+            if await has_retention_policy(session, policy.table):
+                status[f"retention.{policy.table}"] = "already configured"
+                continue
+            await set_retention_policy(session, policy.table, policy.keep_days)
             status[f"retention.{policy.table}"] = f"{policy.keep_days}d"
         except Exception as exc:  # pragma: no cover
             await session.rollback()

@@ -23,6 +23,7 @@ from app.security.auth import (
 
 from ._schemas import (
     _ALARMS_EVENTS_KEY,
+    _BULKSTATS_KEY,
     _GENERAL_KEY,
     _INTEGRATIONS_AI_OPS_KEY,
     _INVENTORY_KEY,
@@ -31,6 +32,7 @@ from ._schemas import (
     _NETWORK_DEVICES_KEY,
     _SYSTEM_KEY,
     AlarmsEventsAdminSettings,
+    BulkstatsAdminSettings,
     GeneralAdminSettings,
     IntegrationsAiOpsAdminSettings,
     IntegrationsAiOpsAdminSettingsResponse,
@@ -167,6 +169,35 @@ async def update_inventory_settings(
 ) -> InventoryAdminSettings:
     await _save_setting(db, _INVENTORY_KEY, body)
     _record_settings_audit(db, "settings.inventory.update", target=_INVENTORY_KEY)
+    return body
+
+
+# ---------------------------------------------------------------------------
+# Bulkstats settings
+# ---------------------------------------------------------------------------
+
+
+@router.get("/bulkstats", response_model=BulkstatsAdminSettings)
+async def get_bulkstats_settings(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> BulkstatsAdminSettings:
+    return await _load_setting(db, _BULKSTATS_KEY, BulkstatsAdminSettings, BulkstatsAdminSettings)
+
+
+@router.put("/bulkstats", response_model=BulkstatsAdminSettings)
+async def update_bulkstats_settings(
+    body: BulkstatsAdminSettings,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    _principal: Annotated[object, Depends(require_settings_permission(PERM_SETTINGS_SYSTEM))],
+) -> BulkstatsAdminSettings:
+    from app.services.retention import set_retention_policy
+
+    await _save_setting(db, _BULKSTATS_KEY, body)
+    # Applied immediately against the live Timescale hypertable — an admin
+    # changing this shouldn't have to wait for an app restart to take effect.
+    await set_retention_policy(db, "bulkstats_raw_samples", body.raw_sample_retention_days)
+    _record_settings_audit(db, "settings.bulkstats.update", target=_BULKSTATS_KEY)
     return body
 
 

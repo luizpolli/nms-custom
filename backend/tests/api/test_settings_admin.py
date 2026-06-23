@@ -424,6 +424,35 @@ class TestAdditionalSettingsSections:
         resp = self.client.put("/api/settings/inventory", json=payload)
         assert resp.status_code == 422
 
+    def test_bulkstats_get_returns_defaults(self):
+        resp = self.client.get("/api/settings/bulkstats")
+        assert resp.status_code == 200
+        body = resp.json()
+        assert body["raw_sample_retention_days"] == 30
+        assert body["watch"]["enabled"] is True
+        assert body["pull"]["enabled"] is True
+
+    def test_bulkstats_put_persists_custom_retention_and_paths(self):
+        payload = {
+            "raw_sample_retention_days": 14,
+            "watch": {"enabled": True, "watch_path": "/srv/bulkstats/drop", "poll_interval_seconds": 30},
+            "pull": {"enabled": False, "remote_path": "/flash/custom-bulkstats", "poll_interval_seconds": 1800},
+        }
+        resp = self.client.put("/api/settings/bulkstats", json=payload)
+        assert resp.status_code == 200
+        assert resp.json()["raw_sample_retention_days"] == 14
+        fetched = self.client.get("/api/settings/bulkstats").json()
+        assert fetched["watch"]["watch_path"] == "/srv/bulkstats/drop"
+        assert fetched["pull"]["remote_path"] == "/flash/custom-bulkstats"
+        assert fetched["pull"]["enabled"] is False
+        assert self.store["__audit__"][-1].action == "settings.bulkstats.update"
+
+    def test_bulkstats_invalid_retention_days_rejected(self):
+        payload = self.client.get("/api/settings/bulkstats").json()
+        payload["raw_sample_retention_days"] = 0
+        resp = self.client.put("/api/settings/bulkstats", json=payload)
+        assert resp.status_code == 422
+
     def test_integrations_ai_ops_put_persists(self):
         payload = {"ai_ops_enabled": False}
         resp = self.client.put("/api/settings/integrations-ai-ops", json=payload)
