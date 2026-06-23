@@ -1,0 +1,1730 @@
+{
+  "schemaVersion": "nms.chassisView.v1",
+  "generatedAt": "2026-06-22T00:00:00Z",
+  "deviceId": "MEX-EDGE-NCS540-ACC-SYS",
+  "profileId": "Cisco_NCS_540-ACC-SYS",
+  "platform": "Cisco NCS 540 (N540-ACC-SYS)",
+  "views": [
+    {
+      "id": "front",
+      "label": "Front View",
+      "image": "/chassis-assets/ncs540-acc-sys/NCS540-ACC-SYS-Front.svg",
+      "width": 1680,
+      "height": 168,
+      "hotspots": [
+        {
+          "id": "hotspot-chassis",
+          "slotKey": "Rack 0",
+          "label": "Chassis",
+          "asset": null,
+          "inventoryId": "component-chassis",
+          "physicalIndex": 100,
+          "empty": false,
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "w": 1680,
+            "h": 168
+          }
+        },
+        {
+          "id": "hotspot-psu0",
+          "slotKey": "0/PM0",
+          "label": "Power Module 0",
+          "asset": {
+            "typeId": "PSU",
+            "image": "/chassis-assets/ncs540-12z16g/modules/N540-PSU-FIXED-D.svg"
+          },
+          "inventoryId": "component-psu0",
+          "physicalIndex": 101,
+          "empty": false,
+          "bounds": {
+            "x": 20,
+            "y": 18,
+            "w": 170,
+            "h": 132
+          }
+        },
+        {
+          "id": "hotspot-psu1",
+          "slotKey": "0/PM1",
+          "label": "Power Module 1",
+          "asset": {
+            "typeId": "PSU",
+            "image": "/chassis-assets/ncs540-12z16g/modules/N540-PSU-FIXED-D.svg"
+          },
+          "inventoryId": "component-psu1",
+          "physicalIndex": 102,
+          "empty": false,
+          "bounds": {
+            "x": 205,
+            "y": 18,
+            "w": 170,
+            "h": 132
+          }
+        },
+        {
+          "id": "hotspot-port-0",
+          "slotKey": "TenGigE0/0/0/0",
+          "label": "TenGigE0/0/0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-0",
+          "physicalIndex": 104,
+          "empty": false,
+          "bounds": {
+            "x": 580.0,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-1",
+          "slotKey": "TenGigE0/0/0/1",
+          "label": "TenGigE0/0/0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-1",
+          "physicalIndex": 105,
+          "empty": false,
+          "bounds": {
+            "x": 643.3,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-2",
+          "slotKey": "TenGigE0/0/0/2",
+          "label": "TenGigE0/0/0/2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-2",
+          "physicalIndex": 106,
+          "empty": false,
+          "bounds": {
+            "x": 706.7,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-3",
+          "slotKey": "TenGigE0/0/0/3",
+          "label": "TenGigE0/0/0/3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-3",
+          "physicalIndex": 107,
+          "empty": false,
+          "bounds": {
+            "x": 770.0,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-4",
+          "slotKey": "TenGigE0/0/0/4",
+          "label": "TenGigE0/0/0/4",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-4",
+          "physicalIndex": 108,
+          "empty": false,
+          "bounds": {
+            "x": 833.3,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-5",
+          "slotKey": "TenGigE0/0/0/5",
+          "label": "TenGigE0/0/0/5",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-5",
+          "physicalIndex": 109,
+          "empty": false,
+          "bounds": {
+            "x": 896.7,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-6",
+          "slotKey": "TenGigE0/0/0/6",
+          "label": "TenGigE0/0/0/6",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-6",
+          "physicalIndex": 110,
+          "empty": false,
+          "bounds": {
+            "x": 960.0,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-7",
+          "slotKey": "TenGigE0/0/0/7",
+          "label": "TenGigE0/0/0/7",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-7",
+          "physicalIndex": 111,
+          "empty": false,
+          "bounds": {
+            "x": 1023.3,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-8",
+          "slotKey": "TenGigE0/0/0/8",
+          "label": "TenGigE0/0/0/8",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-8",
+          "physicalIndex": 112,
+          "empty": false,
+          "bounds": {
+            "x": 1086.7,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-9",
+          "slotKey": "TenGigE0/0/0/9",
+          "label": "TenGigE0/0/0/9",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-9",
+          "physicalIndex": 113,
+          "empty": false,
+          "bounds": {
+            "x": 1150.0,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-10",
+          "slotKey": "TenGigE0/0/0/10",
+          "label": "TenGigE0/0/0/10",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-10",
+          "physicalIndex": 114,
+          "empty": false,
+          "bounds": {
+            "x": 1213.3,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-11",
+          "slotKey": "TenGigE0/0/0/11",
+          "label": "TenGigE0/0/0/11",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-11",
+          "physicalIndex": 115,
+          "empty": false,
+          "bounds": {
+            "x": 1276.7,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-12",
+          "slotKey": "TenGigE0/0/0/12",
+          "label": "TenGigE0/0/0/12",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-12",
+          "physicalIndex": 116,
+          "empty": false,
+          "bounds": {
+            "x": 1340.0,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-13",
+          "slotKey": "TenGigE0/0/0/13",
+          "label": "TenGigE0/0/0/13",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-13",
+          "physicalIndex": 117,
+          "empty": false,
+          "bounds": {
+            "x": 1403.3,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-14",
+          "slotKey": "TenGigE0/0/0/14",
+          "label": "TenGigE0/0/0/14",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-14",
+          "physicalIndex": 118,
+          "empty": false,
+          "bounds": {
+            "x": 1466.7,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-15",
+          "slotKey": "TenGigE0/0/0/15",
+          "label": "TenGigE0/0/0/15",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-15",
+          "physicalIndex": 119,
+          "empty": false,
+          "bounds": {
+            "x": 1530.0,
+            "y": 20,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-16",
+          "slotKey": "TenGigE0/0/0/16",
+          "label": "TenGigE0/0/0/16",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-16",
+          "physicalIndex": 120,
+          "empty": false,
+          "bounds": {
+            "x": 580.0,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-17",
+          "slotKey": "TenGigE0/0/0/17",
+          "label": "TenGigE0/0/0/17",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-17",
+          "physicalIndex": 121,
+          "empty": false,
+          "bounds": {
+            "x": 643.3,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-18",
+          "slotKey": "TenGigE0/0/0/18",
+          "label": "TenGigE0/0/0/18",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-18",
+          "physicalIndex": 122,
+          "empty": false,
+          "bounds": {
+            "x": 706.7,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-19",
+          "slotKey": "TenGigE0/0/0/19",
+          "label": "TenGigE0/0/0/19",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-19",
+          "physicalIndex": 123,
+          "empty": false,
+          "bounds": {
+            "x": 770.0,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-20",
+          "slotKey": "TenGigE0/0/0/20",
+          "label": "TenGigE0/0/0/20",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-20",
+          "physicalIndex": 124,
+          "empty": false,
+          "bounds": {
+            "x": 833.3,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-21",
+          "slotKey": "TenGigE0/0/0/21",
+          "label": "TenGigE0/0/0/21",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-21",
+          "physicalIndex": 125,
+          "empty": false,
+          "bounds": {
+            "x": 896.7,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-22",
+          "slotKey": "TenGigE0/0/0/22",
+          "label": "TenGigE0/0/0/22",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-22",
+          "physicalIndex": 126,
+          "empty": false,
+          "bounds": {
+            "x": 960.0,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-23",
+          "slotKey": "TenGigE0/0/0/23",
+          "label": "TenGigE0/0/0/23",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-23",
+          "physicalIndex": 127,
+          "empty": false,
+          "bounds": {
+            "x": 1023.3,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-24",
+          "slotKey": "TenGigE0/0/0/24",
+          "label": "TenGigE0/0/0/24",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-24",
+          "physicalIndex": 128,
+          "empty": false,
+          "bounds": {
+            "x": 1086.7,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-25",
+          "slotKey": "TenGigE0/0/0/25",
+          "label": "TenGigE0/0/0/25",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-25",
+          "physicalIndex": 129,
+          "empty": false,
+          "bounds": {
+            "x": 1150.0,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-26",
+          "slotKey": "TenGigE0/0/0/26",
+          "label": "TenGigE0/0/0/26",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-26",
+          "physicalIndex": 130,
+          "empty": false,
+          "bounds": {
+            "x": 1213.3,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-27",
+          "slotKey": "TenGigE0/0/0/27",
+          "label": "TenGigE0/0/0/27",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-27",
+          "physicalIndex": 131,
+          "empty": false,
+          "bounds": {
+            "x": 1276.7,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-28",
+          "slotKey": "TenGigE0/0/0/28",
+          "label": "TenGigE0/0/0/28",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-28",
+          "physicalIndex": 132,
+          "empty": false,
+          "bounds": {
+            "x": 1340.0,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-29",
+          "slotKey": "TenGigE0/0/0/29",
+          "label": "TenGigE0/0/0/29",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-29",
+          "physicalIndex": 133,
+          "empty": false,
+          "bounds": {
+            "x": 1403.3,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-30",
+          "slotKey": "TenGigE0/0/0/30",
+          "label": "TenGigE0/0/0/30",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-30",
+          "physicalIndex": 134,
+          "empty": false,
+          "bounds": {
+            "x": 1466.7,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-port-31",
+          "slotKey": "TenGigE0/0/0/31",
+          "label": "TenGigE0/0/0/31",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-port-31",
+          "physicalIndex": 135,
+          "empty": false,
+          "bounds": {
+            "x": 1530.0,
+            "y": 88,
+            "w": 50,
+            "h": 50
+          }
+        },
+        {
+          "id": "hotspot-sync-0",
+          "slotKey": "Sync0/RP0/CPU0/0",
+          "label": "Sync0/RP0/CPU0/0",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-sync-0",
+          "physicalIndex": 136,
+          "empty": false,
+          "bounds": {
+            "x": 1595,
+            "y": 14,
+            "w": 34,
+            "h": 30
+          }
+        },
+        {
+          "id": "hotspot-sync-1",
+          "slotKey": "Sync0/RP0/CPU0/1",
+          "label": "Sync0/RP0/CPU0/1",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-sync-1",
+          "physicalIndex": 137,
+          "empty": false,
+          "bounds": {
+            "x": 1595,
+            "y": 50,
+            "w": 34,
+            "h": 30
+          }
+        },
+        {
+          "id": "hotspot-sync-2",
+          "slotKey": "Sync0/RP0/CPU0/2",
+          "label": "Sync0/RP0/CPU0/2",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-sync-2",
+          "physicalIndex": 138,
+          "empty": false,
+          "bounds": {
+            "x": 1595,
+            "y": 86,
+            "w": 34,
+            "h": 30
+          }
+        },
+        {
+          "id": "hotspot-sync-3",
+          "slotKey": "Sync0/RP0/CPU0/3",
+          "label": "Sync0/RP0/CPU0/3",
+          "asset": {
+            "typeId": "SFP",
+            "image": "/chassis-assets/ncs540/modules/SFP.svg"
+          },
+          "inventoryId": "component-sync-3",
+          "physicalIndex": 139,
+          "empty": false,
+          "bounds": {
+            "x": 1595,
+            "y": 122,
+            "w": 34,
+            "h": 30
+          }
+        }
+      ]
+    }
+  ],
+  "tree": [
+    {
+      "id": "component-chassis",
+      "label": "chassis N540-ACC-SYS",
+      "type": "Chassis",
+      "typeId": "N540-ACC-SYS",
+      "physicalIndex": 100,
+      "componentId": "component-chassis",
+      "children": [
+        {
+          "id": "component-psu0",
+          "label": "Power Module 0",
+          "type": "Equipment",
+          "typeId": "N540-PSU-FIXED-D",
+          "physicalIndex": 101,
+          "componentId": "component-psu0",
+          "children": []
+        },
+        {
+          "id": "component-psu1",
+          "label": "Power Module 1",
+          "type": "Equipment",
+          "typeId": "N540-PSU-FIXED-D",
+          "physicalIndex": 102,
+          "componentId": "component-psu1",
+          "children": []
+        },
+        {
+          "id": "component-rp0",
+          "label": "Route Processor 0",
+          "type": "Module",
+          "typeId": "RP0",
+          "physicalIndex": 103,
+          "componentId": "component-rp0",
+          "children": [
+            {
+              "id": "component-port-0",
+              "label": "TenGigE0/0/0/0",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 104,
+              "componentId": "component-port-0",
+              "children": []
+            },
+            {
+              "id": "component-port-1",
+              "label": "TenGigE0/0/0/1",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 105,
+              "componentId": "component-port-1",
+              "children": []
+            },
+            {
+              "id": "component-port-2",
+              "label": "TenGigE0/0/0/2",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 106,
+              "componentId": "component-port-2",
+              "children": []
+            },
+            {
+              "id": "component-port-3",
+              "label": "TenGigE0/0/0/3",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 107,
+              "componentId": "component-port-3",
+              "children": []
+            },
+            {
+              "id": "component-port-4",
+              "label": "TenGigE0/0/0/4",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 108,
+              "componentId": "component-port-4",
+              "children": []
+            },
+            {
+              "id": "component-port-5",
+              "label": "TenGigE0/0/0/5",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 109,
+              "componentId": "component-port-5",
+              "children": []
+            },
+            {
+              "id": "component-port-6",
+              "label": "TenGigE0/0/0/6",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 110,
+              "componentId": "component-port-6",
+              "children": []
+            },
+            {
+              "id": "component-port-7",
+              "label": "TenGigE0/0/0/7",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 111,
+              "componentId": "component-port-7",
+              "children": []
+            },
+            {
+              "id": "component-port-8",
+              "label": "TenGigE0/0/0/8",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 112,
+              "componentId": "component-port-8",
+              "children": []
+            },
+            {
+              "id": "component-port-9",
+              "label": "TenGigE0/0/0/9",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 113,
+              "componentId": "component-port-9",
+              "children": []
+            },
+            {
+              "id": "component-port-10",
+              "label": "TenGigE0/0/0/10",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 114,
+              "componentId": "component-port-10",
+              "children": []
+            },
+            {
+              "id": "component-port-11",
+              "label": "TenGigE0/0/0/11",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 115,
+              "componentId": "component-port-11",
+              "children": []
+            },
+            {
+              "id": "component-port-12",
+              "label": "TenGigE0/0/0/12",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 116,
+              "componentId": "component-port-12",
+              "children": []
+            },
+            {
+              "id": "component-port-13",
+              "label": "TenGigE0/0/0/13",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 117,
+              "componentId": "component-port-13",
+              "children": []
+            },
+            {
+              "id": "component-port-14",
+              "label": "TenGigE0/0/0/14",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 118,
+              "componentId": "component-port-14",
+              "children": []
+            },
+            {
+              "id": "component-port-15",
+              "label": "TenGigE0/0/0/15",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 119,
+              "componentId": "component-port-15",
+              "children": []
+            },
+            {
+              "id": "component-port-16",
+              "label": "TenGigE0/0/0/16",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 120,
+              "componentId": "component-port-16",
+              "children": []
+            },
+            {
+              "id": "component-port-17",
+              "label": "TenGigE0/0/0/17",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 121,
+              "componentId": "component-port-17",
+              "children": []
+            },
+            {
+              "id": "component-port-18",
+              "label": "TenGigE0/0/0/18",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 122,
+              "componentId": "component-port-18",
+              "children": []
+            },
+            {
+              "id": "component-port-19",
+              "label": "TenGigE0/0/0/19",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 123,
+              "componentId": "component-port-19",
+              "children": []
+            },
+            {
+              "id": "component-port-20",
+              "label": "TenGigE0/0/0/20",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 124,
+              "componentId": "component-port-20",
+              "children": []
+            },
+            {
+              "id": "component-port-21",
+              "label": "TenGigE0/0/0/21",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 125,
+              "componentId": "component-port-21",
+              "children": []
+            },
+            {
+              "id": "component-port-22",
+              "label": "TenGigE0/0/0/22",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 126,
+              "componentId": "component-port-22",
+              "children": []
+            },
+            {
+              "id": "component-port-23",
+              "label": "TenGigE0/0/0/23",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 127,
+              "componentId": "component-port-23",
+              "children": []
+            },
+            {
+              "id": "component-port-24",
+              "label": "TenGigE0/0/0/24",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 128,
+              "componentId": "component-port-24",
+              "children": []
+            },
+            {
+              "id": "component-port-25",
+              "label": "TenGigE0/0/0/25",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 129,
+              "componentId": "component-port-25",
+              "children": []
+            },
+            {
+              "id": "component-port-26",
+              "label": "TenGigE0/0/0/26",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 130,
+              "componentId": "component-port-26",
+              "children": []
+            },
+            {
+              "id": "component-port-27",
+              "label": "TenGigE0/0/0/27",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 131,
+              "componentId": "component-port-27",
+              "children": []
+            },
+            {
+              "id": "component-port-28",
+              "label": "TenGigE0/0/0/28",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 132,
+              "componentId": "component-port-28",
+              "children": []
+            },
+            {
+              "id": "component-port-29",
+              "label": "TenGigE0/0/0/29",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 133,
+              "componentId": "component-port-29",
+              "children": []
+            },
+            {
+              "id": "component-port-30",
+              "label": "TenGigE0/0/0/30",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 134,
+              "componentId": "component-port-30",
+              "children": []
+            },
+            {
+              "id": "component-port-31",
+              "label": "TenGigE0/0/0/31",
+              "type": "port",
+              "typeId": "SFP+",
+              "physicalIndex": 135,
+              "componentId": "component-port-31",
+              "children": []
+            },
+            {
+              "id": "component-sync-0",
+              "label": "Sync0/RP0/CPU0/0",
+              "type": "port",
+              "typeId": "Sync",
+              "physicalIndex": 136,
+              "componentId": "component-sync-0",
+              "children": []
+            },
+            {
+              "id": "component-sync-1",
+              "label": "Sync0/RP0/CPU0/1",
+              "type": "port",
+              "typeId": "Sync",
+              "physicalIndex": 137,
+              "componentId": "component-sync-1",
+              "children": []
+            },
+            {
+              "id": "component-sync-2",
+              "label": "Sync0/RP0/CPU0/2",
+              "type": "port",
+              "typeId": "Sync",
+              "physicalIndex": 138,
+              "componentId": "component-sync-2",
+              "children": []
+            },
+            {
+              "id": "component-sync-3",
+              "label": "Sync0/RP0/CPU0/3",
+              "type": "port",
+              "typeId": "Sync",
+              "physicalIndex": 139,
+              "componentId": "component-sync-3",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "componentsById": {
+    "component-chassis": {
+      "id": "component-chassis",
+      "sourceId": 100,
+      "parentId": null,
+      "name": "chassis N540-ACC-SYS",
+      "displayName": "chassis N540-ACC-SYS",
+      "description": "chassis N540-ACC-SYS",
+      "type": "Chassis",
+      "typeId": "N540-ACC-SYS",
+      "physicalIndex": 100,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": [
+        "component-psu0",
+        "component-psu1",
+        "component-rp0"
+      ]
+    },
+    "component-psu0": {
+      "id": "component-psu0",
+      "sourceId": 101,
+      "parentId": "component-chassis",
+      "name": "Power Module 0",
+      "displayName": "Power Module 0",
+      "description": "Power Module 0",
+      "type": "Equipment",
+      "typeId": "N540-PSU-FIXED-D",
+      "physicalIndex": 101,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-psu1": {
+      "id": "component-psu1",
+      "sourceId": 102,
+      "parentId": "component-chassis",
+      "name": "Power Module 1",
+      "displayName": "Power Module 1",
+      "description": "Power Module 1",
+      "type": "Equipment",
+      "typeId": "N540-PSU-FIXED-D",
+      "physicalIndex": 102,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-rp0": {
+      "id": "component-rp0",
+      "sourceId": 103,
+      "parentId": "component-chassis",
+      "name": "Route Processor 0",
+      "displayName": "Route Processor 0",
+      "description": "Route Processor 0",
+      "type": "Module",
+      "typeId": "RP0",
+      "physicalIndex": 103,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": [
+        "component-port-0",
+        "component-port-1",
+        "component-port-2",
+        "component-port-3",
+        "component-port-4",
+        "component-port-5",
+        "component-port-6",
+        "component-port-7",
+        "component-port-8",
+        "component-port-9",
+        "component-port-10",
+        "component-port-11",
+        "component-port-12",
+        "component-port-13",
+        "component-port-14",
+        "component-port-15",
+        "component-port-16",
+        "component-port-17",
+        "component-port-18",
+        "component-port-19",
+        "component-port-20",
+        "component-port-21",
+        "component-port-22",
+        "component-port-23",
+        "component-port-24",
+        "component-port-25",
+        "component-port-26",
+        "component-port-27",
+        "component-port-28",
+        "component-port-29",
+        "component-port-30",
+        "component-port-31",
+        "component-sync-0",
+        "component-sync-1",
+        "component-sync-2",
+        "component-sync-3"
+      ]
+    },
+    "component-port-0": {
+      "id": "component-port-0",
+      "sourceId": 104,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/0",
+      "displayName": "TenGigE0/0/0/0",
+      "description": "TenGigE0/0/0/0",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 104,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-1": {
+      "id": "component-port-1",
+      "sourceId": 105,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/1",
+      "displayName": "TenGigE0/0/0/1",
+      "description": "TenGigE0/0/0/1",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 105,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-2": {
+      "id": "component-port-2",
+      "sourceId": 106,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/2",
+      "displayName": "TenGigE0/0/0/2",
+      "description": "TenGigE0/0/0/2",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 106,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-3": {
+      "id": "component-port-3",
+      "sourceId": 107,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/3",
+      "displayName": "TenGigE0/0/0/3",
+      "description": "TenGigE0/0/0/3",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 107,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-4": {
+      "id": "component-port-4",
+      "sourceId": 108,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/4",
+      "displayName": "TenGigE0/0/0/4",
+      "description": "TenGigE0/0/0/4",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 108,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-5": {
+      "id": "component-port-5",
+      "sourceId": 109,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/5",
+      "displayName": "TenGigE0/0/0/5",
+      "description": "TenGigE0/0/0/5",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 109,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-6": {
+      "id": "component-port-6",
+      "sourceId": 110,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/6",
+      "displayName": "TenGigE0/0/0/6",
+      "description": "TenGigE0/0/0/6",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 110,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-7": {
+      "id": "component-port-7",
+      "sourceId": 111,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/7",
+      "displayName": "TenGigE0/0/0/7",
+      "description": "TenGigE0/0/0/7",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 111,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-8": {
+      "id": "component-port-8",
+      "sourceId": 112,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/8",
+      "displayName": "TenGigE0/0/0/8",
+      "description": "TenGigE0/0/0/8",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 112,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-9": {
+      "id": "component-port-9",
+      "sourceId": 113,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/9",
+      "displayName": "TenGigE0/0/0/9",
+      "description": "TenGigE0/0/0/9",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 113,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-10": {
+      "id": "component-port-10",
+      "sourceId": 114,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/10",
+      "displayName": "TenGigE0/0/0/10",
+      "description": "TenGigE0/0/0/10",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 114,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-11": {
+      "id": "component-port-11",
+      "sourceId": 115,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/11",
+      "displayName": "TenGigE0/0/0/11",
+      "description": "TenGigE0/0/0/11",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 115,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-12": {
+      "id": "component-port-12",
+      "sourceId": 116,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/12",
+      "displayName": "TenGigE0/0/0/12",
+      "description": "TenGigE0/0/0/12",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 116,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-13": {
+      "id": "component-port-13",
+      "sourceId": 117,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/13",
+      "displayName": "TenGigE0/0/0/13",
+      "description": "TenGigE0/0/0/13",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 117,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-14": {
+      "id": "component-port-14",
+      "sourceId": 118,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/14",
+      "displayName": "TenGigE0/0/0/14",
+      "description": "TenGigE0/0/0/14",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 118,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-15": {
+      "id": "component-port-15",
+      "sourceId": 119,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/15",
+      "displayName": "TenGigE0/0/0/15",
+      "description": "TenGigE0/0/0/15",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 119,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-16": {
+      "id": "component-port-16",
+      "sourceId": 120,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/16",
+      "displayName": "TenGigE0/0/0/16",
+      "description": "TenGigE0/0/0/16",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 120,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-17": {
+      "id": "component-port-17",
+      "sourceId": 121,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/17",
+      "displayName": "TenGigE0/0/0/17",
+      "description": "TenGigE0/0/0/17",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 121,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-18": {
+      "id": "component-port-18",
+      "sourceId": 122,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/18",
+      "displayName": "TenGigE0/0/0/18",
+      "description": "TenGigE0/0/0/18",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 122,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-19": {
+      "id": "component-port-19",
+      "sourceId": 123,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/19",
+      "displayName": "TenGigE0/0/0/19",
+      "description": "TenGigE0/0/0/19",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 123,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-20": {
+      "id": "component-port-20",
+      "sourceId": 124,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/20",
+      "displayName": "TenGigE0/0/0/20",
+      "description": "TenGigE0/0/0/20",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 124,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-21": {
+      "id": "component-port-21",
+      "sourceId": 125,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/21",
+      "displayName": "TenGigE0/0/0/21",
+      "description": "TenGigE0/0/0/21",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 125,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-22": {
+      "id": "component-port-22",
+      "sourceId": 126,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/22",
+      "displayName": "TenGigE0/0/0/22",
+      "description": "TenGigE0/0/0/22",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 126,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-23": {
+      "id": "component-port-23",
+      "sourceId": 127,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/23",
+      "displayName": "TenGigE0/0/0/23",
+      "description": "TenGigE0/0/0/23",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 127,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-24": {
+      "id": "component-port-24",
+      "sourceId": 128,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/24",
+      "displayName": "TenGigE0/0/0/24",
+      "description": "TenGigE0/0/0/24",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 128,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-25": {
+      "id": "component-port-25",
+      "sourceId": 129,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/25",
+      "displayName": "TenGigE0/0/0/25",
+      "description": "TenGigE0/0/0/25",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 129,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-26": {
+      "id": "component-port-26",
+      "sourceId": 130,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/26",
+      "displayName": "TenGigE0/0/0/26",
+      "description": "TenGigE0/0/0/26",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 130,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-27": {
+      "id": "component-port-27",
+      "sourceId": 131,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/27",
+      "displayName": "TenGigE0/0/0/27",
+      "description": "TenGigE0/0/0/27",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 131,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-28": {
+      "id": "component-port-28",
+      "sourceId": 132,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/28",
+      "displayName": "TenGigE0/0/0/28",
+      "description": "TenGigE0/0/0/28",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 132,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-29": {
+      "id": "component-port-29",
+      "sourceId": 133,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/29",
+      "displayName": "TenGigE0/0/0/29",
+      "description": "TenGigE0/0/0/29",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 133,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-30": {
+      "id": "component-port-30",
+      "sourceId": 134,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/30",
+      "displayName": "TenGigE0/0/0/30",
+      "description": "TenGigE0/0/0/30",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 134,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-port-31": {
+      "id": "component-port-31",
+      "sourceId": 135,
+      "parentId": "component-rp0",
+      "name": "TenGigE0/0/0/31",
+      "displayName": "TenGigE0/0/0/31",
+      "description": "TenGigE0/0/0/31",
+      "type": "port",
+      "typeId": "SFP+",
+      "physicalIndex": 135,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-sync-0": {
+      "id": "component-sync-0",
+      "sourceId": 136,
+      "parentId": "component-rp0",
+      "name": "Sync0/RP0/CPU0/0",
+      "displayName": "Sync0/RP0/CPU0/0",
+      "description": "Sync0/RP0/CPU0/0",
+      "type": "port",
+      "typeId": "Sync",
+      "physicalIndex": 136,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-sync-1": {
+      "id": "component-sync-1",
+      "sourceId": 137,
+      "parentId": "component-rp0",
+      "name": "Sync0/RP0/CPU0/1",
+      "displayName": "Sync0/RP0/CPU0/1",
+      "description": "Sync0/RP0/CPU0/1",
+      "type": "port",
+      "typeId": "Sync",
+      "physicalIndex": 137,
+      "operStatus": "up",
+      "ports": [],
+      "childIds": []
+    },
+    "component-sync-2": {
+      "id": "component-sync-2",
+      "sourceId": 138,
+      "parentId": "component-rp0",
+      "name": "Sync0/RP0/CPU0/2",
+      "displayName": "Sync0/RP0/CPU0/2",
+      "description": "Sync0/RP0/CPU0/2",
+      "type": "port",
+      "typeId": "Sync",
+      "physicalIndex": 138,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    },
+    "component-sync-3": {
+      "id": "component-sync-3",
+      "sourceId": 139,
+      "parentId": "component-rp0",
+      "name": "Sync0/RP0/CPU0/3",
+      "displayName": "Sync0/RP0/CPU0/3",
+      "description": "Sync0/RP0/CPU0/3",
+      "type": "port",
+      "typeId": "Sync",
+      "physicalIndex": 139,
+      "operStatus": "down",
+      "ports": [],
+      "childIds": []
+    }
+  },
+  "physicalIndexToComponentId": {
+    "100": "component-chassis",
+    "101": "component-psu0",
+    "102": "component-psu1",
+    "103": "component-rp0",
+    "104": "component-port-0",
+    "105": "component-port-1",
+    "106": "component-port-2",
+    "107": "component-port-3",
+    "108": "component-port-4",
+    "109": "component-port-5",
+    "110": "component-port-6",
+    "111": "component-port-7",
+    "112": "component-port-8",
+    "113": "component-port-9",
+    "114": "component-port-10",
+    "115": "component-port-11",
+    "116": "component-port-12",
+    "117": "component-port-13",
+    "118": "component-port-14",
+    "119": "component-port-15",
+    "120": "component-port-16",
+    "121": "component-port-17",
+    "122": "component-port-18",
+    "123": "component-port-19",
+    "124": "component-port-20",
+    "125": "component-port-21",
+    "126": "component-port-22",
+    "127": "component-port-23",
+    "128": "component-port-24",
+    "129": "component-port-25",
+    "130": "component-port-26",
+    "131": "component-port-27",
+    "132": "component-port-28",
+    "133": "component-port-29",
+    "134": "component-port-30",
+    "135": "component-port-31",
+    "136": "component-sync-0",
+    "137": "component-sync-1",
+    "138": "component-sync-2",
+    "139": "component-sync-3"
+  },
+  "source": {
+    "type": "static-profile",
+    "profile": "ncs540-acc-sys"
+  }
+}
