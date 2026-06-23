@@ -239,6 +239,10 @@ class BulkstatsPullSettings(BaseModel):
     # the device's existing SSH/SFTP credential (see Credential/SSHClient).
     remote_path: str = Field("/flash/bulkstats", max_length=512)
     poll_interval_seconds: int = Field(900, ge=60, le=86400)
+    # Devices are matched by Device.device_type (free-text inventory field;
+    # no fixed taxonomy exists for it yet) AND Device.ssh_enabled — admin-set
+    # since inventory naming for StarOS nodes is whatever this deployment uses.
+    device_type: str = Field("staros", max_length=50)
 
     @field_validator("remote_path")
     @classmethod

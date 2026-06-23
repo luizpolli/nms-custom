@@ -32,6 +32,7 @@ class WorkerSupervisor:
             asyncio.create_task(self._run_report_scheduler_loop(), name="report-scheduler"),
             asyncio.create_task(self._run_telemetry_receiver_loop(), name="telemetry-receiver"),
             asyncio.create_task(self._run_bulkstats_watch_loop(), name="bulkstats-watch"),
+            asyncio.create_task(self._run_bulkstats_pull_loop(), name="bulkstats-pull"),
             asyncio.create_task(self._run_event_consumer_loop("worker-alarm"), name="worker-alarm"),
             asyncio.create_task(self._run_event_consumer_loop("worker-discovery"), name="worker-discovery"),
             asyncio.create_task(self._run_event_consumer_loop("worker-telemetry"), name="worker-telemetry"),
@@ -268,6 +269,46 @@ class WorkerSupervisor:
                 break
             except Exception as exc:
                 logger.error("Bulkstats watch loop error: {}", exc)
+                await beat.failure(str(exc))
+                await asyncio.sleep(backoff)
+        await beat.close()
+
+    async def _run_bulkstats_pull_loop(self) -> None:
+        from app.api.settings.admin import load_bulkstats_settings
+        from app.services.bulkstats.pull_collector import run_pull_pass
+
+        backoff = 30
+        beat = WorkerHeartbeat("bulkstats-pull", 60)
+        await beat.starting()
+        while not self._stop_event.is_set():
+            interval = 900
+            try:
+                async with async_session_factory() as session:
+                    cfg = await load_bulkstats_settings(session)
+                interval = cfg.pull.poll_interval_seconds
+                if not cfg.pull.enabled:
+                    await beat.success()
+                    await asyncio.sleep(interval)
+                    continue
+                result = await run_pull_pass(
+                    async_session_factory,
+                    device_type=cfg.pull.device_type,
+                    remote_path=cfg.pull.remote_path,
+                )
+                if result.devices_polled or result.devices_failed:
+                    logger.info(
+                        "bulkstats pull pass: devices_polled={} devices_failed={} files_ingested={} files_failed={}",
+                        result.devices_polled,
+                        result.devices_failed,
+                        result.files_ingested,
+                        result.files_failed,
+                    )
+                await beat.success()
+                await asyncio.sleep(interval)
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                logger.error("Bulkstats pull loop error: {}", exc)
                 await beat.failure(str(exc))
                 await asyncio.sleep(backoff)
         await beat.close()

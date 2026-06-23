@@ -87,4 +87,8 @@ class BulkstatsIngestionStat(Base):
     unmatched_device: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     last_error: Mapped[str | None] = mapped_column(Text, nullable=True)
     last_file_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    # Bounded rolling window of recently pulled remote filenames (active-pull
+    # collector only) so a re-poll of the same remote directory doesn't
+    # re-download/re-ingest a file already fetched. See pull_collector.py.
+    pulled_filenames: Mapped[list[str] | None] = mapped_column(JSON, nullable=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, default=now_utc, onupdate=now_utc)

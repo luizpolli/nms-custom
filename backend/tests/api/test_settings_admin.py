@@ -431,12 +431,18 @@ class TestAdditionalSettingsSections:
         assert body["raw_sample_retention_days"] == 30
         assert body["watch"]["enabled"] is True
         assert body["pull"]["enabled"] is True
+        assert body["pull"]["device_type"] == "staros"
 
     def test_bulkstats_put_persists_custom_retention_and_paths(self):
         payload = {
             "raw_sample_retention_days": 14,
             "watch": {"enabled": True, "watch_path": "/srv/bulkstats/drop", "poll_interval_seconds": 30},
-            "pull": {"enabled": False, "remote_path": "/flash/custom-bulkstats", "poll_interval_seconds": 1800},
+            "pull": {
+                "enabled": False,
+                "remote_path": "/flash/custom-bulkstats",
+                "poll_interval_seconds": 1800,
+                "device_type": "vpc-di",
+            },
         }
         resp = self.client.put("/api/settings/bulkstats", json=payload)
         assert resp.status_code == 200
@@ -445,6 +451,7 @@ class TestAdditionalSettingsSections:
         assert fetched["watch"]["watch_path"] == "/srv/bulkstats/drop"
         assert fetched["pull"]["remote_path"] == "/flash/custom-bulkstats"
         assert fetched["pull"]["enabled"] is False
+        assert fetched["pull"]["device_type"] == "vpc-di"
         assert self.store["__audit__"][-1].action == "settings.bulkstats.update"
 
     def test_bulkstats_invalid_retention_days_rejected(self):

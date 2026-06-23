@@ -210,6 +210,21 @@ class SSHClient:
             logger.debug("SFTP upload {} → {} host={}", local_path, remote_path, self._cred.host)
             await sftp.put(local_path, remote_path)
 
+    async def listdir(self, remote_dir: str) -> list[str]:
+        """List filenames in a remote directory via SFTP (not recursive)."""
+        if self._conn is None:
+            raise RuntimeError("SSHClient is not connected")
+        async with self._conn.start_sftp_client() as sftp:
+            names = await sftp.listdir(remote_dir)
+        return [n for n in names if n not in (".", "..")]
+
+    async def read_text(self, remote_path: str, encoding: str = "utf-8") -> str:
+        """Read a remote file's full content via SFTP, without writing a local copy."""
+        if self._conn is None:
+            raise RuntimeError("SSHClient is not connected")
+        async with self._conn.start_sftp_client() as sftp, sftp.open(remote_path, "r", encoding=encoding) as f:
+            return await f.read()
+
     # ------------------------------------------------------------------
     # Config backup
     # ------------------------------------------------------------------

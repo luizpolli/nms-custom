@@ -80,6 +80,7 @@ def upgrade() -> None:
         sa.Column("unmatched_device", sa.Boolean(), nullable=False),
         sa.Column("last_error", sa.Text(), nullable=True),
         sa.Column("last_file_at", sa.DateTime(timezone=True), nullable=True),
+        sa.Column("pulled_filenames", sa.JSON(), nullable=True),
         sa.Column("updated_at", sa.DateTime(timezone=True), nullable=False),
         sa.ForeignKeyConstraint(["device_id"], ["devices.id"]),
         sa.PrimaryKeyConstraint("id"),
