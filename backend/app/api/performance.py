@@ -45,6 +45,7 @@ async def list_kpis(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
     kpi_type: str | None = None,
+    object_id: str | None = None,
     since: datetime | None = None,
     until: datetime | None = None,
     limit: int = Query(1000, ge=1, le=10000),
@@ -52,6 +53,8 @@ async def list_kpis(
     stmt = select(KPI).where(KPI.device_id == id)
     if kpi_type:
         stmt = stmt.where(KPI.kpi_type == kpi_type)
+    if object_id:
+        stmt = stmt.where(KPI.object_id == object_id)
     if since:
         stmt = stmt.where(KPI.timestamp >= since)
     if until:
@@ -59,6 +62,25 @@ async def list_kpis(
     stmt = stmt.order_by(KPI.timestamp.desc()).limit(limit)
     result = await db.execute(stmt)
     return [_kpi_to_read(k) for k in result.scalars().all()]
+
+
+@router.get("/devices/{id}/kpis/series", response_model=list[str])
+async def list_kpi_object_ids(
+    id: uuid.UUID,
+    db: Annotated[AsyncSession, Depends(get_db)],
+    kpi_type: str = Query(...),
+) -> list[str]:
+    """Distinct object_id values reported for this device+metric — e.g. the
+    set of StarOS servname/vpnname instances a bulkstats counter has data
+    for, used to populate a per-instance picker before charting."""
+    stmt = (
+        select(KPI.object_id)
+        .where(KPI.device_id == id, KPI.kpi_type == kpi_type, KPI.object_id.is_not(None))
+        .distinct()
+        .order_by(KPI.object_id)
+    )
+    result = await db.execute(stmt)
+    return [row[0] for row in result.all()]
 
 
 @router.get("/devices/{id}/kpis/aggregate", response_model=KPIAggregate)
@@ -69,10 +91,11 @@ async def aggregate_kpis(
     since: datetime = Query(...),
     until: datetime = Query(...),
     bucket: str = Query("5m"),
+    object_id: str | None = Query(None),
 ) -> list[dict[str, object]]:
     """Return time-bucketed KPI aggregates (avg/min/max/count per bucket)."""
     engine = KPIEngine(SNMPEngine(), async_session_factory)
-    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket)  # type: ignore[return-value]
+    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket, object_id=object_id)  # type: ignore[return-value]
 
 
 @router.get("/summary")

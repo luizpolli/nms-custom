@@ -22,7 +22,6 @@ def upgrade() -> None:
         sa.Column("group", sa.String(length=100), nullable=False),
         sa.Column("field_name", sa.String(length=255), nullable=False),
         sa.Column("metric_name", sa.String(length=255), nullable=False),
-        sa.Column("kpi_type", sa.String(length=50), nullable=False),
         sa.Column("unit", sa.String(length=20), nullable=True),
         sa.Column("object_type", sa.String(length=50), nullable=False),
         sa.Column("enabled", sa.Boolean(), nullable=False),

@@ -113,7 +113,13 @@ def _build_raw_sample(
 def _build_kpi(record: BulkstatsRecord, *, device_id: uuid.UUID, catalog_entry: BulkstatsCounterCatalog) -> KPI:
     return KPI(
         device_id=device_id,
-        kpi_type=catalog_entry.kpi_type,
+        # kpi_type doubles as the specific metric identifier throughout this
+        # codebase (SNMP-sourced KPIs set kpi_type == metric_name too — see
+        # _record_to_model in kpi/engine.py) so the existing
+        # /devices/{id}/kpis(/aggregate) endpoints work for bulkstats data
+        # with zero new query API. source_type="bulkstats" below is what
+        # actually distinguishes the origin.
+        kpi_type=catalog_entry.metric_name,
         metric_name=catalog_entry.metric_name,
         value=record.value if record.value is not None else 0.0,
         unit=catalog_entry.unit,

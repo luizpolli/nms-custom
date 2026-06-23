@@ -82,11 +82,19 @@ class KPIEngine:
         since: datetime,
         until: datetime,
         bucket: str = "5m",
+        object_id: str | None = None,
     ) -> list[dict[str, Any]]:
-        """Time-bucket aggregates via date_trunc (Postgres). Returns list of {ts, avg, min, max, count}."""
+        """Time-bucket aggregates via date_trunc (Postgres). Returns list of {ts, avg, min, max, count}.
+
+        object_id narrows to one reported instance (e.g. one StarOS
+        servname/vpnname) — without it, multiple instances under the same
+        device+kpi_type get blended together into one averaged line, which
+        is rarely what a per-node bulkstats chart wants.
+        """
         pg_interval = _bucket_to_pg(bucket)
+        object_id_clause = "AND object_id = :object_id" if object_id is not None else ""
         sql = text(
-            """
+            f"""
             SELECT
                 date_trunc(:interval, timestamp) AS ts,
                 AVG(value)   AS avg,
@@ -98,21 +106,22 @@ class KPIEngine:
               AND kpi_type  = :kpi_type
               AND timestamp >= :since
               AND timestamp <  :until
+              {object_id_clause}
             GROUP BY ts
             ORDER BY ts
             """
         )
+        params: dict[str, Any] = {
+            "interval": pg_interval,
+            "device_id": str(device_id),
+            "kpi_type": kpi_type,
+            "since": since,
+            "until": until,
+        }
+        if object_id is not None:
+            params["object_id"] = object_id
         async with self._session_factory() as session:
-            result = await session.execute(
-                sql,
-                {
-                    "interval": pg_interval,
-                    "device_id": str(device_id),
-                    "kpi_type": kpi_type,
-                    "since": since,
-                    "until": until,
-                },
-            )
+            result = await session.execute(sql, params)
             rows = result.fetchall()
 
         return [

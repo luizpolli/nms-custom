@@ -94,7 +94,7 @@ async def test_ingest_file_matched_device_promotes_enabled_counter():
     catalog = [
         BulkstatsCounterCatalog(
             group="gtpu", field_name="curr-sess", metric_name="gtpu_curr_sessions",
-            kpi_type="bulkstats", unit=None, object_type="bulkstats-instance", enabled=True,
+            unit=None, object_type="bulkstats-instance", enabled=True,
         )
     ]
     session = FakeSession(device=device, catalog=catalog)

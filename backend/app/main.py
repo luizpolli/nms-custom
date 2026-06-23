@@ -11,6 +11,7 @@ from app.api.ai_ops import router as ai_ops_router
 from app.api.alarm_rules import router as alarm_rules_router
 from app.api.alarms import router as alarms_router
 from app.api.assurance import router as assurance_router
+from app.api.bulkstats import router as bulkstats_router
 from app.api.command_schedules import router as command_schedules_router
 from app.api.commands import router as commands_router
 from app.api.credentials import router as credentials_router
@@ -174,6 +175,7 @@ app.include_router(services_router, prefix="/api/services", tags=["services"], d
 app.include_router(health_router, prefix="/health", tags=["health"])
 app.include_router(metrics_router, tags=["metrics"])
 app.include_router(lab_router, prefix="/api/lab", tags=["lab"], dependencies=_api_auth)
+app.include_router(bulkstats_router, prefix="/api/bulkstats", tags=["bulkstats"], dependencies=_api_auth)
 
 
 @app.get("/api/health")

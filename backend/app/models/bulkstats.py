@@ -37,7 +37,6 @@ class BulkstatsCounterCatalog(Base):
     group: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
     field_name: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
     metric_name: Mapped[str] = mapped_column(String(255), nullable=False)
-    kpi_type: Mapped[str] = mapped_column(String(50), nullable=False, default="bulkstats")
     unit: Mapped[str | None] = mapped_column(String(20), nullable=True)
     object_type: Mapped[str] = mapped_column(String(50), nullable=False, default="bulkstats-instance")
     enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
