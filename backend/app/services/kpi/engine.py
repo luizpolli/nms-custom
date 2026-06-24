@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import uuid
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from loguru import logger
@@ -84,7 +84,7 @@ class KPIEngine:
         bucket: str = "5m",
         object_id: str | None = None,
     ) -> list[dict[str, Any]]:
-        """Time-bucket aggregates via date_trunc (Postgres). Returns list of {ts, avg, min, max, count}.
+        """Time-bucket aggregates via date_bin (Postgres). Returns list of {ts, avg, min, max, count}.
 
         object_id narrows to one reported instance (e.g. one StarOS
         servname/vpnname) — without it, multiple instances under the same
@@ -92,11 +92,13 @@ class KPIEngine:
         is rarely what a per-node bulkstats chart wants.
         """
         pg_interval = _bucket_to_pg(bucket)
-        object_id_clause = "AND object_id = :object_id" if object_id is not None else ""
+        # object_id is always bound (NULL when not filtering) rather than
+        # conditionally interpolated into the query text — keeps this a single
+        # static, parameterized statement instead of dynamic SQL construction.
         sql = text(
-            f"""
+            """
             SELECT
-                date_trunc(:interval, timestamp) AS ts,
+                date_bin(:interval, timestamp, TIMESTAMP '2000-01-01') AS ts,
                 AVG(value)   AS avg,
                 MIN(value)   AS min,
                 MAX(value)   AS max,
@@ -106,7 +108,7 @@ class KPIEngine:
               AND kpi_type  = :kpi_type
               AND timestamp >= :since
               AND timestamp <  :until
-              {object_id_clause}
+              AND (:object_id IS NULL OR object_id = :object_id)
             GROUP BY ts
             ORDER BY ts
             """
@@ -117,9 +119,8 @@ class KPIEngine:
             "kpi_type": kpi_type,
             "since": since,
             "until": until,
+            "object_id": object_id,
         }
-        if object_id is not None:
-            params["object_id"] = object_id
         async with self._session_factory() as session:
             result = await session.execute(sql, params)
             rows = result.fetchall()
@@ -184,10 +185,15 @@ def _build_credential(device: Device, cfg: Settings) -> SNMPCredential:
     )
 
 
-def _bucket_to_pg(bucket: str) -> str:
-    """Convert simplified bucket strings to Postgres date_trunc interval names."""
+def _bucket_to_pg(bucket: str) -> timedelta:
+    """Convert simplified bucket strings to a timedelta for date_bin.
+
+    asyncpg encodes interval-typed parameters from a Python timedelta, not
+    a Postgres interval literal string — passing a string here makes asyncpg
+    raise DataError ("'str' object has no attribute 'days'").
+    """
     _map = {
-        "1m": "minute", "5m": "5 minutes", "15m": "15 minutes",
-        "1h": "hour", "1d": "day",
+        "1m": timedelta(minutes=1), "5m": timedelta(minutes=5), "15m": timedelta(minutes=15),
+        "1h": timedelta(hours=1), "1d": timedelta(days=1),
     }
-    return _map.get(bucket, "5 minutes")
+    return _map.get(bucket, timedelta(minutes=5))

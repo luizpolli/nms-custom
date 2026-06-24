@@ -41,7 +41,9 @@ def _session_factory(fake: _FakeSession):
 
 
 @pytest.mark.asyncio
-async def test_aggregate_without_object_id_omits_filter():
+async def test_aggregate_without_object_id_binds_null():
+    # object_id is always bound (NULL when unset) rather than conditionally
+    # spliced into the query text — a static statement, not dynamic SQL.
     fake = _FakeSession()
     engine = KPIEngine(None, _session_factory(fake))  # type: ignore[arg-type]
 
@@ -50,8 +52,8 @@ async def test_aggregate_without_object_id_omits_filter():
         since=datetime.now(UTC), until=datetime.now(UTC), bucket="5m",
     )
 
-    assert "object_id" not in fake.executed_sql[0]
-    assert "object_id" not in fake.executed_params[0]
+    assert "object_id" in fake.executed_sql[0]
+    assert fake.executed_params[0]["object_id"] is None
 
 
 @pytest.mark.asyncio
