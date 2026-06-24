@@ -23,16 +23,21 @@ describe('overlayPolicy', () => {
     });
 
     it('defaults to true when the profile has no entry for that type', () => {
-      // ASR920 has entries for sfp/uplink/psu but not for mgmt.
+      // OVERLAY_POLICY ships empty by design (see file header) — no shipped
+      // profile currently has any entry, so any (profile, type) pair defaults true.
       expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-mgmt-0')).toBe(true);
     });
 
     it('returns false when the profile + type pair is disabled', () => {
-      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-sfp-3')).toBe(false);
-      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-uplink-0')).toBe(false);
-      expect(shouldRenderOverlay('Cisco_ASR_920_20SZ_M_Router', 'hotspot-psu-0')).toBe(false);
-      expect(shouldRenderOverlay('Cisco_NCS540', 'hotspot-bay-801')).toBe(false);
-      expect(shouldRenderOverlay('Cisco_NCS560', 'hotspot-linecard-0')).toBe(false);
+      // Inject a fixture entry to exercise the `false` branch of the lookup
+      // logic, then remove it so other tests still see the real (empty) policy.
+      OVERLAY_POLICY['__test_profile__'] = { sfp: false };
+      try {
+        expect(shouldRenderOverlay('__test_profile__', 'hotspot-sfp-3')).toBe(false);
+        expect(shouldRenderOverlay('__test_profile__', 'hotspot-uplink-0')).toBe(true);
+      } finally {
+        delete OVERLAY_POLICY['__test_profile__'];
+      }
     });
 
     it('does not affect other profiles', () => {

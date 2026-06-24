@@ -1,7 +1,10 @@
 /**
  * Tests for TopologyPage.
  *
- * TopologyPage uses axios directly (not api.ts), so we mock axios.
+ * TopologyPage fetches via the shared `api` instance from lib/api.ts, so we
+ * mock that module directly — mocking raw 'axios' instead leaves lib/api.ts's
+ * real axios.create() call returning an incomplete object (no `interceptors`),
+ * which crashes at import time since api.ts wires interceptors eagerly.
  * TopologyGraph uses ReactFlow + dagre; we mock it for speed.
  *
  * Covers:
@@ -20,15 +23,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import TopologyPage from './TopologyPage';
 
-// Mock axios for this page (uses raw axios, not api.ts)
-vi.mock('axios', () => ({
-  default: {
-    get: vi.fn(),
-    post: vi.fn(),
-    create: vi.fn(() => ({ get: vi.fn(), post: vi.fn() })),
-  },
-  get: vi.fn(),
-  post: vi.fn(),
+vi.mock('../../lib/api', () => ({
+  api: { get: vi.fn(), post: vi.fn() },
 }));
 
 // Mock TopologyGraph to avoid ReactFlow/dagre/canvas issues in tests
@@ -51,8 +47,8 @@ vi.mock('./components/RebuildButton', () => ({
   ),
 }));
 
-import axios from 'axios';
-const mockAxiosGet = vi.mocked(axios.get);
+import { api } from '../../lib/api';
+const mockAxiosGet = vi.mocked(api.get);
 
 const NODES = [
   { id: 'n1', label: 'router-core-01', vendor: 'cisco', role: 'core' },

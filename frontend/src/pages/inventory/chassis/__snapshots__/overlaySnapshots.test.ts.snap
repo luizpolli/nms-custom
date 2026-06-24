@@ -42,17 +42,17 @@ exports[`chassis overlay snapshots > asr920 overlay summary is stable 1`] = `
       },
       "psu": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
       "sfp": {
         "hotspots": 20,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 20,
       },
       "uplink": {
         "hotspots": 4,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 4,
       },
     },
@@ -72,22 +72,22 @@ exports[`chassis overlay snapshots > asr920-12cz overlay summary is stable 1`] =
       },
       "psu": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
       "rj45": {
         "hotspots": 8,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 8,
       },
       "sfp": {
         "hotspots": 4,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 4,
       },
       "uplink": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
     },
@@ -107,12 +107,12 @@ exports[`chassis overlay snapshots > asr920-12sz overlay summary is stable 1`] =
       },
       "psu": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
       "sfp": {
         "hotspots": 12,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 12,
       },
     },
@@ -137,22 +137,22 @@ exports[`chassis overlay snapshots > asr920-12sz-im overlay summary is stable 1`
       },
       "psu": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
       "rj45": {
         "hotspots": 8,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 8,
       },
       "sfp": {
         "hotspots": 4,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 4,
       },
       "uplink": {
         "hotspots": 4,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 4,
       },
     },
@@ -240,6 +240,11 @@ exports[`chassis overlay snapshots > asr9006 overlay summary is stable 1`] = `
         "overlay": "rendered",
         "withAsset": 1,
       },
+      "gige": {
+        "hotspots": 20,
+        "overlay": "rendered",
+        "withAsset": 20,
+      },
     },
   },
 }
@@ -289,6 +294,21 @@ exports[`chassis overlay snapshots > asr9010 overlay summary is stable 1`] = `
         "hotspots": 1,
         "overlay": "rendered",
         "withAsset": 1,
+      },
+      "9010a": {
+        "hotspots": 4,
+        "overlay": "rendered",
+        "withAsset": 4,
+      },
+      "9010b": {
+        "hotspots": 8,
+        "overlay": "rendered",
+        "withAsset": 8,
+      },
+      "9010c": {
+        "hotspots": 22,
+        "overlay": "rendered",
+        "withAsset": 22,
       },
       "FT0": {
         "hotspots": 1,
@@ -340,6 +360,7 @@ exports[`chassis overlay snapshots > covers every shipped profile directory 1`] 
   "ncs540-12z20g",
   "ncs540-16z4",
   "ncs540-28z4c",
+  "ncs540-acc-sys",
   "ncs540-fh-agg",
   "ncs540-fh-csr",
   "ncs540x-4z14g2q",
@@ -564,7 +585,7 @@ exports[`chassis overlay snapshots > ncs540 overlay summary is stable 1`] = `
     "front": {
       "bay": {
         "hotspots": 28,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 28,
       },
       "chassis": {
@@ -574,17 +595,17 @@ exports[`chassis overlay snapshots > ncs540 overlay summary is stable 1`] = `
       },
       "fan": {
         "hotspots": 1,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 1,
       },
       "power": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
       "rp": {
         "hotspots": 1,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 1,
       },
     },
@@ -692,6 +713,41 @@ exports[`chassis overlay snapshots > ncs540-28z4c overlay summary is stable 1`] 
 }
 `;
 
+exports[`chassis overlay snapshots > ncs540-acc-sys overlay summary is stable 1`] = `
+{
+  "profileId": "Cisco_NCS_540-ACC-SYS",
+  "views": {
+    "front": {
+      "chassis": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "port": {
+        "hotspots": 32,
+        "overlay": "rendered",
+        "withAsset": 32,
+      },
+      "psu0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "psu1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
+      "sync": {
+        "hotspots": 4,
+        "overlay": "rendered",
+        "withAsset": 4,
+      },
+    },
+  },
+}
+`;
+
 exports[`chassis overlay snapshots > ncs540-fh-agg overlay summary is stable 1`] = `
 {
   "profileId": "Cisco_NCS_540-FH-AGG-SYS",
@@ -769,7 +825,7 @@ exports[`chassis overlay snapshots > ncs560 overlay summary is stable 1`] = `
     "front": {
       "bay": {
         "hotspots": 42,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 42,
       },
       "chassis": {
@@ -779,12 +835,12 @@ exports[`chassis overlay snapshots > ncs560 overlay summary is stable 1`] = `
       },
       "fan": {
         "hotspots": 3,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 3,
       },
       "linecard": {
         "hotspots": 3,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 3,
       },
       "port": {
@@ -794,12 +850,12 @@ exports[`chassis overlay snapshots > ncs560 overlay summary is stable 1`] = `
       },
       "power": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
       "rp": {
         "hotspots": 2,
-        "overlay": "suppressed",
+        "overlay": "rendered",
         "withAsset": 2,
       },
     },
