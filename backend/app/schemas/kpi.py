@@ -74,3 +74,14 @@ class KPIAggregate(BaseModel):
     count: int
     since: datetime
     until: datetime
+
+
+class KPIBucket(BaseModel):
+    """One time bucket from KPIEngine.aggregate() — matches its
+    {ts, avg, min, max, count} dict shape."""
+
+    ts: datetime
+    avg: float | None = None
+    min: float | None = None
+    max: float | None = None
+    count: int

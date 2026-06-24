@@ -10,6 +10,7 @@ run. This tests ingest_file's orchestration logic in isolation.
 from __future__ import annotations
 
 import uuid
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
@@ -17,6 +18,14 @@ import pytest
 from app.models.bulkstats import BulkstatsCounterCatalog, BulkstatsIngestionStat
 from app.models.device import Device
 from app.services.bulkstats.ingest import _build_object_id, ingest_file
+from app.services.bulkstats.parser import BulkstatsRecord
+
+
+def _record(field_name: str = "field", labels: dict[str, str] | None = None) -> BulkstatsRecord:
+    return BulkstatsRecord(
+        group="system", schema_name="systemSch1", field_name=field_name,
+        value=1.0, raw_value="1", timestamp=datetime.now(UTC), labels=labels or {},
+    )
 
 _FIXTURE = Path(__file__).parent.parent / "fixtures" / "bulkstats" / "sample_21.25.csv"
 
@@ -66,15 +75,17 @@ class FakeSession:
 
 
 def test_build_object_id_prefers_servname():
-    assert _build_object_id({"vpnname": "SAEGW", "servname": "PGW-S5"}) == "PGW-S5"
+    rec = _record(labels={"vpnname": "SAEGW", "servname": "PGW-S5"})
+    assert _build_object_id(rec) == "PGW-S5"
 
 
 def test_build_object_id_falls_back_to_first_label():
-    assert _build_object_id({"card": "CPU-1"}) == "CPU-1"
+    rec = _record(labels={"card": "CPU-1"})
+    assert _build_object_id(rec) == "CPU-1"
 
 
 def test_build_object_id_none_when_no_labels():
-    assert _build_object_id({}) is None
+    assert _build_object_id(_record()) is None
 
 
 def test_build_object_id_truncates_oversized_label():
@@ -83,9 +94,23 @@ def test_build_object_id_truncates_oversized_label():
     # never blow past the object_id column's 255-char limit.
     blob = "0=1477;1=2341339;" + ("9=1;" * 200)
     assert len(blob) > 255
-    result = _build_object_id({"disc-reason-summary": blob})
+    rec = _record(labels={"disc-reason-summary": blob})
+    result = _build_object_id(rec)
     assert result == blob[:255]
     assert len(result) == 255
+
+
+def test_build_object_id_uses_disc_reason_name():
+    # disc-reason-<N> fields carry no labels of their own (no servname on the
+    # `system` group line) — object_id must resolve from the code dictionary
+    # instead, e.g. "1" -> "Admin-disconnect", not the raw code or None.
+    rec = _record(field_name="disc-reason-1")
+    assert _build_object_id(rec) == "Admin-disconnect"
+
+
+def test_build_object_id_disc_reason_unknown_code_falls_back():
+    rec = _record(field_name="disc-reason-99999")
+    assert _build_object_id(rec) == "reason-99999"
 
 
 @pytest.mark.asyncio

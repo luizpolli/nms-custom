@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import async_session_factory, get_db
 from app.models.device import Device
 from app.models.kpi import KPI
-from app.schemas.kpi import KPIAggregate, KPIRead
+from app.schemas.kpi import KPIBucket, KPIRead
 from app.services.kpi.engine import KPIEngine
 from app.services.snmp.engine import SNMPEngine
 
@@ -83,7 +83,7 @@ async def list_kpi_object_ids(
     return [row[0] for row in result.all()]
 
 
-@router.get("/devices/{id}/kpis/aggregate", response_model=KPIAggregate)
+@router.get("/devices/{id}/kpis/aggregate", response_model=list[KPIBucket])
 async def aggregate_kpis(
     id: uuid.UUID,
     db: Annotated[AsyncSession, Depends(get_db)],
@@ -95,7 +95,7 @@ async def aggregate_kpis(
 ) -> list[dict[str, object]]:
     """Return time-bucketed KPI aggregates (avg/min/max/count per bucket)."""
     engine = KPIEngine(SNMPEngine(), async_session_factory)
-    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket, object_id=object_id)  # type: ignore[return-value]
+    return await engine.aggregate(device_id=id, kpi_type=kpi_type, since=since, until=until, bucket=bucket, object_id=object_id)
 
 
 @router.get("/summary")

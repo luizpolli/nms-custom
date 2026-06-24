@@ -28,6 +28,10 @@ const KPI_LABEL_MAP: Record<string, string> = {
   mem_used_pct: 'Memory (%)',
   if_in_octets_rate: 'Inbound traffic (bps)',
   if_out_octets_rate: 'Outbound traffic (bps)',
+  bulkstats_gtpu_curr_sessions: 'StarOS GTPU sessions',
+  bulkstats_gtpu_uplink_bytes: 'StarOS GTPU uplink bytes',
+  bulkstats_gtpu_downlink_bytes: 'StarOS GTPU downlink bytes',
+  bulkstats_disc_reason_count: 'StarOS disconnects by reason',
 };
 
 function formatTs(ts: string): string {

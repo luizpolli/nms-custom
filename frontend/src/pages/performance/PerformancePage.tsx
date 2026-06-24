@@ -14,6 +14,7 @@ import { api } from '../../lib/api';
 import { StatRow } from './components/StatRow';
 import { KPIChart, KPIDataPoint } from './components/KPIChart';
 import { DevicePicker } from './components/DevicePicker';
+import { InstancePicker } from './components/InstancePicker';
 import { TimeRangePicker, TimeRange } from './components/TimeRangePicker';
 
 interface PerformanceSummary {
@@ -29,13 +30,48 @@ interface AggregatePoint {
   max: number;
 }
 
-const KPI_OPTIONS = [
+const SNMP_KPI_OPTIONS = [
   { value: 'cpu_5min', label: 'CPU 5 min' },
   { value: 'cpu_1min', label: 'CPU 1 min' },
   { value: 'mem_used_pct', label: 'Memory (%)' },
   { value: 'if_in_octets_rate', label: 'Inbound traffic' },
   { value: 'if_out_octets_rate', label: 'Outbound traffic' },
 ];
+
+const BULKSTATS_PREFIX = 'bulkstats_';
+
+interface BulkstatsCatalogEntry {
+  metric_name: string;
+  group: string;
+  field_name: string;
+  unit: string | null;
+  object_type: string;
+}
+
+async function fetchBulkstatsCatalog(): Promise<BulkstatsCatalogEntry[]> {
+  const { data } = await api.get<BulkstatsCatalogEntry[]>('/bulkstats/catalog', { params: { enabled: true } });
+  return data;
+}
+
+/** Collapse catalog rows down to one dropdown option per metric_name — some
+ * metrics (e.g. disc-reason-<N>) are ~600 near-identical catalog rows that
+ * all share one metric_name, distinguished only by object_id at query time
+ * via the instance picker, not by separate dropdown entries. */
+function dedupeCatalogOptions(entries: BulkstatsCatalogEntry[]): Array<{ value: string; label: string }> {
+  const byMetric = new Map<string, BulkstatsCatalogEntry[]>();
+  for (const entry of entries) {
+    const bucket = byMetric.get(entry.metric_name) ?? [];
+    bucket.push(entry);
+    byMetric.set(entry.metric_name, bucket);
+  }
+  return Array.from(byMetric.entries()).map(([metricName, rows]) => {
+    const [first] = rows;
+    const label = rows.length === 1
+      ? `StarOS · ${first.group}.${first.field_name}`
+      : `StarOS · ${first.group} by ${first.object_type} (${rows.length})`;
+    return { value: metricName, label };
+  });
+}
 
 function defaultRange(): TimeRange {
   const until = new Date();
@@ -52,10 +88,19 @@ async function fetchAggregate(
   deviceId: string,
   kpiType: string,
   range: TimeRange,
+  objectId: string,
 ): Promise<AggregatePoint[]> {
   const { data } = await api.get<AggregatePoint[]>(
     `/performance/devices/${deviceId}/kpis/aggregate`,
-    { params: { kpi_type: kpiType, since: range.since, until: range.until, bucket: '5m' } },
+    {
+      params: {
+        kpi_type: kpiType,
+        since: range.since,
+        until: range.until,
+        bucket: '5m',
+        ...(objectId ? { object_id: objectId } : {}),
+      },
+    },
   );
   return data;
 }
@@ -64,7 +109,9 @@ export function PerformancePage() {
   const queryClient = useQueryClient();
   const [deviceId, setDeviceId] = useState('');
   const [kpiType, setKpiType] = useState('cpu_5min');
+  const [objectId, setObjectId] = useState('');
   const [range, setRange] = useState<TimeRange>(defaultRange);
+  const isBulkstatsMetric = kpiType.startsWith(BULKSTATS_PREFIX);
 
   const summaryQuery = useQuery({
     queryKey: ['performance-summary'],
@@ -72,19 +119,35 @@ export function PerformancePage() {
     refetchInterval: 30_000,
   });
 
+  const catalogQuery = useQuery({
+    queryKey: ['bulkstats-catalog'],
+    queryFn: fetchBulkstatsCatalog,
+    staleTime: 60_000,
+  });
+
+  const kpiOptions = [
+    ...SNMP_KPI_OPTIONS,
+    ...dedupeCatalogOptions(catalogQuery.data ?? []),
+  ];
+
   const aggregateQuery = useQuery({
-    queryKey: ['performance-aggregate', deviceId, kpiType, range],
-    queryFn: () => fetchAggregate(deviceId, kpiType, range),
+    queryKey: ['performance-aggregate', deviceId, kpiType, range, objectId],
+    queryFn: () => fetchAggregate(deviceId, kpiType, range, objectId),
     enabled: Boolean(deviceId),
     refetchInterval: 30_000,
   });
 
+  const handleKpiTypeChange = useCallback((next: string) => {
+    setKpiType(next);
+    setObjectId('');
+  }, []);
+
   const handleRefresh = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: ['performance-summary'] });
     if (deviceId) {
-      queryClient.invalidateQueries({ queryKey: ['performance-aggregate', deviceId, kpiType, range] });
+      queryClient.invalidateQueries({ queryKey: ['performance-aggregate', deviceId, kpiType, range, objectId] });
     }
-  }, [queryClient, deviceId, kpiType, range]);
+  }, [queryClient, deviceId, kpiType, range, objectId]);
 
   const summary = summaryQuery.data;
   const statItems = [
@@ -144,10 +207,16 @@ export function PerformancePage() {
             <label className="block text-xs text-gray-500 mb-1">KPI type</label>
             <Select
               value={kpiType}
-              onChange={(e) => setKpiType(e.target.value)}
-              options={KPI_OPTIONS}
+              onChange={(e) => handleKpiTypeChange(e.target.value)}
+              options={kpiOptions}
             />
           </div>
+          {isBulkstatsMetric && deviceId && (
+            <div className="flex-1 min-w-48">
+              <label className="block text-xs text-gray-500 mb-1">Instance</label>
+              <InstancePicker deviceId={deviceId} kpiType={kpiType} value={objectId} onChange={setObjectId} />
+            </div>
+          )}
         </div>
         <div className="mb-4">
           <label className="block text-xs text-gray-500 mb-1">Time range</label>

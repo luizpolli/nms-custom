@@ -14,6 +14,7 @@ from app.models.bulkstats import BulkstatsCounterCatalog, BulkstatsIngestionStat
 from app.models.device import Device
 from app.models.kpi import KPI
 
+from .disc_reasons import disc_reason_code, disc_reason_name
 from .parser import BulkstatsRecord, parse_file
 
 # Priority order for picking the single most useful identifier out of a
@@ -38,12 +39,19 @@ class IngestResult:
 _OBJECT_ID_MAX_LEN = 255  # matches BulkstatsRawSample/KPI.object_id column width
 
 
-def _build_object_id(labels: dict[str, str]) -> str | None:
-    """Pick the most useful label to use as object_id, truncated to fit the
+def _build_object_id(record: BulkstatsRecord) -> str | None:
+    """Pick the most useful object_id for a record, truncated to fit the
     column. Some StarOS fields that fail the numeric check aren't short
     identifiers at all — e.g. `disc-reason-summary` is a ~500-char packed
     `code=count;code=count` blob — so this never raises on long values, it
     just truncates (the full, untruncated value always survives in `labels`)."""
+    code = disc_reason_code(record.field_name)
+    if code is not None:
+        # disc-reason-<N> counters carry no labels of their own (the `system`
+        # group line has no servname/vpnname) — without this, every reason
+        # would chart as an unlabeled blended line instead of one per reason.
+        return disc_reason_name(code)[:_OBJECT_ID_MAX_LEN]
+    labels = record.labels
     if not labels:
         return None
     for key in _OBJECT_ID_LABEL_PRIORITY:
@@ -104,7 +112,7 @@ def _build_raw_sample(
         field_name=record.field_name,
         value=record.value,
         raw_value=record.raw_value,
-        object_id=_build_object_id(record.labels),
+        object_id=_build_object_id(record),
         labels=record.labels or None,
         timestamp=record.timestamp,
     )
@@ -125,7 +133,7 @@ def _build_kpi(record: BulkstatsRecord, *, device_id: uuid.UUID, catalog_entry: 
         unit=catalog_entry.unit,
         source_type="bulkstats",
         object_type=catalog_entry.object_type,
-        object_id=_build_object_id(record.labels),
+        object_id=_build_object_id(record),
         labels=record.labels or None,
         timestamp=record.timestamp,
     )
