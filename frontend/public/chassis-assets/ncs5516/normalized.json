@@ -10781,6 +10781,10 @@
             "alias": 16,
             "fillerTypeId": "NC55-RP-BLNK",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-RP-FILLER.svg",
+            "typeId": "NC55-RP-BLNK"
           }
         },
         {
@@ -10800,6 +10804,10 @@
             "alias": 17,
             "fillerTypeId": "NC55-RP-BLNK",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-RP-FILLER.svg",
+            "typeId": "NC55-RP-BLNK"
           }
         },
         {
@@ -10819,6 +10827,10 @@
             "alias": 18,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10838,6 +10850,10 @@
             "alias": 19,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10857,6 +10873,10 @@
             "alias": 20,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10876,6 +10896,10 @@
             "alias": 21,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10895,6 +10919,10 @@
             "alias": 14,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10914,6 +10942,10 @@
             "alias": 22,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10933,6 +10965,10 @@
             "alias": 23,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10952,6 +10988,10 @@
             "alias": 24,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10971,6 +11011,10 @@
             "alias": 25,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -10990,6 +11034,10 @@
             "alias": 26,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5516/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         }
       ]

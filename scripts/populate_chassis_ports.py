@@ -43,16 +43,65 @@ CONFIG = {
         "Line Card Slot": ("A900-IMA8CS1Z-M", "TenGigE")}},
     "ncs560-enh": {"plug": "NCS55XX", "byLabel": {
         "Line Card Slot": ("A900-IMA8CS1Z-M", "TenGigE")}},
+    "ncs5504": {"plug": "NCS55XX", "byLabel": {
+        "Line Card Slot": ("NC55-36X100G", "HundredGigE")}},
 }
 
 SID_RE = re.compile(r'"id"\s*:\s*"([^"]+)"\s*,\s*"nodeId"\s*:\s*"([^"]+)"')
 
 
 def find_faceplate_svg(svg_id: str, orient: str) -> Path | None:
-    """Locate a card faceplate SVG in any family's pluggables/images/<orient>."""
-    for root in DP.glob(f"*/pluggables/images/{orient}"):
-        f = root / svg_id
-        if f.exists():
+    """Locate a card faceplate SVG in any family's pluggables/images/<orient>,
+    falling back to the other orientation if the preferred one is absent."""
+    for o in (orient, "horizontal" if orient == "vertical" else "vertical"):
+        for root in DP.glob(f"*/pluggables/images/{o}"):
+            f = root / svg_id
+            if f.exists():
+                return f
+    return None
+
+
+_PLUG_TEXT: dict = {}
+
+
+def _plug_text(family: str) -> str:
+    if family not in _PLUG_TEXT:
+        _PLUG_TEXT[family] = PLUG[family].read_text()
+    return _PLUG_TEXT[family]
+
+
+def module_svg_id(pid: str) -> str | None:
+    """svgImageId for a PID, searched across all known pluggables files."""
+    for family in PLUG:
+        block = module_block(_plug_text(family), pid)
+        if block:
+            m = re.search(r'"?svgImageId"?\s*:\s*"([^"]+)"', block)
+            if m:
+                return m.group(1)
+    return None
+
+
+def strip_filler(pid: str) -> str | None:
+    """Map a filler/blank PID to its real module PID (NC55-36X100G-FILLER ->
+    NC55-36X100G, NCS560-4-FILLER-RSP -> NCS560-4-RSP)."""
+    s = re.sub(r'[-_]?(FILLER|BLNK|Filler|filler)[-_]?', '-', pid).strip('-')
+    s = re.sub(r'-{2,}', '-', s)
+    return s if s and s != pid else None
+
+
+def resolve_faceplate(pid: str, orient: str) -> Path | None:
+    """Resolve a card/filler PID to a faceplate SVG file (svgImageId, then
+    <pid>.svg, then the same via the de-fillered real PID)."""
+    for cand in [pid, strip_filler(pid)]:
+        if not cand:
+            continue
+        sid = module_svg_id(cand)
+        if sid:
+            f = find_faceplate_svg(sid, orient)
+            if f:
+                return f
+        f = find_faceplate_svg(f"{cand}.svg", orient)
+        if f:
             return f
     return None
 
@@ -194,12 +243,32 @@ def populate(profile_id: str) -> None:
 
     pidx = 9000000
     total_ports = 0
+    fills: dict = {}
     for view in model["views"]:
         new_hotspots = []
         for hs in view["hotspots"]:
             new_hotspots.append(hs)
             label = hs.get("label")
             if label not in cfg["byLabel"]:
+                # Non-line-card bay (RP / PSU / Fan / ...): fill it with its
+                # filler/module faceplate so it is not a black hole. No ports.
+                if (hs.get("asset") or {}).get("image"):
+                    continue
+                if "-p" in hs["id"] or "/" in (label or ""):
+                    continue
+                filler = (hs.get("metadata") or {}).get("fillerTypeId")
+                if not filler:
+                    continue
+                b = hs["bounds"]
+                orient = "vertical" if b["h"] > b["w"] else "horizontal"
+                src = resolve_faceplate(filler, orient)
+                if src:
+                    dst = ASSETS / profile_id / src.name
+                    if not dst.exists():
+                        dst.write_bytes(src.read_bytes())
+                    hs["asset"] = {"image": f"/chassis-assets/{profile_id}/{src.name}",
+                                   "typeId": filler}
+                    fills[label] = fills.get(label, 0) + 1
                 continue
             card = cards.get(label)
             if not card:
@@ -255,8 +324,8 @@ def populate(profile_id: str) -> None:
             hs["metadata"] = {**(hs.get("metadata") or {}), "card": card_pid}
         view["hotspots"] = new_hotspots
     path.write_text(json.dumps(model, indent=2))
-    print(f"{profile_id}: +{total_ports} port hotspots "
-          f"(cards: {', '.join(p for p, _ in cfg['byLabel'].values())})")
+    fills_str = ", ".join(f"{k}×{v}" for k, v in fills.items()) or "none"
+    print(f"{profile_id}: +{total_ports} ports | bay faceplates filled: {fills_str}")
 
 
 def main() -> None:

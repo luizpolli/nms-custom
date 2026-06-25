@@ -809,6 +809,10 @@
             "alias": 1,
             "fillerTypeId": "A99-RSP-TR-FILLER",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/asr9901/A99-RSP-TR-FILLER.svg",
+            "typeId": "A99-RSP-TR-FILLER"
           }
         }
       ]

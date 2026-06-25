@@ -7,7 +7,7 @@
   "views": [
     {
       "id": "front",
-      "label": "Front View",
+      "label": "Front",
       "image": "/chassis-assets/ncs5504/NCS-5504-FRONT_CORE.svg",
       "width": 1680.0,
       "height": 1176.0,
@@ -18,17 +18,670 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-0",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 10.2,
             "y": 42.3,
-            "w": 992.5,
-            "h": 144.3
+            "w": 1586.9,
+            "h": 147.4
           },
           "metadata": {
             "alias": 0,
             "fillerTypeId": "NC55-36X100G-FILLER",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "NC55-36X100G"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-36X100G.svg",
+            "typeId": "NC55-36X100G"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p0",
+          "slotKey": "HundredGigE0/0/0/0",
+          "label": "HundredGigE0/0/0/0",
+          "inventoryId": "comp-port-9000001",
+          "physicalIndex": 9000001,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p1",
+          "slotKey": "HundredGigE0/0/0/1",
+          "label": "HundredGigE0/0/0/1",
+          "inventoryId": "comp-port-9000002",
+          "physicalIndex": 9000002,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p2",
+          "slotKey": "HundredGigE0/0/0/2",
+          "label": "HundredGigE0/0/0/2",
+          "inventoryId": "comp-port-9000003",
+          "physicalIndex": 9000003,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p3",
+          "slotKey": "HundredGigE0/0/0/3",
+          "label": "HundredGigE0/0/0/3",
+          "inventoryId": "comp-port-9000004",
+          "physicalIndex": 9000004,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p4",
+          "slotKey": "HundredGigE0/0/0/4",
+          "label": "HundredGigE0/0/0/4",
+          "inventoryId": "comp-port-9000005",
+          "physicalIndex": 9000005,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p5",
+          "slotKey": "HundredGigE0/0/0/5",
+          "label": "HundredGigE0/0/0/5",
+          "inventoryId": "comp-port-9000006",
+          "physicalIndex": 9000006,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p6",
+          "slotKey": "HundredGigE0/0/0/6",
+          "label": "HundredGigE0/0/0/6",
+          "inventoryId": "comp-port-9000007",
+          "physicalIndex": 9000007,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p7",
+          "slotKey": "HundredGigE0/0/0/7",
+          "label": "HundredGigE0/0/0/7",
+          "inventoryId": "comp-port-9000008",
+          "physicalIndex": 9000008,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p8",
+          "slotKey": "HundredGigE0/0/0/8",
+          "label": "HundredGigE0/0/0/8",
+          "inventoryId": "comp-port-9000009",
+          "physicalIndex": 9000009,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p9",
+          "slotKey": "HundredGigE0/0/0/9",
+          "label": "HundredGigE0/0/0/9",
+          "inventoryId": "comp-port-9000010",
+          "physicalIndex": 9000010,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p10",
+          "slotKey": "HundredGigE0/0/0/10",
+          "label": "HundredGigE0/0/0/10",
+          "inventoryId": "comp-port-9000011",
+          "physicalIndex": 9000011,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p11",
+          "slotKey": "HundredGigE0/0/0/11",
+          "label": "HundredGigE0/0/0/11",
+          "inventoryId": "comp-port-9000012",
+          "physicalIndex": 9000012,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p12",
+          "slotKey": "HundredGigE0/0/0/12",
+          "label": "HundredGigE0/0/0/12",
+          "inventoryId": "comp-port-9000013",
+          "physicalIndex": 9000013,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p13",
+          "slotKey": "HundredGigE0/0/0/13",
+          "label": "HundredGigE0/0/0/13",
+          "inventoryId": "comp-port-9000014",
+          "physicalIndex": 9000014,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p14",
+          "slotKey": "HundredGigE0/0/0/14",
+          "label": "HundredGigE0/0/0/14",
+          "inventoryId": "comp-port-9000015",
+          "physicalIndex": 9000015,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p15",
+          "slotKey": "HundredGigE0/0/0/15",
+          "label": "HundredGigE0/0/0/15",
+          "inventoryId": "comp-port-9000016",
+          "physicalIndex": 9000016,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p16",
+          "slotKey": "HundredGigE0/0/0/16",
+          "label": "HundredGigE0/0/0/16",
+          "inventoryId": "comp-port-9000017",
+          "physicalIndex": 9000017,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p17",
+          "slotKey": "HundredGigE0/0/0/17",
+          "label": "HundredGigE0/0/0/17",
+          "inventoryId": "comp-port-9000018",
+          "physicalIndex": 9000018,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/17"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p18",
+          "slotKey": "HundredGigE0/0/0/18",
+          "label": "HundredGigE0/0/0/18",
+          "inventoryId": "comp-port-9000019",
+          "physicalIndex": 9000019,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/18"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p19",
+          "slotKey": "HundredGigE0/0/0/19",
+          "label": "HundredGigE0/0/0/19",
+          "inventoryId": "comp-port-9000020",
+          "physicalIndex": 9000020,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/19"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p20",
+          "slotKey": "HundredGigE0/0/0/20",
+          "label": "HundredGigE0/0/0/20",
+          "inventoryId": "comp-port-9000021",
+          "physicalIndex": 9000021,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/20"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p21",
+          "slotKey": "HundredGigE0/0/0/21",
+          "label": "HundredGigE0/0/0/21",
+          "inventoryId": "comp-port-9000022",
+          "physicalIndex": 9000022,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/21"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p22",
+          "slotKey": "HundredGigE0/0/0/22",
+          "label": "HundredGigE0/0/0/22",
+          "inventoryId": "comp-port-9000023",
+          "physicalIndex": 9000023,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/22"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p23",
+          "slotKey": "HundredGigE0/0/0/23",
+          "label": "HundredGigE0/0/0/23",
+          "inventoryId": "comp-port-9000024",
+          "physicalIndex": 9000024,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/23"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p24",
+          "slotKey": "HundredGigE0/0/0/24",
+          "label": "HundredGigE0/0/0/24",
+          "inventoryId": "comp-port-9000025",
+          "physicalIndex": 9000025,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/24"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p25",
+          "slotKey": "HundredGigE0/0/0/25",
+          "label": "HundredGigE0/0/0/25",
+          "inventoryId": "comp-port-9000026",
+          "physicalIndex": 9000026,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/25"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p26",
+          "slotKey": "HundredGigE0/0/0/26",
+          "label": "HundredGigE0/0/0/26",
+          "inventoryId": "comp-port-9000027",
+          "physicalIndex": 9000027,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/26"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p27",
+          "slotKey": "HundredGigE0/0/0/27",
+          "label": "HundredGigE0/0/0/27",
+          "inventoryId": "comp-port-9000028",
+          "physicalIndex": 9000028,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/27"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p28",
+          "slotKey": "HundredGigE0/0/0/28",
+          "label": "HundredGigE0/0/0/28",
+          "inventoryId": "comp-port-9000029",
+          "physicalIndex": 9000029,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/28"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p29",
+          "slotKey": "HundredGigE0/0/0/29",
+          "label": "HundredGigE0/0/0/29",
+          "inventoryId": "comp-port-9000030",
+          "physicalIndex": 9000030,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/29"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p30",
+          "slotKey": "HundredGigE0/0/0/30",
+          "label": "HundredGigE0/0/0/30",
+          "inventoryId": "comp-port-9000031",
+          "physicalIndex": 9000031,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/30"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p31",
+          "slotKey": "HundredGigE0/0/0/31",
+          "label": "HundredGigE0/0/0/31",
+          "inventoryId": "comp-port-9000032",
+          "physicalIndex": 9000032,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/31"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p32",
+          "slotKey": "HundredGigE0/0/0/32",
+          "label": "HundredGigE0/0/0/32",
+          "inventoryId": "comp-port-9000033",
+          "physicalIndex": 9000033,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/32"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p33",
+          "slotKey": "HundredGigE0/0/0/33",
+          "label": "HundredGigE0/0/0/33",
+          "inventoryId": "comp-port-9000034",
+          "physicalIndex": 9000034,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/33"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p34",
+          "slotKey": "HundredGigE0/0/0/34",
+          "label": "HundredGigE0/0/0/34",
+          "inventoryId": "comp-port-9000035",
+          "physicalIndex": 9000035,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 65.9,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/34"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-0-p35",
+          "slotKey": "HundredGigE0/0/0/35",
+          "label": "HundredGigE0/0/0/35",
+          "inventoryId": "comp-port-9000036",
+          "physicalIndex": 9000036,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 127.8,
+            "w": 34.1,
+            "h": 29.5
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/0/0/35"
           }
         },
         {
@@ -37,17 +690,670 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-1",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 10.2,
             "y": 195.8,
-            "w": 992.5,
-            "h": 140.6
+            "w": 1586.9,
+            "h": 143.6
           },
           "metadata": {
             "alias": 1,
             "fillerTypeId": "NC55-36X100G-FILLER",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "NC55-36X100G"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-36X100G.svg",
+            "typeId": "NC55-36X100G"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p0",
+          "slotKey": "HundredGigE0/1/0/0",
+          "label": "HundredGigE0/1/0/0",
+          "inventoryId": "comp-port-9000037",
+          "physicalIndex": 9000037,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p1",
+          "slotKey": "HundredGigE0/1/0/1",
+          "label": "HundredGigE0/1/0/1",
+          "inventoryId": "comp-port-9000038",
+          "physicalIndex": 9000038,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p2",
+          "slotKey": "HundredGigE0/1/0/2",
+          "label": "HundredGigE0/1/0/2",
+          "inventoryId": "comp-port-9000039",
+          "physicalIndex": 9000039,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p3",
+          "slotKey": "HundredGigE0/1/0/3",
+          "label": "HundredGigE0/1/0/3",
+          "inventoryId": "comp-port-9000040",
+          "physicalIndex": 9000040,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p4",
+          "slotKey": "HundredGigE0/1/0/4",
+          "label": "HundredGigE0/1/0/4",
+          "inventoryId": "comp-port-9000041",
+          "physicalIndex": 9000041,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p5",
+          "slotKey": "HundredGigE0/1/0/5",
+          "label": "HundredGigE0/1/0/5",
+          "inventoryId": "comp-port-9000042",
+          "physicalIndex": 9000042,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p6",
+          "slotKey": "HundredGigE0/1/0/6",
+          "label": "HundredGigE0/1/0/6",
+          "inventoryId": "comp-port-9000043",
+          "physicalIndex": 9000043,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p7",
+          "slotKey": "HundredGigE0/1/0/7",
+          "label": "HundredGigE0/1/0/7",
+          "inventoryId": "comp-port-9000044",
+          "physicalIndex": 9000044,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p8",
+          "slotKey": "HundredGigE0/1/0/8",
+          "label": "HundredGigE0/1/0/8",
+          "inventoryId": "comp-port-9000045",
+          "physicalIndex": 9000045,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p9",
+          "slotKey": "HundredGigE0/1/0/9",
+          "label": "HundredGigE0/1/0/9",
+          "inventoryId": "comp-port-9000046",
+          "physicalIndex": 9000046,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p10",
+          "slotKey": "HundredGigE0/1/0/10",
+          "label": "HundredGigE0/1/0/10",
+          "inventoryId": "comp-port-9000047",
+          "physicalIndex": 9000047,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p11",
+          "slotKey": "HundredGigE0/1/0/11",
+          "label": "HundredGigE0/1/0/11",
+          "inventoryId": "comp-port-9000048",
+          "physicalIndex": 9000048,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p12",
+          "slotKey": "HundredGigE0/1/0/12",
+          "label": "HundredGigE0/1/0/12",
+          "inventoryId": "comp-port-9000049",
+          "physicalIndex": 9000049,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p13",
+          "slotKey": "HundredGigE0/1/0/13",
+          "label": "HundredGigE0/1/0/13",
+          "inventoryId": "comp-port-9000050",
+          "physicalIndex": 9000050,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p14",
+          "slotKey": "HundredGigE0/1/0/14",
+          "label": "HundredGigE0/1/0/14",
+          "inventoryId": "comp-port-9000051",
+          "physicalIndex": 9000051,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p15",
+          "slotKey": "HundredGigE0/1/0/15",
+          "label": "HundredGigE0/1/0/15",
+          "inventoryId": "comp-port-9000052",
+          "physicalIndex": 9000052,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p16",
+          "slotKey": "HundredGigE0/1/0/16",
+          "label": "HundredGigE0/1/0/16",
+          "inventoryId": "comp-port-9000053",
+          "physicalIndex": 9000053,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p17",
+          "slotKey": "HundredGigE0/1/0/17",
+          "label": "HundredGigE0/1/0/17",
+          "inventoryId": "comp-port-9000054",
+          "physicalIndex": 9000054,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/17"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p18",
+          "slotKey": "HundredGigE0/1/0/18",
+          "label": "HundredGigE0/1/0/18",
+          "inventoryId": "comp-port-9000055",
+          "physicalIndex": 9000055,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/18"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p19",
+          "slotKey": "HundredGigE0/1/0/19",
+          "label": "HundredGigE0/1/0/19",
+          "inventoryId": "comp-port-9000056",
+          "physicalIndex": 9000056,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/19"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p20",
+          "slotKey": "HundredGigE0/1/0/20",
+          "label": "HundredGigE0/1/0/20",
+          "inventoryId": "comp-port-9000057",
+          "physicalIndex": 9000057,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/20"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p21",
+          "slotKey": "HundredGigE0/1/0/21",
+          "label": "HundredGigE0/1/0/21",
+          "inventoryId": "comp-port-9000058",
+          "physicalIndex": 9000058,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/21"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p22",
+          "slotKey": "HundredGigE0/1/0/22",
+          "label": "HundredGigE0/1/0/22",
+          "inventoryId": "comp-port-9000059",
+          "physicalIndex": 9000059,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/22"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p23",
+          "slotKey": "HundredGigE0/1/0/23",
+          "label": "HundredGigE0/1/0/23",
+          "inventoryId": "comp-port-9000060",
+          "physicalIndex": 9000060,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/23"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p24",
+          "slotKey": "HundredGigE0/1/0/24",
+          "label": "HundredGigE0/1/0/24",
+          "inventoryId": "comp-port-9000061",
+          "physicalIndex": 9000061,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/24"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p25",
+          "slotKey": "HundredGigE0/1/0/25",
+          "label": "HundredGigE0/1/0/25",
+          "inventoryId": "comp-port-9000062",
+          "physicalIndex": 9000062,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/25"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p26",
+          "slotKey": "HundredGigE0/1/0/26",
+          "label": "HundredGigE0/1/0/26",
+          "inventoryId": "comp-port-9000063",
+          "physicalIndex": 9000063,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/26"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p27",
+          "slotKey": "HundredGigE0/1/0/27",
+          "label": "HundredGigE0/1/0/27",
+          "inventoryId": "comp-port-9000064",
+          "physicalIndex": 9000064,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/27"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p28",
+          "slotKey": "HundredGigE0/1/0/28",
+          "label": "HundredGigE0/1/0/28",
+          "inventoryId": "comp-port-9000065",
+          "physicalIndex": 9000065,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/28"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p29",
+          "slotKey": "HundredGigE0/1/0/29",
+          "label": "HundredGigE0/1/0/29",
+          "inventoryId": "comp-port-9000066",
+          "physicalIndex": 9000066,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/29"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p30",
+          "slotKey": "HundredGigE0/1/0/30",
+          "label": "HundredGigE0/1/0/30",
+          "inventoryId": "comp-port-9000067",
+          "physicalIndex": 9000067,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/30"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p31",
+          "slotKey": "HundredGigE0/1/0/31",
+          "label": "HundredGigE0/1/0/31",
+          "inventoryId": "comp-port-9000068",
+          "physicalIndex": 9000068,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/31"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p32",
+          "slotKey": "HundredGigE0/1/0/32",
+          "label": "HundredGigE0/1/0/32",
+          "inventoryId": "comp-port-9000069",
+          "physicalIndex": 9000069,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/32"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p33",
+          "slotKey": "HundredGigE0/1/0/33",
+          "label": "HundredGigE0/1/0/33",
+          "inventoryId": "comp-port-9000070",
+          "physicalIndex": 9000070,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/33"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p34",
+          "slotKey": "HundredGigE0/1/0/34",
+          "label": "HundredGigE0/1/0/34",
+          "inventoryId": "comp-port-9000071",
+          "physicalIndex": 9000071,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 218.8,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/34"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-1-p35",
+          "slotKey": "HundredGigE0/1/0/35",
+          "label": "HundredGigE0/1/0/35",
+          "inventoryId": "comp-port-9000072",
+          "physicalIndex": 9000072,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 279.1,
+            "w": 34.1,
+            "h": 28.7
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/1/0/35"
           }
         },
         {
@@ -56,17 +1362,670 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-2",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 10.2,
             "y": 345.4,
-            "w": 992.5,
-            "h": 142.5
+            "w": 1586.9,
+            "h": 145.5
           },
           "metadata": {
             "alias": 2,
             "fillerTypeId": "NC55-36X100G-FILLER",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "NC55-36X100G"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-36X100G.svg",
+            "typeId": "NC55-36X100G"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p0",
+          "slotKey": "HundredGigE0/2/0/0",
+          "label": "HundredGigE0/2/0/0",
+          "inventoryId": "comp-port-9000073",
+          "physicalIndex": 9000073,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p1",
+          "slotKey": "HundredGigE0/2/0/1",
+          "label": "HundredGigE0/2/0/1",
+          "inventoryId": "comp-port-9000074",
+          "physicalIndex": 9000074,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p2",
+          "slotKey": "HundredGigE0/2/0/2",
+          "label": "HundredGigE0/2/0/2",
+          "inventoryId": "comp-port-9000075",
+          "physicalIndex": 9000075,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p3",
+          "slotKey": "HundredGigE0/2/0/3",
+          "label": "HundredGigE0/2/0/3",
+          "inventoryId": "comp-port-9000076",
+          "physicalIndex": 9000076,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p4",
+          "slotKey": "HundredGigE0/2/0/4",
+          "label": "HundredGigE0/2/0/4",
+          "inventoryId": "comp-port-9000077",
+          "physicalIndex": 9000077,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p5",
+          "slotKey": "HundredGigE0/2/0/5",
+          "label": "HundredGigE0/2/0/5",
+          "inventoryId": "comp-port-9000078",
+          "physicalIndex": 9000078,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p6",
+          "slotKey": "HundredGigE0/2/0/6",
+          "label": "HundredGigE0/2/0/6",
+          "inventoryId": "comp-port-9000079",
+          "physicalIndex": 9000079,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p7",
+          "slotKey": "HundredGigE0/2/0/7",
+          "label": "HundredGigE0/2/0/7",
+          "inventoryId": "comp-port-9000080",
+          "physicalIndex": 9000080,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p8",
+          "slotKey": "HundredGigE0/2/0/8",
+          "label": "HundredGigE0/2/0/8",
+          "inventoryId": "comp-port-9000081",
+          "physicalIndex": 9000081,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p9",
+          "slotKey": "HundredGigE0/2/0/9",
+          "label": "HundredGigE0/2/0/9",
+          "inventoryId": "comp-port-9000082",
+          "physicalIndex": 9000082,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p10",
+          "slotKey": "HundredGigE0/2/0/10",
+          "label": "HundredGigE0/2/0/10",
+          "inventoryId": "comp-port-9000083",
+          "physicalIndex": 9000083,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p11",
+          "slotKey": "HundredGigE0/2/0/11",
+          "label": "HundredGigE0/2/0/11",
+          "inventoryId": "comp-port-9000084",
+          "physicalIndex": 9000084,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p12",
+          "slotKey": "HundredGigE0/2/0/12",
+          "label": "HundredGigE0/2/0/12",
+          "inventoryId": "comp-port-9000085",
+          "physicalIndex": 9000085,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p13",
+          "slotKey": "HundredGigE0/2/0/13",
+          "label": "HundredGigE0/2/0/13",
+          "inventoryId": "comp-port-9000086",
+          "physicalIndex": 9000086,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p14",
+          "slotKey": "HundredGigE0/2/0/14",
+          "label": "HundredGigE0/2/0/14",
+          "inventoryId": "comp-port-9000087",
+          "physicalIndex": 9000087,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p15",
+          "slotKey": "HundredGigE0/2/0/15",
+          "label": "HundredGigE0/2/0/15",
+          "inventoryId": "comp-port-9000088",
+          "physicalIndex": 9000088,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p16",
+          "slotKey": "HundredGigE0/2/0/16",
+          "label": "HundredGigE0/2/0/16",
+          "inventoryId": "comp-port-9000089",
+          "physicalIndex": 9000089,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p17",
+          "slotKey": "HundredGigE0/2/0/17",
+          "label": "HundredGigE0/2/0/17",
+          "inventoryId": "comp-port-9000090",
+          "physicalIndex": 9000090,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/17"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p18",
+          "slotKey": "HundredGigE0/2/0/18",
+          "label": "HundredGigE0/2/0/18",
+          "inventoryId": "comp-port-9000091",
+          "physicalIndex": 9000091,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/18"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p19",
+          "slotKey": "HundredGigE0/2/0/19",
+          "label": "HundredGigE0/2/0/19",
+          "inventoryId": "comp-port-9000092",
+          "physicalIndex": 9000092,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/19"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p20",
+          "slotKey": "HundredGigE0/2/0/20",
+          "label": "HundredGigE0/2/0/20",
+          "inventoryId": "comp-port-9000093",
+          "physicalIndex": 9000093,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/20"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p21",
+          "slotKey": "HundredGigE0/2/0/21",
+          "label": "HundredGigE0/2/0/21",
+          "inventoryId": "comp-port-9000094",
+          "physicalIndex": 9000094,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/21"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p22",
+          "slotKey": "HundredGigE0/2/0/22",
+          "label": "HundredGigE0/2/0/22",
+          "inventoryId": "comp-port-9000095",
+          "physicalIndex": 9000095,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/22"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p23",
+          "slotKey": "HundredGigE0/2/0/23",
+          "label": "HundredGigE0/2/0/23",
+          "inventoryId": "comp-port-9000096",
+          "physicalIndex": 9000096,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/23"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p24",
+          "slotKey": "HundredGigE0/2/0/24",
+          "label": "HundredGigE0/2/0/24",
+          "inventoryId": "comp-port-9000097",
+          "physicalIndex": 9000097,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/24"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p25",
+          "slotKey": "HundredGigE0/2/0/25",
+          "label": "HundredGigE0/2/0/25",
+          "inventoryId": "comp-port-9000098",
+          "physicalIndex": 9000098,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/25"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p26",
+          "slotKey": "HundredGigE0/2/0/26",
+          "label": "HundredGigE0/2/0/26",
+          "inventoryId": "comp-port-9000099",
+          "physicalIndex": 9000099,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/26"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p27",
+          "slotKey": "HundredGigE0/2/0/27",
+          "label": "HundredGigE0/2/0/27",
+          "inventoryId": "comp-port-9000100",
+          "physicalIndex": 9000100,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/27"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p28",
+          "slotKey": "HundredGigE0/2/0/28",
+          "label": "HundredGigE0/2/0/28",
+          "inventoryId": "comp-port-9000101",
+          "physicalIndex": 9000101,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/28"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p29",
+          "slotKey": "HundredGigE0/2/0/29",
+          "label": "HundredGigE0/2/0/29",
+          "inventoryId": "comp-port-9000102",
+          "physicalIndex": 9000102,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/29"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p30",
+          "slotKey": "HundredGigE0/2/0/30",
+          "label": "HundredGigE0/2/0/30",
+          "inventoryId": "comp-port-9000103",
+          "physicalIndex": 9000103,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/30"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p31",
+          "slotKey": "HundredGigE0/2/0/31",
+          "label": "HundredGigE0/2/0/31",
+          "inventoryId": "comp-port-9000104",
+          "physicalIndex": 9000104,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/31"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p32",
+          "slotKey": "HundredGigE0/2/0/32",
+          "label": "HundredGigE0/2/0/32",
+          "inventoryId": "comp-port-9000105",
+          "physicalIndex": 9000105,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/32"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p33",
+          "slotKey": "HundredGigE0/2/0/33",
+          "label": "HundredGigE0/2/0/33",
+          "inventoryId": "comp-port-9000106",
+          "physicalIndex": 9000106,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/33"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p34",
+          "slotKey": "HundredGigE0/2/0/34",
+          "label": "HundredGigE0/2/0/34",
+          "inventoryId": "comp-port-9000107",
+          "physicalIndex": 9000107,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 368.7,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/34"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-2-p35",
+          "slotKey": "HundredGigE0/2/0/35",
+          "label": "HundredGigE0/2/0/35",
+          "inventoryId": "comp-port-9000108",
+          "physicalIndex": 9000108,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 429.8,
+            "w": 34.1,
+            "h": 29.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/2/0/35"
           }
         },
         {
@@ -75,17 +2034,670 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-3",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 10.2,
             "y": 497.0,
-            "w": 992.5,
-            "h": 143.4
+            "w": 1586.9,
+            "h": 335.4
           },
           "metadata": {
             "alias": 3,
             "fillerTypeId": "NC55-36X100G-FILLER",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "NC55-36X100G"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-36X100G.svg",
+            "typeId": "NC55-36X100G"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p0",
+          "slotKey": "HundredGigE0/3/0/0",
+          "label": "HundredGigE0/3/0/0",
+          "inventoryId": "comp-port-9000109",
+          "physicalIndex": 9000109,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p1",
+          "slotKey": "HundredGigE0/3/0/1",
+          "label": "HundredGigE0/3/0/1",
+          "inventoryId": "comp-port-9000110",
+          "physicalIndex": 9000110,
+          "empty": false,
+          "bounds": {
+            "x": 97.9,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p2",
+          "slotKey": "HundredGigE0/3/0/2",
+          "label": "HundredGigE0/3/0/2",
+          "inventoryId": "comp-port-9000111",
+          "physicalIndex": 9000111,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p3",
+          "slotKey": "HundredGigE0/3/0/3",
+          "label": "HundredGigE0/3/0/3",
+          "inventoryId": "comp-port-9000112",
+          "physicalIndex": 9000112,
+          "empty": false,
+          "bounds": {
+            "x": 180.8,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p4",
+          "slotKey": "HundredGigE0/3/0/4",
+          "label": "HundredGigE0/3/0/4",
+          "inventoryId": "comp-port-9000113",
+          "physicalIndex": 9000113,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p5",
+          "slotKey": "HundredGigE0/3/0/5",
+          "label": "HundredGigE0/3/0/5",
+          "inventoryId": "comp-port-9000114",
+          "physicalIndex": 9000114,
+          "empty": false,
+          "bounds": {
+            "x": 263.6,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p6",
+          "slotKey": "HundredGigE0/3/0/6",
+          "label": "HundredGigE0/3/0/6",
+          "inventoryId": "comp-port-9000115",
+          "physicalIndex": 9000115,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p7",
+          "slotKey": "HundredGigE0/3/0/7",
+          "label": "HundredGigE0/3/0/7",
+          "inventoryId": "comp-port-9000116",
+          "physicalIndex": 9000116,
+          "empty": false,
+          "bounds": {
+            "x": 346.5,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p8",
+          "slotKey": "HundredGigE0/3/0/8",
+          "label": "HundredGigE0/3/0/8",
+          "inventoryId": "comp-port-9000117",
+          "physicalIndex": 9000117,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p9",
+          "slotKey": "HundredGigE0/3/0/9",
+          "label": "HundredGigE0/3/0/9",
+          "inventoryId": "comp-port-9000118",
+          "physicalIndex": 9000118,
+          "empty": false,
+          "bounds": {
+            "x": 429.3,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p10",
+          "slotKey": "HundredGigE0/3/0/10",
+          "label": "HundredGigE0/3/0/10",
+          "inventoryId": "comp-port-9000119",
+          "physicalIndex": 9000119,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p11",
+          "slotKey": "HundredGigE0/3/0/11",
+          "label": "HundredGigE0/3/0/11",
+          "inventoryId": "comp-port-9000120",
+          "physicalIndex": 9000120,
+          "empty": false,
+          "bounds": {
+            "x": 512.2,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p12",
+          "slotKey": "HundredGigE0/3/0/12",
+          "label": "HundredGigE0/3/0/12",
+          "inventoryId": "comp-port-9000121",
+          "physicalIndex": 9000121,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p13",
+          "slotKey": "HundredGigE0/3/0/13",
+          "label": "HundredGigE0/3/0/13",
+          "inventoryId": "comp-port-9000122",
+          "physicalIndex": 9000122,
+          "empty": false,
+          "bounds": {
+            "x": 590.2,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p14",
+          "slotKey": "HundredGigE0/3/0/14",
+          "label": "HundredGigE0/3/0/14",
+          "inventoryId": "comp-port-9000123",
+          "physicalIndex": 9000123,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p15",
+          "slotKey": "HundredGigE0/3/0/15",
+          "label": "HundredGigE0/3/0/15",
+          "inventoryId": "comp-port-9000124",
+          "physicalIndex": 9000124,
+          "empty": false,
+          "bounds": {
+            "x": 668.2,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p16",
+          "slotKey": "HundredGigE0/3/0/16",
+          "label": "HundredGigE0/3/0/16",
+          "inventoryId": "comp-port-9000125",
+          "physicalIndex": 9000125,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p17",
+          "slotKey": "HundredGigE0/3/0/17",
+          "label": "HundredGigE0/3/0/17",
+          "inventoryId": "comp-port-9000126",
+          "physicalIndex": 9000126,
+          "empty": false,
+          "bounds": {
+            "x": 746.1,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/17"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p18",
+          "slotKey": "HundredGigE0/3/0/18",
+          "label": "HundredGigE0/3/0/18",
+          "inventoryId": "comp-port-9000127",
+          "physicalIndex": 9000127,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/18"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p19",
+          "slotKey": "HundredGigE0/3/0/19",
+          "label": "HundredGigE0/3/0/19",
+          "inventoryId": "comp-port-9000128",
+          "physicalIndex": 9000128,
+          "empty": false,
+          "bounds": {
+            "x": 824.1,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/19"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p20",
+          "slotKey": "HundredGigE0/3/0/20",
+          "label": "HundredGigE0/3/0/20",
+          "inventoryId": "comp-port-9000129",
+          "physicalIndex": 9000129,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/20"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p21",
+          "slotKey": "HundredGigE0/3/0/21",
+          "label": "HundredGigE0/3/0/21",
+          "inventoryId": "comp-port-9000130",
+          "physicalIndex": 9000130,
+          "empty": false,
+          "bounds": {
+            "x": 911.8,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/21"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p22",
+          "slotKey": "HundredGigE0/3/0/22",
+          "label": "HundredGigE0/3/0/22",
+          "inventoryId": "comp-port-9000131",
+          "physicalIndex": 9000131,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/22"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p23",
+          "slotKey": "HundredGigE0/3/0/23",
+          "label": "HundredGigE0/3/0/23",
+          "inventoryId": "comp-port-9000132",
+          "physicalIndex": 9000132,
+          "empty": false,
+          "bounds": {
+            "x": 994.7,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/23"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p24",
+          "slotKey": "HundredGigE0/3/0/24",
+          "label": "HundredGigE0/3/0/24",
+          "inventoryId": "comp-port-9000133",
+          "physicalIndex": 9000133,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/24"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p25",
+          "slotKey": "HundredGigE0/3/0/25",
+          "label": "HundredGigE0/3/0/25",
+          "inventoryId": "comp-port-9000134",
+          "physicalIndex": 9000134,
+          "empty": false,
+          "bounds": {
+            "x": 1077.6,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/25"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p26",
+          "slotKey": "HundredGigE0/3/0/26",
+          "label": "HundredGigE0/3/0/26",
+          "inventoryId": "comp-port-9000135",
+          "physicalIndex": 9000135,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/26"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p27",
+          "slotKey": "HundredGigE0/3/0/27",
+          "label": "HundredGigE0/3/0/27",
+          "inventoryId": "comp-port-9000136",
+          "physicalIndex": 9000136,
+          "empty": false,
+          "bounds": {
+            "x": 1160.4,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/27"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p28",
+          "slotKey": "HundredGigE0/3/0/28",
+          "label": "HundredGigE0/3/0/28",
+          "inventoryId": "comp-port-9000137",
+          "physicalIndex": 9000137,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/28"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p29",
+          "slotKey": "HundredGigE0/3/0/29",
+          "label": "HundredGigE0/3/0/29",
+          "inventoryId": "comp-port-9000138",
+          "physicalIndex": 9000138,
+          "empty": false,
+          "bounds": {
+            "x": 1238.4,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/29"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p30",
+          "slotKey": "HundredGigE0/3/0/30",
+          "label": "HundredGigE0/3/0/30",
+          "inventoryId": "comp-port-9000139",
+          "physicalIndex": 9000139,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/30"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p31",
+          "slotKey": "HundredGigE0/3/0/31",
+          "label": "HundredGigE0/3/0/31",
+          "inventoryId": "comp-port-9000140",
+          "physicalIndex": 9000140,
+          "empty": false,
+          "bounds": {
+            "x": 1321.2,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/31"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p32",
+          "slotKey": "HundredGigE0/3/0/32",
+          "label": "HundredGigE0/3/0/32",
+          "inventoryId": "comp-port-9000141",
+          "physicalIndex": 9000141,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/32"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p33",
+          "slotKey": "HundredGigE0/3/0/33",
+          "label": "HundredGigE0/3/0/33",
+          "inventoryId": "comp-port-9000142",
+          "physicalIndex": 9000142,
+          "empty": false,
+          "bounds": {
+            "x": 1404.1,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/33"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p34",
+          "slotKey": "HundredGigE0/3/0/34",
+          "label": "HundredGigE0/3/0/34",
+          "inventoryId": "comp-port-9000143",
+          "physicalIndex": 9000143,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 550.7,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/34"
+          }
+        },
+        {
+          "id": "hs-ncs5504-comp-front-3-p35",
+          "slotKey": "HundredGigE0/3/0/35",
+          "label": "HundredGigE0/3/0/35",
+          "inventoryId": "comp-port-9000144",
+          "physicalIndex": 9000144,
+          "empty": false,
+          "bounds": {
+            "x": 1487.0,
+            "y": 691.5,
+            "w": 34.1,
+            "h": 67.1
+          },
+          "metadata": {
+            "card": "NC55-36X100G",
+            "port": "HundredGigE0/3/0/35"
           }
         },
         {
@@ -98,13 +2710,17 @@
           "bounds": {
             "x": 112.0,
             "y": 664.3,
-            "w": 693.9,
-            "h": 143.4
+            "w": 708.7,
+            "h": 480.0
           },
           "metadata": {
             "alias": 4,
             "fillerTypeId": "NC55-RP-BLNK",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-RP-FILLER.svg",
+            "typeId": "NC55-RP-BLNK"
           }
         },
         {
@@ -117,13 +2733,17 @@
           "bounds": {
             "x": 850.2,
             "y": 664.3,
-            "w": 748.4,
-            "h": 143.4
+            "w": 1013.6,
+            "h": 480.0
           },
           "metadata": {
             "alias": 5,
             "fillerTypeId": "NC55-RP-BLNK",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-RP-FILLER.svg",
+            "typeId": "NC55-RP-BLNK"
           }
         },
         {
@@ -136,13 +2756,17 @@
           "bounds": {
             "x": 40.7,
             "y": 846.3,
-            "w": 992.5,
-            "h": 143.4
+            "w": 1013.6,
+            "h": 146.4
           },
           "metadata": {
             "alias": 6,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -155,13 +2779,17 @@
           "bounds": {
             "x": 40.7,
             "y": 998.9,
-            "w": 992.5,
-            "h": 143.4
+            "w": 1013.6,
+            "h": 158.8
           },
           "metadata": {
             "alias": 7,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -174,13 +2802,17 @@
           "bounds": {
             "x": 1096.6,
             "y": 846.3,
-            "w": 516.8,
-            "h": 143.4
+            "w": 1013.6,
+            "h": 146.4
           },
           "metadata": {
             "alias": 8,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         },
         {
@@ -193,13 +2825,17 @@
           "bounds": {
             "x": 1096.6,
             "y": 998.9,
-            "w": 516.8,
-            "h": 143.4
+            "w": 1013.6,
+            "h": 158.8
           },
           "metadata": {
             "alias": 9,
             "fillerTypeId": "NC55-PS-BLNK",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs5504/NC55-PWR-3KW-AC-FILLER.svg",
+            "typeId": "NC55-PS-BLNK"
           }
         }
       ]
@@ -288,46 +2924,918 @@
   "componentsById": {
     "comp-front-0": {
       "id": "comp-front-0",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "NC55-36X100G",
+      "displayName": "NC55-36X100G",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "NC55-36X100G",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000001",
+          "name": "HundredGigE0/0/0/0",
+          "portId": 9000001
+        },
+        {
+          "id": "9000002",
+          "name": "HundredGigE0/0/0/1",
+          "portId": 9000002
+        },
+        {
+          "id": "9000003",
+          "name": "HundredGigE0/0/0/2",
+          "portId": 9000003
+        },
+        {
+          "id": "9000004",
+          "name": "HundredGigE0/0/0/3",
+          "portId": 9000004
+        },
+        {
+          "id": "9000005",
+          "name": "HundredGigE0/0/0/4",
+          "portId": 9000005
+        },
+        {
+          "id": "9000006",
+          "name": "HundredGigE0/0/0/5",
+          "portId": 9000006
+        },
+        {
+          "id": "9000007",
+          "name": "HundredGigE0/0/0/6",
+          "portId": 9000007
+        },
+        {
+          "id": "9000008",
+          "name": "HundredGigE0/0/0/7",
+          "portId": 9000008
+        },
+        {
+          "id": "9000009",
+          "name": "HundredGigE0/0/0/8",
+          "portId": 9000009
+        },
+        {
+          "id": "9000010",
+          "name": "HundredGigE0/0/0/9",
+          "portId": 9000010
+        },
+        {
+          "id": "9000011",
+          "name": "HundredGigE0/0/0/10",
+          "portId": 9000011
+        },
+        {
+          "id": "9000012",
+          "name": "HundredGigE0/0/0/11",
+          "portId": 9000012
+        },
+        {
+          "id": "9000013",
+          "name": "HundredGigE0/0/0/12",
+          "portId": 9000013
+        },
+        {
+          "id": "9000014",
+          "name": "HundredGigE0/0/0/13",
+          "portId": 9000014
+        },
+        {
+          "id": "9000015",
+          "name": "HundredGigE0/0/0/14",
+          "portId": 9000015
+        },
+        {
+          "id": "9000016",
+          "name": "HundredGigE0/0/0/15",
+          "portId": 9000016
+        },
+        {
+          "id": "9000017",
+          "name": "HundredGigE0/0/0/16",
+          "portId": 9000017
+        },
+        {
+          "id": "9000018",
+          "name": "HundredGigE0/0/0/17",
+          "portId": 9000018
+        },
+        {
+          "id": "9000019",
+          "name": "HundredGigE0/0/0/18",
+          "portId": 9000019
+        },
+        {
+          "id": "9000020",
+          "name": "HundredGigE0/0/0/19",
+          "portId": 9000020
+        },
+        {
+          "id": "9000021",
+          "name": "HundredGigE0/0/0/20",
+          "portId": 9000021
+        },
+        {
+          "id": "9000022",
+          "name": "HundredGigE0/0/0/21",
+          "portId": 9000022
+        },
+        {
+          "id": "9000023",
+          "name": "HundredGigE0/0/0/22",
+          "portId": 9000023
+        },
+        {
+          "id": "9000024",
+          "name": "HundredGigE0/0/0/23",
+          "portId": 9000024
+        },
+        {
+          "id": "9000025",
+          "name": "HundredGigE0/0/0/24",
+          "portId": 9000025
+        },
+        {
+          "id": "9000026",
+          "name": "HundredGigE0/0/0/25",
+          "portId": 9000026
+        },
+        {
+          "id": "9000027",
+          "name": "HundredGigE0/0/0/26",
+          "portId": 9000027
+        },
+        {
+          "id": "9000028",
+          "name": "HundredGigE0/0/0/27",
+          "portId": 9000028
+        },
+        {
+          "id": "9000029",
+          "name": "HundredGigE0/0/0/28",
+          "portId": 9000029
+        },
+        {
+          "id": "9000030",
+          "name": "HundredGigE0/0/0/29",
+          "portId": 9000030
+        },
+        {
+          "id": "9000031",
+          "name": "HundredGigE0/0/0/30",
+          "portId": 9000031
+        },
+        {
+          "id": "9000032",
+          "name": "HundredGigE0/0/0/31",
+          "portId": 9000032
+        },
+        {
+          "id": "9000033",
+          "name": "HundredGigE0/0/0/32",
+          "portId": 9000033
+        },
+        {
+          "id": "9000034",
+          "name": "HundredGigE0/0/0/33",
+          "portId": 9000034
+        },
+        {
+          "id": "9000035",
+          "name": "HundredGigE0/0/0/34",
+          "portId": 9000035
+        },
+        {
+          "id": "9000036",
+          "name": "HundredGigE0/0/0/35",
+          "portId": 9000036
+        }
+      ],
+      "childIds": [
+        "comp-port-9000001",
+        "comp-port-9000002",
+        "comp-port-9000003",
+        "comp-port-9000004",
+        "comp-port-9000005",
+        "comp-port-9000006",
+        "comp-port-9000007",
+        "comp-port-9000008",
+        "comp-port-9000009",
+        "comp-port-9000010",
+        "comp-port-9000011",
+        "comp-port-9000012",
+        "comp-port-9000013",
+        "comp-port-9000014",
+        "comp-port-9000015",
+        "comp-port-9000016",
+        "comp-port-9000017",
+        "comp-port-9000018",
+        "comp-port-9000019",
+        "comp-port-9000020",
+        "comp-port-9000021",
+        "comp-port-9000022",
+        "comp-port-9000023",
+        "comp-port-9000024",
+        "comp-port-9000025",
+        "comp-port-9000026",
+        "comp-port-9000027",
+        "comp-port-9000028",
+        "comp-port-9000029",
+        "comp-port-9000030",
+        "comp-port-9000031",
+        "comp-port-9000032",
+        "comp-port-9000033",
+        "comp-port-9000034",
+        "comp-port-9000035",
+        "comp-port-9000036"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-1": {
       "id": "comp-front-1",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "NC55-36X100G",
+      "displayName": "NC55-36X100G",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "NC55-36X100G",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000037",
+          "name": "HundredGigE0/1/0/0",
+          "portId": 9000037
+        },
+        {
+          "id": "9000038",
+          "name": "HundredGigE0/1/0/1",
+          "portId": 9000038
+        },
+        {
+          "id": "9000039",
+          "name": "HundredGigE0/1/0/2",
+          "portId": 9000039
+        },
+        {
+          "id": "9000040",
+          "name": "HundredGigE0/1/0/3",
+          "portId": 9000040
+        },
+        {
+          "id": "9000041",
+          "name": "HundredGigE0/1/0/4",
+          "portId": 9000041
+        },
+        {
+          "id": "9000042",
+          "name": "HundredGigE0/1/0/5",
+          "portId": 9000042
+        },
+        {
+          "id": "9000043",
+          "name": "HundredGigE0/1/0/6",
+          "portId": 9000043
+        },
+        {
+          "id": "9000044",
+          "name": "HundredGigE0/1/0/7",
+          "portId": 9000044
+        },
+        {
+          "id": "9000045",
+          "name": "HundredGigE0/1/0/8",
+          "portId": 9000045
+        },
+        {
+          "id": "9000046",
+          "name": "HundredGigE0/1/0/9",
+          "portId": 9000046
+        },
+        {
+          "id": "9000047",
+          "name": "HundredGigE0/1/0/10",
+          "portId": 9000047
+        },
+        {
+          "id": "9000048",
+          "name": "HundredGigE0/1/0/11",
+          "portId": 9000048
+        },
+        {
+          "id": "9000049",
+          "name": "HundredGigE0/1/0/12",
+          "portId": 9000049
+        },
+        {
+          "id": "9000050",
+          "name": "HundredGigE0/1/0/13",
+          "portId": 9000050
+        },
+        {
+          "id": "9000051",
+          "name": "HundredGigE0/1/0/14",
+          "portId": 9000051
+        },
+        {
+          "id": "9000052",
+          "name": "HundredGigE0/1/0/15",
+          "portId": 9000052
+        },
+        {
+          "id": "9000053",
+          "name": "HundredGigE0/1/0/16",
+          "portId": 9000053
+        },
+        {
+          "id": "9000054",
+          "name": "HundredGigE0/1/0/17",
+          "portId": 9000054
+        },
+        {
+          "id": "9000055",
+          "name": "HundredGigE0/1/0/18",
+          "portId": 9000055
+        },
+        {
+          "id": "9000056",
+          "name": "HundredGigE0/1/0/19",
+          "portId": 9000056
+        },
+        {
+          "id": "9000057",
+          "name": "HundredGigE0/1/0/20",
+          "portId": 9000057
+        },
+        {
+          "id": "9000058",
+          "name": "HundredGigE0/1/0/21",
+          "portId": 9000058
+        },
+        {
+          "id": "9000059",
+          "name": "HundredGigE0/1/0/22",
+          "portId": 9000059
+        },
+        {
+          "id": "9000060",
+          "name": "HundredGigE0/1/0/23",
+          "portId": 9000060
+        },
+        {
+          "id": "9000061",
+          "name": "HundredGigE0/1/0/24",
+          "portId": 9000061
+        },
+        {
+          "id": "9000062",
+          "name": "HundredGigE0/1/0/25",
+          "portId": 9000062
+        },
+        {
+          "id": "9000063",
+          "name": "HundredGigE0/1/0/26",
+          "portId": 9000063
+        },
+        {
+          "id": "9000064",
+          "name": "HundredGigE0/1/0/27",
+          "portId": 9000064
+        },
+        {
+          "id": "9000065",
+          "name": "HundredGigE0/1/0/28",
+          "portId": 9000065
+        },
+        {
+          "id": "9000066",
+          "name": "HundredGigE0/1/0/29",
+          "portId": 9000066
+        },
+        {
+          "id": "9000067",
+          "name": "HundredGigE0/1/0/30",
+          "portId": 9000067
+        },
+        {
+          "id": "9000068",
+          "name": "HundredGigE0/1/0/31",
+          "portId": 9000068
+        },
+        {
+          "id": "9000069",
+          "name": "HundredGigE0/1/0/32",
+          "portId": 9000069
+        },
+        {
+          "id": "9000070",
+          "name": "HundredGigE0/1/0/33",
+          "portId": 9000070
+        },
+        {
+          "id": "9000071",
+          "name": "HundredGigE0/1/0/34",
+          "portId": 9000071
+        },
+        {
+          "id": "9000072",
+          "name": "HundredGigE0/1/0/35",
+          "portId": 9000072
+        }
+      ],
+      "childIds": [
+        "comp-port-9000037",
+        "comp-port-9000038",
+        "comp-port-9000039",
+        "comp-port-9000040",
+        "comp-port-9000041",
+        "comp-port-9000042",
+        "comp-port-9000043",
+        "comp-port-9000044",
+        "comp-port-9000045",
+        "comp-port-9000046",
+        "comp-port-9000047",
+        "comp-port-9000048",
+        "comp-port-9000049",
+        "comp-port-9000050",
+        "comp-port-9000051",
+        "comp-port-9000052",
+        "comp-port-9000053",
+        "comp-port-9000054",
+        "comp-port-9000055",
+        "comp-port-9000056",
+        "comp-port-9000057",
+        "comp-port-9000058",
+        "comp-port-9000059",
+        "comp-port-9000060",
+        "comp-port-9000061",
+        "comp-port-9000062",
+        "comp-port-9000063",
+        "comp-port-9000064",
+        "comp-port-9000065",
+        "comp-port-9000066",
+        "comp-port-9000067",
+        "comp-port-9000068",
+        "comp-port-9000069",
+        "comp-port-9000070",
+        "comp-port-9000071",
+        "comp-port-9000072"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-2": {
       "id": "comp-front-2",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "NC55-36X100G",
+      "displayName": "NC55-36X100G",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "NC55-36X100G",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000073",
+          "name": "HundredGigE0/2/0/0",
+          "portId": 9000073
+        },
+        {
+          "id": "9000074",
+          "name": "HundredGigE0/2/0/1",
+          "portId": 9000074
+        },
+        {
+          "id": "9000075",
+          "name": "HundredGigE0/2/0/2",
+          "portId": 9000075
+        },
+        {
+          "id": "9000076",
+          "name": "HundredGigE0/2/0/3",
+          "portId": 9000076
+        },
+        {
+          "id": "9000077",
+          "name": "HundredGigE0/2/0/4",
+          "portId": 9000077
+        },
+        {
+          "id": "9000078",
+          "name": "HundredGigE0/2/0/5",
+          "portId": 9000078
+        },
+        {
+          "id": "9000079",
+          "name": "HundredGigE0/2/0/6",
+          "portId": 9000079
+        },
+        {
+          "id": "9000080",
+          "name": "HundredGigE0/2/0/7",
+          "portId": 9000080
+        },
+        {
+          "id": "9000081",
+          "name": "HundredGigE0/2/0/8",
+          "portId": 9000081
+        },
+        {
+          "id": "9000082",
+          "name": "HundredGigE0/2/0/9",
+          "portId": 9000082
+        },
+        {
+          "id": "9000083",
+          "name": "HundredGigE0/2/0/10",
+          "portId": 9000083
+        },
+        {
+          "id": "9000084",
+          "name": "HundredGigE0/2/0/11",
+          "portId": 9000084
+        },
+        {
+          "id": "9000085",
+          "name": "HundredGigE0/2/0/12",
+          "portId": 9000085
+        },
+        {
+          "id": "9000086",
+          "name": "HundredGigE0/2/0/13",
+          "portId": 9000086
+        },
+        {
+          "id": "9000087",
+          "name": "HundredGigE0/2/0/14",
+          "portId": 9000087
+        },
+        {
+          "id": "9000088",
+          "name": "HundredGigE0/2/0/15",
+          "portId": 9000088
+        },
+        {
+          "id": "9000089",
+          "name": "HundredGigE0/2/0/16",
+          "portId": 9000089
+        },
+        {
+          "id": "9000090",
+          "name": "HundredGigE0/2/0/17",
+          "portId": 9000090
+        },
+        {
+          "id": "9000091",
+          "name": "HundredGigE0/2/0/18",
+          "portId": 9000091
+        },
+        {
+          "id": "9000092",
+          "name": "HundredGigE0/2/0/19",
+          "portId": 9000092
+        },
+        {
+          "id": "9000093",
+          "name": "HundredGigE0/2/0/20",
+          "portId": 9000093
+        },
+        {
+          "id": "9000094",
+          "name": "HundredGigE0/2/0/21",
+          "portId": 9000094
+        },
+        {
+          "id": "9000095",
+          "name": "HundredGigE0/2/0/22",
+          "portId": 9000095
+        },
+        {
+          "id": "9000096",
+          "name": "HundredGigE0/2/0/23",
+          "portId": 9000096
+        },
+        {
+          "id": "9000097",
+          "name": "HundredGigE0/2/0/24",
+          "portId": 9000097
+        },
+        {
+          "id": "9000098",
+          "name": "HundredGigE0/2/0/25",
+          "portId": 9000098
+        },
+        {
+          "id": "9000099",
+          "name": "HundredGigE0/2/0/26",
+          "portId": 9000099
+        },
+        {
+          "id": "9000100",
+          "name": "HundredGigE0/2/0/27",
+          "portId": 9000100
+        },
+        {
+          "id": "9000101",
+          "name": "HundredGigE0/2/0/28",
+          "portId": 9000101
+        },
+        {
+          "id": "9000102",
+          "name": "HundredGigE0/2/0/29",
+          "portId": 9000102
+        },
+        {
+          "id": "9000103",
+          "name": "HundredGigE0/2/0/30",
+          "portId": 9000103
+        },
+        {
+          "id": "9000104",
+          "name": "HundredGigE0/2/0/31",
+          "portId": 9000104
+        },
+        {
+          "id": "9000105",
+          "name": "HundredGigE0/2/0/32",
+          "portId": 9000105
+        },
+        {
+          "id": "9000106",
+          "name": "HundredGigE0/2/0/33",
+          "portId": 9000106
+        },
+        {
+          "id": "9000107",
+          "name": "HundredGigE0/2/0/34",
+          "portId": 9000107
+        },
+        {
+          "id": "9000108",
+          "name": "HundredGigE0/2/0/35",
+          "portId": 9000108
+        }
+      ],
+      "childIds": [
+        "comp-port-9000073",
+        "comp-port-9000074",
+        "comp-port-9000075",
+        "comp-port-9000076",
+        "comp-port-9000077",
+        "comp-port-9000078",
+        "comp-port-9000079",
+        "comp-port-9000080",
+        "comp-port-9000081",
+        "comp-port-9000082",
+        "comp-port-9000083",
+        "comp-port-9000084",
+        "comp-port-9000085",
+        "comp-port-9000086",
+        "comp-port-9000087",
+        "comp-port-9000088",
+        "comp-port-9000089",
+        "comp-port-9000090",
+        "comp-port-9000091",
+        "comp-port-9000092",
+        "comp-port-9000093",
+        "comp-port-9000094",
+        "comp-port-9000095",
+        "comp-port-9000096",
+        "comp-port-9000097",
+        "comp-port-9000098",
+        "comp-port-9000099",
+        "comp-port-9000100",
+        "comp-port-9000101",
+        "comp-port-9000102",
+        "comp-port-9000103",
+        "comp-port-9000104",
+        "comp-port-9000105",
+        "comp-port-9000106",
+        "comp-port-9000107",
+        "comp-port-9000108"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-3": {
       "id": "comp-front-3",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "NC55-36X100G",
+      "displayName": "NC55-36X100G",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "NC55-36X100G",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000109",
+          "name": "HundredGigE0/3/0/0",
+          "portId": 9000109
+        },
+        {
+          "id": "9000110",
+          "name": "HundredGigE0/3/0/1",
+          "portId": 9000110
+        },
+        {
+          "id": "9000111",
+          "name": "HundredGigE0/3/0/2",
+          "portId": 9000111
+        },
+        {
+          "id": "9000112",
+          "name": "HundredGigE0/3/0/3",
+          "portId": 9000112
+        },
+        {
+          "id": "9000113",
+          "name": "HundredGigE0/3/0/4",
+          "portId": 9000113
+        },
+        {
+          "id": "9000114",
+          "name": "HundredGigE0/3/0/5",
+          "portId": 9000114
+        },
+        {
+          "id": "9000115",
+          "name": "HundredGigE0/3/0/6",
+          "portId": 9000115
+        },
+        {
+          "id": "9000116",
+          "name": "HundredGigE0/3/0/7",
+          "portId": 9000116
+        },
+        {
+          "id": "9000117",
+          "name": "HundredGigE0/3/0/8",
+          "portId": 9000117
+        },
+        {
+          "id": "9000118",
+          "name": "HundredGigE0/3/0/9",
+          "portId": 9000118
+        },
+        {
+          "id": "9000119",
+          "name": "HundredGigE0/3/0/10",
+          "portId": 9000119
+        },
+        {
+          "id": "9000120",
+          "name": "HundredGigE0/3/0/11",
+          "portId": 9000120
+        },
+        {
+          "id": "9000121",
+          "name": "HundredGigE0/3/0/12",
+          "portId": 9000121
+        },
+        {
+          "id": "9000122",
+          "name": "HundredGigE0/3/0/13",
+          "portId": 9000122
+        },
+        {
+          "id": "9000123",
+          "name": "HundredGigE0/3/0/14",
+          "portId": 9000123
+        },
+        {
+          "id": "9000124",
+          "name": "HundredGigE0/3/0/15",
+          "portId": 9000124
+        },
+        {
+          "id": "9000125",
+          "name": "HundredGigE0/3/0/16",
+          "portId": 9000125
+        },
+        {
+          "id": "9000126",
+          "name": "HundredGigE0/3/0/17",
+          "portId": 9000126
+        },
+        {
+          "id": "9000127",
+          "name": "HundredGigE0/3/0/18",
+          "portId": 9000127
+        },
+        {
+          "id": "9000128",
+          "name": "HundredGigE0/3/0/19",
+          "portId": 9000128
+        },
+        {
+          "id": "9000129",
+          "name": "HundredGigE0/3/0/20",
+          "portId": 9000129
+        },
+        {
+          "id": "9000130",
+          "name": "HundredGigE0/3/0/21",
+          "portId": 9000130
+        },
+        {
+          "id": "9000131",
+          "name": "HundredGigE0/3/0/22",
+          "portId": 9000131
+        },
+        {
+          "id": "9000132",
+          "name": "HundredGigE0/3/0/23",
+          "portId": 9000132
+        },
+        {
+          "id": "9000133",
+          "name": "HundredGigE0/3/0/24",
+          "portId": 9000133
+        },
+        {
+          "id": "9000134",
+          "name": "HundredGigE0/3/0/25",
+          "portId": 9000134
+        },
+        {
+          "id": "9000135",
+          "name": "HundredGigE0/3/0/26",
+          "portId": 9000135
+        },
+        {
+          "id": "9000136",
+          "name": "HundredGigE0/3/0/27",
+          "portId": 9000136
+        },
+        {
+          "id": "9000137",
+          "name": "HundredGigE0/3/0/28",
+          "portId": 9000137
+        },
+        {
+          "id": "9000138",
+          "name": "HundredGigE0/3/0/29",
+          "portId": 9000138
+        },
+        {
+          "id": "9000139",
+          "name": "HundredGigE0/3/0/30",
+          "portId": 9000139
+        },
+        {
+          "id": "9000140",
+          "name": "HundredGigE0/3/0/31",
+          "portId": 9000140
+        },
+        {
+          "id": "9000141",
+          "name": "HundredGigE0/3/0/32",
+          "portId": 9000141
+        },
+        {
+          "id": "9000142",
+          "name": "HundredGigE0/3/0/33",
+          "portId": 9000142
+        },
+        {
+          "id": "9000143",
+          "name": "HundredGigE0/3/0/34",
+          "portId": 9000143
+        },
+        {
+          "id": "9000144",
+          "name": "HundredGigE0/3/0/35",
+          "portId": 9000144
+        }
+      ],
+      "childIds": [
+        "comp-port-9000109",
+        "comp-port-9000110",
+        "comp-port-9000111",
+        "comp-port-9000112",
+        "comp-port-9000113",
+        "comp-port-9000114",
+        "comp-port-9000115",
+        "comp-port-9000116",
+        "comp-port-9000117",
+        "comp-port-9000118",
+        "comp-port-9000119",
+        "comp-port-9000120",
+        "comp-port-9000121",
+        "comp-port-9000122",
+        "comp-port-9000123",
+        "comp-port-9000124",
+        "comp-port-9000125",
+        "comp-port-9000126",
+        "comp-port-9000127",
+        "comp-port-9000128",
+        "comp-port-9000129",
+        "comp-port-9000130",
+        "comp-port-9000131",
+        "comp-port-9000132",
+        "comp-port-9000133",
+        "comp-port-9000134",
+        "comp-port-9000135",
+        "comp-port-9000136",
+        "comp-port-9000137",
+        "comp-port-9000138",
+        "comp-port-9000139",
+        "comp-port-9000140",
+        "comp-port-9000141",
+        "comp-port-9000142",
+        "comp-port-9000143",
+        "comp-port-9000144"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-4": {
@@ -415,6 +3923,1446 @@
         "comp-front-8",
         "comp-front-9"
       ]
+    },
+    "comp-port-9000001": {
+      "id": "comp-port-9000001",
+      "name": "HundredGigE0/0/0/0",
+      "displayName": "HundredGigE0/0/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000002": {
+      "id": "comp-port-9000002",
+      "name": "HundredGigE0/0/0/1",
+      "displayName": "HundredGigE0/0/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000003": {
+      "id": "comp-port-9000003",
+      "name": "HundredGigE0/0/0/2",
+      "displayName": "HundredGigE0/0/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000004": {
+      "id": "comp-port-9000004",
+      "name": "HundredGigE0/0/0/3",
+      "displayName": "HundredGigE0/0/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000005": {
+      "id": "comp-port-9000005",
+      "name": "HundredGigE0/0/0/4",
+      "displayName": "HundredGigE0/0/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000006": {
+      "id": "comp-port-9000006",
+      "name": "HundredGigE0/0/0/5",
+      "displayName": "HundredGigE0/0/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000007": {
+      "id": "comp-port-9000007",
+      "name": "HundredGigE0/0/0/6",
+      "displayName": "HundredGigE0/0/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000008": {
+      "id": "comp-port-9000008",
+      "name": "HundredGigE0/0/0/7",
+      "displayName": "HundredGigE0/0/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000009": {
+      "id": "comp-port-9000009",
+      "name": "HundredGigE0/0/0/8",
+      "displayName": "HundredGigE0/0/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000010": {
+      "id": "comp-port-9000010",
+      "name": "HundredGigE0/0/0/9",
+      "displayName": "HundredGigE0/0/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000011": {
+      "id": "comp-port-9000011",
+      "name": "HundredGigE0/0/0/10",
+      "displayName": "HundredGigE0/0/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000012": {
+      "id": "comp-port-9000012",
+      "name": "HundredGigE0/0/0/11",
+      "displayName": "HundredGigE0/0/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000013": {
+      "id": "comp-port-9000013",
+      "name": "HundredGigE0/0/0/12",
+      "displayName": "HundredGigE0/0/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000014": {
+      "id": "comp-port-9000014",
+      "name": "HundredGigE0/0/0/13",
+      "displayName": "HundredGigE0/0/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000015": {
+      "id": "comp-port-9000015",
+      "name": "HundredGigE0/0/0/14",
+      "displayName": "HundredGigE0/0/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000016": {
+      "id": "comp-port-9000016",
+      "name": "HundredGigE0/0/0/15",
+      "displayName": "HundredGigE0/0/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000017": {
+      "id": "comp-port-9000017",
+      "name": "HundredGigE0/0/0/16",
+      "displayName": "HundredGigE0/0/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000018": {
+      "id": "comp-port-9000018",
+      "name": "HundredGigE0/0/0/17",
+      "displayName": "HundredGigE0/0/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000019": {
+      "id": "comp-port-9000019",
+      "name": "HundredGigE0/0/0/18",
+      "displayName": "HundredGigE0/0/0/18",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000020": {
+      "id": "comp-port-9000020",
+      "name": "HundredGigE0/0/0/19",
+      "displayName": "HundredGigE0/0/0/19",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000021": {
+      "id": "comp-port-9000021",
+      "name": "HundredGigE0/0/0/20",
+      "displayName": "HundredGigE0/0/0/20",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000022": {
+      "id": "comp-port-9000022",
+      "name": "HundredGigE0/0/0/21",
+      "displayName": "HundredGigE0/0/0/21",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000023": {
+      "id": "comp-port-9000023",
+      "name": "HundredGigE0/0/0/22",
+      "displayName": "HundredGigE0/0/0/22",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000024": {
+      "id": "comp-port-9000024",
+      "name": "HundredGigE0/0/0/23",
+      "displayName": "HundredGigE0/0/0/23",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000025": {
+      "id": "comp-port-9000025",
+      "name": "HundredGigE0/0/0/24",
+      "displayName": "HundredGigE0/0/0/24",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000026": {
+      "id": "comp-port-9000026",
+      "name": "HundredGigE0/0/0/25",
+      "displayName": "HundredGigE0/0/0/25",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000027": {
+      "id": "comp-port-9000027",
+      "name": "HundredGigE0/0/0/26",
+      "displayName": "HundredGigE0/0/0/26",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000028": {
+      "id": "comp-port-9000028",
+      "name": "HundredGigE0/0/0/27",
+      "displayName": "HundredGigE0/0/0/27",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000029": {
+      "id": "comp-port-9000029",
+      "name": "HundredGigE0/0/0/28",
+      "displayName": "HundredGigE0/0/0/28",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000030": {
+      "id": "comp-port-9000030",
+      "name": "HundredGigE0/0/0/29",
+      "displayName": "HundredGigE0/0/0/29",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000031": {
+      "id": "comp-port-9000031",
+      "name": "HundredGigE0/0/0/30",
+      "displayName": "HundredGigE0/0/0/30",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000032": {
+      "id": "comp-port-9000032",
+      "name": "HundredGigE0/0/0/31",
+      "displayName": "HundredGigE0/0/0/31",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000033": {
+      "id": "comp-port-9000033",
+      "name": "HundredGigE0/0/0/32",
+      "displayName": "HundredGigE0/0/0/32",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000034": {
+      "id": "comp-port-9000034",
+      "name": "HundredGigE0/0/0/33",
+      "displayName": "HundredGigE0/0/0/33",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000035": {
+      "id": "comp-port-9000035",
+      "name": "HundredGigE0/0/0/34",
+      "displayName": "HundredGigE0/0/0/34",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000036": {
+      "id": "comp-port-9000036",
+      "name": "HundredGigE0/0/0/35",
+      "displayName": "HundredGigE0/0/0/35",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000037": {
+      "id": "comp-port-9000037",
+      "name": "HundredGigE0/1/0/0",
+      "displayName": "HundredGigE0/1/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000038": {
+      "id": "comp-port-9000038",
+      "name": "HundredGigE0/1/0/1",
+      "displayName": "HundredGigE0/1/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000039": {
+      "id": "comp-port-9000039",
+      "name": "HundredGigE0/1/0/2",
+      "displayName": "HundredGigE0/1/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000040": {
+      "id": "comp-port-9000040",
+      "name": "HundredGigE0/1/0/3",
+      "displayName": "HundredGigE0/1/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000041": {
+      "id": "comp-port-9000041",
+      "name": "HundredGigE0/1/0/4",
+      "displayName": "HundredGigE0/1/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000042": {
+      "id": "comp-port-9000042",
+      "name": "HundredGigE0/1/0/5",
+      "displayName": "HundredGigE0/1/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000043": {
+      "id": "comp-port-9000043",
+      "name": "HundredGigE0/1/0/6",
+      "displayName": "HundredGigE0/1/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000044": {
+      "id": "comp-port-9000044",
+      "name": "HundredGigE0/1/0/7",
+      "displayName": "HundredGigE0/1/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000045": {
+      "id": "comp-port-9000045",
+      "name": "HundredGigE0/1/0/8",
+      "displayName": "HundredGigE0/1/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000046": {
+      "id": "comp-port-9000046",
+      "name": "HundredGigE0/1/0/9",
+      "displayName": "HundredGigE0/1/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000047": {
+      "id": "comp-port-9000047",
+      "name": "HundredGigE0/1/0/10",
+      "displayName": "HundredGigE0/1/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000048": {
+      "id": "comp-port-9000048",
+      "name": "HundredGigE0/1/0/11",
+      "displayName": "HundredGigE0/1/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000049": {
+      "id": "comp-port-9000049",
+      "name": "HundredGigE0/1/0/12",
+      "displayName": "HundredGigE0/1/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000050": {
+      "id": "comp-port-9000050",
+      "name": "HundredGigE0/1/0/13",
+      "displayName": "HundredGigE0/1/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000051": {
+      "id": "comp-port-9000051",
+      "name": "HundredGigE0/1/0/14",
+      "displayName": "HundredGigE0/1/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000052": {
+      "id": "comp-port-9000052",
+      "name": "HundredGigE0/1/0/15",
+      "displayName": "HundredGigE0/1/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000053": {
+      "id": "comp-port-9000053",
+      "name": "HundredGigE0/1/0/16",
+      "displayName": "HundredGigE0/1/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000054": {
+      "id": "comp-port-9000054",
+      "name": "HundredGigE0/1/0/17",
+      "displayName": "HundredGigE0/1/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000055": {
+      "id": "comp-port-9000055",
+      "name": "HundredGigE0/1/0/18",
+      "displayName": "HundredGigE0/1/0/18",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000056": {
+      "id": "comp-port-9000056",
+      "name": "HundredGigE0/1/0/19",
+      "displayName": "HundredGigE0/1/0/19",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000057": {
+      "id": "comp-port-9000057",
+      "name": "HundredGigE0/1/0/20",
+      "displayName": "HundredGigE0/1/0/20",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000058": {
+      "id": "comp-port-9000058",
+      "name": "HundredGigE0/1/0/21",
+      "displayName": "HundredGigE0/1/0/21",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000059": {
+      "id": "comp-port-9000059",
+      "name": "HundredGigE0/1/0/22",
+      "displayName": "HundredGigE0/1/0/22",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000060": {
+      "id": "comp-port-9000060",
+      "name": "HundredGigE0/1/0/23",
+      "displayName": "HundredGigE0/1/0/23",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000061": {
+      "id": "comp-port-9000061",
+      "name": "HundredGigE0/1/0/24",
+      "displayName": "HundredGigE0/1/0/24",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000062": {
+      "id": "comp-port-9000062",
+      "name": "HundredGigE0/1/0/25",
+      "displayName": "HundredGigE0/1/0/25",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000063": {
+      "id": "comp-port-9000063",
+      "name": "HundredGigE0/1/0/26",
+      "displayName": "HundredGigE0/1/0/26",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000064": {
+      "id": "comp-port-9000064",
+      "name": "HundredGigE0/1/0/27",
+      "displayName": "HundredGigE0/1/0/27",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000065": {
+      "id": "comp-port-9000065",
+      "name": "HundredGigE0/1/0/28",
+      "displayName": "HundredGigE0/1/0/28",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000066": {
+      "id": "comp-port-9000066",
+      "name": "HundredGigE0/1/0/29",
+      "displayName": "HundredGigE0/1/0/29",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000067": {
+      "id": "comp-port-9000067",
+      "name": "HundredGigE0/1/0/30",
+      "displayName": "HundredGigE0/1/0/30",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000068": {
+      "id": "comp-port-9000068",
+      "name": "HundredGigE0/1/0/31",
+      "displayName": "HundredGigE0/1/0/31",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000069": {
+      "id": "comp-port-9000069",
+      "name": "HundredGigE0/1/0/32",
+      "displayName": "HundredGigE0/1/0/32",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000070": {
+      "id": "comp-port-9000070",
+      "name": "HundredGigE0/1/0/33",
+      "displayName": "HundredGigE0/1/0/33",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000071": {
+      "id": "comp-port-9000071",
+      "name": "HundredGigE0/1/0/34",
+      "displayName": "HundredGigE0/1/0/34",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000072": {
+      "id": "comp-port-9000072",
+      "name": "HundredGigE0/1/0/35",
+      "displayName": "HundredGigE0/1/0/35",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000073": {
+      "id": "comp-port-9000073",
+      "name": "HundredGigE0/2/0/0",
+      "displayName": "HundredGigE0/2/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000074": {
+      "id": "comp-port-9000074",
+      "name": "HundredGigE0/2/0/1",
+      "displayName": "HundredGigE0/2/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000075": {
+      "id": "comp-port-9000075",
+      "name": "HundredGigE0/2/0/2",
+      "displayName": "HundredGigE0/2/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000076": {
+      "id": "comp-port-9000076",
+      "name": "HundredGigE0/2/0/3",
+      "displayName": "HundredGigE0/2/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000077": {
+      "id": "comp-port-9000077",
+      "name": "HundredGigE0/2/0/4",
+      "displayName": "HundredGigE0/2/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000078": {
+      "id": "comp-port-9000078",
+      "name": "HundredGigE0/2/0/5",
+      "displayName": "HundredGigE0/2/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000079": {
+      "id": "comp-port-9000079",
+      "name": "HundredGigE0/2/0/6",
+      "displayName": "HundredGigE0/2/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000080": {
+      "id": "comp-port-9000080",
+      "name": "HundredGigE0/2/0/7",
+      "displayName": "HundredGigE0/2/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000081": {
+      "id": "comp-port-9000081",
+      "name": "HundredGigE0/2/0/8",
+      "displayName": "HundredGigE0/2/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000082": {
+      "id": "comp-port-9000082",
+      "name": "HundredGigE0/2/0/9",
+      "displayName": "HundredGigE0/2/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000083": {
+      "id": "comp-port-9000083",
+      "name": "HundredGigE0/2/0/10",
+      "displayName": "HundredGigE0/2/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000084": {
+      "id": "comp-port-9000084",
+      "name": "HundredGigE0/2/0/11",
+      "displayName": "HundredGigE0/2/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000085": {
+      "id": "comp-port-9000085",
+      "name": "HundredGigE0/2/0/12",
+      "displayName": "HundredGigE0/2/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000086": {
+      "id": "comp-port-9000086",
+      "name": "HundredGigE0/2/0/13",
+      "displayName": "HundredGigE0/2/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000087": {
+      "id": "comp-port-9000087",
+      "name": "HundredGigE0/2/0/14",
+      "displayName": "HundredGigE0/2/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000088": {
+      "id": "comp-port-9000088",
+      "name": "HundredGigE0/2/0/15",
+      "displayName": "HundredGigE0/2/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000089": {
+      "id": "comp-port-9000089",
+      "name": "HundredGigE0/2/0/16",
+      "displayName": "HundredGigE0/2/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000090": {
+      "id": "comp-port-9000090",
+      "name": "HundredGigE0/2/0/17",
+      "displayName": "HundredGigE0/2/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000091": {
+      "id": "comp-port-9000091",
+      "name": "HundredGigE0/2/0/18",
+      "displayName": "HundredGigE0/2/0/18",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000092": {
+      "id": "comp-port-9000092",
+      "name": "HundredGigE0/2/0/19",
+      "displayName": "HundredGigE0/2/0/19",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000093": {
+      "id": "comp-port-9000093",
+      "name": "HundredGigE0/2/0/20",
+      "displayName": "HundredGigE0/2/0/20",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000094": {
+      "id": "comp-port-9000094",
+      "name": "HundredGigE0/2/0/21",
+      "displayName": "HundredGigE0/2/0/21",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000095": {
+      "id": "comp-port-9000095",
+      "name": "HundredGigE0/2/0/22",
+      "displayName": "HundredGigE0/2/0/22",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000096": {
+      "id": "comp-port-9000096",
+      "name": "HundredGigE0/2/0/23",
+      "displayName": "HundredGigE0/2/0/23",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000097": {
+      "id": "comp-port-9000097",
+      "name": "HundredGigE0/2/0/24",
+      "displayName": "HundredGigE0/2/0/24",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000098": {
+      "id": "comp-port-9000098",
+      "name": "HundredGigE0/2/0/25",
+      "displayName": "HundredGigE0/2/0/25",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000099": {
+      "id": "comp-port-9000099",
+      "name": "HundredGigE0/2/0/26",
+      "displayName": "HundredGigE0/2/0/26",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000100": {
+      "id": "comp-port-9000100",
+      "name": "HundredGigE0/2/0/27",
+      "displayName": "HundredGigE0/2/0/27",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000101": {
+      "id": "comp-port-9000101",
+      "name": "HundredGigE0/2/0/28",
+      "displayName": "HundredGigE0/2/0/28",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000102": {
+      "id": "comp-port-9000102",
+      "name": "HundredGigE0/2/0/29",
+      "displayName": "HundredGigE0/2/0/29",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000103": {
+      "id": "comp-port-9000103",
+      "name": "HundredGigE0/2/0/30",
+      "displayName": "HundredGigE0/2/0/30",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000104": {
+      "id": "comp-port-9000104",
+      "name": "HundredGigE0/2/0/31",
+      "displayName": "HundredGigE0/2/0/31",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000105": {
+      "id": "comp-port-9000105",
+      "name": "HundredGigE0/2/0/32",
+      "displayName": "HundredGigE0/2/0/32",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000106": {
+      "id": "comp-port-9000106",
+      "name": "HundredGigE0/2/0/33",
+      "displayName": "HundredGigE0/2/0/33",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000107": {
+      "id": "comp-port-9000107",
+      "name": "HundredGigE0/2/0/34",
+      "displayName": "HundredGigE0/2/0/34",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000108": {
+      "id": "comp-port-9000108",
+      "name": "HundredGigE0/2/0/35",
+      "displayName": "HundredGigE0/2/0/35",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000109": {
+      "id": "comp-port-9000109",
+      "name": "HundredGigE0/3/0/0",
+      "displayName": "HundredGigE0/3/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000110": {
+      "id": "comp-port-9000110",
+      "name": "HundredGigE0/3/0/1",
+      "displayName": "HundredGigE0/3/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000111": {
+      "id": "comp-port-9000111",
+      "name": "HundredGigE0/3/0/2",
+      "displayName": "HundredGigE0/3/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000112": {
+      "id": "comp-port-9000112",
+      "name": "HundredGigE0/3/0/3",
+      "displayName": "HundredGigE0/3/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000113": {
+      "id": "comp-port-9000113",
+      "name": "HundredGigE0/3/0/4",
+      "displayName": "HundredGigE0/3/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000114": {
+      "id": "comp-port-9000114",
+      "name": "HundredGigE0/3/0/5",
+      "displayName": "HundredGigE0/3/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000115": {
+      "id": "comp-port-9000115",
+      "name": "HundredGigE0/3/0/6",
+      "displayName": "HundredGigE0/3/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000116": {
+      "id": "comp-port-9000116",
+      "name": "HundredGigE0/3/0/7",
+      "displayName": "HundredGigE0/3/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000117": {
+      "id": "comp-port-9000117",
+      "name": "HundredGigE0/3/0/8",
+      "displayName": "HundredGigE0/3/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000118": {
+      "id": "comp-port-9000118",
+      "name": "HundredGigE0/3/0/9",
+      "displayName": "HundredGigE0/3/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000119": {
+      "id": "comp-port-9000119",
+      "name": "HundredGigE0/3/0/10",
+      "displayName": "HundredGigE0/3/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000120": {
+      "id": "comp-port-9000120",
+      "name": "HundredGigE0/3/0/11",
+      "displayName": "HundredGigE0/3/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000121": {
+      "id": "comp-port-9000121",
+      "name": "HundredGigE0/3/0/12",
+      "displayName": "HundredGigE0/3/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000122": {
+      "id": "comp-port-9000122",
+      "name": "HundredGigE0/3/0/13",
+      "displayName": "HundredGigE0/3/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000123": {
+      "id": "comp-port-9000123",
+      "name": "HundredGigE0/3/0/14",
+      "displayName": "HundredGigE0/3/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000124": {
+      "id": "comp-port-9000124",
+      "name": "HundredGigE0/3/0/15",
+      "displayName": "HundredGigE0/3/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000125": {
+      "id": "comp-port-9000125",
+      "name": "HundredGigE0/3/0/16",
+      "displayName": "HundredGigE0/3/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000126": {
+      "id": "comp-port-9000126",
+      "name": "HundredGigE0/3/0/17",
+      "displayName": "HundredGigE0/3/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000127": {
+      "id": "comp-port-9000127",
+      "name": "HundredGigE0/3/0/18",
+      "displayName": "HundredGigE0/3/0/18",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000128": {
+      "id": "comp-port-9000128",
+      "name": "HundredGigE0/3/0/19",
+      "displayName": "HundredGigE0/3/0/19",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000129": {
+      "id": "comp-port-9000129",
+      "name": "HundredGigE0/3/0/20",
+      "displayName": "HundredGigE0/3/0/20",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000130": {
+      "id": "comp-port-9000130",
+      "name": "HundredGigE0/3/0/21",
+      "displayName": "HundredGigE0/3/0/21",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000131": {
+      "id": "comp-port-9000131",
+      "name": "HundredGigE0/3/0/22",
+      "displayName": "HundredGigE0/3/0/22",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000132": {
+      "id": "comp-port-9000132",
+      "name": "HundredGigE0/3/0/23",
+      "displayName": "HundredGigE0/3/0/23",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000133": {
+      "id": "comp-port-9000133",
+      "name": "HundredGigE0/3/0/24",
+      "displayName": "HundredGigE0/3/0/24",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000134": {
+      "id": "comp-port-9000134",
+      "name": "HundredGigE0/3/0/25",
+      "displayName": "HundredGigE0/3/0/25",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000135": {
+      "id": "comp-port-9000135",
+      "name": "HundredGigE0/3/0/26",
+      "displayName": "HundredGigE0/3/0/26",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000136": {
+      "id": "comp-port-9000136",
+      "name": "HundredGigE0/3/0/27",
+      "displayName": "HundredGigE0/3/0/27",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000137": {
+      "id": "comp-port-9000137",
+      "name": "HundredGigE0/3/0/28",
+      "displayName": "HundredGigE0/3/0/28",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000138": {
+      "id": "comp-port-9000138",
+      "name": "HundredGigE0/3/0/29",
+      "displayName": "HundredGigE0/3/0/29",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000139": {
+      "id": "comp-port-9000139",
+      "name": "HundredGigE0/3/0/30",
+      "displayName": "HundredGigE0/3/0/30",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000140": {
+      "id": "comp-port-9000140",
+      "name": "HundredGigE0/3/0/31",
+      "displayName": "HundredGigE0/3/0/31",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000141": {
+      "id": "comp-port-9000141",
+      "name": "HundredGigE0/3/0/32",
+      "displayName": "HundredGigE0/3/0/32",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000142": {
+      "id": "comp-port-9000142",
+      "name": "HundredGigE0/3/0/33",
+      "displayName": "HundredGigE0/3/0/33",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000143": {
+      "id": "comp-port-9000143",
+      "name": "HundredGigE0/3/0/34",
+      "displayName": "HundredGigE0/3/0/34",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000144": {
+      "id": "comp-port-9000144",
+      "name": "HundredGigE0/3/0/35",
+      "displayName": "HundredGigE0/3/0/35",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
     }
   },
   "physicalIndexToComponentId": {},

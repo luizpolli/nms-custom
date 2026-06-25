@@ -5597,6 +5597,10 @@
             "alias": 16,
             "fillerTypeId": "NCS560-FILLER-RSP",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-enh/N560-RSP4-E_Filler.svg",
+            "typeId": "NCS560-FILLER-RSP"
           }
         },
         {
@@ -5616,6 +5620,10 @@
             "alias": 17,
             "fillerTypeId": "NCS560-FILLER-RSP",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-enh/N560-RSP4-E_Filler.svg",
+            "typeId": "NCS560-FILLER-RSP"
           }
         },
         {
@@ -5635,6 +5643,10 @@
             "alias": 18,
             "fillerTypeId": "NCS560-FILLER-PT",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-enh/NCS560-FILLER-PT.svg",
+            "typeId": "NCS560-FILLER-PT"
           }
         },
         {
@@ -5654,6 +5666,10 @@
             "alias": 19,
             "fillerTypeId": "NCS560-FILLER-PT",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-enh/NCS560-FILLER-PT.svg",
+            "typeId": "NCS560-FILLER-PT"
           }
         },
         {
@@ -5673,6 +5689,10 @@
             "alias": 20,
             "fillerTypeId": "NCS560-FILLER-PT",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-enh/NCS560-FILLER-PT.svg",
+            "typeId": "NCS560-FILLER-PT"
           }
         },
         {
@@ -5692,6 +5712,10 @@
             "alias": 21,
             "fillerTypeId": "NCS560-FILLER-FT",
             "sourceName": "Fan Tray Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-enh/NCS560-FILLER-FT.svg",
+            "typeId": "NCS560-FILLER-FT"
           }
         }
       ]

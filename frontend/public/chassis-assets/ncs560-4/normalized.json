@@ -2117,6 +2117,10 @@
             "alias": 6,
             "fillerTypeId": "NCS560-4-FILLER-RSP",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/NCS560-4-FILLER-RSP.svg",
+            "typeId": "NCS560-4-FILLER-RSP"
           }
         },
         {
@@ -2136,6 +2140,10 @@
             "alias": 7,
             "fillerTypeId": "NCS560-4-FILLER-RSP",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/NCS560-4-FILLER-RSP.svg",
+            "typeId": "NCS560-4-FILLER-RSP"
           }
         },
         {
@@ -2155,6 +2163,10 @@
             "alias": 8,
             "fillerTypeId": "NCS560-FILLER-PT",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/NCS560-FILLER-PT.svg",
+            "typeId": "NCS560-FILLER-PT"
           }
         },
         {
@@ -2174,6 +2186,10 @@
             "alias": 9,
             "fillerTypeId": "NCS560-FILLER-PT",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/NCS560-FILLER-PT.svg",
+            "typeId": "NCS560-FILLER-PT"
           }
         },
         {
@@ -2193,6 +2209,10 @@
             "alias": 10,
             "fillerTypeId": "NCS560-FILLER-PT",
             "sourceName": "Power Unit Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/NCS560-FILLER-PT.svg",
+            "typeId": "NCS560-FILLER-PT"
           }
         },
         {
@@ -2212,6 +2232,10 @@
             "alias": 11,
             "fillerTypeId": "N560-4-PWR-FAN_Filler",
             "sourceName": "Fan Tray Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/N560-4-PWR-FAN_Filler.svg",
+            "typeId": "N560-4-PWR-FAN_Filler"
           }
         },
         {
@@ -2231,6 +2255,10 @@
             "alias": 12,
             "fillerTypeId": "N560-4-FAN-H_Filler",
             "sourceName": "Fan Tray Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/N560-4-FAN-H_Filler.svg",
+            "typeId": "N560-4-FAN-H_Filler"
           }
         },
         {
@@ -2250,6 +2278,10 @@
             "alias": 13,
             "fillerTypeId": "N560-4-FAN-H_Filler",
             "sourceName": "Fan Tray Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/N560-4-FAN-H_Filler.svg",
+            "typeId": "N560-4-FAN-H_Filler"
           }
         }
       ]

@@ -917,6 +917,10 @@
             "alias": 1,
             "fillerTypeId": "A99-RP-F_filler",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/asr9902/A99-RP-F_filler.svg",
+            "typeId": "A99-RP-F_filler"
           }
         },
         {
@@ -936,6 +940,10 @@
             "alias": 1,
             "fillerTypeId": "A99-RP-F_filler",
             "sourceName": "Route Processor Slot"
+          },
+          "asset": {
+            "image": "/chassis-assets/asr9902/A99-RP-F_filler.svg",
+            "typeId": "A99-RP-F_filler"
           }
         }
       ]
