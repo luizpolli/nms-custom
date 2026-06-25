@@ -140,6 +140,9 @@ function buildZoomCard(
       name: slot.metadata?.sourceName ?? component?.displayName ?? slot.label ?? 'Card',
       description: component?.description,
       image: slot.asset.image,
+      // A taller-than-wide slot means the card seats vertically (ASR9010);
+      // a wider slot is a horizontal chassis (ASR9006).
+      vertical: slot.bounds.h > slot.bounds.w,
       ports,
     };
   }

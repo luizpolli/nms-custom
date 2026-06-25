@@ -29,6 +29,13 @@ export interface CardZoomData {
   description?: string;
   /** Path to the card faceplate SVG (stored horizontal) */
   image?: string;
+  /**
+   * Card display orientation in the chassis. True for tall/vertical chassis
+   * (ASR9010): the SVG is rotated 90deg and ports stack in a 2-column grid.
+   * False for horizontal chassis (ASR9006): the SVG renders as-is with ports
+   * in a 2-row grid.
+   */
+  vertical: boolean;
   ports: ZoomPort[];
 }
 
@@ -58,17 +65,23 @@ export function CardZoomModal({ card, onClose }: { card: CardZoomData; onClose: 
     { up: 0, down: 0, 'admin-down': 0, unknown: 0 } as Record<PortStatus | 'unknown', number>,
   );
 
-  // Single column for low-density cards (e.g. 2-4 ports), otherwise the real
-  // cards use a two-column cage grid.
-  const cols = ports.length <= 4 ? 1 : 2;
-  // EPNM numbers ports bottom-to-top, so render the faceplate overlay reversed
-  // (port 0 at the bottom of the vertical card).
-  const overlayPorts = [...ports].reverse();
+  const vertical = card.vertical;
+  // Single line for low-density cards (e.g. 2-4 ports), otherwise the real
+  // cards use a two-deep cage grid (2 columns when vertical, 2 rows horizontal).
+  const minorAxis = ports.length <= 4 ? 1 : 2;
+  // EPNM numbers ports bottom-to-top on vertical cards (port 0 lowest); on
+  // horizontal cards port 0 sits at the left, so keep natural order there.
+  const overlayPorts = vertical ? [...ports].reverse() : ports;
 
-  // Vertical faceplate display box. Cards are ~9:1, so the rotated card is a
-  // thin tall strip; cap the height so 48-port cards still fit the viewport.
-  const faceHeight = Math.min(720, Math.max(360, ports.length * 26 + 120));
-  const faceWidth = Math.max(64, Math.round(faceHeight * 0.12));
+  // Faceplate box. Cards are ~9:1 so one axis is a thin strip; cap the long
+  // axis so 48-port cards still fit the viewport.
+  const longAxis = Math.min(vertical ? 720 : 560, Math.max(320, ports.length * 24 + 120));
+  const shortAxis = Math.max(60, Math.round(longAxis * 0.12));
+  const faceWidth = vertical ? shortAxis : longAxis;
+  const faceHeight = vertical ? longAxis : shortAxis;
+  const gridStyle = vertical
+    ? { gridTemplateColumns: `repeat(${minorAxis}, minmax(0, 1fr))` }
+    : { gridTemplateRows: `repeat(${minorAxis}, minmax(0, 1fr))`, gridAutoFlow: 'column' as const };
 
   return (
     <div
@@ -107,8 +120,8 @@ export function CardZoomModal({ card, onClose }: { card: CardZoomData; onClose: 
           </div>
         </header>
 
-        <div className="flex flex-1 gap-6 overflow-auto p-6">
-          {/* Vertical faceplate with per-port status overlay */}
+        <div className={`flex flex-1 gap-6 overflow-auto p-6 ${vertical ? '' : 'flex-col'}`}>
+          {/* Faceplate with per-port status overlay */}
           <div className="flex shrink-0 flex-col items-center gap-2">
             <div
               className="relative rounded-sm border border-gray-300 bg-gray-100 shadow-inner dark:border-gray-700 dark:bg-gray-800"
@@ -120,17 +133,26 @@ export function CardZoomModal({ card, onClose }: { card: CardZoomData; onClose: 
                   alt={`${card.typeId} faceplate`}
                   draggable={false}
                   className="pointer-events-none absolute left-1/2 top-1/2 select-none"
-                  style={{
-                    width: faceHeight,
-                    height: faceWidth,
-                    transform: 'translate(-50%, -50%) rotate(90deg)',
-                    objectFit: 'fill',
-                  }}
+                  style={
+                    vertical
+                      ? {
+                          width: faceHeight,
+                          height: faceWidth,
+                          transform: 'translate(-50%, -50%) rotate(90deg)',
+                          objectFit: 'fill',
+                        }
+                      : {
+                          width: faceWidth,
+                          height: faceHeight,
+                          transform: 'translate(-50%, -50%)',
+                          objectFit: 'fill',
+                        }
+                  }
                 />
               )}
               <div
-                className="absolute inset-0 grid gap-[3px] px-[10%] py-[7%]"
-                style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+                className={`absolute inset-0 grid gap-[3px] ${vertical ? 'px-[10%] py-[7%]' : 'px-[7%] py-[10%]'}`}
+                style={gridStyle}
               >
                 {overlayPorts.map((port) => (
                   <div
