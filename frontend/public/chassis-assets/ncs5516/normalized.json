@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "nms.chassisView.v1",
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "deviceId": "ncs5516",
+  "profileId": "ncs5516",
+  "platform": "Cisco NCS 5516",
+  "views": [
+    {
+      "id": "front",
+      "label": "Front",
+      "image": "/chassis-assets/ncs5516/NCS-5516-Front-Core.svg",
+      "width": 1680.0,
+      "height": 3523.1,
+      "hotspots": [
+        {
+          "id": "hs-rear-0",
+          "slotKey": "0",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-0",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 60.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 0,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-1",
+          "slotKey": "1",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-1",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 228.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-2",
+          "slotKey": "2",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-2",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 396.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 2,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-3",
+          "slotKey": "3",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-3",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 564.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 3,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-4",
+          "slotKey": "4",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-4",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 732.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 4,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-5",
+          "slotKey": "5",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-5",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 900.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 5,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-6",
+          "slotKey": "6",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-6",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 1068.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 6,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-7",
+          "slotKey": "7",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-7",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 1236.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 7,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-8",
+          "slotKey": "8",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-8",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 1404.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 8,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-9",
+          "slotKey": "9",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-9",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 1572.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 9,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-10",
+          "slotKey": "10",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-10",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 1740.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 10,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-11",
+          "slotKey": "11",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-11",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 1908.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 11,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-12",
+          "slotKey": "12",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-12",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 2076.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 12,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-13",
+          "slotKey": "13",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-13",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 2244.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 13,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-14",
+          "slotKey": "14",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-14",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 2412.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 14,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-15",
+          "slotKey": "15",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-rear-15",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 2580.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 15,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-rear-16",
+          "slotKey": "16",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-rear-16",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 144.0,
+            "y": 2748.0,
+            "w": 681.5,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 16,
+            "fillerTypeId": "NC55-RP-BLNK",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-rear-17",
+          "slotKey": "17",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-rear-17",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 869.0,
+            "y": 2748.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 17,
+            "fillerTypeId": "NC55-RP-BLNK",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-rear-18",
+          "slotKey": "18",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-18",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 25.0,
+            "y": 2945.0,
+            "w": 150.4,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 18,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-19",
+          "slotKey": "19",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-19",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 185.0,
+            "y": 2945.0,
+            "w": 148.5,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 19,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-20",
+          "slotKey": "20",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-20",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 343.0,
+            "y": 2945.0,
+            "w": 152.3,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 20,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-21",
+          "slotKey": "21",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-21",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 505.0,
+            "y": 2945.0,
+            "w": 159.8,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 21,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-22",
+          "slotKey": "14",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-22",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 675.0,
+            "y": 2945.0,
+            "w": 150.4,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 14,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-23",
+          "slotKey": "22",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-23",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 835.0,
+            "y": 2945.0,
+            "w": 150.4,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 22,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-24",
+          "slotKey": "23",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-24",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 995.0,
+            "y": 2945.0,
+            "w": 150.4,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 23,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-25",
+          "slotKey": "24",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-25",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 1155.0,
+            "y": 2945.0,
+            "w": 157.0,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 24,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-26",
+          "slotKey": "25",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-26",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 1322.0,
+            "y": 2945.0,
+            "w": 153.2,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 25,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-rear-27",
+          "slotKey": "26",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-rear-27",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 1485.0,
+            "y": 2945.0,
+            "w": 151.7,
+            "h": 157.9
+          },
+          "metadata": {
+            "alias": 26,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        }
+      ]
+    }
+  ],
+  "tree": [
+    {
+      "id": "node-chassis",
+      "label": "Cisco NCS 5516",
+      "type": "Chassis",
+      "componentId": "comp-chassis",
+      "children": [
+        {
+          "id": "node-rear-0",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-0",
+          "children": []
+        },
+        {
+          "id": "node-rear-1",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-1",
+          "children": []
+        },
+        {
+          "id": "node-rear-2",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-2",
+          "children": []
+        },
+        {
+          "id": "node-rear-3",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-3",
+          "children": []
+        },
+        {
+          "id": "node-rear-4",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-4",
+          "children": []
+        },
+        {
+          "id": "node-rear-5",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-5",
+          "children": []
+        },
+        {
+          "id": "node-rear-6",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-6",
+          "children": []
+        },
+        {
+          "id": "node-rear-7",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-7",
+          "children": []
+        },
+        {
+          "id": "node-rear-8",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-8",
+          "children": []
+        },
+        {
+          "id": "node-rear-9",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-9",
+          "children": []
+        },
+        {
+          "id": "node-rear-10",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-10",
+          "children": []
+        },
+        {
+          "id": "node-rear-11",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-11",
+          "children": []
+        },
+        {
+          "id": "node-rear-12",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-12",
+          "children": []
+        },
+        {
+          "id": "node-rear-13",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-13",
+          "children": []
+        },
+        {
+          "id": "node-rear-14",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-14",
+          "children": []
+        },
+        {
+          "id": "node-rear-15",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-rear-15",
+          "children": []
+        },
+        {
+          "id": "node-rear-16",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-rear-16",
+          "children": []
+        },
+        {
+          "id": "node-rear-17",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-rear-17",
+          "children": []
+        },
+        {
+          "id": "node-rear-18",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-18",
+          "children": []
+        },
+        {
+          "id": "node-rear-19",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-19",
+          "children": []
+        },
+        {
+          "id": "node-rear-20",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-20",
+          "children": []
+        },
+        {
+          "id": "node-rear-21",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-21",
+          "children": []
+        },
+        {
+          "id": "node-rear-22",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-22",
+          "children": []
+        },
+        {
+          "id": "node-rear-23",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-23",
+          "children": []
+        },
+        {
+          "id": "node-rear-24",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-24",
+          "children": []
+        },
+        {
+          "id": "node-rear-25",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-25",
+          "children": []
+        },
+        {
+          "id": "node-rear-26",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-26",
+          "children": []
+        },
+        {
+          "id": "node-rear-27",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-rear-27",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "componentsById": {
+    "comp-rear-0": {
+      "id": "comp-rear-0",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-1": {
+      "id": "comp-rear-1",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-2": {
+      "id": "comp-rear-2",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-3": {
+      "id": "comp-rear-3",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-4": {
+      "id": "comp-rear-4",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-5": {
+      "id": "comp-rear-5",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-6": {
+      "id": "comp-rear-6",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-7": {
+      "id": "comp-rear-7",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-8": {
+      "id": "comp-rear-8",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-9": {
+      "id": "comp-rear-9",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-10": {
+      "id": "comp-rear-10",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-11": {
+      "id": "comp-rear-11",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-12": {
+      "id": "comp-rear-12",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-13": {
+      "id": "comp-rear-13",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-14": {
+      "id": "comp-rear-14",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-15": {
+      "id": "comp-rear-15",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-16": {
+      "id": "comp-rear-16",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-17": {
+      "id": "comp-rear-17",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-18": {
+      "id": "comp-rear-18",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-19": {
+      "id": "comp-rear-19",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-20": {
+      "id": "comp-rear-20",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-21": {
+      "id": "comp-rear-21",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-22": {
+      "id": "comp-rear-22",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-23": {
+      "id": "comp-rear-23",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-24": {
+      "id": "comp-rear-24",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-25": {
+      "id": "comp-rear-25",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-26": {
+      "id": "comp-rear-26",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-27": {
+      "id": "comp-rear-27",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-chassis": {
+      "id": "comp-chassis",
+      "name": "Cisco NCS 5516",
+      "displayName": "Cisco NCS 5516",
+      "type": "Chassis",
+      "typeId": null,
+      "ports": [],
+      "childIds": [
+        "comp-rear-0",
+        "comp-rear-1",
+        "comp-rear-2",
+        "comp-rear-3",
+        "comp-rear-4",
+        "comp-rear-5",
+        "comp-rear-6",
+        "comp-rear-7",
+        "comp-rear-8",
+        "comp-rear-9",
+        "comp-rear-10",
+        "comp-rear-11",
+        "comp-rear-12",
+        "comp-rear-13",
+        "comp-rear-14",
+        "comp-rear-15",
+        "comp-rear-16",
+        "comp-rear-17",
+        "comp-rear-18",
+        "comp-rear-19",
+        "comp-rear-20",
+        "comp-rear-21",
+        "comp-rear-22",
+        "comp-rear-23",
+        "comp-rear-24",
+        "comp-rear-25",
+        "comp-rear-26",
+        "comp-rear-27"
+      ]
+    }
+  },
+  "physicalIndexToComponentId": {},
+  "source": {
+    "type": "epnm-deviceprofile",
+    "profile": "Cisco_NCS_5516"
+  }
+}

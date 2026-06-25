@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "nms.chassisView.v1",
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "deviceId": "asr9902",
+  "profileId": "asr9902",
+  "platform": "Cisco ASR 9902",
+  "views": [
+    {
+      "id": "front",
+      "label": "Front View",
+      "image": "/chassis-assets/asr9902/ASR-9902_front_core.svg",
+      "width": 1662.0,
+      "height": 331.4,
+      "hotspots": [
+        {
+          "id": "hs-front-0",
+          "slotKey": "0",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-0",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 0.0,
+            "y": 180.2,
+            "w": 760.4,
+            "h": 160.0
+          },
+          "metadata": {
+            "alias": 0,
+            "fillerTypeId": "ASR-9903-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-1",
+          "slotKey": "1",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-front-1",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 8.0,
+            "y": 10.0,
+            "w": 760.4,
+            "h": 160.0
+          },
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "A99-RP-F_filler",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-front-2",
+          "slotKey": "1",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-front-2",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 817.0,
+            "y": 10.0,
+            "w": 760.4,
+            "h": 160.0
+          },
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "A99-RP-F_filler",
+            "sourceName": "Route Processor Slot"
+          }
+        }
+      ]
+    }
+  ],
+  "tree": [
+    {
+      "id": "node-chassis",
+      "label": "Cisco ASR 9902",
+      "type": "Chassis",
+      "componentId": "comp-chassis",
+      "children": [
+        {
+          "id": "node-front-0",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-0",
+          "children": []
+        },
+        {
+          "id": "node-front-1",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-front-1",
+          "children": []
+        },
+        {
+          "id": "node-front-2",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-front-2",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "componentsById": {
+    "comp-front-0": {
+      "id": "comp-front-0",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-1": {
+      "id": "comp-front-1",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-2": {
+      "id": "comp-front-2",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-chassis": {
+      "id": "comp-chassis",
+      "name": "Cisco ASR 9902",
+      "displayName": "Cisco ASR 9902",
+      "type": "Chassis",
+      "typeId": null,
+      "ports": [],
+      "childIds": [
+        "comp-front-0",
+        "comp-front-1",
+        "comp-front-2"
+      ]
+    }
+  },
+  "physicalIndexToComponentId": {},
+  "source": {
+    "type": "epnm-deviceprofile",
+    "profile": "Cisco_ASR_9902_Router"
+  }
+}

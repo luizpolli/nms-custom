@@ -207,9 +207,20 @@ def main() -> None:
     # their heights can't be inferred from EPNM data — opt in with --all-views.
     all_views = "--all-views" in sys.argv
     profile_views = profile.get("views", [])
+
+    def _front_svg(v: dict) -> bool:
+        # EPNM sometimes inverts the view `id` vs the artwork (e.g. NCS5516's
+        # line-card side sits under id="rear"), so trust the SVG name, not `id`.
+        for c in v.get("containers", {}).values():
+            if isinstance(c, dict) and c.get("svgImageId") and c.get("slots"):
+                return "front" in c["svgImageId"].lower()
+        return False
+
     if not all_views:
-        front = [v for v in profile_views if v.get("id") == "front"] or profile_views[:1]
-        profile_views = front
+        front = ([v for v in profile_views if _front_svg(v)]
+                 or [v for v in profile_views if v.get("id") == "front"]
+                 or profile_views[:1])
+        profile_views = front[:1]
 
     views, components = [], {}
     root_id = "comp-chassis"
@@ -220,6 +231,8 @@ def main() -> None:
         if not built:
             continue
         view_obj, children, comps, svg_path = built
+        if not all_views:  # the single selected view is the front, whatever EPNM's id says
+            view_obj["id"], view_obj["label"] = "front", "Front"
         view_obj["image"] = view_obj["image"].replace("{PID}", pid)
         (out_dir / svg_path.name).write_bytes(svg_path.read_bytes())
         views.append(view_obj)
@@ -227,7 +240,9 @@ def main() -> None:
         for node in children:
             components[node["componentId"]]["parentId"] = root_id
             root_children.append(node["componentId"])
-        if v.get("id", "front") == "front":
+        # In front-only mode exactly one view is built; its children are the
+        # tree. With --all-views, prefer the id="front" view for the tree.
+        if not all_views or v.get("id", "front") == "front" or not tree_children:
             tree_children = children
 
     components[root_id] = {

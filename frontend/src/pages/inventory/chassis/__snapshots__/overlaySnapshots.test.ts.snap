@@ -345,6 +345,76 @@ exports[`chassis overlay snapshots > asr9010 overlay summary is stable 1`] = `
 }
 `;
 
+exports[`chassis overlay snapshots > asr9901 overlay summary is stable 1`] = `
+{
+  "profileId": "asr9901",
+  "views": {
+    "front": {
+      "hs-front-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr9902 overlay summary is stable 1`] = `
+{
+  "profileId": "asr9902",
+  "views": {
+    "front": {
+      "hs-front-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > asr9903 overlay summary is stable 1`] = `
+{
+  "profileId": "asr9903",
+  "views": {
+    "front": {
+      "hs-front-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+    },
+  },
+}
+`;
+
 exports[`chassis overlay snapshots > covers every shipped profile directory 1`] = `
 [
   "asr9006",
@@ -355,6 +425,9 @@ exports[`chassis overlay snapshots > covers every shipped profile directory 1`] 
   "asr920-12sz",
   "asr920-12sz-im",
   "asr920-24sz",
+  "asr9901",
+  "asr9902",
+  "asr9903",
   "ncs540",
   "ncs540-12z16g",
   "ncs540-12z20g",
@@ -368,11 +441,14 @@ exports[`chassis overlay snapshots > covers every shipped profile directory 1`] 
   "ncs5502",
   "ncs5504",
   "ncs5508",
+  "ncs5516",
   "ncs55a1",
   "ncs55a1-24h",
   "ncs55a1-24q6h",
   "ncs55a1-48q6h",
   "ncs560",
+  "ncs560-4",
+  "ncs560-enh",
 ]
 `;
 
@@ -864,6 +940,206 @@ exports[`chassis overlay snapshots > ncs560 overlay summary is stable 1`] = `
 }
 `;
 
+exports[`chassis overlay snapshots > ncs560-4 overlay summary is stable 1`] = `
+{
+  "profileId": "ncs560-4",
+  "views": {
+    "front": {
+      "hs-front-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-10": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-11": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-12": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-13": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-5": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-6": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-7": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-8": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-9": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs560-enh overlay summary is stable 1`] = `
+{
+  "profileId": "ncs560-enh",
+  "views": {
+    "front": {
+      "hs-front-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-10": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-11": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-12": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-13": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-14": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-15": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-16": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-17": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-18": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-19": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-20": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-21": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-5": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-6": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-7": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-8": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-9": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+    },
+  },
+}
+`;
+
 exports[`chassis overlay snapshots > ncs5501 overlay summary is stable 1`] = `
 {
   "profileId": "Cisco_NCS_5501",
@@ -1154,6 +1430,156 @@ exports[`chassis overlay snapshots > ncs5508 overlay summary is stable 1`] = `
         "hotspots": 1,
         "overlay": "rendered",
         "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs5516 overlay summary is stable 1`] = `
+{
+  "profileId": "ncs5516",
+  "views": {
+    "front": {
+      "hs-rear-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-10": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-11": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-12": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-13": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-14": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-15": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-16": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-17": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-18": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-19": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-20": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-21": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-22": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-23": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-24": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-25": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-26": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-27": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-5": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-6": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-7": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-8": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-rear-9": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
       },
     },
   },

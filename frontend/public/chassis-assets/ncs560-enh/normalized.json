@@ -1,0 +1,881 @@
+{
+  "schemaVersion": "nms.chassisView.v1",
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "deviceId": "ncs560-enh",
+  "profileId": "ncs560-enh",
+  "platform": "Cisco NCS 560 Enhanced",
+  "views": [
+    {
+      "id": "front",
+      "label": "Front View",
+      "image": "/chassis-assets/ncs560-enh/N560-Front.svg",
+      "width": 1715.3,
+      "height": 1264.1,
+      "hotspots": [
+        {
+          "id": "hs-front-0",
+          "slotKey": "0",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-0",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 1008.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 0,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-1",
+          "slotKey": "1",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-1",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 733.1,
+            "y": 1008.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-2",
+          "slotKey": "2",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-2",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 906.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 2,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-3",
+          "slotKey": "3",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-3",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 733.1,
+            "y": 906.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 3,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-4",
+          "slotKey": "4",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-4",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 804.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 4,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-5",
+          "slotKey": "5",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-5",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 733.1,
+            "y": 804.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 5,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-6",
+          "slotKey": "6",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-6",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 702.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 6,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-7",
+          "slotKey": "7",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-7",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 733.1,
+            "y": 702.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 7,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-8",
+          "slotKey": "8",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-8",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 326.0,
+            "w": 558.5,
+            "h": 353.5
+          },
+          "metadata": {
+            "alias": 8,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-9",
+          "slotKey": "9",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-9",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 733.1,
+            "y": 326.0,
+            "w": 558.5,
+            "h": 353.5
+          },
+          "metadata": {
+            "alias": 9,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-10",
+          "slotKey": "10",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-10",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 224.0,
+            "w": 559.4,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 10,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-11",
+          "slotKey": "11",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-11",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 734.1,
+            "y": 224.0,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 11,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-12",
+          "slotKey": "12",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-12",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 122.0,
+            "w": 559.4,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 12,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-13",
+          "slotKey": "13",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-13",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 734.1,
+            "y": 122.0,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 13,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-14",
+          "slotKey": "14",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-14",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 139.0,
+            "y": 20.0,
+            "w": 559.4,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 14,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-15",
+          "slotKey": "15",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-15",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 734.1,
+            "y": 20.0,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 15,
+            "fillerTypeId": "NCS560-FILLER-LC",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-16",
+          "slotKey": "16",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-front-16",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 76.0,
+            "y": 551.0,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 16,
+            "fillerTypeId": "NCS560-FILLER-RSP",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-front-17",
+          "slotKey": "17",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-front-17",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 76.0,
+            "y": 413.0,
+            "w": 558.5,
+            "h": 129.7
+          },
+          "metadata": {
+            "alias": 17,
+            "fillerTypeId": "NCS560-FILLER-RSP",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-front-18",
+          "slotKey": "18",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-18",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 80.0,
+            "y": 1118.1,
+            "w": 408.0,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 18,
+            "fillerTypeId": "NCS560-FILLER-PT",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-front-19",
+          "slotKey": "19",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-19",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 514.1,
+            "y": 1118.1,
+            "w": 403.3,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 19,
+            "fillerTypeId": "NCS560-FILLER-PT",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-front-20",
+          "slotKey": "20",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-20",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 943.2,
+            "y": 1118.1,
+            "w": 558.5,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 20,
+            "fillerTypeId": "NCS560-FILLER-PT",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-front-21",
+          "slotKey": "21",
+          "label": "Fan Tray Slot",
+          "inventoryId": "comp-front-21",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 1350.2,
+            "y": 21.0,
+            "w": 310.9,
+            "h": 95.9
+          },
+          "metadata": {
+            "alias": 21,
+            "fillerTypeId": "NCS560-FILLER-FT",
+            "sourceName": "Fan Tray Slot"
+          }
+        }
+      ]
+    }
+  ],
+  "tree": [
+    {
+      "id": "node-chassis",
+      "label": "Cisco NCS 560 Enhanced",
+      "type": "Chassis",
+      "componentId": "comp-chassis",
+      "children": [
+        {
+          "id": "node-front-0",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-0",
+          "children": []
+        },
+        {
+          "id": "node-front-1",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-1",
+          "children": []
+        },
+        {
+          "id": "node-front-2",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-2",
+          "children": []
+        },
+        {
+          "id": "node-front-3",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-3",
+          "children": []
+        },
+        {
+          "id": "node-front-4",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-4",
+          "children": []
+        },
+        {
+          "id": "node-front-5",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-5",
+          "children": []
+        },
+        {
+          "id": "node-front-6",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-6",
+          "children": []
+        },
+        {
+          "id": "node-front-7",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-7",
+          "children": []
+        },
+        {
+          "id": "node-front-8",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-8",
+          "children": []
+        },
+        {
+          "id": "node-front-9",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-9",
+          "children": []
+        },
+        {
+          "id": "node-front-10",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-10",
+          "children": []
+        },
+        {
+          "id": "node-front-11",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-11",
+          "children": []
+        },
+        {
+          "id": "node-front-12",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-12",
+          "children": []
+        },
+        {
+          "id": "node-front-13",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-13",
+          "children": []
+        },
+        {
+          "id": "node-front-14",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-14",
+          "children": []
+        },
+        {
+          "id": "node-front-15",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-15",
+          "children": []
+        },
+        {
+          "id": "node-front-16",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-front-16",
+          "children": []
+        },
+        {
+          "id": "node-front-17",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-front-17",
+          "children": []
+        },
+        {
+          "id": "node-front-18",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-18",
+          "children": []
+        },
+        {
+          "id": "node-front-19",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-19",
+          "children": []
+        },
+        {
+          "id": "node-front-20",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-20",
+          "children": []
+        },
+        {
+          "id": "node-front-21",
+          "label": "Fan Tray Slot",
+          "type": "Fan Tray",
+          "componentId": "comp-front-21",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "componentsById": {
+    "comp-front-0": {
+      "id": "comp-front-0",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-1": {
+      "id": "comp-front-1",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-2": {
+      "id": "comp-front-2",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-3": {
+      "id": "comp-front-3",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-4": {
+      "id": "comp-front-4",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-5": {
+      "id": "comp-front-5",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-6": {
+      "id": "comp-front-6",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-7": {
+      "id": "comp-front-7",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-8": {
+      "id": "comp-front-8",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-9": {
+      "id": "comp-front-9",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-10": {
+      "id": "comp-front-10",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-11": {
+      "id": "comp-front-11",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-12": {
+      "id": "comp-front-12",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-13": {
+      "id": "comp-front-13",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-14": {
+      "id": "comp-front-14",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-15": {
+      "id": "comp-front-15",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-16": {
+      "id": "comp-front-16",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-17": {
+      "id": "comp-front-17",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-18": {
+      "id": "comp-front-18",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-19": {
+      "id": "comp-front-19",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-20": {
+      "id": "comp-front-20",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-21": {
+      "id": "comp-front-21",
+      "name": "Fan Tray Slot",
+      "displayName": "Fan Tray Slot",
+      "type": "Fan Tray",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-chassis": {
+      "id": "comp-chassis",
+      "name": "Cisco NCS 560 Enhanced",
+      "displayName": "Cisco NCS 560 Enhanced",
+      "type": "Chassis",
+      "typeId": null,
+      "ports": [],
+      "childIds": [
+        "comp-front-0",
+        "comp-front-1",
+        "comp-front-2",
+        "comp-front-3",
+        "comp-front-4",
+        "comp-front-5",
+        "comp-front-6",
+        "comp-front-7",
+        "comp-front-8",
+        "comp-front-9",
+        "comp-front-10",
+        "comp-front-11",
+        "comp-front-12",
+        "comp-front-13",
+        "comp-front-14",
+        "comp-front-15",
+        "comp-front-16",
+        "comp-front-17",
+        "comp-front-18",
+        "comp-front-19",
+        "comp-front-20",
+        "comp-front-21"
+      ]
+    }
+  },
+  "physicalIndexToComponentId": {},
+  "source": {
+    "type": "epnm-deviceprofile",
+    "profile": "Cisco_NCS_560_Enhanced_Router"
+  }
+}
