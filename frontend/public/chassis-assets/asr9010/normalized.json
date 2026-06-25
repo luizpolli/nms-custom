@@ -632,7 +632,13 @@
         "component-4664286",
         "component-4664325",
         "component-4664329",
-        "component-4664310"
+        "component-4664310",
+        "comp-psu-PS0-M0",
+        "comp-psu-PS0-M1",
+        "comp-psu-PS0-M2",
+        "comp-psu-PS1-M0",
+        "comp-psu-PS1-M1",
+        "comp-psu-PS1-M2"
       ],
       "description": "ASR-9010 AC Chassis",
       "displayName": "chassis ASR-9010-AC",
@@ -1525,6 +1531,72 @@
       "operStatus": "down",
       "ports": [],
       "childIds": []
+    },
+    "comp-psu-PS0-M0": {
+      "id": "comp-psu-PS0-M0",
+      "name": "PS0/M0",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "component-4664323"
+    },
+    "comp-psu-PS0-M1": {
+      "id": "comp-psu-PS0-M1",
+      "name": "PS0/M1",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "component-4664323"
+    },
+    "comp-psu-PS0-M2": {
+      "id": "comp-psu-PS0-M2",
+      "name": "PS0/M2",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "component-4664323"
+    },
+    "comp-psu-PS1-M0": {
+      "id": "comp-psu-PS1-M0",
+      "name": "PS1/M0",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "component-4664323"
+    },
+    "comp-psu-PS1-M1": {
+      "id": "comp-psu-PS1-M1",
+      "name": "PS1/M1",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "component-4664323"
+    },
+    "comp-psu-PS1-M2": {
+      "id": "comp-psu-PS1-M2",
+      "name": "PS1/M2",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "component-4664323"
     }
   },
   "deviceId": "sample-asr9010",
@@ -2153,6 +2225,48 @@
           "label": "slot 0/PM1/2",
           "physicalIndex": 60445166,
           "type": "Equipment"
+        },
+        {
+          "id": "node-psu-PS0-M0",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-psu-PS0-M0",
+          "children": []
+        },
+        {
+          "id": "node-psu-PS0-M1",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-psu-PS0-M1",
+          "children": []
+        },
+        {
+          "id": "node-psu-PS0-M2",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-psu-PS0-M2",
+          "children": []
+        },
+        {
+          "id": "node-psu-PS1-M0",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-psu-PS1-M0",
+          "children": []
+        },
+        {
+          "id": "node-psu-PS1-M1",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-psu-PS1-M1",
+          "children": []
+        },
+        {
+          "id": "node-psu-PS1-M2",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-psu-PS1-M2",
+          "children": []
         }
       ],
       "componentId": "component-4664323",
@@ -2431,7 +2545,7 @@
           },
           "empty": true,
           "id": "hotspot-PS0-M0",
-          "inventoryId": null,
+          "inventoryId": "comp-psu-PS0-M0",
           "label": "Power Unit Slot",
           "metadata": {
             "alias": 10,
@@ -2456,7 +2570,7 @@
           },
           "empty": true,
           "id": "hotspot-PS0-M1",
-          "inventoryId": null,
+          "inventoryId": "comp-psu-PS0-M1",
           "label": "Power Unit Slot",
           "metadata": {
             "alias": 11,
@@ -2481,7 +2595,7 @@
           },
           "empty": true,
           "id": "hotspot-PS0-M2",
-          "inventoryId": null,
+          "inventoryId": "comp-psu-PS0-M2",
           "label": "Power Unit Slot",
           "metadata": {
             "alias": 12,
@@ -2506,7 +2620,7 @@
           },
           "empty": true,
           "id": "hotspot-PS1-M0",
-          "inventoryId": null,
+          "inventoryId": "comp-psu-PS1-M0",
           "label": "Power Unit Slot",
           "metadata": {
             "alias": 13,
@@ -2531,7 +2645,7 @@
           },
           "empty": true,
           "id": "hotspot-PS1-M1",
-          "inventoryId": null,
+          "inventoryId": "comp-psu-PS1-M1",
           "label": "Power Unit Slot",
           "metadata": {
             "alias": 14,
@@ -2556,7 +2670,7 @@
           },
           "empty": true,
           "id": "hotspot-PS1-M2",
-          "inventoryId": null,
+          "inventoryId": "comp-psu-PS1-M2",
           "label": "Power Unit Slot",
           "metadata": {
             "alias": 15,
