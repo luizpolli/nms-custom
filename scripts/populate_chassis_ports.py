@@ -48,6 +48,15 @@ CONFIG = {
 SID_RE = re.compile(r'"id"\s*:\s*"([^"]+)"\s*,\s*"nodeId"\s*:\s*"([^"]+)"')
 
 
+def find_faceplate_svg(svg_id: str, orient: str) -> Path | None:
+    """Locate a card faceplate SVG in any family's pluggables/images/<orient>."""
+    for root in DP.glob(f"*/pluggables/images/{orient}"):
+        f = root / svg_id
+        if f.exists():
+            return f
+    return None
+
+
 def module_block(text: str, pid: str) -> str | None:
     i = text.find(f'"{pid}": {{')
     if i < 0:
@@ -98,6 +107,8 @@ def card_cages(text: str, pid: str) -> dict | None:
     block = module_block(text, pid)
     if not block:
         return None
+    svg_m = re.search(r'"?svgImageId"?\s*:\s*"([^"]+)"', block)
+    svg_id = svg_m.group(1) if svg_m else None
     # Frame dims come from the module's `orientation` object (brace-matched),
     # NOT the flat top-level width/height (which can disagree with the cages).
     dims = {}
@@ -127,11 +138,15 @@ def card_cages(text: str, pid: str) -> dict | None:
             ports.append(rects)
     if not ports:
         return None
-    return {"dims": dims, "ports": ports}
+    return {"dims": dims, "ports": ports, "svg": svg_id}
 
 
-def scale_ports(card: dict, slot: dict) -> list[dict]:
-    """Map each card cage into the slot bounds, transposing if orientation differs."""
+def scale_ports(card: dict, slot: dict) -> tuple[str | None, list[dict]]:
+    """Map each card cage into the slot bounds. Returns (orientation_used, cages).
+
+    Picks the card orientation matching the slot aspect so the faceplate art and
+    the cages share one coordinate frame (no transpose needed for our wide slots).
+    """
     sx, sy, sw, sh = slot["x"], slot["y"], slot["w"], slot["h"]
     slot_vert = sh > sw
     want = "vertical" if slot_vert else "horizontal"
@@ -140,7 +155,7 @@ def scale_ports(card: dict, slot: dict) -> list[dict]:
         have = "horizontal" if any("horizontal" in p for p in card["ports"]) else "vertical"
     dims = card["dims"].get(have)
     if not dims:
-        return []
+        return None, []
     cw, ch = dims["width"], dims["height"]
     transpose = (have == "horizontal") != (not slot_vert)  # card orient != slot orient
     out = []
@@ -166,7 +181,7 @@ def scale_ports(card: dict, slot: dict) -> list[dict]:
         by = min(max(by, sy), sy + sh - bh)
         out.append({"x": round(bx, 1), "y": round(by, 1),
                     "w": round(bw, 1), "h": round(bh, 1)})
-    return out
+    return have, out
 
 
 def populate(profile_id: str) -> None:
@@ -191,10 +206,21 @@ def populate(profile_id: str) -> None:
                 continue
             card_pid, prefix = cfg["byLabel"][label]
             alias = hs.get("slotKey", "0")
-            cages = scale_ports(card, hs["bounds"])
+            orient, cages = scale_ports(card, hs["bounds"])
             if not cages:
                 continue
+            # Composite the card faceplate art into the slot so the bay is not a
+            # black hole; the cages were scaled in this same orientation's frame
+            # so the ports land on the drawn cages.
             comp_id = hs.get("inventoryId")
+            if card.get("svg"):
+                src = find_faceplate_svg(card["svg"], orient or "horizontal")
+                if src:
+                    dst = ASSETS / profile_id / src.name
+                    if not dst.exists():
+                        dst.write_bytes(src.read_bytes())
+                    hs["asset"] = {"image": f"/chassis-assets/{profile_id}/{src.name}",
+                                   "typeId": card_pid}
             comp = model["componentsById"].get(comp_id)
             child_ids, comp_ports = [], []
             for i, b in enumerate(cages):
@@ -207,7 +233,6 @@ def populate(profile_id: str) -> None:
                     "id": hid, "slotKey": ifname, "label": ifname,
                     "inventoryId": pcid, "physicalIndex": pidx, "empty": False,
                     "bounds": b,
-                    "asset": {"image": "/chassis-assets/asr920/modules/SFP.svg", "typeId": "SFP"},
                     "metadata": {"card": card_pid, "port": ifname},
                 })
                 model["componentsById"][pcid] = {

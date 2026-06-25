@@ -30,6 +30,10 @@
             "fillerTypeId": "ASR-9903-LC",
             "sourceName": "Line Card Slot",
             "card": "ASR-9903-LC"
+          },
+          "asset": {
+            "image": "/chassis-assets/asr9903/ASR-9903_LC.svg",
+            "typeId": "ASR-9903-LC"
           }
         },
         {
@@ -44,10 +48,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -67,10 +67,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/1"
@@ -88,10 +84,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -111,10 +103,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/3"
@@ -132,10 +120,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -155,10 +139,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/5"
@@ -176,10 +156,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -199,10 +175,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/7"
@@ -220,10 +192,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -243,10 +211,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/9"
@@ -264,10 +228,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -287,10 +247,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/11"
@@ -308,10 +264,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -331,10 +283,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/13"
@@ -352,10 +300,6 @@
             "y": 258.1,
             "w": 28.6,
             "h": 29.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -375,10 +319,6 @@
             "w": 28.6,
             "h": 29.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/15"
@@ -396,10 +336,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -419,10 +355,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/17"
@@ -440,10 +372,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -463,10 +391,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/19"
@@ -484,10 +408,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -507,10 +427,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/21"
@@ -528,10 +444,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -551,10 +463,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/23"
@@ -572,10 +480,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -595,10 +499,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/25"
@@ -616,10 +516,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -639,10 +535,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/27"
@@ -660,10 +552,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -683,10 +571,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/29"
@@ -704,10 +588,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -727,10 +607,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/31"
@@ -748,10 +624,6 @@
             "y": 275.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",
@@ -771,10 +643,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/33"
@@ -793,10 +661,6 @@
             "w": 19.1,
             "h": 19.5
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9903-LC",
             "port": "HundredGigE0/0/0/34"
@@ -814,10 +678,6 @@
             "y": 197.6,
             "w": 19.1,
             "h": 19.5
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9903-LC",

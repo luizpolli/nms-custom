@@ -30,6 +30,10 @@
             "fillerTypeId": "A99-RSP-TR-FILLER",
             "sourceName": "Line Card Slot",
             "card": "ASR-9901-LC"
+          },
+          "asset": {
+            "image": "/chassis-assets/asr9901/asr9901-front_ports.svg",
+            "typeId": "ASR-9901-LC"
           }
         },
         {
@@ -44,10 +48,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -67,10 +67,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/1"
@@ -88,10 +84,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -111,10 +103,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/3"
@@ -132,10 +120,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -155,10 +139,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/5"
@@ -176,10 +156,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -199,10 +175,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/7"
@@ -220,10 +192,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -243,10 +211,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/9"
@@ -264,10 +228,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -287,10 +247,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/11"
@@ -308,10 +264,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -331,10 +283,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/13"
@@ -352,10 +300,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -375,10 +319,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/15"
@@ -396,10 +336,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -419,10 +355,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/17"
@@ -440,10 +372,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -463,10 +391,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/19"
@@ -484,10 +408,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -507,10 +427,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/21"
@@ -528,10 +444,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -551,10 +463,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/23"
@@ -572,10 +480,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -595,10 +499,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/25"
@@ -616,10 +516,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -639,10 +535,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/27"
@@ -660,10 +552,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -683,10 +571,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/29"
@@ -704,10 +588,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -727,10 +607,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/31"
@@ -748,10 +624,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -771,10 +643,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/33"
@@ -792,10 +660,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -815,10 +679,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/35"
@@ -836,10 +696,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -859,10 +715,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/37"
@@ -880,10 +732,6 @@
             "y": 66.0,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",
@@ -903,10 +751,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/39"
@@ -925,10 +769,6 @@
             "w": 30.7,
             "h": 54.8
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "ASR-9901-LC",
             "port": "TenGigE0/0/0/40"
@@ -946,10 +786,6 @@
             "y": 175.6,
             "w": 30.7,
             "h": 54.8
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "ASR-9901-LC",

@@ -30,6 +30,10 @@
             "fillerTypeId": "NCS560-FILLER-LC",
             "sourceName": "Line Card Slot",
             "card": "A900-IMA8CS1Z-M"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/A900-IMA8CS1Z-M.svg",
+            "typeId": "A900-IMA8CS1Z-M"
           }
         },
         {
@@ -44,10 +48,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -67,10 +67,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/1"
@@ -88,10 +84,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -111,10 +103,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/3"
@@ -132,10 +120,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -155,10 +139,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/5"
@@ -176,10 +156,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -199,10 +175,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/7"
@@ -220,10 +192,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -243,10 +211,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/9"
@@ -264,10 +228,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -287,10 +247,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/11"
@@ -308,10 +264,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -331,10 +283,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/13"
@@ -352,10 +300,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -375,10 +319,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/15"
@@ -397,10 +337,6 @@
             "w": 26.8,
             "h": 25.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/0/0/16"
@@ -418,10 +354,6 @@
             "y": 207.3,
             "w": 26.8,
             "h": 25.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -446,6 +378,10 @@
             "fillerTypeId": "NCS560-FILLER-LC",
             "sourceName": "Line Card Slot",
             "card": "A900-IMA8CS1Z-M"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/A900-IMA8CS1Z-M.svg",
+            "typeId": "A900-IMA8CS1Z-M"
           }
         },
         {
@@ -460,10 +396,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -483,10 +415,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/1"
@@ -504,10 +432,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -527,10 +451,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/3"
@@ -548,10 +468,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -571,10 +487,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/5"
@@ -592,10 +504,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -615,10 +523,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/7"
@@ -636,10 +540,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -659,10 +559,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/9"
@@ -680,10 +576,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -703,10 +595,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/11"
@@ -724,10 +612,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -747,10 +631,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/13"
@@ -768,10 +648,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -791,10 +667,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/15"
@@ -813,10 +685,6 @@
             "w": 22.9,
             "h": 148.7
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/1/0/16"
@@ -834,10 +702,6 @@
             "y": 321.1,
             "w": 22.9,
             "h": 148.7
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -862,6 +726,10 @@
             "fillerTypeId": "NCS560-FILLER-LC",
             "sourceName": "Line Card Slot",
             "card": "A900-IMA8CS1Z-M"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/A900-IMA8CS1Z-M.svg",
+            "typeId": "A900-IMA8CS1Z-M"
           }
         },
         {
@@ -876,10 +744,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -899,10 +763,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/1"
@@ -920,10 +780,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -943,10 +799,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/3"
@@ -964,10 +816,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -987,10 +835,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/5"
@@ -1008,10 +852,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1031,10 +871,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/7"
@@ -1052,10 +888,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1075,10 +907,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/9"
@@ -1096,10 +924,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1119,10 +943,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/11"
@@ -1140,10 +960,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1163,10 +979,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/13"
@@ -1184,10 +996,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1207,10 +1015,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/15"
@@ -1229,10 +1033,6 @@
             "w": 26.8,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/2/0/16"
@@ -1250,10 +1050,6 @@
             "y": 122.5,
             "w": 26.8,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1278,6 +1074,10 @@
             "fillerTypeId": "NCS560-FILLER-LC",
             "sourceName": "Line Card Slot",
             "card": "A900-IMA8CS1Z-M"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/A900-IMA8CS1Z-M.svg",
+            "typeId": "A900-IMA8CS1Z-M"
           }
         },
         {
@@ -1292,10 +1092,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1315,10 +1111,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/1"
@@ -1336,10 +1128,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1359,10 +1147,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/3"
@@ -1380,10 +1164,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1403,10 +1183,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/5"
@@ -1424,10 +1200,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1447,10 +1219,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/7"
@@ -1468,10 +1236,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1491,10 +1255,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/9"
@@ -1512,10 +1272,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1535,10 +1291,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/11"
@@ -1556,10 +1308,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1579,10 +1327,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/13"
@@ -1600,10 +1344,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1623,10 +1363,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/15"
@@ -1645,10 +1381,6 @@
             "w": 22.9,
             "h": 26.3
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/3/0/16"
@@ -1666,10 +1398,6 @@
             "y": 122.5,
             "w": 22.9,
             "h": 26.3
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1694,6 +1422,10 @@
             "fillerTypeId": "NCS560-FILLER-LC",
             "sourceName": "Line Card Slot",
             "card": "A900-IMA8CS1Z-M"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/A900-IMA8CS1Z-M.svg",
+            "typeId": "A900-IMA8CS1Z-M"
           }
         },
         {
@@ -1708,10 +1440,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1731,10 +1459,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/1"
@@ -1752,10 +1476,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1775,10 +1495,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/3"
@@ -1796,10 +1512,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1819,10 +1531,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/5"
@@ -1840,10 +1548,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1863,10 +1567,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/7"
@@ -1884,10 +1584,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1907,10 +1603,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/9"
@@ -1928,10 +1620,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1951,10 +1639,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/11"
@@ -1972,10 +1656,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -1995,10 +1675,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/13"
@@ -2016,10 +1692,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2039,10 +1711,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/15"
@@ -2061,10 +1729,6 @@
             "w": 26.8,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/4/0/16"
@@ -2082,10 +1746,6 @@
             "y": 36.4,
             "w": 26.8,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2110,6 +1770,10 @@
             "fillerTypeId": "NCS560-FILLER-LC",
             "sourceName": "Line Card Slot",
             "card": "A900-IMA8CS1Z-M"
+          },
+          "asset": {
+            "image": "/chassis-assets/ncs560-4/A900-IMA8CS1Z-M.svg",
+            "typeId": "A900-IMA8CS1Z-M"
           }
         },
         {
@@ -2124,10 +1788,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2147,10 +1807,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/1"
@@ -2168,10 +1824,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2191,10 +1843,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/3"
@@ -2212,10 +1860,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2235,10 +1879,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/5"
@@ -2256,10 +1896,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2279,10 +1915,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/7"
@@ -2300,10 +1932,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2323,10 +1951,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/9"
@@ -2344,10 +1968,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2367,10 +1987,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/11"
@@ -2388,10 +2004,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2411,10 +2023,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/13"
@@ -2432,10 +2040,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
@@ -2455,10 +2059,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/15"
@@ -2477,10 +2077,6 @@
             "w": 22.9,
             "h": 26.6
           },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
-          },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
             "port": "TenGigE0/5/0/16"
@@ -2498,10 +2094,6 @@
             "y": 36.4,
             "w": 22.9,
             "h": 26.6
-          },
-          "asset": {
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "typeId": "SFP"
           },
           "metadata": {
             "card": "A900-IMA8CS1Z-M",
