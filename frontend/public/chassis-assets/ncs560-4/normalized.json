@@ -7,7 +7,7 @@
   "views": [
     {
       "id": "front",
-      "label": "Front View",
+      "label": "Front",
       "image": "/chassis-assets/ncs560-4/NCS560-4-front_core.svg",
       "width": 1674.0,
       "height": 672.0,
@@ -18,17 +18,414 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-0",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 286.2,
             "y": 183.5,
-            "w": 695.4,
-            "h": 81.2
+            "w": 710.2,
+            "h": 79.9
           },
           "metadata": {
             "alias": 0,
             "fillerTypeId": "NCS560-FILLER-LC",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "A900-IMA8CS1Z-M"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p0",
+          "slotKey": "TenGigE0/0/0/0",
+          "label": "TenGigE0/0/0/0",
+          "inventoryId": "comp-port-9000001",
+          "physicalIndex": 9000001,
+          "empty": false,
+          "bounds": {
+            "x": 353.3,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p1",
+          "slotKey": "TenGigE0/0/0/1",
+          "label": "TenGigE0/0/0/1",
+          "inventoryId": "comp-port-9000002",
+          "physicalIndex": 9000002,
+          "empty": false,
+          "bounds": {
+            "x": 381.4,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p2",
+          "slotKey": "TenGigE0/0/0/2",
+          "label": "TenGigE0/0/0/2",
+          "inventoryId": "comp-port-9000003",
+          "physicalIndex": 9000003,
+          "empty": false,
+          "bounds": {
+            "x": 414.3,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p3",
+          "slotKey": "TenGigE0/0/0/3",
+          "label": "TenGigE0/0/0/3",
+          "inventoryId": "comp-port-9000004",
+          "physicalIndex": 9000004,
+          "empty": false,
+          "bounds": {
+            "x": 443.6,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p4",
+          "slotKey": "TenGigE0/0/0/4",
+          "label": "TenGigE0/0/0/4",
+          "inventoryId": "comp-port-9000005",
+          "physicalIndex": 9000005,
+          "empty": false,
+          "bounds": {
+            "x": 475.3,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p5",
+          "slotKey": "TenGigE0/0/0/5",
+          "label": "TenGigE0/0/0/5",
+          "inventoryId": "comp-port-9000006",
+          "physicalIndex": 9000006,
+          "empty": false,
+          "bounds": {
+            "x": 503.4,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p6",
+          "slotKey": "TenGigE0/0/0/6",
+          "label": "TenGigE0/0/0/6",
+          "inventoryId": "comp-port-9000007",
+          "physicalIndex": 9000007,
+          "empty": false,
+          "bounds": {
+            "x": 536.4,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p7",
+          "slotKey": "TenGigE0/0/0/7",
+          "label": "TenGigE0/0/0/7",
+          "inventoryId": "comp-port-9000008",
+          "physicalIndex": 9000008,
+          "empty": false,
+          "bounds": {
+            "x": 564.4,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p8",
+          "slotKey": "TenGigE0/0/0/8",
+          "label": "TenGigE0/0/0/8",
+          "inventoryId": "comp-port-9000009",
+          "physicalIndex": 9000009,
+          "empty": false,
+          "bounds": {
+            "x": 629.1,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p9",
+          "slotKey": "TenGigE0/0/0/9",
+          "label": "TenGigE0/0/0/9",
+          "inventoryId": "comp-port-9000010",
+          "physicalIndex": 9000010,
+          "empty": false,
+          "bounds": {
+            "x": 658.4,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p10",
+          "slotKey": "TenGigE0/0/0/10",
+          "label": "TenGigE0/0/0/10",
+          "inventoryId": "comp-port-9000011",
+          "physicalIndex": 9000011,
+          "empty": false,
+          "bounds": {
+            "x": 690.1,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p11",
+          "slotKey": "TenGigE0/0/0/11",
+          "label": "TenGigE0/0/0/11",
+          "inventoryId": "comp-port-9000012",
+          "physicalIndex": 9000012,
+          "empty": false,
+          "bounds": {
+            "x": 718.2,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p12",
+          "slotKey": "TenGigE0/0/0/12",
+          "label": "TenGigE0/0/0/12",
+          "inventoryId": "comp-port-9000013",
+          "physicalIndex": 9000013,
+          "empty": false,
+          "bounds": {
+            "x": 751.1,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p13",
+          "slotKey": "TenGigE0/0/0/13",
+          "label": "TenGigE0/0/0/13",
+          "inventoryId": "comp-port-9000014",
+          "physicalIndex": 9000014,
+          "empty": false,
+          "bounds": {
+            "x": 780.4,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p14",
+          "slotKey": "TenGigE0/0/0/14",
+          "label": "TenGigE0/0/0/14",
+          "inventoryId": "comp-port-9000015",
+          "physicalIndex": 9000015,
+          "empty": false,
+          "bounds": {
+            "x": 812.1,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p15",
+          "slotKey": "TenGigE0/0/0/15",
+          "label": "TenGigE0/0/0/15",
+          "inventoryId": "comp-port-9000016",
+          "physicalIndex": 9000016,
+          "empty": false,
+          "bounds": {
+            "x": 840.2,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p16",
+          "slotKey": "TenGigE0/0/0/16",
+          "label": "TenGigE0/0/0/16",
+          "inventoryId": "comp-port-9000017",
+          "physicalIndex": 9000017,
+          "empty": false,
+          "bounds": {
+            "x": 882.9,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-0-p17",
+          "slotKey": "TenGigE0/0/0/17",
+          "label": "TenGigE0/0/0/17",
+          "inventoryId": "comp-port-9000018",
+          "physicalIndex": 9000018,
+          "empty": false,
+          "bounds": {
+            "x": 912.2,
+            "y": 207.3,
+            "w": 26.8,
+            "h": 25.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/0/0/17"
           }
         },
         {
@@ -37,17 +434,414 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-1",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 1026.0,
             "y": 183.5,
-            "w": 431.5,
-            "h": 81.2
+            "w": 606.0,
+            "h": 462.5
           },
           "metadata": {
             "alias": 1,
             "fillerTypeId": "NCS560-FILLER-LC",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "A900-IMA8CS1Z-M"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p0",
+          "slotKey": "TenGigE0/1/0/0",
+          "label": "TenGigE0/1/0/0",
+          "inventoryId": "comp-port-9000019",
+          "physicalIndex": 9000019,
+          "empty": false,
+          "bounds": {
+            "x": 1083.3,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p1",
+          "slotKey": "TenGigE0/1/0/1",
+          "label": "TenGigE0/1/0/1",
+          "inventoryId": "comp-port-9000020",
+          "physicalIndex": 9000020,
+          "empty": false,
+          "bounds": {
+            "x": 1107.2,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p2",
+          "slotKey": "TenGigE0/1/0/2",
+          "label": "TenGigE0/1/0/2",
+          "inventoryId": "comp-port-9000021",
+          "physicalIndex": 9000021,
+          "empty": false,
+          "bounds": {
+            "x": 1135.3,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p3",
+          "slotKey": "TenGigE0/1/0/3",
+          "label": "TenGigE0/1/0/3",
+          "inventoryId": "comp-port-9000022",
+          "physicalIndex": 9000022,
+          "empty": false,
+          "bounds": {
+            "x": 1160.3,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p4",
+          "slotKey": "TenGigE0/1/0/4",
+          "label": "TenGigE0/1/0/4",
+          "inventoryId": "comp-port-9000023",
+          "physicalIndex": 9000023,
+          "empty": false,
+          "bounds": {
+            "x": 1187.4,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p5",
+          "slotKey": "TenGigE0/1/0/5",
+          "label": "TenGigE0/1/0/5",
+          "inventoryId": "comp-port-9000024",
+          "physicalIndex": 9000024,
+          "empty": false,
+          "bounds": {
+            "x": 1211.3,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p6",
+          "slotKey": "TenGigE0/1/0/6",
+          "label": "TenGigE0/1/0/6",
+          "inventoryId": "comp-port-9000025",
+          "physicalIndex": 9000025,
+          "empty": false,
+          "bounds": {
+            "x": 1239.5,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p7",
+          "slotKey": "TenGigE0/1/0/7",
+          "label": "TenGigE0/1/0/7",
+          "inventoryId": "comp-port-9000026",
+          "physicalIndex": 9000026,
+          "empty": false,
+          "bounds": {
+            "x": 1263.4,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p8",
+          "slotKey": "TenGigE0/1/0/8",
+          "label": "TenGigE0/1/0/8",
+          "inventoryId": "comp-port-9000027",
+          "physicalIndex": 9000027,
+          "empty": false,
+          "bounds": {
+            "x": 1318.6,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p9",
+          "slotKey": "TenGigE0/1/0/9",
+          "label": "TenGigE0/1/0/9",
+          "inventoryId": "comp-port-9000028",
+          "physicalIndex": 9000028,
+          "empty": false,
+          "bounds": {
+            "x": 1343.6,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p10",
+          "slotKey": "TenGigE0/1/0/10",
+          "label": "TenGigE0/1/0/10",
+          "inventoryId": "comp-port-9000029",
+          "physicalIndex": 9000029,
+          "empty": false,
+          "bounds": {
+            "x": 1370.6,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p11",
+          "slotKey": "TenGigE0/1/0/11",
+          "label": "TenGigE0/1/0/11",
+          "inventoryId": "comp-port-9000030",
+          "physicalIndex": 9000030,
+          "empty": false,
+          "bounds": {
+            "x": 1394.6,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p12",
+          "slotKey": "TenGigE0/1/0/12",
+          "label": "TenGigE0/1/0/12",
+          "inventoryId": "comp-port-9000031",
+          "physicalIndex": 9000031,
+          "empty": false,
+          "bounds": {
+            "x": 1422.7,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p13",
+          "slotKey": "TenGigE0/1/0/13",
+          "label": "TenGigE0/1/0/13",
+          "inventoryId": "comp-port-9000032",
+          "physicalIndex": 9000032,
+          "empty": false,
+          "bounds": {
+            "x": 1447.7,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p14",
+          "slotKey": "TenGigE0/1/0/14",
+          "label": "TenGigE0/1/0/14",
+          "inventoryId": "comp-port-9000033",
+          "physicalIndex": 9000033,
+          "empty": false,
+          "bounds": {
+            "x": 1474.8,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p15",
+          "slotKey": "TenGigE0/1/0/15",
+          "label": "TenGigE0/1/0/15",
+          "inventoryId": "comp-port-9000034",
+          "physicalIndex": 9000034,
+          "empty": false,
+          "bounds": {
+            "x": 1498.7,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p16",
+          "slotKey": "TenGigE0/1/0/16",
+          "label": "TenGigE0/1/0/16",
+          "inventoryId": "comp-port-9000035",
+          "physicalIndex": 9000035,
+          "empty": false,
+          "bounds": {
+            "x": 1535.2,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-1-p17",
+          "slotKey": "TenGigE0/1/0/17",
+          "label": "TenGigE0/1/0/17",
+          "inventoryId": "comp-port-9000036",
+          "physicalIndex": 9000036,
+          "empty": false,
+          "bounds": {
+            "x": 1560.2,
+            "y": 321.1,
+            "w": 22.9,
+            "h": 148.7
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/1/0/17"
           }
         },
         {
@@ -56,17 +850,414 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-2",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 286.2,
             "y": 98.1,
-            "w": 695.4,
-            "h": 80.2
+            "w": 710.2,
+            "h": 81.9
           },
           "metadata": {
             "alias": 2,
             "fillerTypeId": "NCS560-FILLER-LC",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "A900-IMA8CS1Z-M"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p0",
+          "slotKey": "TenGigE0/2/0/0",
+          "label": "TenGigE0/2/0/0",
+          "inventoryId": "comp-port-9000037",
+          "physicalIndex": 9000037,
+          "empty": false,
+          "bounds": {
+            "x": 353.3,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p1",
+          "slotKey": "TenGigE0/2/0/1",
+          "label": "TenGigE0/2/0/1",
+          "inventoryId": "comp-port-9000038",
+          "physicalIndex": 9000038,
+          "empty": false,
+          "bounds": {
+            "x": 381.4,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p2",
+          "slotKey": "TenGigE0/2/0/2",
+          "label": "TenGigE0/2/0/2",
+          "inventoryId": "comp-port-9000039",
+          "physicalIndex": 9000039,
+          "empty": false,
+          "bounds": {
+            "x": 414.3,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p3",
+          "slotKey": "TenGigE0/2/0/3",
+          "label": "TenGigE0/2/0/3",
+          "inventoryId": "comp-port-9000040",
+          "physicalIndex": 9000040,
+          "empty": false,
+          "bounds": {
+            "x": 443.6,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p4",
+          "slotKey": "TenGigE0/2/0/4",
+          "label": "TenGigE0/2/0/4",
+          "inventoryId": "comp-port-9000041",
+          "physicalIndex": 9000041,
+          "empty": false,
+          "bounds": {
+            "x": 475.3,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p5",
+          "slotKey": "TenGigE0/2/0/5",
+          "label": "TenGigE0/2/0/5",
+          "inventoryId": "comp-port-9000042",
+          "physicalIndex": 9000042,
+          "empty": false,
+          "bounds": {
+            "x": 503.4,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p6",
+          "slotKey": "TenGigE0/2/0/6",
+          "label": "TenGigE0/2/0/6",
+          "inventoryId": "comp-port-9000043",
+          "physicalIndex": 9000043,
+          "empty": false,
+          "bounds": {
+            "x": 536.4,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p7",
+          "slotKey": "TenGigE0/2/0/7",
+          "label": "TenGigE0/2/0/7",
+          "inventoryId": "comp-port-9000044",
+          "physicalIndex": 9000044,
+          "empty": false,
+          "bounds": {
+            "x": 564.4,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p8",
+          "slotKey": "TenGigE0/2/0/8",
+          "label": "TenGigE0/2/0/8",
+          "inventoryId": "comp-port-9000045",
+          "physicalIndex": 9000045,
+          "empty": false,
+          "bounds": {
+            "x": 629.1,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p9",
+          "slotKey": "TenGigE0/2/0/9",
+          "label": "TenGigE0/2/0/9",
+          "inventoryId": "comp-port-9000046",
+          "physicalIndex": 9000046,
+          "empty": false,
+          "bounds": {
+            "x": 658.4,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p10",
+          "slotKey": "TenGigE0/2/0/10",
+          "label": "TenGigE0/2/0/10",
+          "inventoryId": "comp-port-9000047",
+          "physicalIndex": 9000047,
+          "empty": false,
+          "bounds": {
+            "x": 690.1,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p11",
+          "slotKey": "TenGigE0/2/0/11",
+          "label": "TenGigE0/2/0/11",
+          "inventoryId": "comp-port-9000048",
+          "physicalIndex": 9000048,
+          "empty": false,
+          "bounds": {
+            "x": 718.2,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p12",
+          "slotKey": "TenGigE0/2/0/12",
+          "label": "TenGigE0/2/0/12",
+          "inventoryId": "comp-port-9000049",
+          "physicalIndex": 9000049,
+          "empty": false,
+          "bounds": {
+            "x": 751.1,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p13",
+          "slotKey": "TenGigE0/2/0/13",
+          "label": "TenGigE0/2/0/13",
+          "inventoryId": "comp-port-9000050",
+          "physicalIndex": 9000050,
+          "empty": false,
+          "bounds": {
+            "x": 780.4,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p14",
+          "slotKey": "TenGigE0/2/0/14",
+          "label": "TenGigE0/2/0/14",
+          "inventoryId": "comp-port-9000051",
+          "physicalIndex": 9000051,
+          "empty": false,
+          "bounds": {
+            "x": 812.1,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p15",
+          "slotKey": "TenGigE0/2/0/15",
+          "label": "TenGigE0/2/0/15",
+          "inventoryId": "comp-port-9000052",
+          "physicalIndex": 9000052,
+          "empty": false,
+          "bounds": {
+            "x": 840.2,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p16",
+          "slotKey": "TenGigE0/2/0/16",
+          "label": "TenGigE0/2/0/16",
+          "inventoryId": "comp-port-9000053",
+          "physicalIndex": 9000053,
+          "empty": false,
+          "bounds": {
+            "x": 882.9,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-2-p17",
+          "slotKey": "TenGigE0/2/0/17",
+          "label": "TenGigE0/2/0/17",
+          "inventoryId": "comp-port-9000054",
+          "physicalIndex": 9000054,
+          "empty": false,
+          "bounds": {
+            "x": 912.2,
+            "y": 122.5,
+            "w": 26.8,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/2/0/17"
           }
         },
         {
@@ -75,17 +1266,414 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-3",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 1026.0,
             "y": 98.1,
-            "w": 431.5,
-            "h": 80.2
+            "w": 606.0,
+            "h": 81.9
           },
           "metadata": {
             "alias": 3,
             "fillerTypeId": "NCS560-FILLER-LC",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "A900-IMA8CS1Z-M"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p0",
+          "slotKey": "TenGigE0/3/0/0",
+          "label": "TenGigE0/3/0/0",
+          "inventoryId": "comp-port-9000055",
+          "physicalIndex": 9000055,
+          "empty": false,
+          "bounds": {
+            "x": 1083.3,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p1",
+          "slotKey": "TenGigE0/3/0/1",
+          "label": "TenGigE0/3/0/1",
+          "inventoryId": "comp-port-9000056",
+          "physicalIndex": 9000056,
+          "empty": false,
+          "bounds": {
+            "x": 1107.2,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p2",
+          "slotKey": "TenGigE0/3/0/2",
+          "label": "TenGigE0/3/0/2",
+          "inventoryId": "comp-port-9000057",
+          "physicalIndex": 9000057,
+          "empty": false,
+          "bounds": {
+            "x": 1135.3,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p3",
+          "slotKey": "TenGigE0/3/0/3",
+          "label": "TenGigE0/3/0/3",
+          "inventoryId": "comp-port-9000058",
+          "physicalIndex": 9000058,
+          "empty": false,
+          "bounds": {
+            "x": 1160.3,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p4",
+          "slotKey": "TenGigE0/3/0/4",
+          "label": "TenGigE0/3/0/4",
+          "inventoryId": "comp-port-9000059",
+          "physicalIndex": 9000059,
+          "empty": false,
+          "bounds": {
+            "x": 1187.4,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p5",
+          "slotKey": "TenGigE0/3/0/5",
+          "label": "TenGigE0/3/0/5",
+          "inventoryId": "comp-port-9000060",
+          "physicalIndex": 9000060,
+          "empty": false,
+          "bounds": {
+            "x": 1211.3,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p6",
+          "slotKey": "TenGigE0/3/0/6",
+          "label": "TenGigE0/3/0/6",
+          "inventoryId": "comp-port-9000061",
+          "physicalIndex": 9000061,
+          "empty": false,
+          "bounds": {
+            "x": 1239.5,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p7",
+          "slotKey": "TenGigE0/3/0/7",
+          "label": "TenGigE0/3/0/7",
+          "inventoryId": "comp-port-9000062",
+          "physicalIndex": 9000062,
+          "empty": false,
+          "bounds": {
+            "x": 1263.4,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p8",
+          "slotKey": "TenGigE0/3/0/8",
+          "label": "TenGigE0/3/0/8",
+          "inventoryId": "comp-port-9000063",
+          "physicalIndex": 9000063,
+          "empty": false,
+          "bounds": {
+            "x": 1318.6,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p9",
+          "slotKey": "TenGigE0/3/0/9",
+          "label": "TenGigE0/3/0/9",
+          "inventoryId": "comp-port-9000064",
+          "physicalIndex": 9000064,
+          "empty": false,
+          "bounds": {
+            "x": 1343.6,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p10",
+          "slotKey": "TenGigE0/3/0/10",
+          "label": "TenGigE0/3/0/10",
+          "inventoryId": "comp-port-9000065",
+          "physicalIndex": 9000065,
+          "empty": false,
+          "bounds": {
+            "x": 1370.6,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p11",
+          "slotKey": "TenGigE0/3/0/11",
+          "label": "TenGigE0/3/0/11",
+          "inventoryId": "comp-port-9000066",
+          "physicalIndex": 9000066,
+          "empty": false,
+          "bounds": {
+            "x": 1394.6,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p12",
+          "slotKey": "TenGigE0/3/0/12",
+          "label": "TenGigE0/3/0/12",
+          "inventoryId": "comp-port-9000067",
+          "physicalIndex": 9000067,
+          "empty": false,
+          "bounds": {
+            "x": 1422.7,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p13",
+          "slotKey": "TenGigE0/3/0/13",
+          "label": "TenGigE0/3/0/13",
+          "inventoryId": "comp-port-9000068",
+          "physicalIndex": 9000068,
+          "empty": false,
+          "bounds": {
+            "x": 1447.7,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p14",
+          "slotKey": "TenGigE0/3/0/14",
+          "label": "TenGigE0/3/0/14",
+          "inventoryId": "comp-port-9000069",
+          "physicalIndex": 9000069,
+          "empty": false,
+          "bounds": {
+            "x": 1474.8,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p15",
+          "slotKey": "TenGigE0/3/0/15",
+          "label": "TenGigE0/3/0/15",
+          "inventoryId": "comp-port-9000070",
+          "physicalIndex": 9000070,
+          "empty": false,
+          "bounds": {
+            "x": 1498.7,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p16",
+          "slotKey": "TenGigE0/3/0/16",
+          "label": "TenGigE0/3/0/16",
+          "inventoryId": "comp-port-9000071",
+          "physicalIndex": 9000071,
+          "empty": false,
+          "bounds": {
+            "x": 1535.2,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-3-p17",
+          "slotKey": "TenGigE0/3/0/17",
+          "label": "TenGigE0/3/0/17",
+          "inventoryId": "comp-port-9000072",
+          "physicalIndex": 9000072,
+          "empty": false,
+          "bounds": {
+            "x": 1560.2,
+            "y": 122.5,
+            "w": 22.9,
+            "h": 26.3
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/3/0/17"
           }
         },
         {
@@ -94,17 +1682,414 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-4",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 286.2,
             "y": 11.7,
-            "w": 695.4,
-            "h": 81.2
+            "w": 710.2,
+            "h": 82.9
           },
           "metadata": {
             "alias": 4,
             "fillerTypeId": "NCS560-FILLER-LC",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "A900-IMA8CS1Z-M"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p0",
+          "slotKey": "TenGigE0/4/0/0",
+          "label": "TenGigE0/4/0/0",
+          "inventoryId": "comp-port-9000073",
+          "physicalIndex": 9000073,
+          "empty": false,
+          "bounds": {
+            "x": 353.3,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p1",
+          "slotKey": "TenGigE0/4/0/1",
+          "label": "TenGigE0/4/0/1",
+          "inventoryId": "comp-port-9000074",
+          "physicalIndex": 9000074,
+          "empty": false,
+          "bounds": {
+            "x": 381.4,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p2",
+          "slotKey": "TenGigE0/4/0/2",
+          "label": "TenGigE0/4/0/2",
+          "inventoryId": "comp-port-9000075",
+          "physicalIndex": 9000075,
+          "empty": false,
+          "bounds": {
+            "x": 414.3,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p3",
+          "slotKey": "TenGigE0/4/0/3",
+          "label": "TenGigE0/4/0/3",
+          "inventoryId": "comp-port-9000076",
+          "physicalIndex": 9000076,
+          "empty": false,
+          "bounds": {
+            "x": 443.6,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p4",
+          "slotKey": "TenGigE0/4/0/4",
+          "label": "TenGigE0/4/0/4",
+          "inventoryId": "comp-port-9000077",
+          "physicalIndex": 9000077,
+          "empty": false,
+          "bounds": {
+            "x": 475.3,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p5",
+          "slotKey": "TenGigE0/4/0/5",
+          "label": "TenGigE0/4/0/5",
+          "inventoryId": "comp-port-9000078",
+          "physicalIndex": 9000078,
+          "empty": false,
+          "bounds": {
+            "x": 503.4,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p6",
+          "slotKey": "TenGigE0/4/0/6",
+          "label": "TenGigE0/4/0/6",
+          "inventoryId": "comp-port-9000079",
+          "physicalIndex": 9000079,
+          "empty": false,
+          "bounds": {
+            "x": 536.4,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p7",
+          "slotKey": "TenGigE0/4/0/7",
+          "label": "TenGigE0/4/0/7",
+          "inventoryId": "comp-port-9000080",
+          "physicalIndex": 9000080,
+          "empty": false,
+          "bounds": {
+            "x": 564.4,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p8",
+          "slotKey": "TenGigE0/4/0/8",
+          "label": "TenGigE0/4/0/8",
+          "inventoryId": "comp-port-9000081",
+          "physicalIndex": 9000081,
+          "empty": false,
+          "bounds": {
+            "x": 629.1,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p9",
+          "slotKey": "TenGigE0/4/0/9",
+          "label": "TenGigE0/4/0/9",
+          "inventoryId": "comp-port-9000082",
+          "physicalIndex": 9000082,
+          "empty": false,
+          "bounds": {
+            "x": 658.4,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p10",
+          "slotKey": "TenGigE0/4/0/10",
+          "label": "TenGigE0/4/0/10",
+          "inventoryId": "comp-port-9000083",
+          "physicalIndex": 9000083,
+          "empty": false,
+          "bounds": {
+            "x": 690.1,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p11",
+          "slotKey": "TenGigE0/4/0/11",
+          "label": "TenGigE0/4/0/11",
+          "inventoryId": "comp-port-9000084",
+          "physicalIndex": 9000084,
+          "empty": false,
+          "bounds": {
+            "x": 718.2,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p12",
+          "slotKey": "TenGigE0/4/0/12",
+          "label": "TenGigE0/4/0/12",
+          "inventoryId": "comp-port-9000085",
+          "physicalIndex": 9000085,
+          "empty": false,
+          "bounds": {
+            "x": 751.1,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p13",
+          "slotKey": "TenGigE0/4/0/13",
+          "label": "TenGigE0/4/0/13",
+          "inventoryId": "comp-port-9000086",
+          "physicalIndex": 9000086,
+          "empty": false,
+          "bounds": {
+            "x": 780.4,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p14",
+          "slotKey": "TenGigE0/4/0/14",
+          "label": "TenGigE0/4/0/14",
+          "inventoryId": "comp-port-9000087",
+          "physicalIndex": 9000087,
+          "empty": false,
+          "bounds": {
+            "x": 812.1,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p15",
+          "slotKey": "TenGigE0/4/0/15",
+          "label": "TenGigE0/4/0/15",
+          "inventoryId": "comp-port-9000088",
+          "physicalIndex": 9000088,
+          "empty": false,
+          "bounds": {
+            "x": 840.2,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p16",
+          "slotKey": "TenGigE0/4/0/16",
+          "label": "TenGigE0/4/0/16",
+          "inventoryId": "comp-port-9000089",
+          "physicalIndex": 9000089,
+          "empty": false,
+          "bounds": {
+            "x": 882.9,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-4-p17",
+          "slotKey": "TenGigE0/4/0/17",
+          "label": "TenGigE0/4/0/17",
+          "inventoryId": "comp-port-9000090",
+          "physicalIndex": 9000090,
+          "empty": false,
+          "bounds": {
+            "x": 912.2,
+            "y": 36.4,
+            "w": 26.8,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/4/0/17"
           }
         },
         {
@@ -113,17 +2098,414 @@
           "label": "Line Card Slot",
           "inventoryId": "comp-front-5",
           "physicalIndex": null,
-          "empty": true,
+          "empty": false,
           "bounds": {
             "x": 1026.0,
             "y": 11.7,
-            "w": 431.5,
-            "h": 81.2
+            "w": 606.0,
+            "h": 82.9
           },
           "metadata": {
             "alias": 5,
             "fillerTypeId": "NCS560-FILLER-LC",
-            "sourceName": "Line Card Slot"
+            "sourceName": "Line Card Slot",
+            "card": "A900-IMA8CS1Z-M"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p0",
+          "slotKey": "TenGigE0/5/0/0",
+          "label": "TenGigE0/5/0/0",
+          "inventoryId": "comp-port-9000091",
+          "physicalIndex": 9000091,
+          "empty": false,
+          "bounds": {
+            "x": 1083.3,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/0"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p1",
+          "slotKey": "TenGigE0/5/0/1",
+          "label": "TenGigE0/5/0/1",
+          "inventoryId": "comp-port-9000092",
+          "physicalIndex": 9000092,
+          "empty": false,
+          "bounds": {
+            "x": 1107.2,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/1"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p2",
+          "slotKey": "TenGigE0/5/0/2",
+          "label": "TenGigE0/5/0/2",
+          "inventoryId": "comp-port-9000093",
+          "physicalIndex": 9000093,
+          "empty": false,
+          "bounds": {
+            "x": 1135.3,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/2"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p3",
+          "slotKey": "TenGigE0/5/0/3",
+          "label": "TenGigE0/5/0/3",
+          "inventoryId": "comp-port-9000094",
+          "physicalIndex": 9000094,
+          "empty": false,
+          "bounds": {
+            "x": 1160.3,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/3"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p4",
+          "slotKey": "TenGigE0/5/0/4",
+          "label": "TenGigE0/5/0/4",
+          "inventoryId": "comp-port-9000095",
+          "physicalIndex": 9000095,
+          "empty": false,
+          "bounds": {
+            "x": 1187.4,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/4"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p5",
+          "slotKey": "TenGigE0/5/0/5",
+          "label": "TenGigE0/5/0/5",
+          "inventoryId": "comp-port-9000096",
+          "physicalIndex": 9000096,
+          "empty": false,
+          "bounds": {
+            "x": 1211.3,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/5"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p6",
+          "slotKey": "TenGigE0/5/0/6",
+          "label": "TenGigE0/5/0/6",
+          "inventoryId": "comp-port-9000097",
+          "physicalIndex": 9000097,
+          "empty": false,
+          "bounds": {
+            "x": 1239.5,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/6"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p7",
+          "slotKey": "TenGigE0/5/0/7",
+          "label": "TenGigE0/5/0/7",
+          "inventoryId": "comp-port-9000098",
+          "physicalIndex": 9000098,
+          "empty": false,
+          "bounds": {
+            "x": 1263.4,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/7"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p8",
+          "slotKey": "TenGigE0/5/0/8",
+          "label": "TenGigE0/5/0/8",
+          "inventoryId": "comp-port-9000099",
+          "physicalIndex": 9000099,
+          "empty": false,
+          "bounds": {
+            "x": 1318.6,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/8"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p9",
+          "slotKey": "TenGigE0/5/0/9",
+          "label": "TenGigE0/5/0/9",
+          "inventoryId": "comp-port-9000100",
+          "physicalIndex": 9000100,
+          "empty": false,
+          "bounds": {
+            "x": 1343.6,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/9"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p10",
+          "slotKey": "TenGigE0/5/0/10",
+          "label": "TenGigE0/5/0/10",
+          "inventoryId": "comp-port-9000101",
+          "physicalIndex": 9000101,
+          "empty": false,
+          "bounds": {
+            "x": 1370.6,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/10"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p11",
+          "slotKey": "TenGigE0/5/0/11",
+          "label": "TenGigE0/5/0/11",
+          "inventoryId": "comp-port-9000102",
+          "physicalIndex": 9000102,
+          "empty": false,
+          "bounds": {
+            "x": 1394.6,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/11"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p12",
+          "slotKey": "TenGigE0/5/0/12",
+          "label": "TenGigE0/5/0/12",
+          "inventoryId": "comp-port-9000103",
+          "physicalIndex": 9000103,
+          "empty": false,
+          "bounds": {
+            "x": 1422.7,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/12"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p13",
+          "slotKey": "TenGigE0/5/0/13",
+          "label": "TenGigE0/5/0/13",
+          "inventoryId": "comp-port-9000104",
+          "physicalIndex": 9000104,
+          "empty": false,
+          "bounds": {
+            "x": 1447.7,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/13"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p14",
+          "slotKey": "TenGigE0/5/0/14",
+          "label": "TenGigE0/5/0/14",
+          "inventoryId": "comp-port-9000105",
+          "physicalIndex": 9000105,
+          "empty": false,
+          "bounds": {
+            "x": 1474.8,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/14"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p15",
+          "slotKey": "TenGigE0/5/0/15",
+          "label": "TenGigE0/5/0/15",
+          "inventoryId": "comp-port-9000106",
+          "physicalIndex": 9000106,
+          "empty": false,
+          "bounds": {
+            "x": 1498.7,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/15"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p16",
+          "slotKey": "TenGigE0/5/0/16",
+          "label": "TenGigE0/5/0/16",
+          "inventoryId": "comp-port-9000107",
+          "physicalIndex": 9000107,
+          "empty": false,
+          "bounds": {
+            "x": 1535.2,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/16"
+          }
+        },
+        {
+          "id": "hs-ncs560-4-comp-front-5-p17",
+          "slotKey": "TenGigE0/5/0/17",
+          "label": "TenGigE0/5/0/17",
+          "inventoryId": "comp-port-9000108",
+          "physicalIndex": 9000108,
+          "empty": false,
+          "bounds": {
+            "x": 1560.2,
+            "y": 36.4,
+            "w": 22.9,
+            "h": 26.6
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "typeId": "SFP"
+          },
+          "metadata": {
+            "card": "A900-IMA8CS1Z-M",
+            "port": "TenGigE0/5/0/17"
           }
         },
         {
@@ -136,8 +2518,8 @@
           "bounds": {
             "x": 286.2,
             "y": 394.7,
-            "w": 431.5,
-            "h": 81.2
+            "w": 1316.2,
+            "h": 130.0
           },
           "metadata": {
             "alias": 6,
@@ -155,8 +2537,8 @@
           "bounds": {
             "x": 286.2,
             "y": 266.7,
-            "w": 431.5,
-            "h": 120.3
+            "w": 1316.2,
+            "h": 122.9
           },
           "metadata": {
             "alias": 7,
@@ -174,8 +2556,8 @@
           "bounds": {
             "x": 270.0,
             "y": 530.1,
-            "w": 431.5,
-            "h": 81.2
+            "w": 440.6,
+            "h": 129.7
           },
           "metadata": {
             "alias": 8,
@@ -193,8 +2575,8 @@
           "bounds": {
             "x": 729.0,
             "y": 530.1,
-            "w": 431.5,
-            "h": 81.2
+            "w": 440.6,
+            "h": 129.7
           },
           "metadata": {
             "alias": 9,
@@ -212,8 +2594,8 @@
           "bounds": {
             "x": 1188.0,
             "y": 530.1,
-            "w": 425.4,
-            "h": 81.2
+            "w": 450.5,
+            "h": 129.7
           },
           "metadata": {
             "alias": 10,
@@ -231,8 +2613,8 @@
           "bounds": {
             "x": 7.6,
             "y": 485.3,
-            "w": 431.5,
-            "h": 81.2
+            "w": 1583.7,
+            "h": 172.7
           },
           "metadata": {
             "alias": 11,
@@ -250,8 +2632,8 @@
           "bounds": {
             "x": 0.0,
             "y": 252.8,
-            "w": 431.5,
-            "h": 218.6
+            "w": 274.8,
+            "h": 223.2
           },
           "metadata": {
             "alias": 12,
@@ -269,8 +2651,8 @@
           "bounds": {
             "x": 0.0,
             "y": 6.4,
-            "w": 431.5,
-            "h": 231.6
+            "w": 274.8,
+            "h": 236.5
           },
           "metadata": {
             "alias": 13,
@@ -392,68 +2774,728 @@
   "componentsById": {
     "comp-front-0": {
       "id": "comp-front-0",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "A900-IMA8CS1Z-M",
+      "displayName": "A900-IMA8CS1Z-M",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "A900-IMA8CS1Z-M",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000001",
+          "name": "TenGigE0/0/0/0",
+          "portId": 9000001
+        },
+        {
+          "id": "9000002",
+          "name": "TenGigE0/0/0/1",
+          "portId": 9000002
+        },
+        {
+          "id": "9000003",
+          "name": "TenGigE0/0/0/2",
+          "portId": 9000003
+        },
+        {
+          "id": "9000004",
+          "name": "TenGigE0/0/0/3",
+          "portId": 9000004
+        },
+        {
+          "id": "9000005",
+          "name": "TenGigE0/0/0/4",
+          "portId": 9000005
+        },
+        {
+          "id": "9000006",
+          "name": "TenGigE0/0/0/5",
+          "portId": 9000006
+        },
+        {
+          "id": "9000007",
+          "name": "TenGigE0/0/0/6",
+          "portId": 9000007
+        },
+        {
+          "id": "9000008",
+          "name": "TenGigE0/0/0/7",
+          "portId": 9000008
+        },
+        {
+          "id": "9000009",
+          "name": "TenGigE0/0/0/8",
+          "portId": 9000009
+        },
+        {
+          "id": "9000010",
+          "name": "TenGigE0/0/0/9",
+          "portId": 9000010
+        },
+        {
+          "id": "9000011",
+          "name": "TenGigE0/0/0/10",
+          "portId": 9000011
+        },
+        {
+          "id": "9000012",
+          "name": "TenGigE0/0/0/11",
+          "portId": 9000012
+        },
+        {
+          "id": "9000013",
+          "name": "TenGigE0/0/0/12",
+          "portId": 9000013
+        },
+        {
+          "id": "9000014",
+          "name": "TenGigE0/0/0/13",
+          "portId": 9000014
+        },
+        {
+          "id": "9000015",
+          "name": "TenGigE0/0/0/14",
+          "portId": 9000015
+        },
+        {
+          "id": "9000016",
+          "name": "TenGigE0/0/0/15",
+          "portId": 9000016
+        },
+        {
+          "id": "9000017",
+          "name": "TenGigE0/0/0/16",
+          "portId": 9000017
+        },
+        {
+          "id": "9000018",
+          "name": "TenGigE0/0/0/17",
+          "portId": 9000018
+        }
+      ],
+      "childIds": [
+        "comp-port-9000001",
+        "comp-port-9000002",
+        "comp-port-9000003",
+        "comp-port-9000004",
+        "comp-port-9000005",
+        "comp-port-9000006",
+        "comp-port-9000007",
+        "comp-port-9000008",
+        "comp-port-9000009",
+        "comp-port-9000010",
+        "comp-port-9000011",
+        "comp-port-9000012",
+        "comp-port-9000013",
+        "comp-port-9000014",
+        "comp-port-9000015",
+        "comp-port-9000016",
+        "comp-port-9000017",
+        "comp-port-9000018"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-1": {
       "id": "comp-front-1",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "A900-IMA8CS1Z-M",
+      "displayName": "A900-IMA8CS1Z-M",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "A900-IMA8CS1Z-M",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000019",
+          "name": "TenGigE0/1/0/0",
+          "portId": 9000019
+        },
+        {
+          "id": "9000020",
+          "name": "TenGigE0/1/0/1",
+          "portId": 9000020
+        },
+        {
+          "id": "9000021",
+          "name": "TenGigE0/1/0/2",
+          "portId": 9000021
+        },
+        {
+          "id": "9000022",
+          "name": "TenGigE0/1/0/3",
+          "portId": 9000022
+        },
+        {
+          "id": "9000023",
+          "name": "TenGigE0/1/0/4",
+          "portId": 9000023
+        },
+        {
+          "id": "9000024",
+          "name": "TenGigE0/1/0/5",
+          "portId": 9000024
+        },
+        {
+          "id": "9000025",
+          "name": "TenGigE0/1/0/6",
+          "portId": 9000025
+        },
+        {
+          "id": "9000026",
+          "name": "TenGigE0/1/0/7",
+          "portId": 9000026
+        },
+        {
+          "id": "9000027",
+          "name": "TenGigE0/1/0/8",
+          "portId": 9000027
+        },
+        {
+          "id": "9000028",
+          "name": "TenGigE0/1/0/9",
+          "portId": 9000028
+        },
+        {
+          "id": "9000029",
+          "name": "TenGigE0/1/0/10",
+          "portId": 9000029
+        },
+        {
+          "id": "9000030",
+          "name": "TenGigE0/1/0/11",
+          "portId": 9000030
+        },
+        {
+          "id": "9000031",
+          "name": "TenGigE0/1/0/12",
+          "portId": 9000031
+        },
+        {
+          "id": "9000032",
+          "name": "TenGigE0/1/0/13",
+          "portId": 9000032
+        },
+        {
+          "id": "9000033",
+          "name": "TenGigE0/1/0/14",
+          "portId": 9000033
+        },
+        {
+          "id": "9000034",
+          "name": "TenGigE0/1/0/15",
+          "portId": 9000034
+        },
+        {
+          "id": "9000035",
+          "name": "TenGigE0/1/0/16",
+          "portId": 9000035
+        },
+        {
+          "id": "9000036",
+          "name": "TenGigE0/1/0/17",
+          "portId": 9000036
+        }
+      ],
+      "childIds": [
+        "comp-port-9000019",
+        "comp-port-9000020",
+        "comp-port-9000021",
+        "comp-port-9000022",
+        "comp-port-9000023",
+        "comp-port-9000024",
+        "comp-port-9000025",
+        "comp-port-9000026",
+        "comp-port-9000027",
+        "comp-port-9000028",
+        "comp-port-9000029",
+        "comp-port-9000030",
+        "comp-port-9000031",
+        "comp-port-9000032",
+        "comp-port-9000033",
+        "comp-port-9000034",
+        "comp-port-9000035",
+        "comp-port-9000036"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-2": {
       "id": "comp-front-2",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "A900-IMA8CS1Z-M",
+      "displayName": "A900-IMA8CS1Z-M",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "A900-IMA8CS1Z-M",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000037",
+          "name": "TenGigE0/2/0/0",
+          "portId": 9000037
+        },
+        {
+          "id": "9000038",
+          "name": "TenGigE0/2/0/1",
+          "portId": 9000038
+        },
+        {
+          "id": "9000039",
+          "name": "TenGigE0/2/0/2",
+          "portId": 9000039
+        },
+        {
+          "id": "9000040",
+          "name": "TenGigE0/2/0/3",
+          "portId": 9000040
+        },
+        {
+          "id": "9000041",
+          "name": "TenGigE0/2/0/4",
+          "portId": 9000041
+        },
+        {
+          "id": "9000042",
+          "name": "TenGigE0/2/0/5",
+          "portId": 9000042
+        },
+        {
+          "id": "9000043",
+          "name": "TenGigE0/2/0/6",
+          "portId": 9000043
+        },
+        {
+          "id": "9000044",
+          "name": "TenGigE0/2/0/7",
+          "portId": 9000044
+        },
+        {
+          "id": "9000045",
+          "name": "TenGigE0/2/0/8",
+          "portId": 9000045
+        },
+        {
+          "id": "9000046",
+          "name": "TenGigE0/2/0/9",
+          "portId": 9000046
+        },
+        {
+          "id": "9000047",
+          "name": "TenGigE0/2/0/10",
+          "portId": 9000047
+        },
+        {
+          "id": "9000048",
+          "name": "TenGigE0/2/0/11",
+          "portId": 9000048
+        },
+        {
+          "id": "9000049",
+          "name": "TenGigE0/2/0/12",
+          "portId": 9000049
+        },
+        {
+          "id": "9000050",
+          "name": "TenGigE0/2/0/13",
+          "portId": 9000050
+        },
+        {
+          "id": "9000051",
+          "name": "TenGigE0/2/0/14",
+          "portId": 9000051
+        },
+        {
+          "id": "9000052",
+          "name": "TenGigE0/2/0/15",
+          "portId": 9000052
+        },
+        {
+          "id": "9000053",
+          "name": "TenGigE0/2/0/16",
+          "portId": 9000053
+        },
+        {
+          "id": "9000054",
+          "name": "TenGigE0/2/0/17",
+          "portId": 9000054
+        }
+      ],
+      "childIds": [
+        "comp-port-9000037",
+        "comp-port-9000038",
+        "comp-port-9000039",
+        "comp-port-9000040",
+        "comp-port-9000041",
+        "comp-port-9000042",
+        "comp-port-9000043",
+        "comp-port-9000044",
+        "comp-port-9000045",
+        "comp-port-9000046",
+        "comp-port-9000047",
+        "comp-port-9000048",
+        "comp-port-9000049",
+        "comp-port-9000050",
+        "comp-port-9000051",
+        "comp-port-9000052",
+        "comp-port-9000053",
+        "comp-port-9000054"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-3": {
       "id": "comp-front-3",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "A900-IMA8CS1Z-M",
+      "displayName": "A900-IMA8CS1Z-M",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "A900-IMA8CS1Z-M",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000055",
+          "name": "TenGigE0/3/0/0",
+          "portId": 9000055
+        },
+        {
+          "id": "9000056",
+          "name": "TenGigE0/3/0/1",
+          "portId": 9000056
+        },
+        {
+          "id": "9000057",
+          "name": "TenGigE0/3/0/2",
+          "portId": 9000057
+        },
+        {
+          "id": "9000058",
+          "name": "TenGigE0/3/0/3",
+          "portId": 9000058
+        },
+        {
+          "id": "9000059",
+          "name": "TenGigE0/3/0/4",
+          "portId": 9000059
+        },
+        {
+          "id": "9000060",
+          "name": "TenGigE0/3/0/5",
+          "portId": 9000060
+        },
+        {
+          "id": "9000061",
+          "name": "TenGigE0/3/0/6",
+          "portId": 9000061
+        },
+        {
+          "id": "9000062",
+          "name": "TenGigE0/3/0/7",
+          "portId": 9000062
+        },
+        {
+          "id": "9000063",
+          "name": "TenGigE0/3/0/8",
+          "portId": 9000063
+        },
+        {
+          "id": "9000064",
+          "name": "TenGigE0/3/0/9",
+          "portId": 9000064
+        },
+        {
+          "id": "9000065",
+          "name": "TenGigE0/3/0/10",
+          "portId": 9000065
+        },
+        {
+          "id": "9000066",
+          "name": "TenGigE0/3/0/11",
+          "portId": 9000066
+        },
+        {
+          "id": "9000067",
+          "name": "TenGigE0/3/0/12",
+          "portId": 9000067
+        },
+        {
+          "id": "9000068",
+          "name": "TenGigE0/3/0/13",
+          "portId": 9000068
+        },
+        {
+          "id": "9000069",
+          "name": "TenGigE0/3/0/14",
+          "portId": 9000069
+        },
+        {
+          "id": "9000070",
+          "name": "TenGigE0/3/0/15",
+          "portId": 9000070
+        },
+        {
+          "id": "9000071",
+          "name": "TenGigE0/3/0/16",
+          "portId": 9000071
+        },
+        {
+          "id": "9000072",
+          "name": "TenGigE0/3/0/17",
+          "portId": 9000072
+        }
+      ],
+      "childIds": [
+        "comp-port-9000055",
+        "comp-port-9000056",
+        "comp-port-9000057",
+        "comp-port-9000058",
+        "comp-port-9000059",
+        "comp-port-9000060",
+        "comp-port-9000061",
+        "comp-port-9000062",
+        "comp-port-9000063",
+        "comp-port-9000064",
+        "comp-port-9000065",
+        "comp-port-9000066",
+        "comp-port-9000067",
+        "comp-port-9000068",
+        "comp-port-9000069",
+        "comp-port-9000070",
+        "comp-port-9000071",
+        "comp-port-9000072"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-4": {
       "id": "comp-front-4",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "A900-IMA8CS1Z-M",
+      "displayName": "A900-IMA8CS1Z-M",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "A900-IMA8CS1Z-M",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000073",
+          "name": "TenGigE0/4/0/0",
+          "portId": 9000073
+        },
+        {
+          "id": "9000074",
+          "name": "TenGigE0/4/0/1",
+          "portId": 9000074
+        },
+        {
+          "id": "9000075",
+          "name": "TenGigE0/4/0/2",
+          "portId": 9000075
+        },
+        {
+          "id": "9000076",
+          "name": "TenGigE0/4/0/3",
+          "portId": 9000076
+        },
+        {
+          "id": "9000077",
+          "name": "TenGigE0/4/0/4",
+          "portId": 9000077
+        },
+        {
+          "id": "9000078",
+          "name": "TenGigE0/4/0/5",
+          "portId": 9000078
+        },
+        {
+          "id": "9000079",
+          "name": "TenGigE0/4/0/6",
+          "portId": 9000079
+        },
+        {
+          "id": "9000080",
+          "name": "TenGigE0/4/0/7",
+          "portId": 9000080
+        },
+        {
+          "id": "9000081",
+          "name": "TenGigE0/4/0/8",
+          "portId": 9000081
+        },
+        {
+          "id": "9000082",
+          "name": "TenGigE0/4/0/9",
+          "portId": 9000082
+        },
+        {
+          "id": "9000083",
+          "name": "TenGigE0/4/0/10",
+          "portId": 9000083
+        },
+        {
+          "id": "9000084",
+          "name": "TenGigE0/4/0/11",
+          "portId": 9000084
+        },
+        {
+          "id": "9000085",
+          "name": "TenGigE0/4/0/12",
+          "portId": 9000085
+        },
+        {
+          "id": "9000086",
+          "name": "TenGigE0/4/0/13",
+          "portId": 9000086
+        },
+        {
+          "id": "9000087",
+          "name": "TenGigE0/4/0/14",
+          "portId": 9000087
+        },
+        {
+          "id": "9000088",
+          "name": "TenGigE0/4/0/15",
+          "portId": 9000088
+        },
+        {
+          "id": "9000089",
+          "name": "TenGigE0/4/0/16",
+          "portId": 9000089
+        },
+        {
+          "id": "9000090",
+          "name": "TenGigE0/4/0/17",
+          "portId": 9000090
+        }
+      ],
+      "childIds": [
+        "comp-port-9000073",
+        "comp-port-9000074",
+        "comp-port-9000075",
+        "comp-port-9000076",
+        "comp-port-9000077",
+        "comp-port-9000078",
+        "comp-port-9000079",
+        "comp-port-9000080",
+        "comp-port-9000081",
+        "comp-port-9000082",
+        "comp-port-9000083",
+        "comp-port-9000084",
+        "comp-port-9000085",
+        "comp-port-9000086",
+        "comp-port-9000087",
+        "comp-port-9000088",
+        "comp-port-9000089",
+        "comp-port-9000090"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-5": {
       "id": "comp-front-5",
-      "name": "Line Card Slot",
-      "displayName": "Line Card Slot",
+      "name": "A900-IMA8CS1Z-M",
+      "displayName": "A900-IMA8CS1Z-M",
       "type": "Line Card",
-      "typeId": null,
-      "empty": true,
-      "ports": [],
-      "childIds": [],
+      "typeId": "A900-IMA8CS1Z-M",
+      "empty": false,
+      "ports": [
+        {
+          "id": "9000091",
+          "name": "TenGigE0/5/0/0",
+          "portId": 9000091
+        },
+        {
+          "id": "9000092",
+          "name": "TenGigE0/5/0/1",
+          "portId": 9000092
+        },
+        {
+          "id": "9000093",
+          "name": "TenGigE0/5/0/2",
+          "portId": 9000093
+        },
+        {
+          "id": "9000094",
+          "name": "TenGigE0/5/0/3",
+          "portId": 9000094
+        },
+        {
+          "id": "9000095",
+          "name": "TenGigE0/5/0/4",
+          "portId": 9000095
+        },
+        {
+          "id": "9000096",
+          "name": "TenGigE0/5/0/5",
+          "portId": 9000096
+        },
+        {
+          "id": "9000097",
+          "name": "TenGigE0/5/0/6",
+          "portId": 9000097
+        },
+        {
+          "id": "9000098",
+          "name": "TenGigE0/5/0/7",
+          "portId": 9000098
+        },
+        {
+          "id": "9000099",
+          "name": "TenGigE0/5/0/8",
+          "portId": 9000099
+        },
+        {
+          "id": "9000100",
+          "name": "TenGigE0/5/0/9",
+          "portId": 9000100
+        },
+        {
+          "id": "9000101",
+          "name": "TenGigE0/5/0/10",
+          "portId": 9000101
+        },
+        {
+          "id": "9000102",
+          "name": "TenGigE0/5/0/11",
+          "portId": 9000102
+        },
+        {
+          "id": "9000103",
+          "name": "TenGigE0/5/0/12",
+          "portId": 9000103
+        },
+        {
+          "id": "9000104",
+          "name": "TenGigE0/5/0/13",
+          "portId": 9000104
+        },
+        {
+          "id": "9000105",
+          "name": "TenGigE0/5/0/14",
+          "portId": 9000105
+        },
+        {
+          "id": "9000106",
+          "name": "TenGigE0/5/0/15",
+          "portId": 9000106
+        },
+        {
+          "id": "9000107",
+          "name": "TenGigE0/5/0/16",
+          "portId": 9000107
+        },
+        {
+          "id": "9000108",
+          "name": "TenGigE0/5/0/17",
+          "portId": 9000108
+        }
+      ],
+      "childIds": [
+        "comp-port-9000091",
+        "comp-port-9000092",
+        "comp-port-9000093",
+        "comp-port-9000094",
+        "comp-port-9000095",
+        "comp-port-9000096",
+        "comp-port-9000097",
+        "comp-port-9000098",
+        "comp-port-9000099",
+        "comp-port-9000100",
+        "comp-port-9000101",
+        "comp-port-9000102",
+        "comp-port-9000103",
+        "comp-port-9000104",
+        "comp-port-9000105",
+        "comp-port-9000106",
+        "comp-port-9000107",
+        "comp-port-9000108"
+      ],
       "parentId": "comp-chassis"
     },
     "comp-front-6": {
@@ -567,6 +3609,1086 @@
         "comp-front-12",
         "comp-front-13"
       ]
+    },
+    "comp-port-9000001": {
+      "id": "comp-port-9000001",
+      "name": "TenGigE0/0/0/0",
+      "displayName": "TenGigE0/0/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000002": {
+      "id": "comp-port-9000002",
+      "name": "TenGigE0/0/0/1",
+      "displayName": "TenGigE0/0/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000003": {
+      "id": "comp-port-9000003",
+      "name": "TenGigE0/0/0/2",
+      "displayName": "TenGigE0/0/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000004": {
+      "id": "comp-port-9000004",
+      "name": "TenGigE0/0/0/3",
+      "displayName": "TenGigE0/0/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000005": {
+      "id": "comp-port-9000005",
+      "name": "TenGigE0/0/0/4",
+      "displayName": "TenGigE0/0/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000006": {
+      "id": "comp-port-9000006",
+      "name": "TenGigE0/0/0/5",
+      "displayName": "TenGigE0/0/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000007": {
+      "id": "comp-port-9000007",
+      "name": "TenGigE0/0/0/6",
+      "displayName": "TenGigE0/0/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000008": {
+      "id": "comp-port-9000008",
+      "name": "TenGigE0/0/0/7",
+      "displayName": "TenGigE0/0/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000009": {
+      "id": "comp-port-9000009",
+      "name": "TenGigE0/0/0/8",
+      "displayName": "TenGigE0/0/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000010": {
+      "id": "comp-port-9000010",
+      "name": "TenGigE0/0/0/9",
+      "displayName": "TenGigE0/0/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000011": {
+      "id": "comp-port-9000011",
+      "name": "TenGigE0/0/0/10",
+      "displayName": "TenGigE0/0/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000012": {
+      "id": "comp-port-9000012",
+      "name": "TenGigE0/0/0/11",
+      "displayName": "TenGigE0/0/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000013": {
+      "id": "comp-port-9000013",
+      "name": "TenGigE0/0/0/12",
+      "displayName": "TenGigE0/0/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000014": {
+      "id": "comp-port-9000014",
+      "name": "TenGigE0/0/0/13",
+      "displayName": "TenGigE0/0/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000015": {
+      "id": "comp-port-9000015",
+      "name": "TenGigE0/0/0/14",
+      "displayName": "TenGigE0/0/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000016": {
+      "id": "comp-port-9000016",
+      "name": "TenGigE0/0/0/15",
+      "displayName": "TenGigE0/0/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000017": {
+      "id": "comp-port-9000017",
+      "name": "TenGigE0/0/0/16",
+      "displayName": "TenGigE0/0/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000018": {
+      "id": "comp-port-9000018",
+      "name": "TenGigE0/0/0/17",
+      "displayName": "TenGigE0/0/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-0",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000019": {
+      "id": "comp-port-9000019",
+      "name": "TenGigE0/1/0/0",
+      "displayName": "TenGigE0/1/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000020": {
+      "id": "comp-port-9000020",
+      "name": "TenGigE0/1/0/1",
+      "displayName": "TenGigE0/1/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000021": {
+      "id": "comp-port-9000021",
+      "name": "TenGigE0/1/0/2",
+      "displayName": "TenGigE0/1/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000022": {
+      "id": "comp-port-9000022",
+      "name": "TenGigE0/1/0/3",
+      "displayName": "TenGigE0/1/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000023": {
+      "id": "comp-port-9000023",
+      "name": "TenGigE0/1/0/4",
+      "displayName": "TenGigE0/1/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000024": {
+      "id": "comp-port-9000024",
+      "name": "TenGigE0/1/0/5",
+      "displayName": "TenGigE0/1/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000025": {
+      "id": "comp-port-9000025",
+      "name": "TenGigE0/1/0/6",
+      "displayName": "TenGigE0/1/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000026": {
+      "id": "comp-port-9000026",
+      "name": "TenGigE0/1/0/7",
+      "displayName": "TenGigE0/1/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000027": {
+      "id": "comp-port-9000027",
+      "name": "TenGigE0/1/0/8",
+      "displayName": "TenGigE0/1/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000028": {
+      "id": "comp-port-9000028",
+      "name": "TenGigE0/1/0/9",
+      "displayName": "TenGigE0/1/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000029": {
+      "id": "comp-port-9000029",
+      "name": "TenGigE0/1/0/10",
+      "displayName": "TenGigE0/1/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000030": {
+      "id": "comp-port-9000030",
+      "name": "TenGigE0/1/0/11",
+      "displayName": "TenGigE0/1/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000031": {
+      "id": "comp-port-9000031",
+      "name": "TenGigE0/1/0/12",
+      "displayName": "TenGigE0/1/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000032": {
+      "id": "comp-port-9000032",
+      "name": "TenGigE0/1/0/13",
+      "displayName": "TenGigE0/1/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000033": {
+      "id": "comp-port-9000033",
+      "name": "TenGigE0/1/0/14",
+      "displayName": "TenGigE0/1/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000034": {
+      "id": "comp-port-9000034",
+      "name": "TenGigE0/1/0/15",
+      "displayName": "TenGigE0/1/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000035": {
+      "id": "comp-port-9000035",
+      "name": "TenGigE0/1/0/16",
+      "displayName": "TenGigE0/1/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000036": {
+      "id": "comp-port-9000036",
+      "name": "TenGigE0/1/0/17",
+      "displayName": "TenGigE0/1/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-1",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000037": {
+      "id": "comp-port-9000037",
+      "name": "TenGigE0/2/0/0",
+      "displayName": "TenGigE0/2/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000038": {
+      "id": "comp-port-9000038",
+      "name": "TenGigE0/2/0/1",
+      "displayName": "TenGigE0/2/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000039": {
+      "id": "comp-port-9000039",
+      "name": "TenGigE0/2/0/2",
+      "displayName": "TenGigE0/2/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000040": {
+      "id": "comp-port-9000040",
+      "name": "TenGigE0/2/0/3",
+      "displayName": "TenGigE0/2/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000041": {
+      "id": "comp-port-9000041",
+      "name": "TenGigE0/2/0/4",
+      "displayName": "TenGigE0/2/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000042": {
+      "id": "comp-port-9000042",
+      "name": "TenGigE0/2/0/5",
+      "displayName": "TenGigE0/2/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000043": {
+      "id": "comp-port-9000043",
+      "name": "TenGigE0/2/0/6",
+      "displayName": "TenGigE0/2/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000044": {
+      "id": "comp-port-9000044",
+      "name": "TenGigE0/2/0/7",
+      "displayName": "TenGigE0/2/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000045": {
+      "id": "comp-port-9000045",
+      "name": "TenGigE0/2/0/8",
+      "displayName": "TenGigE0/2/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000046": {
+      "id": "comp-port-9000046",
+      "name": "TenGigE0/2/0/9",
+      "displayName": "TenGigE0/2/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000047": {
+      "id": "comp-port-9000047",
+      "name": "TenGigE0/2/0/10",
+      "displayName": "TenGigE0/2/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000048": {
+      "id": "comp-port-9000048",
+      "name": "TenGigE0/2/0/11",
+      "displayName": "TenGigE0/2/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000049": {
+      "id": "comp-port-9000049",
+      "name": "TenGigE0/2/0/12",
+      "displayName": "TenGigE0/2/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000050": {
+      "id": "comp-port-9000050",
+      "name": "TenGigE0/2/0/13",
+      "displayName": "TenGigE0/2/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000051": {
+      "id": "comp-port-9000051",
+      "name": "TenGigE0/2/0/14",
+      "displayName": "TenGigE0/2/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000052": {
+      "id": "comp-port-9000052",
+      "name": "TenGigE0/2/0/15",
+      "displayName": "TenGigE0/2/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000053": {
+      "id": "comp-port-9000053",
+      "name": "TenGigE0/2/0/16",
+      "displayName": "TenGigE0/2/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000054": {
+      "id": "comp-port-9000054",
+      "name": "TenGigE0/2/0/17",
+      "displayName": "TenGigE0/2/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-2",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000055": {
+      "id": "comp-port-9000055",
+      "name": "TenGigE0/3/0/0",
+      "displayName": "TenGigE0/3/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000056": {
+      "id": "comp-port-9000056",
+      "name": "TenGigE0/3/0/1",
+      "displayName": "TenGigE0/3/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000057": {
+      "id": "comp-port-9000057",
+      "name": "TenGigE0/3/0/2",
+      "displayName": "TenGigE0/3/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000058": {
+      "id": "comp-port-9000058",
+      "name": "TenGigE0/3/0/3",
+      "displayName": "TenGigE0/3/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000059": {
+      "id": "comp-port-9000059",
+      "name": "TenGigE0/3/0/4",
+      "displayName": "TenGigE0/3/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000060": {
+      "id": "comp-port-9000060",
+      "name": "TenGigE0/3/0/5",
+      "displayName": "TenGigE0/3/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000061": {
+      "id": "comp-port-9000061",
+      "name": "TenGigE0/3/0/6",
+      "displayName": "TenGigE0/3/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000062": {
+      "id": "comp-port-9000062",
+      "name": "TenGigE0/3/0/7",
+      "displayName": "TenGigE0/3/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000063": {
+      "id": "comp-port-9000063",
+      "name": "TenGigE0/3/0/8",
+      "displayName": "TenGigE0/3/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000064": {
+      "id": "comp-port-9000064",
+      "name": "TenGigE0/3/0/9",
+      "displayName": "TenGigE0/3/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000065": {
+      "id": "comp-port-9000065",
+      "name": "TenGigE0/3/0/10",
+      "displayName": "TenGigE0/3/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000066": {
+      "id": "comp-port-9000066",
+      "name": "TenGigE0/3/0/11",
+      "displayName": "TenGigE0/3/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000067": {
+      "id": "comp-port-9000067",
+      "name": "TenGigE0/3/0/12",
+      "displayName": "TenGigE0/3/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000068": {
+      "id": "comp-port-9000068",
+      "name": "TenGigE0/3/0/13",
+      "displayName": "TenGigE0/3/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000069": {
+      "id": "comp-port-9000069",
+      "name": "TenGigE0/3/0/14",
+      "displayName": "TenGigE0/3/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000070": {
+      "id": "comp-port-9000070",
+      "name": "TenGigE0/3/0/15",
+      "displayName": "TenGigE0/3/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000071": {
+      "id": "comp-port-9000071",
+      "name": "TenGigE0/3/0/16",
+      "displayName": "TenGigE0/3/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000072": {
+      "id": "comp-port-9000072",
+      "name": "TenGigE0/3/0/17",
+      "displayName": "TenGigE0/3/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-3",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000073": {
+      "id": "comp-port-9000073",
+      "name": "TenGigE0/4/0/0",
+      "displayName": "TenGigE0/4/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000074": {
+      "id": "comp-port-9000074",
+      "name": "TenGigE0/4/0/1",
+      "displayName": "TenGigE0/4/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000075": {
+      "id": "comp-port-9000075",
+      "name": "TenGigE0/4/0/2",
+      "displayName": "TenGigE0/4/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000076": {
+      "id": "comp-port-9000076",
+      "name": "TenGigE0/4/0/3",
+      "displayName": "TenGigE0/4/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000077": {
+      "id": "comp-port-9000077",
+      "name": "TenGigE0/4/0/4",
+      "displayName": "TenGigE0/4/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000078": {
+      "id": "comp-port-9000078",
+      "name": "TenGigE0/4/0/5",
+      "displayName": "TenGigE0/4/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000079": {
+      "id": "comp-port-9000079",
+      "name": "TenGigE0/4/0/6",
+      "displayName": "TenGigE0/4/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000080": {
+      "id": "comp-port-9000080",
+      "name": "TenGigE0/4/0/7",
+      "displayName": "TenGigE0/4/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000081": {
+      "id": "comp-port-9000081",
+      "name": "TenGigE0/4/0/8",
+      "displayName": "TenGigE0/4/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000082": {
+      "id": "comp-port-9000082",
+      "name": "TenGigE0/4/0/9",
+      "displayName": "TenGigE0/4/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000083": {
+      "id": "comp-port-9000083",
+      "name": "TenGigE0/4/0/10",
+      "displayName": "TenGigE0/4/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000084": {
+      "id": "comp-port-9000084",
+      "name": "TenGigE0/4/0/11",
+      "displayName": "TenGigE0/4/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000085": {
+      "id": "comp-port-9000085",
+      "name": "TenGigE0/4/0/12",
+      "displayName": "TenGigE0/4/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000086": {
+      "id": "comp-port-9000086",
+      "name": "TenGigE0/4/0/13",
+      "displayName": "TenGigE0/4/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000087": {
+      "id": "comp-port-9000087",
+      "name": "TenGigE0/4/0/14",
+      "displayName": "TenGigE0/4/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000088": {
+      "id": "comp-port-9000088",
+      "name": "TenGigE0/4/0/15",
+      "displayName": "TenGigE0/4/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000089": {
+      "id": "comp-port-9000089",
+      "name": "TenGigE0/4/0/16",
+      "displayName": "TenGigE0/4/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000090": {
+      "id": "comp-port-9000090",
+      "name": "TenGigE0/4/0/17",
+      "displayName": "TenGigE0/4/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-4",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000091": {
+      "id": "comp-port-9000091",
+      "name": "TenGigE0/5/0/0",
+      "displayName": "TenGigE0/5/0/0",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000092": {
+      "id": "comp-port-9000092",
+      "name": "TenGigE0/5/0/1",
+      "displayName": "TenGigE0/5/0/1",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000093": {
+      "id": "comp-port-9000093",
+      "name": "TenGigE0/5/0/2",
+      "displayName": "TenGigE0/5/0/2",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000094": {
+      "id": "comp-port-9000094",
+      "name": "TenGigE0/5/0/3",
+      "displayName": "TenGigE0/5/0/3",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000095": {
+      "id": "comp-port-9000095",
+      "name": "TenGigE0/5/0/4",
+      "displayName": "TenGigE0/5/0/4",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000096": {
+      "id": "comp-port-9000096",
+      "name": "TenGigE0/5/0/5",
+      "displayName": "TenGigE0/5/0/5",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000097": {
+      "id": "comp-port-9000097",
+      "name": "TenGigE0/5/0/6",
+      "displayName": "TenGigE0/5/0/6",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000098": {
+      "id": "comp-port-9000098",
+      "name": "TenGigE0/5/0/7",
+      "displayName": "TenGigE0/5/0/7",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000099": {
+      "id": "comp-port-9000099",
+      "name": "TenGigE0/5/0/8",
+      "displayName": "TenGigE0/5/0/8",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000100": {
+      "id": "comp-port-9000100",
+      "name": "TenGigE0/5/0/9",
+      "displayName": "TenGigE0/5/0/9",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000101": {
+      "id": "comp-port-9000101",
+      "name": "TenGigE0/5/0/10",
+      "displayName": "TenGigE0/5/0/10",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000102": {
+      "id": "comp-port-9000102",
+      "name": "TenGigE0/5/0/11",
+      "displayName": "TenGigE0/5/0/11",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000103": {
+      "id": "comp-port-9000103",
+      "name": "TenGigE0/5/0/12",
+      "displayName": "TenGigE0/5/0/12",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000104": {
+      "id": "comp-port-9000104",
+      "name": "TenGigE0/5/0/13",
+      "displayName": "TenGigE0/5/0/13",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000105": {
+      "id": "comp-port-9000105",
+      "name": "TenGigE0/5/0/14",
+      "displayName": "TenGigE0/5/0/14",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000106": {
+      "id": "comp-port-9000106",
+      "name": "TenGigE0/5/0/15",
+      "displayName": "TenGigE0/5/0/15",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000107": {
+      "id": "comp-port-9000107",
+      "name": "TenGigE0/5/0/16",
+      "displayName": "TenGigE0/5/0/16",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
+    },
+    "comp-port-9000108": {
+      "id": "comp-port-9000108",
+      "name": "TenGigE0/5/0/17",
+      "displayName": "TenGigE0/5/0/17",
+      "type": "Port",
+      "typeId": "SFP",
+      "parentId": "comp-front-5",
+      "ports": [],
+      "childIds": []
     }
   },
   "physicalIndexToComponentId": {},

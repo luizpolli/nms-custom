@@ -105,16 +105,22 @@ def infer_boxes(slots: list[dict], vw: float, vh: float) -> None:
                 if gaps("_col", "sy") else vh * 0.12)
 
     for s in slots:
-        # Only tile against slots of the SAME kind (a fabric card's width must
-        # not be bounded by a neighbouring fan-tray anchor in the same row).
-        row_mates = sorted((o["sx"] for o in slots
-                            if o["display"] == s["display"] and o["_row"] == s["_row"] and o["sx"] > s["sx"] + 1))
-        col_mates = sorted((o["sy"] for o in slots
-                            if o["display"] == s["display"] and o["_col"] == s["_col"] and o["sy"] > s["sy"] + 1))
-        w = (row_mates[0] - s["sx"]) if row_mates else min(median_w, vw - s["sx"] - vw * 0.02)
-        h = (col_mates[0] - s["sy"]) if col_mates else median_h
-        s["w"] = max(12.0, min(w * 0.94, vw))
-        s["h"] = max(12.0, min(h * 0.94, vh))
+        # Box extends to the next slot of ANY type in the row/column (so a
+        # full-width card stacked in a single column reaches the chassis edge
+        # instead of a guessed median), else to the chassis edge.
+        row_next = sorted((o["sx"] for o in slots
+                           if o["_row"] == s["_row"] and o["sx"] > s["sx"] + 1))
+        col_next = sorted((o["sy"] for o in slots
+                           if o["_col"] == s["_col"] and o["sy"] > s["sy"] + 1))
+        w = (row_next[0] - s["sx"]) if row_next else (vw - s["sx"] - vw * 0.01)
+        h = (col_next[0] - s["sy"]) if col_next else (vh - s["sy"] - vh * 0.01)
+        # Fall back to the group median if a lone slot would be implausibly thin.
+        if not row_next and w < median_w:
+            w = median_w
+        if not col_next and h < median_h:
+            h = median_h
+        s["w"] = max(12.0, min(w * 0.96, vw))
+        s["h"] = max(12.0, min(h * 0.96, vh))
     for s in slots:
         s.pop("_row", None)
         s.pop("_col", None)
