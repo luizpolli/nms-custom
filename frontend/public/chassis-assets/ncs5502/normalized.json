@@ -1,5 +1,76 @@
 {
-  "componentsById": {},
+  "componentsById": {
+    "comp-front-1": {
+      "id": "comp-front-1",
+      "name": "Route Processor",
+      "displayName": "Route Processor",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-1": {
+      "id": "comp-rear-1",
+      "name": "Power Module 0",
+      "displayName": "Power Module 0",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-2": {
+      "id": "comp-rear-2",
+      "name": "Fan Tray 0",
+      "displayName": "Fan Tray 0",
+      "type": "Fan Tray",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-3": {
+      "id": "comp-rear-3",
+      "name": "Fan Tray 1",
+      "displayName": "Fan Tray 1",
+      "type": "Fan Tray",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-4": {
+      "id": "comp-rear-4",
+      "name": "Power Module 1",
+      "displayName": "Power Module 1",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-chassis": {
+      "id": "comp-chassis",
+      "name": "NCS-5502",
+      "displayName": "NCS-5502",
+      "type": "Chassis",
+      "typeId": null,
+      "ports": [],
+      "childIds": [
+        "comp-front-1",
+        "comp-rear-1",
+        "comp-rear-2",
+        "comp-rear-3",
+        "comp-rear-4"
+      ]
+    }
+  },
   "deviceId": null,
   "generatedAt": "2026-05-30T00:00:00Z",
   "physicalIndexToComponentId": {},
@@ -11,7 +82,51 @@
     "note": "Static visual profile from EPNM SVG assets. Rear view shows power and fan slots.",
     "type": "static-profile"
   },
-  "tree": [],
+  "tree": [
+    {
+      "id": "node-chassis",
+      "label": "NCS-5502",
+      "type": "Chassis",
+      "componentId": "comp-chassis",
+      "children": [
+        {
+          "id": "node-front-1",
+          "label": "Route Processor",
+          "type": "Route Processor",
+          "componentId": "comp-front-1",
+          "children": []
+        },
+        {
+          "id": "node-rear-1",
+          "label": "Power Module 0",
+          "type": "Power Module",
+          "componentId": "comp-rear-1",
+          "children": []
+        },
+        {
+          "id": "node-rear-2",
+          "label": "Fan Tray 0",
+          "type": "Fan Tray",
+          "componentId": "comp-rear-2",
+          "children": []
+        },
+        {
+          "id": "node-rear-3",
+          "label": "Fan Tray 1",
+          "type": "Fan Tray",
+          "componentId": "comp-rear-3",
+          "children": []
+        },
+        {
+          "id": "node-rear-4",
+          "label": "Power Module 1",
+          "type": "Power Module",
+          "componentId": "comp-rear-4",
+          "children": []
+        }
+      ]
+    }
+  ],
   "views": [
     {
       "height": 331,
@@ -25,7 +140,7 @@
           },
           "empty": false,
           "id": "hotspot-chassis",
-          "inventoryId": null,
+          "inventoryId": "comp-chassis",
           "label": "Chassis",
           "metadata": {
             "sourceName": "Rack 0",
@@ -43,7 +158,7 @@
           },
           "empty": false,
           "id": "hotspot-rp0",
-          "inventoryId": null,
+          "inventoryId": "comp-front-1",
           "label": "Route Processor",
           "metadata": {
             "sourceName": "0/RP0",
@@ -78,7 +193,7 @@
           },
           "empty": false,
           "id": "hotspot-chassis-rear",
-          "inventoryId": null,
+          "inventoryId": "comp-chassis",
           "label": "Chassis",
           "metadata": {
             "sourceName": "Rack 0",
@@ -96,7 +211,7 @@
           },
           "empty": false,
           "id": "hotspot-pm0",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-1",
           "label": "Power Module 0",
           "metadata": {
             "sourceName": "0/PM0"
@@ -118,7 +233,7 @@
           },
           "empty": false,
           "id": "hotspot-ft0",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-2",
           "label": "Fan Tray 0",
           "metadata": {
             "sourceName": "0/FT0"
@@ -140,7 +255,7 @@
           },
           "empty": false,
           "id": "hotspot-ft1",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-3",
           "label": "Fan Tray 1",
           "metadata": {
             "sourceName": "0/FT1"
@@ -162,7 +277,7 @@
           },
           "empty": false,
           "id": "hotspot-pm1",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-4",
           "label": "Power Module 1",
           "metadata": {
             "sourceName": "0/PM1"

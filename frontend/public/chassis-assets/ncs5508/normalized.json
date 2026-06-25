@@ -1,5 +1,304 @@
 {
-  "componentsById": {},
+  "componentsById": {
+    "comp-front-1": {
+      "id": "comp-front-1",
+      "name": "Line Card Slot 0",
+      "displayName": "Line Card Slot 0",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-2": {
+      "id": "comp-front-2",
+      "name": "Line Card Slot 1",
+      "displayName": "Line Card Slot 1",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-3": {
+      "id": "comp-front-3",
+      "name": "Line Card Slot 2",
+      "displayName": "Line Card Slot 2",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-4": {
+      "id": "comp-front-4",
+      "name": "Line Card Slot 3",
+      "displayName": "Line Card Slot 3",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-5": {
+      "id": "comp-front-5",
+      "name": "Line Card Slot 4",
+      "displayName": "Line Card Slot 4",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-6": {
+      "id": "comp-front-6",
+      "name": "Line Card Slot 5",
+      "displayName": "Line Card Slot 5",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-7": {
+      "id": "comp-front-7",
+      "name": "Line Card Slot 6",
+      "displayName": "Line Card Slot 6",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-8": {
+      "id": "comp-front-8",
+      "name": "Line Card Slot 7",
+      "displayName": "Line Card Slot 7",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-9": {
+      "id": "comp-front-9",
+      "name": "Route Processor 0",
+      "displayName": "Route Processor 0",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-10": {
+      "id": "comp-front-10",
+      "name": "Route Processor 1",
+      "displayName": "Route Processor 1",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-11": {
+      "id": "comp-front-11",
+      "name": "Power Module 0",
+      "displayName": "Power Module 0",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-12": {
+      "id": "comp-front-12",
+      "name": "Power Module 1",
+      "displayName": "Power Module 1",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-13": {
+      "id": "comp-front-13",
+      "name": "Power Module 2",
+      "displayName": "Power Module 2",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-14": {
+      "id": "comp-front-14",
+      "name": "Power Module 3",
+      "displayName": "Power Module 3",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-1": {
+      "id": "comp-rear-1",
+      "name": "Fan Tray 0",
+      "displayName": "Fan Tray 0",
+      "type": "Fan Tray",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-2": {
+      "id": "comp-rear-2",
+      "name": "Fan Tray 1",
+      "displayName": "Fan Tray 1",
+      "type": "Fan Tray",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-3": {
+      "id": "comp-rear-3",
+      "name": "Fan Tray 2",
+      "displayName": "Fan Tray 2",
+      "type": "Fan Tray",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-4": {
+      "id": "comp-rear-4",
+      "name": "Fabric Card 0",
+      "displayName": "Fabric Card 0",
+      "type": "Fabric Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-5": {
+      "id": "comp-rear-5",
+      "name": "Fabric Card 1",
+      "displayName": "Fabric Card 1",
+      "type": "Fabric Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-6": {
+      "id": "comp-rear-6",
+      "name": "Fabric Card 2",
+      "displayName": "Fabric Card 2",
+      "type": "Fabric Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-7": {
+      "id": "comp-rear-7",
+      "name": "Fabric Card 3",
+      "displayName": "Fabric Card 3",
+      "type": "Fabric Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-8": {
+      "id": "comp-rear-8",
+      "name": "Fabric Card 4",
+      "displayName": "Fabric Card 4",
+      "type": "Fabric Card",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-9": {
+      "id": "comp-rear-9",
+      "name": "System Controller 0",
+      "displayName": "System Controller 0",
+      "type": "System Controller",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-rear-10": {
+      "id": "comp-rear-10",
+      "name": "System Controller 1",
+      "displayName": "System Controller 1",
+      "type": "System Controller",
+      "typeId": null,
+      "empty": false,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-chassis": {
+      "id": "comp-chassis",
+      "name": "NCS-5508",
+      "displayName": "NCS-5508",
+      "type": "Chassis",
+      "typeId": null,
+      "ports": [],
+      "childIds": [
+        "comp-front-1",
+        "comp-front-2",
+        "comp-front-3",
+        "comp-front-4",
+        "comp-front-5",
+        "comp-front-6",
+        "comp-front-7",
+        "comp-front-8",
+        "comp-front-9",
+        "comp-front-10",
+        "comp-front-11",
+        "comp-front-12",
+        "comp-front-13",
+        "comp-front-14",
+        "comp-rear-1",
+        "comp-rear-2",
+        "comp-rear-3",
+        "comp-rear-4",
+        "comp-rear-5",
+        "comp-rear-6",
+        "comp-rear-7",
+        "comp-rear-8",
+        "comp-rear-9",
+        "comp-rear-10"
+      ]
+    }
+  },
   "deviceId": null,
   "generatedAt": "2026-05-30T00:00:00Z",
   "physicalIndexToComponentId": {},
@@ -11,7 +310,184 @@
     "note": "Static visual profile from EPNM SVG assets. Front shows line cards/RPs; rear shows fabric/fans.",
     "type": "static-profile"
   },
-  "tree": [],
+  "tree": [
+    {
+      "id": "node-chassis",
+      "label": "NCS-5508",
+      "type": "Chassis",
+      "componentId": "comp-chassis",
+      "children": [
+        {
+          "id": "node-front-1",
+          "label": "Line Card Slot 0",
+          "type": "Line Card",
+          "componentId": "comp-front-1",
+          "children": []
+        },
+        {
+          "id": "node-front-2",
+          "label": "Line Card Slot 1",
+          "type": "Line Card",
+          "componentId": "comp-front-2",
+          "children": []
+        },
+        {
+          "id": "node-front-3",
+          "label": "Line Card Slot 2",
+          "type": "Line Card",
+          "componentId": "comp-front-3",
+          "children": []
+        },
+        {
+          "id": "node-front-4",
+          "label": "Line Card Slot 3",
+          "type": "Line Card",
+          "componentId": "comp-front-4",
+          "children": []
+        },
+        {
+          "id": "node-front-5",
+          "label": "Line Card Slot 4",
+          "type": "Line Card",
+          "componentId": "comp-front-5",
+          "children": []
+        },
+        {
+          "id": "node-front-6",
+          "label": "Line Card Slot 5",
+          "type": "Line Card",
+          "componentId": "comp-front-6",
+          "children": []
+        },
+        {
+          "id": "node-front-7",
+          "label": "Line Card Slot 6",
+          "type": "Line Card",
+          "componentId": "comp-front-7",
+          "children": []
+        },
+        {
+          "id": "node-front-8",
+          "label": "Line Card Slot 7",
+          "type": "Line Card",
+          "componentId": "comp-front-8",
+          "children": []
+        },
+        {
+          "id": "node-front-9",
+          "label": "Route Processor 0",
+          "type": "Route Processor",
+          "componentId": "comp-front-9",
+          "children": []
+        },
+        {
+          "id": "node-front-10",
+          "label": "Route Processor 1",
+          "type": "Route Processor",
+          "componentId": "comp-front-10",
+          "children": []
+        },
+        {
+          "id": "node-front-11",
+          "label": "Power Module 0",
+          "type": "Power Module",
+          "componentId": "comp-front-11",
+          "children": []
+        },
+        {
+          "id": "node-front-12",
+          "label": "Power Module 1",
+          "type": "Power Module",
+          "componentId": "comp-front-12",
+          "children": []
+        },
+        {
+          "id": "node-front-13",
+          "label": "Power Module 2",
+          "type": "Power Module",
+          "componentId": "comp-front-13",
+          "children": []
+        },
+        {
+          "id": "node-front-14",
+          "label": "Power Module 3",
+          "type": "Power Module",
+          "componentId": "comp-front-14",
+          "children": []
+        },
+        {
+          "id": "node-rear-1",
+          "label": "Fan Tray 0",
+          "type": "Fan Tray",
+          "componentId": "comp-rear-1",
+          "children": []
+        },
+        {
+          "id": "node-rear-2",
+          "label": "Fan Tray 1",
+          "type": "Fan Tray",
+          "componentId": "comp-rear-2",
+          "children": []
+        },
+        {
+          "id": "node-rear-3",
+          "label": "Fan Tray 2",
+          "type": "Fan Tray",
+          "componentId": "comp-rear-3",
+          "children": []
+        },
+        {
+          "id": "node-rear-4",
+          "label": "Fabric Card 0",
+          "type": "Fabric Card",
+          "componentId": "comp-rear-4",
+          "children": []
+        },
+        {
+          "id": "node-rear-5",
+          "label": "Fabric Card 1",
+          "type": "Fabric Card",
+          "componentId": "comp-rear-5",
+          "children": []
+        },
+        {
+          "id": "node-rear-6",
+          "label": "Fabric Card 2",
+          "type": "Fabric Card",
+          "componentId": "comp-rear-6",
+          "children": []
+        },
+        {
+          "id": "node-rear-7",
+          "label": "Fabric Card 3",
+          "type": "Fabric Card",
+          "componentId": "comp-rear-7",
+          "children": []
+        },
+        {
+          "id": "node-rear-8",
+          "label": "Fabric Card 4",
+          "type": "Fabric Card",
+          "componentId": "comp-rear-8",
+          "children": []
+        },
+        {
+          "id": "node-rear-9",
+          "label": "System Controller 0",
+          "type": "System Controller",
+          "componentId": "comp-rear-9",
+          "children": []
+        },
+        {
+          "id": "node-rear-10",
+          "label": "System Controller 1",
+          "type": "System Controller",
+          "componentId": "comp-rear-10",
+          "children": []
+        }
+      ]
+    }
+  ],
   "views": [
     {
       "height": 2180,
@@ -25,7 +501,7 @@
           },
           "empty": false,
           "id": "hotspot-chassis",
-          "inventoryId": null,
+          "inventoryId": "comp-chassis",
           "label": "Chassis",
           "metadata": {
             "sourceName": "Rack 0",
@@ -43,7 +519,7 @@
           },
           "empty": false,
           "id": "hotspot-lc0",
-          "inventoryId": null,
+          "inventoryId": "comp-front-1",
           "label": "Line Card Slot 0",
           "metadata": {
             "sourceName": "0/0"
@@ -65,7 +541,7 @@
           },
           "empty": false,
           "id": "hotspot-lc1",
-          "inventoryId": null,
+          "inventoryId": "comp-front-2",
           "label": "Line Card Slot 1",
           "metadata": {
             "sourceName": "0/1"
@@ -87,7 +563,7 @@
           },
           "empty": false,
           "id": "hotspot-lc2",
-          "inventoryId": null,
+          "inventoryId": "comp-front-3",
           "label": "Line Card Slot 2",
           "metadata": {
             "sourceName": "0/2"
@@ -109,7 +585,7 @@
           },
           "empty": false,
           "id": "hotspot-lc3",
-          "inventoryId": null,
+          "inventoryId": "comp-front-4",
           "label": "Line Card Slot 3",
           "metadata": {
             "sourceName": "0/3"
@@ -131,7 +607,7 @@
           },
           "empty": false,
           "id": "hotspot-lc4",
-          "inventoryId": null,
+          "inventoryId": "comp-front-5",
           "label": "Line Card Slot 4",
           "metadata": {
             "sourceName": "0/4"
@@ -153,7 +629,7 @@
           },
           "empty": false,
           "id": "hotspot-lc5",
-          "inventoryId": null,
+          "inventoryId": "comp-front-6",
           "label": "Line Card Slot 5",
           "metadata": {
             "sourceName": "0/5"
@@ -175,7 +651,7 @@
           },
           "empty": false,
           "id": "hotspot-lc6",
-          "inventoryId": null,
+          "inventoryId": "comp-front-7",
           "label": "Line Card Slot 6",
           "metadata": {
             "sourceName": "0/6"
@@ -197,7 +673,7 @@
           },
           "empty": false,
           "id": "hotspot-lc7",
-          "inventoryId": null,
+          "inventoryId": "comp-front-8",
           "label": "Line Card Slot 7",
           "metadata": {
             "sourceName": "0/7"
@@ -219,7 +695,7 @@
           },
           "empty": false,
           "id": "hotspot-rp0",
-          "inventoryId": null,
+          "inventoryId": "comp-front-9",
           "label": "Route Processor 0",
           "metadata": {
             "sourceName": "0/RP0"
@@ -241,7 +717,7 @@
           },
           "empty": false,
           "id": "hotspot-rp1",
-          "inventoryId": null,
+          "inventoryId": "comp-front-10",
           "label": "Route Processor 1",
           "metadata": {
             "sourceName": "0/RP1"
@@ -263,7 +739,7 @@
           },
           "empty": false,
           "id": "hotspot-pm0",
-          "inventoryId": null,
+          "inventoryId": "comp-front-11",
           "label": "Power Module 0",
           "metadata": {
             "sourceName": "0/PM0"
@@ -285,7 +761,7 @@
           },
           "empty": false,
           "id": "hotspot-pm1",
-          "inventoryId": null,
+          "inventoryId": "comp-front-12",
           "label": "Power Module 1",
           "metadata": {
             "sourceName": "0/PM1"
@@ -307,7 +783,7 @@
           },
           "empty": false,
           "id": "hotspot-pm2",
-          "inventoryId": null,
+          "inventoryId": "comp-front-13",
           "label": "Power Module 2",
           "metadata": {
             "sourceName": "0/PM2"
@@ -329,7 +805,7 @@
           },
           "empty": false,
           "id": "hotspot-pm3",
-          "inventoryId": null,
+          "inventoryId": "comp-front-14",
           "label": "Power Module 3",
           "metadata": {
             "sourceName": "0/PM3"
@@ -363,7 +839,7 @@
           },
           "empty": false,
           "id": "hotspot-chassis-rear",
-          "inventoryId": null,
+          "inventoryId": "comp-chassis",
           "label": "Chassis",
           "metadata": {
             "sourceName": "Rack 0",
@@ -381,7 +857,7 @@
           },
           "empty": false,
           "id": "hotspot-ft0",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-1",
           "label": "Fan Tray 0",
           "metadata": {
             "sourceName": "0/FT0"
@@ -403,7 +879,7 @@
           },
           "empty": false,
           "id": "hotspot-ft1",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-2",
           "label": "Fan Tray 1",
           "metadata": {
             "sourceName": "0/FT1"
@@ -425,7 +901,7 @@
           },
           "empty": false,
           "id": "hotspot-ft2",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-3",
           "label": "Fan Tray 2",
           "metadata": {
             "sourceName": "0/FT2"
@@ -447,7 +923,7 @@
           },
           "empty": false,
           "id": "hotspot-fc0",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-4",
           "label": "Fabric Card 0",
           "metadata": {
             "sourceName": "0/FC0"
@@ -469,7 +945,7 @@
           },
           "empty": false,
           "id": "hotspot-fc1",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-5",
           "label": "Fabric Card 1",
           "metadata": {
             "sourceName": "0/FC1"
@@ -491,7 +967,7 @@
           },
           "empty": false,
           "id": "hotspot-fc2",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-6",
           "label": "Fabric Card 2",
           "metadata": {
             "sourceName": "0/FC2"
@@ -513,7 +989,7 @@
           },
           "empty": false,
           "id": "hotspot-fc3",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-7",
           "label": "Fabric Card 3",
           "metadata": {
             "sourceName": "0/FC3"
@@ -535,7 +1011,7 @@
           },
           "empty": false,
           "id": "hotspot-fc4",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-8",
           "label": "Fabric Card 4",
           "metadata": {
             "sourceName": "0/FC4"
@@ -557,7 +1033,7 @@
           },
           "empty": false,
           "id": "hotspot-sc0",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-9",
           "label": "System Controller 0",
           "metadata": {
             "sourceName": "0/SC0"
@@ -579,7 +1055,7 @@
           },
           "empty": false,
           "id": "hotspot-sc1",
-          "inventoryId": null,
+          "inventoryId": "comp-rear-10",
           "label": "System Controller 1",
           "metadata": {
             "sourceName": "0/SC1"
