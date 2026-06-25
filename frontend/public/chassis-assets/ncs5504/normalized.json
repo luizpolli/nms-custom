@@ -1,0 +1,425 @@
+{
+  "schemaVersion": "nms.chassisView.v1",
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "deviceId": "ncs5504",
+  "profileId": "ncs5504",
+  "platform": "Cisco NCS 5504",
+  "views": [
+    {
+      "id": "front",
+      "label": "Front View",
+      "image": "/chassis-assets/ncs5504/NCS-5504-FRONT_CORE.svg",
+      "width": 1680.0,
+      "height": 1176.0,
+      "hotspots": [
+        {
+          "id": "hs-front-0",
+          "slotKey": "0",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-0",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 10.2,
+            "y": 42.3,
+            "w": 992.5,
+            "h": 144.3
+          },
+          "metadata": {
+            "alias": 0,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-1",
+          "slotKey": "1",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-1",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 10.2,
+            "y": 195.8,
+            "w": 992.5,
+            "h": 140.6
+          },
+          "metadata": {
+            "alias": 1,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-2",
+          "slotKey": "2",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-2",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 10.2,
+            "y": 345.4,
+            "w": 992.5,
+            "h": 142.5
+          },
+          "metadata": {
+            "alias": 2,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-3",
+          "slotKey": "3",
+          "label": "Line Card Slot",
+          "inventoryId": "comp-front-3",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 10.2,
+            "y": 497.0,
+            "w": 992.5,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 3,
+            "fillerTypeId": "NC55-36X100G-FILLER",
+            "sourceName": "Line Card Slot"
+          }
+        },
+        {
+          "id": "hs-front-4",
+          "slotKey": "4",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-front-4",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 112.0,
+            "y": 664.3,
+            "w": 693.9,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 4,
+            "fillerTypeId": "NC55-RP-BLNK",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-front-5",
+          "slotKey": "5",
+          "label": "Route Processor Slot",
+          "inventoryId": "comp-front-5",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 850.2,
+            "y": 664.3,
+            "w": 748.4,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 5,
+            "fillerTypeId": "NC55-RP-BLNK",
+            "sourceName": "Route Processor Slot"
+          }
+        },
+        {
+          "id": "hs-front-6",
+          "slotKey": "6",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-6",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 40.7,
+            "y": 846.3,
+            "w": 992.5,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 6,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-front-7",
+          "slotKey": "7",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-7",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 40.7,
+            "y": 998.9,
+            "w": 992.5,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 7,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-front-8",
+          "slotKey": "8",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-8",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 1096.6,
+            "y": 846.3,
+            "w": 516.8,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 8,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        },
+        {
+          "id": "hs-front-9",
+          "slotKey": "9",
+          "label": "Power Unit Slot",
+          "inventoryId": "comp-front-9",
+          "physicalIndex": null,
+          "empty": true,
+          "bounds": {
+            "x": 1096.6,
+            "y": 998.9,
+            "w": 516.8,
+            "h": 143.4
+          },
+          "metadata": {
+            "alias": 9,
+            "fillerTypeId": "NC55-PS-BLNK",
+            "sourceName": "Power Unit Slot"
+          }
+        }
+      ]
+    }
+  ],
+  "tree": [
+    {
+      "id": "node-chassis",
+      "label": "Cisco NCS 5504",
+      "type": "Chassis",
+      "componentId": "comp-chassis",
+      "children": [
+        {
+          "id": "node-front-0",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-0",
+          "children": []
+        },
+        {
+          "id": "node-front-1",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-1",
+          "children": []
+        },
+        {
+          "id": "node-front-2",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-2",
+          "children": []
+        },
+        {
+          "id": "node-front-3",
+          "label": "Line Card Slot",
+          "type": "Line Card",
+          "componentId": "comp-front-3",
+          "children": []
+        },
+        {
+          "id": "node-front-4",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-front-4",
+          "children": []
+        },
+        {
+          "id": "node-front-5",
+          "label": "Route Processor Slot",
+          "type": "Route Processor",
+          "componentId": "comp-front-5",
+          "children": []
+        },
+        {
+          "id": "node-front-6",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-6",
+          "children": []
+        },
+        {
+          "id": "node-front-7",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-7",
+          "children": []
+        },
+        {
+          "id": "node-front-8",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-8",
+          "children": []
+        },
+        {
+          "id": "node-front-9",
+          "label": "Power Unit Slot",
+          "type": "Power Module",
+          "componentId": "comp-front-9",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "componentsById": {
+    "comp-front-0": {
+      "id": "comp-front-0",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-1": {
+      "id": "comp-front-1",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-2": {
+      "id": "comp-front-2",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-3": {
+      "id": "comp-front-3",
+      "name": "Line Card Slot",
+      "displayName": "Line Card Slot",
+      "type": "Line Card",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-4": {
+      "id": "comp-front-4",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-5": {
+      "id": "comp-front-5",
+      "name": "Route Processor Slot",
+      "displayName": "Route Processor Slot",
+      "type": "Route Processor",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-6": {
+      "id": "comp-front-6",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-7": {
+      "id": "comp-front-7",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-8": {
+      "id": "comp-front-8",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-front-9": {
+      "id": "comp-front-9",
+      "name": "Power Unit Slot",
+      "displayName": "Power Unit Slot",
+      "type": "Power Module",
+      "typeId": null,
+      "empty": true,
+      "ports": [],
+      "childIds": [],
+      "parentId": "comp-chassis"
+    },
+    "comp-chassis": {
+      "id": "comp-chassis",
+      "name": "Cisco NCS 5504",
+      "displayName": "Cisco NCS 5504",
+      "type": "Chassis",
+      "typeId": null,
+      "ports": [],
+      "childIds": [
+        "comp-front-0",
+        "comp-front-1",
+        "comp-front-2",
+        "comp-front-3",
+        "comp-front-4",
+        "comp-front-5",
+        "comp-front-6",
+        "comp-front-7",
+        "comp-front-8",
+        "comp-front-9"
+      ]
+    }
+  },
+  "physicalIndexToComponentId": {},
+  "source": {
+    "type": "epnm-deviceprofile",
+    "profile": "Cisco_NCS_5504"
+  }
+}

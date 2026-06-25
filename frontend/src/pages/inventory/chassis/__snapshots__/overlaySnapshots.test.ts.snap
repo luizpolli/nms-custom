@@ -366,6 +366,7 @@ exports[`chassis overlay snapshots > covers every shipped profile directory 1`] 
   "ncs540x-4z14g2q",
   "ncs5501",
   "ncs5502",
+  "ncs5504",
   "ncs5508",
   "ncs55a1",
   "ncs55a1-24h",
@@ -951,6 +952,66 @@ exports[`chassis overlay snapshots > ncs5502 overlay summary is stable 1`] = `
         "hotspots": 1,
         "overlay": "rendered",
         "withAsset": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`chassis overlay snapshots > ncs5504 overlay summary is stable 1`] = `
+{
+  "profileId": "ncs5504",
+  "views": {
+    "front": {
+      "hs-front-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-1": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-2": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-3": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-4": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-5": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-6": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-7": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-8": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
+      },
+      "hs-front-9": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 0,
       },
     },
   },
