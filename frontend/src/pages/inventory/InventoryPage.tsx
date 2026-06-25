@@ -98,6 +98,14 @@ const exampleChassisProfiles = [
   { id: 'ncs540-12z16g', label: 'NCS540X-12Z16G', deviceName: 'MEX-EDGE-NCS540X-12Z16G', dataUrl: '/chassis-assets/ncs540-12z16g/normalized.json' },
   { id: 'ncs540-16z4', label: 'NCS540X-16Z4', deviceName: 'MEX-EDGE-NCS540X-16Z4', dataUrl: '/chassis-assets/ncs540-16z4/normalized.json' },
   { id: 'ncs540-acc-sys', label: 'NCS540-ACC-SYS', deviceName: 'MEX-EDGE-NCS540-ACC-SYS', dataUrl: '/chassis-assets/ncs540-acc-sys/normalized.json' },
+  { id: 'ncs540-12z20g', label: 'NCS540-12Z20G', deviceName: 'MEX-EDGE-NCS540-12Z20G', dataUrl: '/chassis-assets/ncs540-12z20g/normalized.json' },
+  { id: 'ncs540-28z4c', label: 'NCS540-28Z4C', deviceName: 'MEX-EDGE-NCS540-28Z4C', dataUrl: '/chassis-assets/ncs540-28z4c/normalized.json' },
+  { id: 'ncs540-fh-agg', label: 'NCS540-FH-AGG', deviceName: 'MEX-EDGE-NCS540-FH-AGG', dataUrl: '/chassis-assets/ncs540-fh-agg/normalized.json' },
+  { id: 'ncs540-fh-csr', label: 'NCS540-FH-CSR', deviceName: 'MEX-EDGE-NCS540-FH-CSR', dataUrl: '/chassis-assets/ncs540-fh-csr/normalized.json' },
+  { id: 'ncs540x-4z14g2q', label: 'NCS540X-4Z14G2Q', deviceName: 'MEX-EDGE-NCS540X-4Z14G2Q', dataUrl: '/chassis-assets/ncs540x-4z14g2q/normalized.json' },
+  { id: 'ncs5501', label: 'NCS5501', deviceName: 'MEX-CORE-NCS5501-01', dataUrl: '/chassis-assets/ncs5501/normalized.json' },
+  { id: 'ncs5502', label: 'NCS5502', deviceName: 'MEX-CORE-NCS5502-01', dataUrl: '/chassis-assets/ncs5502/normalized.json' },
+  { id: 'ncs5508', label: 'NCS5508', deviceName: 'MEX-CORE-NCS5508-01', dataUrl: '/chassis-assets/ncs5508/normalized.json' },
 ];
 
 async function fetchAllInventory(): Promise<DeviceInventoryRow[]> {
