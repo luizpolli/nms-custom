@@ -7,13 +7,13 @@
         "component-30"
       ],
       "containedPhysicalIndex": 8384612,
-      "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+      "description": "Cisco NCS 540 (N540-12Z20G-SYS-D)",
       "displayName": "0/RP0/CPU0",
       "hardwareVersion": "V01",
       "id": "component-1",
       "isFRUable": 1,
       "manufacturer": "Cisco Systems, Inc.",
-      "modelName": "N540X-12Z16G-SYS-D",
+      "modelName": "N540-12Z20G-SYS-D",
       "name": "0/RP0/CPU0",
       "parentId": "component-8384612",
       "parentRelPos": 0,
@@ -26,7 +26,7 @@
       "softwareVersion": "7.5.2",
       "sourceId": 1,
       "type": "module",
-      "typeId": "N540X-12Z16G-SYS-D",
+      "typeId": "N540-12Z20G-SYS-D",
       "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.2.533"
     },
     "component-1011": {
@@ -4345,13 +4345,13 @@
       "assetId": "N/A",
       "childIds": [],
       "containedPhysicalIndex": 30,
-      "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+      "description": "Cisco NCS 540 (N540-12Z20G-SYS-D)",
       "displayName": "0/RP0/CPU0-MB IDPROM",
       "hardwareVersion": "V01",
       "id": "component-7",
       "isFRUable": 2,
       "manufacturer": "Cisco Systems, Inc.",
-      "modelName": "N540X-12Z16G-SYS-D",
+      "modelName": "N540-12Z20G-SYS-D",
       "name": "0/RP0/CPU0-MB IDPROM",
       "parentId": "component-30",
       "parentRelPos": 14,
@@ -4362,7 +4362,7 @@
       "serialNumber": "DUMMY-SERIAL-NCS540-0001",
       "sourceId": 7,
       "type": "module",
-      "typeId": "N540X-12Z16G-SYS-D",
+      "typeId": "N540-12Z20G-SYS-D",
       "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.2"
     },
     "component-700": {
@@ -5816,12 +5816,12 @@
         "component-8384612"
       ],
       "containedPhysicalIndex": 0,
-      "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+      "description": "Cisco NCS 540 (N540-12Z20G-SYS-D)",
       "displayName": "Rack 0",
       "hardwareVersion": "V01",
       "id": "component-8384513",
       "isFRUable": 1,
-      "modelName": "N540X-12Z16G-SYS-D",
+      "modelName": "N540-12Z20G-SYS-D",
       "name": "Rack 0",
       "parentRelPos": -1,
       "physicalClass": 3,
@@ -5832,7 +5832,7 @@
       "softwareVersion": "7.5.2",
       "sourceId": 8384513,
       "type": "chassis",
-      "typeId": "N540X-12Z16G-SYS-D",
+      "typeId": "N540-12Z20G-SYS-D",
       "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.3.2247"
     },
     "component-8384519": {
@@ -5840,12 +5840,12 @@
       "assetId": "N/A",
       "childIds": [],
       "containedPhysicalIndex": 8384513,
-      "description": "Cisco NCS 540 System with 12x10G+4x1G Cu+12x1G DC Chassis",
+      "description": "Cisco NCS 540 (N540-12Z20G-SYS-D)",
       "displayName": "Rack 0-CHASSIS IDPROM",
       "hardwareVersion": "V01",
       "id": "component-8384519",
       "isFRUable": 2,
-      "modelName": "N540X-12Z16G-SYS-D",
+      "modelName": "N540-12Z20G-SYS-D",
       "name": "Rack 0-CHASSIS IDPROM",
       "parentId": "component-8384513",
       "parentRelPos": 0,
@@ -5856,7 +5856,7 @@
       "serialNumber": "DUMMY-SERIAL-NCS540-0004",
       "sourceId": 8384519,
       "type": "module",
-      "typeId": "N540X-12Z16G-SYS-D",
+      "typeId": "N540-12Z20G-SYS-D",
       "vendorType": "SNMPv2-SMI::enterprises.9.12.3.1.9.2"
     },
     "component-8384592": {
@@ -8426,10 +8426,10 @@
           "inventoryId": "component-1",
           "label": "0/RP0/CPU0",
           "metadata": {
-            "modelName": "N540X-12Z16G-SYS-D",
-            "modelTypeId": "N540X-12Z16G-SYS-D",
+            "modelName": "N540-12Z20G-SYS-D",
+            "modelTypeId": "N540-12Z20G-SYS-D",
             "sourceName": "0/RP0/CPU0",
-            "sourceTypeId": "N540X-12Z16G-SYS-D"
+            "sourceTypeId": "N540-12Z20G-SYS-D"
           },
           "physicalIndex": 1,
           "slotKey": "0/RP0/CPU0"
