@@ -253,7 +253,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
 
   const view = data.views.find((v) => v.id === selectedViewId) ?? data.views[0];
   const statusLegend = (
-    <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 rounded-md bg-white/95 px-3 py-1.5 text-xs text-gray-600 shadow ring-1 ring-gray-200 dark:bg-gray-900/95 dark:text-gray-300 dark:ring-gray-700">
+    <div className="flex flex-col items-start gap-1 rounded-md bg-white/95 px-2.5 py-2 text-xs text-gray-600 shadow ring-1 ring-gray-200 dark:bg-gray-900/95 dark:text-gray-300 dark:ring-gray-700">
       {Object.keys(effectivePortStatusByComponentId).length > 0 ? (
         <>
           <LegendDot icon="/chassis-icons/up.svg" label={`Up (${portStatusCounts.up})`} />

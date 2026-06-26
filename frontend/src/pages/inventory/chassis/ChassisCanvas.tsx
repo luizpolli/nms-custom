@@ -173,10 +173,10 @@ export function ChassisCanvas({
   };
 
   return (
-    <div className="relative rounded-md border border-gray-400 bg-gray-200 p-2 shadow-2xl dark:border-gray-700 dark:bg-gray-800">
+    <div className="relative flex items-start gap-2 rounded-md border border-gray-400 bg-gray-200 p-2 shadow-2xl dark:border-gray-700 dark:bg-gray-800">
       <div
         ref={frameRef}
-        className="relative mx-auto w-full overflow-visible touch-none"
+        className="relative min-w-0 flex-1 overflow-visible touch-none"
         style={{ aspectRatio: `${view.width} / ${view.height}`, cursor: zoom > 1 ? (dragState.current ? 'grabbing' : 'grab') : 'default' }}
         onWheel={handleWheel}
         onPointerDown={handlePointerDown}
@@ -267,7 +267,7 @@ export function ChassisCanvas({
           ))}
         </div>
       )}
-      <div className="absolute right-4 top-4 z-10 flex flex-col items-end gap-2">
+      <div className="z-10 flex shrink-0 flex-col items-end gap-2 self-stretch">
         <div className="flex flex-col gap-1 rounded-md bg-white/95 p-1 shadow ring-1 ring-gray-300 dark:bg-gray-900/95 dark:ring-gray-700">
           <button
             type="button"
