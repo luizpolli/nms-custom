@@ -1753,7 +1753,11 @@
           },
           "physicalIndex": 300,
           "slotKey": "subslot/0/0/0",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1774,7 +1778,11 @@
           },
           "physicalIndex": 301,
           "slotKey": "subslot/0/0/1",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1795,7 +1803,11 @@
           },
           "physicalIndex": 302,
           "slotKey": "subslot/0/0/2",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1816,7 +1828,11 @@
           },
           "physicalIndex": 303,
           "slotKey": "subslot/0/0/3",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1837,7 +1853,11 @@
           },
           "physicalIndex": 304,
           "slotKey": "subslot/0/0/4",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1858,7 +1878,11 @@
           },
           "physicalIndex": 305,
           "slotKey": "subslot/0/0/5",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1879,7 +1903,11 @@
           },
           "physicalIndex": 306,
           "slotKey": "subslot/0/0/6",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1900,7 +1928,11 @@
           },
           "physicalIndex": 307,
           "slotKey": "subslot/0/0/7",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1921,7 +1953,11 @@
           },
           "physicalIndex": 308,
           "slotKey": "subslot/0/0/8",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1942,7 +1978,11 @@
           },
           "physicalIndex": 309,
           "slotKey": "subslot/0/0/9",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1963,7 +2003,11 @@
           },
           "physicalIndex": 310,
           "slotKey": "subslot/0/0/10",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -1984,7 +2028,11 @@
           },
           "physicalIndex": 311,
           "slotKey": "subslot/0/0/11",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2005,7 +2053,11 @@
           },
           "physicalIndex": 312,
           "slotKey": "subslot/0/0/12",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2026,7 +2078,11 @@
           },
           "physicalIndex": 313,
           "slotKey": "subslot/0/0/13",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2047,7 +2103,11 @@
           },
           "physicalIndex": 314,
           "slotKey": "subslot/0/0/14",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2068,7 +2128,11 @@
           },
           "physicalIndex": 315,
           "slotKey": "subslot/0/0/15",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2089,7 +2153,11 @@
           },
           "physicalIndex": 316,
           "slotKey": "subslot/0/0/16",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2110,7 +2178,11 @@
           },
           "physicalIndex": 317,
           "slotKey": "subslot/0/0/17",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2131,7 +2203,11 @@
           },
           "physicalIndex": 318,
           "slotKey": "subslot/0/0/18",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2152,7 +2228,11 @@
           },
           "physicalIndex": 319,
           "slotKey": "subslot/0/0/19",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2173,7 +2253,11 @@
           },
           "physicalIndex": 350,
           "slotKey": "subslot/0/0/20",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2194,7 +2278,11 @@
           },
           "physicalIndex": 351,
           "slotKey": "subslot/0/0/21",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2215,7 +2303,11 @@
           },
           "physicalIndex": 352,
           "slotKey": "subslot/0/0/22",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
@@ -2236,7 +2328,11 @@
           },
           "physicalIndex": 353,
           "slotKey": "subslot/0/0/23",
-          "asset": null
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/SFP.svg",
+            "sourceImage": "SFP.svg",
+            "typeId": "SFP"
+          }
         },
         {
           "bounds": {
