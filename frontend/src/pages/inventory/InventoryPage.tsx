@@ -179,6 +179,42 @@ function ExampleInventoryModel({ pinnedDeviceId }: { pinnedDeviceId?: string }) 
   const totalPorts = 32;
   const activeOptics = device.optics.filter((optic) => optic.status === 'ok').length;
 
+  // Left column of the Chassis View: Software & lifecycle + Environment snapshot
+  // stacked above the Discovered Elements tree (Selected Component stays on the right).
+  const sideStack = (
+    <>
+      <Card className="space-y-4">
+        <SectionTitle title="Software & lifecycle" subtitle="Operating image, packages, license, and lifecycle state." />
+        <div className="grid gap-3 text-sm">
+          <MetricLine label="Vendor" value={device.vendor} />
+          <MetricLine label="OS" value={device.os} />
+          <MetricLine label="License" value={device.license} />
+          <MetricLine label="Lifecycle" value={device.lifecycle} />
+        </div>
+        <div className="space-y-2">
+          {device.software.map((pkg) => (
+            <div key={pkg.name} className="flex items-center justify-between gap-3 rounded-md border border-gray-200 px-3 py-2 text-sm dark:border-gray-700">
+              <div>
+                <p className="font-medium text-gray-900 dark:text-gray-100">{pkg.name}</p>
+                <p className="font-mono text-xs text-gray-500 dark:text-gray-400">{pkg.version}</p>
+              </div>
+              <Badge variant="success">{pkg.state}</Badge>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <Card className="space-y-4">
+        <SectionTitle title="Environment snapshot" subtitle="Current operational health from the latest collection." />
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+          {device.environment.map((item) => (
+            <StatCard key={item.label} title={item.label} value={item.value} icon={item.icon} tone={item.tone} />
+          ))}
+        </div>
+      </Card>
+    </>
+  );
+
   return (
     <div className="space-y-6">
       <Card className="space-y-4">
@@ -224,75 +260,41 @@ function ExampleInventoryModel({ pinnedDeviceId }: { pinnedDeviceId?: string }) 
             </Button>
           ))}
         </div>
-        <ChassisView deviceName={selectedChassisProfile.deviceName} dataUrl={selectedChassisProfile.dataUrl} />
+        <ChassisView deviceName={selectedChassisProfile.deviceName} dataUrl={selectedChassisProfile.dataUrl} leftColumnExtras={sideStack} />
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(320px,0.8fr)]">
-        <Card className="space-y-4">
-          <SectionTitle title="Hardware hierarchy" subtitle="Chassis, route processors, line cards, fans, and power modules." />
-          <Table
-            columns={[
-              { key: 'slot', header: 'Slot' },
-              { key: 'type', header: 'Type' },
-              { key: 'part', header: 'Part number' },
-              { key: 'serial', header: 'Serial' },
-              { key: 'ports', header: 'Ports' },
-              { key: 'firmware', header: 'FW' },
-              { key: 'status', header: 'Status', render: (value) => <Badge variant={value === 'OK' || value === 'Standby' ? 'success' : 'warning'}>{String(value)}</Badge> },
-            ]}
-            data={device.modules}
-          />
-        </Card>
+      <Card className="space-y-4">
+        <SectionTitle title="Hardware hierarchy" subtitle="Chassis, route processors, line cards, fans, and power modules." />
+        <Table
+          columns={[
+            { key: 'slot', header: 'Slot' },
+            { key: 'type', header: 'Type' },
+            { key: 'part', header: 'Part number' },
+            { key: 'serial', header: 'Serial' },
+            { key: 'ports', header: 'Ports' },
+            { key: 'firmware', header: 'FW' },
+            { key: 'status', header: 'Status', render: (value) => <Badge variant={value === 'OK' || value === 'Standby' ? 'success' : 'warning'}>{String(value)}</Badge> },
+          ]}
+          data={device.modules}
+        />
+      </Card>
 
-        <Card className="space-y-4">
-          <SectionTitle title="Software & lifecycle" subtitle="Operating image, packages, license, and lifecycle state." />
-          <div className="grid gap-3 text-sm">
-            <MetricLine label="Vendor" value={device.vendor} />
-            <MetricLine label="OS" value={device.os} />
-            <MetricLine label="License" value={device.license} />
-            <MetricLine label="Lifecycle" value={device.lifecycle} />
-          </div>
-          <div className="space-y-2">
-            {device.software.map((pkg) => (
-              <div key={pkg.name} className="flex items-center justify-between gap-3 rounded-md border border-gray-200 px-3 py-2 text-sm dark:border-gray-700">
-                <div>
-                  <p className="font-medium text-gray-900 dark:text-gray-100">{pkg.name}</p>
-                  <p className="font-mono text-xs text-gray-500 dark:text-gray-400">{pkg.version}</p>
-                </div>
-                <Badge variant="success">{pkg.state}</Badge>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.9fr)]">
-        <Card className="space-y-4">
-          <SectionTitle title="Optics and transceivers" subtitle="Per-port optics with part number, serial, wavelength, and optical power." />
-          <Table
-            columns={[
-              { key: 'interface', header: 'Interface' },
-              { key: 'type', header: 'Type' },
-              { key: 'part', header: 'Part' },
-              { key: 'serial', header: 'Serial' },
-              { key: 'wavelength', header: 'Wave' },
-              { key: 'rxPower', header: 'RX' },
-              { key: 'txPower', header: 'TX' },
-              { key: 'status', header: 'Status', render: (value) => <Badge variant={value === 'ok' ? 'success' : 'warning'}>{value === 'ok' ? 'OK' : 'Check'}</Badge> },
-            ]}
-            data={device.optics}
-          />
-        </Card>
-
-        <Card className="space-y-4">
-          <SectionTitle title="Environment snapshot" subtitle="Current operational health from the latest collection." />
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-            {device.environment.map((item) => (
-              <StatCard key={item.label} title={item.label} value={item.value} icon={item.icon} tone={item.tone} />
-            ))}
-          </div>
-        </Card>
-      </div>
+      <Card className="space-y-4">
+        <SectionTitle title="Optics and transceivers" subtitle="Per-port optics with part number, serial, wavelength, and optical power." />
+        <Table
+          columns={[
+            { key: 'interface', header: 'Interface' },
+            { key: 'type', header: 'Type' },
+            { key: 'part', header: 'Part' },
+            { key: 'serial', header: 'Serial' },
+            { key: 'wavelength', header: 'Wave' },
+            { key: 'rxPower', header: 'RX' },
+            { key: 'txPower', header: 'TX' },
+            { key: 'status', header: 'Status', render: (value) => <Badge variant={value === 'ok' ? 'success' : 'warning'}>{value === 'ok' ? 'OK' : 'Check'}</Badge> },
+          ]}
+          data={device.optics}
+        />
+      </Card>
     </div>
   );
 }

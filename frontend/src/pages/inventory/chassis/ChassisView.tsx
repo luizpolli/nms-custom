@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { CheckCircle2, Info, Maximize2 } from 'lucide-react';
 import { api } from '../../../lib/api';
@@ -25,6 +25,9 @@ interface ChassisViewProps {
   deviceId?: string;
   dataUrl?: string;
   model?: ChassisViewModel;
+  /** Extra cards rendered in the left column, above the Discovered Elements tree
+   *  (e.g. Software & lifecycle / Environment snapshot). */
+  leftColumnExtras?: ReactNode;
 }
 
 async function fetchStaticChassisModel(dataUrl: string): Promise<ChassisViewModel> {
@@ -149,7 +152,7 @@ function buildZoomCard(
   return null;
 }
 
-export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/asr903/normalized.json', model }: ChassisViewProps) {
+export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/asr903/normalized.json', model, leftColumnExtras }: ChassisViewProps) {
   const query = useQuery({
     queryKey: ['chassis-view', deviceId ?? dataUrl],
     queryFn: () => fetchChassisModel(deviceId, dataUrl),
@@ -378,15 +381,18 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
               })()}
             </div>
 
-            {/* Row 2: tree + details panel side-by-side from md (>=768px), stacked below. */}
-            <div className="grid gap-5 md:grid-cols-[minmax(240px,300px)_minmax(0,1fr)]">
-              <DiscoveredElementsTree
-                tree={data.tree}
-                componentsById={data.componentsById}
-                managedInterfaces={managedInterfaces}
-                selectedComponentId={effectiveSelection}
-                onSelect={handleComponentSelect}
-              />
+            {/* Row 2: left column (extras + tree) and the details panel on the right. */}
+            <div className="grid gap-5 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)]">
+              <div className="space-y-5">
+                {leftColumnExtras}
+                <DiscoveredElementsTree
+                  tree={data.tree}
+                  componentsById={data.componentsById}
+                  managedInterfaces={managedInterfaces}
+                  selectedComponentId={effectiveSelection}
+                  onSelect={handleComponentSelect}
+                />
+              </div>
               <ComponentDetailsPanel
                 component={selectedComponent}
                 componentsById={data.componentsById}
