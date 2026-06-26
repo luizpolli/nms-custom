@@ -1715,11 +1715,31 @@
       "height": 165,
       "hotspots": [
         {
+          "id": "linecard-0-0",
+          "label": "Line Card 0/0",
+          "slotKey": "0/0",
+          "inventoryId": "component-1",
           "bounds": {
-            "x": 644.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 614,
+            "y": 0,
+            "w": 856,
+            "h": 165
+          },
+          "asset": {
+            "image": "/chassis-assets/asr920/modules/ASR-920-20SZ-M-Front_linecard.svg",
+            "sourceImage": "ASR-920-20SZ-M-Front_linecard.svg",
+            "typeId": "linecard"
+          },
+          "metadata": {
+            "kind": "linecard"
+          }
+        },
+        {
+          "bounds": {
+            "x": 644,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-0",
@@ -1733,18 +1753,14 @@
           },
           "physicalIndex": 300,
           "slotKey": "subslot/0/0/0",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 644.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 644,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-1",
@@ -1758,18 +1774,14 @@
           },
           "physicalIndex": 301,
           "slotKey": "subslot/0/0/1",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 701.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 701,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-2",
@@ -1783,18 +1795,14 @@
           },
           "physicalIndex": 302,
           "slotKey": "subslot/0/0/2",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 701.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 701,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-3",
@@ -1808,18 +1816,14 @@
           },
           "physicalIndex": 303,
           "slotKey": "subslot/0/0/3",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 757.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 757,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-4",
@@ -1833,18 +1837,14 @@
           },
           "physicalIndex": 304,
           "slotKey": "subslot/0/0/4",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 757.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 757,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-5",
@@ -1858,18 +1858,14 @@
           },
           "physicalIndex": 305,
           "slotKey": "subslot/0/0/5",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 812.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 812,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-6",
@@ -1883,18 +1879,14 @@
           },
           "physicalIndex": 306,
           "slotKey": "subslot/0/0/6",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 812.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 812,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-7",
@@ -1908,18 +1900,14 @@
           },
           "physicalIndex": 307,
           "slotKey": "subslot/0/0/7",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 867.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 867,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-8",
@@ -1933,18 +1921,14 @@
           },
           "physicalIndex": 308,
           "slotKey": "subslot/0/0/8",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 867.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 867,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-9",
@@ -1958,18 +1942,14 @@
           },
           "physicalIndex": 309,
           "slotKey": "subslot/0/0/9",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 922.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 922,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-10",
@@ -1983,18 +1963,14 @@
           },
           "physicalIndex": 310,
           "slotKey": "subslot/0/0/10",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 922.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 922,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-11",
@@ -2008,18 +1984,14 @@
           },
           "physicalIndex": 311,
           "slotKey": "subslot/0/0/11",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1004.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1004,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-12",
@@ -2033,18 +2005,14 @@
           },
           "physicalIndex": 312,
           "slotKey": "subslot/0/0/12",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1004.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1004,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-13",
@@ -2058,18 +2026,14 @@
           },
           "physicalIndex": 313,
           "slotKey": "subslot/0/0/13",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1059.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1059,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-14",
@@ -2083,18 +2047,14 @@
           },
           "physicalIndex": 314,
           "slotKey": "subslot/0/0/14",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1059.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1059,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-15",
@@ -2108,18 +2068,14 @@
           },
           "physicalIndex": 315,
           "slotKey": "subslot/0/0/15",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1114.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1114,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-16",
@@ -2133,18 +2089,14 @@
           },
           "physicalIndex": 316,
           "slotKey": "subslot/0/0/16",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1114.0,
-            "y": 40.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1114,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-17",
@@ -2158,18 +2110,14 @@
           },
           "physicalIndex": 317,
           "slotKey": "subslot/0/0/17",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1169.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1169,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-18",
@@ -2183,18 +2131,14 @@
           },
           "physicalIndex": 318,
           "slotKey": "subslot/0/0/18",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1169.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1169,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-sfp-19",
@@ -2208,18 +2152,14 @@
           },
           "physicalIndex": 319,
           "slotKey": "subslot/0/0/19",
-          "asset": {
-            "typeId": "SFP",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1227.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1367,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-uplink-20",
@@ -2233,18 +2173,14 @@
           },
           "physicalIndex": 350,
           "slotKey": "subslot/0/0/20",
-          "asset": {
-            "typeId": "SFP+",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1227.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1367,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-uplink-21",
@@ -2258,18 +2194,14 @@
           },
           "physicalIndex": 351,
           "slotKey": "subslot/0/0/21",
-          "asset": {
-            "typeId": "SFP+",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1282.0,
-            "y": 96.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1422,
+            "y": 96,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-uplink-22",
@@ -2283,18 +2215,14 @@
           },
           "physicalIndex": 352,
           "slotKey": "subslot/0/0/22",
-          "asset": {
-            "typeId": "SFP+",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
-            "x": 1282.0,
-            "y": 39.0,
-            "w": 60.0,
-            "h": 35.0
+            "x": 1422,
+            "y": 39,
+            "w": 60,
+            "h": 35
           },
           "empty": false,
           "id": "hotspot-uplink-23",
@@ -2308,11 +2236,7 @@
           },
           "physicalIndex": 353,
           "slotKey": "subslot/0/0/23",
-          "asset": {
-            "typeId": "SFP+",
-            "image": "/chassis-assets/asr920/modules/SFP.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/SFP.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
