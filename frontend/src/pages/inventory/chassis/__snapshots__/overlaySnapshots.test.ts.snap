@@ -35,6 +35,11 @@ exports[`chassis overlay snapshots > asr920 overlay summary is stable 1`] = `
   "profileId": "Cisco_ASR_920_20SZ_M_Router",
   "views": {
     "front": {
+      "linecard-0-0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
+      },
       "mgmt": {
         "hotspots": 1,
         "overlay": "rendered",
@@ -44,6 +49,11 @@ exports[`chassis overlay snapshots > asr920 overlay summary is stable 1`] = `
         "hotspots": 2,
         "overlay": "rendered",
         "withAsset": 2,
+      },
+      "rp0": {
+        "hotspots": 1,
+        "overlay": "rendered",
+        "withAsset": 1,
       },
       "sfp": {
         "hotspots": 20,
@@ -1353,7 +1363,7 @@ exports[`chassis overlay snapshots > ncs540-12z20g overlay summary is stable 1`]
       "fan": {
         "hotspots": 1,
         "overlay": "rendered",
-        "withAsset": 1,
+        "withAsset": 0,
       },
       "power": {
         "hotspots": 2,
@@ -1408,12 +1418,12 @@ exports[`chassis overlay snapshots > ncs540-28z4c overlay summary is stable 1`] 
       "power": {
         "hotspots": 2,
         "overlay": "rendered",
-        "withAsset": 2,
+        "withAsset": 0,
       },
       "rp": {
         "hotspots": 1,
         "overlay": "rendered",
-        "withAsset": 1,
+        "withAsset": 0,
       },
     },
   },
