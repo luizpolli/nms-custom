@@ -243,6 +243,24 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   }
 
   const view = data.views.find((v) => v.id === selectedViewId) ?? data.views[0];
+  const statusLegend = (
+    <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 rounded-md bg-white/95 px-3 py-1.5 text-xs text-gray-600 shadow ring-1 ring-gray-200 dark:bg-gray-900/95 dark:text-gray-300 dark:ring-gray-700">
+      {Object.keys(effectivePortStatusByComponentId).length > 0 ? (
+        <>
+          <LegendDot icon="/chassis-icons/up.svg" label={`Up (${portStatusCounts.up})`} />
+          <LegendDot icon="/chassis-icons/down.svg" label={`Down (${portStatusCounts.down})`} />
+          <LegendDot icon="/chassis-icons/fi-admindown.svg" label={`Admin down (${portStatusCounts['admin-down']})`} />
+          <LegendDot className="bg-cisco-blue" label="Selected" />
+        </>
+      ) : (
+        <>
+          <LegendDot className="bg-green-500" label="Operational" />
+          <LegendDot className="bg-cisco-blue" label="Selected" />
+          <LegendDot className="bg-gray-400" label="Empty bay" />
+        </>
+      )}
+    </div>
+  );
   const selectedComponent = effectiveSelection ? data.componentsById[effectiveSelection] : undefined;
   const selectedPorts = collectManagedPorts(selectedComponent, data.componentsById);
   const selectedPort = selectedPorts.find((port) => port.id === selectedPortId) ?? selectedPorts[0];
@@ -375,6 +393,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                       viewId={view.id}
                       portStatusByComponentId={effectivePortStatusByComponentId}
                       portStatusByHotspotId={portStatusByHotspotId}
+                      legend={statusLegend}
                     />
                   </div>
                 );
@@ -418,23 +437,6 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                 />
               </div>
             </div>
-          </div>
-
-          <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
-            {Object.keys(effectivePortStatusByComponentId).length > 0 ? (
-              <>
-                <LegendDot icon="/chassis-icons/up.svg" label={`Up (${portStatusCounts.up})`} />
-                <LegendDot icon="/chassis-icons/down.svg" label={`Down (${portStatusCounts.down})`} />
-                <LegendDot icon="/chassis-icons/fi-admindown.svg" label={`Admin down (${portStatusCounts['admin-down']})`} />
-                <LegendDot className="bg-cisco-blue" label="Selected" />
-              </>
-            ) : (
-              <>
-                <LegendDot className="bg-green-500" label="Operational" />
-                <LegendDot className="bg-cisco-blue" label="Selected" />
-                <LegendDot className="bg-gray-400" label="Empty bay" />
-              </>
-            )}
           </div>
         </div>
       </div>

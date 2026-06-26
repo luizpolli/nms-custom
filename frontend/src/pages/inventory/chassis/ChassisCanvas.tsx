@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { PointerEvent as ReactPointerEvent, WheelEvent as ReactWheelEvent } from 'react';
+import type { PointerEvent as ReactPointerEvent, ReactNode, WheelEvent as ReactWheelEvent } from 'react';
 import { Maximize2, Minus, Plus } from 'lucide-react';
 import type { ChassisComponent, ChassisHotspot, ChassisViewModel, ChassisViewImage, ComponentAlarmInfo } from './chassisTypes';
 import type { PortStatus, PortStatusInfo } from './portInventory';
@@ -94,6 +94,7 @@ export function ChassisCanvas({
   viewId,
   portStatusByComponentId,
   portStatusByHotspotId,
+  legend,
 }: {
   model: ChassisViewModel;
   selectedComponentId: string | null;
@@ -102,6 +103,7 @@ export function ChassisCanvas({
   viewId?: string;
   portStatusByComponentId?: Record<string, PortStatusInfo>;
   portStatusByHotspotId?: Record<string, PortStatusInfo>;
+  legend?: ReactNode;
 }) {
   const view = (viewId ? model.views.find((v) => v.id === viewId) : undefined) ?? model.views[0];
   const frameRef = useRef<HTMLDivElement | null>(null);
@@ -265,35 +267,38 @@ export function ChassisCanvas({
           ))}
         </div>
       )}
-      <div className="absolute right-4 top-4 z-10 flex flex-col gap-1 rounded-md bg-white/95 p-1 shadow ring-1 ring-gray-300 dark:bg-gray-900/95 dark:ring-gray-700">
-        <button
-          type="button"
-          aria-label="Zoom in"
-          onClick={() => applyZoom(zoom + ZOOM_STEP)}
-          disabled={zoom >= ZOOM_MAX}
-          className="rounded p-1 text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
-        >
-          <Plus className="h-4 w-4" />
-        </button>
-        <button
-          type="button"
-          aria-label="Zoom out"
-          onClick={() => applyZoom(zoom - ZOOM_STEP)}
-          disabled={zoom <= ZOOM_MIN}
-          className="rounded p-1 text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
-        >
-          <Minus className="h-4 w-4" />
-        </button>
-        <button
-          type="button"
-          aria-label="Reset zoom"
-          onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
-          disabled={zoom === 1 && pan.x === 0 && pan.y === 0}
-          className="rounded p-1 text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
-        >
-          <Maximize2 className="h-4 w-4" />
-        </button>
-        <span className="px-1 text-center text-[10px] font-mono text-gray-500 dark:text-gray-400">{Math.round(zoom * 100)}%</span>
+      <div className="absolute right-4 top-4 z-10 flex flex-col items-end gap-2">
+        <div className="flex flex-col gap-1 rounded-md bg-white/95 p-1 shadow ring-1 ring-gray-300 dark:bg-gray-900/95 dark:ring-gray-700">
+          <button
+            type="button"
+            aria-label="Zoom in"
+            onClick={() => applyZoom(zoom + ZOOM_STEP)}
+            disabled={zoom >= ZOOM_MAX}
+            className="rounded p-1 text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
+          >
+            <Plus className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Zoom out"
+            onClick={() => applyZoom(zoom - ZOOM_STEP)}
+            disabled={zoom <= ZOOM_MIN}
+            className="rounded p-1 text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
+          >
+            <Minus className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Reset zoom"
+            onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
+            disabled={zoom === 1 && pan.x === 0 && pan.y === 0}
+            className="rounded p-1 text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:text-gray-200 dark:hover:bg-gray-800"
+          >
+            <Maximize2 className="h-4 w-4" />
+          </button>
+          <span className="px-1 text-center text-[10px] font-mono text-gray-500 dark:text-gray-400">{Math.round(zoom * 100)}%</span>
+        </div>
+        {legend}
       </div>
     </div>
   );
