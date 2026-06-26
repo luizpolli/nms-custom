@@ -6,7 +6,7 @@ import { Badge, Card, Spinner } from '../../../components/ui';
 import type { ChassisComponent, ChassisHotspot, ChassisTreeNode, ChassisViewImage, ChassisViewModel } from './chassisTypes';
 import { PortDetailPanel } from './PortDetailPanel';
 import { ChassisCanvas } from './ChassisCanvas';
-import { ComponentDetailsPanel } from './ComponentDetailsPanel';
+import { ComponentDetailsPanel, InterfaceBindingPanel } from './ComponentDetailsPanel';
 import { DiscoveredElementsTree } from './DiscoveredElementsTree';
 import { PortInventoryTable } from './PortInventoryTable';
 import { CardZoomModal, type CardZoomData } from './CardZoomModal';
@@ -393,29 +393,31 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                   onSelect={handleComponentSelect}
                 />
               </div>
-              <ComponentDetailsPanel
-                component={selectedComponent}
-                componentsById={data.componentsById}
-                managedPorts={selectedPorts}
-                selectedPort={selectedPort}
-                managedInterface={selectedInterface}
-                hasLiveInterfaceLookup={Boolean(deviceId)}
-                isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
-                deviceId={deviceId}
-                onSelectPort={setSelectedPortId}
-                statusByComponentId={effectivePortStatusByComponentId}
-                onTogglePortAdmin={handleTogglePortAdmin}
-                isDemo={isDemo}
-              />
+              <div className="space-y-5">
+                <ComponentDetailsPanel
+                  component={selectedComponent}
+                  componentsById={data.componentsById}
+                  managedPorts={selectedPorts}
+                  selectedPort={selectedPort}
+                  onSelectPort={setSelectedPortId}
+                  statusByComponentId={effectivePortStatusByComponentId}
+                />
+                <PortInventoryTable
+                  rows={portInventoryRows}
+                  hasLiveInterfaceLookup={Boolean(deviceId)}
+                  statusByComponentId={effectivePortStatusByComponentId}
+                  onTogglePortAdmin={handleTogglePortAdmin}
+                  isDemo={isDemo}
+                />
+                <InterfaceBindingPanel
+                  selectedPort={selectedPort}
+                  managedInterface={selectedInterface}
+                  hasLiveInterfaceLookup={Boolean(deviceId)}
+                  isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
+                  deviceId={deviceId}
+                />
+              </div>
             </div>
-
-            <PortInventoryTable
-              rows={portInventoryRows}
-              hasLiveInterfaceLookup={Boolean(deviceId)}
-              statusByComponentId={effectivePortStatusByComponentId}
-              onTogglePortAdmin={handleTogglePortAdmin}
-              isDemo={isDemo}
-            />
           </div>
 
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">

@@ -1,4 +1,4 @@
-import { Activity, Bell, Power, PowerOff, TerminalSquare } from 'lucide-react';
+import { Activity, Bell, TerminalSquare } from 'lucide-react';
 import { Badge, Button, Card } from '../../../components/ui';
 import type { ChassisComponent } from './chassisTypes';
 import { formatSpeedBps, type ManagedInterface, type ManagedPort, type PortStatus, type PortStatusInfo } from './portInventory';
@@ -26,27 +26,15 @@ export function ComponentDetailsPanel({
   componentsById,
   managedPorts,
   selectedPort,
-  managedInterface,
-  hasLiveInterfaceLookup,
-  isLoadingInterfaces,
-  deviceId,
   onSelectPort,
   statusByComponentId,
-  onTogglePortAdmin,
-  isDemo,
 }: {
   component?: ChassisComponent;
   componentsById: Record<string, ChassisComponent>;
   managedPorts: ManagedPort[];
   selectedPort?: ManagedPort;
-  managedInterface?: ManagedInterface;
-  hasLiveInterfaceLookup: boolean;
-  isLoadingInterfaces: boolean;
-  deviceId?: string;
   onSelectPort: (portId: string) => void;
   statusByComponentId: Record<string, PortStatusInfo>;
-  onTogglePortAdmin: (componentId: string, portName?: string) => void;
-  isDemo: boolean;
 }) {
   return (
     <Card className="space-y-4 border-gray-300 bg-white/90 dark:border-gray-700 dark:bg-gray-900/95">
@@ -88,15 +76,9 @@ export function ComponentDetailsPanel({
               <PortInventoryPanel
                 ports={managedPorts}
                 selectedPort={selectedPort}
-                managedInterface={managedInterface}
-                hasLiveInterfaceLookup={hasLiveInterfaceLookup}
-                isLoadingInterfaces={isLoadingInterfaces}
-                deviceId={deviceId}
                 componentsById={componentsById}
                 onSelectPort={onSelectPort}
                 statusByComponentId={statusByComponentId}
-                onTogglePortAdmin={onTogglePortAdmin}
-                isDemo={isDemo}
               />
             )}
           </div>
@@ -109,31 +91,18 @@ export function ComponentDetailsPanel({
 function PortInventoryPanel({
   ports,
   selectedPort,
-  managedInterface,
-  hasLiveInterfaceLookup,
-  isLoadingInterfaces,
-  deviceId,
   componentsById,
   onSelectPort,
   statusByComponentId,
-  onTogglePortAdmin,
-  isDemo,
 }: {
   ports: ManagedPort[];
   selectedPort?: ManagedPort;
-  managedInterface?: ManagedInterface;
-  hasLiveInterfaceLookup: boolean;
-  isLoadingInterfaces: boolean;
-  deviceId?: string;
   componentsById: Record<string, ChassisComponent>;
   onSelectPort: (portId: string) => void;
   statusByComponentId: Record<string, PortStatusInfo>;
-  onTogglePortAdmin: (componentId: string, portName?: string) => void;
-  isDemo: boolean;
 }) {
   const selectedComponent = selectedPort ? componentsById[selectedPort.componentId] : undefined;
   const selectedStatus = selectedPort ? statusByComponentId[selectedPort.componentId]?.status : undefined;
-  const willShut = selectedStatus !== 'admin-down';
 
   return (
     <div className="space-y-3">
@@ -180,38 +149,14 @@ function PortInventoryPanel({
             <MetricLine label="Parent module" value={selectedPort.componentTypeId ?? selectedPort.componentName} />
             <MetricLine label="Physical index" value={String(selectedComponent?.physicalIndex ?? '-')} />
           </div>
-          <div className="mt-3 border-t border-cisco-blue/20 pt-3 dark:border-cisco-blue/30">
-            <Button
-              type="button"
-              variant={willShut ? 'danger' : 'success'}
-              size="sm"
-              className="w-full"
-              onClick={() => onTogglePortAdmin(selectedPort.componentId, selectedPort.name)}
-              leftIcon={willShut ? <PowerOff className="h-4 w-4" /> : <Power className="h-4 w-4" />}
-            >
-              {willShut ? 'Apagar puerto (shutdown)' : 'Encender puerto (no shutdown)'}
-            </Button>
-            <p className="mt-1.5 text-center text-[11px] text-gray-500 dark:text-gray-400">
-              {isDemo
-                ? 'Modo demo: cambia el estado de forma simulada.'
-                : 'Genera el comando shut/no shut hacia la consola del equipo.'}
-            </p>
-          </div>
         </div>
       )}
 
-      <InterfaceBindingPanel
-        selectedPort={selectedPort}
-        managedInterface={managedInterface}
-        hasLiveInterfaceLookup={hasLiveInterfaceLookup}
-        isLoadingInterfaces={isLoadingInterfaces}
-        deviceId={deviceId}
-      />
     </div>
   );
 }
 
-function InterfaceBindingPanel({
+export function InterfaceBindingPanel({
   selectedPort,
   managedInterface,
   hasLiveInterfaceLookup,
