@@ -2335,11 +2335,34 @@
           }
         },
         {
+          "id": "hotspot-rp0",
+          "label": "module 0/RP0/CPU0",
+          "slotKey": "0/RP0/CPU0",
+          "inventoryId": "component-10",
           "bounds": {
-            "x": 546.0,
-            "y": 22.0,
-            "w": 66.0,
-            "h": 112.0
+            "x": 546,
+            "y": 22,
+            "w": 66,
+            "h": 112
+          },
+          "asset": {
+            "typeId": "ASR-920-20SZ-M-RP",
+            "image": "/chassis-assets/asr920/modules/ASR-920-20SZ-M_slot_R0.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-20SZ-M_slot_R0.svg"
+          },
+          "empty": false,
+          "metadata": {
+            "kind": "rp",
+            "modelName": "Route Processor",
+            "sourceName": "module 0/RP0/CPU0"
+          }
+        },
+        {
+          "bounds": {
+            "x": 555,
+            "y": 29,
+            "w": 48,
+            "h": 37
           },
           "empty": false,
           "id": "hotspot-mgmt",
@@ -2353,11 +2376,7 @@
           },
           "physicalIndex": 11,
           "slotKey": "mgmt0",
-          "asset": {
-            "typeId": "RJ45",
-            "image": "/chassis-assets/asr920/modules/ASR-920-20SZ-M_slot_R0.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-20SZ-M_slot_R0.svg"
-          }
+          "asset": null
         },
         {
           "bounds": {
