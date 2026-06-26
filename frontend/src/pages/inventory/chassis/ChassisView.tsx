@@ -10,6 +10,7 @@ import { ComponentDetailsPanel, InterfaceBindingPanel } from './ComponentDetails
 import { DiscoveredElementsTree } from './DiscoveredElementsTree';
 import { PortInventoryTable } from './PortInventoryTable';
 import { CardZoomModal, type CardZoomData } from './CardZoomModal';
+import { SshConsoleModal } from './SshConsoleModal';
 import {
   buildPortInventoryRows,
   buildPortStatusByComponentId,
@@ -233,6 +234,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
   const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
   const [selectedViewId, setSelectedViewId] = useState<string>('front');
   const [zoomOpen, setZoomOpen] = useState(false);
+  const [consoleOpen, setConsoleOpen] = useState(false);
   const effectiveSelection = selectedComponentId ?? defaultSelection;
 
   if (isLoading) {
@@ -325,7 +327,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
               type="button"
               title="Conectar a la consola del equipo (SSH)"
               aria-label="Conectar a la consola del equipo por SSH"
-              onClick={() => { window.location.href = deviceId ? `/commands?device_id=${encodeURIComponent(deviceId)}` : '/commands'; }}
+              onClick={() => setConsoleOpen(true)}
               className="shrink-0 rounded p-1 text-gray-500 transition hover:bg-gray-100 hover:text-cisco-blue dark:text-gray-400 dark:hover:bg-gray-800"
             >
               <Terminal className="h-5 w-5" />
@@ -468,6 +470,10 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
 
     {zoomOpen && zoomCard && (
       <CardZoomModal card={zoomCard} onClose={() => setZoomOpen(false)} />
+    )}
+
+    {consoleOpen && (
+      <SshConsoleModal deviceId={deviceId} deviceName={deviceName} onClose={() => setConsoleOpen(false)} />
     )}
   </>);
 }

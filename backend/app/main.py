@@ -14,6 +14,7 @@ from app.api.assurance import router as assurance_router
 from app.api.bulkstats import router as bulkstats_router
 from app.api.command_schedules import router as command_schedules_router
 from app.api.commands import router as commands_router
+from app.api.console import router as console_router
 from app.api.credentials import router as credentials_router
 from app.api.devices import router as devices_router
 from app.api.discovery import router as discovery_router
@@ -157,6 +158,8 @@ app.include_router(mibs_router, prefix="/api/mibs", tags=["mibs"], dependencies=
 app.include_router(monitoring_policies_router, prefix="/api/monitoring-policies", tags=["monitoring-policies"], dependencies=_api_auth)
 app.include_router(discovery_router, prefix="/api/discovery", tags=["discovery"], dependencies=_api_auth)
 app.include_router(commands_router, prefix="/api/commands", tags=["commands"], dependencies=_api_auth)
+# Console WS authenticates via ?token= (browsers can't set WS headers), so no _api_auth dep.
+app.include_router(console_router, prefix="/api/console", tags=["console"])
 app.include_router(command_schedules_router, prefix="/api/command-schedules", tags=["command-schedules"], dependencies=_api_auth)
 app.include_router(ios_router, prefix="/api/ios", tags=["ios"], dependencies=_api_auth)
 app.include_router(topology_router, prefix="/api/topology", tags=["topology"], dependencies=_api_auth)
