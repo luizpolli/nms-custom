@@ -170,6 +170,29 @@ npm run dev
 Open [http://localhost:5173](http://localhost:5173) (frontend) and
 [http://localhost:8000/docs](http://localhost:8000/docs) (Swagger API docs).
 
+### Refreshing frontend dependencies (Docker)
+
+The `frontend` Compose service keeps `node_modules` in an **anonymous volume**
+(`- /app/node_modules` in `docker-compose.yml`) so the host bind-mount doesn't
+clobber the container's installed packages. That volume is populated by
+`npm install` the first time the container starts and then **persists across
+`up`/`down`** — so when `frontend/package.json` gains a new dependency,
+rebuilding the image alone is *not* enough: the stale volume shadows the image's
+fresh `node_modules` and Vite fails with `Failed to resolve import "<pkg>"`.
+
+After any change to frontend dependencies, refresh the volume with either:
+
+```bash
+# Quick: install the new deps straight into the running container's volume
+docker compose exec frontend npm install
+docker compose restart frontend          # let Vite re-optimize deps
+
+# Clean: rebuild the image AND recreate the anonymous node_modules volume from it
+docker compose up -d --build --renew-anon-volumes frontend
+```
+
+(Plain local `npm install` in `frontend/` already covers the non-Docker dev flow.)
+
 ---
 
 ## Services & Ports
