@@ -2316,10 +2316,10 @@
         },
         {
           "bounds": {
-            "x": 546.0,
-            "y": 22.0,
-            "w": 66.0,
-            "h": 112.0
+            "x": 549.0,
+            "y": 64.0,
+            "w": 60.0,
+            "h": 22.0
           },
           "empty": false,
           "id": "hotspot-mgmt",
@@ -2332,7 +2332,12 @@
             "sourceTypeId": "RJ45"
           },
           "physicalIndex": 11,
-          "slotKey": "mgmt0"
+          "slotKey": "mgmt0",
+          "asset": {
+            "typeId": "RJ45",
+            "image": "/chassis-assets/asr920/modules/MGMT-RJ45.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/MGMT-RJ45.svg"
+          }
         },
         {
           "bounds": {
