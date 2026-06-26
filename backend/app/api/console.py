@@ -36,7 +36,9 @@ def _authorized(token: str | None) -> bool:
     allowed = configured_api_keys()
     if not allowed:
         return True  # API auth disabled → open, consistent with the rest of the app
-    return bool(token) and verify_api_key(token, allowed)
+    if not token:
+        return False
+    return verify_api_key(token, allowed)
 
 
 @router.websocket("/{device_id}")
