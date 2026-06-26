@@ -2316,10 +2316,10 @@
         },
         {
           "bounds": {
-            "x": 549.0,
-            "y": 42.0,
-            "w": 60.0,
-            "h": 22.0
+            "x": 546.0,
+            "y": 22.0,
+            "w": 66.0,
+            "h": 112.0
           },
           "empty": false,
           "id": "hotspot-mgmt",
@@ -2335,16 +2335,16 @@
           "slotKey": "mgmt0",
           "asset": {
             "typeId": "RJ45",
-            "image": "/chassis-assets/asr920/modules/MGMT-RJ45.svg",
-            "sourceImage": "/chassis-assets/asr920/modules/MGMT-RJ45.svg"
+            "image": "/chassis-assets/asr920/modules/ASR-920-20SZ-M_slot_R0.svg",
+            "sourceImage": "/chassis-assets/asr920/modules/ASR-920-20SZ-M_slot_R0.svg"
           }
         },
         {
           "bounds": {
-            "x": 30.7,
-            "y": 9.2,
-            "w": 188.2,
-            "h": 146.7
+            "x": 27.9,
+            "y": 7.0,
+            "w": 193.8,
+            "h": 151.1
           },
           "empty": false,
           "id": "hotspot-psu-0",
@@ -2366,10 +2366,10 @@
         },
         {
           "bounds": {
-            "x": 218.9,
-            "y": 9.2,
-            "w": 188.2,
-            "h": 146.7
+            "x": 216.1,
+            "y": 7.0,
+            "w": 193.8,
+            "h": 151.1
           },
           "empty": false,
           "id": "hotspot-psu-1",
