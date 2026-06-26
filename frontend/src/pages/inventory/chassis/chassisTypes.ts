@@ -64,6 +64,9 @@ export type ChassisHotspot = {
     sourceTypeId?: string;
     modelName?: string;
     modelTypeId?: string;
+    /** Decorative background art (e.g. a line-card faceplate); rendered as a
+     *  SlotAsset only — no selectable/highlightable hotspot button. */
+    kind?: string;
   };
 };
 

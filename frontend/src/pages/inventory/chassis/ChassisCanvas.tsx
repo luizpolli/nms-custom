@@ -198,6 +198,10 @@ export function ChassisCanvas({
             ) : null
           )}
           {view.hotspots.map((hotspot) => {
+            // Decorative background art (e.g. line-card faceplate): rendered as a
+            // SlotAsset only — no clickable/highlightable button so it never shows
+            // a selection box.
+            if (hotspot.metadata?.kind === 'linecard') return null;
             const selected = containsComponent(model.componentsById, hotspot.inventoryId, selectedComponentId);
             const canSelect = Boolean(hotspot.inventoryId);
             const showHotspotChrome = shouldRenderOverlay(model.profileId, hotspot.id);
