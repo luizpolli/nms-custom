@@ -14,6 +14,7 @@ Protocol:
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import uuid
 
 import asyncssh
@@ -73,37 +74,35 @@ async def device_console(ws: WebSocket, device_id: uuid.UUID) -> None:
         f"\r\n[connecting] {ssh_cred.username}@{ssh_cred.host}:{ssh_cred.port} ...\r\n"
     )
     try:
-        async with asyncssh.connect(**_build_connect_kwargs(ssh_cred)) as conn:
-            async with conn.create_process(term_type="xterm", term_size=(cols, rows)) as proc:
-                await ws.send_text("[connected]\r\n")
+        async with (
+            asyncssh.connect(**_build_connect_kwargs(ssh_cred)) as conn,
+            conn.create_process(term_type="xterm", term_size=(cols, rows)) as proc,
+        ):
+            await ws.send_text("[connected]\r\n")
 
-                async def ssh_to_ws() -> None:
-                    while True:
-                        data = await proc.stdout.read(4096)
-                        if not data:  # remote closed
-                            break
-                        await ws.send_text(data)
+            async def ssh_to_ws() -> None:
+                while True:
+                    data = await proc.stdout.read(4096)
+                    if not data:  # remote closed
+                        break
+                    await ws.send_text(data)
 
-                async def ws_to_ssh() -> None:
-                    while True:
-                        proc.stdin.write(await ws.receive_text())
+            async def ws_to_ssh() -> None:
+                while True:
+                    proc.stdin.write(await ws.receive_text())
 
-                _, pending = await asyncio.wait(
-                    {asyncio.create_task(ssh_to_ws()), asyncio.create_task(ws_to_ssh())},
-                    return_when=asyncio.FIRST_COMPLETED,
-                )
-                for task in pending:
-                    task.cancel()
+            _, pending = await asyncio.wait(
+                {asyncio.create_task(ssh_to_ws()), asyncio.create_task(ws_to_ssh())},
+                return_when=asyncio.FIRST_COMPLETED,
+            )
+            for task in pending:
+                task.cancel()
     except WebSocketDisconnect:
         pass
     except Exception as exc:  # noqa: BLE001 — connect/auth/network failures
         logger.warning("console session error device={} err={}", device_id, exc)
-        try:
+        with contextlib.suppress(Exception):
             await ws.send_text(f"\r\n[disconnected] {exc}\r\n")
-        except Exception:  # noqa: BLE001
-            pass
     finally:
-        try:
+        with contextlib.suppress(Exception):
             await ws.close()
-        except Exception:  # noqa: BLE001
-            pass
