@@ -1,7 +1,25 @@
-import { Activity, Bell, TerminalSquare } from 'lucide-react';
+import { Activity, Bell, Power, PowerOff, TerminalSquare } from 'lucide-react';
 import { Badge, Button, Card } from '../../../components/ui';
 import type { ChassisComponent } from './chassisTypes';
-import { formatSpeedBps, type ManagedInterface, type ManagedPort } from './portInventory';
+import { formatSpeedBps, type ManagedInterface, type ManagedPort, type PortStatus, type PortStatusInfo } from './portInventory';
+
+/** Shared status nomenclature (Up / Down / Admin down) with colour. */
+export const PORT_STATUS_META: Record<PortStatus, { label: string; dot: string; badge: string }> = {
+  up: { label: 'Up', dot: 'bg-green-500', badge: 'bg-green-100 text-green-700 ring-green-300 dark:bg-green-900/40 dark:text-green-300 dark:ring-green-700/60' },
+  down: { label: 'Down', dot: 'bg-red-500', badge: 'bg-red-100 text-red-700 ring-red-300 dark:bg-red-900/40 dark:text-red-300 dark:ring-red-700/60' },
+  'admin-down': { label: 'Admin down', dot: 'bg-amber-500', badge: 'bg-amber-100 text-amber-700 ring-amber-300 dark:bg-amber-900/40 dark:text-amber-300 dark:ring-amber-700/60' },
+};
+
+export function PortStatusBadge({ status }: { status?: PortStatus | null }) {
+  if (!status) return <span className="text-xs text-gray-400 dark:text-gray-500">—</span>;
+  const meta = PORT_STATUS_META[status];
+  return (
+    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${meta.badge}`}>
+      <span className={`h-1.5 w-1.5 rounded-full ${meta.dot}`} />
+      {meta.label}
+    </span>
+  );
+}
 
 export function ComponentDetailsPanel({
   component,
@@ -13,6 +31,9 @@ export function ComponentDetailsPanel({
   isLoadingInterfaces,
   deviceId,
   onSelectPort,
+  statusByComponentId,
+  onTogglePortAdmin,
+  isDemo,
 }: {
   component?: ChassisComponent;
   componentsById: Record<string, ChassisComponent>;
@@ -23,6 +44,9 @@ export function ComponentDetailsPanel({
   isLoadingInterfaces: boolean;
   deviceId?: string;
   onSelectPort: (portId: string) => void;
+  statusByComponentId: Record<string, PortStatusInfo>;
+  onTogglePortAdmin: (componentId: string, portName?: string) => void;
+  isDemo: boolean;
 }) {
   return (
     <Card className="space-y-4 border-gray-300 bg-white/90 dark:border-gray-700 dark:bg-gray-900/95">
@@ -70,6 +94,9 @@ export function ComponentDetailsPanel({
                 deviceId={deviceId}
                 componentsById={componentsById}
                 onSelectPort={onSelectPort}
+                statusByComponentId={statusByComponentId}
+                onTogglePortAdmin={onTogglePortAdmin}
+                isDemo={isDemo}
               />
             )}
           </div>
@@ -88,6 +115,9 @@ function PortInventoryPanel({
   deviceId,
   componentsById,
   onSelectPort,
+  statusByComponentId,
+  onTogglePortAdmin,
+  isDemo,
 }: {
   ports: ManagedPort[];
   selectedPort?: ManagedPort;
@@ -97,8 +127,13 @@ function PortInventoryPanel({
   deviceId?: string;
   componentsById: Record<string, ChassisComponent>;
   onSelectPort: (portId: string) => void;
+  statusByComponentId: Record<string, PortStatusInfo>;
+  onTogglePortAdmin: (componentId: string, portName?: string) => void;
+  isDemo: boolean;
 }) {
   const selectedComponent = selectedPort ? componentsById[selectedPort.componentId] : undefined;
+  const selectedStatus = selectedPort ? statusByComponentId[selectedPort.componentId]?.status : undefined;
+  const willShut = selectedStatus !== 'admin-down';
 
   return (
     <div className="space-y-3">
@@ -120,8 +155,11 @@ function PortInventoryPanel({
                   {port.componentName}
                 </span>
               </span>
-              <span className={`font-mono text-xs ${active ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'}`}>
-                {port.portId ?? port.id}
+              <span className="flex flex-col items-end gap-1">
+                <PortStatusBadge status={statusByComponentId[port.componentId]?.status} />
+                <span className={`font-mono text-xs ${active ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {port.portId ?? port.id}
+                </span>
               </span>
             </button>
           );
@@ -135,14 +173,29 @@ function PortInventoryPanel({
               <p className="truncate font-semibold text-gray-900 dark:text-gray-100">{selectedPort.name ?? `Port ${selectedPort.id}`}</p>
               <p className="truncate text-xs text-gray-500 dark:text-gray-400">{selectedPort.componentName}</p>
             </div>
-            <Badge variant={selectedComponent?.operStatus === 'up' || selectedComponent?.operStatus === 'on' ? 'success' : 'default'}>
-              {selectedComponent?.operStatus ?? 'known'}
-            </Badge>
+            <PortStatusBadge status={selectedStatus} />
           </div>
           <div className="grid gap-2">
             <MetricLine label="Port ID" value={String(selectedPort.portId ?? selectedPort.id)} />
             <MetricLine label="Parent module" value={selectedPort.componentTypeId ?? selectedPort.componentName} />
             <MetricLine label="Physical index" value={String(selectedComponent?.physicalIndex ?? '-')} />
+          </div>
+          <div className="mt-3 border-t border-cisco-blue/20 pt-3 dark:border-cisco-blue/30">
+            <Button
+              type="button"
+              variant={willShut ? 'danger' : 'success'}
+              size="sm"
+              className="w-full"
+              onClick={() => onTogglePortAdmin(selectedPort.componentId, selectedPort.name)}
+              leftIcon={willShut ? <PowerOff className="h-4 w-4" /> : <Power className="h-4 w-4" />}
+            >
+              {willShut ? 'Apagar puerto (shutdown)' : 'Encender puerto (no shutdown)'}
+            </Button>
+            <p className="mt-1.5 text-center text-[11px] text-gray-500 dark:text-gray-400">
+              {isDemo
+                ? 'Modo demo: cambia el estado de forma simulada.'
+                : 'Genera el comando shut/no shut hacia la consola del equipo.'}
+            </p>
           </div>
         </div>
       )}

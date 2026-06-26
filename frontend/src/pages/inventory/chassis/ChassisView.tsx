@@ -177,18 +177,45 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
     () => (data ? buildPortStatusByComponentId(data, managedInterfaces) : {}),
     [data, managedInterfaces],
   );
-  const portStatusCounts = useMemo(() => {
-    const counts: Record<PortStatus, number> = { up: 0, down: 0, 'admin-down': 0 };
-    for (const info of Object.values(portStatusByComponentId)) {
-      counts[info.status] += 1;
-    }
-    return counts;
-  }, [portStatusByComponentId]);
   // Demo / static mode: generate synthetic port colours when no live interface data is available
   const portStatusByHotspotId = useMemo(() => {
     if (deviceId || !data || Object.keys(portStatusByComponentId).length > 0) return {};
     return generateDemoPortStatusByHotspot(data);
   }, [deviceId, data, portStatusByComponentId]);
+  // Admin shut/no-shut overrides (demo: simulated; live: routed to /commands).
+  const [adminOverrides, setAdminOverrides] = useState<Record<string, PortStatus>>({});
+  // Unified componentId -> status: base poll/static, folding synthetic hotspot
+  // colours into componentId space, then applying admin overrides on top. Drives
+  // the chassis icons, both panels and the legend so a toggle updates everything.
+  const effectivePortStatusByComponentId = useMemo(() => {
+    const merged: Record<string, PortStatusInfo> = { ...portStatusByComponentId };
+    if (data) {
+      for (const v of data.views) {
+        for (const h of v.hotspots) {
+          if (h.inventoryId && !merged[h.inventoryId] && portStatusByHotspotId[h.id]) {
+            merged[h.inventoryId] = portStatusByHotspotId[h.id];
+          }
+        }
+      }
+      for (const [cid, status] of Object.entries(adminOverrides)) {
+        const prev = merged[cid];
+        merged[cid] = {
+          status,
+          interfaceName: prev?.interfaceName ?? data.componentsById[cid]?.displayName ?? cid,
+          adminStatus: status === 'admin-down' ? 'down' : 'up',
+          operStatus: status === 'up' ? 'up' : 'down',
+        };
+      }
+    }
+    return merged;
+  }, [portStatusByComponentId, portStatusByHotspotId, adminOverrides, data]);
+  const portStatusCounts = useMemo(() => {
+    const counts: Record<PortStatus, number> = { up: 0, down: 0, 'admin-down': 0 };
+    for (const info of Object.values(effectivePortStatusByComponentId)) {
+      counts[info.status] += 1;
+    }
+    return counts;
+  }, [effectivePortStatusByComponentId]);
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [selectedPortId, setSelectedPortId] = useState<string | null>(null);
   const [portDetailPhysicalIndex, setPortDetailPhysicalIndex] = useState<number | null>(null);
@@ -232,6 +259,23 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
     setSelectedComponentId(componentId);
     setSelectedPortId(null);
     setZoomOpen(false);
+  };
+
+  const isDemo = !deviceId;
+  const handleTogglePortAdmin = (componentId: string, portName?: string) => {
+    const current = effectivePortStatusByComponentId[componentId]?.status;
+    const next: PortStatus = current === 'admin-down' ? 'up' : 'admin-down';
+    if (isDemo) {
+      // Demo / static profile: simulate the admin flip so the chassis icon,
+      // panels and legend update live.
+      setAdminOverrides((prev) => ({ ...prev, [componentId]: next }));
+      return;
+    }
+    // Live device: hand the shut / no-shut command off to the console page.
+    const iface = portName ?? data.componentsById[componentId]?.displayName ?? '';
+    const command = `interface ${iface}\n ${next === 'admin-down' ? 'shutdown' : 'no shutdown'}`;
+    const query = new URLSearchParams({ device_id: deviceId ?? '', interface: iface, command }).toString();
+    window.location.href = `/commands?${query}`;
   };
 
   const handleHotspotDetail = (physicalIndex: number) => {
@@ -326,7 +370,7 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                       onSelect={handleComponentSelect}
                       onHotspotDetail={deviceId ? handleHotspotDetail : undefined}
                       viewId={view.id}
-                      portStatusByComponentId={portStatusByComponentId}
+                      portStatusByComponentId={effectivePortStatusByComponentId}
                       portStatusByHotspotId={portStatusByHotspotId}
                     />
                   </div>
@@ -353,14 +397,23 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
                 isLoadingInterfaces={managedInterfacesQuery.isLoading || managedInterfacesQuery.isFetching}
                 deviceId={deviceId}
                 onSelectPort={setSelectedPortId}
+                statusByComponentId={effectivePortStatusByComponentId}
+                onTogglePortAdmin={handleTogglePortAdmin}
+                isDemo={isDemo}
               />
             </div>
 
-            <PortInventoryTable rows={portInventoryRows} hasLiveInterfaceLookup={Boolean(deviceId)} />
+            <PortInventoryTable
+              rows={portInventoryRows}
+              hasLiveInterfaceLookup={Boolean(deviceId)}
+              statusByComponentId={effectivePortStatusByComponentId}
+              onTogglePortAdmin={handleTogglePortAdmin}
+              isDemo={isDemo}
+            />
           </div>
 
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 rounded-full bg-white/90 px-3 py-2 text-xs text-gray-600 shadow dark:bg-gray-900/90 dark:text-gray-300">
-            {Object.keys(portStatusByComponentId).length > 0 ? (
+            {Object.keys(effectivePortStatusByComponentId).length > 0 ? (
               <>
                 <LegendDot icon="/chassis-icons/up.svg" label={`Up (${portStatusCounts.up})`} />
                 <LegendDot icon="/chassis-icons/down.svg" label={`Down (${portStatusCounts.down})`} />
