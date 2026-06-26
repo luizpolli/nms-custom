@@ -69,3 +69,6 @@ docs/Cisco *.jpg
 docs/bulkstats/*_bulkstats_*.csv
 # Runtime audit logs
 backend/data/audit/
+
+# Local context/working dir (git bundles, memory dumps)
+all-context/

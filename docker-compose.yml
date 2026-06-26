@@ -544,6 +544,15 @@ services:
     networks:
       - nms-net
 
+  # Network toolbox (ping, snmpwalk, traceroute) on the same LAN as nms-app.
+  netdebug:
+    image: nicolaka/netshoot:latest
+    container_name: nms-netdebug
+    restart: unless-stopped
+    command: ["sleep", "infinity"]
+    networks:
+      - nms-net
+
 volumes:
   pg_data:
   redis_data:

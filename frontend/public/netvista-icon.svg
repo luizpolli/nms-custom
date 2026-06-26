@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Net Vista circular icon -->
+  <circle cx="256" cy="256" r="240" fill="#E6F0FB" stroke="#2E6FC0" stroke-width="6"/>
+
+  <!-- faint inner diagonals (complete-graph edges) -->
+  <g stroke="#B9D5F0" stroke-width="3" stroke-linecap="round" opacity="0.7">
+    <line x1="256" y1="106" x2="344.2" y2="377.4"/>
+    <line x1="256" y1="106" x2="167.8" y2="377.4"/>
+    <line x1="398.7" y1="209.6" x2="167.8" y2="377.4"/>
+    <line x1="398.7" y1="209.6" x2="113.3" y2="209.6"/>
+    <line x1="344.2" y1="377.4" x2="113.3" y2="209.6"/>
+  </g>
+
+  <!-- pentagon outline edges -->
+  <g stroke="#5B9BD5" stroke-width="6" stroke-linecap="round" fill="none">
+    <line x1="256" y1="106" x2="398.7" y2="209.6"/>
+    <line x1="398.7" y1="209.6" x2="344.2" y2="377.4"/>
+    <line x1="344.2" y1="377.4" x2="167.8" y2="377.4"/>
+    <line x1="167.8" y1="377.4" x2="113.3" y2="209.6"/>
+    <line x1="113.3" y1="209.6" x2="256" y2="106"/>
+  </g>
+
+  <!-- bottom solid nodes -->
+  <circle cx="344.2" cy="377.4" r="22" fill="#7FB6E8"/>
+  <circle cx="167.8" cy="377.4" r="22" fill="#7FB6E8"/>
+
+  <!-- side ring nodes -->
+  <circle cx="398.7" cy="209.6" r="20" fill="#FFFFFF" stroke="#4A90D9" stroke-width="9"/>
+  <circle cx="113.3" cy="209.6" r="20" fill="#FFFFFF" stroke="#4A90D9" stroke-width="9"/>
+
+  <!-- top accent node -->
+  <circle cx="256" cy="106" r="22" fill="#FFFFFF" stroke="#15539E" stroke-width="12"/>
+</svg>
