@@ -26,6 +26,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/api/console': {
+        target: wsTarget,
+        ws: true,
+        changeOrigin: true,
+        secure: false,
+      },
       '/api': {
         target: apiTarget,
         changeOrigin: true,
