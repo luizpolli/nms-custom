@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { CheckCircle2, Info, Maximize2 } from 'lucide-react';
+import { Maximize2, Terminal } from 'lucide-react';
 import { api } from '../../../lib/api';
 import { Badge, Card, Spinner } from '../../../components/ui';
 import type { ChassisComponent, ChassisHotspot, ChassisTreeNode, ChassisViewImage, ChassisViewModel } from './chassisTypes';
@@ -134,6 +134,14 @@ function buildZoomCard(
         status:
           (hotspot.inventoryId ? statusByComponentId[hotspot.inventoryId] : undefined)?.status ??
           statusByHotspotId[hotspot.id]?.status,
+        // Real cage position as fractions of the card faceplate, so the View Card
+        // replicates the chassis-view layout instead of an even grid.
+        bounds: {
+          x: (hotspot.bounds.x - slot.bounds.x) / slot.bounds.w,
+          y: (hotspot.bounds.y - slot.bounds.y) / slot.bounds.h,
+          w: hotspot.bounds.w / slot.bounds.w,
+          h: hotspot.bounds.h / slot.bounds.h,
+        },
       }))
       .sort((a, b) => a.label.localeCompare(b.label, undefined, { numeric: true, sensitivity: 'base' }));
 
@@ -146,6 +154,7 @@ function buildZoomCard(
       // A taller-than-wide slot means the card seats vertically (ASR9010);
       // a wider slot is a horizontal chassis (ASR9006).
       vertical: slot.bounds.h > slot.bounds.w,
+      aspect: slot.bounds.w / slot.bounds.h,
       ports,
     };
   }
@@ -312,8 +321,15 @@ export function ChassisView({ deviceName, deviceId, dataUrl = '/chassis-assets/a
             <h2 className="truncate text-xl font-semibold text-gray-800 dark:text-gray-100">
               Chassis View-{deviceName}
             </h2>
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-green-600" />
-            <Info className="h-5 w-5 shrink-0 text-gray-400" />
+            <button
+              type="button"
+              title="Conectar a la consola del equipo (SSH)"
+              aria-label="Conectar a la consola del equipo por SSH"
+              onClick={() => { window.location.href = deviceId ? `/commands?device_id=${encodeURIComponent(deviceId)}` : '/commands'; }}
+              className="shrink-0 rounded p-1 text-gray-500 transition hover:bg-gray-100 hover:text-cisco-blue dark:text-gray-400 dark:hover:bg-gray-800"
+            >
+              <Terminal className="h-5 w-5" />
+            </button>
           </div>
           <div className="flex flex-wrap items-center gap-2 lg:justify-end lg:shrink-0">
             <Badge variant="success">Inventory mapped</Badge>

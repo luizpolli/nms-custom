@@ -18,6 +18,8 @@ export type ZoomPort = {
   id: string;
   label: string;
   status?: PortStatus;
+  /** Real cage position as fractions (0-1) of the faceplate, when mapped. */
+  bounds?: { x: number; y: number; w: number; h: number };
 };
 
 export interface CardZoomData {
@@ -36,6 +38,8 @@ export interface CardZoomData {
    * in a 2-row grid.
    */
   vertical: boolean;
+  /** Faceplate aspect ratio (width/height) when ports carry real bounds. */
+  aspect?: number;
   ports: ZoomPort[];
 }
 
@@ -83,6 +87,15 @@ export function CardZoomModal({ card, onClose }: { card: CardZoomData; onClose: 
     ? { gridTemplateColumns: `repeat(${minorAxis}, minmax(0, 1fr))` }
     : { gridTemplateRows: `repeat(${minorAxis}, minmax(0, 1fr))`, gridAutoFlow: 'column' as const };
 
+  // When every port carries a real cage position, render the faceplate at its
+  // true aspect ratio and place ports absolutely (mirrors the chassis view)
+  // instead of the even-grid fallback.
+  const hasBounds = !vertical && ports.length > 0 && ports.every((p) => p.bounds);
+  const faceW = hasBounds ? 660 : faceWidth;
+  const faceH = hasBounds
+    ? Math.max(70, Math.round(660 / (card.aspect && card.aspect > 0 ? card.aspect : 5)))
+    : faceHeight;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
@@ -125,7 +138,7 @@ export function CardZoomModal({ card, onClose }: { card: CardZoomData; onClose: 
           <div className="flex shrink-0 flex-col items-center gap-2">
             <div
               className="relative rounded-sm border border-gray-300 bg-gray-100 shadow-inner dark:border-gray-700 dark:bg-gray-800"
-              style={{ width: faceWidth, height: faceHeight }}
+              style={{ width: faceW, height: faceH }}
             >
               {card.image && (
                 <img
@@ -136,46 +149,76 @@ export function CardZoomModal({ card, onClose }: { card: CardZoomData; onClose: 
                   style={
                     vertical
                       ? {
-                          width: faceHeight,
-                          height: faceWidth,
+                          width: faceH,
+                          height: faceW,
                           transform: 'translate(-50%, -50%) rotate(90deg)',
                           objectFit: 'fill',
                         }
                       : {
-                          width: faceWidth,
-                          height: faceHeight,
+                          width: faceW,
+                          height: faceH,
                           transform: 'translate(-50%, -50%)',
                           objectFit: 'fill',
                         }
                   }
                 />
               )}
-              <div
-                className={`absolute inset-0 grid gap-[3px] ${vertical ? 'px-[10%] py-[7%]' : 'px-[7%] py-[10%]'}`}
-                style={gridStyle}
-              >
-                {overlayPorts.map((port) => (
-                  <div
-                    key={port.id}
-                    title={`${port.label}${port.status ? ` — ${PORT_STATUS_LABELS[port.status]}` : ''}`}
-                    className={`flex items-center justify-center rounded-[2px] border ${
-                      port.status
-                        ? 'border-gray-500/60 bg-black/30'
-                        : 'border-gray-400/30 bg-black/10'
-                    }`}
-                  >
-                    {port.status && (
-                      <img
-                        src={PORT_STATUS_ICONS[port.status]}
-                        alt=""
-                        aria-hidden="true"
-                        draggable={false}
-                        className="h-2.5 w-2.5 object-contain sm:h-3 sm:w-3"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
+              {hasBounds ? (
+                <div className="absolute inset-0">
+                  {ports.map((port) => (
+                    <div
+                      key={port.id}
+                      title={`${port.label}${port.status ? ` — ${PORT_STATUS_LABELS[port.status]}` : ''}`}
+                      className={`absolute flex items-center justify-center rounded-[2px] border ${
+                        port.status ? 'border-gray-500/60 bg-black/25' : 'border-gray-400/30 bg-black/10'
+                      }`}
+                      style={{
+                        left: `${port.bounds!.x * 100}%`,
+                        top: `${port.bounds!.y * 100}%`,
+                        width: `${port.bounds!.w * 100}%`,
+                        height: `${port.bounds!.h * 100}%`,
+                      }}
+                    >
+                      {port.status && (
+                        <img
+                          src={PORT_STATUS_ICONS[port.status]}
+                          alt=""
+                          aria-hidden="true"
+                          draggable={false}
+                          className="h-2.5 w-2.5 object-contain sm:h-3 sm:w-3"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className={`absolute inset-0 grid gap-[3px] ${vertical ? 'px-[10%] py-[7%]' : 'px-[7%] py-[10%]'}`}
+                  style={gridStyle}
+                >
+                  {overlayPorts.map((port) => (
+                    <div
+                      key={port.id}
+                      title={`${port.label}${port.status ? ` — ${PORT_STATUS_LABELS[port.status]}` : ''}`}
+                      className={`flex items-center justify-center rounded-[2px] border ${
+                        port.status
+                          ? 'border-gray-500/60 bg-black/30'
+                          : 'border-gray-400/30 bg-black/10'
+                      }`}
+                    >
+                      {port.status && (
+                        <img
+                          src={PORT_STATUS_ICONS[port.status]}
+                          alt=""
+                          aria-hidden="true"
+                          draggable={false}
+                          className="h-2.5 w-2.5 object-contain sm:h-3 sm:w-3"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <span className="text-[10px] uppercase tracking-wide text-gray-400">Front view</span>
           </div>
